@@ -37,8 +37,6 @@ UnknownScript_0x5857c:
 	iftrue UnknownScript_0x58586
 	changeblock 4, 0, $24
 UnknownScript_0x58586:
-	checkevent EVENT_SOLVED_HO_OH_PUZZLE
-	iffalse UnknownScript_0x5858d
 	return
 
 UnknownScript_0x5858d:
@@ -68,7 +66,6 @@ MapRuinsofAlphHoOhChamberSignpost2Script:
 
 UnknownScript_0x585ba:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	setevent EVENT_SOLVED_HO_OH_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_4
 	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30

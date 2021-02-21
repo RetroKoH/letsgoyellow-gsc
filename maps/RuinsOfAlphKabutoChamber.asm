@@ -38,8 +38,6 @@ UnknownScript_0x58737:
 	iftrue UnknownScript_0x58741
 	changeblock 4, 0, $24
 UnknownScript_0x58741:
-	checkevent EVENT_SOLVED_KABUTO_PUZZLE
-	iffalse UnknownScript_0x58748
 	return
 
 UnknownScript_0x58748:
@@ -69,7 +67,6 @@ MapRuinsofAlphKabutoChamberSignpost2Script:
 
 UnknownScript_0x58778:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	setevent EVENT_SOLVED_KABUTO_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_1
 	setevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, $1
@@ -94,8 +91,6 @@ ScientistScript_0x587a8:
 	iftrue_jumptextfaceplayer UnknownText_0x5897c
 	faceplayer
 	opentext
-	checkevent EVENT_SOLVED_KABUTO_PUZZLE
-	iffalse UnknownScript_0x587c0
 	writetext UnknownText_0x589b8
 	buttonsound
 UnknownScript_0x587c0:

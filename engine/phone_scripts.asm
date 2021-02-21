@@ -1419,8 +1419,6 @@ DanaPhoneScript2:
 	iftrue UnknownScript_0xbd99f
 	farscall PhoneScript_Random3
 	ifequal $0, UnknownScript_0xbd9ae
-	checkevent EVENT_DANA_GAVE_THUNDERSTONE
-	iftrue UnknownScript_0xbd997
 	farscall PhoneScript_Random2
 	ifequal $0, UnknownScript_0xbd9bc
 
@@ -1586,8 +1584,6 @@ TullyPhoneScript2:
 	iftrue UnknownScript_0xbdb1b
 	farscall PhoneScript_Random3
 	ifequal $0, UnknownScript_0xbdb22
-	checkevent EVENT_TULLY_GAVE_WATER_STONE
-	iftrue UnknownScript_0xbdb13
 	farscall PhoneScript_Random2
 	ifequal $0, UnknownScript_0xbdb2c
 
@@ -1694,8 +1690,6 @@ TiffanyPhoneScript2:
 	iftrue UnknownScript_0xbdc10
 	farscall PhoneScript_Random3
 	ifequal $0, UnknownScript_0xbdc17
-	checkevent EVENT_TIFFANY_GAVE_PINK_BOW
-	iftrue UnknownScript_0xbdc08
 	farscall PhoneScript_Random2
 	ifequal $0, UnknownScript_0xbdc69
 

@@ -61,8 +61,6 @@ BellTowerPaintingScript:
 	done
 
 KabutoPuzzleScript:
-	checkevent EVENT_SOLVED_KABUTO_PUZZLE
-	iffalse_jumptext UnsolvedPuzzleText
 	refreshscreen
 	paintingpic KABUTO_PUZZLE
 	waitbutton
@@ -74,8 +72,6 @@ KabutoPuzzleScript:
 	done
 
 OmanytePuzzleScript:
-	checkevent EVENT_SOLVED_OMANYTE_PUZZLE
-	iffalse_jumptext UnsolvedPuzzleText
 	refreshscreen
 	paintingpic OMANYTE_PUZZLE
 	waitbutton
@@ -87,8 +83,6 @@ OmanytePuzzleScript:
 	done
 
 AerodactylPuzzleScript:
-	checkevent EVENT_SOLVED_AERODACTYL_PUZZLE
-	iffalse_jumptext UnsolvedPuzzleText
 	refreshscreen
 	paintingpic AERODACTYL_PUZZLE
 	waitbutton
@@ -100,8 +94,6 @@ AerodactylPuzzleScript:
 	done
 
 HoOhPuzzleScript:
-	checkevent EVENT_SOLVED_HO_OH_PUZZLE
-	iffalse_jumptext UnsolvedPuzzleText
 	refreshscreen
 	paintingpic HO_OH_PUZZLE
 	waitbutton

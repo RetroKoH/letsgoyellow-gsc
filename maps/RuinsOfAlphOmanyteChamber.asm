@@ -37,8 +37,6 @@ UnknownScript_0x58bf8:
 	iftrue UnknownScript_0x58c02
 	changeblock 4, 0, $24
 UnknownScript_0x58c02:
-	checkevent EVENT_SOLVED_OMANYTE_PUZZLE
-	iffalse UnknownScript_0x58c09
 	return
 
 UnknownScript_0x58c09:
@@ -68,7 +66,6 @@ MapRuinsofAlphOmanyteChamberSignpost2Script:
 
 UnknownScript_0x58c36:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	setevent EVENT_SOLVED_OMANYTE_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_2
 	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, $1
 	earthquake 30

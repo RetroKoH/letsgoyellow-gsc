@@ -361,8 +361,8 @@ PicnickerTiffany1Script:
 	opentext
 	checkflag ENGINE_TIFFANY
 	iftrue UnknownScript_0x19d1c1
-	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
-	iftrue UnknownScript_0x19d21e
+;	checkflag ENGINE_TIFFANY_HAS_PINK_BOW
+;	iftrue UnknownScript_0x19d21e
 	checkcellnum PHONE_PICNICKER_TIFFANY
 	iftrue UnknownScript_0x19d245
 	checkpoke CLEFAIRY
@@ -438,7 +438,6 @@ UnknownScript_0x19d21e:
 	verbosegiveitem PINK_BOW
 	iffalse UnknownScript_0x19d230
 	clearflag ENGINE_TIFFANY_HAS_PINK_BOW
-	setevent EVENT_TIFFANY_GAVE_PINK_BOW
 	jump UnknownScript_0x19d245
 
 UnknownScript_0x19d230:

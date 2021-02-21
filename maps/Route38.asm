@@ -137,7 +137,6 @@ TrainerLassDana1:
 	verbosegiveitem THUNDERSTONE
 	iffalse .NoRoomForThunderstone
 	clearflag ENGINE_DANA_HAS_THUNDERSTONE
-	setevent EVENT_DANA_GAVE_THUNDERSTONE
 	jumpstd numberacceptedf
 
 .NoRoomForThunderstone:

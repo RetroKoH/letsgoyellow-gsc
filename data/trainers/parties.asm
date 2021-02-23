@@ -1135,31 +1135,19 @@ Rival0Group:
 ; ================
 
 	; RIVAL0
-	db "boy@"
+	db "<RIVAL>@"
 	db TRAINERTYPE_ITEM
 	; party
-	db 4, RATTATA, NO_ITEM
-	db 5, CHIKORITA, ORAN_BERRY
+	db 5, EEVEE, ORAN_BERRY
 	db -1 ; end
 
 ; ================
 
 	; RIVAL0
-	db "boy@"
+	db "<RIVAL>@"
 	db TRAINERTYPE_ITEM
 	; party
-	db 4, RATTATA, NO_ITEM
-	db 5, CYNDAQUIL, ORAN_BERRY
-	db -1 ; end
-
-; ================
-
-	; RIVAL0
-	db "boy@"
-	db TRAINERTYPE_ITEM
-	; party
-	db 4, RATTATA, NO_ITEM
-	db 5, TOTODILE, ORAN_BERRY
+	db 5, PIKACHU, ORAN_BERRY
 	db -1 ; end
 
 ; ================

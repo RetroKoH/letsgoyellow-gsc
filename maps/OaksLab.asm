@@ -38,8 +38,8 @@ OaksLab_MapScriptHeader:
 
 	db 8 ; object events
 	object_event  4,  3, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OaksLabBlueScript, EVENT_HIDE_OAKSLAB_BLUE
-	object_event  6,  3, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PikachuPokeballScript, EVENT_HIDE_OAKSLAB_STARTER_1
-	object_event  8,  3, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, EeveePokeballScript, EVENT_HIDE_OAKSLAB_STARTER_2
+	object_event  6,  3, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, PikachuPokeballScript, EVENT_HIDE_OAKSLAB_STARTER_1
+	object_event  8,  3, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, EeveePokeballScript, EVENT_HIDE_OAKSLAB_STARTER_2
 	object_event  5,  2, SPRITE_OAK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, OaksLabOakScript, EVENT_HIDE_OAKSLAB_OAK
 	object_event  2,  1, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_COMMAND, jumptext, OaksLabPokedexDescriptionText, EVENT_GOT_POKEDEX
 	object_event  3,  1, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_COMMAND, jumptext, OaksLabPokedexDescriptionText, EVENT_GOT_POKEDEX
@@ -190,12 +190,12 @@ LabBattleBlueScript:
 	setlasttalked OAKSLAB_BLUE
 	checkevent EVENT_PLAYER_CHOSE_PIKACHU
 	iftrue .Pikachu
-	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromEevee1
-	loadtrainer RIVAL1, 1
+	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromPikachu1
+	loadtrainer RIVAL0, 2
 	jump .continueBattle
 .Pikachu
-	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromPikachu1
-	loadtrainer RIVAL1, 2
+	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromEevee1
+	loadtrainer RIVAL0, 1
 	jump .continueBattle
 .continueBattle
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
@@ -222,12 +222,12 @@ LabBattleBlueScript2:
 	setlasttalked OAKSLAB_BLUE
 	checkevent EVENT_PLAYER_CHOSE_PIKACHU
 	iftrue .Pikachu
-	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromEevee2
-	loadtrainer RIVAL1, 1
+	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromPikachu2
+	loadtrainer RIVAL0, 2
 	jump .continueBattle
 .Pikachu
-	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromPikachu2
-	loadtrainer RIVAL1, 2
+	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromEevee2
+	loadtrainer RIVAL0, 1
 	jump .continueBattle
 .continueBattle
 	writecode VAR_BATTLETYPE, BATTLETYPE_CANLOSE
@@ -258,8 +258,8 @@ PikachuPokeballScript: ;CharmanderPokeballScript:
 	yesorno
 	iffalse_jumpopenedtext OaksLabDidntChooseStarterText
 	disappear OAKSLAB_STARTER_1
-	setevent EVENT_GOT_CHIKORITA_FROM_ELM ;EVENT_PLAYER_CHOSE_PIKACHU
-	setevent EVENT_GOT_A_POKEMON_FROM_ELM ; EVENT_GOT_STARTER
+	setevent EVENT_PLAYER_CHOSE_PIKACHU
+	setevent EVENT_GOT_STARTER
 	writetext OaksLabMonEnergeticText
 	buttonsound
 	waitsfx
@@ -299,8 +299,8 @@ EeveePokeballScript: ;BulbasaurPokeballScript:
 	yesorno
 	iffalse_jumpopenedtext OaksLabDidntChooseStarterText
 	disappear OAKSLAB_STARTER_2
-	setevent EVENT_GOT_TOTODILE_FROM_ELM ;EVENT_PLAYER_CHOSE_EEVEE
-	setevent EVENT_GOT_A_POKEMON_FROM_ELM ; EVENT_GOT_STARTER
+	setevent EVENT_PLAYER_CHOSE_EEVEE
+	setevent EVENT_GOT_STARTER
 	writetext OaksLabMonEnergeticText
 	buttonsound
 	waitsfx

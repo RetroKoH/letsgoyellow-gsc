@@ -141,7 +141,6 @@ Movement_OakWalksToLab1:
 	step_down
 	step_down
 	step_down
-	step_down
 	step_right
 	step_right
 	step_right

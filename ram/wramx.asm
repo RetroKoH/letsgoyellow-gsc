@@ -990,6 +990,7 @@ wMystriStageTrigger:: ds 1
 wNewBarkTownTrigger:: ds 1
 wOlivineCityTrigger:: ds 1
 wOlivinePortTrigger:: ds 1
+wOaksLabTrigger:: ds 1
 wPalletTownTrigger:: ds 1
 wPokecenter2FTrigger:: ds 1
 wPokemonLeagueGateTrigger:: ds 1

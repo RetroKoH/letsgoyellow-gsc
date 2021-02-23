@@ -1,7 +1,8 @@
 RedsHouse2F_MapScriptHeader:
 	db 0 ; scene scripts
 
-	db 0 ; callbacks
+	db 1 ; callbacks
+	callback MAPCALLBACK_NEWMAP, RedsHouse2FInitializeEvents
 
 	db 1 ; warp events
 	warp_event  7,  0, REDS_HOUSE_1F, 3
@@ -9,12 +10,20 @@ RedsHouse2F_MapScriptHeader:
 	db 0 ; coord events
 
 	db 4 ; bg events
-	bg_event  0,  1, SIGNPOST_JUMPTEXT, RedsHouse2FPCText
+	bg_event  0,  1, SIGNPOST_UP, RedsHouse2FPCScript
 	bg_event  3,  5, SIGNPOST_JUMPTEXT, RedsHouse2FSNESText
 	bg_event  4,  1, SIGNPOST_READ, PokemonJournalProfOakScript
 	bg_event  5,  1, SIGNPOST_READ, PokemonJournalProfOakScript
 
 	db 0 ; object events
+
+RedsHouse2FInitializeEvents:
+	checkevent EVENT_INITIALIZED_EVENTS
+	iftrue .SkipInizialization
+	jumpstd initializeevents
+
+.SkipInizialization:
+	return
 
 PokemonJournalProfOakScript:
 	setflag ENGINE_READ_PROF_OAK_JOURNAL
@@ -39,16 +48,17 @@ PokemonJournalProfOakScript:
 	line "Alola region."
 	done
 
-RedsHouse2FPCText:
-	text "It looks like it"
-	line "hasn't been used"
-	cont "in a long time…"
-	done
+RedsHouse2FPCScript:
+	opentext
+	special Special_KrissHousePC
+	endtext
 
 RedsHouse2FSNESText:
-	text "<PLAYER> played the"
-	line "SNES."
+	thistext
 
-	para "Better get going--"
-	line "no time to lose!"
+	text "<PLAYER> is"
+	line "playing the SNES."
+
+	para "…Okay!"
+	line "It's time to go!"
 	done

@@ -11,95 +11,48 @@ Route1_MapScriptHeader:
 	db 1 ; bg events
 	bg_event  9, 27, SIGNPOST_JUMPTEXT, Route1SignText
 
-	db 5 ; object events
-	object_event  6, 12, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerSchoolboyDanny, -1
-	object_event 17, 14, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerSchoolboySherman, -1
-	object_event 16, 21, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 2, GenericTrainerCooltrainermFrench, -1
-	object_event 11, 25, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 2, GenericTrainerCooltrainerfQuinn, -1
+	db 3 ; object events
+	object_event  5, 24, SPRITE_CLERK, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, PERSONTYPE_COMMAND, jumptextfaceplayer, Route1Text1, -1
+	object_event 15, 13, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_BROWN, PERSONTYPE_COMMAND, jumptextfaceplayer, Route1Text2, -1
 	fruittree_event  5,  7, FRUITTREE_ROUTE_1, FIGY_BERRY
 
-GenericTrainerSchoolboyDanny:
-	generictrainer SCHOOLBOY, DANNY, EVENT_BEAT_SCHOOLBOY_DANNY, SchoolboyDannySeenText, SchoolboyDannyBeatenText
-
-	text "For trainers, it's"
-	line "a given that we'll"
-
-	para "battle whenever we"
-	line "meet."
+Route1Text1:
+Route1ViridianMartSampleReceivedText:
+	text "We also carry"
+	line "# BALLs for"
+	cont "catching #MON!"
 	done
 
-GenericTrainerSchoolboySherman:
-	generictrainer SCHOOLBOY, SHERMAN, EVENT_BEAT_SCHOOLBOY_SHERMAN, SchoolboyShermanSeenText, SchoolboyShermanBeatenText
+Route1ViridianMartSampleText:
+	text "Hi! I work at"
+	line "a #MART."
 
-	text "I should record"
-	line "all of today's"
-	cont "mistakes."
+	para "It's a convenient"
+	line "shop, so please"
+	cont "visit us in"
+	cont "VIRIDIAN CITY."
+
+	para "I know, I'll give"
+	line "you a sample!"
+	cont "Here you go!"
 	done
 
-GenericTrainerCooltrainermFrench:
-	generictrainer COOLTRAINERM, FRENCH, EVENT_BEAT_COOLTRAINERM_FRENCH, CooltrainermFrenchSeenText, CooltrainermFrenchBeatenText
+Route1Text2:
+	text "See those ledges"
+	line "along the road?"
 
-	text "That was a great"
-	line "fight!"
-	cont "Don't you agree?"
-	done
+	para "It's a bit scary,"
+	line "but you can jump"
+	cont "from them."
 
-GenericTrainerCooltrainerfQuinn:
-	generictrainer COOLTRAINERF, QUINN, EVENT_BEAT_COOLTRAINERF_QUINN, CooltrainerfQuinnSeenText, CooltrainerfQuinnBeatenText
-
-	text "You're strong."
-
-	para "You obviously must"
-	line "have trained hard."
-	done
-
-SchoolboyDannySeenText:
-	text "If trainers meet,"
-	line "the first thing to"
-	cont "do is battle."
-	done
-
-SchoolboyDannyBeatenText:
-	text "Awww… I've got a"
-	line "losing record…"
-	done
-
-SchoolboyShermanSeenText:
-	text "Right after class,"
-	line "I head outside to"
-	cont "practice!"
-	done
-
-SchoolboyShermanBeatenText:
-	text "I need to follow"
-	line "the textbook."
-	done
-
-CooltrainermFrenchSeenText:
-	text "You!"
-
-	para "I've been waiting"
-	line "for someone like"
-	cont "you!"
-	done
-
-CooltrainermFrenchBeatenText:
-	text "Yep, as strong as"
-	line "expected!"
-	done
-
-CooltrainerfQuinnSeenText:
-	text "You there!"
-	line "Want to battle?"
-	done
-
-CooltrainerfQuinnBeatenText:
-	text "Down and out…"
+	para "You can get back"
+	line "to PALLET TOWN"
+	cont "quicker that way."
 	done
 
 Route1SignText:
-	text "Route 1"
+	text "ROUTE 1"
 
-	para "Pallet Town -"
-	line "Viridian City"
+	para "PALLET TOWN -"
+	line "VIRIDIAN CITY"
 	done

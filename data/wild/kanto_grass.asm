@@ -1,7 +1,7 @@
 ; Kanto Pokémon in grass
 
 	map_id DIGLETTS_CAVE
-	db 4 percent, 2 percent, 8 percent ; encounter rates: morn/day/nite
+	db 8 percent, 10 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	db 54, DIGLETT
 	db 56, DIGLETT
@@ -300,83 +300,83 @@
 	map_id ROUTE_1
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 56, PIDGEOTTO
-	db 56, RATICATE
-	db 57, FURRET
-	db 57, PIDGEOTTO
-	db 59, FURRET
-	db 60, PIDGEOT
-	db 60, PIDGEOT
+	db 3, PIDGEY
+	db 3, RATTATA
+	db 3, RATTATA
+	db 2, RATTATA
+	db 2, PIDGEY
+	db 4, PIDGEY
+	db 6, PIDGEY
 	; day
-	db 56, PIDGEOTTO
-	db 56, RATICATE
-	db 57, FURRET
-	db 57, PIDGEOTTO
-	db 59, FURRET
-	db 60, PIDGEOT
-	db 60, PIDGEOT
+	db 3, PIDGEY
+	db 3, RATTATA
+	db 3, RATTATA
+	db 2, RATTATA
+	db 2, PIDGEY
+	db 4, PIDGEY
+	db 4, BELLSPROUT
 	; nite
-	db 56, NOCTOWL
-	db 56, RATICATE
-	db 57, RATICATE
-	db 57, NOCTOWL
-	db 59, RATICATE
-	db 60, NOCTOWL
-	db 60, NOCTOWL
+	db 3, HOOTHOOT
+	db 3, RATTATA
+	db 3, RATTATA
+	db 2, RATTATA
+	db 2, HOOTHOOT
+	db 4, HOOTHOOT
+	db 4, ODDISH
 
 	map_id ROUTE_2_NORTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 55, BUTTERFREE
-	db 54, LEDIAN
-	db 57, PIDGEOTTO
-	db 57, BUTTERFREE
-	db 56, LEDIAN
-	db 58, PIDGEOTTO
-	db 59, PIKACHU
+	db 4, RATTATA
+	db 4, PIDGEY
+	db 6, NIDORAN_M
+	db 6, NIDORAN_F
+	db 5, RATTATA
+	db 5, PIDGEY
+	db 6, PIDGEY
 	; day
-	db 55, BUTTERFREE
-	db 54, PIDGEOTTO
-	db 57, PIDGEOTTO
-	db 57, BUTTERFREE
-	db 56, PIDGEOTTO
-	db 58, PIDGEOTTO
-	db 59, PIKACHU
+	db 4, RATTATA
+	db 4, PIDGEY
+	db 6, NIDORAN_M
+	db 6, NIDORAN_F
+	db 5, RATTATA
+	db 5, PIDGEY
+	db 5, BELLSPROUT
 	; nite
-	db 55, NOCTOWL
-	db 54, ARIADOS
-	db 57, NOCTOWL
-	db 57, NOCTOWL
-	db 56, ARIADOS
-	db 58, NOCTOWL
-	db 59, NOCTOWL
+	db 4, RATTATA
+	db 4, PIDGEY
+	db 6, NIDORAN_M
+	db 6, NIDORAN_F
+	db 5, RATTATA
+	db 5, PIDGEY
+	db 5, ODDISH
 
 	map_id ROUTE_2_SOUTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 55, BUTTERFREE
-	db 54, LEDIAN
-	db 57, PIDGEOTTO
-	db 57, BUTTERFREE
-	db 56, LEDIAN
-	db 58, PIDGEOTTO
-	db 59, PIKACHU
+	db 4, RATTATA
+	db 4, PIDGEY
+	db 6, NIDORAN_M
+	db 6, NIDORAN_F
+	db 5, RATTATA
+	db 5, PIDGEY
+	db 6, PIDGEY
 	; day
-	db 55, BUTTERFREE
-	db 54, PIDGEOTTO
-	db 57, PIDGEOTTO
-	db 57, BUTTERFREE
-	db 56, PIDGEOTTO
-	db 58, PIDGEOTTO
-	db 59, PIKACHU
+	db 4, RATTATA
+	db 4, PIDGEY
+	db 6, NIDORAN_M
+	db 6, NIDORAN_F
+	db 5, RATTATA
+	db 5, PIDGEY
+	db 5, BELLSPROUT
 	; nite
-	db 55, NOCTOWL
-	db 54, ARIADOS
-	db 57, NOCTOWL
-	db 57, NOCTOWL
-	db 56, ARIADOS
-	db 58, NOCTOWL
-	db 59, NOCTOWL
+	db 4, RATTATA
+	db 4, PIDGEY
+	db 6, NIDORAN_M
+	db 6, NIDORAN_F
+	db 5, RATTATA
+	db 5, PIDGEY
+	db 5, ODDISH
 
 	map_id VIRIDIAN_FOREST
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -408,83 +408,83 @@
 	map_id ROUTE_3
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 52, PIDGEOTTO
-	db 52, RATICATE
-	db 54, ARBOK
-	db 55, SANDSLASH
-	db 55, ARBOK
-	db 57, JIGGLYPUFF
-	db 55, WIGGLYTUFF
+	db 8, PIDGEY
+	db 9, RATTATA
+	db 7, EKANS
+	db 8, SANDSHREW
+	db 9, EKANS
+	db 8, JIGGLYPUFF
+	db 10, JIGGLYPUFF
 	; day
-	db 52, PIDGEOTTO
-	db 52, RATICATE
-	db 54, ARBOK
-	db 55, SANDSLASH
-	db 55, ARBOK
-	db 57, JIGGLYPUFF
-	db 55, WIGGLYTUFF
+	db 8, PIDGEY
+	db 9, RATTATA
+	db 7, EKANS
+	db 8, SANDSHREW
+	db 9, EKANS
+	db 8, JIGGLYPUFF
+	db 10, JIGGLYPUFF
 	; nite
-	db 52, RATICATE
-	db 52, RATICATE
-	db 54, RATICATE
-	db 55, GOLBAT
-	db 55, RATICATE
-	db 57, CLEFAIRY
-	db 55, CLEFABLE
+	db 7, RATTATA
+	db 8, RATTATA
+	db 7, RATTATA
+	db 9, RATTATA
+	db 8, RATTATA
+	db 9, RATTATA
+	db 7, CLEFAIRY
 
 	map_id ROUTE_4
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 54, PIDGEOTTO
-	db 54, RATICATE
-	db 56, ARBOK
-	db 57, SANDSLASH
-	db 57, ARBOK
-	db 58, PRIMEAPE
-	db 59, PRIMEAPE
+	db 8, PIDGEY
+	db 9, RATTATA
+	db 7, EKANS
+	db 8, SANDSHREW
+	db 9, EKANS
+	db 8, MANKEY
+	db 9, JIGGLYPUFF
 	; day
-	db 54, PIDGEOTTO
-	db 54, RATICATE
-	db 56, ARBOK
-	db 57, SANDSLASH
-	db 57, ARBOK
-	db 58, PRIMEAPE
-	db 59, PRIMEAPE
+	db 8, PIDGEY
+	db 9, RATTATA
+	db 7, EKANS
+	db 8, SANDSHREW
+	db 9, EKANS
+	db 8, MANKEY
+	db 9, JIGGLYPUFF
 	; nite
-	db 54, RATICATE
-	db 54, RATICATE
-	db 56, RATICATE
-	db 57, GOLBAT
-	db 57, RATICATE
-	db 58, CLEFAIRY
-	db 59, CLEFABLE
+	db 7, RATTATA
+	db 8, RATTATA
+	db 7, RATTATA
+	db 9, RATTATA
+	db 8, RATTATA
+	db 8, CLEFAIRY
+	db 9, CLEFAIRY
 
 	map_id ROUTE_5
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 46, PIDGEOTTO
-	db 46, GRANBULL
-	db 51, BELLSPROUT
-	db 47, WEEPINBELL
-	db 48, KADABRA
-	db 51, JIGGLYPUFF
-	db 47, WIGGLYTUFF
+	db 13, PIDGEY
+	db 14, RATTATA
+	db 14, BELLSPROUT
+	db 15, ODDISH
+	db 12, ABRA
+	db 11, JIGGLYPUFF
+	db 12, VULPIX
 	; day
-	db 46, PIDGEOTTO
-	db 46, GRANBULL
-	db 51, BELLSPROUT
-	db 47, WEEPINBELL
-	db 48, KADABRA
-	db 51, JIGGLYPUFF
-	db 47, WIGGLYTUFF
+	db 13, PIDGEY
+	db 14, RATTATA
+	db 14, BELLSPROUT
+	db 15, BELLSPROUT
+	db 12, ABRA
+	db 11, JIGGLYPUFF
+	db 12, VULPIX
 	; nite
-	db 46, NOCTOWL
-	db 46, PERSIAN
-	db 51, ODDISH
-	db 47, GLOOM
-	db 48, KADABRA
-	db 51, JIGGLYPUFF
-	db 47, WIGGLYTUFF
+	db 13, RATTATA
+	db 14, MEOWTH
+	db 14, ODDISH
+	db 15, ODDISH
+	db 12, ABRA
+	db 11, JIGGLYPUFF
+	db 12, MEOWTH
 
 	map_id ROUTE_6
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite

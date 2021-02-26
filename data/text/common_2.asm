@@ -1291,52 +1291,40 @@ _InitialOptionsText::
 	cont "Polished Crystal."
 	prompt
 
-_ElmText1::
-	text "Hello! Sorry to"
-	line "keep you waiting!"
+_OakText1::
+	text "Hello there!"
+	line "Welcome to the"
+	cont "world of #MON!"
 
-if !DEF(DEBUG)
-	para "Welcome to the"
-	line "world of #mon!"
-
-	para "My name is Elm."
-
-	para "People call me the"
-	line "#mon Prof."
-endc
+	para "My name is OAK!"
+	line "People call me"
+	cont "the #MON PROF!"
 	prompt
 
-_ElmText2::
-	text "This world is in-"
-	line "habited by crea-"
-	cont "tures that we call"
-	cont "#mon.@@"
+_OakText2::
+	text "This world is"
+	line "inhabited by"
+	cont "creatures called"
+	cont "#MON!@@"
 
-_ElmText3::
+_OakText3::
 	text_waitbutton
 	db "@@"
 
-_ElmText4::
-	text "People and #mon"
-	line "live together by"
+_OakText4::
+	text "For some people,"
+	line "#MON are"
+	cont "pets. Others use"
+	cont "them for fights."
 
-	para "supporting each"
-	line "other."
+	para "Myself..."
 
-	para "Some people play"
-	line "with #mon, some"
-	cont "battle with them."
+	para "I study #MON"
+	line "as a profession."
 	prompt
 
-_ElmText5::
-	text "But we don't know"
-	line "everything about"
-	cont "#mon yet."
-
-	para "There are still"
-	line "many mysteries to"
-	cont "solve."
-
-	para "That's why I study"
-	line "#mon every day."
+_OakText5::
+	text "But first, tell"
+	line "me a little bit"
+	cont "about yourself."
 	prompt

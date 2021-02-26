@@ -1,30 +1,42 @@
-_ElmText6::
+_OakText6::
 	text "Please tell me"
 	line "your name."
 	prompt
 
-_ElmText7::
+_OakText7::
+	text "Right, so your"
+	line "name is <PLAYER>."
+	prompt
+
+_OakText8::
+	text "This is my grand-"
+	line "son. He's been"
+	cont "your rival since"
+	cont "you both were"
+	cont "babies."
+
+	para "…Erm, what was his"
+	line "name now?"
+	prompt
+
+_OakText9::
+	text "That's right! I"
+	line "remember now! His"
+	cont "name is <RIVAL>!"
+	prompt
+
+_OakText10::
 	text "<PLAYER>, are you"
 	line "ready?"
 
-if !DEF(DEBUG)
 	para "Your very own"
-	line "#mon story is"
-	cont "about to unfold."
-
-	para "You'll face fun"
-	line "times and tough"
-	cont "challenges."
+	line "#MON legend is"
+	cont "about to unfold!"
 
 	para "A world of dreams"
 	line "and adventures"
-
-	para "with #mon"
-	line "awaits! Let's go!"
-endc
-
-	para "I'll be seeing you"
-	line "later!"
+	cont "with #MON"
+	cont "awaits! Let's go!"
 	done
 
 UnknownText_0x1c40e6::

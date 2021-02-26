@@ -24,13 +24,6 @@ InitIntroGradient::
 INCBIN "gfx/new_game/intro_gradient.2bpp"
 
 _MainMenu: ; 5ae8
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	ld de, MUSIC_MAIN_MENU
-	ld a, e
-	ld [wMapMusic], a
-	call PlayMusic
 	farcall MainMenu
 	jp StartTitleScreen
 ; 5b04
@@ -51,17 +44,17 @@ PrintDayOfWeek: ; 5b05
 ; 5b1c
 
 .Days: ; 5b1c
-	db "Sun@"
-	db "Mon@"
-	db "Tues@"
-	db "Wednes@"
-	db "Thurs@"
-	db "Fri@"
-	db "Satur@"
+	db "SUN@"
+	db "MON@"
+	db "TUES@"
+	db "WEDNES@"
+	db "THURS@"
+	db "FRI@"
+	db "SATUR@"
 ; 5b40
 
 .Day: ; 5b40
-	db "day@"
+	db "DAY@"
 ; 5b44
 
 NewGame_ClearTileMapEtc: ; 5b44
@@ -92,7 +85,7 @@ _NewGame_FinishSetup:
 	call ResetWRAM
 	call NewGame_ClearTileMapEtc
 	call SetInitialOptions
-	call ProfElmSpeech
+	call ProfOakSpeech
 	call InitializeWorld
 	ld a, 1
 	ld [wPreviousLandmark], a
@@ -304,7 +297,7 @@ SetDefaultBoxNames: ; 5ca6
 	ret
 
 .Box:
-	db "Box@"
+	db "BOX@"
 ; 5cd3
 
 InitializeMagikarpHouse: ; 5cd3
@@ -318,7 +311,7 @@ InitializeMagikarpHouse: ; 5cd3
 ; 5ce3
 
 .Ralph: ; 5ce3
-	db "Ralph@"
+	db "RALPH@"
 ; 5ce9
 
 InitializeNPCNames: ; 5ce9
@@ -340,7 +333,7 @@ InitializeNPCNames: ; 5ce9
 
 .Rival:
 .Backup: db "???@"
-.Trendy: db "Prism@"
+.Trendy: db "PRISM@"
 ; 5d23
 
 InitializeWorld: ; 5d23
@@ -663,7 +656,14 @@ Continue_DisplayGameTime: ; 5f84
 	jp PrintNum
 ; 5f99
 
-ProfElmSpeech: ; 0x5f99
+ProfOakSpeech: ; 0x5f99
+	ld a, POTION
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantityChangeBuffer], a
+	ld hl, wPCItems
+	call ReceiveItem
+
 	farcall InitClock
 	ld c, 31
 	call FadeToBlack
@@ -677,7 +677,7 @@ ProfElmSpeech: ; 0x5f99
 
 	xor a
 	ld [wCurPartySpecies], a
-	ld a, PROF_ELM
+	ld a, PROF_OAK
 	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
@@ -686,14 +686,14 @@ ProfElmSpeech: ; 0x5f99
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText1
+	ld hl, OakText1
 	call PrintText
 if !DEF(DEBUG)
 	ld c, 15
 	call FadeToWhite
 	call ClearTileMap
 
-	ld a, SYLVEON
+	ld a, NIDORINO
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData
@@ -711,9 +711,9 @@ if !DEF(DEBUG)
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText2
+	ld hl, OakText2
 	call PrintText
-	ld hl, ElmText4
+	ld hl, OakText4
 	call PrintText
 	ld c, 15
 	call FadeToWhite
@@ -721,7 +721,7 @@ if !DEF(DEBUG)
 
 	xor a
 	ld [wCurPartySpecies], a
-	ld a, PROF_ELM
+	ld a, PROF_OAK
 	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
@@ -730,7 +730,7 @@ if !DEF(DEBUG)
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText5
+	ld hl, OakText5
 	call PrintText
 endc
 
@@ -739,7 +739,7 @@ endc
 	ld c, 10
 	call DelayFrames
 
-	ld hl, ElmText6
+	ld hl, OakText6
 	call PrintText
 
 	call NamePlayer
@@ -754,40 +754,105 @@ endc
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText7
+	ld hl, OakText7
+	call PrintText
+;	ld c, 15
+;	call FadeToWhite
+	ld hl, WhitePal
+	ld de, wUnknBGPals palette 0
+	ld bc, 1 palettes
+	ld a, 5
+	call FarCopyWRAM
+	ld c, 15
+	call FadePalettes
+
+	call ClearTileMap
+	call DrawIntroRivalPic
+
+	ld b, CGB_INTRO_PALS
+	call GetCGBLayout
+	call InitIntroGradient
+	call Intro_RotatePalettesLeftFrontpic
+	ld hl, OakText8
+	call PrintText
+	
+	call NameRival
+	
+	call ClearTileMap
+	call LoadFontsExtra
+	call ApplyTilemapInVBlank
+	call DrawIntroRivalPic
+
+	ld b, CGB_INTRO_PALS
+	call GetCGBLayout
+	call InitIntroGradient
+	call Intro_RotatePalettesLeftFrontpic
+	
+	ld hl, OakText9
+	call PrintText
+;	ld c, 15
+;	call FadeToWhite
+	ld hl, WhitePal
+	ld de, wUnknBGPals palette 0
+	ld bc, 1 palettes
+	ld a, 5
+	call FarCopyWRAM
+	ld c, 15
+	call FadePalettes
+
+	call ClearTileMap
+	call DrawIntroPlayerPic
+
+	ld b, CGB_INTRO_PALS
+	call GetCGBLayout
+	call InitIntroGradient
+	call Intro_RotatePalettesLeftFrontpic
+	ld hl, OakText10
 	jp PrintText
 
-ElmText1: ; 0x6045
-	text_jump _ElmText1
+OakText1: ; 0x6045
+	text_jump _OakText1
 	db "@"
 
-ElmText2: ; 0x604a
-	text_jump _ElmText2
+OakText2: ; 0x604a
+	text_jump _OakText2
 	start_asm
-	ld a, SYLVEON
+	ld a, NIDORINO
 	call PlayCry
 	call WaitSFX
-	ld hl, ElmText3
+	ld hl, OakText3
 	ret
 
-ElmText3: ; 0x605b
-	text_jump _ElmText3
+OakText3: ; 0x605b
+	text_jump _OakText3
 	db "@"
 
-ElmText4: ; 0x6060
-	text_jump _ElmText4
+OakText4: ; 0x6060
+	text_jump _OakText4
 	db "@"
 
-ElmText5: ; 0x6065
-	text_jump _ElmText5
+OakText5: ; 0x6065
+	text_jump _OakText5
 	db "@"
 
-ElmText6: ; 0x606a
-	text_jump _ElmText6
+OakText6: ; 0x606a
+	text_jump _OakText6
 	db "@"
 
-ElmText7: ; 0x606f
-	text_jump _ElmText7
+OakText7: ; 0x606f
+	text_jump _OakText7
+	db "@"
+
+OakText8: ; 0x606f
+	text_jump _OakText8
+	db "@"
+
+OakText9: ; 0x606f
+	text_jump _OakText9
+	db "@"
+
+OakText10: ; 0x606f
+	text_jump _OakText10
 	db "@"
 
 InitGender: ; 48dcb (12:4dcb)
@@ -852,8 +917,8 @@ InitGender: ; 48dcb (12:4dcb)
 .MenuData2: ; 0x48e04
 	db $c1 ; flags
 	db 2 ; items
-	db "Boy@"
-	db "Girl@"
+	db "BOY@"
+	db "GIRL@"
 ; 0x48e0f
 
 AreYouABoyOrAreYouAGirlText: ; 0x48e0f
@@ -886,6 +951,18 @@ NamePlayer: ; 0x6074
 	jp InitName
 
 INCLUDE "data/default_player_names.asm"
+
+NameRival:
+	ld b, $2 ; rival
+	ld de, wRivalName
+	farcall NamingScreen
+	; default to "Blue"
+	ld hl, wRivalName
+	ld de, .DefaultRivalName
+	jp InitName
+
+.DefaultRivalName:
+	db "BLUE@"
 
 ShrinkPlayer: ; 610f
 
@@ -962,6 +1039,13 @@ IntroFadePalettes: ; 0x617c
 	db %11100100
 IntroFadePalettesEnd
 ; 6182
+
+DrawIntroRivalPic:
+	xor a
+	ld [wCurPartySpecies], a
+	ld a, BLUE
+	ld [wTrainerClass], a
+	jp Intro_PrepTrainerPic
 
 DrawIntroPlayerPic:
 	xor a

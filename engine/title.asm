@@ -23,14 +23,19 @@ _TitleScreen: ; 10ed67
 	ld a, 1
 	ld [rVBK], a
 
-; Decompress LGY logo
-	ld hl, TitleLGYGFX
-	ld de, VTiles0
-	call Decompress
-
 ; Decompress Pikachu/Eevee gfx
 	ld hl, TitlePikachuGFX
 	ld de, VTiles1
+	call Decompress
+
+; Decompress LGY logo
+	ld hl, TitleLetsGoGFX
+	ld de, VTiles1+$400
+	call Decompress
+
+; Decompress LGY logo
+	ld hl, TitleLGYGFX
+	ld de, VTiles1+$500
 	call Decompress
 
 ; Clear screen palettes
@@ -79,24 +84,24 @@ _TitleScreen: ; 10ed67
 	ld a, 6
 	call ByteFill
 
-; 'Let's Go Yellow
-	hlbgcoord 0, 8
-	ld bc, BG_MAP_WIDTH ; length of version text
+; Let's Go
+	hlbgcoord 6, 7
+	ld bc, 8 ; start the gfx
 	ld a, 8
 	call ByteFill
 
 ; Pikachu/Eevee gfx
-	hlbgcoord 1, 11
-	ld bc, 3 * BG_MAP_WIDTH ; start the gfx
+	hlbgcoord 0, 8
+	ld bc, 6 * BG_MAP_WIDTH ; start the gfx
 	ld a, 8
 	call ByteFill
 
-	hlbgcoord 1, 14
+	hlbgcoord 0, 14
 	ld bc, BG_MAP_WIDTH ; Give Pikachu red cheeks
 	ld a, 9
 	call ByteFill
 
-	hlbgcoord 1, 15
+	hlbgcoord 0, 15
 	ld bc, 3 * BG_MAP_WIDTH ; the rest of the screen
 	ld a, 8
 	call ByteFill
@@ -122,21 +127,27 @@ _TitleScreen: ; 10ed67
 	lb de, $80, SCREEN_WIDTH
 	call DrawTitleGraphic
 
-; Draw LG Yellow
-	hlcoord 4, 8
-	lb bc, 5, 13
-	lb de, 0, 10
-	call DrawTitleGraphic
-
 ; Draw Pikachu / Eevee
-	hlcoord 6, 10
-	lb bc, 10, 10
+	hlcoord 5, 12
+	lb bc, 6, 10
 	lb de, $80, 10
 	call DrawTitleGraphic
 
+; Draw YELLOW text
+	hlcoord 4, 8
+	lb bc, 4, 13
+	lb de, $D0, 13
+	call DrawTitleGraphic
+
+; Draw Let's Go
+	hlcoord 6, 7
+	lb bc, 2, 8
+	lb de, $C0, 8
+	call DrawTitleGraphic
+
 ; Draw copyright text
-	hlbgcoord 4, 0, VBGMap1
-	lb bc, 1, 13
+	hlbgcoord 3, 0, VBGMap1
+	lb bc, 1, 14
 	lb de, $0c, 0
 	call DrawTitleGraphic
 
@@ -381,6 +392,9 @@ INCBIN "gfx/title/pikaeeveesilhouette.2bpp.lz"
 TitleLogoGFX: ; 10f326
 INCBIN "gfx/title/logo.2bpp.lz"
 ; 10fcee
+
+TitleLetsGoGFX:
+INCBIN "gfx/title/letsgo.2bpp.lz"
 
 TitleLGYGFX: ; 10fcee
 INCBIN "gfx/title/lgyellow.2bpp.lz"

@@ -1228,7 +1228,6 @@ TitleScreenScene: ; 62a3
 
 
 TitleScreenEntrance: ; 62bc
-
 ; Animate the logo:
 ; Move each line by 4 pixels until our count hits 0.
 	ld a, [hSCX]
@@ -1240,7 +1239,7 @@ TitleScreenEntrance: ; 62bc
 ; Lay out a base (all lines scrolling together).
 	ld e, a
 	ld hl, wLYOverrides
-	ld bc, 8 * 10 ; logo height
+	ld bc, 8 * 11 ; logo height
 	call ByteFill
 
 ; Reversed signage for every other line's position.
@@ -1249,7 +1248,7 @@ TitleScreenEntrance: ; 62bc
 	cpl
 	inc a
 
-	ld b, 8 * 10 / 2 ; logo height / 2
+	ld b, 8 * 11 / 2 ; logo height / 2
 	ld hl, wLYOverrides + 1
 .loop
 	ld [hli], a
@@ -1295,7 +1294,6 @@ TitleScreenEntrance: ; 62bc
 
 
 TitleScreenTimer: ; 62f6
-
 ; Next scene
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -1326,7 +1324,6 @@ TitleScreenTimer: ; 62f6
 ; 6304
 
 TitleScreenMain: ; 6304
-
 ; Run the timer down.
 	ld hl, wcf65
 	ld e, [hl]

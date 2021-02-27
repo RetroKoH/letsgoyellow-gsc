@@ -381,29 +381,29 @@
 	map_id VIRIDIAN_FOREST
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 57, BUTTERFREE
-	db 57, BEEDRILL
-	db 55, KAKUNA
-	db 55, METAPOD
-	db 56, METAPOD
-	db 59, PIKACHU
-	db 60, PIKACHU
+	db 4, WEEDLE
+	db 4, CATERPIE
+	db 5, KAKUNA
+	db 5, METAPOD
+	db 3, PIDGEY
+	db 3, PIKACHU
+	db 5, PIKACHU
 	; day
-	db 57, BUTTERFREE
-	db 57, BEEDRILL
-	db 55, METAPOD
-	db 55, KAKUNA
-	db 56, KAKUNA
-	db 59, PIKACHU
-	db 60, PIKACHU
+	db 4, WEEDLE
+	db 4, CATERPIE
+	db 5, KAKUNA
+	db 5, METAPOD
+	db 3, PIDGEY
+	db 3, PIKACHU
+	db 5, PIKACHU
 	; nite
-	db 57, NOCTOWL
-	db 57, ARIADOS
-	db 55, NOCTOWL
-	db 55, NOCTOWL
-	db 56, ARIADOS
-	db 59, NOCTOWL
-	db 60, NOCTOWL
+	db 4, WEEDLE
+	db 4, CATERPIE
+	db 5, KAKUNA
+	db 5, METAPOD
+	db 3, RATTATA
+	db 3, PIKACHU
+	db 5, PIKACHU
 
 	map_id ROUTE_3
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite

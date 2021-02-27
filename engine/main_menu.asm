@@ -38,11 +38,11 @@ MainMenu: ; 49cdc
 ; 49d20
 
 .Strings: ; 49d24
-	db "Continue@"
-	db "New Game@"
-	db "New Game+@"
-	db "Options@"
-	db "Music Player@"
+	db "CONTINUE@"
+	db "NEW GAME@"
+	db "NEW GAME+@"
+	db "OPTIONS@"
+	db "MUSIC PLAYER@"
 
 .Jumptable: ; 0x49d60
 	dw MainMenu_Continue
@@ -207,7 +207,7 @@ endc
 ; 49e7f
 
 .TimeNotSet: ; 49e7f
-	db "Time not set@"
+	db "TIME NOT SET@"
 ; 49e8c
 
 .PlaceCurrentDay: ; 49e91
@@ -226,15 +226,15 @@ endc
 ; 49ea8
 
 .Days:
-	db "Sun@"
-	db "Mon@"
-	db "Tues@"
-	db "Wednes@"
-	db "Thurs@"
-	db "Fri@"
-	db "Satur@"
+	db "SUN@"
+	db "MON@"
+	db "TUES@"
+	db "WEDNES@"
+	db "THURS@"
+	db "FRI@"
+	db "SATUR@"
 .Day:
-	db "day@"
+	db "DAY@"
 ; 49ed0
 
 Function49ed0: ; 49ed0

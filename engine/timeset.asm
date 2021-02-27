@@ -267,7 +267,7 @@ Text_WhatTimeIsIt: ; 0x90879
 ; 0x9087e
 
 String_oclock:
-	db "o'clock@"
+	db "O'CLOCK@"
 ; 90886
 
 Text_WhatHrs: ; 0x90886
@@ -489,13 +489,13 @@ Special_SetDayOfWeek: ; 90913
 	dw .Saturday
 	dw .Sunday
 
-.Sunday:    db " Sunday@"
-.Monday:    db " Monday@"
-.Tuesday:   db " Tuesday@"
-.Wednesday: db "Wednesday@"
-.Thursday:  db "Thursday@"
-.Friday:    db " Friday@"
-.Saturday:  db "Saturday@"
+.Sunday:    db " SUNDAY@"
+.Monday:    db " MONDAY@"
+.Tuesday:   db " TUESDAY@"
+.Wednesday: db "WEDNESDAY@"
+.Thursday:  db "THURSDAY@"
+.Friday:    db " FRIDAY@"
+.Saturday:  db "SATURDAY@"
 
 
 .WhatDayIsItText: ; 0x90a3f
@@ -612,9 +612,9 @@ GetTimeOfDayString: ; 90b58 (24:4b58)
 	ret
 ; 90b71 (24:4b71)
 
-.NITE: db "Nite@"
-.MORN: db "Morn@"
-.DAY: db "Day@"
+.NITE: db "NITE@"
+.MORN: db "MORN@"
+.DAY: db "DAY@"
 ; 90b7f
 
 AdjustHourForAMorPM:

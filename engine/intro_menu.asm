@@ -1197,7 +1197,7 @@ RunTitleScreen: ; 627b
 	bit 7, a
 	jr nz, .done_title
 	call TitleScreenScene
-	farcall SuicuneFrameIterator
+;	farcall SuicuneFrameIterator
 	call DelayFrame
 	and a
 	ret
@@ -1257,7 +1257,8 @@ TitleScreenEntrance: ; 62bc
 	dec b
 	jr nz, .loop
 
-	farjp AnimateTitleCrystal
+	;farjp AnimateTitleLGY
+	ret
 
 .done
 ; Next scene

@@ -316,12 +316,12 @@
 	db 4, PIDGEY
 	db 4, BELLSPROUT
 	; nite
-	db 3, HOOTHOOT
+	db 3, MEOWTH
 	db 3, RATTATA
 	db 3, RATTATA
 	db 2, RATTATA
-	db 2, HOOTHOOT
-	db 4, HOOTHOOT
+	db 2, MEOWTH
+	db 4, MEOWTH
 	db 4, ODDISH
 
 	map_id ROUTE_2_NORTH

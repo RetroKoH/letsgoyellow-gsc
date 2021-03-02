@@ -232,10 +232,10 @@ ENDM
 
 	map_attributes Route1, ROUTE_1, $f, NORTH | SOUTH
 	connection north, ViridianCity, VIRIDIAN_CITY, -3, 2, 13
-	connection south, PalletTown, PALLET_TOWN, 1, 0, 10
+	connection south, PalletTown, PALLET_TOWN, 0, 0, 10
 
 	map_attributes PalletTown, PALLET_TOWN, $f, NORTH | SOUTH
-	connection north, Route1, ROUTE_1, -1, 0, 10
+	connection north, Route1, ROUTE_1, 0, 0, 10
 	connection south, Route21, ROUTE_21, 0, 0, 10
 
 	map_attributes Route21, ROUTE_21, $43, NORTH | SOUTH | EAST

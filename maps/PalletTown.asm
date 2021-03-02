@@ -48,6 +48,8 @@ PalletTown_ProfOakStopsYouScene1:
 	turnobject PALLETTOWN_OAK, RIGHT
 
 ; Catch Pikachu
+;	loadwildmon PIKACHU, 5
+;	catchtutorial BATTLETYPE_TUTORIAL
 
 	opentext
 	writetext Text_OakAfterCatchingPikachu

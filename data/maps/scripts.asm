@@ -125,27 +125,7 @@ INCLUDE "maps/VioletOutskirts.asm"
 
 SECTION "Ruins of Alph Scripts", ROMX
 
-INCLUDE "maps/RuinsOfAlphOutside.asm"
-INCLUDE "maps/RuinsOfAlphResearchCenter.asm"
-
-
-SECTION "Ruins of Alph Scripts 2", ROMX
-
-INCLUDE "maps/RuinsOfAlphEntranceChamber.asm"
-INCLUDE "maps/RuinsOfAlphInnerChamber.asm"
-INCLUDE "maps/RuinsOfAlphSinjohChamber.asm"
-INCLUDE "maps/RuinsOfAlphAerodactylChamber.asm"
-INCLUDE "maps/RuinsOfAlphHoOhChamber.asm"
-INCLUDE "maps/RuinsOfAlphKabutoChamber.asm"
-INCLUDE "maps/RuinsOfAlphOmanyteChamber.asm"
-INCLUDE "maps/RuinsOfAlphAerodactylItemRoom.asm"
-INCLUDE "maps/RuinsOfAlphHoOhItemRoom.asm"
-INCLUDE "maps/RuinsOfAlphKabutoItemRoom.asm"
-INCLUDE "maps/RuinsOfAlphOmanyteItemRoom.asm"
-INCLUDE "maps/RuinsOfAlphAerodactylWordRoom.asm"
-INCLUDE "maps/RuinsOfAlphHoOhWordRoom.asm"
-INCLUDE "maps/RuinsOfAlphKabutoWordRoom.asm"
-INCLUDE "maps/RuinsOfAlphOmanyteWordRoom.asm"
+INCLUDE "maps/RuinsOfAlph.asm"
 
 
 SECTION "Sinjoh Ruins Scripts", ROMX
@@ -761,9 +741,8 @@ INCLUDE "maps/SafariZoneFuchsiaGate.asm"
 
 SECTION "Uraga Channel Scripts", ROMX
 
-INCLUDE "maps/UragaChannelEast.asm"
-INCLUDE "maps/UragaChannelWest.asm"
-INCLUDE "maps/Route18West.asm" ; shares text with UragaChannelEast.asm
+INCLUDE "maps/UragaChannel.asm"
+INCLUDE "maps/Route18West.asm" ; shares text with UragaChannel.asm
 
 
 SECTION "Scary Cave Scripts", ROMX

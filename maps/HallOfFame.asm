@@ -83,9 +83,6 @@ HallOfFameEntranceTrigger:
 	special RespawnOneOffs
 	setmapscene SPROUT_TOWER_3F, $1
 	special HealParty
-	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue .SkipPhoneCall
-	specialphonecall SPECIALCALL_SSTICKET
 	setevent EVENT_BATTLE_TOWER_OPEN
 	clearevent EVENT_BATTLE_TOWER_CLOSED
 .SkipPhoneCall:

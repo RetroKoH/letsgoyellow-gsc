@@ -3,8 +3,8 @@ Route1_MapScriptHeader:
 
 	db 0 ; callbacks
 
-	db 1 ; warp events
-	warp_event 10,  1, ROUTE_1_VIRIDIAN_GATE, 3
+	db 0 ; warp events
+;	warp_event 10,  1, ROUTE_1_VIRIDIAN_GATE, 3
 
 	db 0 ; coord events
 
@@ -12,11 +12,22 @@ Route1_MapScriptHeader:
 	bg_event  9, 27, SIGNPOST_JUMPTEXT, Route1SignText
 
 	db 3 ; object events
-	object_event  5, 24, SPRITE_CLERK, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, PERSONTYPE_COMMAND, jumptextfaceplayer, Route1Text1, -1
+	object_event  5, 24, SPRITE_CLERK, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, Route1Text1, -1
 	object_event 15, 13, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_BROWN, PERSONTYPE_COMMAND, jumptextfaceplayer, Route1Text2, -1
-	fruittree_event  5,  7, FRUITTREE_ROUTE_1, FIGY_BERRY
+	fruittree_event  5,  7, FRUITTREE_ROUTE_1, ORAN_BERRY
 
 Route1Text1:
+	checkevent EVENT_GOT_POTION_ROUTE_1
+	iftrue_jumptextfaceplayer Route1ViridianMartSampleReceivedText
+	faceplayer
+	opentext
+	writetext Route1ViridianMartSampleText
+	buttonsound
+	verbosegiveitem POTION
+	iffalse_endtext
+	setevent EVENT_GOT_POTION_ROUTE_1
+	thisopenedtext
+
 Route1ViridianMartSampleReceivedText:
 	text "We also carry"
 	line "# BALLs for"

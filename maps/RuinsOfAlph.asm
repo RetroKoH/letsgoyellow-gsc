@@ -1,0 +1,30 @@
+RuinsOfAlphAerodactylChamber_MapScriptHeader:
+RuinsOfAlphAerodactylItemRoom_MapScriptHeader:
+RuinsOfAlphAerodactylWordRoom_MapScriptHeader:
+RuinsOfAlphHoOhChamber_MapScriptHeader:
+RuinsOfAlphEntranceChamber_MapScriptHeader:
+RuinsOfAlphHoOhItemRoom_MapScriptHeader:
+RuinsOfAlphHoOhWordRoom_MapScriptHeader:
+RuinsOfAlphInnerChamber_MapScriptHeader:
+RuinsOfAlphKabutoChamber_MapScriptHeader:
+RuinsOfAlphKabutoItemRoom_MapScriptHeader:
+RuinsOfAlphKabutoWordRoom_MapScriptHeader:
+RuinsOfAlphOmanyteChamber_MapScriptHeader:
+RuinsOfAlphOmanyteItemRoom_MapScriptHeader:
+RuinsOfAlphOmanyteWordRoom_MapScriptHeader:
+RuinsOfAlphResearchCenter_MapScriptHeader:
+RuinsOfAlphOutside_MapScriptHeader:
+RuinsOfAlphSinjohChamber_MapScriptHeader:
+	db 0 ; scene scripts
+
+	db 0 ; callbacks
+
+	db 0 ; warp events
+
+	db 0 ; coord events
+
+	db 0 ; bg events
+
+	db 0 ; object events
+
+	const_def 1 ; object constants

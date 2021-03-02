@@ -1,10 +1,10 @@
-GoldenrodMuseum2F_MapScriptHeader:
+UragaChannelEast_MapScriptHeader:
+UragaChannelWest_MapScriptHeader:
 	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
-	db 1 ; warp events
-	warp_event 13,  7, GOLDENROD_MUSEUM_1F, 3
+	db 0 ; warp events
 
 	db 0 ; coord events
 

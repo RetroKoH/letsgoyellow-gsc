@@ -7273,10 +7273,15 @@ StartBattle: ; 3f4c1
 ; This check prevents you from entering a battle without any Pokemon.
 ; Those using walk-through-walls to bypass getting a Pokemon experience
 ; the effects of this check.
+;	ld a, [wBattleType]
+;	cp BATTLETYPE_TUTORIAL
+;	jp z, .tutorial ; No real turns in a tutorial
+
 	ld a, [wPartyCount]
 	and a
 	ret z
 
+.tutorial
 	ld a, [wTimeOfDayPal]
 	push af
 	call BattleIntro

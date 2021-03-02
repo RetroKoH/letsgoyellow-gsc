@@ -5,14 +5,6 @@ UnusedPhoneScript: ; 0xbcea5
 ; Mom
 
 MomPhoneScript: ; 0xbceaa
-	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	iftrue .bcec5
-	checkevent EVENT_LEARNED_TO_CATCH_POKEMON
-	iftrue MomPhoneLectureScript
-	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue MomPhoneNoGymQuestScript
-	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue MomPhoneNoPokedexScript
 	jump MomPhoneNoPokemonScript
 
 .bcec5 ; 0xbcec5
@@ -139,7 +131,6 @@ MomPhoneNoGymQuestScript: ; 0xbcfac
 	end
 
 MomPhoneLectureScript: ; 0xbcfb1
-	setevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
 	setflag ENGINE_DST
 	specialphonecall SPECIALCALL_NONE
 	farwritetext MomPhoneLectureText
@@ -221,23 +212,7 @@ BillPhoneWholePCFull:
 ElmPhoneScript1: ; 0xbd00d
 	checkcode VAR_SPECIALPHONECALL
 	ifequal SPECIALCALL_POKERUS, .pokerus
-	checkevent EVENT_SHOWED_TOGEPI_TO_ELM
-	iftrue .discovery
-	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
-	iffalse .next
-	checkevent EVENT_TOGEPI_HATCHED
-	iftrue .egghatched
 .next
-	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
-	iftrue .eggunhatched
-	checkevent EVENT_ELMS_AIDE_IN_LAB
-	iftrue .assistant
-	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue .checkingegg
-	checkevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
-	iftrue .stolen
-	checkevent EVENT_GOT_MYSTERY_EGG_FROM_MR_POKEMON
-	iftrue .sawmrpokemon
 	farwritetext ElmPhoneStartText
 	end
 
@@ -263,7 +238,6 @@ ElmPhoneScript1: ; 0xbd00d
 
 .egghatched ; 0xbd061
 	farwritetext ElmPhoneEggHatchedText
-	setevent EVENT_TOLD_ELM_ABOUT_TOGEPI_OVER_THE_PHONE
 	end
 
 .discovery ; 0xbd069
@@ -295,7 +269,6 @@ ElmPhoneScript2: ; 0xbd081
 .disaster ; 0xbd09f
 	farwritetext ElmPhoneDisasterText
 	specialphonecall SPECIALCALL_NONE
-	setevent EVENT_ELM_CALLED_ABOUT_STOLEN_POKEMON
 	end
 
 .assistant ; 0xbd0aa
@@ -341,44 +314,6 @@ LyraPhoneScript:
 	end
 
 LyraPhoneScript2:
-	checkcode VAR_SPECIALPHONECALL
-	ifequal SPECIALCALL_YELLOWFOREST, .yellowforest
-	ifequal SPECIALCALL_FIRSTBADGE, .firstbadge
-	ifequal SPECIALCALL_LYRASEGG, .lyrasegg
-	specialphonecall SPECIALCALL_NONE
-	jump LyraPhoneScript
-
-.yellowforest
-	farwritetext LyraPhoneYellowForestText
-	specialphonecall SPECIALCALL_NONE
-	end
-
-.firstbadge
-	farwritetext LyraPhoneFirstBadgeText
-	specialphonecall SPECIALCALL_NONE
-	end
-
-.lyrasegg
-	farwritetext LyraPhoneLyrasEggIntroText
-	buttonsound
-	checkevent EVENT_GOT_TOTODILE_FROM_ELM
-	iftrue .lyrasegg_totodile
-	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue .lyrasegg_chikorita
-	farwritetext LyraPhoneLyrasEggChikoritaText
-	jump .lyrasegg_end
-
-.lyrasegg_totodile
-	farwritetext LyraPhoneLyrasEggCyndaquilText
-	jump .lyrasegg_end
-
-.lyrasegg_chikorita:
-	farwritetext LyraPhoneLyrasEggTotodileText
-.lyrasegg_end
-	buttonsound
-	farwritetext LyraPhoneLyrasEggEndText
-	setevent EVENT_LYRA_GAVE_AWAY_EGG
-	specialphonecall SPECIALCALL_NONE
 	end
 
 ; Jack

@@ -1221,10 +1221,6 @@ UnknownScript_0xa0840:
 UnknownScript_0xa0848:
 	checkevent EVENT_OPENED_MT_SILVER
 	iftrue UnknownScript_0xa08e0
-	checkevent EVENT_FOUGHT_SNORLAX
-	iftrue UnknownScript_0xa08d8
-	checkevent EVENT_GOT_PASS_FROM_COPYCAT
-	iftrue UnknownScript_0xa08d0
 	checkflag ENGINE_SOULBADGE
 	iftrue UnknownScript_0xa08f0
 	checkflag ENGINE_FLYPOINT_VERMILION
@@ -1233,12 +1229,6 @@ UnknownScript_0xa0848:
 	iftrue UnknownScript_0xa08c0
 	checkflag ENGINE_RISINGBADGE
 	iftrue UnknownScript_0xa08b8
-	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue UnknownScript_0xa08b0
-	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
-	iftrue UnknownScript_0xa08a8
-	checkevent EVENT_JASMINE_RETURNED_TO_GYM
-	iftrue UnknownScript_0xa08a0
 	checkflag ENGINE_FOGBADGE
 	iftrue UnknownScript_0xa08e8
 	checkflag ENGINE_PLAINBADGE

@@ -1033,7 +1033,7 @@ wVictoryRoad2FTrigger:: ds 1
 wVioletGymTrigger:: ds 1
 wWillsRoomTrigger:: ds 1
 wWiseTriosRoomTrigger:: ds 1
-wYellowForestTrigger:: ds 1
+wViridianCityTrigger:: ds 1
 
 ; fight counts
 wJackFightCount::    ds 1

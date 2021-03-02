@@ -294,7 +294,7 @@ KeyItemEffects:
 	dw NoEffect         ; SECRETPOTION
 	dw NoEffect         ; RED_SCALE
 	dw CardKey          ; CARD_KEY
-	dw BasementKey      ; BASEMENT_KEY
+	dw CardKey          ; BASEMENT_KEY
 	dw NoEffect         ; S_S_TICKET
 	dw NoEffect         ; PASS
 	dw NoEffect         ; MACHINE_PART
@@ -2834,12 +2834,6 @@ SquirtBottle: ; f73e
 CardKey: ; f745
 	farjp _CardKey
 ; f74c
-
-
-BasementKey: ; f74c
-	farjp _BasementKey
-; f753
-
 
 SacredAsh: ; f753
 	ld a, [wInitialOptions]

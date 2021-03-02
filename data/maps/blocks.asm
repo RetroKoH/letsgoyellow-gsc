@@ -12,7 +12,7 @@ BlackthornPokeCenter1F_BlockData:
 SilverCavePokeCenter1F_BlockData:
 	INCBIN "maps/JohtoPokeCenter1F.ablk.lz"
 
-PokeCenter2F_BlockData:
+JohtoPokeCenter2F_BlockData:
 	INCBIN "maps/JohtoPokeCenter2F.ablk.lz"
 
 ViridianPokeCenter1F_BlockData:
@@ -29,7 +29,7 @@ CinnabarPokeCenter1F_BlockData:
 ShamoutiPokeCenter1F_BlockData:
 	INCBIN "maps/KantoPokeCenter1F.ablk.lz"
 
-KantoPokeCenter2F_BlockData:
+PokeCenter2F_BlockData:
 	INCBIN "maps/KantoPokeCenter2F.ablk.lz"
 
 CherrygroveMart_BlockData:

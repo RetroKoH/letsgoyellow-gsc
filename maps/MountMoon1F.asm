@@ -1,6 +1,5 @@
 MountMoon1F_MapScriptHeader:
-	db 1 ; scene scripts
-	scene_script MountMoon1FTrigger0
+	db 0 ; scene scripts
 
 	db 0 ; callbacks
 
@@ -16,8 +15,7 @@ MountMoon1F_MapScriptHeader:
 	bg_event  2, 17, SIGNPOST_ITEM + RARE_CANDY, EVENT_MOUNT_MOON_1F_HIDDEN_RARE_CANDY
 	bg_event 12, 16, SIGNPOST_ITEM + FULL_RESTORE, EVENT_MOUNT_MOON_1F_HIDDEN_FULL_RESTORE
 
-	db 10 ; object events
-	object_event 10, 19, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	db 9 ; object events
 	object_event  4, 18, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 4, GenericTrainerBugManiacKenta, -1
 	object_event 11, 14, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerLassMiriam, -1
 	object_event 20, 21, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 2, GenericTrainerSuperNerdJovan, -1
@@ -29,63 +27,6 @@ MountMoon1F_MapScriptHeader:
 	itemball_event 16, 22, CALCIUM, 1, EVENT_MOUNT_MOON_1F_CALCIUM
 
 	const_def 1 ; object constants
-	const MOUNTMOON1F_SILVER
-
-MountMoon1FTrigger0:
-	priorityjump .RivalBattle
-	end
-
-.RivalBattle:
-	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
-	pause 15
-	applymovement MOUNTMOON1F_SILVER, MountMoon1FSilverMovementBefore
-	turnobject PLAYER, LEFT
-	playmusic MUSIC_RIVAL_ENCOUNTER
-	showtext MountMoonSilverTextBefore
-	checkevent EVENT_GOT_TOTODILE_FROM_ELM
-	iftrue .Totodile
-	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue .Chikorita
-	winlosstext MountMoonSilverTextWin, MountMoonSilverTextLoss
-	setlasttalked MOUNTMOON1F_SILVER
-	loadtrainer RIVAL2, 3
-	startbattle
-	dontrestartmapmusic
-	reloadmapafterbattle
-	jump .FinishBattle
-
-.Totodile:
-	winlosstext MountMoonSilverTextWin, MountMoonSilverTextLoss
-	setlasttalked MOUNTMOON1F_SILVER
-	loadtrainer RIVAL2, 1
-	startbattle
-	dontrestartmapmusic
-	reloadmapafterbattle
-	jump .FinishBattle
-
-.Chikorita:
-	winlosstext MountMoonSilverTextWin, MountMoonSilverTextLoss
-	setlasttalked MOUNTMOON1F_SILVER
-	loadtrainer RIVAL2, 2
-	startbattle
-	dontrestartmapmusic
-	reloadmapafterbattle
-	jump .FinishBattle
-
-.FinishBattle:
-	special DeleteSavedMusic
-	playmusic MUSIC_RIVAL_AFTER
-	showtext MountMoonSilverTextAfter
-	applymovement PLAYER, MountMoon1FPlayerMovement
-	applymovement MOUNTMOON1F_SILVER, MountMoon1FSilverMovementAfter
-	disappear MOUNTMOON1F_SILVER
-	playsound SFX_EXIT_BUILDING
-	waitsfx
-	setscene $1
-	setevent EVENT_BEAT_RIVAL_IN_MT_MOON
-	playmapmusic
-	end
 
 GenericTrainerBugManiacKenta:
 	generictrainer BUG_MANIAC, KENTA, EVENT_BEAT_BUG_MANIAC_KENTA, BugManiacKentaSeenText, BugManiacKentaBeatenText

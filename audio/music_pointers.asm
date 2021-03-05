@@ -35,8 +35,8 @@ Music:
 	dba Music_RocketBattle
 	dba Music_Route36
 	dba Music_LookRival
-	dba Music_RivalBattle
-	dba Music_AfterTheRivalFight
+	dba Music_KantoTrainerBattle ; Rival Battle Music
+	dba Music_FarewellRival
 	dba Music_Evolution
 	dba Music_GoldenrodCity
 	dba Music_PokeComCenter

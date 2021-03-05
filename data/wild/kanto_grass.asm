@@ -867,29 +867,29 @@
 	map_id ROUTE_22
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 56, RATICATE
-	db 56, PIDGEOTTO
-	db 58, NIDORINO
-	db 58, NIDORINA
-	db 59, PONYTA
-	db 59, PONYTA
-	db 60, PONYTA
+	db 03, RATTATA
+	db 03, PIDGEY
+	db 04, NIDORAN_M
+	db 04, NIDORAN_F
+	db 04, RATTATA
+	db 04, MANKEY
+	db 06, MANKEY
 	; day
-	db 56, RATICATE
-	db 56, PIDGEOTTO
-	db 58, NIDORINO
-	db 58, NIDORINA
-	db 59, PONYTA
-	db 59, PONYTA
-	db 60, PONYTA
+	db 04, RATTATA
+	db 03, SPEAROW
+	db 04, NIDORAN_M
+	db 04, NIDORAN_F
+	db 05, SPEAROW
+	db 04, MANKEY
+	db 06, MANKEY
 	; nite
-	db 56, RATICATE
-	db 56, POLIWHIRL
-	db 58, NIDORINO
-	db 58, NIDORINA
-	db 59, RATICATE
-	db 59, RATICATE
-	db 60, POLIWHIRL
+	db 03, RATTATA
+	db 03, SPEAROW
+	db 04, NIDORAN_M
+	db 04, NIDORAN_F
+	db 05, RATTATA
+	db 04, MANKEY
+	db 06, MANKEY
 
 	map_id ROUTE_23
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite

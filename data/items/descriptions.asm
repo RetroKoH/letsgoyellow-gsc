@@ -262,7 +262,7 @@ KeyItemDescriptions:
 	dw CoinCaseDesc
 	dw ItemfinderDesc
 	dw MysteryEggDesc
-	dw SquirtBottleDesc
+	dw OaksParcelDesc
 	dw SecretPotionDesc
 	dw RedScaleDesc
 	dw CardKeyDesc
@@ -1289,17 +1289,17 @@ MysteryEggDesc:
 	db   "An Egg obtained"
 	next "from Mr.#mon.@"
 
-SquirtBottleDesc:
-	db   "A bottle used for"
-	next "watering plants.@"
+OaksParcelDesc:
+	db   "A parcel belonging"
+	next "to PROF. OAK.@"
 
 SecretPotionDesc:
 	db   "Fully heals any"
-	next "#mon.@"
+	next "#MON.@"
 
 RedScaleDesc:
 	db   "A scale from the"
-	next "red Gyarados.@"
+	next "red GYARADOS.@"
 
 CardKeyDesc:
 	db   "Opens shutters in"

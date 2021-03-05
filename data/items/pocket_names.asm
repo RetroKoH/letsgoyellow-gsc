@@ -9,7 +9,7 @@ ItemPocketNames:
 .Item:
 	db "Item Pocket@"
 .Medicine:
-	db "Med.Pocket@"
+	db "Med. Pocket@"
 .Ball:
 	db "Ball Pocket@"
 .TM:

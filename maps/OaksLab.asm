@@ -344,7 +344,7 @@ OaksLabOakScript:
 	thisopenedtext
 ;OaksLabWhichPokemonDoYouWantText
 	text "OAK: Now, <PLAYER>,"
-	line "which #mon do"
+	line "which #MON do"
 	cont "you want?"
 	done
 
@@ -353,7 +353,7 @@ OaksLabOakScript:
 	playsound SFX_KEY_ITEM
 	waitsfx
 	buttonsound
-;	takeitem OAKS_PARCEL
+	takekeyitem OAKS_PARCEL
 	writetext OaksLabDeliverParcelText2
 	closetext
 	playmusic MUSIC_RIVAL_ENCOUNTER

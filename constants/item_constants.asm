@@ -323,9 +323,6 @@ NUM_ITEMS EQU const_value +- 1
 	const NAM_BRICK_PIECE
 	const NAM_BRIGHTPOWDER
 	const NAM_BURN_HEAL
-if !DEF(FAITHFUL)
-	const NAM_RAGECANDYBAR ; Cake of Rage
-endc
 	const NAM_CALCIUM
 	const NAM_CARBOS
 	const NAM_CELL_BATTERY
@@ -484,9 +481,7 @@ endc
 	const NAM_QUICK_BALL
 	const NAM_QUICK_CLAW
 	const NAM_QUICK_POWDER
-if DEF(FAITHFUL)
 	const NAM_RAGECANDYBAR
-endc
 	const NAM_RARE_BONE
 	const NAM_RARE_CANDY
 	const NAM_RAWST_BERRY
@@ -576,7 +571,7 @@ NUM_APRICORNS EQU const_value +- 1
 	const COIN_CASE    ; 04
 	const ITEMFINDER   ; 05
 	const MYSTERY_EGG  ; 06
-	const SQUIRTBOTTLE ; 07
+	const OAKS_PARCEL  ; 07 * Changed
 	const SECRETPOTION ; 08
 	const RED_SCALE    ; 09
 	const CARD_KEY     ; 0a

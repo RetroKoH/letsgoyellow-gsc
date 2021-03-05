@@ -876,15 +876,15 @@
 	db 06, MANKEY
 	; day
 	db 04, RATTATA
-	db 03, SPEAROW
+	db 03, PIDGEY
 	db 04, NIDORAN_M
 	db 04, NIDORAN_F
-	db 05, SPEAROW
+	db 05, PIDGEY
 	db 04, MANKEY
 	db 06, MANKEY
 	; nite
 	db 03, RATTATA
-	db 03, SPEAROW
+	db 03, PIDGEY
 	db 04, NIDORAN_M
 	db 04, NIDORAN_F
 	db 05, RATTATA

@@ -263,17 +263,17 @@ UnknownText_0x1bc55d::
 
 UnknownText_0x1bc570::
 	text "It's a poster of a"
-	line "cute Pikachu."
+	line "cute PIKACHU."
 	done
 
 UnknownText_0x1bc591::
 	text "It's a poster of a"
-	line "cute Clefairy."
+	line "cute CLEFAIRY."
 	done
 
 UnknownText_0x1bc5b3::
 	text "It's a poster of a"
-	line "cute Marill."
+	line "cute EEVEE."
 	done
 
 UnknownText_0x1bc5d7::

@@ -21,8 +21,8 @@ ValidPokemonLevels:
 	db  36, 100 ; Pidgeot
 	db   1,  19 ; Rattata
 	db  20, 100 ; Raticate
-	db   1,  17 ; Marill
-	db  18, 100 ; Azumarill
+	db   1,  19 ; Spearow
+	db  20, 100 ; Fearow
 	db   1,  21 ; Ekans
 	db  22, 100 ; Arbok
 	db   1,  19 ; Pikachu

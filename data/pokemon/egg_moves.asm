@@ -57,17 +57,13 @@ RattataEggMoves:
 	db COUNTER
 	db $ff
 
-MarillEggMoves:
-	db BELLY_DRUM
-	db FORESIGHT
-	db FUTURE_SIGHT
-	db PERISH_SONG
-	db SUPERSONIC
-	db LIGHT_SCREEN
-	db AMNESIA
-	db CALM_MIND
-	db AQUA_JET
-	db $ff
+SpearowEggMoves:
+	db FEINT_ATTACK
+	db FALSE_SWIPE
+	db SCARY_FACE
+	db QUICK_ATTACK
+	db TRI_ATTACK
+	db -1 ; end
 
 EkansEggMoves:
 	db CRUNCH

@@ -19,8 +19,8 @@ FramesPointers:
 	dw PidgeotFrames
 	dw RattataFrames
 	dw RaticateFrames
-	dw MarillFrames
-	dw AzumarillFrames
+	dw SpearowFrames
+	dw FearowFrames
 	dw EkansFrames
 	dw -1 ; see ArbokFramesPointers
 	dw -1 ; see PikachuFramesPointers

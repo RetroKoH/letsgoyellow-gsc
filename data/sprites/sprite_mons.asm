@@ -36,7 +36,7 @@ SpriteMons:
 	db FURRET
 	db HOOTHOOT
 	db AMPHAROS
-	db MARILL
+	db SPEAROW
 	db MURKROW
 	db SLOWKING
 	db HERACROSS

@@ -20,8 +20,8 @@
 	dw PidgeotPokedexEntry
 	dw RattataPokedexEntry
 	dw RaticatePokedexEntry
-	dw MarillPokedexEntry
-	dw AzumarillPokedexEntry
+	dw SpearowPokedexEntry
+	dw FearowPokedexEntry
 	dw EkansPokedexEntry
 	dw ArbokPokedexEntry
 	dw PikachuPokedexEntry

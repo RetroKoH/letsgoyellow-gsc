@@ -668,7 +668,7 @@
 	db 24, RATTATA
 	; nite
 	db 21, ZUBAT
-	db 22, MARILL
+	db 22, SPEAROW
 	db 21, GOLBAT
 	db 22, GEODUDE
 	db 20, CUBONE
@@ -695,7 +695,7 @@
 	db 25, GOLBAT
 	; nite
 	db 21, GEODUDE
-	db 23, MARILL
+	db 23, SPEAROW
 	db 22, ZUBAT
 	db 23, RATICATE
 	db 20, CUBONE
@@ -724,7 +724,7 @@
 	db 34, GRAVELER
 	db 35, GOLBAT
 	db 34, GEODUDE
-	db 31, MARILL
+	db 31, SPEAROW
 	db 33, MAROWAK
 	db 35, GOLBAT
 	db 35, GOLBAT
@@ -751,7 +751,7 @@
 	db 15, ZUBAT
 	db 16, GEODUDE
 	db 17, GOLBAT
-	db 16, MARILL
+	db 16, SPEAROW
 	db 17, CUBONE
 	db 18, RATICATE
 	db 18, RATICATE
@@ -1589,7 +1589,7 @@
 	db 22, ZUBAT
 	db 22, RATICATE
 	db 23, GOLBAT
-	db 21, MARILL
+	db 21, SPEAROW
 	db 24, GLIGAR
 	db 24, GLIGAR
 
@@ -1816,16 +1816,16 @@
 	db 24, SNUBBULL
 	db 20, PIKACHU
 	db 22, LEDYBA
-	db 20, MARILL
-	db 21, MARILL
+	db 20, SPEAROW
+	db 21, SPEAROW
 	db 10, PICHU
 	; day
 	db 22, SENTRET
 	db 24, SNUBBULL
 	db 20, PIKACHU
 	db 22, PARAS
-	db 20, MARILL
-	db 21, MARILL
+	db 20, SPEAROW
+	db 21, SPEAROW
 	db 10, PICHU
 	; nite
 	db 23, HOOTHOOT

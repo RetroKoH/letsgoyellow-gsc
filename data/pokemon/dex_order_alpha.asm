@@ -7,7 +7,6 @@ AlphabeticalPokedexOrder:
 	db ARCANINE
 	db ARIADOS
 	db ARTICUNO
-	db AZUMARILL
 	db BAYLEEF
 	db BEEDRILL
 	db BELLOSSOM
@@ -55,6 +54,7 @@ AlphabeticalPokedexOrder:
 	db EXEGGCUTE
 	db EXEGGUTOR
 	db FARFETCH_D
+	db FEAROW
 	db FERALIGATR
 	db FLAAFFY
 	db FLAREON
@@ -123,7 +123,6 @@ AlphabeticalPokedexOrder:
 	db MANKEY
 	db MANTINE
 	db MAREEP
-	db MARILL
 	db MAROWAK
 	db MEGANIUM
 	db MEOWTH
@@ -205,6 +204,7 @@ AlphabeticalPokedexOrder:
 	db SNEASEL
 	db SNORLAX
 	db SNUBBULL
+	db SPEAROW
 	db SPINARAK
 	db SQUIRTLE
 	db STARMIE

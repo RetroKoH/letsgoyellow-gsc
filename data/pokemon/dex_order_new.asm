@@ -120,8 +120,8 @@ NewPokedexOrder:
 	db NINETALES
 	db GROWLITHE
 	db ARCANINE
-	db MARILL
-	db AZUMARILL
+	db SPEAROW
+	db FEAROW
 	db DIGLETT
 	db DUGTRIO
 	db MANKEY

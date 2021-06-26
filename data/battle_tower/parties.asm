@@ -255,7 +255,7 @@ BattleTowerMons2:
 	db $ef, $be, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db AZUMARILL
+	db LAPRAS
 	db MYSTIC_WATER
 	db SURF, BLIZZARD, ATTRACT, RAIN_DANCE
 	db $fe, $df, $ee ; DVs

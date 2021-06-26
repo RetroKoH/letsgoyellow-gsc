@@ -19,8 +19,8 @@ AnimationPointers:
 	dw PidgeotAnimation
 	dw RattataAnimation
 	dw RaticateAnimation
-	dw MarillAnimation
-	dw AzumarillAnimation
+	dw SpearowAnimation
+	dw FearowAnimation
 	dw EkansAnimation
 	dw -1 ; see ArbokAnimationPointers
 	dw -1 ; see PikachuAnimationPointers

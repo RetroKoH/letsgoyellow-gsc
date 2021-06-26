@@ -229,7 +229,7 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_FURRET ; e0
 	const SPRITE_HOOTHOOT ; e1
 	const SPRITE_AMPHAROS ; e2
-	const SPRITE_MARILL ; e3
+	const SPRITE_SPEAROW ; e3
 	const SPRITE_MURKROW ; e4
 	const SPRITE_SLOWKING ; e5
 	const SPRITE_HERACROSS ; e6

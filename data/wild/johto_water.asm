@@ -51,19 +51,19 @@
 	map_id MOUNT_MORTAR_1F_OUTSIDE
 	db 4 percent ; encounter rate
 	db 20, PSYDUCK
-	db 20, MARILL
+	db 20, PSYDUCK
 	db 20, GOLDUCK
 
 	map_id MOUNT_MORTAR_2F_INSIDE
 	db 2 percent ; encounter rate
 	db 20, PSYDUCK
-	db 25, MARILL
+	db 25, PSYDUCK
 	db 25, GOLDUCK
 
 	map_id MOUNT_MORTAR_B1F
 	db 2 percent ; encounter rate
 	db 15, PSYDUCK
-	db 20, MARILL
+	db 20, PSYDUCK
 	db 20, GOLDUCK
 
 	map_id WHIRL_ISLAND_SW
@@ -296,7 +296,7 @@
 
 	map_id YELLOW_FOREST
 	db 6 percent ; encounter rate
-	db 20, MARILL
+	db 20, PSYDUCK
 	db 20, PIKACHU
 	db 20, PSYDUCK
 

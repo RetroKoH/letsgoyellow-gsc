@@ -1519,7 +1519,7 @@ Lyra1Group:
 	db TRAINERTYPE_ITEM | TRAINERTYPE_EVS | TRAINERTYPE_NICKNAME
 	; party
 	db 16, PIDGEY, NO_ITEM, 36, "Pidgey@"
-	db 17, MARILL, NO_ITEM, 36, "Marill@"
+	db 17, SPEAROW, NO_ITEM, 36, "Spearow@"
 	db 15, MAREEP, NO_ITEM, 36, "Mareep@"
 	db 18, BAYLEEF, ORAN_BERRY, 36, "Chicory@"
 	db -1 ; end
@@ -1556,7 +1556,7 @@ Lyra1Group:
 	; party
 	db 33, PIDGEOTTO, NO_ITEM, 100, "Pidgeotto@"
 	db 34, GROWLITHE, NO_ITEM, 100, "Growlithe@"
-	db 34, AZUMARILL, NO_ITEM, 100, "Azumarill@"
+	db 34, FEAROW, NO_ITEM, 100, "Fearow@"
 	db 32, FLAAFFY, NO_ITEM, 100, "Flaaffy@"
 	db 37, BAYLEEF, ORAN_BERRY, 100, "Chicory@"
 	db -1 ; end
@@ -1569,7 +1569,7 @@ Lyra1Group:
 	; party
 	db 33, PIDGEOTTO, NO_ITEM, 100, "Pidgeotto@"
 	db 34, SUNFLORA, NO_ITEM, 100, "Sunflora@"
-	db 34, AZUMARILL, NO_ITEM, 100, "Azumarill@"
+	db 34, FEAROW, NO_ITEM, 100, "Fearow@"
 	db 32, FLAAFFY, NO_ITEM, 100, "Flaaffy@"
 	db 37, QUILAVA, ORAN_BERRY, 100, "Cinder@"
 	db -1 ; end
@@ -1596,7 +1596,7 @@ Lyra1Group:
 	db 44, PIDGEOT, NO_ITEM, 132, "Pidgeot@"
 	db 43, GIRAFARIG, NO_ITEM, 132, "Girafarig@"
 	db 45, ARCANINE, NO_ITEM, 132, "Arcanine@"
-	db 45, AZUMARILL, NO_ITEM, 132, "Azumarill@"
+	db 45, FEAROW, NO_ITEM, 132, "Fearow@"
 	db 46, AMPHAROS, NO_ITEM, 132, "Ampharos@"
 	db 47, MEGANIUM, SITRUS_BERRY, 132, "Chicory@"
 	db -1 ; end
@@ -1610,7 +1610,7 @@ Lyra1Group:
 	db 44, PIDGEOT, NO_ITEM, 132, "Pidgeot@"
 	db 43, GIRAFARIG, NO_ITEM, 132, "Girafarig@"
 	db 45, SUNFLORA, NO_ITEM, 132, "Sunflora@"
-	db 45, AZUMARILL, NO_ITEM, 132, "Azumarill@"
+	db 45, FEAROW, NO_ITEM, 132, "Fearow@"
 	db 46, AMPHAROS, NO_ITEM, 132, "Ampharos@"
 	db 47, TYPHLOSION, SITRUS_BERRY, 132, "Cinder@"
 	db -1 ; end
@@ -1643,7 +1643,7 @@ Lyra2Group:
 	; party
 	db 69, PIDGEOT, NO_ITEM, "Pidgeot@"
 	db 70, ARCANINE, NO_ITEM, "Arcanine@"
-	db 70, AZUMARILL, NO_ITEM, "Azumarill@"
+	db 70, FEAROW, NO_ITEM, "Fearow@"
 	db 71, AMPHAROS, NO_ITEM, "Ampharos@"
 	db 68, GIRAFARIG, NO_ITEM, "Girafarig@"
 	db 72, MEGANIUM, SITRUS_BERRY, "Chicory@"
@@ -1657,7 +1657,7 @@ Lyra2Group:
 	; party
 	db 69, PIDGEOT, NO_ITEM, "Pidgeot@"
 	db 70, SUNFLORA, NO_ITEM, "Sunflora@"
-	db 70, AZUMARILL, NO_ITEM, "Azumarill@"
+	db 70, FEAROW, NO_ITEM, "Fearow@"
 	db 71, AMPHAROS, NO_ITEM, "Ampharos@"
 	db 68, GIRAFARIG, NO_ITEM, "Girafarig@"
 	db 72, TYPHLOSION, SITRUS_BERRY, "Cinder@"
@@ -2260,7 +2260,7 @@ CamperGroup:
 	db TRAINERTYPE_NORMAL
 	; party
 	db 21, SUNFLORA
-	db 21, MARILL
+	db 21, SPEAROW
 	db -1 ; end
 
 ; ================
@@ -2566,7 +2566,7 @@ endc
 	db "Debra@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 50, AZUMARILL
+	db 50, FEAROW
 	db -1 ; end
 
 ; ================
@@ -2677,7 +2677,7 @@ TwinsGroup:
 	db "Tori & Til@"
 	db TRAINERTYPE_MOVES
 	; party
-	db 16, MARILL
+	db 16, SPEAROW
 		db DEFENSE_CURL, ROLLOUT, BUBBLE_BEAM, DIZZY_PUNCH
 	db 16, MAREEP
 		db GROWL, THUNDER_WAVE, THUNDERSHOCK, MUD_SLAP
@@ -2691,7 +2691,7 @@ TwinsGroup:
 	; party
 	db 16, MAREEP
 		db GROWL, THUNDER_WAVE, THUNDERSHOCK, MUD_SLAP
-	db 16, MARILL
+	db 16, SPEAROW
 		db DEFENSE_CURL, ROLLOUT, BUBBLE_BEAM, DIZZY_PUNCH
 	db -1 ; end
 
@@ -5158,7 +5158,7 @@ endc
 	db "Connie@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 20, AZUMARILL
+	db 20, FEAROW
 	db 21, MAGNETON
 	db -1 ; end
 
@@ -5278,9 +5278,9 @@ endc
 	db TRAINERTYPE_NORMAL
 	; party
 	db 52, CLEFAIRY
-	db 52, MARILL
+	db 52, SPEAROW
 	db 54, CLEFABLE
-	db 54, AZUMARILL
+	db 54, FEAROW
 	db -1 ; end
 
 ; ================
@@ -5444,9 +5444,9 @@ BeautyGroup:
 	db "Nicole@"
 	db TRAINERTYPE_ITEM | TRAINERTYPE_PERSONALITY
 	; party
-	db 60, MARILL, EVIOLITE, ABILITY_2 | QUIRKY, FEMALE
-	db 63, AZUMARILL, LEFTOVERS, ABILITY_2 | QUIRKY, FEMALE
-	db 60, MARILL, BLACK_BELT, ABILITY_2 | QUIRKY, FEMALE
+	db 60, SPEAROW, EVIOLITE, ABILITY_2 | QUIRKY, FEMALE
+	db 63, FEAROW, LEFTOVERS, ABILITY_2 | QUIRKY, FEMALE
+	db 60, SPEAROW, BLACK_BELT, ABILITY_2 | QUIRKY, FEMALE
 	db -1 ; end
 
 ; ================
@@ -6232,7 +6232,7 @@ SchoolgirlGroup:
 	; party
 	db 25, CHARMANDER, "Charmer@"
 	db 23, SENTRET, "Sentret@"
-	db 24, MARILL, "Marill@"
+	db 24, SPEAROW, "Spearow@"
 	db -1 ; end
 
 ; ================
@@ -6865,7 +6865,7 @@ CoupleGroup:
 	db TRAINERTYPE_PERSONALITY
 	; party
 	db 13, SANDSHREW, ABILITY_1 | QUIRKY, MALE
-	db 15, MARILL, ABILITY_1 | QUIRKY, MALE
+	db 15, SPEAROW, ABILITY_1 | QUIRKY, MALE
 	db 15, PIKACHU, ABILITY_1 | QUIRKY, FEMALE
 	db 13, POLIWAG, ABILITY_1 | QUIRKY, FEMALE
 	db -1 ; end
@@ -6879,7 +6879,7 @@ CoupleGroup:
 	db 15, PIKACHU, ABILITY_1 | QUIRKY, FEMALE
 	db 13, POLIWAG, ABILITY_1 | QUIRKY, FEMALE
 	db 13, SANDSHREW, ABILITY_1 | QUIRKY, MALE
-	db 15, MARILL, ABILITY_1 | QUIRKY, MALE
+	db 15, SPEAROW, ABILITY_1 | QUIRKY, MALE
 	db -1 ; end
 
 ; ================
@@ -7100,7 +7100,7 @@ RichBoyGroup:
 	db "Gerald@"
 	db TRAINERTYPE_ITEM
 	; party
-	db 42, AZUMARILL, NUGGET
+	db 42, FEAROW, NUGGET
 	db 40, BLISSEY, NUGGET
 	db -1 ; end
 
@@ -7459,7 +7459,7 @@ SailorGroup:
 	db "Eddie@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 59, AZUMARILL
+	db 59, FEAROW
 	db -1 ; end
 
 ; ================
@@ -7612,7 +7612,7 @@ SwimmerMGroup:
 	db "Frankie@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 61, AZUMARILL
+	db 61, FEAROW
 	db -1 ; end
 
 ; ================
@@ -7703,7 +7703,7 @@ SwimmerMGroup:
 	db "Conrad@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 26, AZUMARILL
+	db 26, FEAROW
 	db -1 ; end
 
 ; ================
@@ -7712,7 +7712,7 @@ SwimmerMGroup:
 	db "Romeo@"
 	db TRAINERTYPE_PERSONALITY | TRAINERTYPE_MOVES
 	; party
-	db 57, AZUMARILL, ABILITY_2 | ADAMANT, MALE
+	db 57, FEAROW, ABILITY_2 | ADAMANT, MALE
 		db AQUA_TAIL, PLAY_ROUGH, ROLLOUT, CLOSE_COMBAT
 	db -1 ; end
 
@@ -7838,9 +7838,9 @@ SwimmerFGroup:
 	db "Kaylee@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 18, MARILL
-	db 20, MARILL
-	db 20, AZUMARILL
+	db 18, SPEAROW
+	db 20, SPEAROW
+	db 20, FEAROW
 	db -1 ; end
 
 ; ================
@@ -7899,7 +7899,7 @@ SwimmerFGroup:
 	db "Debbie@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 61, AZUMARILL
+	db 61, FEAROW
 	db -1 ; end
 
 ; ================
@@ -7908,8 +7908,8 @@ SwimmerFGroup:
 	db "Nicole@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 59, MARILL
-	db 59, MARILL
+	db 59, SPEAROW
+	db 59, SPEAROW
 	db 62, LAPRAS
 	db -1 ; end
 
@@ -8088,7 +8088,7 @@ SwimmerFGroup:
 	db "Chelan@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 61, AZUMARILL
+	db 61, FEAROW
 	db -1 ; end
 
 ; ================
@@ -9191,7 +9191,7 @@ BikerGroup:
 	db TRAINERTYPE_NORMAL
 	; party
 	db 55, URSARING
-	db 55, AZUMARILL
+	db 55, FEAROW
 	db -1 ; end
 
 ; ================
@@ -10035,7 +10035,7 @@ endc
 	db "Kelly@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 37, MARILL
+	db 37, SPEAROW
 	db 35, WARTORTLE
 	db 35, CROCONAW
 	db -1 ; end
@@ -10171,7 +10171,7 @@ endc
 	; party
 	db 20, WEEPINBELL, BINDING_BAND, 52, ABILITY_1 | HASTY, FEMALE
 		db WRAP, SLEEP_POWDER, POISONPOWDER, STUN_SPORE
-	db 20, AZUMARILL, BINDING_BAND, 52, HIDDEN_ABILITY | HASTY, FEMALE
+	db 20, FEAROW, BINDING_BAND, 52, HIDDEN_ABILITY | HASTY, FEMALE
 		db WHIRLPOOL, PERISH_SONG, AQUA_TAIL, PROTECT
 	db 21, CHARMELEON, BINDING_BAND, 52, ABILITY_2 | HASTY, FEMALE
 		db FIRE_SPIN, DRAGON_RAGE, SMOKESCREEN, PROTECT
@@ -10190,7 +10190,7 @@ AceDuoGroup:
 	db TRAINERTYPE_PERSONALITY
 	; party
 	db 65, PORYGON2, ABILITY_1 | QUIRKY, MALE
-	db 65, AZUMARILL, ABILITY_1 | QUIRKY, FEMALE
+	db 65, FEAROW, ABILITY_1 | QUIRKY, FEMALE
 	db -1 ; end
 
 ; ================
@@ -10199,7 +10199,7 @@ AceDuoGroup:
 	db "Elan & Ida@"
 	db TRAINERTYPE_PERSONALITY
 	; party
-	db 65, AZUMARILL, ABILITY_1 | QUIRKY, FEMALE
+	db 65, FEAROW, ABILITY_1 | QUIRKY, FEMALE
 	db 65, PORYGON2, ABILITY_1 | QUIRKY, MALE
 	db -1 ; end
 
@@ -11067,7 +11067,7 @@ CherylGroup:
 	db 28, CHANSEY, 68
 	db 27, NIDORINA, 68
 	db 24, CLEFABLE, 68
-	db 26, AZUMARILL, 68
+	db 26, FEAROW, 68
 	db 25, WOBBUFFET, 68
 	db -1 ; end
 
@@ -11082,7 +11082,7 @@ CherylGroup:
 	db 59, NIDOQUEEN
 	db 56, CLEFABLE
 	db 56, WIGGLYTUFF
-	db 58, AZUMARILL
+	db 58, FEAROW
 	db 57, WOBBUFFET
 	db -1 ; end
 
@@ -11097,7 +11097,7 @@ CherylGroup:
 	db 74, NIDOQUEEN
 	db 71, CLEFABLE
 	db 71, WIGGLYTUFF
-	db 73, AZUMARILL
+	db 73, FEAROW
 	db 72, WOBBUFFET
 	db -1 ; end
 
@@ -11553,7 +11553,7 @@ ValerieGroup:
 		db DISARM_VOICE, MINIMIZE, BATON_PASS, METRONOME
 	db 37, MR__MIME, NO_ITEM, 112
 		db PSYBEAM, CONFUSE_RAY, LIGHT_SCREEN, REFLECT
-	db 36, AZUMARILL, NO_ITEM, 112
+	db 36, FEAROW, NO_ITEM, 112
 		db PLAY_ROUGH, AQUA_TAIL, DIZZY_PUNCH, ROLLOUT
 	db 38, TOGETIC, NO_ITEM, 112
 		db ANCIENTPOWER, SOFTBOILED, DISARM_VOICE, ENCORE
@@ -11573,7 +11573,7 @@ ValerieGroup:
 		db PSYCHIC_M, DAZZLINGLEAM, LIGHT_SCREEN, REFLECT
 	db 56, WIGGLYTUFF, KINGS_ROCK, 160
 		db REST, SLEEP_TALK, HYPER_VOICE, DAZZLINGLEAM
-	db 56, AZUMARILL, MUSCLE_BAND, 160
+	db 56, FEAROW, MUSCLE_BAND, 160
 		db PLAY_ROUGH, WATERFALL, DIZZY_PUNCH, CLOSE_COMBAT
 	db 58, TOGEKISS, WISE_GLASSES, 160
 		db AURA_SPHERE, SOFTBOILED, DAZZLINGLEAM, AIR_SLASH
@@ -11593,7 +11593,7 @@ ValerieGroup:
 		db PSYCHIC_M, DAZZLINGLEAM, LIGHT_SCREEN, REFLECT
 	db 72, WIGGLYTUFF, KINGS_ROCK
 		db FIRE_BLAST, HEAL_BELL, HYPER_VOICE, DAZZLINGLEAM
-	db 72, AZUMARILL, MUSCLE_BAND
+	db 72, FEAROW, MUSCLE_BAND
 		db PLAY_ROUGH, WATERFALL, RETURN, CLOSE_COMBAT
 	db 74, TOGEKISS, WISE_GLASSES
 		db AURA_SPHERE, SOFTBOILED, DAZZLINGLEAM, AIR_SLASH

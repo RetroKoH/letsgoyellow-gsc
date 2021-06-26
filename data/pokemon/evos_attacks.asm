@@ -356,43 +356,39 @@ RaticateEvosAttacks:
 	db 44, COUNTER ; Endeavor → egg move
 	db 0 ; no more level-up moves
 
-MarillEvosAttacks:
-	db EVOLVE_LEVEL, 18, AZUMARILL
+SpearowEvosAttacks:
+	db EVOLVE_LEVEL, 20, FEAROW
 	db 0 ; no more evolutions
-	db 1, TACKLE
-	db 2, GROWL ; Tail Whip → new move
-	db 5, FORESIGHT ; Water Sport → egg move
-	db 7, AQUA_JET ; Bubble → egg move
-	db 10, DEFENSE_CURL
-	db 10, ROLLOUT
-	db 13, BUBBLE_BEAM
-	db 16, DIZZY_PUNCH ; Helping Hand → event move
-	db 20, AQUA_TAIL
-	db 23, PLAY_ROUGH
-	db 28, SCARY_FACE ; Aqua Ring → event move
-	db 31, RAIN_DANCE
-	db 37, DOUBLE_EDGE
-	db 40, CLOSE_COMBAT ; Superpower → similar move
-	db 47, HYDRO_PUMP
+	db 1, PECK
+	db 1, GROWL
+	db 4, LEER
+	db 8, PURSUIT
+	db 11, FURY_STRIKES ; Fury Attack → similar move
+	db 15, AERIAL_ACE
+	db 18, SONIC_BOOM ; Mirror Move → event move
+	db 22, FEINT_ATTACK ; Assurance → egg move
+	db 25, AGILITY
+	db 29, FOCUS_ENERGY
+	db 32, ROOST
+	db 36, DRILL_PECK
 	db 0 ; no more level-up moves
 
-AzumarillEvosAttacks:
+FearowEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, TACKLE
-	db 2, GROWL ; Tail Whip → new move
-	db 5, FORESIGHT ; Water Sport → egg move
-	db 7, AQUA_JET ; Bubble → egg move
-	db 10, DEFENSE_CURL
-	db 10, ROLLOUT
-	db 13, BUBBLE_BEAM
-	db 16, DIZZY_PUNCH ; Helping Hand → event move
-	db 21, AQUA_TAIL
-	db 25, PLAY_ROUGH
-	db 31, SCARY_FACE ; Aqua Ring → event move
-	db 35, RAIN_DANCE
-	db 42, DOUBLE_EDGE
-	db 46, CLOSE_COMBAT ; Superpower → similar move
-	db 55, HYDRO_PUMP
+	db 1, BULLDOZE ; Drill Run → similar move
+	db 1, PECK
+	db 1, GROWL
+	db 4, LEER
+	db 8, PURSUIT
+	db 11, FURY_STRIKES ; Fury Attack → similar move
+	db 15, AERIAL_ACE
+	db 18, SONIC_BOOM ; Mirror Move → event move
+	db 23, FEINT_ATTACK ; Assurance → egg move
+	db 27, AGILITY
+	db 32, FOCUS_ENERGY
+	db 36, ROOST
+	db 41, DRILL_PECK
+	db 45, BULLDOZE ; Drill Run → similar move
 	db 0 ; no more level-up moves
 
 EkansEvosAttacks:

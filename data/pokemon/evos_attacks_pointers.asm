@@ -23,8 +23,8 @@ EvosAttacksPointers:: ; 0x425b1
 	dw PidgeotEvosAttacks
 	dw RattataEvosAttacks
 	dw RaticateEvosAttacks
-	dw MarillEvosAttacks
-	dw AzumarillEvosAttacks
+	dw SpearowEvosAttacks
+	dw FearowEvosAttacks
 	dw EkansEvosAttacks
 	dw ArbokEvosAttacks
 	dw PikachuEvosAttacks

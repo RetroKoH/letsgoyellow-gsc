@@ -272,7 +272,7 @@ FindOwnedPosters: ; 268fb
 	db DECO_TOWN_MAP
 	db DECO_PIKACHU_POSTER
 	db DECO_CLEFAIRY_POSTER
-	db DECO_MARILL_POSTER
+	db DECO_EEVEE_POSTER
 	db -1
 ; 26908
 
@@ -1077,7 +1077,7 @@ DecorationDesc_PosterPointers: ; 26f84
 	dbw DECO_TOWN_MAP, DecorationDesc_TownMapPoster
 	dbw DECO_PIKACHU_POSTER, DecorationDesc_PikachuPoster
 	dbw DECO_CLEFAIRY_POSTER, DecorationDesc_ClefairyPoster
-	dbw DECO_MARILL_POSTER, DecorationDesc_MarillPoster
+	dbw DECO_EEVEE_POSTER, DecorationDesc_EeveePoster
 	db -1
 ; 26f91
 
@@ -1116,12 +1116,12 @@ DecorationDesc_ClefairyPoster: ; 0x26fa8
 	db "@"
 ; 0x26fb0
 
-DecorationDesc_MarillPoster: ; 0x26fb0
-	jumptext .MarillPosterText
+DecorationDesc_EeveePoster: ; 0x26fb0
+	jumptext .EeveePosterText
 ; 0x26fb3
 
-.MarillPosterText: ; 0x26fb3
-	; It's a poster of a cute MARILL.
+.EeveePosterText: ; 0x26fb3
+	; It's a poster of a cute EEVEE.
 	text_jump UnknownText_0x1bc5b3
 	db "@"
 ; 0x26fb8

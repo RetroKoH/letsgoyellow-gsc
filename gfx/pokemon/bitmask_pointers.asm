@@ -19,8 +19,8 @@ BitmasksPointers:
 	dw PidgeotBitmasks
 	dw RattataBitmasks
 	dw RaticateBitmasks
-	dw MarillBitmasks
-	dw AzumarillBitmasks
+	dw SpearowBitmasks
+	dw FearowBitmasks
 	dw EkansBitmasks
 	dw -1 ; see ArbokBitmasksPointers
 	dw -1 ; see PikachuBitmasksPointers

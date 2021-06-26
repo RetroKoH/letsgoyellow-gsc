@@ -39,10 +39,10 @@ PicPointers::
 	dba RattataBackpic
 	dba RaticateFrontpic
 	dba RaticateBackpic
-	dba MarillFrontpic
-	dba MarillBackpic
-	dba AzumarillFrontpic
-	dba AzumarillBackpic
+	dba SpearowFrontpic
+	dba SpearowBackpic
+	dba FearowFrontpic
+	dba FearowBackpic
 	dba EkansFrontpic
 	dba EkansBackpic
 

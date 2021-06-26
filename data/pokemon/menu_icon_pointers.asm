@@ -20,8 +20,8 @@ IconPointers:
 	dw PidgeotIcon
 	dw RattataIcon
 	dw RaticateIcon
-	dw MarillIcon
-	dw AzumarillIcon
+	dw SpearowIcon
+	dw FearowIcon
 	dw EkansIcon
 	dw ArbokIcon
 	dw PikachuIcon

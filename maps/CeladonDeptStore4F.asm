@@ -28,22 +28,22 @@ PosterClerkScript:
 	loadmenu .MenuData
 	verticalmenu
 	closewindow
-	ifequal $1, .MarillPoster
+	ifequal $1, .EeveePoster
 	ifequal $2, .ClefairyPoster
 	ifequal $3, .PikachuPoster
 	endtext
 
-.MarillPoster:
+.EeveePoster:
 	checkmoney $0, 3200
 	ifequal $2, .NotEnoughMoney
 	checkevent EVENT_DECO_POSTER_3
 	iftrue .AlreadyBought
 	takemoney $0, 3200
 	setevent EVENT_DECO_POSTER_3
-	writetext BoughtMarillPosterText
+	writetext BoughtEeveePosterText
 	playsound SFX_TRANSACTION
 	waitbutton
-	writetext MarillPosterSentText
+	writetext EeveePosterSentText
 	waitbutton
 	jump .Start
 
@@ -95,7 +95,7 @@ PosterClerkScript:
 .MenuData2:
 	db $80 ; flags
 	db 4 ; items
-	db "Marill      ¥3200@"
+	db "Eevee      ¥3200@"
 	db "Clefairy    ¥4800@"
 	db "Pikachu     ¥6400@"
 	db "Cancel@"
@@ -115,13 +115,13 @@ PosterClerkAlreadyBoughtText:
 	line "already."
 	done
 
-BoughtMarillPosterText:
+BoughtEeveePosterText:
 	text "<PLAYER> bought"
-	line "Marill Poster."
+	line "Eevee Poster."
 	done
 
-MarillPosterSentText:
-	text "Marill Poster"
+EeveePosterSentText:
+	text "Eevee Poster"
 	line "was sent home."
 	done
 

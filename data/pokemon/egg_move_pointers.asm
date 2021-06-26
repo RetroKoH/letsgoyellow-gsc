@@ -19,7 +19,7 @@ EggMovePointers:: ; 0x23b11
 	dw NoEggMoves
 	dw RattataEggMoves
 	dw NoEggMoves
-	dw MarillEggMoves
+	dw SpearowEggMoves
 	dw NoEggMoves
 	dw EkansEggMoves
 	dw NoEggMoves

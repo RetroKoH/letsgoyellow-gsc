@@ -69,6 +69,7 @@ AlphabeticalPokedexOrder:
 	db GLISCOR
 	db GLOOM
 	db GOLBAT
+	db GOLDEEN
 	db GOLDUCK
 	db GOLEM
 	db GRANBULL
@@ -105,8 +106,6 @@ AlphabeticalPokedexOrder:
 	db LAPRAS
 	db LARVITAR
 	db LEAFEON
-	db LEDIAN
-	db LEDYBA
 	db LUGIA
 	db MACHAMP
 	db MACHOKE
@@ -191,6 +190,7 @@ AlphabeticalPokedexOrder:
 	db SCIZOR
 	db SCYTHER
 	db SEADRA
+	db SEAKING
 	db SEEL
 	db SENTRET
 	db SHELLDER

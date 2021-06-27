@@ -116,9 +116,8 @@ IconPointers:
 	dw KangaskhanIcon
 	dw HorseaIcon
 	dw SeadraIcon
-	dw TogepiIcon
-	dw TogeticIcon
-	dw TogekissIcon
+	dw GoldeenIcon
+	dw SeakingIcon
 	dw StaryuIcon
 	dw StarmieIcon
 	dw MrMimeIcon
@@ -164,8 +163,9 @@ IconPointers:
 	dw FurretIcon
 	dw HoothootIcon
 	dw NoctowlIcon
-	dw LedybaIcon
-	dw LedianIcon
+	dw TogepiIcon
+	dw TogeticIcon
+	dw TogekissIcon
 	dw SpinarakIcon
 	dw AriadosIcon
 	dw CrobatIcon

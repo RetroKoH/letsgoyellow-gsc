@@ -569,14 +569,13 @@ HoothootEggMoves:
 	db HURRICANE
 	db $ff
 
-LedybaEggMoves:
-	db DIZZY_PUNCH
-	db ENCORE ; requires Shuckle
+GoldeenEggMoves:
 	db PSYBEAM
-	db SCREECH
-	db LIGHT_SCREEN
-	db KNOCK_OFF
-	db DRAIN_PUNCH
+	db HAZE
+	db HYDRO_PUMP
+	db AQUA_TAIL
+	db BODY_SLAM
+	db SPLASH
 	db $ff
 
 SpinarakEggMoves:

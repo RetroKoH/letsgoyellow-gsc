@@ -143,7 +143,7 @@ BugsyGroup:
 	; party
 	db 73, HERACROSS, BLACK_BELT, ABILITY_1 | QUIRKY, MALE
 		db MEGAHORN, CROSS_CHOP, ROCK_SMASH, STONE_EDGE
-	db 71, LEDIAN, KINGS_ROCK, ABILITY_1 | QUIRKY, FEMALE
+	db 71, BUTTERFREE, KINGS_ROCK, ABILITY_1 | QUIRKY, FEMALE
 		db REFLECT, LIGHT_SCREEN, BUG_BUZZ, ICE_PUNCH
 	db 70, YANMEGA, QUICK_CLAW, ABILITY_1 | QUIRKY, FEMALE
 if DEF(FAITHFUL)
@@ -2052,7 +2052,7 @@ BugCatcherGroup:
 	db "Oscar@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 24, LEDIAN
+	db 24, BUTTERFREE
 	db 25, SCYTHER
 	db -1 ; end
 
@@ -2658,7 +2658,7 @@ TwinsGroup:
 	db TRAINERTYPE_NORMAL
 	; party
 	db 10, SPINARAK
-	db 10, LEDYBA
+	db 10, CATERPIE
 	db -1 ; end
 
 ; ================
@@ -2667,7 +2667,7 @@ TwinsGroup:
 	db "Amy & Mimi@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 10, LEDYBA
+	db 10, CATERPIE
 	db 10, SPINARAK
 	db -1 ; end
 
@@ -5608,7 +5608,7 @@ BugManiacGroup:
 	db "Dylan@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 55, LEDIAN
+	db 55, BEEDRILL
 	db 55, BUTTERFREE
 	db -1 ; end
 
@@ -6134,7 +6134,7 @@ SchoolboyGroup:
 	db "Nate@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 46, LEDIAN
+	db 46, BUTTERFREE
 	db 48, EXEGGUTOR
 	db -1 ; end
 
@@ -6209,7 +6209,7 @@ SchoolgirlGroup:
 	db TRAINERTYPE_ITEM | TRAINERTYPE_NICKNAME
 	; party
 	db 18, ODDISH, SILVER_LEAF, "Silver@"
-	db 16, LEDYBA, NO_ITEM, "Lady@"
+	db 16, CATERPIE, NO_ITEM, "Lady@"
 	db 17, SENTRET, ORAN_BERRY, "Tret@"
 	db -1 ; end
 

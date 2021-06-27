@@ -117,9 +117,8 @@ ValidPokemonLevels:
 	db  20, 100 ; Kangaskhan
 	db   1,  31 ; Horsea
 	db  32,  54 ; Seadra
-	db   1,  19 ; Togepi
-	db  20,  39 ; Togetic
-	db  40, 100 ; Togekiss
+	db   1,  17 ; Goldeen
+	db  18, 100 ; Seaking
 	db   1,  32 ; Staryu
 	db  33, 100 ; Starmie
 	db  20, 100 ; Mr. Mime
@@ -165,8 +164,9 @@ ValidPokemonLevels:
 	db  15, 100 ; Furret
 	db   1,  19 ; Hoothoot
 	db  20, 100 ; Noctowl
-	db   1,  17 ; Ledyba
-	db  18, 100 ; Ledian
+	db   1,  19 ; Togepi
+	db  20,  39 ; Togetic
+	db  40, 100 ; Togekiss
 	db   1,  21 ; Spinarak
 	db  22, 100 ; Ariados
 	db  32, 100 ; Crobat

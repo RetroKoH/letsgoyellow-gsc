@@ -428,10 +428,10 @@ NoctowlBackpic:           INCBIN "gfx/pokemon/noctowl/back.2bpp.lz"
 
 SECTION "Pokemon Pics 20", ROMX
 
-LedybaFrontpic:           INCBIN "gfx/pokemon/ledyba/front.2bpp.lz"
-LedybaBackpic:            INCBIN "gfx/pokemon/ledyba/back.2bpp.lz"
-LedianFrontpic:           INCBIN "gfx/pokemon/ledian/front.2bpp.lz"
-LedianBackpic:            INCBIN "gfx/pokemon/ledian/back.2bpp.lz"
+GoldeenFrontpic:          INCBIN "gfx/pokemon/goldeen/front.2bpp.lz"
+GoldeenBackpic:           INCBIN "gfx/pokemon/goldeen/back.2bpp.lz"
+SeakingFrontpic:          INCBIN "gfx/pokemon/seaking/front.2bpp.lz"
+SeakingBackpic:           INCBIN "gfx/pokemon/seaking/back.2bpp.lz"
 SpinarakFrontpic:         INCBIN "gfx/pokemon/spinarak/front.2bpp.lz"
 SpinarakBackpic:          INCBIN "gfx/pokemon/spinarak/back.2bpp.lz"
 AriadosFrontpic:          INCBIN "gfx/pokemon/ariados/front.2bpp.lz"

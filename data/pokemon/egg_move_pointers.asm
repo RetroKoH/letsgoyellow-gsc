@@ -115,8 +115,7 @@ EggMovePointers:: ; 0x23b11
 	dw KangaskhanEggMoves
 	dw HorseaEggMoves
 	dw NoEggMoves
-	dw TogepiEggMoves
-	dw NoEggMoves
+	dw GoldeenEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
@@ -163,7 +162,8 @@ EggMovePointers:: ; 0x23b11
 	dw NoEggMoves
 	dw HoothootEggMoves
 	dw NoEggMoves
-	dw LedybaEggMoves
+	dw TogepiEggMoves
+	dw NoEggMoves
 	dw NoEggMoves
 	dw SpinarakEggMoves
 	dw NoEggMoves

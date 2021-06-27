@@ -1,4 +1,5 @@
 PokemonNames::
+
 	db "BULBASAUR@"
 	db "IVYSAUR@@@"
 	db "VENUSAUR@@"
@@ -106,7 +107,6 @@ PokemonNames::
 	db "MAROWAK@@@"
 	db "HITMONLEE@"
 	db "HITMONCHAN"
-	db "LICKITUNG@"
 	db "KOFFING@@@"
 	db "WEEZING@@@"
 	db "RHYHORN@@@"
@@ -163,8 +163,8 @@ PokemonNames::
 	db "FURRET@@@@"
 	db "HOOTHOOT@@"
 	db "NOCTOWL@@@"
-	db "LEDYBA@@@@"
-	db "LEDIAN@@@@"
+	db "GOLDEEN@@@"
+	db "SEAKING@@@"
 	db "SPINARAK@@"
 	db "ARIADOS@@@"
 	db "CROBAT@@@@"

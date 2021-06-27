@@ -115,9 +115,8 @@ AnimationExtraPointers:
 	dw KangaskhanAnimationExtra
 	dw HorseaAnimationExtra
 	dw SeadraAnimationExtra
-	dw TogepiAnimationExtra
-	dw TogeticAnimationExtra
-	dw TogekissAnimationExtra
+	dw GoldeenAnimationExtra
+	dw SeakingAnimationExtra
 	dw StaryuAnimationExtra
 	dw StarmieAnimationExtra
 	dw MrMimeAnimationExtra
@@ -163,8 +162,9 @@ AnimationExtraPointers:
 	dw FurretAnimationExtra
 	dw HoothootAnimationExtra
 	dw NoctowlAnimationExtra
-	dw LedybaAnimationExtra
-	dw LedianAnimationExtra
+	dw TogepiAnimationExtra
+	dw TogeticAnimationExtra
+	dw TogekissAnimationExtra
 	dw SpinarakAnimationExtra
 	dw AriadosAnimationExtra
 	dw CrobatAnimationExtra

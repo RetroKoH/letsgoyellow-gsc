@@ -119,9 +119,8 @@ EvosAttacksPointers:: ; 0x425b1
 	dw KangaskhanEvosAttacks
 	dw HorseaEvosAttacks
 	dw SeadraEvosAttacks
-	dw TogepiEvosAttacks
-	dw TogeticEvosAttacks
-	dw TogekissEvosAttacks
+	dw GoldeenEvosAttacks
+	dw SeakingEvosAttacks
 	dw StaryuEvosAttacks
 	dw StarmieEvosAttacks
 	dw MrMimeEvosAttacks
@@ -167,8 +166,9 @@ EvosAttacksPointers:: ; 0x425b1
 	dw FurretEvosAttacks
 	dw HoothootEvosAttacks
 	dw NoctowlEvosAttacks
-	dw LedybaEvosAttacks
-	dw LedianEvosAttacks
+	dw TogepiEvosAttacks
+	dw TogeticEvosAttacks
+	dw TogekissEvosAttacks
 	dw SpinarakEvosAttacks
 	dw AriadosEvosAttacks
 	dw CrobatEvosAttacks

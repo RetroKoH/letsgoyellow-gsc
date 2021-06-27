@@ -50,7 +50,7 @@ TreeMons2:
 TreeMons3:
 	db 50, HOOTHOOT,   10
 	db 15, SPINARAK,   10
-	db 15, LEDYBA,     10
+	db 15, CATERPIE,   10
 	db 10, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10
 	db  5, EXEGGCUTE,  10

@@ -116,9 +116,8 @@
 	const KANGASKHAN ; $72
 	const HORSEA     ; $73
 	const SEADRA     ; $74
-	const TOGEPI     ; $75
-	const TOGETIC    ; $76
-	const TOGEKISS   ; $77
+	const GOLDEEN    ; $a5
+	const SEAKING    ; $a6
 	const STARYU     ; $78
 	const STARMIE    ; $79
 	const MR__MIME   ; $7a
@@ -164,8 +163,9 @@
 	const FURRET     ; $a2
 	const HOOTHOOT   ; $a3
 	const NOCTOWL    ; $a4
-	const LEDYBA     ; $a5
-	const LEDIAN     ; $a6
+	const TOGEPI     ; $75
+	const TOGETIC    ; $76
+	const TOGEKISS   ; $77
 	const SPINARAK   ; $a7
 	const ARIADOS    ; $a8
 	const CROBAT     ; $a9

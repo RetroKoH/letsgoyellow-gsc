@@ -356,7 +356,7 @@
 	; morn
 	db 12, NIDORAN_M
 	db 13, NIDORAN_F
-	db 14, LEDYBA
+	db 14, CATERPIE
 	db 15, PIDGEY
 	db 10, CATERPIE
 	db 12, WEEDLE
@@ -1299,7 +1299,7 @@
 	map_id ROUTE_30
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 3, LEDYBA
+	db 3, WEEDLE
 	db 3, CATERPIE
 	db 4, CATERPIE
 	db 4, PIDGEY
@@ -1326,7 +1326,7 @@
 	map_id ROUTE_31
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 4, LEDYBA
+	db 4, WEEDLE
 	db 4, CATERPIE
 	db 5, BELLSPROUT
 	db 5, PIDGEY
@@ -1461,7 +1461,7 @@
 	map_id ROUTE_36
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 4, LEDYBA
+	db 4, BELLSPROUT
 	db 4, PIDGEY
 	db 5, BELLSPROUT
 	db 5, GROWLITHE
@@ -1488,12 +1488,12 @@
 	map_id ROUTE_37
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 13, LEDYBA
+	db 13, PIDGEY
 	db 14, PIDGEY
 	db 15, PIDGEOTTO
 	db 16, GROWLITHE
 	db 14, SMEARGLE
-	db 15, LEDIAN
+	db 15, PIDGEOTTO
 	db 16, PIDGEOTTO
 	; day
 	db 14, PIDGEY
@@ -1815,7 +1815,7 @@
 	db 22, SENTRET
 	db 24, SNUBBULL
 	db 20, PIKACHU
-	db 22, LEDYBA
+	db 22, SENTRET
 	db 20, SPEAROW
 	db 21, SPEAROW
 	db 10, PICHU

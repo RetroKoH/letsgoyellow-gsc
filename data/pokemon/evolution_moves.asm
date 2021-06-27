@@ -115,9 +115,8 @@ EvolutionMoves::
 	db NO_MOVE      ; KANGASKHAN
 	db NO_MOVE      ; HORSEA
 	db NO_MOVE      ; SEADRA
-	db NO_MOVE      ; TOGEPI
-	db DISARM_VOICE ; TOGETIC
-	db DISARM_VOICE ; TOGEKISS
+	db NO_MOVE      ; GOLDEEN
+	db SWORDS_DANCE ; SEAKING
 	db NO_MOVE      ; STARYU
 	db NO_MOVE      ; STARMIE
 	db NO_MOVE      ; MR__MIME
@@ -163,8 +162,9 @@ EvolutionMoves::
 	db AGILITY      ; FURRET
 	db NO_MOVE      ; HOOTHOOT
 	db NO_MOVE      ; NOCTOWL
-	db NO_MOVE      ; LEDYBA
-	db SWORDS_DANCE ; LEDIAN
+	db NO_MOVE      ; TOGEPI
+	db DISARM_VOICE ; TOGETIC
+	db DISARM_VOICE ; TOGEKISS
 	db NO_MOVE      ; SPINARAK
 	db BUG_BITE     ; ARIADOS
 	db X_SCISSOR    ; CROBAT

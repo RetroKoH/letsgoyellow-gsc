@@ -3210,42 +3210,43 @@ NoctowlEvosAttacks:
 	db 55, DREAM_EATER
 	db 0 ; no more level-up moves
 
-LedybaEvosAttacks:
-	db EVOLVE_LEVEL, 18, LEDIAN
+GoldeenEvosAttacks:
+	db EVOLVE_LEVEL, 33, SEAKING
 	db 0 ; no more evolutions
-	db 1, TACKLE
-	db 5, SUPERSONIC
-	db 8, SWIFT
-	db 12, LIGHT_SCREEN
-	db 12, REFLECT
-	db 12, SAFEGUARD
-	db 15, MACH_PUNCH
-	db 19, BARRIER ; Silver Wind → event move
-	db 22, DIZZY_PUNCH ; Comet Punch → new move
-	db 26, BATON_PASS
+	db 1, PECK
+	db 1, LEER ; Tail Whip → similar move
+	db 1, WATER_GUN ; Water Sport → new move
+	db 4, SUPERSONIC
+	db 7, QUICK_ATTACK ; Let's Go move
+	db 10, HORN_ATTACK
+	db 13, REVERSAL ; Flail → similar move
+	db 16, WATER_PULSE
+	db 21, RECOVER ; Aqua Ring → similar move
+	db 24, FURY_STRIKES ; Fury Attack → similar move
 	db 29, AGILITY
-	db 33, BUG_BUZZ
-	db 36, AIR_SLASH
-	db 40, DOUBLE_EDGE
+	db 32, WATERFALL
+	db 37, DOUBLE_EDGE ; Horn Drill → RBY TM move
+	db 40, SWORDS_DANCE ; Soak → event move
+	db 45, MEGAHORN
 	db 0 ; no more level-up moves
 
-LedianEvosAttacks:
+SeakingEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, SWORDS_DANCE ; evolution move
-	db 1, TACKLE
-	db 5, SUPERSONIC
-	db 8, SWIFT
-	db 12, LIGHT_SCREEN
-	db 12, REFLECT
-	db 12, SAFEGUARD
-	db 15, MACH_PUNCH
-	db 20, BARRIER ; Silver Wind → event move
-	db 24, DIZZY_PUNCH ; Comet Punch → new move
-	db 29, BATON_PASS
-	db 33, AGILITY
-	db 38, BUG_BUZZ
-	db 42, AIR_SLASH
-	db 47, DOUBLE_EDGE
+	db 1, PECK
+	db 1, LEER ; Tail Whip → similar move
+	db 1, WATER_GUN ; Water Sport → new move
+	db 4, SUPERSONIC
+	db 7, QUICK_ATTACK ; Let's Go move
+	db 10, HORN_ATTACK
+	db 13, REVERSAL ; Flail → similar move
+	db 16, WATER_PULSE
+	db 21, RECOVER ; Aqua Ring → similar move
+	db 24, FURY_STRIKES ; Fury Attack → similar move
+	db 29, AGILITY
+	db 32, WATERFALL
+	db 40, DOUBLE_EDGE ; Horn Drill → RBY TM move
+	db 46, SWORDS_DANCE ; Soak → event move
+	db 54, MEGAHORN
 	db 0 ; no more level-up moves
 
 SpinarakEvosAttacks:

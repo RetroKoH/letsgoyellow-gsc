@@ -121,9 +121,8 @@ CryHeaders::
 	mon_cry CRY_KANGASKHAN,  $000,  $100 ; Kangaskhan
 	mon_cry CRY_CLEFAIRY,    $099,  $090 ; Horsea
 	mon_cry CRY_CLEFAIRY,    $03c,  $081 ; Seadra
-	mon_cry CRY_TOGEPI,      $010,  $100 ; Togepi
-	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togetic
-	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togekiss
+	mon_cry CRY_CATERPIE,    $080,  $0c0 ; Goldeen
+	mon_cry CRY_CATERPIE,    $010,  $17f ; Seaking
 	mon_cry CRY_PARAS,       $002,  $0a0 ; Staryu
 	mon_cry CRY_PARAS,       $000,  $100 ; Starmie
 	mon_cry CRY_KRABBY,      $008,  $0c0 ; MrMime
@@ -169,8 +168,9 @@ CryHeaders::
 	mon_cry CRY_SENTRET,     $06b,  $102 ; Furret
 	mon_cry CRY_HOOTHOOT,    $091,  $0d8 ; Hoothoot
 	mon_cry CRY_HOOTHOOT,    $000,  $1a0 ; Noctowl
-	mon_cry CRY_LEDYBA,      $000,  $0de ; Ledyba
-	mon_cry CRY_LEDYBA,     -$096,  $138 ; Ledian
+	mon_cry CRY_TOGEPI,      $010,  $100 ; Togepi
+	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togetic
+	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togekiss
 	mon_cry CRY_SPINARAK,    $011,  $200 ; Spinarak
 	mon_cry CRY_SPINARAK,   -$0ae,  $1e2 ; Ariados
 	mon_cry CRY_SQUIRTLE,   -$010,  $140 ; Crobat

@@ -236,12 +236,10 @@ PicPointers::
 	dba HorseaBackpic
 	dba SeadraFrontpic
 	dba SeadraBackpic
-	dba TogepiFrontpic
-	dba TogepiBackpic
-	dba TogeticFrontpic
-	dba TogeticBackpic
-	dba TogekissFrontpic
-	dba TogekissBackpic
+	dba GoldeenFrontpic
+	dba GoldeenBackpic
+	dba SeakingFrontpic
+	dba SeakingBackpic
 	dba StaryuFrontpic
 	dba StaryuBackpic
 	dba StarmieFrontpic
@@ -340,10 +338,12 @@ PicPointers::
 	dba HoothootBackpic
 	dba NoctowlFrontpic
 	dba NoctowlBackpic
-	dba LedybaFrontpic
-	dba LedybaBackpic
-	dba LedianFrontpic
-	dba LedianBackpic
+	dba TogepiFrontpic
+	dba TogepiBackpic
+	dba TogeticFrontpic
+	dba TogeticBackpic
+	dba TogekissFrontpic
+	dba TogekissBackpic
 	dba SpinarakFrontpic
 	dba SpinarakBackpic
 	dba AriadosFrontpic

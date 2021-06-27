@@ -26,8 +26,8 @@ NewPokedexOrder:
 	db WEEDLE
 	db KAKUNA
 	db BEEDRILL
-	db LEDYBA
-	db LEDIAN
+	db GOLDEEN
+	db SEAKING
 	db SPINARAK
 	db ARIADOS
 	db GEODUDE

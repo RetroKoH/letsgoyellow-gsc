@@ -119,9 +119,8 @@ MenuMonIconColors::
 	iconpal BROWN, GRAY ; KANGASKHAN
 	iconpal BLUE, RED ; HORSEA
 	iconpal BLUE, PURPLE ; SEADRA
-	iconpal RED, BLUE ; TOGEPI
-	iconpal RED, BLUE ; TOGETIC
-	iconpal RED, BLUE ; TOGEKISS
+	iconpal RED, PINK ; GOLDEEN
+	iconpal RED, PINK ; SEAKING
 	iconpal BROWN, BLUE ; STARYU
 	iconpal PURPLE, BLUE ; STARMIE
 	iconpal PINK, GREEN ; MR__MIME
@@ -167,8 +166,9 @@ MenuMonIconColors::
 	iconpal BROWN, RED ; FURRET
 	iconpal BROWN, RED ; HOOTHOOT
 	iconpal BROWN, GREEN ; NOCTOWL
-	iconpal RED, PINK ; LEDYBA
-	iconpal RED, PINK ; LEDIAN
+	iconpal RED, BLUE ; TOGEPI
+	iconpal RED, BLUE ; TOGETIC
+	iconpal RED, BLUE ; TOGEKISS
 	iconpal GREEN, PURPLE ; SPINARAK
 	iconpal PURPLE, BLUE ; ARIADOS
 	iconpal PURPLE, RED ; CROBAT

@@ -115,9 +115,8 @@ FramesPointers:
 	dw KangaskhanFrames
 	dw HorseaFrames
 	dw SeadraFrames
-	dw TogepiFrames
-	dw TogeticFrames
-	dw TogekissFrames
+	dw GoldeenFrames
+	dw SeakingFrames
 	dw StaryuFrames
 	dw StarmieFrames
 	dw MrMimeFrames
@@ -163,8 +162,9 @@ FramesPointers:
 	dw FurretFrames
 	dw HoothootFrames
 	dw NoctowlFrames
-	dw LedybaFrames
-	dw LedianFrames
+	dw TogepiFrames
+	dw TogeticFrames
+	dw TogekissFrames
 	dw SpinarakFrames
 	dw AriadosFrames
 	dw CrobatFrames

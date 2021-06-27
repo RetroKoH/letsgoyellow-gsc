@@ -1005,9 +1005,9 @@ BattleTowerMons8:
 	db $dd, $fd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db MANTINE
+	db JYNX
 	db SITRUS_BERRY
-	db SURF, CONFUSE_RAY, BLIZZARD, WING_ATTACK
+	db SURF, CONFUSE_RAY, BLIZZARD, PSYCHIC_M
 	db $dd, $fd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

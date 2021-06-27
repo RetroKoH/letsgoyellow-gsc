@@ -107,6 +107,7 @@ IconPointers:
 	dw MarowakIcon
 	dw HitmonleeIcon
 	dw HitmonchanIcon
+	dw LickitungIcon
 	dw KoffingIcon
 	dw WeezingIcon
 	dw RhyhornIcon
@@ -224,7 +225,6 @@ IconPointers:
 	dw CorsolaIcon
 	dw RemoraidIcon
 	dw OctilleryIcon
-	dw MantineIcon
 	dw SkarmoryIcon
 	dw HoundourIcon
 	dw HoundoomIcon

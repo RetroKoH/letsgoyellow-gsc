@@ -867,27 +867,27 @@
 	map_id ROUTE_22
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 03, GOLDEEN
-	db 03, GOLDEEN
-	db 04, GOLDEEN
-	db 04, GOLDEEN
-	db 04, GOLDEEN
+	db 03, LICKITUNG
+	db 03, LICKITUNG
+	db 04, LICKITUNG
+	db 04, LICKITUNG
+	db 04, LICKITUNG
 	db 04, MANKEY
 	db 06, MANKEY
 	; day
-	db 04, GOLDEEN
-	db 03, GOLDEEN
-	db 04, GOLDEEN
-	db 04, GOLDEEN
-	db 05, GOLDEEN
+	db 04, LICKITUNG
+	db 03, LICKITUNG
+	db 04, LICKITUNG
+	db 04, LICKITUNG
+	db 05, LICKITUNG
 	db 04, MANKEY
 	db 06, MANKEY
 	; nite
-	db 03, GOLDEEN
-	db 03, GOLDEEN
-	db 04, GOLDEEN
-	db 04, GOLDEEN
-	db 05, GOLDEEN
+	db 03, LICKITUNG
+	db 03, LICKITUNG
+	db 04, LICKITUNG
+	db 04, LICKITUNG
+	db 05, LICKITUNG
 	db 04, MANKEY
 	db 06, MANKEY
 

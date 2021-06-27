@@ -116,6 +116,7 @@ CubonePokedexEntry::     INCLUDE "data/pokemon/dex_entries/104.asm"
 MarowakPokedexEntry::    INCLUDE "data/pokemon/dex_entries/105.asm"
 HitmonleePokedexEntry::  INCLUDE "data/pokemon/dex_entries/106.asm"
 HitmonchanPokedexEntry:: INCLUDE "data/pokemon/dex_entries/107.asm"
+LickitungPokedexEntry::  INCLUDE "data/pokemon/dex_entries/108.asm"
 KoffingPokedexEntry::    INCLUDE "data/pokemon/dex_entries/109.asm"
 WeezingPokedexEntry::    INCLUDE "data/pokemon/dex_entries/110.asm"
 RhyhornPokedexEntry::    INCLUDE "data/pokemon/dex_entries/111.asm"
@@ -135,12 +136,13 @@ JynxPokedexEntry::       INCLUDE "data/pokemon/dex_entries/124.asm"
 ElectabuzzPokedexEntry:: INCLUDE "data/pokemon/dex_entries/125.asm"
 MagmarPokedexEntry::     INCLUDE "data/pokemon/dex_entries/126.asm"
 PinsirPokedexEntry::     INCLUDE "data/pokemon/dex_entries/127.asm"
-TaurosPokedexEntry::     INCLUDE "data/pokemon/dex_entries/128.asm"
+
 
 
 SECTION "Pokedex Entries 129-192", ROMX
 
 PokedexEntries3::
+TaurosPokedexEntry::     INCLUDE "data/pokemon/dex_entries/128.asm"
 MagikarpPokedexEntry::   INCLUDE "data/pokemon/dex_entries/129.asm"
 GyaradosPokedexEntry::   INCLUDE "data/pokemon/dex_entries/130.asm"
 LaprasPokedexEntry::     INCLUDE "data/pokemon/dex_entries/131.asm"
@@ -205,12 +207,13 @@ YanmegaPokedexEntry::    INCLUDE "data/pokemon/dex_entries/469.asm"
 WooperPokedexEntry::     INCLUDE "data/pokemon/dex_entries/194.asm"
 QuagsirePokedexEntry::   INCLUDE "data/pokemon/dex_entries/195.asm"
 EspeonPokedexEntry::     INCLUDE "data/pokemon/dex_entries/196.asm"
-UmbreonPokedexEntry::    INCLUDE "data/pokemon/dex_entries/197.asm"
+
 
 
 SECTION "Pokedex Entries 193-254", ROMX
 
 PokedexEntries4::
+UmbreonPokedexEntry::    INCLUDE "data/pokemon/dex_entries/197.asm"
 MurkrowPokedexEntry::    INCLUDE "data/pokemon/dex_entries/198.asm"
 HonchkrowPokedexEntry::  INCLUDE "data/pokemon/dex_entries/430.asm"
 SlowkingPokedexEntry::   INCLUDE "data/pokemon/dex_entries/199.asm"
@@ -243,7 +246,6 @@ MamoswinePokedexEntry::  INCLUDE "data/pokemon/dex_entries/473.asm"
 CorsolaPokedexEntry::    INCLUDE "data/pokemon/dex_entries/222.asm"
 RemoraidPokedexEntry::   INCLUDE "data/pokemon/dex_entries/223.asm"
 OctilleryPokedexEntry::  INCLUDE "data/pokemon/dex_entries/224.asm"
-MantinePokedexEntry::    INCLUDE "data/pokemon/dex_entries/226.asm"
 SkarmoryPokedexEntry::   INCLUDE "data/pokemon/dex_entries/227.asm"
 HoundourPokedexEntry::   INCLUDE "data/pokemon/dex_entries/228.asm"
 HoundoomPokedexEntry::   INCLUDE "data/pokemon/dex_entries/229.asm"

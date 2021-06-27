@@ -106,6 +106,7 @@ AnimationPointers:
 	dw MarowakAnimation
 	dw HitmonleeAnimation
 	dw HitmonchanAnimation
+	dw LickitungAnimation
 	dw KoffingAnimation
 	dw WeezingAnimation
 	dw RhyhornAnimation
@@ -223,7 +224,6 @@ AnimationPointers:
 	dw CorsolaAnimation
 	dw RemoraidAnimation
 	dw OctilleryAnimation
-	dw MantineAnimation
 	dw SkarmoryAnimation
 	dw HoundourAnimation
 	dw HoundoomAnimation

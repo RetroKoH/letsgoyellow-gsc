@@ -107,6 +107,7 @@
 	const MAROWAK    ; $69
 	const HITMONLEE  ; $6a
 	const HITMONCHAN ; $6b
+	const LICKITUNG  ; $e1
 	const KOFFING    ; $6c
 	const WEEZING    ; $6d
 	const RHYHORN    ; $6e
@@ -224,7 +225,6 @@
 	const CORSOLA    ; $de
 	const REMORAID   ; $df
 	const OCTILLERY  ; $e0
-	const MANTINE    ; $e1
 	const SKARMORY   ; $e2
 	const HOUNDOUR   ; $e3
 	const HOUNDOOM   ; $e4

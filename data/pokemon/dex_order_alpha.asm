@@ -106,6 +106,7 @@ AlphabeticalPokedexOrder:
 	db LAPRAS
 	db LARVITAR
 	db LEAFEON
+	db LICKITUNG
 	db LUGIA
 	db MACHAMP
 	db MACHOKE
@@ -120,7 +121,6 @@ AlphabeticalPokedexOrder:
 	db MAGNEZONE
 	db MAMOSWINE
 	db MANKEY
-	db MANTINE
 	db MAREEP
 	db MAROWAK
 	db MEGANIUM

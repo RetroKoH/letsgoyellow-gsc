@@ -379,6 +379,15 @@ CuboneEggMoves:
 	db IRON_HEAD
 	db $ff
 
+LickitungEggMoves:
+	db BELLY_DRUM
+	db MAGNITUDE
+	db BODY_SLAM
+	db AMNESIA
+	db THRASH
+	db ZEN_HEADBUTT
+	db -1 ; end
+
 KoffingEggMoves:
 	db PSYBEAM
 	db SCREECH
@@ -815,14 +824,6 @@ RemoraidEggMoves:
 	db AURORA_BEAM
 	db GUNK_SHOT
 	db WATER_PULSE
-	db $ff
-
-MantineEggMoves:
-	db HAZE
-	db MIRROR_COAT
-	db SPLASH
-	db HYDRO_PUMP
-	db GUNK_SHOT
 	db $ff
 
 SkarmoryEggMoves:

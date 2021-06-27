@@ -2079,6 +2079,26 @@ HitmonchanEvosAttacks:
 	db 66, CLOSE_COMBAT
 	db 0 ; no more level-up moves
 
+LickitungEvosAttacks:
+	db 0 ; no more evolutions
+	db 1, LICK
+	db 5, SUPERSONIC
+	db 9, DEFENSE_CURL
+	db 12, THIEF ; Knock Off → similar move
+	db 15, WRAP
+	db 18, ACID ; Let's Go move
+	db 21, STOMP
+	db 25, DISABLE
+	db 29, BODY_SLAM ; Slam → egg move
+	db 33, ROLLOUT
+	db 37, THRASH ; Chip Away → egg move
+	db 41, ZEN_HEADBUTT ; Me First → egg move
+	db 45, HEAL_BELL ; Refresh → event move
+	db 49, SCREECH
+	db 53, POWER_WHIP
+	db 57, DOUBLE_EDGE ; Wring Out → new move
+	db 0 ; no more level-up moves
+
 KoffingEvosAttacks:
 	db EVOLVE_LEVEL, 35, WEEZING
 	db 0 ; no more evolutions
@@ -4425,26 +4445,6 @@ if !DEF(FAITHFUL)
 endc
 	db 64, AURA_SPHERE ; Soak → new move
 	db 70, HYPER_BEAM
-	db 0 ; no more level-up moves
-
-MantineEvosAttacks:
-	db 0 ; no more evolutions
-	db 1, GUST ; event move
-	db 1, TACKLE
-	db 1, WATER_GUN ; Bubble → similar move
-	db 3, SUPERSONIC
-	db 7, BUBBLE_BEAM
-	db 11, CONFUSE_RAY
-	db 14, WING_ATTACK
-	db 16, HEADBUTT
-	db 19, WATER_PULSE
-	db 23, AQUA_JET ; Wide Guard → new move
-	db 27, TAKE_DOWN
-	db 32, AGILITY
-	db 36, AIR_SLASH
-	db 39, ROOST ; Aqua Ring → similar move
-	db 46, MIRROR_COAT ; Bounce → Dream World move
-	db 49, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
 SkarmoryEvosAttacks:

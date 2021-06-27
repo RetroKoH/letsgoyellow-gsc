@@ -106,6 +106,7 @@ EvolutionMoves::
 	db PAIN_SPLIT   ; MAROWAK
 	db DOUBLE_KICK  ; HITMONLEE
 	db DIZZY_PUNCH  ; HITMONCHAN
+	db NO_MOVE      ; LICKITUNG
 	db NO_MOVE      ; KOFFING
 	db NO_MOVE      ; WEEZING
 	db NO_MOVE      ; RHYHORN
@@ -226,7 +227,6 @@ endc
 	db NO_MOVE      ; CORSOLA
 	db NO_MOVE      ; REMORAID
 	db OCTAZOOKA    ; OCTILLERY
-	db NO_MOVE      ; MANTINE
 	db NO_MOVE      ; SKARMORY
 	db NO_MOVE      ; HOUNDOUR
 	db NO_MOVE      ; HOUNDOOM

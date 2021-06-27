@@ -108,6 +108,7 @@ ValidPokemonLevels:
 	db  28, 100 ; Marowak
 	db  20, 100 ; Hitmonlee
 	db  20, 100 ; Hitmonchan
+	db   1, 100 ; Lickitung
 	db   1,  34 ; Koffing
 	db  35, 100 ; Weezing
 	db   1,  41 ; Rhyhorn
@@ -225,7 +226,6 @@ ValidPokemonLevels:
 	db   1, 100 ; Corsola
 	db   1,  24 ; Remoraid
 	db  25, 100 ; Octillery
-	db   1, 100 ; Mantine
 	db  10, 100 ; Skarmory
 	db   1,  23 ; Houndour
 	db  24, 100 ; Houndoom

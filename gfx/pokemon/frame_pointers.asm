@@ -106,6 +106,7 @@ FramesPointers:
 	dw MarowakFrames
 	dw HitmonleeFrames
 	dw HitmonchanFrames
+	dw LickitungFrames
 	dw KoffingFrames
 	dw WeezingFrames
 	dw RhyhornFrames
@@ -223,7 +224,6 @@ FramesPointers:
 	dw CorsolaFrames
 	dw RemoraidFrames
 	dw OctilleryFrames
-	dw MantineFrames
 	dw SkarmoryFrames
 	dw HoundourFrames
 	dw HoundoomFrames

@@ -159,7 +159,7 @@
 	map_id ROUTE_41
 	db 6 percent ; encounter rate
 	db 20, TENTACOOL
-	db 20, MANTINE
+	db 20, GOLDEEN
 	db 20, REMORAID
 
 	map_id ROUTE_42
@@ -219,7 +219,7 @@
 	map_id CIANWOOD_CITY
 	db 6 percent ; encounter rate
 	db 20, TENTACOOL
-	db 20, MANTINE
+	db 20, GOLDEEN
 	db 20, REMORAID
 
 	map_id GOLDENROD_CITY

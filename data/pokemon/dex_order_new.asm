@@ -192,7 +192,7 @@ NewPokedexOrder:
 	db URSARING
 	db PHANPY
 	db DONPHAN
-	db MANTINE
+	db LICKITUNG
 	db SKARMORY
 	db DODUO
 	db DODRIO

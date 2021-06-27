@@ -3087,7 +3087,7 @@ FisherGroup:
 	db TRAINERTYPE_NORMAL
 	; party
 	db 20, REMORAID
-	db 20, MANTINE
+	db 20, SEAKING
 	db -1 ; end
 
 ; ================
@@ -3099,7 +3099,7 @@ FisherGroup:
 	db 25, MAGIKARP, ABILITY_1 | QUIRKY, MALE | MAGIKARP_PLAIN_FORM
 	db 25, MAGIKARP, ABILITY_1 | QUIRKY, MALE | MAGIKARP_DAPPLES_FORM
 	db 25, MAGIKARP, ABILITY_1 | QUIRKY, MALE | MAGIKARP_TIGER_FORM
-	db 25, MANTINE, ABILITY_1 | QUIRKY, MALE
+	db 25, SEAKING, ABILITY_1 | QUIRKY, MALE
 	db -1 ; end
 
 ; ================
@@ -3166,7 +3166,7 @@ FisherGroup:
 	db TRAINERTYPE_NORMAL
 	; party
 	db 60, LANTURN
-	db 56, MANTINE
+	db 56, SEAKING
 	db -1 ; end
 
 ; ================
@@ -7684,7 +7684,7 @@ SwimmerMGroup:
 	db "Frank@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 26, MANTINE
+	db 26, SEAKING
 	db -1 ; end
 
 ; ================
@@ -8049,7 +8049,7 @@ SwimmerFGroup:
 	db TRAINERTYPE_NORMAL
 	; party
 	db 17, REMORAID
-	db 18, MANTINE
+	db 18, SEAKING
 	db -1 ; end
 
 ; ================
@@ -8106,7 +8106,7 @@ SwimmerFGroup:
 	db "Woda@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 57, MANTINE
+	db 57, SEAKING
 	db 57, OCTILLERY
 	db -1 ; end
 
@@ -8119,7 +8119,7 @@ SwimmerFGroup:
 	db 53, REMORAID
 	db 53, REMORAID
 	db 53, REMORAID
-	db 55, MANTINE
+	db 55, SEAKING
 	db -1 ; end
 
 ; ================
@@ -11503,7 +11503,7 @@ SkylaGroup:
 	db 33, FARFETCH_D, 100
 	db 37, PIDGEOT, 100
 	db 34, XATU, 100
-	db 35, MANTINE, 100
+	db 35, SEAKING, 100
 	db 34, CROBAT, 100
 	db -1 ; end
 
@@ -11517,7 +11517,7 @@ SkylaGroup:
 	db 57, FARFETCH_D, 160
 	db 60, PIDGEOT, 160
 	db 58, XATU, 160
-	db 59, MANTINE, 160
+	db 59, SEAKING, 160
 	db 58, CROBAT, 160
 	db 57, SKARMORY, 160
 	db -1 ; end
@@ -11532,7 +11532,7 @@ SkylaGroup:
 	db 72, FARFETCH_D
 	db 75, PIDGEOT
 	db 73, XATU
-	db 74, MANTINE
+	db 74, SEAKING
 	db 73, CROBAT
 	db 72, SKARMORY
 	db -1 ; end

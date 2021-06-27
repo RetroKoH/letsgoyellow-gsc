@@ -112,6 +112,7 @@ CryHeaders::
 	mon_cry CRY_ODDISH,      $04f,  $0e0 ; Marowak
 	mon_cry CRY_GOLEM,       $080,  $140 ; Hitmonlee
 	mon_cry CRY_SEEL,        $0ee,  $140 ; Hitmonchan
+	mon_cry CRY_SEEL,        $000,  $100 ; Lickitung
 	mon_cry CRY_GOLEM,       $0e6,  $15d ; Koffing
 	mon_cry CRY_GOLEM,       $0ff,  $17f ; Weezing
 	mon_cry CRY_CHARMANDER,  $000,  $100 ; Rhyhorn
@@ -229,7 +230,6 @@ CryHeaders::
 	mon_cry CRY_MAGCARGO,    $0a1,  $0e8 ; Corsola
 	mon_cry CRY_REMORAID,    $00d,  $100 ; Remoraid
 	mon_cry CRY_TOTODILE,    $000,  $180 ; Octillery
-	mon_cry CRY_MANTINE,    -$0be,  $0f0 ; Mantine
 	mon_cry CRY_AMPHAROS,    $8a9,  $180 ; Skarmory
 	mon_cry CRY_CYNDAQUIL,   $039,  $140 ; Houndour
 	mon_cry CRY_TOTODILE,   -$10a,  $100 ; Houndoom

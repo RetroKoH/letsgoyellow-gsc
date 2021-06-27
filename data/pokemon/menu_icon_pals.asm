@@ -110,6 +110,7 @@ MenuMonIconColors::
 	iconpal BROWN, TEAL ; MAROWAK
 	iconpal BROWN, GREEN ; HITMONLEE
 	iconpal BROWN, BLUE ; HITMONCHAN
+	iconpal PINK, BROWN ; LICKITUNG
 	iconpal PURPLE, BLUE ; KOFFING
 	iconpal PURPLE, BLUE ; WEEZING
 	iconpal GRAY, RED ; RHYHORN
@@ -227,7 +228,6 @@ MenuMonIconColors::
 	iconpal PINK, BLUE ; CORSOLA
 	iconpal BLUE, GRAY ; REMORAID
 	iconpal RED, TEAL ; OCTILLERY
-	iconpal BLUE, BLUE ; MANTINE
 	iconpal GRAY, GREEN ; SKARMORY
 	iconpal RED, GRAY ; HOUNDOUR
 	iconpal RED, GRAY ; HOUNDOOM

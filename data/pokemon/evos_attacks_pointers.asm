@@ -27,6 +27,7 @@ EvosAttacksPointers:: ; 0x425b1
 	dw FearowEvosAttacks
 	dw EkansEvosAttacks
 	dw ArbokEvosAttacks
+	dw PichuEvosAttacks
 	dw PikachuEvosAttacks
 	dw RaichuEvosAttacks
 	dw SandshrewEvosAttacks
@@ -45,9 +46,11 @@ EvosAttacksPointers:: ; 0x425b1
 	dw WigglytuffEvosAttacks
 	dw ZubatEvosAttacks
 	dw GolbatEvosAttacks
+	dw CrobatEvosAttacks
 	dw OddishEvosAttacks
 	dw GloomEvosAttacks
 	dw VileplumeEvosAttacks
+	dw BellossomEvosAttacks
 	dw ParasEvosAttacks
 	dw ParasectEvosAttacks
 	dw VenonatEvosAttacks
@@ -65,6 +68,7 @@ EvosAttacksPointers:: ; 0x425b1
 	dw PoliwagEvosAttacks
 	dw PoliwhirlEvosAttacks
 	dw PoliwrathEvosAttacks
+	dw PolitoedEvosAttacks
 	dw AbraEvosAttacks
 	dw KadabraEvosAttacks
 	dw AlakazamEvosAttacks
@@ -83,8 +87,10 @@ EvosAttacksPointers:: ; 0x425b1
 	dw RapidashEvosAttacks
 	dw SlowpokeEvosAttacks
 	dw SlowbroEvosAttacks
+	dw SlowkingEvosAttacks
 	dw MagnemiteEvosAttacks
 	dw MagnetonEvosAttacks
+	dw MagnezoneEvosAttacks
 	dw FarfetchDEvosAttacks
 	dw DoduoEvosAttacks
 	dw DodrioEvosAttacks
@@ -98,6 +104,7 @@ EvosAttacksPointers:: ; 0x425b1
 	dw HaunterEvosAttacks
 	dw GengarEvosAttacks
 	dw OnixEvosAttacks
+	dw SteelixEvosAttacks
 	dw DrowzeeEvosAttacks
 	dw HypnoEvosAttacks
 	dw KrabbyEvosAttacks
@@ -108,29 +115,41 @@ EvosAttacksPointers:: ; 0x425b1
 	dw ExeggutorEvosAttacks
 	dw CuboneEvosAttacks
 	dw MarowakEvosAttacks
+	dw TyrogueEvosAttacks
 	dw HitmonleeEvosAttacks
 	dw HitmonchanEvosAttacks
+	dw HitmontopEvosAttacks
 	dw LickitungEvosAttacks
 	dw KoffingEvosAttacks
 	dw WeezingEvosAttacks
 	dw RhyhornEvosAttacks
 	dw RhydonEvosAttacks
+	dw RhyperiorEvosAttacks
 	dw ChanseyEvosAttacks
+	dw BlisseyEvosAttacks
 	dw TangelaEvosAttacks
+	dw TangrowthEvosAttacks
 	dw KangaskhanEvosAttacks
 	dw HorseaEvosAttacks
 	dw SeadraEvosAttacks
+	dw KingdraEvosAttacks
 	dw GoldeenEvosAttacks
 	dw SeakingEvosAttacks
 	dw StaryuEvosAttacks
 	dw StarmieEvosAttacks
 	dw MrMimeEvosAttacks
 	dw ScytherEvosAttacks
+	dw ScizorEvosAttacks
 	dw JynxEvosAttacks
+	dw ElekidEvosAttacks
 	dw ElectabuzzEvosAttacks
+	dw ElectivireEvosAttacks
+	dw MagbyEvosAttacks
 	dw MagmarEvosAttacks
+	dw MagmortarEvosAttacks
 	dw PinsirEvosAttacks
 	dw TaurosEvosAttacks
+	dw MiltankEvosAttacks
 	dw MagikarpEvosAttacks
 	dw GyaradosEvosAttacks
 	dw LaprasEvosAttacks
@@ -139,12 +158,20 @@ EvosAttacksPointers:: ; 0x425b1
 	dw VaporeonEvosAttacks
 	dw JolteonEvosAttacks
 	dw FlareonEvosAttacks
+	dw EspeonEvosAttacks
+	dw UmbreonEvosAttacks
+	dw LeafeonEvosAttacks
+	dw GlaceonEvosAttacks
+	dw SylveonEvosAttacks
 	dw PorygonEvosAttacks
+	dw Porygon2EvosAttacks
+	dw PorygonZEvosAttacks
 	dw OmanyteEvosAttacks
 	dw OmastarEvosAttacks
 	dw KabutoEvosAttacks
 	dw KabutopsEvosAttacks
 	dw AerodactylEvosAttacks
+	dw MunchlaxEvosAttacks
 	dw SnorlaxEvosAttacks
 	dw ArticunoEvosAttacks
 	dw ZapdosEvosAttacks
@@ -154,106 +181,80 @@ EvosAttacksPointers:: ; 0x425b1
 	dw DragoniteEvosAttacks
 	dw MewtwoEvosAttacks
 	dw MewEvosAttacks
-	dw ChikoritaEvosAttacks
-	dw BayleefEvosAttacks
-	dw MeganiumEvosAttacks
-	dw CyndaquilEvosAttacks
-	dw QuilavaEvosAttacks
-	dw TyphlosionEvosAttacks
-	dw TotodileEvosAttacks
-	dw CroconawEvosAttacks
-	dw FeraligatrEvosAttacks
-	dw SentretEvosAttacks
-	dw FurretEvosAttacks
-	dw HoothootEvosAttacks
-	dw NoctowlEvosAttacks
 	dw TogepiEvosAttacks
 	dw TogeticEvosAttacks
 	dw TogekissEvosAttacks
-	dw SpinarakEvosAttacks
-	dw AriadosEvosAttacks
-	dw CrobatEvosAttacks
-	dw ChinchouEvosAttacks
-	dw LanturnEvosAttacks
-	dw PichuEvosAttacks
-	dw MunchlaxEvosAttacks
-	dw MagnezoneEvosAttacks
-	dw TangrowthEvosAttacks
-	dw NatuEvosAttacks
-	dw XatuEvosAttacks
-	dw MareepEvosAttacks
-	dw FlaaffyEvosAttacks
-	dw AmpharosEvosAttacks
-	dw BellossomEvosAttacks
-	dw RhyperiorEvosAttacks
-	dw SudowoodoEvosAttacks
-	dw PolitoedEvosAttacks
-	dw SunkernEvosAttacks
-	dw SunfloraEvosAttacks
-	dw YanmaEvosAttacks
-	dw YanmegaEvosAttacks
-	dw WooperEvosAttacks
-	dw QuagsireEvosAttacks
-	dw EspeonEvosAttacks
-	dw UmbreonEvosAttacks
-	dw MurkrowEvosAttacks
-	dw HonchkrowEvosAttacks
-	dw SlowkingEvosAttacks
-	dw MisdreavusEvosAttacks
-	dw MismagiusEvosAttacks
-	dw UnownEvosAttacks
-	dw WobbuffetEvosAttacks
-	dw GirafarigEvosAttacks
-	dw PinecoEvosAttacks
-	dw ForretressEvosAttacks
-	dw DunsparceEvosAttacks
-	dw GligarEvosAttacks
-	dw GliscorEvosAttacks
-	dw SteelixEvosAttacks
-	dw SnubbullEvosAttacks
-	dw GranbullEvosAttacks
-	dw QwilfishEvosAttacks
-	dw ScizorEvosAttacks
-	dw ShuckleEvosAttacks
-	dw HeracrossEvosAttacks
-	dw SneaselEvosAttacks
-	dw WeavileEvosAttacks
-	dw TeddiursaEvosAttacks
-	dw UrsaringEvosAttacks
-	dw SlugmaEvosAttacks
-	dw MagcargoEvosAttacks
-	dw SwinubEvosAttacks
-	dw PiloswineEvosAttacks
-	dw MamoswineEvosAttacks
-	dw CorsolaEvosAttacks
-	dw RemoraidEvosAttacks
-	dw OctilleryEvosAttacks
-	dw SkarmoryEvosAttacks
-	dw HoundourEvosAttacks
-	dw HoundoomEvosAttacks
-	dw KingdraEvosAttacks
-	dw PhanpyEvosAttacks
-	dw DonphanEvosAttacks
-	dw Porygon2EvosAttacks
-	dw PorygonZEvosAttacks
-	dw SmeargleEvosAttacks
-	dw TyrogueEvosAttacks
-	dw HitmontopEvosAttacks
-	dw ElekidEvosAttacks
-	dw ElectivireEvosAttacks
-	dw MagbyEvosAttacks
-	dw MagmortarEvosAttacks
-	dw MiltankEvosAttacks
-	dw BlisseyEvosAttacks
-	dw RaikouEvosAttacks
-	dw EnteiEvosAttacks
-	dw SuicuneEvosAttacks
-	dw LarvitarEvosAttacks
-	dw PupitarEvosAttacks
-	dw TyranitarEvosAttacks
-	dw LugiaEvosAttacks
-	dw HoOhEvosAttacks
-	dw CelebiEvosAttacks
-	dw LeafeonEvosAttacks
-	dw GlaceonEvosAttacks
-	dw SylveonEvosAttacks
+
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks
+	dw MissingNoEvosAttacks

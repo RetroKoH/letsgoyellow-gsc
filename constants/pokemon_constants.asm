@@ -1,4 +1,23 @@
-; pokemon
+; pokemon ids
+; indexes for:
+; - PokemonNames (see data/pokemon/names.asm)
+; - BaseData (see data/pokemon/base_stats.asm)
+; - EvosAttacksPointers (see data/pokemon/evos_attacks_pointers.asm)
+; - EggMovePointers (see data/pokemon/egg_move_pointers.asm)
+; - PokemonCries (see data/pokemon/cries.asm)
+; - MonMenuIcons (see data/pokemon/menu_icons.asm)
+; - PokemonPicPointers (see data/pokemon/pic_pointers.asm)
+; - PokemonPalettes (see data/pokemon/palettes.asm)
+; - PokedexDataPointerTable (see data/pokemon/dex_entry_pointers.asm)
+; - AlphabeticalPokedexOrder (see data/pokemon/dex_order_alpha.asm)
+; - NewPokedexOrder (see data/pokemon/dex_order_new.asm)
+; - Pokered_MonIndices (see data/pokemon/gen1_order.asm)
+; - Footprints (see gfx/footprints.asm)
+; - AnimationPointers (see gfx/pokemon/anim_pointers.asm)
+; - AnimationIdlePointers (see gfx/pokemon/idle_pointers.asm)
+; - BitmasksPointers (see gfx/pokemon/bitmask_pointers.asm)
+; - FramesPointers (see gfx/pokemon/frame_pointers.asm)
+; - EZChat_SortedPokemon (see data/pokemon/ezchat_order.asm)
 	const_def 1
 	const BULBASAUR  ; $01
 	const IVYSAUR    ; $02
@@ -24,6 +43,7 @@
 	const FEAROW     ; $16
 	const EKANS      ; $17
 	const ARBOK      ; $18
+	const PICHU      ; $ac
 	const PIKACHU    ; $19
 	const RAICHU     ; $1a
 	const SANDSHREW  ; $1b
@@ -42,9 +62,11 @@
 	const WIGGLYTUFF ; $28
 	const ZUBAT      ; $29
 	const GOLBAT     ; $2a
+	const CROBAT     ; $a9
 	const ODDISH     ; $2b
 	const GLOOM      ; $2c
 	const VILEPLUME  ; $2d
+	const BELLOSSOM  ; $b5
 	const PARAS      ; $2e
 	const PARASECT   ; $2f
 	const VENONAT    ; $30
@@ -62,6 +84,7 @@
 	const POLIWAG    ; $3c
 	const POLIWHIRL  ; $3d
 	const POLIWRATH  ; $3e
+	const POLITOED   ; $b8
 	const ABRA       ; $3f
 	const KADABRA    ; $40
 	const ALAKAZAM   ; $41
@@ -80,8 +103,10 @@
 	const RAPIDASH   ; $4e
 	const SLOWPOKE   ; $4f
 	const SLOWBRO    ; $50
+	const SLOWKING   ; $c3
 	const MAGNEMITE  ; $51
 	const MAGNETON   ; $52
+	const MAGNEZONE  ; $ae
 	const FARFETCH_D ; $53
 	const DODUO      ; $54
 	const DODRIO     ; $55
@@ -95,6 +120,7 @@
 	const HAUNTER    ; $5d
 	const GENGAR     ; $5e
 	const ONIX       ; $5f
+	const STEELIX    ; $ce
 	const DROWZEE    ; $60
 	const HYPNO      ; $61
 	const KRABBY     ; $62
@@ -105,29 +131,41 @@
 	const EXEGGUTOR  ; $67
 	const CUBONE     ; $68
 	const MAROWAK    ; $69
+	const TYROGUE    ; $eb
 	const HITMONLEE  ; $6a
 	const HITMONCHAN ; $6b
+	const HITMONTOP  ; $ec
 	const LICKITUNG  ; $e1
 	const KOFFING    ; $6c
 	const WEEZING    ; $6d
 	const RHYHORN    ; $6e
 	const RHYDON     ; $6f
+	const RHYPERIOR  ; $b6
 	const CHANSEY    ; $70
+	const BLISSEY    ; $f2
 	const TANGELA    ; $71
+	const TANGROWTH  ; $af
 	const KANGASKHAN ; $72
 	const HORSEA     ; $73
 	const SEADRA     ; $74
+	const KINGDRA    ; $e5
 	const GOLDEEN    ; $a5
 	const SEAKING    ; $a6
 	const STARYU     ; $78
 	const STARMIE    ; $79
 	const MR__MIME   ; $7a
 	const SCYTHER    ; $7b
+	const SCIZOR     ; $d2
 	const JYNX       ; $7c
+	const ELEKID     ; $ed
 	const ELECTABUZZ ; $7d
+	const ELECTIVIRE ; $ee
+	const MAGBY      ; $ef
 	const MAGMAR     ; $7e
+	const MAGMORTAR  ; $f0
 	const PINSIR     ; $7f
 	const TAUROS     ; $80
+	const MILTANK    ; $f1
 	const MAGIKARP   ; $81
 	const GYARADOS   ; $82
 	const LAPRAS     ; $83
@@ -136,12 +174,20 @@
 	const VAPOREON   ; $86
 	const JOLTEON    ; $87
 	const FLAREON    ; $88
+	const ESPEON     ; $bf
+	const UMBREON    ; $c0
+	const LEAFEON    ; $fc
+	const GLACEON    ; $fd
+	const SYLVEON    ; $fe
 	const PORYGON    ; $89
+	const PORYGON2   ; $e8
+	const PORYGON_Z  ; $e9
 	const OMANYTE    ; $8a
 	const OMASTAR    ; $8b
 	const KABUTO     ; $8c
 	const KABUTOPS   ; $8d
 	const AERODACTYL ; $8e
+	const MUNCHLAX   ; $ad
 	const SNORLAX    ; $8f
 	const ARTICUNO   ; $90
 	const ZAPDOS     ; $91
@@ -151,6 +197,11 @@
 	const DRAGONITE  ; $95
 	const MEWTWO     ; $96
 	const MEW        ; $97
+	const TOGEPI     ; $75
+	const TOGETIC    ; $76
+	const TOGEKISS   ; $77
+NUM_POKEMON EQU const_value +- 1
+
 	const CHIKORITA  ; $98
 	const BAYLEEF    ; $99
 	const MEGANIUM   ; $9a
@@ -164,38 +215,24 @@
 	const FURRET     ; $a2
 	const HOOTHOOT   ; $a3
 	const NOCTOWL    ; $a4
-	const TOGEPI     ; $75
-	const TOGETIC    ; $76
-	const TOGEKISS   ; $77
 	const SPINARAK   ; $a7
 	const ARIADOS    ; $a8
-	const CROBAT     ; $a9
 	const CHINCHOU   ; $aa
 	const LANTURN    ; $ab
-	const PICHU      ; $ac
-	const MUNCHLAX   ; $ad
-	const MAGNEZONE  ; $ae
-	const TANGROWTH  ; $af
 	const NATU       ; $b0
 	const XATU       ; $b1
 	const MAREEP     ; $b2
 	const FLAAFFY    ; $b3
 	const AMPHAROS   ; $b4
-	const BELLOSSOM  ; $b5
-	const RHYPERIOR  ; $b6
 	const SUDOWOODO  ; $b7
-	const POLITOED   ; $b8
 	const SUNKERN    ; $b9
 	const SUNFLORA   ; $ba
 	const YANMA      ; $bb
 	const YANMEGA    ; $bc
 	const WOOPER     ; $bd
 	const QUAGSIRE   ; $be
-	const ESPEON     ; $bf
-	const UMBREON    ; $c0
 	const MURKROW    ; $c1
 	const HONCHKROW  ; $c2
-	const SLOWKING   ; $c3
 	const MISDREAVUS ; $c4
 	const MISMAGIUS  ; $c5
 	const UNOWN      ; $c6
@@ -206,11 +243,9 @@
 	const DUNSPARCE  ; $cb
 	const GLIGAR     ; $cc
 	const GLISCOR    ; $cd
-	const STEELIX    ; $ce
 	const SNUBBULL   ; $cf
 	const GRANBULL   ; $d0
 	const QWILFISH   ; $d1
-	const SCIZOR     ; $d2
 	const SHUCKLE    ; $d3
 	const HERACROSS  ; $d4
 	const SNEASEL    ; $d5
@@ -228,20 +263,9 @@
 	const SKARMORY   ; $e2
 	const HOUNDOUR   ; $e3
 	const HOUNDOOM   ; $e4
-	const KINGDRA    ; $e5
 	const PHANPY     ; $e6
 	const DONPHAN    ; $e7
-	const PORYGON2   ; $e8
-	const PORYGON_Z  ; $e9
 	const SMEARGLE   ; $ea
-	const TYROGUE    ; $eb
-	const HITMONTOP  ; $ec
-	const ELEKID     ; $ed
-	const ELECTIVIRE ; $ee
-	const MAGBY      ; $ef
-	const MAGMORTAR  ; $f0
-	const MILTANK    ; $f1
-	const BLISSEY    ; $f2
 	const RAIKOU     ; $f3
 	const ENTEI      ; $f4
 	const SUICUNE    ; $f5
@@ -251,10 +275,7 @@
 	const LUGIA      ; $f9
 	const HO_OH      ; $fa
 	const CELEBI     ; $fb
-	const LEAFEON    ; $fc
-	const GLACEON    ; $fd
-	const SYLVEON    ; $fe
-NUM_POKEMON EQU const_value +- 1
+
 	const CANCEL     ; $ff
 EGG EQU CANCEL ; EGG is used as sentinel for egg pic/icon/etc
 

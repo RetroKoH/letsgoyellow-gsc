@@ -24,6 +24,7 @@ IconPointers:
 	dw FearowIcon
 	dw EkansIcon
 	dw ArbokIcon
+	dw PichuIcon
 	dw PikachuIcon
 	dw RaichuIcon
 	dw SandshrewIcon
@@ -42,9 +43,11 @@ IconPointers:
 	dw WigglytuffIcon
 	dw ZubatIcon
 	dw GolbatIcon
+	dw CrobatIcon
 	dw OddishIcon
 	dw GloomIcon
 	dw VileplumeIcon
+	dw BellossomIcon
 	dw ParasIcon
 	dw ParasectIcon
 	dw VenonatIcon
@@ -62,6 +65,7 @@ IconPointers:
 	dw PoliwagIcon
 	dw PoliwhirlIcon
 	dw PoliwrathIcon
+	dw PolitoedIcon
 	dw AbraIcon
 	dw KadabraIcon
 	dw AlakazamIcon
@@ -80,8 +84,10 @@ IconPointers:
 	dw RapidashIcon
 	dw SlowpokeIcon
 	dw SlowbroIcon
+	dw SlowkingIcon
 	dw MagnemiteIcon
 	dw MagnetonIcon
+	dw MagnezoneIcon
 	dw FarfetchdIcon
 	dw DoduoIcon
 	dw DodrioIcon
@@ -95,6 +101,7 @@ IconPointers:
 	dw HaunterIcon
 	dw GengarIcon
 	dw OnixIcon
+	dw SteelixIcon
 	dw DrowzeeIcon
 	dw HypnoIcon
 	dw KrabbyIcon
@@ -105,29 +112,41 @@ IconPointers:
 	dw ExeggutorIcon
 	dw CuboneIcon
 	dw MarowakIcon
+	dw TyrogueIcon
 	dw HitmonleeIcon
 	dw HitmonchanIcon
+	dw HitmontopIcon
 	dw LickitungIcon
 	dw KoffingIcon
 	dw WeezingIcon
 	dw RhyhornIcon
 	dw RhydonIcon
+	dw RhyperiorIcon
 	dw ChanseyIcon
+	dw BlisseyIcon
 	dw TangelaIcon
+	dw TangrowthIcon
 	dw KangaskhanIcon
 	dw HorseaIcon
 	dw SeadraIcon
+	dw KingdraIcon
 	dw GoldeenIcon
 	dw SeakingIcon
 	dw StaryuIcon
 	dw StarmieIcon
 	dw MrMimeIcon
 	dw ScytherIcon
+	dw ScizorIcon
 	dw JynxIcon
+	dw ElekidIcon
 	dw ElectabuzzIcon
+	dw ElectivireIcon
+	dw MagbyIcon
 	dw MagmarIcon
+	dw MagmortarIcon
 	dw PinsirIcon
 	dw TaurosIcon
+	dw MiltankIcon
 	dw MagikarpIcon
 	dw GyaradosIcon
 	dw LaprasIcon
@@ -136,12 +155,20 @@ IconPointers:
 	dw VaporeonIcon
 	dw JolteonIcon
 	dw FlareonIcon
+	dw EspeonIcon
+	dw UmbreonIcon
+	dw LeafeonIcon
+	dw GlaceonIcon
+	dw SylveonIcon
 	dw PorygonIcon
+	dw Porygon2Icon
+	dw PorygonZIcon
 	dw OmanyteIcon
 	dw OmastarIcon
 	dw KabutoIcon
 	dw KabutopsIcon
 	dw AerodactylIcon
+	dw MunchlaxIcon
 	dw SnorlaxIcon
 	dw ArticunoIcon
 	dw ZapdosIcon
@@ -151,107 +178,81 @@ IconPointers:
 	dw DragoniteIcon
 	dw MewtwoIcon
 	dw MewIcon
-	dw ChikoritaIcon
-	dw BayleefIcon
-	dw MeganiumIcon
-	dw CyndaquilIcon
-	dw QuilavaIcon
-	dw TyphlosionIcon
-	dw TotodileIcon
-	dw CroconawIcon
-	dw FeraligatrIcon
-	dw SentretIcon
-	dw FurretIcon
-	dw HoothootIcon
-	dw NoctowlIcon
 	dw TogepiIcon
 	dw TogeticIcon
 	dw TogekissIcon
-	dw SpinarakIcon
-	dw AriadosIcon
-	dw CrobatIcon
-	dw ChinchouIcon
-	dw LanturnIcon
-	dw PichuIcon
-	dw MunchlaxIcon
-	dw MagnezoneIcon
-	dw TangrowthIcon
-	dw NatuIcon
-	dw XatuIcon
-	dw MareepIcon
-	dw FlaaffyIcon
-	dw AmpharosIcon
-	dw BellossomIcon
-	dw RhyperiorIcon
-	dw SudowoodoIcon
-	dw PolitoedIcon
-	dw SunkernIcon
-	dw SunfloraIcon
-	dw YanmaIcon
-	dw YanmegaIcon
-	dw WooperIcon
-	dw QuagsireIcon
-	dw EspeonIcon
-	dw UmbreonIcon
-	dw MurkrowIcon
-	dw HonchkrowIcon
-	dw SlowkingIcon
-	dw MisdreavusIcon
-	dw MismagiusIcon
-	dw UnownIcon
-	dw WobbuffetIcon
-	dw GirafarigIcon
-	dw PinecoIcon
-	dw ForretressIcon
-	dw DunsparceIcon
-	dw GligarIcon
-	dw GliscorIcon
-	dw SteelixIcon
-	dw SnubbullIcon
-	dw GranbullIcon
-	dw QwilfishIcon
-	dw ScizorIcon
-	dw ShuckleIcon
-	dw HeracrossIcon
-	dw SneaselIcon
-	dw WeavileIcon
-	dw TeddiursaIcon
-	dw UrsaringIcon
-	dw SlugmaIcon
-	dw MagcargoIcon
-	dw SwinubIcon
-	dw PiloswineIcon
-	dw MamoswineIcon
-	dw CorsolaIcon
-	dw RemoraidIcon
-	dw OctilleryIcon
-	dw SkarmoryIcon
-	dw HoundourIcon
-	dw HoundoomIcon
-	dw KingdraIcon
-	dw PhanpyIcon
-	dw DonphanIcon
-	dw Porygon2Icon
-	dw PorygonZIcon
-	dw SmeargleIcon
-	dw TyrogueIcon
-	dw HitmontopIcon
-	dw ElekidIcon
-	dw ElectivireIcon
-	dw MagbyIcon
-	dw MagmortarIcon
-	dw MiltankIcon
-	dw BlisseyIcon
-	dw RaikouIcon
-	dw EnteiIcon
-	dw SuicuneIcon
-	dw LarvitarIcon
-	dw PupitarIcon
-	dw TyranitarIcon
-	dw LugiaIcon
-	dw HoOhIcon
-	dw CelebiIcon
-	dw LeafeonIcon
-	dw GlaceonIcon
-	dw SylveonIcon
+
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon
+	dw EggIcon ; Celebi
 	dw EggIcon

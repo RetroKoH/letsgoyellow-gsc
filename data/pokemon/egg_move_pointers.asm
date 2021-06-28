@@ -1,3 +1,7 @@
+
+
+
+
 EggMovePointers:: ; 0x23b11
 	dw BulbasaurEggMoves
 	dw NoEggMoves
@@ -23,6 +27,7 @@ EggMovePointers:: ; 0x23b11
 	dw NoEggMoves
 	dw EkansEggMoves
 	dw NoEggMoves
+	dw PichuEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw SandshrewEggMoves
@@ -41,9 +46,11 @@ EggMovePointers:: ; 0x23b11
 	dw NoEggMoves
 	dw ZubatEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; CROBAT
 	dw OddishEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; BELLOSSOM
 	dw ParasEggMoves
 	dw NoEggMoves
 	dw VenonatEggMoves
@@ -61,6 +68,7 @@ EggMovePointers:: ; 0x23b11
 	dw PoliwagEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; POLITOED
 	dw AbraEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
@@ -79,8 +87,10 @@ EggMovePointers:: ; 0x23b11
 	dw NoEggMoves
 	dw SlowpokeEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; SLOWKING
 	dw NoEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; MAGNEZONE
 	dw FarfetchDEggMoves
 	dw DoduoEggMoves
 	dw NoEggMoves
@@ -94,6 +104,7 @@ EggMovePointers:: ; 0x23b11
 	dw NoEggMoves
 	dw NoEggMoves
 	dw OnixEggMoves
+	dw NoEggMoves ; STEELIX
 	dw DrowzeeEggMoves
 	dw NoEggMoves
 	dw KrabbyEggMoves
@@ -104,29 +115,41 @@ EggMovePointers:: ; 0x23b11
 	dw NoEggMoves
 	dw CuboneEggMoves
 	dw NoEggMoves
+	dw TyrogueEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; HITMONTOP
 	dw LickitungEggMoves
 	dw KoffingEggMoves
 	dw NoEggMoves
 	dw RhyhornEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; RHYPERIOR
 	dw ChanseyEggMoves
+	dw NoEggMoves ; BLISSEY
 	dw TangelaEggMoves
+	dw NoEggMoves ; TANGROWTH
 	dw KangaskhanEggMoves
 	dw HorseaEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; KINGDRA
 	dw GoldeenEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw MrMimeEggMoves
 	dw ScytherEggMoves
+	dw NoEggMoves ; SCIZOR
 	dw JynxEggMoves
+	dw ElekidEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw MagbyEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw PinsirEggMoves
-	dw NoEggMoves
+	dw NoEggMoves ; TAUROS
+	dw MiltankEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw LaprasEggMoves
@@ -136,11 +159,19 @@ EggMovePointers:: ; 0x23b11
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves ; PORYGON
+	dw NoEggMoves
+	dw NoEggMoves
 	dw OmanyteEggMoves
 	dw NoEggMoves
 	dw KabutoEggMoves
 	dw NoEggMoves
 	dw AerodactylEggMoves
+	dw MunchlaxEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
@@ -150,101 +181,75 @@ EggMovePointers:: ; 0x23b11
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw ChikoritaEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw CyndaquilEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw TotodileEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw SentretEggMoves
-	dw NoEggMoves
-	dw HoothootEggMoves
-	dw NoEggMoves
 	dw TogepiEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw SpinarakEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw ChinchouEggMoves
-	dw NoEggMoves
-	dw PichuEggMoves
-	dw MunchlaxEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw NatuEggMoves
-	dw NoEggMoves
-	dw MareepEggMoves
+
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw SudowoodoEggMoves
-	dw NoEggMoves
-	dw SunkernEggMoves
-	dw NoEggMoves
-	dw YanmaEggMoves
-	dw NoEggMoves
-	dw WooperEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw MurkrowEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw MisdreavusEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw WobbuffetEggMoves
-	dw GirafarigEggMoves
-	dw PinecoEggMoves
-	dw NoEggMoves
-	dw DunsparceEggMoves
-	dw GligarEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw SnubbullEggMoves
-	dw NoEggMoves
-	dw QwilfishEggMoves
-	dw NoEggMoves
-	dw ShuckleEggMoves
-	dw HeracrossEggMoves
-	dw SneaselEggMoves
-	dw NoEggMoves
-	dw TeddiursaEggMoves
-	dw NoEggMoves
-	dw SlugmaEggMoves
-	dw NoEggMoves
-	dw SwinubEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw CorsolaEggMoves
-	dw RemoraidEggMoves
-	dw NoEggMoves
-	dw SkarmoryEggMoves
-	dw HoundourEggMoves
-	dw NoEggMoves
-	dw NoEggMoves
-	dw PhanpyEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw TyrogueEggMoves
-	dw NoEggMoves
-	dw ElekidEggMoves
-	dw NoEggMoves
-	dw MagbyEggMoves
-	dw NoEggMoves
-	dw MiltankEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw LarvitarEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves

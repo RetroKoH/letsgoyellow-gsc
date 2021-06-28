@@ -23,6 +23,7 @@ FramesPointers:
 	dw FearowFrames
 	dw EkansFrames
 	dw -1 ; see ArbokFramesPointers
+	dw -1 ; see PichuFramesPointers
 	dw -1 ; see PikachuFramesPointers
 	dw RaichuFrames
 	dw SandshrewFrames
@@ -41,9 +42,11 @@ FramesPointers:
 	dw WigglytuffFrames
 	dw ZubatFrames
 	dw GolbatFrames
+	dw CrobatFrames
 	dw OddishFrames
 	dw GloomFrames
 	dw VileplumeFrames
+	dw BellossomFrames
 	dw ParasFrames
 	dw ParasectFrames
 	dw VenonatFrames
@@ -61,6 +64,7 @@ FramesPointers:
 	dw PoliwagFrames
 	dw PoliwhirlFrames
 	dw PoliwrathFrames
+	dw PolitoedFrames
 	dw AbraFrames
 	dw KadabraFrames
 	dw AlakazamFrames
@@ -79,8 +83,10 @@ FramesPointers:
 	dw RapidashFrames
 	dw SlowpokeFrames
 	dw SlowbroFrames
+	dw SlowkingFrames
 	dw MagnemiteFrames
 	dw MagnetonFrames
+	dw MagnezoneFrames
 	dw FarfetchDFrames
 	dw DoduoFrames
 	dw DodrioFrames
@@ -94,6 +100,7 @@ FramesPointers:
 	dw HaunterFrames
 	dw GengarFrames
 	dw OnixFrames
+	dw SteelixFrames
 	dw DrowzeeFrames
 	dw HypnoFrames
 	dw KrabbyFrames
@@ -104,29 +111,41 @@ FramesPointers:
 	dw ExeggutorFrames
 	dw CuboneFrames
 	dw MarowakFrames
+	dw TyrogueFrames
 	dw HitmonleeFrames
 	dw HitmonchanFrames
+	dw HitmontopFrames
 	dw LickitungFrames
 	dw KoffingFrames
 	dw WeezingFrames
 	dw RhyhornFrames
 	dw RhydonFrames
+	dw RhyperiorFrames
 	dw ChanseyFrames
+	dw BlisseyFrames
 	dw TangelaFrames
+	dw TangrowthFrames
 	dw KangaskhanFrames
 	dw HorseaFrames
 	dw SeadraFrames
+	dw KingdraFrames
 	dw GoldeenFrames
 	dw SeakingFrames
 	dw StaryuFrames
 	dw StarmieFrames
 	dw MrMimeFrames
 	dw ScytherFrames
+	dw ScizorFrames
 	dw JynxFrames
+	dw ElekidFrames
 	dw ElectabuzzFrames
+	dw ElectivireFrames
+	dw MagbyFrames
 	dw MagmarFrames
+	dw MagmortarFrames
 	dw PinsirFrames
 	dw TaurosFrames
+	dw MiltankFrames
 	dw -1 ; see MagikarpFramesPointers
 	dw -1 ; see GyaradosFramesPointers
 	dw LaprasFrames
@@ -135,12 +154,20 @@ FramesPointers:
 	dw VaporeonFrames
 	dw JolteonFrames
 	dw FlareonFrames
+	dw EspeonFrames
+	dw UmbreonFrames
+	dw LeafeonFrames
+	dw GlaceonFrames
+	dw SylveonFrames
 	dw PorygonFrames
+	dw Porygon2Frames
+	dw PorygonZFrames
 	dw OmanyteFrames
 	dw OmastarFrames
 	dw KabutoFrames
 	dw KabutopsFrames
 	dw AerodactylFrames
+	dw MunchlaxFrames
 	dw SnorlaxFrames
 	dw ArticunoFrames
 	dw ZapdosFrames
@@ -150,6 +177,10 @@ FramesPointers:
 	dw DragoniteFrames
 	dw -1 ; see MewtwoFramesPointers
 	dw MewFrames
+	dw TogepiFrames
+	dw TogeticFrames
+	dw TogekissFrames
+
 	dw ChikoritaFrames
 	dw BayleefFrames
 	dw MeganiumFrames
@@ -163,38 +194,24 @@ FramesPointers:
 	dw FurretFrames
 	dw HoothootFrames
 	dw NoctowlFrames
-	dw TogepiFrames
-	dw TogeticFrames
-	dw TogekissFrames
 	dw SpinarakFrames
 	dw AriadosFrames
-	dw CrobatFrames
 	dw ChinchouFrames
 	dw LanturnFrames
-	dw -1 ; see PichuFramesPointers
-	dw MunchlaxFrames
-	dw MagnezoneFrames
-	dw TangrowthFrames
 	dw NatuFrames
 	dw XatuFrames
 	dw MareepFrames
 	dw FlaaffyFrames
 	dw AmpharosFrames
-	dw BellossomFrames
-	dw RhyperiorFrames
 	dw SudowoodoFrames
-	dw PolitoedFrames
 	dw SunkernFrames
 	dw SunfloraFrames
 	dw YanmaFrames
 	dw YanmegaFrames
 	dw WooperFrames
 	dw QuagsireFrames
-	dw EspeonFrames
-	dw UmbreonFrames
 	dw MurkrowFrames
 	dw HonchkrowFrames
-	dw SlowkingFrames
 	dw MisdreavusFrames
 	dw MismagiusFrames
 	dw -1 ; see UnownFramesPointers
@@ -205,11 +222,9 @@ FramesPointers:
 	dw DunsparceFrames
 	dw GligarFrames
 	dw GliscorFrames
-	dw SteelixFrames
 	dw SnubbullFrames
 	dw GranbullFrames
 	dw QwilfishFrames
-	dw ScizorFrames
 	dw ShuckleFrames
 	dw HeracrossFrames
 	dw SneaselFrames
@@ -227,20 +242,9 @@ FramesPointers:
 	dw SkarmoryFrames
 	dw HoundourFrames
 	dw HoundoomFrames
-	dw KingdraFrames
 	dw PhanpyFrames
 	dw DonphanFrames
-	dw Porygon2Frames
-	dw PorygonZFrames
 	dw SmeargleFrames
-	dw TyrogueFrames
-	dw HitmontopFrames
-	dw ElekidFrames
-	dw ElectivireFrames
-	dw MagbyFrames
-	dw MagmortarFrames
-	dw MiltankFrames
-	dw BlisseyFrames
 	dw RaikouFrames
 	dw EnteiFrames
 	dw SuicuneFrames
@@ -250,7 +254,4 @@ FramesPointers:
 	dw LugiaFrames
 	dw HoOhFrames
 	dw CelebiFrames
-	dw LeafeonFrames
-	dw GlaceonFrames
-	dw SylveonFrames
 	dw EggFrames

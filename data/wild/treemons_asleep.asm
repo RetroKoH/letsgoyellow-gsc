@@ -14,17 +14,17 @@ AsleepTreeMonsNite:
 	db -1 ; end
 
 AsleepTreeMonsDay:
+	db CATERPIE
+	db PIDGEY
+	db SPEAROW
+	db WEEDLE
 	db VENONAT
-	db HOOTHOOT
-	db NOCTOWL
-	db SPINARAK
-	db HERACROSS
 	db -1 ; end
 
 AsleepTreeMonsMorn:
+	db CATERPIE
+	db PIDGEY
+	db SPEAROW
+	db WEEDLE
 	db VENONAT
-	db HOOTHOOT
-	db NOCTOWL
-	db SPINARAK
-	db HERACROSS
 	db -1 ; end

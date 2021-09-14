@@ -54,10 +54,12 @@
 	const NIDORAN_M  ; $20
 	const NIDORINO   ; $21
 	const NIDOKING   ; $22
+	const CLEFFA
 	const CLEFAIRY   ; $23
 	const CLEFABLE   ; $24
 	const VULPIX     ; $25
 	const NINETALES  ; $26
+	const IGGLYBUFF
 	const JIGGLYPUFF ; $27
 	const WIGGLYTUFF ; $28
 	const ZUBAT      ; $29
@@ -136,15 +138,18 @@
 	const HITMONCHAN ; $6b
 	const HITMONTOP  ; $ec
 	const LICKITUNG  ; $e1
+	const LICKILICKY
 	const KOFFING    ; $6c
 	const WEEZING    ; $6d
 	const RHYHORN    ; $6e
 	const RHYDON     ; $6f
 	const RHYPERIOR  ; $b6
+	const HAPPINY
 	const CHANSEY    ; $70
 	const BLISSEY    ; $f2
 	const TANGELA    ; $71
 	const TANGROWTH  ; $af
+	const KANGASKID
 	const KANGASKHAN ; $72
 	const HORSEA     ; $73
 	const SEADRA     ; $74
@@ -153,9 +158,11 @@
 	const SEAKING    ; $a6
 	const STARYU     ; $78
 	const STARMIE    ; $79
+	const MIME_JR
 	const MR__MIME   ; $7a
 	const SCYTHER    ; $7b
 	const SCIZOR     ; $d2
+	const SMOOCHUM
 	const JYNX       ; $7c
 	const ELEKID     ; $ed
 	const ELECTABUZZ ; $7d
@@ -213,14 +220,10 @@ NUM_POKEMON EQU const_value +- 1
 	const FERALIGATR ; $a0
 	const SENTRET    ; $a1
 	const FURRET     ; $a2
-	const HOOTHOOT   ; $a3
-	const NOCTOWL    ; $a4
 	const SPINARAK   ; $a7
 	const ARIADOS    ; $a8
 	const CHINCHOU   ; $aa
 	const LANTURN    ; $ab
-	const NATU       ; $b0
-	const XATU       ; $b1
 	const MAREEP     ; $b2
 	const FLAAFFY    ; $b3
 	const AMPHAROS   ; $b4
@@ -242,7 +245,6 @@ NUM_POKEMON EQU const_value +- 1
 	const FORRETRESS ; $ca
 	const DUNSPARCE  ; $cb
 	const GLIGAR     ; $cc
-	const GLISCOR    ; $cd
 	const SNUBBULL   ; $cf
 	const GRANBULL   ; $d0
 	const QWILFISH   ; $d1
@@ -260,12 +262,10 @@ NUM_POKEMON EQU const_value +- 1
 	const CORSOLA    ; $de
 	const REMORAID   ; $df
 	const OCTILLERY  ; $e0
-	const SKARMORY   ; $e2
 	const HOUNDOUR   ; $e3
 	const HOUNDOOM   ; $e4
 	const PHANPY     ; $e6
 	const DONPHAN    ; $e7
-	const SMEARGLE   ; $ea
 	const RAIKOU     ; $f3
 	const ENTEI      ; $f4
 	const SUICUNE    ; $f5

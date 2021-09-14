@@ -2459,12 +2459,6 @@ BattleCommand_hittargetnosub: ; 34f60
 	db RHYDON
 	db RHYPERIOR
 	db PINSIR
-	db DUNSPARCE
-	db HERACROSS
-	db PILOSWINE
-	db MAMOSWINE
-	db SKARMORY
-	db DONPHAN
 	db -1
 
 ; 34fd1
@@ -2562,14 +2556,6 @@ StatUpDownAnim: ; 34feb
 	db STARMIE
 	db KABUTO
 	db KABUTOPS
-	db HERACROSS
-	db GLIGAR
-	db GLISCOR
-	db SLUGMA
-	db MAGCARGO
-	db CORSOLA
-	db PUPITAR
-	db TYRANITAR
 	db -1
 
 ; 34ffd

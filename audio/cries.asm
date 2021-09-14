@@ -54,10 +54,10 @@ Cry_Cyndaquil: ; f2dc6
 	musicheader 1, 8, Cry_Cyndaquil_Ch8
 ; f2dcf
 
-Cry_Chikorita: ; f2dcf
-	musicheader 3, 5, Cry_Chikorita_Ch5
-	musicheader 1, 6, Cry_Chikorita_Ch6
-	musicheader 1, 8, Cry_Chikorita_Ch8
+Cry_Igglybuff: ; f2dcf
+	musicheader 3, 5, Cry_Igglybuff_Ch5
+	musicheader 1, 6, Cry_Igglybuff_Ch6
+	musicheader 1, 8, Cry_Igglybuff_Ch8
 ; f2dd8
 
 Cry_Gligar: ; f2dd8
@@ -130,7 +130,7 @@ Cry_Totodile: ; f2e35
 	musicheader 1, 8, Cry_Totodile_Ch8
 ; f2e3e
 
-Cry_Bellossom: ; f2e3e
+Cry_Bellossom: ; f2e3e ; ALSO Cleffa
 	musicheader 3, 5, Cry_Bellossom_Ch5
 	musicheader 1, 6, Cry_Bellossom_Ch6
 	musicheader 1, 8, Cry_Bellossom_Ch8
@@ -537,9 +537,9 @@ Cry_Gligar_Ch8: ; f3178
 	endchannel
 ; f317f
 
-Cry_Chikorita_Ch5: ; f317f
+Cry_Igglybuff_Ch5: ; f317f
 	tone $0020
-Cry_Chikorita_Ch6: ; f3182
+Cry_Igglybuff_Ch6: ; f3182
 	sound_duty 1, 0, 2, 0
 	sound __,  3, $c8, $0641
 	sound __,  3, $48, $0641
@@ -549,7 +549,7 @@ Cry_Chikorita_Ch6: ; f3182
 	endchannel
 ; f3199
 
-Cry_Chikorita_Ch8: ; f3199
+Cry_Igglybuff_Ch8: ; f3199
 	noise __,  5, $91, $10
 	noise __,  9, $94, $3
 	endchannel

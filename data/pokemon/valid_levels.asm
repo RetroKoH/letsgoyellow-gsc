@@ -25,6 +25,7 @@ ValidPokemonLevels:
 	db  20, 100 ; Fearow
 	db   1,  21 ; Ekans
 	db  22, 100 ; Arbok
+	db   1,  19 ; Pichu
 	db   1,  19 ; Pikachu
 	db  20, 100 ; Raichu
 	db   1,  21 ; Sandshrew
@@ -35,6 +36,7 @@ ValidPokemonLevels:
 	db   1,  15 ; Nidoran♂
 	db  16,  35 ; Nidorino
 	db  36, 100 ; Nidoking
+	db   1,  19 ; Cleffa
 	db   5,  19 ; Clefairy
 	db  20, 100 ; Clefable
 	db   1,  19 ; Vulpix
@@ -173,7 +175,6 @@ ValidPokemonLevels:
 	db  32, 100 ; Crobat
 	db   1,  26 ; Chinchou
 	db  27, 100 ; Lanturn
-	db   1,  19 ; Pichu
 	db   1,  19 ; Munchlax
 	db  50, 100 ; Magnezone
 	db  39, 100 ; Tangrowth
@@ -234,7 +235,6 @@ ValidPokemonLevels:
 	db  25, 100 ; Donphan
 	db  20,  39 ; Porygon2
 	db  40, 100 ; Porygon-Z
-	db   1, 100 ; Smeargle
 	db   1,  19 ; Tyrogue
 	db  20, 100 ; Hitmontop
 	db   1,  19 ; Elekid

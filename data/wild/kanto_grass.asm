@@ -300,13 +300,13 @@
 	map_id ROUTE_1
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 3, PIDGEY
-	db 3, RATTATA
-	db 3, RATTATA
-	db 2, RATTATA
-	db 2, PIDGEY
-	db 4, PIDGEY
-	db 6, PIDGEY
+	db 3, AA
+	db 3, AA;RATTATA
+	db 3, AA;RATTATA
+	db 2, AA;RATTATA
+	db 2, AA
+	db 4, AA
+	db 6, AA
 	; day
 	db 3, PIDGEY
 	db 3, RATTATA
@@ -533,7 +533,7 @@
 	db 51, WIGGLYTUFF
 	; nite
 	db 49, PERSIAN
-	db 49, MURKROW
+	db 49, SPEAROW
 	db 51, HOUNDOUR
 	db 54, VULPIX
 	db 54, JIGGLYPUFF
@@ -560,7 +560,7 @@
 	db 50, KADABRA
 	; nite
 	db 48, PERSIAN
-	db 51, NOCTOWL
+	db 51, PIDGEOT
 	db 53, KADABRA
 	db 53, HAUNTER
 	db 53, VULPIX
@@ -624,26 +624,26 @@
 	map_id ROUTE_11
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 53, SUNFLORA
+	db 53, GLOOM
 	db 48, RATICATE
 	db 50, MAGNETON
 	db 51, PIDGEOTTO
 	db 51, SANDSLASH
-	db 51, SUNFLORA
-	db 51, SUNFLORA
+	db 51, GLOOM
+	db 51, GLOOM
 	; day
-	db 53, SUNFLORA
+	db 53, GLOOM
 	db 48, RATICATE
 	db 50, MAGNETON
 	db 51, PIDGEOTTO
 	db 51, SANDSLASH
-	db 51, SUNFLORA
-	db 51, SUNFLORA
+	db 51, GLOOM
+	db 51, GLOOM
 	; nite
 	db 53, DROWZEE
 	db 48, MEOWTH
 	db 50, MAGNEMITE
-	db 51, NOCTOWL
+	db 51, PIDGEOT
 	db 51, RATICATE
 	db 51, HYPNO
 	db 51, HYPNO
@@ -656,24 +656,24 @@
 	db 51, PIDGEOTTO
 	db 52, WEEPINBELL
 	db 54, WEEPINBELL
-	db 53, SUNFLORA
-	db 55, SUNFLORA
+	db 53, GLOOM
+	db 55, GLOOM
 	; day
 	db 50, NIDORINO
 	db 50, NIDORINA
 	db 51, PIDGEOTTO
 	db 52, WEEPINBELL
 	db 54, WEEPINBELL
-	db 53, SUNFLORA
-	db 55, SUNFLORA
+	db 53, GLOOM
+	db 55, GLOOM
 	; nite
 	db 50, VENOMOTH
-	db 50, NOCTOWL
-	db 51, QUAGSIRE
+	db 50, PIDGEOT
+	db 51, POLIWHIRL
 	db 52, GLOOM
 	db 54, VENOMOTH
-	db 53, QUAGSIRE
-	db 55, QUAGSIRE
+	db 53, POLIWHIRL
+	db 55, POLIWHIRL
 
 	map_id ROUTE_14
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -683,24 +683,24 @@
 	db 53, PIDGEOTTO
 	db 51, WEEPINBELL
 	db 56, WEEPINBELL
-	db 54, SUNFLORA
-	db 56, SUNFLORA
+	db 54, GLOOM
+	db 56, GLOOM
 	; day
 	db 52, NIDORINO
 	db 52, NIDORINA
 	db 53, PIDGEOTTO
 	db 51, WEEPINBELL
 	db 56, WEEPINBELL
-	db 54, SUNFLORA
-	db 56, SUNFLORA
+	db 54, GLOOM
+	db 56, GLOOM
 	; nite
 	db 52, VENOMOTH
-	db 52, NOCTOWL
-	db 53, QUAGSIRE
+	db 52, PIDGEOT
+	db 53, POLIWHIRL
 	db 51, GLOOM
 	db 56, VENOMOTH
-	db 54, QUAGSIRE
-	db 56, QUAGSIRE
+	db 54, POLIWHIRL
+	db 56, POLIWHIRL
 
 	map_id ROUTE_15
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -710,24 +710,24 @@
 	db 54, PIDGEOTTO
 	db 54, WEEPINBELL
 	db 57, WEEPINBELL
-	db 55, SUNFLORA
-	db 57, SUNFLORA
+	db 55, GLOOM
+	db 57, GLOOM
 	; day
 	db 52, NIDORINO
 	db 52, NIDORINA
 	db 54, PIDGEOTTO
 	db 54, WEEPINBELL
 	db 57, WEEPINBELL
-	db 55, SUNFLORA
-	db 57, SUNFLORA
+	db 55, GLOOM
+	db 57, GLOOM
 	; nite
 	db 52, VENOMOTH
-	db 52, NOCTOWL
-	db 54, QUAGSIRE
+	db 52, PIDGEOT
+	db 54, POLIWHIRL
 	db 54, GLOOM
 	db 57, VENOMOTH
-	db 55, QUAGSIRE
-	db 57, QUAGSIRE
+	db 55, POLIWHIRL
+	db 57, POLIWHIRL
 
 	map_id ROUTE_16_NORTHWEST
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -736,7 +736,7 @@
 	db 50, PIDGEOTTO
 	db 54, SLUGMA
 	db 52, PIDGEOTTO
-	db 53, MAGCARGO
+	db 53, MUK
 	db 54, MUK
 	db 55, MUK
 	; day
@@ -744,15 +744,15 @@
 	db 50, PIDGEOTTO
 	db 54, SLUGMA
 	db 52, PIDGEOTTO
-	db 53, MAGCARGO
+	db 53, MUK
 	db 54, MUK
 	db 55, MUK
 	; nite
 	db 53, GRIMER
 	db 50, GRIMER
 	db 54, GRIMER
-	db 52, MURKROW
-	db 53, MURKROW
+	db 52, SPEAROW
+	db 53, SPEAROW
 	db 54, MUK
 	db 55, MUK
 
@@ -763,7 +763,7 @@
 	db 55, SLUGMA
 	db 55, GRIMER
 	db 53, PIDGEOTTO
-	db 53, MAGCARGO
+	db 53, MUK
 	db 54, MUK
 	db 56, MUK
 	; day
@@ -771,15 +771,15 @@
 	db 55, SLUGMA
 	db 55, GRIMER
 	db 53, PIDGEOTTO
-	db 53, MAGCARGO
+	db 53, MUK
 	db 54, MUK
 	db 56, MUK
 	; nite
 	db 51, GRIMER
 	db 55, GRIMER
 	db 55, GRIMER
-	db 53, MURKROW
-	db 53, MURKROW
+	db 53, SPEAROW
+	db 53, SPEAROW
 	db 54, MUK
 	db 56, MUK
 
@@ -790,7 +790,7 @@
 	db 56, DODUO
 	db 53, PIDGEOTTO
 	db 54, DODRIO
-	db 54, MAGCARGO
+	db 54, MUK
 	db 55, MUK
 	db 57, MUK
 	; day
@@ -798,15 +798,15 @@
 	db 56, DODUO
 	db 53, PIDGEOTTO
 	db 54, DODRIO
-	db 54, MAGCARGO
+	db 54, MUK
 	db 55, MUK
 	db 57, MUK
 	; nite
 	db 52, RATICATE
-	db 56, NOCTOWL
+	db 56, PIDGEOT
 	db 53, RATICATE
-	db 54, MURKROW
-	db 54, MURKROW
+	db 54, SPEAROW
+	db 54, SPEAROW
 	db 55, MUK
 	db 57, MUK
 
@@ -817,7 +817,7 @@
 	db 56, DODUO
 	db 53, PIDGEOTTO
 	db 54, DODRIO
-	db 54, MAGCARGO
+	db 54, MUK
 	db 55, MUK
 	db 57, MUK
 	; day
@@ -825,15 +825,15 @@
 	db 56, DODUO
 	db 53, PIDGEOTTO
 	db 54, DODRIO
-	db 54, MAGCARGO
+	db 54, MUK
 	db 55, MUK
 	db 57, MUK
 	; nite
 	db 52, RATICATE
-	db 56, NOCTOWL
+	db 56, PIDGEOT
 	db 53, RATICATE
-	db 54, MURKROW
-	db 54, MURKROW
+	db 54, SPEAROW
+	db 54, SPEAROW
 	db 55, MUK
 	db 57, MUK
 
@@ -910,12 +910,12 @@
 	db 40, SANDSLASH
 	db 42, DITTO
 	; nite
-	db 37, NOCTOWL
+	db 37, PIDGEOT
 	db 38, RATICATE
 	db 38, RATICATE
-	db 39, QUAGSIRE
-	db 39, QUAGSIRE
-	db 40, QUAGSIRE
+	db 39, POLIWHIRL
+	db 39, POLIWHIRL
+	db 40, POLIWHIRL
 	db 42, DITTO
 
 	map_id ROUTE_24
@@ -939,7 +939,7 @@
 	; nite
 	db 48, VENOMOTH
 	db 48, VENOMOTH
-	db 51, NOCTOWL
+	db 51, PIDGEOT
 	db 50, GLOOM
 	db 49, GLOOM
 	db 53, KADABRA
@@ -966,7 +966,7 @@
 	; nite
 	db 48, VENOMOTH
 	db 48, VENOMOTH
-	db 51, NOCTOWL
+	db 51, PIDGEOT
 	db 50, GLOOM
 	db 49, GLOOM
 	db 53, KADABRA
@@ -991,13 +991,13 @@
 	db 38, ARBOK
 	db 38, ARBOK
 	; nite
-	db 36, NOCTOWL
+	db 36, PIDGEOT
 	db 36, RATICATE
-	db 39, NOCTOWL
+	db 39, PIDGEOT
 	db 38, RATICATE
-	db 38, QUAGSIRE
-	db 38, QUAGSIRE
-	db 38, QUAGSIRE
+	db 38, POLIWHIRL
+	db 38, POLIWHIRL
+	db 38, POLIWHIRL
 
 	map_id ROUTE_27
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1018,13 +1018,13 @@
 	db 37, DODRIO
 	db 37, DODRIO
 	; nite
-	db 35, QUAGSIRE
-	db 35, NOCTOWL
+	db 35, POLIWHIRL
+	db 35, PIDGEOT
 	db 37, RATICATE
-	db 37, QUAGSIRE
-	db 39, NOCTOWL
-	db 37, NOCTOWL
-	db 37, NOCTOWL
+	db 37, POLIWHIRL
+	db 39, PIDGEOT
+	db 37, PIDGEOT
+	db 37, PIDGEOT
 
 	map_id ROUTE_28
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1034,24 +1034,24 @@
 	db 67, ARBOK
 	db 70, RAPIDASH
 	db 68, DODRIO
-	db 71, SKARMORY
-	db 71, URSARING
+	db 71, FEAROW
+	db 71, KANGASKHAN
 	; day
 	db 66, TANGELA
 	db 67, PONYTA
 	db 67, ARBOK
 	db 70, RAPIDASH
 	db 68, DODRIO
-	db 71, SKARMORY
-	db 71, URSARING
+	db 71, FEAROW
+	db 71, KANGASKHAN
 	; nite
 	db 66, TANGELA
 	db 67, POLIWHIRL
 	db 67, GOLBAT
 	db 70, POLIWHIRL
 	db 68, HOUNDOOM
-	db 71, SNEASEL
-	db 71, SNEASEL
+	db 71, PINSIR
+	db 71, PINSIR
 
 	map_id CERULEAN_CAPE
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1074,7 +1074,7 @@
 	; nite
 	db 48, VENOMOTH
 	db 48, VENOMOTH
-	db 51, NOCTOWL
+	db 51, PIDGEOT
 	db 50, GLOOM
 	db 49, GLOOM
 	db 53, KINGLER
@@ -1168,25 +1168,25 @@
 	db 48, GASTLY
 	db 48, HAUNTER
 	db 49, HAUNTER
-	db 49, MISDREAVUS
+	db 49, GASTLY
 	db 49, MAROWAK
-	db 50, MISMAGIUS
+	db 50, HAUNTER
 	; day
 	db 47, GASTLY
 	db 48, GASTLY
 	db 48, HAUNTER
 	db 49, HAUNTER
-	db 49, MISDREAVUS
+	db 49, GASTLY
 	db 49, MAROWAK
-	db 50, MISMAGIUS
+	db 50, HAUNTER
 	; nite
 	db 47, GASTLY
 	db 48, GASTLY
 	db 48, HAUNTER
 	db 49, HAUNTER
-	db 49, MISDREAVUS
+	db 49, GASTLY
 	db 49, MAROWAK
-	db 50, MISMAGIUS
+	db 50, HAUNTER
 
 	map_id SOUL_HOUSE_B2F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
@@ -1195,52 +1195,52 @@
 	db 49, GASTLY
 	db 49, HAUNTER
 	db 50, HAUNTER
-	db 50, MISDREAVUS
+	db 50, GASTLY
 	db 50, MAROWAK
-	db 51, MISMAGIUS
+	db 51, HAUNTER
 	; day
 	db 48, GASTLY
 	db 49, GASTLY
 	db 49, HAUNTER
 	db 50, HAUNTER
-	db 50, MISDREAVUS
+	db 50, GASTLY
 	db 50, MAROWAK
-	db 51, MISMAGIUS
+	db 51, HAUNTER
 	; nite
 	db 48, GASTLY
 	db 49, GASTLY
 	db 49, HAUNTER
 	db 50, HAUNTER
-	db 50, MISDREAVUS
+	db 50, GASTLY
 	db 50, MAROWAK
-	db 51, MISMAGIUS
+	db 51, HAUNTER
 
 	map_id SOUL_HOUSE_B3F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 49, GASTLY
 	db 50, HAUNTER
-	db 50, MISDREAVUS
+	db 50, GASTLY
 	db 49, VULPIX
 	db 51, MAROWAK
 	db 52, NINETALES
-	db 52, MISMAGIUS
+	db 52, HAUNTER
 	; day
 	db 49, GASTLY
 	db 50, HAUNTER
-	db 50, MISDREAVUS
+	db 50, GASTLY
 	db 49, VULPIX
 	db 51, MAROWAK
 	db 52, NINETALES
-	db 52, MISMAGIUS
+	db 52, HAUNTER
 	; nite
 	db 49, GASTLY
 	db 50, HAUNTER
-	db 50, MISDREAVUS
+	db 50, GASTLY
 	db 49, VULPIX
 	db 51, MAROWAK
 	db 52, NINETALES
-	db 52, MISMAGIUS
+	db 52, HAUNTER
 
 	map_id SAFARI_ZONE_HUB
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -1545,7 +1545,7 @@
 	db 56, KOFFING
 	db 58, GRAVELER
 	db 57, SLUGMA
-	db 59, MAGCARGO
+	db 59, MUK
 	db 60, MAGMAR
 	db 61, MAGMAR
 	db 62, MAGMAR
@@ -1553,7 +1553,7 @@
 	db 56, KOFFING
 	db 58, GRAVELER
 	db 57, SLUGMA
-	db 59, MAGCARGO
+	db 59, MUK
 	db 60, MAGMAR
 	db 61, MAGMAR
 	db 62, MAGMAR
@@ -1562,7 +1562,7 @@
 	db 58, GASTLY
 	db 57, GRAVELER
 	db 59, SLUGMA
-	db 60, MAGCARGO
+	db 60, MUK
 	db 61, MAGMAR
 	db 62, MAGMAR
 
@@ -1571,7 +1571,7 @@
 	; morn
 	db 58, GRAVELER
 	db 60, WEEZING
-	db 59, MAGCARGO
+	db 59, MUK
 	db 61, MAGMAR
 	db 62, MAGMAR
 	db 63, STEELIX
@@ -1579,7 +1579,7 @@
 	; day
 	db 58, GRAVELER
 	db 60, WEEZING
-	db 59, MAGCARGO
+	db 59, MUK
 	db 61, MAGMAR
 	db 62, MAGMAR
 	db 63, STEELIX
@@ -1588,7 +1588,7 @@
 	db 58, HAUNTER
 	db 60, GRAVELER
 	db 59, WEEZING
-	db 61, MAGCARGO
+	db 61, MUK
 	db 62, MAGMAR
 	db 63, MAGMAR
 	db 64, STEELIX
@@ -1596,7 +1596,7 @@
 	map_id CINNABAR_VOLCANO_B2F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
-	db 60, MAGCARGO
+	db 60, MUK
 	db 62, WEEZING
 	db 61, SLUGMA
 	db 63, MAGMAR
@@ -1604,7 +1604,7 @@
 	db 65, STEELIX
 	db 66, STEELIX
 	; day
-	db 60, MAGCARGO
+	db 60, MUK
 	db 62, WEEZING
 	db 61, SLUGMA
 	db 63, MAGMAR
@@ -1612,7 +1612,7 @@
 	db 65, STEELIX
 	db 66, STEELIX
 	; nite
-	db 60, MAGCARGO
+	db 60, MUK
 	db 62, WEEZING
 	db 61, MAGMAR
 	db 63, MAGMAR

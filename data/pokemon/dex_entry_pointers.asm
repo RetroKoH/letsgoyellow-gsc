@@ -35,14 +35,17 @@
 	dw NidoranMPokedexEntry
 	dw NidorinoPokedexEntry
 	dw NidokingPokedexEntry
+	dw CleffaPokedexEntry
 	dw ClefairyPokedexEntry
 	dw ClefablePokedexEntry
 	dw VulpixPokedexEntry
 	dw NinetalesPokedexEntry
+	dw IgglybuffPokedexEntry
 	dw JigglypuffPokedexEntry
 	dw WigglytuffPokedexEntry
 	dw ZubatPokedexEntry
 	dw GolbatPokedexEntry
+	dw CrobatPokedexEntry
 	dw OddishPokedexEntry
 	dw GloomPokedexEntry
 	dw VileplumePokedexEntry
@@ -136,6 +139,7 @@
 	dw MrMimePokedexEntry
 	dw ScytherPokedexEntry
 	dw ScizorPokedexEntry
+	dw SmoochumPokedexEntry
 	dw JynxPokedexEntry
 	dw ElekidPokedexEntry
 	dw ElectabuzzPokedexEntry
@@ -181,77 +185,76 @@
 	dw TogeticPokedexEntry
 	dw TogekissPokedexEntry
 
-	dw ChikoritaPokedexEntry
-	dw BayleefPokedexEntry
-	dw MeganiumPokedexEntry
-	dw CyndaquilPokedexEntry
-	dw QuilavaPokedexEntry
-	dw TyphlosionPokedexEntry
-	dw TotodilePokedexEntry
-	dw CroconawPokedexEntry
-	dw FeraligatrPokedexEntry
-	dw SentretPokedexEntry
-	dw FurretPokedexEntry
-	dw HoothootPokedexEntry
-	dw NoctowlPokedexEntry
-	dw SpinarakPokedexEntry
-	dw AriadosPokedexEntry
-	dw CrobatPokedexEntry
-	dw ChinchouPokedexEntry
-	dw LanturnPokedexEntry
-	dw NatuPokedexEntry
-	dw XatuPokedexEntry
-	dw MareepPokedexEntry
-	dw FlaaffyPokedexEntry
-	dw AmpharosPokedexEntry
-	dw SudowoodoPokedexEntry
-	dw SunkernPokedexEntry
-	dw SunfloraPokedexEntry
-	dw YanmaPokedexEntry
-	dw YanmegaPokedexEntry
-	dw WooperPokedexEntry
-	dw QuagsirePokedexEntry
-	dw MurkrowPokedexEntry
-	dw HonchkrowPokedexEntry
-	dw MisdreavusPokedexEntry
-	dw MismagiusPokedexEntry
-	dw UnownPokedexEntry
-	dw WobbuffetPokedexEntry
-	dw GirafarigPokedexEntry
-	dw PinecoPokedexEntry
-	dw ForretressPokedexEntry
-	dw DunsparcePokedexEntry
-	dw GligarPokedexEntry
-	dw GliscorPokedexEntry
-	dw SnubbullPokedexEntry
-	dw GranbullPokedexEntry
-	dw QwilfishPokedexEntry
-	dw ShucklePokedexEntry
-	dw HeracrossPokedexEntry
-	dw SneaselPokedexEntry
-	dw WeavilePokedexEntry
-	dw TeddiursaPokedexEntry
-	dw UrsaringPokedexEntry
-	dw SlugmaPokedexEntry
-	dw MagcargoPokedexEntry
-	dw SwinubPokedexEntry
-	dw PiloswinePokedexEntry
-	dw MamoswinePokedexEntry
-	dw CorsolaPokedexEntry
-	dw RemoraidPokedexEntry
-	dw OctilleryPokedexEntry
-	dw SkarmoryPokedexEntry
-	dw HoundourPokedexEntry
-	dw HoundoomPokedexEntry
-	dw PhanpyPokedexEntry
-	dw DonphanPokedexEntry
-	dw SmearglePokedexEntry
-	dw RaikouPokedexEntry
-	dw EnteiPokedexEntry
-	dw SuicunePokedexEntry
-	dw LarvitarPokedexEntry
-	dw PupitarPokedexEntry
-	dw TyranitarPokedexEntry
-	dw LugiaPokedexEntry
-	dw HoOhPokedexEntry
-	dw CelebiPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry
+	dw NullPokedexEntry

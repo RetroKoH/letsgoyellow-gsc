@@ -34,6 +34,7 @@ AnimationPointers:
 	dw NidoranMAnimation
 	dw NidorinoAnimation
 	dw NidokingAnimation
+	dw CleffaAnimation
 	dw ClefairyAnimation
 	dw ClefableAnimation
 	dw VulpixAnimation
@@ -244,7 +245,6 @@ AnimationPointers:
 	dw HoundoomAnimation
 	dw PhanpyAnimation
 	dw DonphanAnimation
-	dw SmeargleAnimation
 	dw RaikouAnimation
 	dw EnteiAnimation
 	dw SuicuneAnimation

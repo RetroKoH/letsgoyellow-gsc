@@ -48,10 +48,10 @@ Cries:
 	dba Cry_Sentret
 	dba Cry_Slowking
 	dba Cry_Cyndaquil
-	dba Cry_Chikorita
+	dba Cry_Igglybuff
 	dba Cry_Totodile
 	dba Cry_Gligar
-	dba Cry_Bellossom
+	dba Cry_Bellossom ; CLEFFA
 	dba Cry_Slugma
 	dba Cry_Ledyba
 	dba Cry_Entei

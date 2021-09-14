@@ -34,6 +34,7 @@ BitmasksPointers:
 	dw NidoranMBitmasks
 	dw NidorinoBitmasks
 	dw NidokingBitmasks
+	dw CleffaBitmasks
 	dw ClefairyBitmasks
 	dw ClefableBitmasks
 	dw VulpixBitmasks
@@ -244,7 +245,6 @@ BitmasksPointers:
 	dw HoundoomBitmasks
 	dw PhanpyBitmasks
 	dw DonphanBitmasks
-	dw SmeargleBitmasks
 	dw RaikouBitmasks
 	dw EnteiBitmasks
 	dw SuicuneBitmasks

@@ -115,7 +115,7 @@ BattleTowerPokemon2:
 	db $ff, $df, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db GIRAFARIG
+	db NIDORINO
 	db KINGS_ROCK
 	db PSYBEAM, MUD_SLAP, SHADOW_BALL, AGILITY
 	db $fe, $df, $ee ; DVs
@@ -139,7 +139,7 @@ BattleTowerPokemon2:
 	db $ff, $ef, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db HERACROSS
+	db PINSIR
 	db SITRUS_BERRY
 	db REVERSAL, ENDURE, COUNTER, ROCK_SMASH
 	db $ff, $7f, $ff ; DVs
@@ -195,13 +195,13 @@ BattleTowerMons2:
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db ARCANINE
+	db NIDOKING
 	db BRIGHTPOWDER
 	db FLAMETHROWER, ROAR, HYPER_BEAM, IRON_TAIL
 	db $fd, $bf, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db HERACROSS
+	db PINSIR
 	db FOCUS_BAND
 	db ENDURE, REVERSAL, MEGAHORN, EARTHQUAKE
 	db $dd, $fd, $dd ; DVs
@@ -499,7 +499,7 @@ BattleTowerMons4:
 	db $eb, $ce, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db ARCANINE
+	db NIDOKING
 	db CHARCOAL
 	db FLAME_WHEEL, LEER, BODY_SLAM, ROAR
 	db $bf, $eb, $ff ; DVs
@@ -639,7 +639,7 @@ BattleTowerMons5:
 	db $df, $dd, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db SKARMORY
+	db FEAROW
 	db SITRUS_BERRY
 	db SANDSTORM, FLY, STEEL_WING, TOXIC
 	db $ed, $7e, $dd ; DVs
@@ -657,7 +657,7 @@ BattleTowerMons5:
 	db $dd, $dd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db GIRAFARIG
+	db NIDORINO
 	db SCOPE_LENS
 	db DREAM_EATER, CRUNCH, PSYCHIC_M, EARTHQUAKE
 	db $54, $55, $44 ; DVs
@@ -683,7 +683,7 @@ BattleTowerMons6:
 	db $fd, $df, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db TYRANITAR
+	db NIDOKING
 	db SITRUS_BERRY
 	db CRUNCH, EARTHQUAKE, ROCK_SLIDE, HYPER_BEAM
 	db $ef, $de, $ff ; DVs
@@ -737,13 +737,13 @@ BattleTowerMons6:
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db ARCANINE
+	db NIDOKING
 	db CHARCOAL
 	db FLAMETHROWER, CRUNCH, EXTREMESPEED, IRON_TAIL
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db SKARMORY
+	db FEAROW
 	db LUM_BERRY
 	db STEEL_WING, FLY, TOXIC, PROTECT
 	db $ef, $be, $ff ; DVs
@@ -761,7 +761,7 @@ BattleTowerMons6:
 	db $ff, $af, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db HERACROSS
+	db PINSIR
 	db FOCUS_BAND
 	db REVERSAL, MEGAHORN, EARTHQUAKE, COUNTER
 	db $ed, $fe, $dd ; DVs
@@ -841,7 +841,7 @@ BattleTowerMons7:
 	db $cd, $dc, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db TYRANITAR
+	db NIDOKING
 	db LEFTOVERS
 	db EARTHQUAKE, CRUNCH, ROCK_SLIDE, HYPER_BEAM
 	db $dd, $bd, $dd ; DVs
@@ -895,7 +895,7 @@ BattleTowerMons7:
 	db $eb, $de, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db GIRAFARIG
+	db NIDORINO
 	db SITRUS_BERRY
 	db AGILITY, BATON_PASS, CRUNCH, EARTHQUAKE
 	db $ff, $ef, $ff ; DVs
@@ -907,7 +907,7 @@ BattleTowerMons7:
 	db $ff, $ef, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db HERACROSS
+	db PINSIR
 	db BRIGHTPOWDER
 	db REVERSAL, ENDURE, MEGAHORN, EARTHQUAKE
 	db $ff, $7f, $ff ; DVs
@@ -963,7 +963,7 @@ BattleTowerMons8:
 	db $dd, $fd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db TYRANITAR
+	db NIDOKING
 	db LUM_BERRY
 	db REST, CRUNCH, EARTHQUAKE, ROCK_SLIDE
 	db $dd, $fd, $dd ; DVs
@@ -1011,7 +1011,7 @@ BattleTowerMons8:
 	db $dd, $fd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db SKARMORY
+	db FEAROW
 	db QUICK_CLAW
 	db STEEL_WING, FLY, MUD_SLAP, TOXIC
 	db $ed, $de, $dd ; DVs
@@ -1103,7 +1103,7 @@ BattleTowerMons9:
 	db $dd, $fd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db TYRANITAR
+	db NIDOKING
 	db QUICK_CLAW
 	db HYPER_BEAM, CRUNCH, EARTHQUAKE, ROCK_SLIDE
 	db $dd, $fd, $dd ; DVs
@@ -1133,7 +1133,7 @@ BattleTowerMons9:
 	db $ff, $ef, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db ARCANINE
+	db NIDOKING
 	db CHESTO_BERRY
 	db SUNNY_DAY, FLAMETHROWER, EXTREMESPEED, REST
 	db $dd, $fd, $dd ; DVs
@@ -1151,7 +1151,7 @@ BattleTowerMons9:
 	db $fd, $bf, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db SKARMORY
+	db FEAROW
 	db QUICK_CLAW
 	db SANDSTORM, STEEL_WING, TOXIC, RETURN
 	db $fe, $ff, $ee ; DVs
@@ -1219,7 +1219,7 @@ BattleTowerMons10:
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db ARCANINE
+	db NIDOKING
 	db LEFTOVERS
 	db FLAMETHROWER, EXTREMESPEED, IRON_TAIL, HYPER_BEAM
 	db $ed, $de, $dd ; DVs

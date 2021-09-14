@@ -24,11 +24,11 @@ Route7_MapScriptHeader:
 GenericTrainerBreederCarlene:
 	generictrainer BREEDER, CARLENE, EVENT_BEAT_BREEDER_CARLENE, .SeenText, .BeatenText
 
-	text "I make my Smeargle"
-	line "Sketch a move,"
+	text "I find a DITTO"
+	line "with great stats,"
 
 	para "then breed it"
-	line "to pass the move"
+	line "to pass them on"
 	cont "down!"
 
 	para "Isn't that smart?"

@@ -34,6 +34,7 @@ FramesPointers:
 	dw NidoranMFrames
 	dw NidorinoFrames
 	dw NidokingFrames
+	dw CleffaFrames
 	dw ClefairyFrames
 	dw ClefableFrames
 	dw VulpixFrames
@@ -244,7 +245,6 @@ FramesPointers:
 	dw HoundoomFrames
 	dw PhanpyFrames
 	dw DonphanFrames
-	dw SmeargleFrames
 	dw RaikouFrames
 	dw EnteiFrames
 	dw SuicuneFrames

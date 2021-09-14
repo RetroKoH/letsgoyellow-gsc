@@ -76,6 +76,8 @@ PicPointers::
 	dba NidorinoBackpic
 	dba NidokingFrontpic
 	dba NidokingBackpic
+	dba CleffaFrontpic
+	dba CleffaBackpic	
 	dba ClefairyFrontpic
 	dba ClefairyBackpic
 	dba ClefableFrontpic
@@ -507,8 +509,6 @@ PicPointers::
 	dba PhanpyBackpic
 	dba DonphanFrontpic
 	dba DonphanBackpic
-	dba SmeargleFrontpic
-	dba SmeargleBackpic
 	dba RaikouFrontpic
 	dba RaikouBackpic
 	dba EnteiFrontpic

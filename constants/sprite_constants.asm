@@ -235,7 +235,6 @@ SPRITE_POKEMON EQU const_value
 	const SPRITE_HERACROSS ; e6
 	const SPRITE_URSARING ; e7
 	const SPRITE_SKARMORY ; e8
-	const SPRITE_SMEARGLE ; e9
 	const SPRITE_MILTANK ; ea
 	const SPRITE_BLISSEY ; eb
 	const SPRITE_RAIKOU ; ec

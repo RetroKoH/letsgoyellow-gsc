@@ -40,10 +40,12 @@ CryHeaders::
 	mon_cry CRY_NIDORAN_M,   $000,  $100 ; NidoranM
 	mon_cry CRY_NIDORAN_M,   $02c,  $140 ; Nidorino
 	mon_cry CRY_RAICHU,      $000,  $100 ; Nidoking
+	mon_cry CRY_BELLOSSOM,   $061,  $091 ; CLEFFA
 	mon_cry CRY_CLEFAIRY,    $0cc,  $081 ; Clefairy
 	mon_cry CRY_CLEFAIRY,    $0aa,  $0a0 ; Clefable
 	mon_cry CRY_VULPIX,      $04f,  $090 ; Vulpix
 	mon_cry CRY_VULPIX,      $088,  $0e0 ; Ninetales
+	mon_cry CRY_IGGLYBUFF,   $0E8,  $0E8 ; IGGLYBUFF
 	mon_cry CRY_PIDGEY,      $0ff,  $0b5 ; Jigglypuff
 	mon_cry CRY_PIDGEY,      $068,  $0e0 ; Wigglytuff
 	mon_cry CRY_SQUIRTLE,    $0e0,  $100 ; Zubat
@@ -142,6 +144,7 @@ CryHeaders::
 	mon_cry CRY_KRABBY,      $008,  $0c0 ; MrMime
 	mon_cry CRY_CATERPIE,    $000,  $100 ; Scyther
 	mon_cry CRY_AMPHAROS,    $000,  $160 ; Scizor
+	mon_cry CRY_MARILL,      $068,  $100 ; SMOOCHUM
 	mon_cry CRY_DROWZEE,     $0ff,  $17f ; Jynx
 	mon_cry CRY_REMORAID,   -$2d8,  $0b4 ; Elekid
 	mon_cry CRY_VOLTORB,     $08f,  $17f ; Electabuzz

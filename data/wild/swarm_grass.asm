@@ -5,28 +5,28 @@
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	db 3, GEODUDE
-	db 3, DUNSPARCE
+	db 3, DIGLETT
 	db 2, ZUBAT
 	db 2, GEODUDE
-	db 2, DUNSPARCE
-	db 4, DUNSPARCE
-	db 4, DUNSPARCE
+	db 2, DIGLETT
+	db 4, DIGLETT
+	db 4, DIGLETT
 	; day
 	db 3, GEODUDE
-	db 3, DUNSPARCE
+	db 3, DIGLETT
 	db 2, ZUBAT
 	db 2, GEODUDE
-	db 2, DUNSPARCE
-	db 4, DUNSPARCE
-	db 4, DUNSPARCE
+	db 2, DIGLETT
+	db 4, DIGLETT
+	db 4, DIGLETT
 	; nite
 	db 3, GEODUDE
-	db 3, DUNSPARCE
+	db 3, DIGLETT
 	db 2, ZUBAT
 	db 2, GEODUDE
-	db 2, DUNSPARCE
-	db 4, DUNSPARCE
-	db 4, DUNSPARCE
+	db 2, DIGLETT
+	db 4, DIGLETT
+	db 4, DIGLETT
 
 ; Yanma swarm
 	map_id ROUTE_35
@@ -34,25 +34,25 @@
 	; morn
 	db 12, NIDORAN_M
 	db 12, NIDORAN_F
-	db 12, YANMA
-	db 14, YANMA
+	db 12, VENONAT
+	db 14, VENONAT
 	db 14, PIDGEY
 	db 10, DITTO
 	db 10, DITTO
 	; day
 	db 12, NIDORAN_M
 	db 12, NIDORAN_F
-	db 12, YANMA
-	db 14, YANMA
+	db 12, VENONAT
+	db 14, VENONAT
 	db 14, PIDGEY
 	db 10, DITTO
 	db 10, DITTO
 	; nite
 	db 12, NIDORAN_M
 	db 12, NIDORAN_F
-	db 12, YANMA
-	db 14, YANMA
-	db 14, HOOTHOOT
+	db 12, VENONAT
+	db 14, VENONAT
+	db 14, PIDGEY
 	db 10, DITTO
 	db 10, DITTO
 

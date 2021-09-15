@@ -308,21 +308,21 @@
 	db 4, AA
 	db 6, AA
 	; day
-	db 3, PIDGEY
-	db 3, RATTATA
-	db 3, RATTATA
-	db 2, RATTATA
-	db 2, PIDGEY
-	db 4, PIDGEY
-	db 4, BELLSPROUT
+	db 3, AA
+	db 3, AA;RATTATA
+	db 3, AA;RATTATA
+	db 2, AA;RATTATA
+	db 2, AA
+	db 4, AA
+	db 6, AA ; BELLSPROUT
 	; nite
-	db 3, MEOWTH
-	db 3, RATTATA
-	db 3, RATTATA
-	db 2, RATTATA
-	db 2, MEOWTH
-	db 4, MEOWTH
-	db 4, ODDISH
+	db 3, AA
+	db 3, AA;RATTATA
+	db 3, AA;RATTATA
+	db 2, AA;RATTATA
+	db 2, AA
+	db 4, AA
+	db 6, AA
 
 	map_id ROUTE_2_NORTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite

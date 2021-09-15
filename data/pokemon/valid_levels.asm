@@ -41,6 +41,7 @@ ValidPokemonLevels:
 	db  20, 100 ; Clefable
 	db   1,  19 ; Vulpix
 	db  20, 100 ; Ninetales
+	db   1,  19 ; Igglybuff
 	db   5,  19 ; Jigglypuff
 	db  20, 100 ; Wigglytuff
 	db   1,  21 ; Zubat

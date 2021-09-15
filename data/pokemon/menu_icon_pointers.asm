@@ -35,10 +35,12 @@ IconPointers:
 	dw NidoranMIcon
 	dw NidorinoIcon
 	dw NidokingIcon
+	dw ClefairyIcon ; Cleffa
 	dw ClefairyIcon
 	dw ClefableIcon
 	dw VulpixIcon
 	dw NinetalesIcon
+	dw JigglypuffIcon ; Igglybuff
 	dw JigglypuffIcon
 	dw WigglytuffIcon
 	dw ZubatIcon

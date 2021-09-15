@@ -38,10 +38,12 @@ MenuMonIconColors::
 	iconpal PURPLE, TEAL ; NIDORAN_M
 	iconpal PURPLE, TEAL ; NIDORINO
 	iconpal PURPLE, TEAL ; NIDOKING
+	iconpal PINK, RED ; CLEFFA
 	iconpal PINK, RED ; CLEFAIRY
 	iconpal PINK, RED ; CLEFABLE
 	iconpal RED, BROWN ; VULPIX
 	iconpal RED, GRAY ; NINETALES
+	iconpal PINK, RED ; IGGLYBUFF
 	iconpal PINK, RED ; JIGGLYPUFF
 	iconpal PINK, RED ; WIGGLYTUFF
 	iconpal BLUE, GREEN ; ZUBAT

@@ -144,12 +144,10 @@
 	const RHYHORN    ; $6e
 	const RHYDON     ; $6f
 	const RHYPERIOR  ; $b6
-	const HAPPINY
 	const CHANSEY    ; $70
 	const BLISSEY    ; $f2
 	const TANGELA    ; $71
 	const TANGROWTH  ; $af
-	const KANGASKID
 	const KANGASKHAN ; $72
 	const HORSEA     ; $73
 	const SEADRA     ; $74
@@ -158,11 +156,9 @@
 	const SEAKING    ; $a6
 	const STARYU     ; $78
 	const STARMIE    ; $79
-	const MIME_JR
 	const MR__MIME   ; $7a
 	const SCYTHER    ; $7b
 	const SCIZOR     ; $d2
-	const SMOOCHUM
 	const JYNX       ; $7c
 	const ELEKID     ; $ed
 	const ELECTABUZZ ; $7d

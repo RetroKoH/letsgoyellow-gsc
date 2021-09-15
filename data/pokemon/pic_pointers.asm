@@ -244,6 +244,8 @@ PicPointers::
 	dba HitmontopBackpic
 	dba LickitungFrontpic
 	dba LickitungBackpic
+	dba LickilickyFrontpic
+	dba LickilickyBackpic
 	dba KoffingFrontpic
 	dba KoffingBackpic
 	dba WeezingFrontpic
@@ -382,8 +384,6 @@ PicPointers::
 	dba TogekissBackpic
 
 
-	dba EggPic
-	dba EggPic
 	dba EggPic
 	dba EggPic
 	dba EggPic

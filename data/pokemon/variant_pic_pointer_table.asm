@@ -1,7 +1,6 @@
 VariantPicPointerTable:
-	dbba UNOWN,    UnownPicPointers
-	dbba PIKACHU,  PikachuPicPointers
 	dbba PICHU,    PichuPicPointers
+	dbba PIKACHU,  PikachuPicPointers
 	dbba ARBOK,    ArbokPicPointers
 	dbba MAGIKARP, MagikarpPicPointers
 	dbba GYARADOS, GyaradosPicPointers

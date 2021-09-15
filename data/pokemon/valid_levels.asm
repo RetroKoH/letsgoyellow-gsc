@@ -112,6 +112,7 @@ ValidPokemonLevels:
 	db  20, 100 ; Hitmonlee
 	db  20, 100 ; Hitmonchan
 	db   1, 100 ; Lickitung
+	db   1, 100 ; Lickilicky
 	db   1,  34 ; Koffing
 	db  35, 100 ; Weezing
 	db   1,  41 ; Rhyhorn
@@ -250,9 +251,6 @@ ValidPokemonLevels:
 	db   1,  29 ; Larvitar
 	db  30,  54 ; Pupitar
 	db  55, 100 ; Tyranitar
-	db 255, 255 ; Lugia
-	db 255, 255 ; Ho-Oh
-	db 255, 255 ; Celebi
 	db  20, 100 ; Leafeon
 	db  20, 100 ; Glaceon
 	db  20, 100 ; Sylveon

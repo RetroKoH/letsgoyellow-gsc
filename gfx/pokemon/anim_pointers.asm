@@ -118,6 +118,7 @@ AnimationPointers:
 	dw HitmonchanAnimation
 	dw HitmontopAnimation
 	dw LickitungAnimation
+	dw LickilickyAnimation
 	dw KoffingAnimation
 	dw WeezingAnimation
 	dw RhyhornAnimation
@@ -182,8 +183,6 @@ AnimationPointers:
 	dw TogepiAnimation
 	dw TogeticAnimation
 	dw TogekissAnimation
-
-	dw EggAnimation
 	dw EggAnimation
 	dw EggAnimation
 	dw EggAnimation

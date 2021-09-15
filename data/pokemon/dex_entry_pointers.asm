@@ -119,6 +119,7 @@
 	dw HitmonchanPokedexEntry
 	dw HitmontopPokedexEntry
 	dw LickitungPokedexEntry
+	dw LickitungPokedexEntry
 	dw KoffingPokedexEntry
 	dw WeezingPokedexEntry
 	dw RhyhornPokedexEntry

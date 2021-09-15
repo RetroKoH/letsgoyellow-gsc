@@ -122,6 +122,7 @@ MenuMonIconColors::
 	iconpal BROWN, BLUE ; HITMONCHAN
 	iconpal BROWN, BLUE ; HITMONTOP
 	iconpal PINK, BROWN ; LICKITUNG
+	iconpal PINK, RED ; LICKITUNG
 	iconpal PURPLE, BLUE ; KOFFING
 	iconpal PURPLE, BLUE ; WEEZING
 	iconpal GRAY, RED ; RHYHORN

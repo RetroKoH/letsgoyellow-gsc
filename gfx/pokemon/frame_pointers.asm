@@ -39,6 +39,7 @@ FramesPointers:
 	dw ClefableFrames
 	dw VulpixFrames
 	dw NinetalesFrames
+	dw IgglybuffFrames
 	dw JigglypuffFrames
 	dw WigglytuffFrames
 	dw ZubatFrames
@@ -117,6 +118,7 @@ FramesPointers:
 	dw HitmonchanFrames
 	dw HitmontopFrames
 	dw LickitungFrames
+	dw LickilickyFrames
 	dw KoffingFrames
 	dw WeezingFrames
 	dw RhyhornFrames
@@ -181,77 +183,74 @@ FramesPointers:
 	dw TogepiFrames
 	dw TogeticFrames
 	dw TogekissFrames
-
-	dw ChikoritaFrames
-	dw BayleefFrames
-	dw MeganiumFrames
-	dw CyndaquilFrames
-	dw QuilavaFrames
-	dw TyphlosionFrames
-	dw TotodileFrames
-	dw CroconawFrames
-	dw FeraligatrFrames
-	dw SentretFrames
-	dw FurretFrames
-	dw HoothootFrames
-	dw NoctowlFrames
-	dw SpinarakFrames
-	dw AriadosFrames
-	dw ChinchouFrames
-	dw LanturnFrames
-	dw NatuFrames
-	dw XatuFrames
-	dw MareepFrames
-	dw FlaaffyFrames
-	dw AmpharosFrames
-	dw SudowoodoFrames
-	dw SunkernFrames
-	dw SunfloraFrames
-	dw YanmaFrames
-	dw YanmegaFrames
-	dw WooperFrames
-	dw QuagsireFrames
-	dw MurkrowFrames
-	dw HonchkrowFrames
-	dw MisdreavusFrames
-	dw MismagiusFrames
-	dw -1 ; see UnownFramesPointers
-	dw WobbuffetFrames
-	dw GirafarigFrames
-	dw PinecoFrames
-	dw ForretressFrames
-	dw DunsparceFrames
-	dw GligarFrames
-	dw GliscorFrames
-	dw SnubbullFrames
-	dw GranbullFrames
-	dw QwilfishFrames
-	dw ShuckleFrames
-	dw HeracrossFrames
-	dw SneaselFrames
-	dw WeavileFrames
-	dw TeddiursaFrames
-	dw UrsaringFrames
-	dw SlugmaFrames
-	dw MagcargoFrames
-	dw SwinubFrames
-	dw PiloswineFrames
-	dw MamoswineFrames
-	dw CorsolaFrames
-	dw RemoraidFrames
-	dw OctilleryFrames
-	dw SkarmoryFrames
-	dw HoundourFrames
-	dw HoundoomFrames
-	dw PhanpyFrames
-	dw DonphanFrames
-	dw RaikouFrames
-	dw EnteiFrames
-	dw SuicuneFrames
-	dw LarvitarFrames
-	dw PupitarFrames
-	dw TyranitarFrames
-	dw LugiaFrames
-	dw HoOhFrames
-	dw CelebiFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
+	dw EggFrames
 	dw EggFrames

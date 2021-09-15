@@ -1491,7 +1491,7 @@ Lyra1Group:
 	db "Lyra@"
 	db TRAINERTYPE_NICKNAME
 	; party
-	db 5, CHIKORITA, "Chicory@"
+	db 5, BULBASAUR, "Chicory@"
 	db -1 ; end
 
 ; ================
@@ -1500,7 +1500,7 @@ Lyra1Group:
 	db "Lyra@"
 	db TRAINERTYPE_NICKNAME
 	; party
-	db 5, CYNDAQUIL, "Cinder@"
+	db 5, CHARMANDER, "Cinder@"
 	db -1 ; end
 
 ; ================
@@ -1509,7 +1509,7 @@ Lyra1Group:
 	db "Lyra@"
 	db TRAINERTYPE_NICKNAME
 	; party
-	db 5, TOTODILE, "Toto@"
+	db 5, SQUIRTLE, "Toto@"
 	db -1 ; end
 
 ; ================
@@ -1520,8 +1520,8 @@ Lyra1Group:
 	; party
 	db 16, PIDGEY, NO_ITEM, 36, "Pidgey@"
 	db 17, SPEAROW, NO_ITEM, 36, "Spearow@"
-	db 15, MAREEP, NO_ITEM, 36, "Mareep@"
-	db 18, BAYLEEF, ORAN_BERRY, 36, "Chicory@"
+	db 15, PIKACHU, NO_ITEM, 36, "Mareep@"
+	db 18, IVYSAUR, ORAN_BERRY, 36, "Chicory@"
 	db -1 ; end
 
 ; ================
@@ -1531,9 +1531,9 @@ Lyra1Group:
 	db TRAINERTYPE_ITEM | TRAINERTYPE_EVS | TRAINERTYPE_NICKNAME
 	; party
 	db 16, PIDGEY, NO_ITEM, 36, "Pidgey@"
-	db 17, SUNKERN, NO_ITEM, 36, "Sunkern@"
-	db 15, MAREEP, NO_ITEM, 36, "Mareep@"
-	db 18, QUILAVA, ORAN_BERRY, 36, "Cinder@"
+	db 17, BELLSPROUT, NO_ITEM, 36, "Sunkern@"
+	db 15, PIKACHU, NO_ITEM, 36, "Mareep@"
+	db 18, CHARMELEON, ORAN_BERRY, 36, "Cinder@"
 	db -1 ; end
 
 ; ================
@@ -1544,8 +1544,8 @@ Lyra1Group:
 	; party
 	db 16, PIDGEY, NO_ITEM, 36, "Pidgey@"
 	db 17, GROWLITHE, NO_ITEM, 36, "Growlithe@"
-	db 15, MAREEP, NO_ITEM, 36, "Mareep@"
-	db 18, CROCONAW, ORAN_BERRY, 36, "Toto@"
+	db 15, PIKACHU, NO_ITEM, 36, "Mareep@"
+	db 18, WARTORTLE, ORAN_BERRY, 36, "Toto@"
 	db -1 ; end
 
 ; ================
@@ -1557,8 +1557,8 @@ Lyra1Group:
 	db 33, PIDGEOTTO, NO_ITEM, 100, "Pidgeotto@"
 	db 34, GROWLITHE, NO_ITEM, 100, "Growlithe@"
 	db 34, FEAROW, NO_ITEM, 100, "Fearow@"
-	db 32, FLAAFFY, NO_ITEM, 100, "Flaaffy@"
-	db 37, BAYLEEF, ORAN_BERRY, 100, "Chicory@"
+	db 32, RAICHU, NO_ITEM, 100, "Flaaffy@"
+	db 37, IVYSAUR, ORAN_BERRY, 100, "Chicory@"
 	db -1 ; end
 
 ; ================
@@ -1568,10 +1568,10 @@ Lyra1Group:
 	db TRAINERTYPE_ITEM | TRAINERTYPE_EVS | TRAINERTYPE_NICKNAME
 	; party
 	db 33, PIDGEOTTO, NO_ITEM, 100, "Pidgeotto@"
-	db 34, SUNFLORA, NO_ITEM, 100, "Sunflora@"
+	db 34, WEEPINBELL, NO_ITEM, 100, "Sunflora@"
 	db 34, FEAROW, NO_ITEM, 100, "Fearow@"
-	db 32, FLAAFFY, NO_ITEM, 100, "Flaaffy@"
-	db 37, QUILAVA, ORAN_BERRY, 100, "Cinder@"
+	db 32, RAICHU, NO_ITEM, 100, "Flaaffy@"
+	db 37, CHARMELEON, ORAN_BERRY, 100, "Cinder@"
 	db -1 ; end
 
 ; ================
@@ -1581,10 +1581,10 @@ Lyra1Group:
 	db TRAINERTYPE_ITEM | TRAINERTYPE_EVS | TRAINERTYPE_NICKNAME
 	; party
 	db 33, PIDGEOTTO, NO_ITEM, 100, "Pidgeotto@"
-	db 34, SUNFLORA, NO_ITEM, 100, "Sunflora@"
+	db 34, WEEPINBELL, NO_ITEM, 100, "Sunflora@"
 	db 34, GROWLITHE, NO_ITEM, 100, "Growlithe@"
-	db 32, FLAAFFY, NO_ITEM, 100, "Flaaffy@"
-	db 37, CROCONAW, ORAN_BERRY, 100, "Toto@"
+	db 32, RAICHU, NO_ITEM, 100, "Flaaffy@"
+	db 37, WARTORTLE, ORAN_BERRY, 100, "Toto@"
 	db -1 ; end
 
 ; ================
@@ -1609,7 +1609,7 @@ Lyra1Group:
 	; party
 	db 44, PIDGEOT, NO_ITEM, 132, "Pidgeot@"
 	db 43, GROWLITHE, NO_ITEM, 132, "GROWLITHE@"
-	db 45, SUNFLORA, NO_ITEM, 132, "Sunflora@"
+	db 45, VICTREEBEL, NO_ITEM, 132, "Sunflora@"
 	db 45, FEAROW, NO_ITEM, 132, "Fearow@"
 	db 46, RAICHU, NO_ITEM, 132, "RAICHU@"
 	db 47, CHARIZARD, SITRUS_BERRY, 132, "Cinder@"
@@ -1623,7 +1623,7 @@ Lyra1Group:
 	; party
 	db 44, PIDGEOT, NO_ITEM, 132, "Pidgeot@"
 	db 43, GROWLITHE, NO_ITEM, 132, "GROWLITHE@"
-	db 45, SUNFLORA, NO_ITEM, 132, "Sunflora@"
+	db 45, VICTREEBEL, NO_ITEM, 132, "Sunflora@"
 	db 45, ARCANINE, NO_ITEM, 132, "Arcanine@"
 	db 46, RAICHU, NO_ITEM, 132, "RAICHU@"
 	db 47, BLASTOISE, SITRUS_BERRY, 132, "Toto@"
@@ -1656,7 +1656,7 @@ Lyra2Group:
 	db TRAINERTYPE_ITEM | TRAINERTYPE_NICKNAME
 	; party
 	db 69, PIDGEOT, NO_ITEM, "Pidgeot@"
-	db 70, SUNFLORA, NO_ITEM, "Sunflora@"
+	db 70, VICTREEBEL, NO_ITEM, "Sunflora@"
 	db 70, FEAROW, NO_ITEM, "Fearow@"
 	db 71, RAICHU, NO_ITEM, "RAICHU@"
 	db 68, GROWLITHE, NO_ITEM, "GROWLITHE@"
@@ -1670,7 +1670,7 @@ Lyra2Group:
 	db TRAINERTYPE_ITEM | TRAINERTYPE_NICKNAME
 	; party
 	db 69, PIDGEOT, NO_ITEM, "Pidgeot@"
-	db 70, SUNFLORA, NO_ITEM, "Sunflora@"
+	db 70, VICTREEBEL, NO_ITEM, "Sunflora@"
 	db 70, ARCANINE, NO_ITEM, "Arcanine@"
 	db 71, RAICHU, NO_ITEM, "RAICHU@"
 	db 68, GROWLITHE, NO_ITEM, "GROWLITHE@"

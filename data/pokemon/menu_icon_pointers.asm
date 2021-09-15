@@ -119,6 +119,7 @@ IconPointers:
 	dw HitmonchanIcon
 	dw HitmontopIcon
 	dw LickitungIcon
+	dw LickitungIcon ; Lickilicky
 	dw KoffingIcon
 	dw WeezingIcon
 	dw RhyhornIcon

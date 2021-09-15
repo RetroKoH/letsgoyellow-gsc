@@ -124,6 +124,7 @@ CryHeaders::
 	mon_cry CRY_SEEL,        $0ee,  $140 ; Hitmonchan
 	mon_cry CRY_SLUGMA,      $000,  $100 ; Hitmontop
 	mon_cry CRY_SEEL,        $000,  $100 ; Lickitung
+	mon_cry CRY_SEEL,        $000,  $100 ; Lickilicky
 	mon_cry CRY_GOLEM,       $0e6,  $15d ; Koffing
 	mon_cry CRY_GOLEM,       $0ff,  $17f ; Weezing
 	mon_cry CRY_CHARMANDER,  $000,  $100 ; Rhyhorn
@@ -190,7 +191,6 @@ CryHeaders::
 	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togetic
 	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togekiss
 
-	mon_cry CRY_NIDORAN_M,      0,     0
 	mon_cry CRY_NIDORAN_M,      0,     0
 	mon_cry CRY_NIDORAN_M,      0,     0
 	mon_cry CRY_NIDORAN_M,      0,     0

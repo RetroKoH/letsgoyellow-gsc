@@ -1,3 +1,4 @@
+; try to evolve the mon in [wCurPartyMon]
 EvolvePokemon: ; 421d8
 	ld hl, wEvolvableFlags
 	xor a
@@ -6,6 +7,8 @@ EvolvePokemon: ; 421d8
 	ld c, a
 	ld b, SET_FLAG
 	call EvoFlagAction
+
+; this is only called after battle
 EvolveAfterBattle: ; 421e6
 	xor a
 	ld [wMonTriedToEvolve], a
@@ -15,22 +18,18 @@ EvolveAfterBattle: ; 421e6
 	push bc
 	push de
 	ld hl, wPartyCount
-
 	push hl
 
-EvolveAfterBattle_MasterLoop
+EvolveAfterBattle_MasterLoop ; loop over party mons
 	ld hl, wCurPartyMon
 	inc [hl]
-
 	pop hl
-
 	inc hl
 	ld a, [hl]
-	cp $ff
+	cp $ff ; have we reached the end of the party?
 	jp z, .ReturnToMap
 
 	ld [wEvolutionOldSpecies], a
-
 	push hl
 	ld a, [wCurPartyMon]
 	ld c, a
@@ -38,14 +37,14 @@ EvolveAfterBattle_MasterLoop
 	ld b, CHECK_FLAG
 	call EvoFlagAction
 	ld a, c
-	and a
-	jp z, EvolveAfterBattle_MasterLoop
+	and a ; is the mon's bit set?
+	jp z, EvolveAfterBattle_MasterLoop ; if not, go to the next mon
 
 	ld a, [wEvolutionOldSpecies]
 	dec a
 	ld b, 0
 	ld c, a
-	ld hl, EvosAttacksPointers
+	ld hl, EvolutionPointers
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -58,20 +57,20 @@ EvolveAfterBattle_MasterLoop
 	predef CopyPkmnToTempMon
 	pop hl
 
-.loop
+.loop ; loop over evolution entries
 	ld a, [hli]
 	and a
 	jr z, EvolveAfterBattle_MasterLoop
 
-	ld b, a
+	ld b, a ; evolution type
 
 	ld a, [wLinkMode]
 	and a
-	jp nz, .dont_evolve_2
+	jp nz, .dont_evolve_2 ; don't evolve in a Link State
 
 	ld a, b
-	cp EVOLVE_ITEM
-	jp z, .item
+	cp EVOLVE_ITEM ; Is this a used item evolution?
+	jp z, .item ; if yes, branch to checking item
 
 	ld a, [wForceEvolution]
 	and a
@@ -79,19 +78,19 @@ EvolveAfterBattle_MasterLoop
 
 	ld a, b
 	cp EVOLVE_HOLDING
-	jp z, .holding
+	jp z, .holding ; branch to checking held item
 	cp EVOLVE_LOCATION
-	jp z, .location
+	jp z, .location ; branch to checking current map
 	cp EVOLVE_MOVE
-	jp z, .move
+	jp z, .move ; branch to checking mon's moveset
 	cp EVOLVE_EVS
-	jp z, .evs
+	jp z, .evs ; branch to checking mon's EVs
 	cp EVOLVE_LEVEL
-	jp z, .level
+	jp z, .level ; branch to checking mon's level
 	cp EVOLVE_HAPPINESS
-	jp z, .happiness
+	jp z, .happiness ; branch to checking mon's happiness
 
-; EVOLVE_STAT
+; EVOLVE_STAT (Tyrogue)
 	ld a, [wTempMonLevel]
 	cp [hl]
 	jp c, .dont_evolve_1
@@ -478,26 +477,37 @@ LearnEvolutionMove:
 	dec a
 	ld b, 0
 	ld c, a
-	ld hl, EvolutionMoves
+	ld hl, LearnsetPointers
 	add hl, bc
-	ld a, [hl]
-	and a
-	ret z
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 
+;.learnSetLoop	; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
+	ld a, [hl]
+	and a		; have we reached the end of the learn set?
+	ret z		; if we've reached the end of the learn set, jump (If no moves present in set)
+
+	ld b, a		; check value of the level the move is learnt at
+	cp $ff		; is the move an evo move? (Level = $FF)
+	ret nz		; assuming that the moves are in sequential order, stop here.
+
+	ld a, [hli]	; a = move ID
 	push hl
-	ld d, a
+	ld d, a		; ID of move to learn
 	ld hl, wPartyMon1Moves
 	ld a, [wCurPartyMon]
 	ld bc, PARTYMON_STRUCT_LENGTH
 	rst AddNTimes
 
 	ld b, NUM_MOVES
-.check_move
+.check_move ; check if the move to learn is already known
 	ld a, [hli]
 	cp d
-	jr z, .has_move
+	jr z, .has_move		; if already known, jump
 	dec b
-	jr nz, .check_move
+	jr nz, .check_move	; if not, loop and check others
 
 	ld a, d
 	ld [wPutativeTMHMMove], a
@@ -522,22 +532,17 @@ LearnLevelMoves: ; 42487
 	dec a
 	ld b, 0
 	ld c, a
-	ld hl, EvosAttacksPointers
+	ld hl, LearnsetPointers
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 
-.skip_evos
+.find_move ; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
 	ld a, [hli]
-	and a
-	jr nz, .skip_evos
-
-.find_move
-	ld a, [hli]
-	and a
-	ret z
+	and a		; have we reached the end of the learn set?
+	ret z		; if we've reached the end of the learn set, jump (If no moves present in set)
 
 	ld b, a
 	ld a, [wCurPartyLevel]
@@ -588,7 +593,7 @@ FillMoves: ; 424e1
 	push hl
 	push de
 	push bc
-	ld hl, EvosAttacksPointers
+	ld hl, LearnsetPointers
 	ld b, 0
 	ld a, [wCurPartySpecies]
 	dec a
@@ -599,10 +604,6 @@ FillMoves: ; 424e1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.GoToAttacks:
-	ld a, [hli]
-	and a
-	jr nz, .GoToAttacks
 	jr .GetLevel
 
 .NextMove:
@@ -721,7 +722,7 @@ GetPreEvolution: ; 42581
 
 	ld c, 0
 .loop ; For each Pokemon...
-	ld hl, EvosAttacksPointers
+	ld hl, EvolutionPointers
 	ld b, 0
 	add hl, bc
 	add hl, bc

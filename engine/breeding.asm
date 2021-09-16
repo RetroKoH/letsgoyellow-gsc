@@ -548,10 +548,10 @@ InheritLevelMove:
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, EvosAttacksPointers
+	ld hl, LearnsetPointers
 	add hl, bc
 	add hl, bc
-	ld a, BANK(EvosAttacksPointers)
+	ld a, BANK(LearnsetPointers)
 	call GetFarHalfword
 .loop
 	ld a, BANK(EvosAttacks)

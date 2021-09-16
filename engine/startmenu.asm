@@ -1687,17 +1687,17 @@ GetForgottenMoves::
 	dec a
 	ld b, 0
 	ld c, a
-	ld hl, EvosAttacksPointers
+	ld hl, LearnsetPointers
 	add hl, bc
 	add hl, bc
-	ld a, BANK(EvosAttacksPointers)
+	ld a, BANK(LearnsetPointers)
 	call GetFarHalfword
-.skip_evos
-	ld a, BANK(EvosAttacks)
-	call GetFarByte
-	inc hl
-	and a
-	jr nz, .skip_evos
+;.skip_evos
+;	ld a, BANK(EvosAttacks)
+;	call GetFarByte
+;	inc hl
+;	and a
+;	jr nz, .skip_evos
 
 	ld de, wMoveScreenMoves
 	ld c, a

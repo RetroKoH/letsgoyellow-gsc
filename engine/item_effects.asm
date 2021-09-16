@@ -1029,17 +1029,17 @@ LureBallMultiplier:
 MoonBallMultiplier:
 ; multiply catch rate by 4 if mon evolves with moon stone
 GLOBAL EvosAttacks
-GLOBAL EvosAttacksPointers
+GLOBAL EvolutionPointers
 
 	push bc
 	ld a, [wTempEnemyMonSpecies]
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, EvosAttacksPointers
+	ld hl, EvolutionPointers
 	add hl, bc
 	add hl, bc
-	ld a, BANK(EvosAttacksPointers)
+	ld a, BANK(EvolutionPointers)
 	call GetFarHalfword
 	pop bc
 

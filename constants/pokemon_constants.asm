@@ -310,6 +310,11 @@ EGG EQU CANCEL ; EGG is used as sentinel for egg pic/icon/etc
 	const UNOWN_QUESTION_FORM
 NUM_UNOWN EQU const_value +- 1
 
+; pichu
+	const_def 1
+	const PICHU_PLAIN_FORM
+	const PICHU_SPIKY_EARED_FORM
+
 ; pikachu
 	const_def 1
 	const PIKACHU_PLAIN_FORM
@@ -318,11 +323,6 @@ NUM_UNOWN EQU const_value +- 1
 	const PIKACHU_RED_FORM
 	const PIKACHU_YELLOW_FORM
 	const PIKACHU_SPARK_FORM
-
-; pichu
-	const_def 1
-	const PICHU_PLAIN_FORM
-	const PICHU_SPIKY_EARED_FORM
 
 ; arbok
 	const_def 1

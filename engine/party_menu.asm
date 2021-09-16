@@ -379,7 +379,7 @@ PlacePartyMonEvoStoneCompatibility: ; 5022f
 	dec a
 	ld e, a
 	ld d, 0
-	ld hl, EvosAttacksPointers
+	ld hl, EvolutionPointers
 	add hl, de
 	add hl, de
 	call .DetermineCompatibility
@@ -399,7 +399,7 @@ PlacePartyMonEvoStoneCompatibility: ; 5022f
 
 .DetermineCompatibility: ; 50268
 	ld de, wStringBuffer1
-	ld a, BANK(EvosAttacksPointers)
+	ld a, BANK(EvolutionPointers)
 	ld bc, 2
 	call FarCopyBytes
 	ld hl, wStringBuffer1

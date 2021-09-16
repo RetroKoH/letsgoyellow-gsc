@@ -3471,10 +3471,10 @@ UnevolvedEviolite:
 	push bc
 	ld c, a
 	ld b, 0
-	ld hl, EvosAttacksPointers
+	ld hl, EvolutionPointers
 	add hl, bc
 	add hl, bc
-	ld a, BANK(EvosAttacksPointers)
+	ld a, BANK(EvolutionPointers)
 	call GetFarHalfword
 	ld a, BANK(EvosAttacks)
 	call GetFarByte

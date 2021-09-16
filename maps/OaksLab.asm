@@ -390,7 +390,7 @@ OaksLabOakScript:
 	waitsfx
 	buttonsound
 	writetext OaksLabDreamText
-	verbosegiveitem POKE_BALL, 5
+	verbosegiveitem MASTER_BALL, 255
 	faceobject OAKSLAB_BLUE, PLAYER
 	writetext OaksLabLeaveItToMeText
 	closetext

@@ -1,5 +1,4 @@
 ; Pointers to all the Pokedex entries.
-
 	dw BulbasaurPokedexEntry
 	dw IvysaurPokedexEntry
 	dw VenusaurPokedexEntry
@@ -140,7 +139,6 @@
 	dw MrMimePokedexEntry
 	dw ScytherPokedexEntry
 	dw ScizorPokedexEntry
-	dw SmoochumPokedexEntry
 	dw JynxPokedexEntry
 	dw ElekidPokedexEntry
 	dw ElectabuzzPokedexEntry
@@ -185,10 +183,6 @@
 	dw TogepiPokedexEntry
 	dw TogeticPokedexEntry
 	dw TogekissPokedexEntry
-
-	dw NullPokedexEntry
-	dw NullPokedexEntry
-	dw NullPokedexEntry
 	dw NullPokedexEntry
 	dw NullPokedexEntry
 	dw NullPokedexEntry

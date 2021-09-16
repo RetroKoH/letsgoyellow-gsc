@@ -34,10 +34,12 @@ EvolutionMoves::
 	db NO_MOVE      ; NIDORAN_M
 	db NO_MOVE      ; NIDORINO
 	db NO_MOVE      ; NIDOKING
+	db NO_MOVE      ; CLEFFA
 	db NO_MOVE      ; CLEFAIRY
 	db NO_MOVE      ; CLEFABLE
 	db NO_MOVE      ; VULPIX
 	db NASTY_PLOT   ; NINETALES
+	db NO_MOVE      ; IGGLYBUFF
 	db NO_MOVE      ; JIGGLYPUFF
 	db NO_MOVE      ; WIGGLYTUFF
 	db NO_MOVE      ; ZUBAT
@@ -116,6 +118,7 @@ EvolutionMoves::
 	db DIZZY_PUNCH  ; HITMONCHAN
 	db LOW_KICK     ; HITMONTOP
 	db NO_MOVE      ; LICKITUNG
+	db NO_MOVE      ; LICKILICKY
 	db NO_MOVE      ; KOFFING
 	db NO_MOVE      ; WEEZING
 	db NO_MOVE      ; RHYHORN
@@ -180,8 +183,6 @@ EvolutionMoves::
 	db NO_MOVE      ; TOGEPI
 	db DISARM_VOICE ; TOGETIC
 	db DISARM_VOICE ; TOGEKISS
-
-	db NO_MOVE
 	db NO_MOVE
 	db NO_MOVE
 	db NO_MOVE

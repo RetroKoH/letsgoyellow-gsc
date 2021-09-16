@@ -38,10 +38,12 @@ EvosAttacksPointers:: ; 0x425b1
 	dw NidoranMEvosAttacks
 	dw NidorinoEvosAttacks
 	dw NidokingEvosAttacks
+	dw CleffaEvosAttacks
 	dw ClefairyEvosAttacks
 	dw ClefableEvosAttacks
 	dw VulpixEvosAttacks
 	dw NinetalesEvosAttacks
+	dw IgglybuffEvosAttacks
 	dw JigglypuffEvosAttacks
 	dw WigglytuffEvosAttacks
 	dw ZubatEvosAttacks
@@ -120,6 +122,7 @@ EvosAttacksPointers:: ; 0x425b1
 	dw HitmonchanEvosAttacks
 	dw HitmontopEvosAttacks
 	dw LickitungEvosAttacks
+	dw LickitungEvosAttacks ; Lickilicky
 	dw KoffingEvosAttacks
 	dw WeezingEvosAttacks
 	dw RhyhornEvosAttacks

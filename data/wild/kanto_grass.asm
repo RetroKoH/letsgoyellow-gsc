@@ -300,29 +300,29 @@
 	map_id ROUTE_1
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 3, AA
-	db 3, AA;RATTATA
-	db 3, AA;RATTATA
-	db 2, AA;RATTATA
-	db 2, AA
-	db 4, AA
-	db 6, AA
+	db 3, PIDGEY
+	db 3, RATTATA
+	db 3, RATTATA
+	db 2, RATTATA
+	db 2, PIDGEY
+	db 4, PIDGEY
+	db 6, BELLSPROUT
 	; day
-	db 3, AA
-	db 3, AA;RATTATA
-	db 3, AA;RATTATA
-	db 2, AA;RATTATA
-	db 2, AA
-	db 4, AA
-	db 6, AA ; BELLSPROUT
+	db 3, PIDGEY
+	db 3, RATTATA
+	db 3, RATTATA
+	db 2, RATTATA
+	db 2, PIDGEY
+	db 4, PIDGEY
+	db 6, BELLSPROUT
 	; nite
-	db 3, AA
-	db 3, AA;RATTATA
-	db 3, AA;RATTATA
-	db 2, AA;RATTATA
-	db 2, AA
-	db 4, AA
-	db 6, AA
+	db 3, MEOWTH
+	db 3, RATTATA
+	db 3, RATTATA
+	db 2, RATTATA
+	db 2, MEOWTH
+	db 4, MEOWTH
+	db 6, ODDISH
 
 	map_id ROUTE_2_NORTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -867,27 +867,27 @@
 	map_id ROUTE_22
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 03, LICKITUNG
-	db 03, LICKITUNG
-	db 04, LICKITUNG
-	db 04, LICKITUNG
-	db 04, LICKITUNG
+	db 03, SPEAROW
+	db 03, NIDORAN_M
+	db 04, NIDORAN_F
+	db 04, RATTATA
+	db 04, SPEAROW
 	db 04, MANKEY
 	db 06, MANKEY
 	; day
-	db 04, LICKITUNG
-	db 03, LICKITUNG
-	db 04, LICKITUNG
-	db 04, LICKITUNG
-	db 05, LICKITUNG
+	db 03, SPEAROW
+	db 03, NIDORAN_M
+	db 04, NIDORAN_F
+	db 04, RATTATA
+	db 04, SPEAROW
 	db 04, MANKEY
 	db 06, MANKEY
 	; nite
-	db 03, LICKITUNG
-	db 03, LICKITUNG
-	db 04, LICKITUNG
-	db 04, LICKITUNG
-	db 05, LICKITUNG
+	db 03, SPEAROW
+	db 03, NIDORAN_M
+	db 04, NIDORAN_F
+	db 04, RATTATA
+	db 04, SPEAROW
 	db 04, MANKEY
 	db 06, MANKEY
 

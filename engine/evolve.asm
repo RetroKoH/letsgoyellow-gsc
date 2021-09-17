@@ -484,8 +484,8 @@ LearnEvolutionMove:
 	ld h, [hl]
 	ld l, a
 
-;.learnSetLoop	; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
-	ld a, [hl]
+.find_move	; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
+	ld a, [hli]
 	and a		; have we reached the end of the learn set?
 	ret z		; if we've reached the end of the learn set, jump (If no moves present in set)
 
@@ -523,11 +523,11 @@ LearnEvolutionMove:
 
 .has_move
 	pop hl
-	ret
+	jr .find_move
 
 
 LearnLevelMoves: ; 42487
-	ld a, [wd265]
+	ld a, [wd265] ; species
 	ld [wCurPartySpecies], a
 	dec a
 	ld b, 0
@@ -538,13 +538,19 @@ LearnLevelMoves: ; 42487
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	jr .find_move
+
+.nextMove
+	inc hl
 
 .find_move ; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
 	ld a, [hli]
 	and a		; have we reached the end of the learn set?
 	ret z		; if we've reached the end of the learn set, jump (If no moves present in set)
 
-	ld b, a
+	cp $FF
+	jr z, .nextMove			; skip evolution moves
+	ld b, a					; level the move is learnt at
 	ld a, [wCurPartyLevel]
 	cp b
 	ld a, [hli]
@@ -566,7 +572,6 @@ LearnLevelMoves: ; 42487
 	jr nz, .check_move
 	jr .learn
 .has_move
-
 	pop hl
 	jr .find_move
 
@@ -589,7 +594,6 @@ LearnLevelMoves: ; 42487
 
 FillMoves: ; 424e1
 ; Fill in moves at de for wCurPartySpecies at wCurPartyLevel
-
 	push hl
 	push de
 	push bc
@@ -612,6 +616,8 @@ FillMoves: ; 424e1
 	inc hl
 .GetLevel:
 	ld a, [hli]
+	cp $FF
+	jr z, .GetMove	; skip evolution moves
 	and a
 	jp z, .done
 	ld b, a

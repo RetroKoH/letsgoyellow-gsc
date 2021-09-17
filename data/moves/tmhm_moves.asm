@@ -107,8 +107,8 @@ TMHMMoves:
 	db SWAGGER      ; MT25 (Celadon City)
 	db THUNDERPUNCH ; MT26 (Goldenrod City)
 	db TRICK        ; MT27 (Battle Tower)
-	db TRICK_ROOM   ; MT28 (TODO)
+	db POUND        ; MT28 (TODO)
 	db ZAP_CANNON   ; MT29 (Power Plant)
 	db ZEN_HEADBUTT ; MT30 (Saffron City)
-; TODO: Agility, Baton Pass, Charm, Trick Room
+; TODO: Agility, Baton Pass, Charm
 	db 0 ; end

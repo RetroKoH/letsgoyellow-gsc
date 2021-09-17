@@ -119,7 +119,7 @@ BattleAnimations::
 	dw BattleAnim_FlashCannon
 	dw BattleAnim_Metronome
 	dw BattleAnim_Scald
-	dw BattleAnim_TrickRoom
+	dw BattleAnim_TrickRoom ; Replace with Pound
 	dw BattleAnim_SkillSwap
 	dw BattleAnim_Lick
 	dw BattleAnim_GunkShot

@@ -118,7 +118,7 @@ MoveDescriptions::
 	dw FlashCannonDescription
 	dw MetronomeDescription
 	dw ScaldDescription
-	dw TrickRoomDescription
+	dw PoundDescription
 	dw SkillSwapDescription
 	dw LickDescription
 	dw GunkShotDescription
@@ -621,9 +621,9 @@ WrapDescription:
 	db   "Traps the foe for"
 	next "2-5 turns.@"
 
-TrickRoomDescription:
-	db   "Slow #mon move"
-	next "first for 5 turns.@"
+PoundDescription:
+	db   "Pounds with fore-"
+	next "legs or tail.@"
 
 ExplosionDescription:
 	db   "Very powerful but"

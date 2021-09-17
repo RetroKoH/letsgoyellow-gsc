@@ -118,7 +118,7 @@ MoveNames::
 	db "FLASH CANNON@"
 	db "METRONOME@"
 	db "SCALD@"
-	db "TRICK ROOM@"
+	db "POUND@"
 	db "SKILL SWAP@"
 	db "LICK@"
 	db "GUNK SHOT@"

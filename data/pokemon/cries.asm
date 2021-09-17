@@ -145,7 +145,7 @@ CryHeaders::
 	mon_cry CRY_KRABBY,      $008,  $0c0 ; MrMime
 	mon_cry CRY_CATERPIE,    $000,  $100 ; Scyther
 	mon_cry CRY_AMPHAROS,    $000,  $160 ; Scizor
-	mon_cry CRY_MARILL,      $068,  $100 ; SMOOCHUM
+;	mon_cry CRY_MARILL,      $068,  $100 ; SMOOCHUM
 	mon_cry CRY_DROWZEE,     $0ff,  $17f ; Jynx
 	mon_cry CRY_REMORAID,   -$2d8,  $0b4 ; Elekid
 	mon_cry CRY_VOLTORB,     $08f,  $17f ; Electabuzz

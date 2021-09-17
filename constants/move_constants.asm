@@ -119,7 +119,7 @@
 	const FLASH_CANNON ; $75
 	const METRONOME    ; $76
 	const SCALD        ; $77
-	const TRICK_ROOM   ; $78
+	const POUND        ; $78 - Was Trick Room
 	const SKILL_SWAP   ; $79
 	const LICK         ; $7a
 	const GUNK_SHOT    ; $7b

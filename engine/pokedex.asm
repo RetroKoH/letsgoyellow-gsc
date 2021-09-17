@@ -1189,9 +1189,9 @@ Pokedex_DrawOptionScreenBG: ; 4087c (10:487c)
 	db $3b, " ","O","p","t","i","o","n"," ", $3c, $ff
 
 .Modes: ; 408bd
-	db   "Johto Mode"
-	next "National Mode"
-	next "A to Z Mode"
+	db   "Kanto Dex"
+	next "National Dex"
+	next "A-Z Mode"
 	db "@"
 
 .UnownMode: ; 408e5

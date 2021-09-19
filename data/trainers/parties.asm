@@ -1610,7 +1610,7 @@ CamperGroup:
 	db "Jerry@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 62, RHYDON
+	db 11, SANDSHREW
 	db -1 ; end
 
 ; ================
@@ -3156,7 +3156,7 @@ HikerGroup:
 	db "Edwin@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 62, GOLEM
+	db 10, GEODUDE
 	db -1 ; end
 
 ; ================

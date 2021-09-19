@@ -30,5 +30,3 @@ MOVE_CATEGORIES EQU const_value
 	const STATUS
 
 CATEGORIES_END EQU const_value
-
-AA EQU IGGLYBUFF

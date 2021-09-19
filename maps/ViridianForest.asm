@@ -10,7 +10,7 @@ ViridianForest_MapScriptHeader:
 
 	db 0 ; coord events
 
-	db 10 ; bg events
+	db 9 ; bg events
 	bg_event  4,  7, SIGNPOST_JUMPTEXT, ViridianForestSignText1
 	bg_event  6, 26, SIGNPOST_JUMPTEXT, ViridianForestSignText2
 	bg_event 28, 19, SIGNPOST_JUMPTEXT, ViridianForestSignText3
@@ -18,18 +18,135 @@ ViridianForest_MapScriptHeader:
 	bg_event 26, 42, SIGNPOST_JUMPTEXT, ViridianForestSignText5
 	bg_event 20, 44, SIGNPOST_JUMPTEXT, ViridianForestSignText6
 	bg_event 17, 29, SIGNPOST_JUMPTEXT, ViridianForestMossRockText
-	bg_event 32, 44, SIGNPOST_ITEM + POTION, EVENT_VIRIDIAN_FOREST_HIDDEN_MAX_ETHER
-	bg_event 18, 43, SIGNPOST_ITEM + ANTIDOTE, EVENT_VIRIDIAN_FOREST_HIDDEN_FULL_HEAL
-	bg_event  4, 43, SIGNPOST_ITEM + LIGHT_BALL, EVENT_VIRIDIAN_FOREST_HIDDEN_MULCH
+	bg_event 32, 44, SIGNPOST_ITEM + POTION, EVENT_VIRIDIAN_FOREST_HIDDEN_POTION
+	bg_event 18, 43, SIGNPOST_ITEM + ANTIDOTE, EVENT_VIRIDIAN_FOREST_HIDDEN_ANTIDOTE
+;	bg_event  4, 43, SIGNPOST_ITEM + LIGHT_BALL, EVENT_VIRIDIAN_FOREST_HIDDEN_MULCH
 
-	db 0 ; object events
-;	object_event 29, 42, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 2, GenericTrainerBug_maniacDane, -1
-;	object_event 33, 35, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 5, GenericTrainerBug_maniacDion, -1
-;	object_event 32, 21, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 4, GenericTrainerBug_maniacStacey, -1
-;	object_event 31,  4, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerBug_maniacEllis, -1
-;	object_event  5, 24, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 4, GenericTrainerBug_maniacAbner, -1
-;	itemball_event 14, 31, DIRE_HIT, 1, EVENT_ROUTE_2_DIRE_HIT
-;	itemball_event  3, 33, MAX_POTION, 1, EVENT_ROUTE_2_MAX_POTION
+	db 11 ; object events
+	object_event 22, 44, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, ViridianForestText1, -1
+	object_event 32, 43, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, ViridianForestText2, -1
+	object_event  5, 43, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 0, GenericTrainerLassBrittany, -1
+	object_event 33, 33, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 4, GenericTrainerBugCatcherRick, -1
+	object_event 33, 19, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 4, GenericTrainerBugCatcherDoug, -1
+	object_event 20, 15, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 4, GenericTrainerBugCatcherAntony, -1
+	object_event  6, 11, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 2, GenericTrainerBugCatcherSammy, -1
+	fruittree_event 34,  8, FRUITTREE_VIRIDIAN_FOREST, PECHA_BERRY
+	itemball_event  13, 25, POTION, 1, EVENT_VIRIDIAN_FOREST_POTION
+	itemball_event   3, 32, POKE_BALL, 1, EVENT_VIRIDIAN_FOREST_POKEBALL
+	itemball_event  29, 10, ANTIDOTE, 1, EVENT_VIRIDIAN_FOREST_ANTIDOTE
+
+GenericTrainerLassBrittany:
+	generictrainer LASS, BRITTANY, EVENT_BEAT_LASS_BRITTANY, LassBrittanySeenText, LassBrittanyBeatenText
+	; LassSarahAfterText
+	text "I saw a Pikachu"
+	line "earlier, but I"
+	cont "haven't caught one"
+	cont "yet…"
+	done
+
+LassBrittanySeenText:
+	text "Hi, do you have a"
+	line "Pikachu?"
+	done
+
+LassBrittanyBeatenText:
+	text "Oh no, really?"
+	done
+
+GenericTrainerBugCatcherRick:
+	generictrainer BUG_CATCHER, RICK, EVENT_BEAT_BUG_CATCHER_RICK, BugCatcherRickSeenText, BugCatcherRickBeatenText
+	; BugCatcherRickAfterText
+	text "Ssh! You'll scare"
+	line "the bugs away!"
+	done
+
+BugCatcherRickSeenText:
+	text "Hey! You have"
+	line "#mon! Come on,"
+	cont "let's battle 'em!"
+	done
+
+BugCatcherRickBeatenText:
+	text "No! Caterpie can't"
+	line "hack it!"
+	done
+
+GenericTrainerBugCatcherDoug:
+	generictrainer BUG_CATCHER, DOUG, EVENT_BEAT_BUG_CATCHER_DOUG, BugCatcherDougSeenText, BugCatcherDougBeatenText
+	; BugCatcherDougAfterText
+	text "Darn, I'm going"
+	line "to catch some"
+	cont "stronger ones…"
+	done
+
+BugCatcherDougSeenText:
+	text "Yo! You can't jam"
+	line "out if you're a"
+	cont "#mon trainer!"
+	done
+
+BugCatcherDougBeatenText:
+	text "Huh? I ran out of"
+	line "#mon!"
+	done
+
+GenericTrainerBugCatcherAntony:
+	generictrainer BUG_CATCHER, ANTONY, EVENT_BEAT_BUG_CATCHER_ANTONY, BugCatcherAntonySeenText, BugCatcherAntonyBeatenText
+	; BugCatcherTajiriAfterText
+	text "A Metapod is cool"
+	line "because its"
+	cont "attack is its"
+	cont "defense!"
+	done
+
+BugCatcherAntonySeenText:
+	text "I'm gonna be the"
+	line "best. You just"
+	cont "can't beat me!"
+	done
+
+BugCatcherAntonyBeatenText:
+	text "After all I did…"
+	done
+
+GenericTrainerBugCatcherSammy:
+	generictrainer BUG_CATCHER, SAMMY, EVENT_BEAT_BUG_CATCHER_SAMMY, BugCatcherSammySeenText, BugCatcherSammyBeatenText
+	; BugCatcherSammyAfterText
+	text "Sometimes, you"
+	line "can find stuff on"
+	cont "the ground."
+	
+	para "I'm looking for"
+	line "the stuff I"
+	cont "dropped…"
+	done
+
+BugCatcherSammySeenText:
+	text "Hey, wait up!"
+	line "What's the hurry?"
+	done
+
+BugCatcherSammyBeatenText:
+	text "I give! You're"
+	line "good at this!"
+	done
+
+ViridianForestText1:
+	text "I came here with"
+	line "some friends!"
+	
+	para "They're out for"
+	line "#MON battles!"
+	done
+
+ViridianForestText2:
+	text "I ran out of #"
+	line "BALLs to catch"
+	cont "#MON with."
+	
+	para "You should carry"
+	line "extras."
+	done
 
 ViridianForestSignText1:
 	text "Leaving"

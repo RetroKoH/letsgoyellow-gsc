@@ -114,7 +114,7 @@ KRIS EQU __enum__
 	const JIMMY
 	const OWEN
 	const JASON
-	const YOUNGSTER_JOSH
+	const JOSH
 	const REGIS
 	const ALFIE
 	const OLIVER
@@ -122,25 +122,22 @@ KRIS EQU __enum__
 	const TYLER
 
 	trainerclass BUG_CATCHER ; 20
-	const WADE1
-	const WADE2
-	const WADE3
-	const WADE4
-	const WADE5
-	const ARNIE1
-	const ARNIE2
-	const ARNIE3
-	const ARNIE4
-	const ARNIE5
-	const DON
+	const RICK
+	const DOUG
+	const ANTONY
+	const CHARLY
+	const SAMMY
+	const COLTON
+	const GREG
+	const JAMES
+	const KENT
+	const ROBBY
+	const CALE
+	const KEIGO
+	const ELIJAH
+	const BRENT
+	const CONNER
 	const BENNY
-	const AL
-	const JOSH
-	const KEN
-	const WAYNE
-	const OSCAR
-	const CALLUM
-	const DAVID
 
 	trainerclass CAMPER ; 21
 	const TODD1
@@ -166,6 +163,7 @@ KRIS EQU __enum__
 	const CLARK
 	const PEDRO
 	const AMOS
+	const DON
 
 	trainerclass PICNICKER ; 22
 	const LIZ1
@@ -414,12 +412,12 @@ KRIS EQU __enum__
 	const MAKO
 
 	trainerclass LASS ; 31
+	const BRITTANY
 	const DANA1
 	const DANA2
 	const DANA3
 	const DANA4
 	const DANA5
-	const CATHY
 	const AMANDA
 	const KRISE
 	const CONNIE
@@ -458,14 +456,14 @@ KRIS EQU __enum__
 	const LOU
 	const ROB
 	const ED
-	const DOUG
+	const DOUGY
 	const DANE
 	const DION
 	const STACEY
 	const ELLIS
 	const ABNER
 	const KENTA
-	const ROBBY
+	const ROBBYY
 	const PIERRE
 	const DYLAN
 	const KAI
@@ -541,7 +539,7 @@ KRIS EQU __enum__
 	const FRANKLIN
 	const HERMAN
 	const FIDEL
-	const GREG
+	const GREGZ
 	const NORMAN
 	const MARK
 	const PHIL
@@ -668,7 +666,7 @@ KRIS EQU __enum__
 	const HUEY4
 	const EUGENE
 	const TERRELL
-	const KENT
+	const KENTE
 	const ERNEST
 	const JEFF
 	const GARRETT
@@ -691,10 +689,10 @@ KRIS EQU __enum__
 	const HAL
 	const JEROME
 	const TUCKER
-	const RICK
+	const RICKIE
 	const CAMERON
 	const SETH
-	const JAMES
+	const JAMESON
 	const WALTER
 	const LEWIS
 	const MICHEL

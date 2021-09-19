@@ -306,7 +306,7 @@
 	db 2, RATTATA
 	db 2, PIDGEY
 	db 4, PIDGEY
-	db 6, BELLSPROUT
+	db 5, BELLSPROUT
 	; day
 	db 3, PIDGEY
 	db 3, RATTATA
@@ -314,7 +314,7 @@
 	db 2, RATTATA
 	db 2, PIDGEY
 	db 4, PIDGEY
-	db 6, BELLSPROUT
+	db 5, BELLSPROUT
 	; nite
 	db 3, MEOWTH
 	db 3, RATTATA
@@ -322,7 +322,7 @@
 	db 2, RATTATA
 	db 2, MEOWTH
 	db 4, MEOWTH
-	db 6, ODDISH
+	db 5, ODDISH
 
 	map_id ROUTE_2_NORTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -333,7 +333,7 @@
 	db 6, NIDORAN_F
 	db 5, RATTATA
 	db 5, PIDGEY
-	db 6, PIDGEY
+	db 6, BELLSPROUT
 	; day
 	db 4, RATTATA
 	db 4, PIDGEY
@@ -341,7 +341,7 @@
 	db 6, NIDORAN_F
 	db 5, RATTATA
 	db 5, PIDGEY
-	db 5, BELLSPROUT
+	db 6, BELLSPROUT
 	; nite
 	db 4, RATTATA
 	db 4, PIDGEY
@@ -349,7 +349,7 @@
 	db 6, NIDORAN_F
 	db 5, RATTATA
 	db 5, PIDGEY
-	db 5, ODDISH
+	db 6, ODDISH
 
 	map_id ROUTE_2_SOUTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
@@ -360,7 +360,7 @@
 	db 6, NIDORAN_F
 	db 5, RATTATA
 	db 5, PIDGEY
-	db 6, PIDGEY
+	db 5, BELLSPROUT
 	; day
 	db 4, RATTATA
 	db 4, PIDGEY
@@ -371,11 +371,11 @@
 	db 5, BELLSPROUT
 	; nite
 	db 4, RATTATA
-	db 4, PIDGEY
+	db 3, MEOWTH
 	db 6, NIDORAN_M
 	db 6, NIDORAN_F
 	db 5, RATTATA
-	db 5, PIDGEY
+	db 4, MEOWTH
 	db 5, ODDISH
 
 	map_id VIRIDIAN_FOREST

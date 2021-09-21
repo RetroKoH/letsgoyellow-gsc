@@ -11,7 +11,7 @@ RedsHouse2F_MapScriptHeader:
 
 	db 4 ; bg events
 	bg_event  0,  1, SIGNPOST_UP, RedsHouse2FPCScript
-	bg_event  3,  5, SIGNPOST_JUMPTEXT, RedsHouse2FSNESText
+	bg_event  3,  5, SIGNPOST_UP, RedsHouse2FSNESText
 	bg_event  4,  1, SIGNPOST_READ, PokemonJournalProfOakScript
 	bg_event  5,  1, SIGNPOST_READ, PokemonJournalProfOakScript
 

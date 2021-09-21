@@ -10,55 +10,122 @@ RedsHouse1F_MapScriptHeader:
 
 	db 0 ; coord events
 
-	db 1 ; bg events
+	db 4 ; bg events
 	bg_event  5,  1, SIGNPOST_UP, RedsHouse1FTVScript
+	bg_event  0,  1, SIGNPOST_JUMPTEXT, RedsHouse1FTextFridge
+	bg_event  1,  1, SIGNPOST_JUMPTEXT, RedsHouse1FTextSink
+	bg_event  2,  1, SIGNPOST_JUMPTEXT, RedsHouse1FTextStove
 
 	db 1 ; object events
 	object_event  5,  3, SPRITE_REDS_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RedsMom, -1
 
 RedsMom:
-	checkevent EVENT_MET_REDS_MOM
-	iftrue_jumptextfaceplayer .Text2
-	setevent EVENT_MET_REDS_MOM
-	thistextfaceplayer
+;	checkevent EVENT_MET_REDS_MOM
+;	iftrue_jumptextfaceplayer .Text2
+;	setevent EVENT_MET_REDS_MOM
+;	thistextfaceplayer
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_STARTER
+	iftrue .MomHealPokemon
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue_jumpopenedtext MomWakeUpText2
+	thisopenedtext
 
-	text "Hi!"
+;MomWakeUpText:
+	text "Mom: Right."
+	line "All boys leave"
+	cont "home someday."
+	cont "It said so on TV."
 
-	para "Red's been away"
-	line "for a long time."
-
-	para "He hasn't called"
-	line "either, so I have"
-
-	para "no idea where he"
-	line "is or what he's"
-	cont "been doing."
-
-	para "They say that no"
-	line "word is proof that"
-
-	para "he's doing fine,"
-	line "but I do worry"
-	cont "about him."
+	para "Prof. Oak, next"
+	line "door, is looking"
+	cont "for you."
 	done
 
-.Text2:
-	text "I worry about Red"
-	line "getting hurt or"
+.MomHealPokemon
+	writetext MomHealText1
+	closetext
+	special Special_FadeBlackQuickly
+	special Special_ReloadSpritesNoPalettes
+	playmusic MUSIC_HEAL
+	special HealParty
+	pause 60
+	special Special_FadeInQuickly
+	special RestartMapMusic
+	blackoutmod PALLET_TOWN
+	opentext
+	thisopenedtext
 
-	para "sick, but he's a"
-	line "boy. I'm proud"
+;MomHealText2:
+	text "Mom: Oh good!"
+	line "You and your"
+	cont "#mon are"
+	cont "looking great!"
+	cont "Take care now!"
+	done
 
-	para "that he is doing"
-	line "what he wants to"
+MomWakeUpText2:
+	text "Mom: Right."
+	line "All girls leave"
+	cont "home someday."
+	cont "It said so on TV."
 
-	para "do."
+	para "Prof. Oak, next"
+	line "door, is looking"
+	cont "for you."
+	done
+
+MomHealText1:
+	text "Mom: <PLAYER>!"
+	line "You should take a"
+	cont "quick rest."
+	prompt
+
+RedsHouse1FTextFridge:
+	text "Let's see what's"
+	line "in the fridge…"
+	
+	para "Fresh Water and"
+	line "tasty Lemonade!"
+	done
+
+RedsHouse1FTextSink:
+	text "The sink is shiny"
+	line "and clean."
+	done
+
+RedsHouse1FTextStove:
+	text "Nothing on the"
+	line "stove."
 	done
 
 RedsHouse1FTVScript:
-	thistext
+	opentext
+	writetext TheresAMovieText
+	waitbutton
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue_jumpopenedtext WizardOfOzText
+	thisopenedtext
 
-	text "They have programs"
-	line "that aren't shown"
-	cont "in Johto…"
+;StandByMeText:
+	text "Four boys are"
+	line "walking on"
+	cont "railroad tracks."
+
+	para "I better go too."
+	done
+
+TheresAMovieText:
+	text "There's a movie"
+	line "on TV."
+	done
+
+WizardOfOzText:
+	text "A girl with her"
+	line "hair in pigtails"
+	cont "is walking up a"
+	cont "brick road."
+
+	para "I better go too."
 	done

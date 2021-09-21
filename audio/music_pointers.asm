@@ -48,7 +48,7 @@ Music:
 	dba Music_BuenasPassword
 	dba Music_GameCorner
 	dba Music_Bicycle
-	dba Music_LookLass
+	dba Music_MeetFemaleTrainer
 	dba Music_NationalPark
 	dba Music_BugCatchingContest
 	dba Music_ContestResults
@@ -112,7 +112,7 @@ Music:
 	dba Music_WildBattleGo
 	dba Music_DiglettsCaveRBY
 	dba Music_ViridianForest
-	dba Music_LookHiker
+	dba Music_MeetMaleTrainer
 	dba Music_ViridianCity
 	dba Music_Route3
 	dba Music_LookOfficer

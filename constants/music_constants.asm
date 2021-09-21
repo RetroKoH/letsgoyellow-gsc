@@ -1,6 +1,6 @@
 	const_def
 	const MUSIC_NONE                           ; 00
-	const MUSIC_CRYSTAL_OPENING                ; 01
+	const MUSIC_CRYSTAL_OPENING                ; 01; TODO: adapt pokered's SFX_CAUGHT_MON
 	const MUSIC_TITLE                          ; 02
 	const MUSIC_MAIN_MENU                      ; 03
 	const MUSIC_NEW_BARK_TOWN                  ; 04
@@ -48,7 +48,7 @@
 	const MUSIC_BUENAS_PASSWORD                ; 2e
 	const MUSIC_GAME_CORNER                    ; 2f
 	const MUSIC_BICYCLE                        ; 30
-	const MUSIC_LASS_ENCOUNTER                 ; 31
+	const MUSIC_FEMALE_TRAINER_ENCOUNTER       ; 31
 	const MUSIC_NATIONAL_PARK                  ; 32
 	const MUSIC_BUG_CATCHING_CONTEST           ; 33
 	const MUSIC_BUG_CATCHING_CONTEST_RANKING   ; 34
@@ -112,7 +112,7 @@
 	const MUSIC_WILD_BATTLE_GO                 ; 6e
 	const MUSIC_DIGLETTS_CAVE_RBY              ; 6f
 	const MUSIC_VIRIDIAN_FOREST                ; 70
-	const MUSIC_HIKER_ENCOUNTER                ; 71
+	const MUSIC_MALE_TRAINER_ENCOUNTER         ; MUSIC_HIKER_ENCOUNTER ; 71
 	const MUSIC_VIRIDIAN_CITY                  ; 72
 	const MUSIC_ROUTE_3                        ; 73
 	const MUSIC_OFFICER_ENCOUNTER              ; 74

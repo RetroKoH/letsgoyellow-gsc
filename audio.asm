@@ -85,7 +85,7 @@ INCLUDE "audio/music/gamecorner.asm"
 SECTION "Music 7", ROMX
 
 INCLUDE "audio/music/bicycle.asm"
-INCLUDE "audio/music/looklass.asm"
+INCLUDE "audio/music/meetfemaletrainer.asm"
 INCLUDE "audio/music/nationalpark.asm"
 INCLUDE "audio/music/bugcatchingcontest.asm"
 INCLUDE "audio/music/contestresults.asm"
@@ -144,7 +144,7 @@ INCLUDE "audio/music/viridianforest.asm"
 
 SECTION "Music 12", ROMX
 
-INCLUDE "audio/music/lookhiker.asm"
+INCLUDE "audio/music/meetmaletrainer.asm"
 INCLUDE "audio/music/viridiancity.asm"
 INCLUDE "audio/music/route3.asm"
 INCLUDE "audio/music/lookofficer.asm"

@@ -15,79 +15,12 @@ MountMoon1F_MapScriptHeader:
 	bg_event  2, 17, SIGNPOST_ITEM + RARE_CANDY, EVENT_MOUNT_MOON_1F_HIDDEN_RARE_CANDY
 	bg_event 12, 16, SIGNPOST_ITEM + FULL_RESTORE, EVENT_MOUNT_MOON_1F_HIDDEN_FULL_RESTORE
 
-	db 9 ; object events
-	object_event  4, 18, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 4, GenericTrainerBugManiacKenta, -1
-	object_event 11, 14, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerLassMiriam, -1
-	object_event 20, 21, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 2, GenericTrainerSuperNerdJovan, -1
-	object_event 27, 14, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerBugManiacRobby, -1
-	object_event 20,  2, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 2, GenericTrainerLassIris, -1
-	object_event  5,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerHikerMarcos, -1
+	db 3 ; object events
 	itemball_event  3,  2, REVIVE, 1, EVENT_MOUNT_MOON_1F_REVIVE
 	itemball_event  2, 20, X_ACCURACY, 1, EVENT_MOUNT_MOON_1F_X_ACCURACY
 	itemball_event 16, 22, CALCIUM, 1, EVENT_MOUNT_MOON_1F_CALCIUM
 
-	const_def 1 ; object constants
 
-GenericTrainerBugManiacKenta:
-	generictrainer BUG_MANIAC, KENTA, EVENT_BEAT_BUG_MANIAC_KENTA, BugManiacKentaSeenText, BugManiacKentaBeatenText
-
-	text "Team Rocket used"
-	line "to lurk around"
-	cont "here."
-
-	para "I wonder if the"
-	line "red-haired boy has"
-	cont "any connection to"
-	cont "them?"
-	done
-
-GenericTrainerLassMiriam:
-	generictrainer LASS, MIRIAM, EVENT_BEAT_LASS_MIRIAM, LassMiriamSeenText, LassMiriamBeatenText
-
-	text "Mt.Moon is big,"
-	line "but you'll get"
-	cont "used to it soon."
-	done
-
-GenericTrainerSuperNerdJovan:
-	generictrainer SUPER_NERD, JOVAN, EVENT_BEAT_SUPER_NERD_JOVAN, SuperNerdJovanSeenText, SuperNerdJovanBeatenText
-
-	text "I have yet to find"
-	line "stronger #mon."
-
-	para "Where might they"
-	line "be?"
-	done
-
-GenericTrainerBugManiacRobby:
-	generictrainer BUG_MANIAC, ROBBY, EVENT_BEAT_BUG_MANIAC_ROBBY, BugManiacRobbySeenText, BugManiacRobbyBeatenText
-
-	text "I used to only"
-	line "catch bug #mon"
-	cont "as a hobby,"
-
-	para "but now it's my"
-	line "pride and joy."
-	done
-
-GenericTrainerLassIris:
-	generictrainer LASS, IRIS, EVENT_BEAT_LASS_IRIS, LassIrisSeenText, LassIrisBeatenText
-
-	text "I come here every"
-	line "day just to catch"
-	cont "a Clefairy, but"
-
-	para "I haven't seen a"
-	line "single one…"
-	done
-
-GenericTrainerHikerMarcos:
-	generictrainer HIKER, MARCOS, EVENT_BEAT_HIKER_MARCOS, HikerMarcosSeenText, HikerMarcosBeatenText
-
-	text "A long time ago,"
-	line "I was beaten by a"
-	cont "kid just like you."
-	done
 
 MountMoon1FSilverMovementBefore:
 	step_down

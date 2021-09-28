@@ -35,7 +35,7 @@ Route19BeachHouseVictorScript:
 	closetext
 	winlosstext .BeatenText, 0
 	setlasttalked ROUTE19BEACHHOUSE_VICTOR
-	loadtrainer VICTOR, 1
+	loadtrainer YELLOW, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_VICTOR

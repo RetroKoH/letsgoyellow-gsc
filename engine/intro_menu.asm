@@ -421,7 +421,7 @@ Continue: ; 5d65
 	jp FinishContinueFunction
 ; 5de2
 
-SpawnAfterLeaf: ; 5de2
+SpawnAfterGreen: ; 5de2
 	ld a, SPAWN_HOME
 	ld [wDefaultSpawnpoint], a
 ; 5de7
@@ -485,11 +485,11 @@ FinishContinueFunction: ; 5e5d
 	farcall OverworldLoop
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LEAF
-	jr z, .AfterLeaf
+	jr z, .AfterGreen
 	jp SoftReset
 
-.AfterLeaf:
-	call SpawnAfterLeaf
+.AfterGreen:
+	call SpawnAfterGreen
 	jr .loop
 ; 5e85
 
@@ -1053,10 +1053,10 @@ DrawIntroPlayerPic:
 	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .male
-	ld a, CARRIE
+	ld a, GREEN
 	jr .ok
 .male
-	ld a, CAL
+	ld a, RED
 .ok
 	ld [wTrainerClass], a
 Intro_PrepTrainerPic: ; 619c

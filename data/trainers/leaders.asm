@@ -1,10 +1,9 @@
 BossTrainers:
-	db CHAMPION ; BLUE
-	db LEAF ; GREEN
-	db TOWERTYCOON
-	db GIOVANNI
+	db CHAMPION ; BLUE/LANCE
+	db KAREN
+	db WILL
+	db LANCE
 	db AGATHA
-	db KOGA
 	db BRUNO
 	db LORELEI
 KantoGymLeaders:

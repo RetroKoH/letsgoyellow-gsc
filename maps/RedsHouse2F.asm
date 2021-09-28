@@ -54,6 +54,60 @@ RedsHouse2FPCScript:
 	endtext
 
 RedsHouse2FSNESText:
+	; all badges
+	setflag ENGINE_ZEPHYRBADGE
+	setflag ENGINE_HIVEBADGE
+	setflag ENGINE_PLAINBADGE
+	setflag ENGINE_FOGBADGE
+	setflag ENGINE_STORMBADGE
+	setflag ENGINE_MINERALBADGE
+	setflag ENGINE_GLACIERBADGE
+	setflag ENGINE_RISINGBADGE
+
+	setflag ENGINE_BOULDERBADGE
+	setflag ENGINE_CASCADEBADGE
+	setflag ENGINE_THUNDERBADGE
+	setflag ENGINE_RAINBOWBADGE
+	setflag ENGINE_MARSHBADGE
+	setflag ENGINE_SOULBADGE
+	setflag ENGINE_VOLCANOBADGE
+	setflag ENGINE_EARTHBADGE
+	; fly anywhere
+	setflag ENGINE_FLYPOINT_PALLET
+	setflag ENGINE_FLYPOINT_VIRIDIAN
+	setflag ENGINE_FLYPOINT_PEWTER
+	setflag ENGINE_FLYPOINT_MT_MOON
+	setflag ENGINE_FLYPOINT_CERULEAN
+	setflag ENGINE_FLYPOINT_VERMILION
+	setflag ENGINE_FLYPOINT_CELADON
+	setflag ENGINE_FLYPOINT_ROCK_TUNNEL
+	setflag ENGINE_FLYPOINT_LAVENDER
+	setflag ENGINE_FLYPOINT_FUCHSIA
+	setflag ENGINE_FLYPOINT_SAFFRON
+	setflag ENGINE_FLYPOINT_CINNABAR
+	giveitem SHINY_CHARM
+	setflag ENGINE_HAVE_SHINY_CHARM
+	; hm slaves
+	givepoke MEW, 100, LEFTOVERS
+	givepoke MEW, 100, LEFTOVERS
+	loadvar wPartyMon1Moves+0, FLY
+	loadvar wPartyMon1Moves+1, SURF
+	loadvar wPartyMon1Moves+2, STRENGTH
+	loadvar wPartyMon1Moves+3, CUT
+	loadvar wPartyMon1PP+0, 15
+	loadvar wPartyMon1PP+1, 15
+	loadvar wPartyMon1PP+2, 15
+	loadvar wPartyMon1PP+3, 30
+	loadvar wPartyMon2Moves+0, FLASH
+	loadvar wPartyMon2Moves+1, ROCK_SMASH
+	loadvar wPartyMon2Moves+2, HEADBUTT
+	loadvar wPartyMon2Moves+3, PSYCHIC_M
+	loadvar wPartyMon2PP+0, 20
+	loadvar wPartyMon2PP+1, 15
+	loadvar wPartyMon2PP+2, 15
+	loadvar wPartyMon2PP+3, 10
+	setflag ENGINE_POKEDEX
+	callasm FillPokedex
 	thistext
 
 	text "<PLAYER> is"
@@ -62,3 +116,15 @@ RedsHouse2FSNESText:
 	para "…Okay!"
 	line "It's time to go!"
 	done
+
+FillPokedex:
+	ld a, 1
+	ld [wFirstMagikarpSeen], a
+	ld hl, wPokedexSeen
+	call .Fill
+	ld hl, wPokedexCaught
+.Fill:
+	ld a, %11111111
+	ld bc, 23 ; 001-184
+	call ByteFill
+	ret

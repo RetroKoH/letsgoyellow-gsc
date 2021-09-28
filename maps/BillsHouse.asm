@@ -58,10 +58,10 @@ BillsHouseBillScript:
 	writetext .SeenText
 	waitbutton
 	closetext
-	winlosstext .BeatenText, 0
-	loadtrainer BILL_T, 1
-	startbattle
-	reloadmapafterbattle
+;	winlosstext .BeatenText, 0
+;	loadtrainer BILL_T, 1
+;	startbattle
+;	reloadmapafterbattle
 	setevent EVENT_BEAT_POKEMANIAC_BILL
 	thistext
 

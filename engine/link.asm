@@ -244,7 +244,7 @@ Gen2ToGen2LinkComms: ; 28177
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
 	jr nz, .ready_to_trade
-	ld a, CAL
+	ld a, RED
 	ld [wOtherTrainerClass], a
 	call ClearScreen
 	call Link_WaitBGMap
@@ -2197,7 +2197,7 @@ Link_EnsureSync: ; 29f17
 	ret
 ; 29f47
 
-Special_CableClubCheckWhichChris: ; 29f47
+Special_CableClubCheckWhichRed: ; 29f47
 	ld a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	ld a, $1

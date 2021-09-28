@@ -486,16 +486,16 @@ GetPlayerOrMonPalettePointer:
 	jr z, .male
 	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL
-	jr z, .lyra
-	ld hl, KrisPalette
+	jr z, .yellow
+	ld hl, GreenPalette
 	ret
 
 .male
-	ld hl, wPlayerPalette
+	ld hl, RedPalette
 	ret
 
-.lyra
-	ld hl, Lyra1Palette
+.yellow
+	ld hl, YellowPalette
 	ret
 
 GetFrontpicPalettePointer:

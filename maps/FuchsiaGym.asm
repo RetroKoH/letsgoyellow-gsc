@@ -101,7 +101,7 @@ UnknownScript_0x195e2c:
 	faceplayer
 	showtext UnknownText_0x1960e6
 	winlosstext UnknownText_0x196126, 0
-	loadtrainer LASS, AMANDA
+	loadtrainer LASS, 1
 	startbattle
 	iftrue UnknownScript_0x195e4a
 	reloadmapafterbattle
@@ -126,7 +126,7 @@ UnknownScript_0x195e66:
 	faceplayer
 	showtext UnknownText_0x196166
 	winlosstext UnknownText_0x19617b, 0
-	loadtrainer LASS, LINDA
+	loadtrainer LASS, 1
 	startbattle
 	iftrue UnknownScript_0x195e84
 	reloadmapafterbattle
@@ -151,7 +151,7 @@ UnknownScript_0x195ea0:
 	faceplayer
 	showtext UnknownText_0x1961bb
 	winlosstext UnknownText_0x1961f1, 0
-	loadtrainer PICNICKER, CINDY
+	loadtrainer PICNICKER, 1
 	startbattle
 	iftrue UnknownScript_0x195ebe
 	reloadmapafterbattle
@@ -176,7 +176,7 @@ UnknownScript_0x195eda:
 	faceplayer
 	showtext UnknownText_0x196228
 	winlosstext UnknownText_0x19624a, 0
-	loadtrainer CAMPER, BARRY
+	loadtrainer CAMPER, 1
 	startbattle
 	iftrue UnknownScript_0x195ef8
 	reloadmapafterbattle

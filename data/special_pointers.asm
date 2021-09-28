@@ -18,7 +18,7 @@ SpecialsPointers::
 	add_special Special_SetBitsForBattleRequest
 	add_special Special_TradeCenter
 	add_special Special_Colosseum
-	add_special Special_CableClubCheckWhichChris
+	add_special Special_CableClubCheckWhichRed
 
 ; Map Events
 	add_special BugContestJudging

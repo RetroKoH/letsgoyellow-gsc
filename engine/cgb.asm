@@ -42,7 +42,6 @@ Predef_LoadCGBLayout: ; 8d59
 	dw _CGB_PackPals
 	dw _CGB_TrainerCard
 	dw _CGB_TrainerCard2
-	dw _CGB_TrainerCard3
 	dw _CGB_PokedexUnownMode
 	dw _CGB_BillsPC
 	dw _CGB_UnownPuzzle
@@ -782,94 +781,7 @@ _CGB_TrainerCard:
 
 	jp _CGB_FinishLayout
 
-
-_CGB_TrainerCard2: ; 9289
-	call LoadFirstTwoTrainerCardPals
-
-	ld a, FALKNER
-	call GetTrainerPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-
-	ld a, BUGSY
-	call GetTrainerPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-
-	ld a, WHITNEY
-	call GetTrainerPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-
-	ld a, MORTY
-	call GetTrainerPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-
-	ld a, JASMINE ; CHUCK
-	call GetTrainerPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-
-	ld a, CLAIR ; PRYCE
-	call GetTrainerPalettePointer
-	call LoadPalette_White_Col1_Col2_Black
-
-	; Badges
-	ld hl, JohtoBadgePalettes
-	ld de, wUnknOBPals
-	ld bc, 8 palettes
-	ld a, $5
-	call FarCopyWRAM
-
-	; Falkner
-	hlcoord 3, 10, wAttrMap
-	lb bc, 3, 3
-	ld a, $2
-	call FillBoxCGB
-
-	; Bugsy
-	hlcoord 7, 10, wAttrMap
-	lb bc, 3, 3
-	ld a, $3
-	call FillBoxCGB
-
-	; Whitney
-	hlcoord 11, 10, wAttrMap
-	lb bc, 3, 3
-	ld a, $4
-	call FillBoxCGB
-
-	; Morty
-	hlcoord 15, 10, wAttrMap
-	lb bc, 3, 3
-	ld a, $5
-	call FillBoxCGB
-
-	; Chuck
-	hlcoord 3, 13, wAttrMap
-	lb bc, 3, 3
-	ld a, $6
-	call FillBoxCGB
-
-	; Jasmine
-	hlcoord 7, 13, wAttrMap
-	lb bc, 3, 3
-	ld a, $6
-	call FillBoxCGB
-
-	; Pryce
-	hlcoord 11, 13, wAttrMap
-	lb bc, 3, 3
-	ld a, $7
-	call FillBoxCGB
-
-	; Clair
-	hlcoord 15, 13, wAttrMap
-	lb bc, 3, 3
-	ld a, $7
-	call FillBoxCGB
-
-	jp _CGB_FinishLayout
-; 9373
-
-
-_CGB_TrainerCard3:
+_CGB_TrainerCard2:
 	call LoadFirstTwoTrainerCardPals
 
 	ld a, BROCK
@@ -971,9 +883,9 @@ LoadFirstTwoTrainerCardPals:
 	; player sprite
 	ld a, [wPlayerGender]
 	and a
-	ld a, CHRIS
+	ld a, RED
 	jr z, .got_gender
-	ld a, KRIS
+	ld a, GREEN
 .got_gender
 	call GetTrainerPalettePointer
 	call LoadPalette_White_Col1_Col2_Black

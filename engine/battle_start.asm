@@ -679,10 +679,7 @@ StartTrainerBattle_LoadPokeBallGraphics: ; 8c5dc (23:45dc)
 	db GRUNTF
 	db ROCKET_SCIENTIST
 	db JESSIE_JAMES
-	db PROTON
-	db PETREL
 	db ARCHER
-	db ARIANA
 	db GIOVANNI
 	db -1
 

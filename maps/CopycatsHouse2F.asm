@@ -48,7 +48,7 @@ Copycat1Script:
 	faceplayer
 	writebyte (PAL_NPC_RED) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
+	variablesprite SPRITE_COPYCAT, SPRITE_RED
 	special MapCallbackSprites_LoadUsedSpritesGFX
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
@@ -66,7 +66,7 @@ Copycat1Script:
 	faceplayer
 	writebyte (PAL_NPC_RED) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
+	variablesprite SPRITE_COPYCAT, SPRITE_RED
 	special MapCallbackSprites_LoadUsedSpritesGFX
 	showtext .Thanks1Text
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinMovement
@@ -126,7 +126,7 @@ Copycat2Script:
 	faceplayer
 	writebyte (PAL_NPC_BLUE) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
+	variablesprite SPRITE_COPYCAT, SPRITE_GREEN
 	special MapCallbackSprites_LoadUsedSpritesGFX
 	checkevent EVENT_RETURNED_MACHINE_PART
 	iftrue .ReturnedMachinePart
@@ -144,7 +144,7 @@ Copycat2Script:
 	faceplayer
 	writebyte (PAL_NPC_BLUE) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
+	variablesprite SPRITE_COPYCAT, SPRITE_GREEN
 	special MapCallbackSprites_LoadUsedSpritesGFX
 	showtext .Thanks2Text
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinMovement

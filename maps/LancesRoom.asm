@@ -76,7 +76,7 @@ LanceScript:
 	showtext .SeenText
 	winlosstext .BeatenText, 0
 	setlasttalked LANCESROOM_LANCE
-	loadtrainer CHAMPION, LANCE
+	loadtrainer CHAMPION, 1
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
@@ -87,7 +87,7 @@ LanceScript:
 	showtext .SeenRematchText
 	winlosstext .BeatenText, 0
 	setlasttalked LANCESROOM_LANCE
-	loadtrainer CHAMPION, LANCE2
+	loadtrainer CHAMPION, 1
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle

@@ -21,12 +21,12 @@ NPCTrades:
 	dw 00283
 	db "E","m","y","@","@","@","@","@", $00
 ; TRADE_WITH_CHRIS_FOR_HERACROSS in Pewter City
-	db 2, PINSIR,     HERACROSS,  "P","a","u","l","@","@","@","@","@","@","@"
+	db 2, PINSIR,     TAUROS,  "P","a","u","l","@","@","@","@","@","@","@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | JOLLY,   MALE,   PARK_BALL,    SILVERPOWDER
 	dw 15616
 	db "C","h","r","i","s","@","@","@", $00
 ; TRADE_WITH_KIM_FOR_CHANSEY in Route 14
-	db 3, WOBBUFFET,  CHANSEY,    "C","h","a","n","c","e","@","@","@","@","@"
+	db 3, KADABRA,  CHANSEY,    "C","h","a","n","c","e","@","@","@","@","@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | CALM,    FEMALE, HEAL_BALL,    LUCKY_EGG
 	dw 26491
 	db "K","i","m","@","@","@","@","@", $00

@@ -6,18 +6,18 @@ GetFinalPkmnTextPointer::
 	jr c, .rival_or_lyra
 	; Proton to Giovanni have a phrase for each ID
 	ld a, [wOtherTrainerClass]
-	cp PROTON
+	cp ARCHER
 	jr c, .not_rocket
 	cp GIOVANNI + 1
 	jr c, .rocket
 .not_rocket
 	; Leaf and below, and Prof. Oak and above, have one unique phrase
 	dec a
-	cp LEAF
+	cp GREEN
 	jr c, .single_phrase
 	cp PROF_OAK - 1
 	jr c, .nothing
-	sub PROF_OAK - LEAF - 1
+	sub PROF_OAK - GREEN - 1
 	jr .single_phrase
 
 .nothing:
@@ -34,8 +34,8 @@ GetFinalPkmnTextPointer::
 	jr .get_text
 
 .rocket:
-	; a = ([wOtherTrainerClass] - PROTON) * 2 + [wOtherTrainerID] - 1
-	sub PROTON
+	; a = ([wOtherTrainerClass] - ARCHER) * 2 + [wOtherTrainerID] - 1
+	sub ARCHER
 	add a
 	ld b, a
 	ld a, [wOtherTrainerID]
@@ -74,8 +74,6 @@ GetFinalPkmnTextPointer::
 	dbw RIVAL0, .Rival0FinalTexts
 	dbw RIVAL1, .Rival1FinalTexts
 	dbw RIVAL2, .Rival2FinalTexts
-	dbw LYRA1, .Lyra1FinalTexts
-	dbw LYRA2, .Lyra2FinalTexts
 	db -1
 
 .Rival0FinalTexts:

@@ -50,7 +50,7 @@ CeladonUniversityHyperTestRoomWestwoodScript:
 	waitbutton
 	closetext
 	refreshscreen
-	trainerpic SILHOUETTE
+	trainerpic RED ;SILHOUETTE
 	waitbutton
 	closepokepic
 	opentext

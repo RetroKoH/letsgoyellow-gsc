@@ -1,60 +1,66 @@
 GetPlayerIcon: ; 8832c
 ; Get the player icon corresponding to gender
+; Modify this later to allow for character class outfits
 
 ; Male
-	ld de, ChrisSpriteGFX
-	ld b, BANK(ChrisSpriteGFX)
+	ld de, RedSpriteGFX
+	ld b, BANK(RedSpriteGFX)
 
 	ld a, [wPlayerGender]
 	bit 0, a
 	ret z
 
 ; Female
-	ld de, KrisSpriteGFX
-	ld b, BANK(KrisSpriteGFX)
+	ld de, GreenSpriteGFX
+	ld b, BANK(GreenSpriteGFX)
 	ret
 
 
 GetCardPic: ; 8833e
-	ld hl, ChrisCardPic
+	ld hl, RedCardPic
 	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotClass
-	ld hl, KrisCardPic
+	ld hl, GreenCardPic
 .GotClass:
 	ld de, VTiles2 tile $00
 	ld bc, $23 tiles
-	ld a, BANK(ChrisCardPic) ; BANK(KrisCardPic)
+	ld a, BANK(RedCardPic) ; BANK(GreenCardPic)
 	jp FarCopyBytes
 
-ChrisCardPic: ; 88365
-INCBIN "gfx/trainer_card/chris_card.5x7.2bpp"
+RedCardPic: ; 88365
+INCBIN "gfx/trainer_card/red_card.5x7.2bpp"
 
-KrisCardPic: ; 88595
-INCBIN "gfx/trainer_card/kris_card.5x7.2bpp"
+GreenCardPic: ; 88595
+INCBIN "gfx/trainer_card/green_card.5x7.2bpp"
 
 
 GetPlayerBackpic: ; 88825
-	ld hl, ChrisBackpic
+	ld hl, RedBackpic
 	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .ok
-	ld hl, KrisBackpic
+	ld hl, GreenBackpic
 .ok
 	ld de, VTiles2 tile $31
-	lb bc, BANK(ChrisBackpic), 6 * 6 ; dimensions
+	lb bc, BANK(RedBackpic), 6 * 6 ; dimensions
 	predef DecompressPredef
 	ret
 
-ChrisBackpic: ; 2ba1a
-INCBIN "gfx/player/chris_back.6x6.2bpp.lz"
+RedBackpic: ; 2ba1a
+INCBIN "gfx/player/red_back.6x6.2bpp.lz"
 
-KrisBackpic: ; 88ed6
-INCBIN "gfx/player/kris_back.6x6.2bpp.lz"
+GreenBackpic: ; 88ed6
+INCBIN "gfx/player/green_back.6x6.2bpp.lz"
 
-LyraBackpic: ; 2bbaa
-INCBIN "gfx/battle/lyra_back.6x6.2bpp.lz"
+YellowBackpic: ; 2bbaa
+INCBIN "gfx/battle/yellow_back.6x6.2bpp.lz"
 
+OldManBackpic: ; 2bbaa
+INCBIN "gfx/battle/old_man_back.6x6.2bpp.lz"
+
+OakBackpic: ; 2bbaa
+INCBIN "gfx/battle/oak_back.6x6.2bpp.lz"
 
 HOF_LoadTrainerFrontpic: ; 88840
 	call ApplyTilemapInVBlank
@@ -69,15 +75,15 @@ HOF_LoadTrainerFrontpic: ; 88840
 .GotClass:
 	ld a, e
 	ld [wTrainerClass], a
-	ld de, ChrisCardPic
+	ld de, RedCardPic
 	ld a, [wPlayerGender]
 	bit 0, a
 	jr z, .GotPic
-	ld de, KrisCardPic
+	ld de, GreenCardPic
 
 .GotPic:
 	ld hl, VTiles2
-	lb bc, BANK(ChrisCardPic), 5 * 7 ; BANK(KrisCardPic)
+	lb bc, BANK(RedCardPic), 5 * 7 ; BANK(GreenCardPic)
 	call Get2bpp
 	call ApplyTilemapInVBlank
 	ld a, $1

@@ -1,12 +1,12 @@
 ; sprites
 	const_def
 	const SPRITE_NONE ; 00
-	const SPRITE_CHRIS ; 01
-	const SPRITE_CHRIS_BIKE ; 02
-	const SPRITE_CHRIS_SURF ; 03
-	const SPRITE_KRIS ; 04
-	const SPRITE_KRIS_BIKE ; 05
-	const SPRITE_KRIS_SURF ; 06
+	const SPRITE_RED ; 01
+	const SPRITE_RED_BIKE ; 02
+	const SPRITE_RED_SURF ; 03
+	const SPRITE_GREEN ; 04
+	const SPRITE_GREEN_BIKE ; 05
+	const SPRITE_GREEN_SURF ; 06
 	const SPRITE_MOM ; 07
 	const SPRITE_DAD ; 08
 	const SPRITE_LYRA ; 09
@@ -32,8 +32,8 @@
 	const SPRITE_SABRINA ; 1d
 	const SPRITE_BLAINE ; 1e
 	const SPRITE_BLUE ; 1f
-	const SPRITE_RED ; 20
-	const SPRITE_LEAF ; 21
+	const SPRITE_RED_OLD ; 20
+	const SPRITE_LEAF_OLD ; 21
 	const SPRITE_YELLOW ; 22
 	const SPRITE_OAK ; 23
 	const SPRITE_ELM ; 24

@@ -16,14 +16,8 @@ CeruleanGym_MapScriptHeader:
 	bg_event  2, 13, SIGNPOST_READ, CeruleanGymStatue1
 	bg_event  6, 13, SIGNPOST_READ, CeruleanGymStatue2
 
-	db 8 ; object events
-	object_event  4, 10, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_CERULEAN_GYM_ROCKET
+	db 2 ; object events
 	object_event  5,  3, SPRITE_MISTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, MistyScript_0x188432, EVENT_TRAINERS_IN_CERULEAN_GYM
-	object_event  4,  6, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerSwimmerfDiana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	object_event  1,  9, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 1, GenericTrainerSwimmerfBriana, EVENT_TRAINERS_IN_CERULEAN_GYM
-	object_event  8,  9, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerSwimmerfViola, EVENT_TRAINERS_IN_CERULEAN_GYM
-	object_event  0,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerSailorParker, EVENT_TRAINERS_IN_CERULEAN_GYM
-	object_event  9,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerSailorEddie, EVENT_TRAINERS_IN_CERULEAN_GYM
 	object_event  3, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, CeruleanGymGuyScript, EVENT_TRAINERS_IN_CERULEAN_GYM
 
 	const_def 1 ; object constants
@@ -106,57 +100,6 @@ MistyScript_0x188432:
 	verbosegivetmhm TM_WATER_PULSE
 	setevent EVENT_GOT_TM63_WATER_PULSE
 	jumpopenedtext MistyOutroText
-
-GenericTrainerSwimmerfDiana:
-	generictrainer SWIMMERF, DIANA, EVENT_BEAT_SWIMMERF_DIANA, SwimmerfDianaSeenText, SwimmerfDianaBeatenText
-
-	text "I'll be swimming"
-	line "quietly."
-	done
-
-GenericTrainerSwimmerfViola:
-	generictrainer SWIMMERF, VIOLA, EVENT_BEAT_SWIMMERF_VIOLA, SwimmerfViolaSeenText, SwimmerfViolaBeatenText
-
-	text "Swimming is good"
-	line "for both beauty"
-	cont "and health!"
-
-	para "Just look at"
-	line "Misty, you'll see."
-	done
-
-GenericTrainerSwimmerfBriana:
-	generictrainer SWIMMERF, BRIANA, EVENT_BEAT_SWIMMERF_BRIANA, SwimmerfBrianaSeenText, SwimmerfBrianaBeatenText
-
-	text "Don't be too smug"
-	line "about beating me."
-
-	para "Misty will destroy"
-	line "you if you get"
-	cont "complacent."
-	done
-
-GenericTrainerSailorParker:
-	generictrainer SAILOR, PARKER, EVENT_BEAT_SAILOR_PARKER, SailorParkerSeenText, SailorParkerBeatenText
-
-	text "Misty has gotten"
-	line "much better in the"
-	cont "past few years."
-
-	para "Don't let your"
-	line "guard down, or"
-	cont "you'll be crushed!"
-	done
-
-GenericTrainerSailorEddie:
-	generictrainer SAILOR, EDDIE, EVENT_BEAT_SAILOR_EDDIE, SailorEddieSeenText, SailorEddieBeatenText
-
-	text "Hey, let's go for"
-	line "a swim!"
-
-	para "Sailors have to"
-	line "be able to swim!"
-	done
 
 CeruleanGymGuyScript:
 	checkevent EVENT_BEAT_MISTY
@@ -327,62 +270,6 @@ UnknownText_0x188782:
 
 	para "I can battle some"
 	line "skilled trainers."
-	done
-
-SwimmerfDianaSeenText:
-	text "Sorry about being"
-	line "away. Let's get on"
-	cont "with it!"
-	done
-
-SwimmerfDianaBeatenText:
-	text "I give up! You're"
-	line "the winner!"
-	done
-
-SwimmerfViolaSeenText:
-	text "Swimming isn't"
-	line "just about speed!"
-
-	para "It's also about"
-	line "beauty and grace!"
-	done
-
-SwimmerfViolaBeatenText:
-	text "I lost"
-	line "beautifully…"
-	done
-
-SwimmerfBrianaSeenText:
-	text "Don't let my ele-"
-	line "gant swimming un-"
-	cont "nerve you."
-	done
-
-SwimmerfBrianaBeatenText:
-	text "Ooh, you calmly"
-	line "disposed of me…"
-	done
-
-SailorParkerSeenText:
-	text "Alright! Come"
-	line "and get me!"
-	done
-
-SailorParkerBeatenText:
-	text "This can't be…"
-	done
-
-SailorEddieSeenText:
-	text "I've been relaxing"
-	line "poolside, so"
-	cont "I've got enough"
-	cont "strength!"
-	done
-
-SailorEddieBeatenText:
-	text "You can't win with"
-	line "strength alone."
 	done
 
 CeruleanGymGuyText:

@@ -146,8 +146,8 @@ NamingScreen: ; 116c1
 ; 117ae
 
 .Rival: ; 117ae (4:57ae)
-	ld de, SilverSpriteGFX
-	lb bc, BANK(SilverSpriteGFX), SPRITE_ANIM_INDEX_RED_WALK
+	ld de, BlueSpriteGFX
+	lb bc, BANK(BlueSpriteGFX), SPRITE_ANIM_INDEX_RED_WALK
 	call .LoadSprite
 	hlcoord 5, 2
 	ld de, .RivalNameString

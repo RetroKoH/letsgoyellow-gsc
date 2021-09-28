@@ -14,7 +14,6 @@ CeladonCafe_MapScriptHeader:
 	bg_event  7,  1, SIGNPOST_JUMPTEXT, EatathonContestTrashCanText
 
 	db 7 ; object events
-	object_event  7,  4, SPRITE_MAYLENE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, MayleneScript, -1
 	object_event  4,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, TeacherScript_0x73084, -1
 	object_event  4,  6, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, FisherScript_0x73051, -1
 	object_event  1,  7, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, FisherScript_0x73062, -1
@@ -23,49 +22,7 @@ CeladonCafe_MapScriptHeader:
 	object_event 11,  4, SPRITE_BAKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, CeladonCafeBakerText, -1
 
 	const_def 1 ; object constants
-	const CELADONCAFE_MAYLENE
 	const CELADONCAFE_TEACHER
-
-MayleneScript:
-	showtext MayleneText1
-	faceplayer
-	opentext
-	writetext MayleneText2
-	waitbutton
-	checkevent EVENT_BEAT_MAYLENE
-	iftrue .Done
-	writetext MayleneText3
-	yesorno
-	iffalse .Refused
-	writetext MayleneSeenText
-	waitbutton
-	closetext
-	winlosstext MayleneBeatenText, 0
-	setlasttalked CELADONCAFE_MAYLENE
-	checkevent EVENT_BEAT_ELITE_FOUR_AGAIN
-	iftrue .Rematch
-	loadtrainer MAYLENE, 1
-	jump .StartBattle
-.Rematch
-	loadtrainer MAYLENE, 2
-.StartBattle
-	startbattle
-	reloadmapafterbattle
-	setevent EVENT_BEAT_MAYLENE
-	opentext
-	writetext MayleneAfterText
-	waitbutton
-.Done
-	closetext
-	turnobject CELADONCAFE_MAYLENE, RIGHT
-	end
-
-.Refused
-	writetext MayleneRefusedText
-	waitbutton
-	closetext
-	turnobject CELADONCAFE_MAYLENE, RIGHT
-	end
 
 TeacherScript_0x73084:
 	checkkeyitem COIN_CASE

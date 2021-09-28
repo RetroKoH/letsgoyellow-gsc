@@ -14,13 +14,11 @@ BattleTower2F_MapScriptHeader:
 	bg_event 16,  3, SIGNPOST_UP, BattleTower2FTVScript
 	bg_event 17,  3, SIGNPOST_UP, BattleTower2FTVScript
 
-	db 13 ; object events
-	object_event  4,  6, SPRITE_CHERYL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FCherylScript, EVENT_BATTLE_TOWER_CHERYL
-	object_event  7,  7, SPRITE_RILEY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FRileyScript, EVENT_BATTLE_TOWER_RILEY
-	object_event  9,  4, SPRITE_BUCK, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FBuckScript, EVENT_BATTLE_TOWER_BUCK
-	object_event 17,  8, SPRITE_MARLEY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FMarleyScript, EVENT_BATTLE_TOWER_MARLEY
-	object_event 12,  7, SPRITE_MIRA, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FMiraScript, EVENT_BATTLE_TOWER_MIRA
-	object_event 15,  6, SPRITE_ANABEL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FAnabelScript, EVENT_BATTLE_TOWER_ANABEL
+	db 11 ; object events
+	object_event  9,  4, SPRITE_CHUCK, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FBuckScript, EVENT_BATTLE_TOWER_BUCK
+	object_event 17,  8, SPRITE_BUGSY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FMarleyScript, EVENT_BATTLE_TOWER_MARLEY
+	object_event 12,  7, SPRITE_JASMINE, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FMiraScript, EVENT_BATTLE_TOWER_MIRA
+	object_event 15,  6, SPRITE_CLAIR, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BattleTower2FAnabelScript, EVENT_BATTLE_TOWER_ANABEL
 	object_event  4,  6, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, BattleTower2FCooltrainermText, EVENT_MURKY_SWAMP_CHERYL
 	object_event  7,  7, SPRITE_LADY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_COMMAND, jumptextfaceplayer, BattleTower2FLadyText, EVENT_DIM_CAVE_RILEY
 	object_event  9,  4, SPRITE_SCHOOLGIRL, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, BattleTower2FTwinText, EVENT_CINNABAR_VOLCANO_BUCK
@@ -30,8 +28,6 @@ BattleTower2F_MapScriptHeader:
 	object_event 15,  6, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, BattleTower2FBlackbeltText, EVENT_NOISY_FOREST_ANABEL
 
 	const_def 1 ; object constants
-	const BATTLETOWER2F_CHERYL
-	const BATTLETOWER2F_RILEY
 	const BATTLETOWER2F_BUCK
 	const BATTLETOWER2F_MARLEY
 	const BATTLETOWER2F_MIRA
@@ -42,159 +38,6 @@ BattleTower2FTVScript:
 
 	text "There's an intense"
 	line "battle on the TV."
-	done
-
-BattleTower2FCherylScript:
-	checkflag ENGINE_CHERYL_DONE_TODAY
-	iftrue_jumptextfaceplayer .AfterText
-	faceplayer
-	opentext
-	writetext .GreetingText
-	yesorno
-	iffalse_jumpopenedtext .RefuseText
-	setflag ENGINE_CHERYL_DONE_TODAY
-	writetext .SeenText
-	waitbutton
-	closetext
-	winlosstext .BeatenText, 0
-	setlasttalked BATTLETOWER2F_CHERYL
-	checkevent EVENT_BEAT_ELITE_FOUR_AGAIN
-	iftrue .Team3
-	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue .Team2
-	loadtrainer CHERYL, 1
-	jump .StartBattle
-.Team2
-	loadtrainer CHERYL, 2
-	jump .StartBattle
-.Team3
-	loadtrainer CHERYL, 3
-.StartBattle
-	startbattle
-	reloadmapafterbattle
-	thistext
-
-.AfterText:
-	text "Being a trainer"
-	line "isn't easy."
-
-	para "The more you"
-	line "battle, the more"
-	cont "you discover."
-
-	para "But, you know?"
-	line "I love #mon"
-	cont "for that, too!"
-	done
-
-.GreetingText:
-	text "Oh, hello,"
-	line "<PLAYER>."
-
-	para "It's been a long"
-	line "time… Hasn't it?"
-
-	para "Would you care"
-	line "to have a battle"
-	cont "with me?"
-	done
-
-.SeenText:
-	text "I should warn you,"
-	line "my #mon can be"
-	cont "quite rambunc-"
-	cont "tious."
-	done
-
-.BeatenText:
-	text "Striking the right"
-	line "balance of offense"
-	cont "and defense…"
-
-	para "It's not easy"
-	line "to do."
-	done
-
-.RefuseText:
-	text "Giggle…"
-
-	para "#mon would get"
-	line "all worn out if we"
-
-	para "battled all the"
-	line "time, wouldn't"
-	cont "they?"
-	done
-
-BattleTower2FRileyScript:
-	checkflag ENGINE_RILEY_DONE_TODAY
-	iftrue_jumptextfaceplayer .AfterText
-	faceplayer
-	opentext
-	writetext .GreetingText
-	yesorno
-	iffalse_jumpopenedtext .RefuseText
-	setflag ENGINE_RILEY_DONE_TODAY
-	writetext .SeenText
-	waitbutton
-	closetext
-	winlosstext .BeatenText, 0
-	setlasttalked BATTLETOWER2F_RILEY
-	checkevent EVENT_BEAT_ELITE_FOUR_AGAIN
-	iftrue .Team2
-	loadtrainer RILEY, 1
-	jump .StartBattle
-.Team2
-	loadtrainer RILEY, 2
-.StartBattle
-	startbattle
-	reloadmapafterbattle
-	thistext
-
-.AfterText:
-	text "If I weren't in"
-	line "Dim Cave then…"
-
-	para "If you hadn't been"
-	line "in Dim Cave then…"
-
-	para "Perhaps we would"
-	line "have never met."
-
-	para "Or, would we have"
-	line "met elsewhere?"
-	done
-
-.GreetingText:
-	text "Hi. Long time,"
-	line "no see."
-
-	para "That look you"
-	line "have… I take it"
-
-	para "you're ready for"
-	line "battle?"
-	done
-
-.SeenText:
-	text "Battling is our"
-	line "way of greeting!"
-	done
-
-.BeatenText:
-	text "At times we bat-"
-	line "tle, and sometimes"
-	cont "we team up."
-
-	para "It's great how"
-	line "trainers can"
-	cont "interact."
-	done
-
-.RefuseText:
-	text "Oh, all right."
-	line "Then we'll wait"
-	cont "till you're ready."
 	done
 
 BattleTower2FBuckScript:
@@ -213,10 +56,10 @@ BattleTower2FBuckScript:
 	setlasttalked BATTLETOWER2F_BUCK
 	checkevent EVENT_BEAT_ELITE_FOUR_AGAIN
 	iftrue .Team2
-	loadtrainer BUCK, 1
+	loadtrainer CHUCK, 1
 	jump .StartBattle
 .Team2
-	loadtrainer BUCK, 2
+	loadtrainer CHUCK, 2
 .StartBattle
 	startbattle
 	reloadmapafterbattle
@@ -275,13 +118,13 @@ BattleTower2FMarleyScript:
 	iftrue .Team3
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .Team2
-	loadtrainer MARLEY, 1
+	loadtrainer BUGSY, 1
 	jump .StartBattle
 .Team2
-	loadtrainer MARLEY, 2
+	loadtrainer BUGSY, 2
 	jump .StartBattle
 .Team3
-	loadtrainer MARLEY, 3
+	loadtrainer BUGSY, 3
 .StartBattle
 	startbattle
 	reloadmapafterbattle
@@ -331,10 +174,10 @@ BattleTower2FMiraScript:
 	setlasttalked BATTLETOWER2F_MIRA
 	checkevent EVENT_BEAT_ELITE_FOUR_AGAIN
 	iftrue .Team2
-	loadtrainer MIRA, 1
+	loadtrainer JASMINE, 1
 	jump .StartBattle
 .Team2
-	loadtrainer MIRA, 2
+	loadtrainer JASMINE, 2
 .StartBattle
 	startbattle
 	reloadmapafterbattle
@@ -397,10 +240,10 @@ BattleTower2FAnabelScript:
 	setlasttalked BATTLETOWER2F_ANABEL
 	checkevent EVENT_BEAT_ELITE_FOUR_AGAIN
 	iftrue .Team2
-	loadtrainer ANABEL, 1
+	loadtrainer CLAIR, 1
 	jump .StartBattle
 .Team2
-	loadtrainer ANABEL, 2
+	loadtrainer CLAIR, 2
 .StartBattle
 	startbattle
 	reloadmapafterbattle

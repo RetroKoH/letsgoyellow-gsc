@@ -3,7 +3,7 @@ Colosseum_MapScriptHeader:
 	scene_script ColosseumTrigger0
 
 	db 2 ; callbacks
-	callback MAPCALLBACK_OBJECTS, ColosseumScript_SetWhichChris
+	callback MAPCALLBACK_OBJECTS, ColosseumScript_SetWhichRed
 	callback MAPCALLBACK_NEWMAP, ColosseumScript_InitializeCB
 
 	db 2 ; warp events
@@ -17,27 +17,27 @@ Colosseum_MapScriptHeader:
 	bg_event  5,  4, SIGNPOST_LEFT, MapColosseumSignpost1Script
 
 	db 2 ; object events
-	object_event  3,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event  6,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ChrisScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	object_event  3,  4, SPRITE_RED, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RedScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  6,  4, SPRITE_RED, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, RedScript_0x193499, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 
 	const_def 1 ; object constants
-	const COLOSSEUM_CHRIS1
-	const COLOSSEUM_CHRIS2
+	const COLOSSEUM_RED1
+	const COLOSSEUM_RED2
 
 ColosseumTrigger0:
 	priorityjump ColosseumScript_Initialize
 	end
 
-ColosseumScript_SetWhichChris:
-	special Special_CableClubCheckWhichChris
-	iffalse .Chris2
-	disappear COLOSSEUM_CHRIS2
-	appear COLOSSEUM_CHRIS1
+ColosseumScript_SetWhichRed:
+	special Special_CableClubCheckWhichRed
+	iffalse .Red2
+	disappear COLOSSEUM_RED2
+	appear COLOSSEUM_RED1
 	return
 
-.Chris2:
-	disappear COLOSSEUM_CHRIS1
-	appear COLOSSEUM_CHRIS2
+.Red2:
+	disappear COLOSSEUM_RED1
+	appear COLOSSEUM_RED2
 	return
 
 ColosseumScript_InitializeCB:
@@ -54,7 +54,7 @@ MapColosseumSignpost1Script:
 	newloadmap MAPSETUP_LINKRETURN
 	end
 
-ChrisScript_0x193499:
+RedScript_0x193499:
 	thistext
 
 	text "Your friend is"

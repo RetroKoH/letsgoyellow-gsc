@@ -399,16 +399,16 @@ RematchBlueScript:
 	rematch_script Blue, BLUE, ENGINE_GYM_LEADER_REMATCH_3
 
 RematchFalknerScript:
-	rematch_script Falkner, FALKNER, ENGINE_GYM_LEADER_REMATCH_1
+	rematch_script Falkner, BUGSY, ENGINE_GYM_LEADER_REMATCH_1
 
 RematchBugsyScript:
 	rematch_script Bugsy, BUGSY, ENGINE_GYM_LEADER_REMATCH_1
 
 RematchWhitneyScript:
-	rematch_script Whitney, WHITNEY, ENGINE_GYM_LEADER_REMATCH_1
+	rematch_script Whitney, JASMINE, ENGINE_GYM_LEADER_REMATCH_1
 
 RematchMortyScript:
-	rematch_script Morty, MORTY, ENGINE_GYM_LEADER_REMATCH_2
+	rematch_script Morty, CHUCK, ENGINE_GYM_LEADER_REMATCH_2
 
 RematchChuckScript:
 	rematch_script Chuck, CHUCK, ENGINE_GYM_LEADER_REMATCH_2
@@ -417,7 +417,7 @@ RematchJasmineScript:
 	rematch_script Jasmine, JASMINE, ENGINE_GYM_LEADER_REMATCH_1
 
 RematchPryceScript:
-	rematch_script Pryce, PRYCE, ENGINE_GYM_LEADER_REMATCH_1
+	rematch_script Pryce, CLAIR, ENGINE_GYM_LEADER_REMATCH_1
 
 RematchClairScript:
 	rematch_script Clair, CLAIR, ENGINE_GYM_LEADER_REMATCH_2
@@ -432,7 +432,7 @@ RematchAgathaScript:
 	rematch_script Agatha, AGATHA, ENGINE_GYM_LEADER_REMATCH_3
 
 RematchWalkerScript:
-	rematch_script Walker, WALKER, ENGINE_GYM_LEADER_REMATCH_3
+	rematch_script Walker, BRUNO, ENGINE_GYM_LEADER_REMATCH_3
 
 RematchYellowScript:
 	rematch_script Yellow, YELLOW, ENGINE_GYM_LEADER_REMATCH_3

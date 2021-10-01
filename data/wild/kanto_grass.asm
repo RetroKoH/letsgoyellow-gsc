@@ -28,85 +28,85 @@
 	db 60, DUGTRIO
 
 	map_id MOUNT_MOON_1F
-	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
+	db 3 percent, 3 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
-	db 55, GOLBAT
-	db 56, GRAVELER
-	db 56, SANDSLASH
-	db 56, PARASECT
-	db 57, GRAVELER
-	db 58, CLEFAIRY
-	db 60, CLEFABLE
+	db 8, ZUBAT
+	db 9, GEODUDE
+	db 9, SANDSHREW
+	db 9, PARAS
+	db 10, GEODUDE
+	db 8, CLEFAIRY
+	db 10, CLEFAIRY
 	; day
-	db 55, GOLBAT
-	db 56, GRAVELER
-	db 56, SANDSLASH
-	db 56, PARASECT
-	db 57, GRAVELER
-	db 58, CLEFAIRY
-	db 60, CLEFABLE
+	db 8, ZUBAT
+	db 9, GEODUDE
+	db 9, SANDSHREW
+	db 9, PARAS
+	db 10, GEODUDE
+	db 8, CLEFAIRY
+	db 10, CLEFAIRY
 	; nite
-	db 55, GOLBAT
-	db 56, GRAVELER
-	db 56, CLEFAIRY
-	db 56, PARASECT
-	db 57, GRAVELER
-	db 58, CLEFAIRY
-	db 60, CLEFABLE
+	db 8, ZUBAT
+	db 9, GEODUDE
+	db 9, SANDSHREW
+	db 9, PARAS
+	db 10, GEODUDE
+	db 8, CLEFAIRY
+	db 10, CLEFAIRY
 
 	map_id MOUNT_MOON_B1F
-	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
+	db 3 percent, 3 percent, 3 percent ; encounter rates: morn/day/nite
 	; morn
-	db 55, GOLBAT
-	db 56, GRAVELER
-	db 56, SANDSLASH
-	db 56, PARASECT
-	db 57, GRAVELER
-	db 58, CLEFAIRY
-	db 60, CLEFABLE
+	db 8, ZUBAT
+	db 9, GEODUDE
+	db 9, SANDSHREW
+	db 9, PARAS
+	db 10, GEODUDE
+	db 8, CLEFAIRY
+	db 10, CLEFAIRY
 	; day
-	db 55, GOLBAT
-	db 56, GRAVELER
-	db 56, SANDSLASH
-	db 56, PARASECT
-	db 57, GRAVELER
-	db 58, CLEFAIRY
-	db 60, CLEFABLE
+	db 8, ZUBAT
+	db 9, GEODUDE
+	db 9, SANDSHREW
+	db 9, PARAS
+	db 10, GEODUDE
+	db 8, CLEFAIRY
+	db 10, CLEFAIRY
 	; nite
-	db 55, GOLBAT
-	db 56, GRAVELER
-	db 56, CLEFAIRY
-	db 56, PARASECT
-	db 57, GRAVELER
-	db 58, CLEFAIRY
-	db 60, CLEFABLE
+	db 8, ZUBAT
+	db 9, GEODUDE
+	db 9, SANDSHREW
+	db 9, PARAS
+	db 10, GEODUDE
+	db 8, CLEFAIRY
+	db 10, CLEFAIRY
 
 	map_id MOUNT_MOON_B2F
-	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
+	db 3 percent, 3 percent, 3 percent ; encounter rates: morn/day/nite
 	; morn
-	db 55, GOLBAT
-	db 56, GRAVELER
-	db 56, SANDSLASH
-	db 56, PARASECT
-	db 57, GRAVELER
-	db 58, CLEFAIRY
-	db 60, CLEFABLE
+	db 8, ZUBAT
+	db 9, GEODUDE
+	db 9, SANDSHREW
+	db 9, PARAS
+	db 10, GEODUDE
+	db 8, CLEFAIRY
+	db 10, CLEFAIRY
 	; day
-	db 55, GOLBAT
-	db 56, GRAVELER
-	db 56, SANDSLASH
-	db 56, PARASECT
-	db 57, GRAVELER
-	db 58, CLEFAIRY
-	db 60, CLEFABLE
+	db 8, ZUBAT
+	db 9, GEODUDE
+	db 9, SANDSHREW
+	db 9, PARAS
+	db 10, GEODUDE
+	db 8, CLEFAIRY
+	db 10, CLEFAIRY
 	; nite
-	db 55, GOLBAT
-	db 56, GRAVELER
-	db 56, CLEFAIRY
-	db 56, PARASECT
-	db 57, GRAVELER
-	db 58, CLEFAIRY
-	db 60, CLEFABLE
+	db 8, ZUBAT
+	db 9, GEODUDE
+	db 9, SANDSHREW
+	db 9, PARAS
+	db 10, GEODUDE
+	db 8, CLEFAIRY
+	db 10, CLEFAIRY
 
 	map_id ROCK_TUNNEL_1F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite

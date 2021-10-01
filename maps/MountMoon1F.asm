@@ -4,21 +4,21 @@ MountMoon1F_MapScriptHeader:
 	db 0 ; callbacks
 
 	db 4 ; warp events
-	warp_event 11, 23, ROUTE_4, 2
-	warp_event 22, 12, MOUNT_MOON_B1F, 1
-	warp_event 11,  9, MOUNT_MOON_B1F, 2
+	warp_event 15, 33, ROUTE_4, 2
+	warp_event 27, 13, MOUNT_MOON_B1F, 1
+	warp_event 19,  9, MOUNT_MOON_B1F, 2
 	warp_event  4,  4, MOUNT_MOON_B1F, 3
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  2, 17, SIGNPOST_ITEM + RARE_CANDY, EVENT_MOUNT_MOON_1F_HIDDEN_RARE_CANDY
-	bg_event 12, 16, SIGNPOST_ITEM + FULL_RESTORE, EVENT_MOUNT_MOON_1F_HIDDEN_FULL_RESTORE
+	bg_event  2, 23, SIGNPOST_ITEM + RARE_CANDY, EVENT_MOUNT_MOON_1F_HIDDEN_RARE_CANDY
+	bg_event  4, 14, SIGNPOST_ITEM + FULL_RESTORE, EVENT_MOUNT_MOON_1F_HIDDEN_FULL_RESTORE
 
 	db 3 ; object events
 	itemball_event  3,  2, REVIVE, 1, EVENT_MOUNT_MOON_1F_REVIVE
-	itemball_event  2, 20, X_ACCURACY, 1, EVENT_MOUNT_MOON_1F_X_ACCURACY
-	itemball_event 16, 22, CALCIUM, 1, EVENT_MOUNT_MOON_1F_CALCIUM
+	itemball_event  2, 26, X_ACCURACY, 1, EVENT_MOUNT_MOON_1F_X_ACCURACY
+	itemball_event 12, 14, CALCIUM, 1, EVENT_MOUNT_MOON_1F_CALCIUM
 
 
 

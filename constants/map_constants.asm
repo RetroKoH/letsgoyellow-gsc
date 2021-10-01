@@ -120,7 +120,7 @@ MAP_NONE   EQU 0
 	map_const TOHJO_FALLS,                                15,  9 ; 71
 	map_const GIOVANNIS_CAVE,                             10, 24 ; 72
 	map_const DIGLETTS_CAVE,                              21, 19 ; 73
-	map_const MOUNT_MOON_1F,                              15, 13 ; 74
+	map_const MOUNT_MOON_1F,                              21, 18 ; 74
 	map_const MOUNT_MOON_B1F,                             16, 14 ; 75
 	map_const MOUNT_MOON_B2F,                             16, 17 ; 76
 	map_const UNDERGROUND,                                 3, 18 ; 77

@@ -232,7 +232,7 @@ INCLUDE "audio/music/dppt/trainerbattle.asm"
 
 SECTION "HGSS Music 1", ROMX
 
-INCLUDE "audio/music/hgss/ceruleancity.asm"
+INCLUDE "audio/music/ceruleancity.asm"
 INCLUDE "audio/music/hgss/cianwoodcity.asm"
 INCLUDE "audio/music/hgss/cinnabarisland.asm"
 INCLUDE "audio/music/hgss/hoohbattle.asm"

@@ -94,7 +94,7 @@ Music:
 	dba Music_PokemonTowerRBY
 	dba Music_LavenderTown
 	dba Music_KantoWildBattle
-	dba Music_CeruleanCityHGSS
+	dba Music_CeruleanCity
 	dba Music_BicycleRB
 	dba Music_NuggetBridgeHGSS
 	dba Music_MagnetTrain

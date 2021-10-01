@@ -380,11 +380,13 @@ ENDM
 	map_attributes CeruleanCape, CERULEAN_CAPE, $2c, WEST
 	connection west, Route25, ROUTE_25, 0, 0, 20
 
-	map_attributes Route3, ROUTE_3, $2c, WEST
+	map_attributes Route3, ROUTE_3, $2c, NORTH | WEST
+	connection north, Route4, ROUTE_4, 25, 0, 12
 	connection west, PewterCity, PEWTER_CITY, -3, 2, 15
 
-	map_attributes Route4, ROUTE_4, $2c, EAST
-	connection east, CeruleanCity, CERULEAN_CITY, -2, 0, 16
+	map_attributes Route4, ROUTE_4, $2c, SOUTH | EAST
+	connection south, Route3, ROUTE_3, -3, 22, 11
+	connection east, CeruleanCity, CERULEAN_CITY, -2, 0, 15
 
 	map_attributes Route8, ROUTE_8, $2c, WEST | EAST
 	connection west, SaffronCity, SAFFRON_CITY, -2, 2, 14

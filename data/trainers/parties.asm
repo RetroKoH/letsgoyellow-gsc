@@ -1046,20 +1046,23 @@ BugCatcherGroup:
 ; ================
 
 ; Route 3
-	db "COLTON@", TRAINERTYPE_NORMAL
+	db "COLTON@"
+	db TRAINERTYPE_NORMAL
 	db 10, CATERPIE
 	db 10, WEEDLE
 	db 10, CATERPIE
 	db -1 ; end
 
-	db "GREG@", TRAINERTYPE_NORMAL
+	db "GREG@"
+	db TRAINERTYPE_NORMAL
 	db 9, WEEDLE
 	db 9, KAKUNA
 	db 9, CATERPIE
 	db 9, METAPOD
 	db -1 ; end
 
-	db "JAMES@", TRAINERTYPE_NORMAL
+	db "JAMES@"
+	db TRAINERTYPE_NORMAL
 	db 11, CATERPIE
 	db 11, METAPOD
 	db -1 ; end

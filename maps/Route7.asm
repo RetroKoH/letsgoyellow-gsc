@@ -4,18 +4,18 @@ Route7_MapScriptHeader:
 	db 0 ; callbacks
 
 	db 2 ; warp events
-	warp_event 15,  6, ROUTE_7_SAFFRON_GATE, 1
-	warp_event 15,  7, ROUTE_7_SAFFRON_GATE, 2
+	warp_event 11, 10, ROUTE_7_SAFFRON_GATE, 1
+	warp_event 11, 11, ROUTE_7_SAFFRON_GATE, 2
 
 	db 0 ; coord events
 
 	db 2 ; bg events
-	bg_event  5, 13, SIGNPOST_JUMPTEXT, Route7UndergroundPathSignText
-	bg_event  6, 11, SIGNPOST_JUMPTEXT, Route7LockedDoorText
+	bg_event  3, 13, SIGNPOST_JUMPTEXT, Route7UndergroundPathSignText
+	bg_event  6, 13, SIGNPOST_JUMPTEXT, Route7LockedDoorText
 
 	db 2 ; object events
 	object_event  1,  0, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route7Snorlax, EVENT_ROUTE_8_SNORLAX
-	itemball_event 16,  1, MENTAL_HERB, 1, EVENT_ROUTE_7_MENTAL_HERB
+	itemball_event 14,  1, MENTAL_HERB, 1, EVENT_ROUTE_7_MENTAL_HERB
 
 	const_def 1 ; object constants
 	const ROUTE7_BIG_SNORLAX

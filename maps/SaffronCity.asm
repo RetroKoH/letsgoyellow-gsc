@@ -4,13 +4,12 @@ SaffronCity_MapScriptHeader:
 	db 1 ; callbacks
 	callback MAPCALLBACK_NEWMAP, SaffronCityFlyPoint
 
-	db 20 ; warp events
+	db 19 ; warp events
 	warp_event 26,  3, FIGHTING_DOJO, 1
 	warp_event 34,  3, SAFFRON_GYM, 1
 	warp_event 25, 11, SAFFRON_MART, 2
 	warp_event  9, 29, SAFFRON_POKECENTER_1F, 1
 	warp_event 27, 29, MR_PSYCHICS_HOUSE, 1
-	warp_event  8,  3, SAFFRON_TRAIN_STATION, 2
 	warp_event 18, 21, SILPH_CO_1F, 1
 	warp_event  9, 11, COPYCATS_HOUSE_1F, 1
 	warp_event 18,  1, ROUTE_5_SAFFRON_CITY_GATE, 3
@@ -37,7 +36,7 @@ SaffronCity_MapScriptHeader:
 	bg_event 11,  5, SIGNPOST_JUMPTEXT, SaffronCityMagnetTrainStationSignText
 	bg_event 32, 12, SIGNPOST_JUMPTEXT, PokemonTrainerFanClubSignText
 	bg_event  5, 21, SIGNPOST_JUMPTEXT, SaffronTrainerTips1Text
-	bg_event 35, 21, SIGNPOST_JUMPTEXT, SaffronTrainerTips2Text
+	bg_event 34, 21, SIGNPOST_JUMPTEXT, SaffronTrainerTips2Text
 
 	db 13 ; object events
 	object_event  7, 14, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_SCRIPT, 0, LassScript_0x19932a, -1

@@ -2,13 +2,14 @@ MoveDescriptions::
 	dw PoundDescription
 	dw KarateChopDescription
 	dw MegaPunchDescription
-	dw AerialAceDescription
-	dw DragonClawDescription
 	dw PayDayDescription
 	dw FirePunchDescription
 	dw IcePunchDescription
 	dw ThunderpunchDescription
 	dw ScratchDescription
+	dw ViceGripDescription
+	dw AerialAceDescription
+	dw DragonClawDescription
 	dw XScissorDescription
 	dw NightSlashDescription
 	dw AirSlashDescription
@@ -19,7 +20,6 @@ MoveDescriptions::
 	dw SuckerPunchDescription
 	dw FlyDescription
 	dw DazzlingleamDescription
-	dw VoltSwitchDescription
 	dw VineWhipDescription
 	dw StompDescription
 	dw DoubleKickDescription
@@ -625,6 +625,10 @@ MegaPunchDescription:
 	db   "A powerful punch"
 	next "thrown very hard.@"
 
+ViceGripDescription:
+	db   "Grips with power-"
+	next "ful pincers.@"
+
 ExplosionDescription:
 	db   "Very powerful but"
 	next "makes user faint.@"
@@ -680,7 +684,6 @@ HailDescription:
 	next "every turn.@"
 
 UTurnDescription:
-VoltSwitchDescription:
 	db   "Switches out after"
 	next "making its attack.@"
 

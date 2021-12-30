@@ -43,6 +43,7 @@ Strength:
 Surf:
 Swift:
 Tackle:
+ViceGrip:
 VineWhip:
 WaterGun:
 WingAttack:
@@ -118,7 +119,6 @@ DrainPunch:
 	endmove
 
 UTurn:
-VoltSwitch:
 SwitchHit:
 	checkobedience
 	usedmovetext

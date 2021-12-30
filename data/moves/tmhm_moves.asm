@@ -70,7 +70,7 @@ TMHMMoves:
 	db U_TURN       ; TM69 (Bugsy)
 	db FLASH        ; TM70 (Sprout Tower)
 	db STONE_EDGE   ; TM71 (Blue)
-	db VOLT_SWITCH  ; TM72 (Route 10)
+	db VICE_GRIP    ; TM72 (Route 10)
 	db THUNDER_WAVE ; TM73 (Rock Tunnel)
 	db GYRO_BALL    ; TM74 (TODO: Magnet Tunnel)
 	db SWORDS_DANCE ; TM75 (Celadon Dept. Store)

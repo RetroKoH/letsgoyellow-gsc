@@ -98,7 +98,7 @@ endc
 	add_tm U_TURN       ; $44
 	add_tm FLASH        ; $45
 	add_tm STONE_EDGE   ; $46
-	add_tm VOLT_SWITCH  ; $47
+	add_tm VICE_GRIP    ; $47
 	add_tm THUNDER_WAVE ; $48
 	add_tm GYRO_BALL    ; $49
 	add_tm SWORDS_DANCE ; $4a

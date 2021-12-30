@@ -3,13 +3,14 @@ BattleAnimations::
 	dw BattleAnim_Pound
 	dw BattleAnim_KarateChop
 	dw BattleAnim_MegaPunch
-	dw BattleAnim_AerialAce
-	dw BattleAnim_DragonClaw
 	dw BattleAnim_PayDay
 	dw BattleAnim_FirePunch
 	dw BattleAnim_IcePunch
 	dw BattleAnim_Thunderpunch
 	dw BattleAnim_Scratch
+	dw BattleAnim_ViceGrip
+	dw BattleAnim_AerialAce
+	dw BattleAnim_DragonClaw
 	dw BattleAnim_XScissor
 	dw BattleAnim_NightSlash
 	dw BattleAnim_AirSlash
@@ -20,7 +21,6 @@ BattleAnimations::
 	dw BattleAnim_SuckerPunch
 	dw BattleAnim_Fly
 	dw BattleAnim_DazzlinGleam
-	dw BattleAnim_VoltSwitch
 	dw BattleAnim_VineWhip
 	dw BattleAnim_Stomp
 	dw BattleAnim_DoubleKick
@@ -739,6 +739,14 @@ BattleAnim_MegaPunch:
 	anim_obj ANIM_OBJ_06, -15, 0,   7, 0, $0
 	anim_wait 6
 	anim_loop 3, .loop
+	anim_ret
+
+BattleAnim_ViceGrip:
+	anim_1gfx ANIM_GFX_CUT
+	anim_sound 0, 1, SFX_VICEGRIP
+	anim_obj ANIM_OBJ_37, -13, 0,   5, 0, $0
+	anim_obj ANIM_OBJ_39,  15, 0,   9, 0, $0
+	anim_wait 32
 	anim_ret
 
 BattleAnim_Stomp:
@@ -4186,33 +4194,6 @@ BattleAnim_MilkDrink:
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-BattleAnim_VoltSwitch:
-	anim_3gfx ANIM_GFX_LIGHTNING, ANIM_GFX_EXPLOSION, ANIM_GFX_CHARGE
-	anim_obj ANIM_OBJ_CHARGE, 44, 88, $30
-	anim_obj ANIM_OBJ_CHARGE, 44, 88, $31
-	anim_obj ANIM_OBJ_CHARGE, 44, 88, $32
-	anim_obj ANIM_OBJ_CHARGE, 44, 88, $33
-	anim_obj ANIM_OBJ_CHARGE, 44, 88, $34
-	anim_obj ANIM_OBJ_CHARGE, 44, 88, $35
-	anim_obj ANIM_OBJ_CHARGE, 44, 88, $36
-	anim_obj ANIM_OBJ_CHARGE, 44, 88, $37
-.loop
-	anim_sound 0, 0, SFX_SWORDS_DANCE
-	anim_wait 8
-	anim_loop 4, .loop
-	anim_wait 8
-	anim_wait 64
-	anim_sound 6, 2, SFX_THUNDERSHOCK
-	anim_obj ANIM_OBJ_A3, 64, 92, $2
-	anim_wait 40
-	anim_sound 0, 1, SFX_ZAP_CANNON
-	anim_obj ANIM_OBJ_30, 136, 56, $0
-	anim_bgeffect ANIM_BG_VIBRATE_MON, $0, $0, $0
-	anim_wait 30
-	anim_call BattleAnim_ShowMon_1
-	anim_wait 1
-	anim_ret
-
 BattleAnim_Spark:
 	anim_2gfx ANIM_GFX_LIGHTNING, ANIM_GFX_EXPLOSION
 	anim_sound 0, 0, SFX_ZAP_CANNON
@@ -5846,14 +5827,6 @@ BattleAnim_Trick:
 ;	anim_sound 0, 1, SFX_MEGA_PUNCH
 ;	anim_obj ANIM_OBJ_03, -16, 4,   7, 0, $0
 ;	anim_wait 16
-;	anim_ret
-
-;BattleAnim_ViceGrip: ; removed
-;	anim_1gfx ANIM_GFX_CUT
-;	anim_sound 0, 1, SFX_VICEGRIP
-;	anim_obj ANIM_OBJ_37, -13, 0,   5, 0, $0
-;	anim_obj ANIM_OBJ_39,  15, 0,   9, 0, $0
-;	anim_wait 32
 ;	anim_ret
 
 ;BattleAnim_Bide: ; removed

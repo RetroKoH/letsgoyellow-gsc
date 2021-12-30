@@ -3,24 +3,24 @@
 	const POUND        ; $01
 	const KARATE_CHOP  ; $02
 	const MEGA_PUNCH   ; $03
-	const AERIAL_ACE   ; $04
-	const DRAGON_CLAW  ; $05
-	const PAY_DAY      ; $06
-	const FIRE_PUNCH   ; $07
-	const ICE_PUNCH    ; $08
-	const THUNDERPUNCH ; $09
-	const SCRATCH      ; $0a
-	const X_SCISSOR    ; $0b
-	const NIGHT_SLASH  ; $0c
-	const AIR_SLASH    ; $0d
-	const SWORDS_DANCE ; $0e
-	const CUT          ; $0f
-	const GUST         ; $10
-	const WING_ATTACK  ; $11
-	const SUCKER_PUNCH ; $12
-	const FLY          ; $13
-	const DAZZLINGLEAM ; $14
-	const VOLT_SWITCH  ; $15
+	const PAY_DAY      ; $04
+	const FIRE_PUNCH   ; $05
+	const ICE_PUNCH    ; $06
+	const THUNDERPUNCH ; $07
+	const SCRATCH      ; $08
+	const VICE_GRIP    ; $09
+	const AERIAL_ACE   ; $0a
+	const DRAGON_CLAW  ; $0b
+	const X_SCISSOR    ; $0c
+	const NIGHT_SLASH  ; $0d
+	const AIR_SLASH    ; $0e
+	const SWORDS_DANCE ; $0f
+	const CUT          ; $10
+	const GUST         ; $11
+	const WING_ATTACK  ; $12
+	const SUCKER_PUNCH ; $13
+	const FLY          ; $14
+	const DAZZLINGLEAM ; $15
 	const VINE_WHIP    ; $16
 	const STOMP        ; $17
 	const DOUBLE_KICK  ; $18

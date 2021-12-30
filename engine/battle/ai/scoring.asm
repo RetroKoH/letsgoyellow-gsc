@@ -1199,14 +1199,12 @@ AI_Smart_Encore: ; 38c3b
 	db POISONPOWDER
 	db ROAR
 	db SCREECH
-	db SKILL_SWAP
 	db SPLASH
 	db STRING_SHOT
 	db SUBSTITUTE
 	db SUPER_FANG
 	db SWORDS_DANCE
 	db TELEPORT
-	db TRICK
 	db $ff
 ; 38ca4
 
@@ -2628,13 +2626,11 @@ AI_Opportunist: ; 39315
 	db RAGE
 	db REFLECT
 	db SCREECH
-	db SKILL_SWAP
 	db SPLASH
 	db STRING_SHOT
 	db SUBSTITUTE
 	db SWORDS_DANCE
 	db TRANSFORM
-	db TRICK
 	db $ff
 ; 39369
 

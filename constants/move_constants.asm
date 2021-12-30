@@ -10,27 +10,27 @@
 	const SCRATCH      ; $08
 	const VICE_GRIP    ; $09
 	const GUILLOTINE   ; $0a
-	const AERIAL_ACE   ; $0b
-	const DRAGON_CLAW  ; $0c
-	const X_SCISSOR    ; $0d
+	const RAZOR_WIND   ; $0b
+	const AERIAL_ACE   ; $0c
+	const DRAGON_CLAW  ; $0d
+	const X_SCISSOR    ; $0e
 	const NIGHT_SLASH  ; $0e
-	const AIR_SLASH    ; $0f
-	const SWORDS_DANCE ; $10
-	const CUT          ; $11
-	const GUST         ; $12
-	const WING_ATTACK  ; $13
-	const SUCKER_PUNCH ; $14
-	const FLY          ; $15
-	const DAZZLINGLEAM ; $16
-	const VINE_WHIP    ; $17
-	const STOMP        ; $18
-	const DOUBLE_KICK  ; $19
-	const FLARE_BLITZ  ; $1a
-	const STONE_EDGE   ; $1b
-	const FOCUS_BLAST  ; $1c
-	const HEADBUTT     ; $1d
-	const HORN_ATTACK  ; $1e
-	const TRICK        ; $1f
+	const AIR_SLASH    ; $10
+	const SWORDS_DANCE ; $11
+	const CUT          ; $12
+	const GUST         ; $13
+	const WING_ATTACK  ; $14
+	const SUCKER_PUNCH ; $15
+	const FLY          ; $16
+	const DAZZLINGLEAM ; $17
+	const VINE_WHIP    ; $18
+	const STOMP        ; $19
+	const DOUBLE_KICK  ; $1a
+	const FLARE_BLITZ  ; $1b
+	const STONE_EDGE   ; $1c
+	const FOCUS_BLAST  ; $1d
+	const HEADBUTT     ; $1e
+	const HORN_ATTACK  ; $1f
 	const HEX          ; $20
 	const TACKLE       ; $21
 	const BODY_SLAM    ; $22

@@ -166,7 +166,7 @@ BattleTowerTutorTrickScript:
 	writetext Text_BattleTowerTutorQuestion
 	yesorno
 	iffalse .TutorRefused
-	writebyte TRICK
+	writebyte RAZOR_WIND
 	writetext Text_BattleTowerTutorClear
 	special Special_MoveTutor
 	ifequal $0, .TeachMove

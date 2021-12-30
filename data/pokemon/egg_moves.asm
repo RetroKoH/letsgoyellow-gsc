@@ -449,7 +449,6 @@ MrMimeEggMoves:
 	db FUTURE_SIGHT
 	db HYPNOSIS
 	db NASTY_PLOT
-	db TRICK
 	db $ff
 
 ScytherEggMoves:
@@ -565,7 +564,6 @@ SentretEggMoves:
 	db REVERSAL
 	db SLASH
 	db DOUBLE_EDGE
-	db TRICK
 	db $ff
 
 HoothootEggMoves:

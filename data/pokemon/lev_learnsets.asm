@@ -2269,7 +2269,6 @@ MrMimeLearnset:
 	db 25, PSYBEAM
 	db 29, SUBSTITUTE
 	db 32, CONFUSE_RAY ; Recycle → egg move
-	db 36, TRICK
 	db 39, PSYCHIC_M
 	db 43, FUTURE_SIGHT ; Role Play → egg move
 	db 46, BATON_PASS

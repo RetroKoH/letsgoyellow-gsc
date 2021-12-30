@@ -9,6 +9,7 @@ MoveDescriptions::
 	dw ScratchDescription
 	dw ViceGripDescription
 	dw GuillotineDescription
+	dw RazorWindDescription
 	dw AerialAceDescription
 	dw DragonClawDescription
 	dw XScissorDescription
@@ -29,7 +30,6 @@ MoveDescriptions::
 	dw FocusBlastDescription
 	dw HeadbuttDescription
 	dw HornAttackDescription
-	dw TrickDescription
 	dw HexDescription
 	dw TackleDescription
 	dw BodySlamDescription
@@ -631,6 +631,10 @@ FissureDescription:
 HornDrillDescription:
 	db   "A guaranteed one-"
 	next "hit KO attack.@"
+
+RazorWindDescription:
+	db   "1st turn: Prepare"
+	next "2nd turn: Attack@"
 
 ExplosionDescription:
 	db   "Very powerful but"

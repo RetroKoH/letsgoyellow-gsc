@@ -9,6 +9,8 @@ BattleAnimations::
 	dw BattleAnim_Thunderpunch
 	dw BattleAnim_Scratch
 	dw BattleAnim_ViceGrip
+	dw BattleAnim_Guillotine
+	dw BattleAnim_RazorWind
 	dw BattleAnim_AerialAce
 	dw BattleAnim_DragonClaw
 	dw BattleAnim_XScissor
@@ -27,10 +29,8 @@ BattleAnimations::
 	dw BattleAnim_FlareBlitz
 	dw BattleAnim_StoneEdge
 	dw BattleAnim_FocusBlast
-	dw BattleAnim_ToxicSpikes
 	dw BattleAnim_Headbutt
 	dw BattleAnim_HornAttack
-	dw BattleAnim_Trick
 	dw BattleAnim_Hex
 	dw BattleAnim_Tackle
 	dw BattleAnim_BodySlam
@@ -1358,7 +1358,7 @@ BattleAnim_Thunder:
 	anim_ret
 
 BattleAnim_AirSlash:
-BattleAnim_RazorWind: ; removed
+BattleAnim_RazorWind:
 	anim_1gfx ANIM_GFX_WHIP
 	anim_bgeffect ANIM_BG_06, $0, $1, $0
 .loop
@@ -3816,31 +3816,6 @@ BattleAnim_Spikes:
 	anim_wait 64
 	anim_ret
 
-BattleAnim_ToxicSpikes:
-	anim_1gfx ANIM_GFX_MISC
-	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $20
-	anim_wait 8
-	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $30
-	anim_wait 8
-	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $28
-	anim_wait 32
-.loop
-	anim_1gfx ANIM_GFX_POISON
-	anim_sound 0, 1, SFX_TOXIC
-	anim_obj ANIM_OBJ_1A, -16, 4,   9, 0, $0
-	anim_wait 8
-	anim_sound 0, 1, SFX_TOXIC
-	anim_obj ANIM_OBJ_1A,  14, 4,   9, 0, $0
-	anim_wait 8
-	anim_sound 0, 1, SFX_TOXIC
-	anim_obj ANIM_OBJ_1A, -14, 4,   9, 0, $0
-	anim_wait 8
-	anim_loop 5, .loop
-	anim_ret
-
 BattleAnim_ZapCannon:
 	anim_2gfx ANIM_GFX_LIGHTNING, ANIM_GFX_EXPLOSION
 	anim_bgp $1b
@@ -5509,37 +5484,6 @@ BattleAnim_GigaImpact:
 	anim_wait 20
 	anim_loop 3, .loop2
 	anim_wait 16
-	anim_ret
-
-BattleAnim_Trick:
-	anim_2gfx ANIM_GFX_STATUS, ANIM_GFX_BUBBLE
-.loop
-	anim_sound 6, 2, SFX_SHARPEN
-	anim_obj ANIM_OBJ_TRICK_FROM, 128, 64, $2
-	anim_wait 38
-	anim_sound 6, 2, SFX_SHARPEN
-	anim_obj ANIM_OBJ_TRICK_TO, 64, 76, $2
-	anim_wait 38
-	anim_loop 2, .loop
-.loop2
-	anim_sound 6, 2, SFX_THROW_BALL
-	anim_obj ANIM_OBJ_TRICK_FROM, 128, 64, $4
-	anim_wait 16
-	anim_sound 6, 2, SFX_THROW_BALL
-	anim_obj ANIM_OBJ_TRICK_TO, 64, 76, $4
-	anim_wait 16
-	anim_loop 2, .loop2
-	anim_sound 0, 1, SFX_KINESIS
-	anim_obj ANIM_OBJ_CHICK, 136, 24, $15
-	anim_obj ANIM_OBJ_CHICK, 136, 24, $aa
-	anim_obj ANIM_OBJ_CHICK, 136, 24, $bf
-	anim_sound 6, 2, SFX_THROW_BALL
-	anim_obj ANIM_OBJ_TRICK_FROM, 128, 64, $4
-	anim_wait 16
-	anim_sound 6, 2, SFX_THROW_BALL
-	anim_obj ANIM_OBJ_TRICK_TO, 64, 76, $4
-	anim_wait 16
-	anim_wait 32
 	anim_ret
 
 ; ================================

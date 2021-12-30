@@ -106,7 +106,7 @@ TMHMMoves:
 	db SUCKER_PUNCH ; MT24 (Scary Cave)
 	db SWAGGER      ; MT25 (Celadon City)
 	db THUNDERPUNCH ; MT26 (Goldenrod City)
-	db TRICK        ; MT27 (Battle Tower)
+	db RAZOR_WIND   ; MT27 (Battle Tower)
 	db POUND        ; MT28 (TODO)
 	db ZAP_CANNON   ; MT29 (Power Plant)
 	db ZEN_HEADBUTT ; MT30 (Saffron City)

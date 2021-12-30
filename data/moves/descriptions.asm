@@ -10,36 +10,29 @@ MoveDescriptions::
 	dw ViceGripDescription
 	dw GuillotineDescription
 	dw RazorWindDescription
-	dw AerialAceDescription
-	dw DragonClawDescription
-	dw XScissorDescription
-	dw NightSlashDescription
-	dw AirSlashDescription
 	dw SwordsDanceDescription
-	dw CutDescription
 	dw GustDescription
 	dw WingAttackDescription
-	dw SuckerPunchDescription
+	dw CutDescription
 	dw FlyDescription
-	dw DazzlingleamDescription
 	dw VineWhipDescription
 	dw StompDescription
 	dw DoubleKickDescription
-	dw FlareBlitzDescription
-	dw StoneEdgeDescription
-	dw FocusBlastDescription
+	dw StrengthDescription
+	dw SonicboomDescription
 	dw HeadbuttDescription
 	dw HornAttackDescription
-	dw HexDescription
+	dw FuryAttackDescription
+	dw DragonRageDescription
 	dw TackleDescription
 	dw BodySlamDescription
 	dw WrapDescription
 	dw TakeDownDescription
 	dw ThrashDescription
 	dw DoubleEdgeDescription
-	dw HailDescription
+	dw HoneClawsDescription
 	dw PoisonStingDescription
-	dw UTurnDescription
+	dw DragonClawDescription
 	dw PinMissileDescription
 	dw LeerDescription
 	dw BiteDescription
@@ -47,12 +40,11 @@ MoveDescriptions::
 	dw RoarDescription
 	dw SingDescription
 	dw SupersonicDescription
-	dw SonicboomDescription
 	dw DisableDescription
 	dw AcidDescription
 	dw EmberDescription
 	dw FlamethrowerDescription
-	dw CalmMindDescription
+	dw RageDescription
 	dw WaterGunDescription
 	dw HydroPumpDescription
 	dw SurfDescription
@@ -68,7 +60,6 @@ MoveDescriptions::
 	dw LowKickDescription
 	dw CounterDescription
 	dw SeismicTossDescription
-	dw StrengthDescription
 	dw AbsorbDescription
 	dw MegaDrainDescription
 	dw LeechSeedDescription
@@ -80,7 +71,6 @@ MoveDescriptions::
 	dw SleepPowderDescription
 	dw PetalDanceDescription
 	dw StringShotDescription
-	dw DragonRageDescription
 	dw FireSpinDescription
 	dw ThundershockDescription
 	dw ThunderboltDescription
@@ -88,81 +78,95 @@ MoveDescriptions::
 	dw ThunderDescription
 	dw RockThrowDescription
 	dw EarthquakeDescription
-	dw AvalancheDescription
+	dw SkillSwapDescription ; TrickRoomDescription
 	dw DigDescription
 	dw ToxicDescription
 	dw ConfusionDescription
 	dw PsychicMDescription
 	dw HypnosisDescription
-	dw HoneClawsDescription
 	dw AgilityDescription
 	dw QuickAttackDescription
-	dw RageDescription
 	dw TeleportDescription
 	dw NightShadeDescription
-	dw DragonPulseDescription
+	dw SkillSwapDescription
 	dw ScreechDescription
 	dw DoubleTeamDescription
 	dw RecoverDescription
-	dw RockBlastDescription
 	dw MinimizeDescription
 	dw SmokescreenDescription
 	dw ConfuseRayDescription
-	dw AquaTailDescription
 	dw DefenseCurlDescription
 	dw BarrierDescription
 	dw LightScreenDescription
 	dw HazeDescription
 	dw ReflectDescription
 	dw FocusEnergyDescription
-	dw FlashCannonDescription
 	dw MetronomeDescription
-	dw ScaldDescription
-	dw PoundDescription
-	dw SkillSwapDescription
 	dw LickDescription
-	dw GunkShotDescription
-	dw VenoshockDescription
-	dw EarthPowerDescription
 	dw FireBlastDescription
 	dw WaterfallDescription
-	dw IcicleCrashDescription
 	dw SwiftDescription
-	dw IronHeadDescription
-	dw IcicleSpearDescription
-	dw BulldozeDescription
 	dw AmnesiaDescription
-	dw RoostDescription
-	dw SoftboiledDescription
 	dw HiJumpKickDescription
 	dw GlareDescription
 	dw DreamEaterDescription
-	dw PoisonJabDescription
-	dw BulletPunchDescription
 	dw LeechLifeDescription
 	dw DrainKissDescription
-	dw BraveBirdDescription
 	dw TransformDescription
-	dw WaterPulseDescription
-	dw DizzyPunchDescription
 	dw SporeDescription
-	dw FlashDescription
-	dw ExtrasensoryDescription
 	dw SplashDescription
-	dw DragonDanceDescription
 	dw CrabhammerDescription
 	dw ExplosionDescription
-	dw FuryStrikesDescription
 	dw BonemerangDescription
 	dw RestDescription
 	dw RockSlideDescription
 	dw HyperFangDescription
-	dw BulkUpDescription
 	dw ConversionDescription
 	dw TriAttackDescription
 	dw SuperFangDescription
 	dw SlashDescription
 	dw SubstituteDescription
+
+
+	dw AerialAceDescription
+	dw XScissorDescription
+	dw NightSlashDescription
+	dw AirSlashDescription
+	dw SuckerPunchDescription
+	dw DazzlingleamDescription
+	dw FlareBlitzDescription
+	dw StoneEdgeDescription
+	dw FocusBlastDescription
+	dw HexDescription
+	dw HailDescription
+	dw UTurnDescription
+	dw CalmMindDescription
+	dw AvalancheDescription
+	dw DragonPulseDescription
+	dw RockBlastDescription
+	dw AquaTailDescription
+	dw FlashCannonDescription
+	dw ScaldDescription
+	dw GunkShotDescription
+	dw VenoshockDescription
+	dw EarthPowerDescription
+	dw IcicleCrashDescription
+	dw IronHeadDescription
+	dw IcicleSpearDescription
+	dw BulldozeDescription
+	dw RoostDescription
+	dw SoftboiledDescription
+	dw PoisonJabDescription
+	dw BulletPunchDescription
+	dw BraveBirdDescription
+	dw WaterPulseDescription
+	dw DizzyPunchDescription
+	dw FlashDescription
+	dw ExtrasensoryDescription
+	dw DragonDanceDescription
+	dw BulkUpDescription
+
+
 	dw GigaImpactDescription
 	dw SketchDescription
 	dw DrainPunchDescription
@@ -288,7 +292,7 @@ DrainPunchDescription:
 	db   "Steals 1/2 of the"
 	next "damage inflicted.@"
 
-FuryStrikesDescription:
+FuryAttackDescription:
 	db   "Scratches or jabs"
 	next "2-5 times.@"
 

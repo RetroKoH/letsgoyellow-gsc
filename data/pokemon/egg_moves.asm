@@ -50,7 +50,7 @@ PidgeyEggMoves:
 
 RattataEggMoves:
 	db FLAME_WHEEL
-	db FURY_STRIKES
+	db FURY_ATTACK
 	db REVERSAL
 	db SCREECH
 	db BITE
@@ -468,7 +468,7 @@ JynxEggMoves:
 
 PinsirEggMoves:
 	db FEINT_ATTACK
-	db FURY_STRIKES
+	db FURY_ATTACK
 	db QUICK_ATTACK
 	db CLOSE_COMBAT
 	db $ff
@@ -538,7 +538,7 @@ CyndaquilEggMoves:
 	db EXTRASENSORY
 	db FLARE_BLITZ
 	db FORESIGHT
-	db FURY_STRIKES
+	db FURY_ATTACK
 	db REVERSAL
 	db CLOSE_COMBAT
 	db THRASH

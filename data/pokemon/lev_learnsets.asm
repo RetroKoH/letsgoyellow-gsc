@@ -234,7 +234,7 @@ CharmanderLearnset:
 	db 04, GROWL
 	db 09, EMBER
 	db 13, SMOKESCREEN
-	db 18, FURY_STRIKES ; Fury Swipes
+	db 18, FURY_ATTACK ; Fury Swipes
 	db 22, DRAGONBREATH ; Replace Dragon Rage
 	db 27, FIRE_SPIN
 	db 31, SLASH
@@ -246,7 +246,7 @@ CharmeleonLearnset:
 	db 04, GROWL
 	db 09, EMBER
 	db 13, SMOKESCREEN
-	db 20, FURY_STRIKES ; Fury Swipes
+	db 20, FURY_ATTACK ; Fury Swipes
 	db 26, DRAGONBREATH ; Replace Dragon Rage
 	db 33, FIRE_SPIN
 	db 39, SLASH
@@ -262,7 +262,7 @@ CharizardLearnset:
 	db 04, GROWL
 	db 09, EMBER
 	db 13, SMOKESCREEN
-	db 20, FURY_STRIKES ; Fury Swipes
+	db 20, FURY_ATTACK ; Fury Swipes
 	db 26, DRAGONBREATH ; Replace Dragon Rage
 	db 33, FIRE_SPIN
 	db 43, SLASH
@@ -415,7 +415,7 @@ RattataLearnset:
 RaticateLearnset:
 	db 01, SWORDS_DANCE
 	db 01, COUNTER
-	db 01, FURY_STRIKES
+	db 01, FURY_ATTACK
 	db 01, TACKLE
 	db 03, LEER ; Tail Whip → similar move
 	db 06, QUICK_ATTACK
@@ -433,7 +433,7 @@ SpearowLearnset:
 	db 03, GROWL
 	db 08, LEER
 	db 11, FOCUS_ENERGY
-	db 16, FURY_STRIKES
+	db 16, FURY_ATTACK
 	; MIRROR MOVE
 	db 24, ROOST
 	db 27, AGILITY
@@ -447,7 +447,7 @@ FearowLearnset:
 	db 03, GROWL
 	db 08, LEER
 	db 11, FOCUS_ENERGY
-	db 16, FURY_STRIKES
+	db 16, FURY_ATTACK
 	; MIRROR MOVE
 	db 29, ROOST
 	db 37, AGILITY
@@ -521,7 +521,7 @@ SandshrewLearnset:
 	db 01, DEFENSE_CURL
 	db 05, MUD_SLAP ; Sand Attack → similar move
 	db 10, SWIFT
-	db 15, FURY_STRIKES ; Fury Swipes → similar move
+	db 15, FURY_ATTACK ; Fury Swipes → similar move
 	db 20, DIG
 	db 25, PROTECT
 	db 30, SWORDS_DANCE
@@ -535,7 +535,7 @@ SandslashLearnset:
 	db 01, DEFENSE_CURL
 	db 05, MUD_SLAP ; Sand Attack → similar move
 	db 10, SWIFT
-	db 15, FURY_STRIKES ; Fury Swipes → similar move
+	db 15, FURY_ATTACK ; Fury Swipes → similar move
 	db 20, DIG
 	db 28, PROTECT
 	db 36, SWORDS_DANCE
@@ -550,7 +550,7 @@ NidoranFLearnset:
 	db 7, LEER ; Tail Whip → similar move
 	db 9, DOUBLE_KICK
 	db 13, POISON_STING
-	db 19, FURY_STRIKES ; Fury Swipes → similar move
+	db 19, FURY_ATTACK ; Fury Swipes → similar move
 	db 21, BITE
 	db 25, SWEET_KISS ; Helping Hand → event move
 	db 31, TOXIC
@@ -566,7 +566,7 @@ NidorinaLearnset:
 	db 7, LEER ; Tail Whip → similar move
 	db 9, DOUBLE_KICK
 	db 13, POISON_STING
-	db 20, FURY_STRIKES ; Fury Swipes → similar move
+	db 20, FURY_ATTACK ; Fury Swipes → similar move
 	db 23, BITE
 	db 28, SWEET_KISS ; Helping Hand → event move
 	db 35, TOXIC
@@ -594,7 +594,7 @@ NidoranMLearnset:
 	db 7, FOCUS_ENERGY
 	db 9, DOUBLE_KICK
 	db 13, POISON_STING
-	db 19, FURY_STRIKES ; Fury Attack → similar move
+	db 19, FURY_ATTACK ; Fury Attack → similar move
 	db 21, HORN_ATTACK
 	db 25, SWEET_KISS ; Helping Hand → event move
 	db 31, TOXIC
@@ -610,7 +610,7 @@ NidorinoLearnset:
 	db 7, FOCUS_ENERGY
 	db 9, DOUBLE_KICK
 	db 13, POISON_STING
-	db 20, FURY_STRIKES ; Fury Attack → similar move
+	db 20, FURY_ATTACK ; Fury Attack → similar move
 	db 23, HORN_ATTACK
 	db 28, SWEET_KISS ; Helping Hand → event move
 	db 35, TOXIC
@@ -944,7 +944,7 @@ MeowthLearnset:
 	db 1, GROWL
 	db 6, BITE
 	db 9, ASTONISH ; Fake Out → new move
-	db 14, FURY_STRIKES ; Fury Swipes → similar move
+	db 14, FURY_ATTACK ; Fury Swipes → similar move
 	db 17, SCREECH
 	db 22, FEINT_ATTACK
 	db 25, PURSUIT ; Taunt → egg move
@@ -964,7 +964,7 @@ PersianLearnset:
 	db 1, GROWL
 	db 6, BITE
 	db 9, ASTONISH ; Fake Out → new move
-	db 14, FURY_STRIKES ; Fury Swipes → similar move
+	db 14, FURY_ATTACK ; Fury Swipes → similar move
 	db 17, SCREECH
 	db 22, FEINT_ATTACK
 	db 25, PURSUIT ; Taunt → egg move
@@ -981,7 +981,7 @@ PsyduckLearnset:
 	db 4, LEER ; Tail Whip → similar move
 	db 7, WATER_GUN
 	db 10, CONFUSION
-	db 13, FURY_STRIKES ; Fury Swipes → similar move
+	db 13, FURY_ATTACK ; Fury Swipes → similar move
 	db 16, WATER_PULSE
 	db 19, DISABLE
 	db 22, SCREECH
@@ -1000,7 +1000,7 @@ GolduckLearnset:
 	db 4, LEER ; Tail Whip → similar move
 	db 7, WATER_GUN
 	db 10, CONFUSION
-	db 13, FURY_STRIKES ; Fury Swipes → similar move
+	db 13, FURY_ATTACK ; Fury Swipes → similar move
 	db 16, WATER_PULSE
 	db 19, DISABLE
 	db 22, SCREECH
@@ -1018,7 +1018,7 @@ MankeyLearnset:
 	db 1, LOW_KICK
 	db 1, LEER
 	db 1, FOCUS_ENERGY
-	db 5, FURY_STRIKES ; Fury Swipes → similar move
+	db 5, FURY_ATTACK ; Fury Swipes → similar move
 	db 8, KARATE_CHOP
 	db 12, PURSUIT
 	db 15, SEISMIC_TOSS
@@ -1039,7 +1039,7 @@ PrimeapeLearnset:
 	db 1, LOW_KICK
 	db 1, LEER
 	db 1, FOCUS_ENERGY
-	db 5, FURY_STRIKES ; Fury Swipes → similar move
+	db 5, FURY_ATTACK ; Fury Swipes → similar move
 	db 8, KARATE_CHOP
 	db 12, PURSUIT
 	db 15, SEISMIC_TOSS
@@ -1494,7 +1494,7 @@ FarfetchDLearnset:
 	db 1, PECK
 	db 1, MUD_SLAP ; Sand Attack → similar move
 	db 1, LEER
-	db 7, FURY_STRIKES ; Fury Attack → similar move
+	db 7, FURY_ATTACK ; Fury Attack → similar move
 	db 9, AERIAL_ACE
 	db 13, KNOCK_OFF
 	db 15, RAZOR_LEAF ; Let's Go move
@@ -1514,7 +1514,7 @@ DoduoLearnset:
 	db 1, GROWL
 	db 5, QUICK_ATTACK
 	db 8, RAGE
-	db 12, FURY_STRIKES ; Fury Attack → similar move
+	db 12, FURY_ATTACK ; Fury Attack → similar move
 	db 15, PURSUIT
 	db 19, BATON_PASS ; Pluck → XD move
 	db 22, DOUBLE_KICK ; Double Hit → new move
@@ -1534,7 +1534,7 @@ DodrioLearnset:
 	db 1, GROWL
 	db 5, QUICK_ATTACK
 	db 9, RAGE
-	db 12, FURY_STRIKES ; Fury Attack → similar move
+	db 12, FURY_ATTACK ; Fury Attack → similar move
 	db 15, PURSUIT
 	db 19, BATON_PASS ; Pluck → XD move
 	db 22, DOUBLE_KICK ; Double Hit → new move
@@ -1648,7 +1648,7 @@ ShellderLearnset:
 CloysterLearnset:
 	db 1, HYDRO_PUMP
 	db 1, TOXIC
-	db 1, FURY_STRIKES ; Spike Cannon → similar move
+	db 1, FURY_ATTACK ; Spike Cannon → similar move
 	db 1, TRI_ATTACK ; Shell Smash → RBY TM move
 	db 1, DEFENSE_CURL ; Withdraw → similar move
 	db 1, SUPERSONIC
@@ -2042,7 +2042,7 @@ RhyhornLearnset:
 	db 1, MUD_SLAP ; Sand-Attack → similar move
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
-	db 6, FURY_STRIKES ; Fury Attack → similar move
+	db 6, FURY_ATTACK ; Fury Attack → similar move
 	db 9, SCARY_FACE
 	db 13, MAGNITUDE ; Smack Down → egg move
 	db 17, STOMP
@@ -2063,7 +2063,7 @@ RhydonLearnset:
 	db 1, MUD_SLAP ; Sand-Attack → similar move
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
-	db 6, FURY_STRIKES ; Fury Attack → similar move
+	db 6, FURY_ATTACK ; Fury Attack → similar move
 	db 9, SCARY_FACE
 	db 13, MAGNITUDE ; Smack Down → egg move
 	db 17, STOMP
@@ -2085,7 +2085,7 @@ RhyperiorLearnset:
 	db 1, MUD_SLAP ; Sand-Attack → similar move
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
-	db 6, FURY_STRIKES ; Fury Attack → similar move
+	db 6, FURY_ATTACK ; Fury Attack → similar move
 	db 9, SCARY_FACE
 	db 13, MAGNITUDE ; Smack Down → egg move
 	db 17, STOMP
@@ -2199,7 +2199,7 @@ GoldeenLearnset:
 	db 13, REVERSAL ; Flail → similar move
 	db 16, WATER_PULSE
 	db 21, RECOVER ; Aqua Ring → similar move
-	db 24, FURY_STRIKES ; Fury Attack → similar move
+	db 24, FURY_ATTACK ; Fury Attack → similar move
 	db 29, AGILITY
 	db 32, WATERFALL
 	db 37, DOUBLE_EDGE ; Horn Drill → RBY TM move
@@ -2217,7 +2217,7 @@ SeakingLearnset:
 	db 13, REVERSAL ; Flail → similar move
 	db 16, WATER_PULSE
 	db 21, RECOVER ; Aqua Ring → similar move
-	db 24, FURY_STRIKES ; Fury Attack → similar move
+	db 24, FURY_ATTACK ; Fury Attack → similar move
 	db 29, AGILITY
 	db 32, WATERFALL
 	db 40, DOUBLE_EDGE ; Horn Drill → RBY TM move
@@ -2384,7 +2384,7 @@ MagmarLearnset:
 	db 0 ; no more level-up moves
 
 PinsirLearnset:
-	db 1, FURY_STRIKES ; Vice Grip → new move
+	db 1, FURY_ATTACK ; Vice Grip → new move
 	db 1, FOCUS_ENERGY
 	db 4, WRAP ; Bind → similar move
 	db 8, SEISMIC_TOSS

@@ -1,10 +1,10 @@
 MoveEffectsPointers:
 	dw NormalHit
-	dw NormalHit
-	dw NormalHit
+	dw NormalHit ; PRIORITY
+	dw NormalHit ; ALWAYS
 	dw LeechHit
-	dw MultiHit
-	dw MultiHit
+	dw MultiHit ; DOUBLE
+	dw MultiHit ; MULTI
 	dw RecoilHit
 	dw FlinchHit
 	dw PoisonHit

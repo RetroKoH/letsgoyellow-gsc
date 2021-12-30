@@ -357,7 +357,7 @@ BeedrillLearnset:
 	db 20, FOCUS_ENERGY
 	db 23, VENOSHOCK
 	db 26, FEINT_ATTACK ; Assurance → similar move
-	db 29, TOXIC_SPIKES
+	db 29, TOXIC
 	db 32, PIN_MISSILE
 	db 35, POISON_JAB
 	db 38, AGILITY
@@ -553,7 +553,7 @@ NidoranFLearnset:
 	db 19, FURY_STRIKES ; Fury Swipes → similar move
 	db 21, BITE
 	db 25, SWEET_KISS ; Helping Hand → event move
-	db 31, TOXIC_SPIKES
+	db 31, TOXIC
 	db 33, HEALINGLIGHT ; Flatter → event move (Moonlight)
 	db 37, CRUNCH
 	db 43, CHARM ; Captivate → egg move
@@ -569,7 +569,7 @@ NidorinaLearnset:
 	db 20, FURY_STRIKES ; Fury Swipes → similar move
 	db 23, BITE
 	db 28, SWEET_KISS ; Helping Hand → event move
-	db 35, TOXIC_SPIKES
+	db 35, TOXIC
 	db 38, HEALINGLIGHT ; Flatter → event move (Moonlight)
 	db 43, CRUNCH
 	db 50, CHARM ; Captivate → egg move
@@ -597,7 +597,7 @@ NidoranMLearnset:
 	db 19, FURY_STRIKES ; Fury Attack → similar move
 	db 21, HORN_ATTACK
 	db 25, SWEET_KISS ; Helping Hand → event move
-	db 31, TOXIC_SPIKES
+	db 31, TOXIC
 	db 33, HEALINGLIGHT ; Flatter → event move (Morning Sun)
 	db 37, POISON_JAB
 	db 43, CHARM ; Captivate → egg move
@@ -613,7 +613,7 @@ NidorinoLearnset:
 	db 20, FURY_STRIKES ; Fury Attack → similar move
 	db 23, HORN_ATTACK
 	db 28, SWEET_KISS ; Helping Hand → event move
-	db 35, TOXIC_SPIKES
+	db 35, TOXIC
 	db 38, HEALINGLIGHT ; Flatter → event move (Morning Sun)
 	db 43, POISON_JAB
 	db 50, CHARM ; Captivate → egg move
@@ -1279,7 +1279,7 @@ TentacoolLearnset:
 	db 4, SUPERSONIC
 	db 7, WATER_GUN ; Constrict → new move
 	db 10, ACID
-	db 13, TOXIC_SPIKES
+	db 13, TOXIC
 	db 16, WATER_PULSE
 	db 19, WRAP
 	db 22, CONFUSE_RAY ; Acid Spray → event move
@@ -1299,7 +1299,7 @@ TentacruelLearnset:
 	db 4, SUPERSONIC
 	db 7, WATER_GUN ; Constrict → new move
 	db 10, ACID
-	db 13, TOXIC_SPIKES
+	db 13, TOXIC
 	db 16, WATER_PULSE
 	db 19, WRAP
 	db 22, CONFUSE_RAY ; Acid Spray → event move
@@ -1647,7 +1647,7 @@ ShellderLearnset:
 
 CloysterLearnset:
 	db 1, HYDRO_PUMP
-	db 1, TOXIC_SPIKES
+	db 1, TOXIC
 	db 1, FURY_STRIKES ; Spike Cannon → similar move
 	db 1, TRI_ATTACK ; Shell Smash → RBY TM move
 	db 1, DEFENSE_CURL ; Withdraw → similar move

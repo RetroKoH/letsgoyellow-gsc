@@ -158,7 +158,7 @@ VenonatEggMoves:
 	db BATON_PASS
 	db HEALINGLIGHT
 	db SCREECH
-	db TOXIC_SPIKES
+	db TOXIC
 	db $ff
 
 DiglettEggMoves:
@@ -491,7 +491,7 @@ OmanyteEggMoves:
 	db BUBBLE_BEAM
 	db HAZE
 	db SPIKES
-	db TOXIC_SPIKES
+	db TOXIC
 	db SUPERSONIC
 	db WATER_PULSE
 	db KNOCK_OFF
@@ -596,7 +596,7 @@ SpinarakEggMoves:
 	db SONIC_BOOM
 	db POISON_JAB
 	db NIGHT_SLASH
-	db TOXIC_SPIKES
+	db TOXIC
 	db $ff
 
 ChinchouEggMoves:
@@ -705,7 +705,7 @@ PinecoEggMoves:
 	db PIN_MISSILE
 	db SWIFT
 	db REFLECT
-	db TOXIC_SPIKES
+	db TOXIC
 	db $ff
 
 DunsparceEggMoves:

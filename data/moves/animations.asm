@@ -749,6 +749,21 @@ BattleAnim_ViceGrip:
 	anim_wait 32
 	anim_ret
 
+BattleAnim_Guillotine:
+	anim_1gfx ANIM_GFX_CUT
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
+	anim_bgeffect ANIM_BG_1F, $40, $2, $0
+	anim_sound 0, 1, SFX_VICEGRIP
+	anim_obj ANIM_OBJ_37, -13, 4,   5, 4, $0
+	anim_obj ANIM_OBJ_37, -13, 0,   5, 0, $0
+	anim_obj ANIM_OBJ_37, -14, 4,   4, 4, $0
+	anim_obj ANIM_OBJ_39,  15, 4,   9, 4, $0
+	anim_obj ANIM_OBJ_39,  15, 0,   9, 0, $0
+	anim_obj ANIM_OBJ_39,  14, 4,   8, 4, $0
+	anim_obj ANIM_OBJ_39,  15, 0,   9, 0, $0
+	anim_wait 32
+	anim_ret
+
 BattleAnim_Stomp:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 1, SFX_STOMP
@@ -3984,18 +3999,12 @@ BattleAnim_IcyWind:
 	anim_ret
 
 BattleAnim_PowerWhip:
-BattleAnim_Guillotine: ; removed
 	anim_1gfx ANIM_GFX_CUT
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $10
 	anim_bgeffect ANIM_BG_1F, $40, $2, $0
 	anim_sound 0, 1, SFX_VICEGRIP
-;	anim_obj ANIM_OBJ_37, -13, 4,   5, 4, $0
 	anim_obj ANIM_OBJ_37, -13, 0,   5, 0, $0
-;	anim_obj ANIM_OBJ_37, -14, 4,   4, 4, $0
-;	anim_obj ANIM_OBJ_39,  15, 4,   9, 4, $0
 	anim_obj ANIM_OBJ_39,  15, 0,   9, 0, $0
-;	anim_obj ANIM_OBJ_39,  14, 4,   8, 4, $0
-;	anim_obj ANIM_OBJ_39,  15, 0,   9, 0, $0
 	anim_wait 32
 	anim_ret
 

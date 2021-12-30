@@ -8,6 +8,7 @@ MoveDescriptions::
 	dw ThunderpunchDescription
 	dw ScratchDescription
 	dw ViceGripDescription
+	dw GuillotineDescription
 	dw AerialAceDescription
 	dw DragonClawDescription
 	dw XScissorDescription
@@ -26,7 +27,6 @@ MoveDescriptions::
 	dw FlareBlitzDescription
 	dw StoneEdgeDescription
 	dw FocusBlastDescription
-	dw ToxicSpikesDescription
 	dw HeadbuttDescription
 	dw HornAttackDescription
 	dw TrickDescription
@@ -593,9 +593,6 @@ LightScreenDescription:
 	next "a wall of light.@"
 
 RecoverDescription:
-	db   "Restores HP by 1/2"
-	next "the max HP.@"
-
 SoftboiledDescription:
 MilkDrinkDescription:
 	db   "Restores HP by 1/2"
@@ -628,6 +625,12 @@ MegaPunchDescription:
 ViceGripDescription:
 	db   "Grips with power-"
 	next "ful pincers.@"
+
+GuillotineDescription:
+FissureDescription:
+HornDrillDescription:
+	db   "A guaranteed one-"
+	next "hit KO attack.@"
 
 ExplosionDescription:
 	db   "Very powerful but"
@@ -709,10 +712,6 @@ MirrorCoatDescription:
 
 SpikesDescription:
 	db   "Hurts foes when"
-	next "they switch in.@"
-
-ToxicSpikesDescription:
-	db   "Poisons foes when"
 	next "they switch in.@"
 
 QuickAttackDescription:

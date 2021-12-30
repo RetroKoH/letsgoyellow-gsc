@@ -68,6 +68,23 @@ XScissor:
 	pickpocket
 	endmove
 
+OHKOHit:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	stab
+	checkhit ;ohko
+	hittarget
+	failuretext
+	checkfaint
+	criticaltext
+	supereffectivetext
+	checkfaint
+	postfainteffects
+	posthiteffects
+	endmove
+
 SuckerPunch:
 	checkobedience
 	usedmovetext

@@ -60,7 +60,7 @@ TMHMMoves:
 	db DRAGON_PULSE ; TM59 (Clair)
 	db DRAIN_PUNCH  ; TM60 (Noisy Forest)
 	db WILL_O_WISP  ; TM61 (Blaine)
-	db ACROBATICS   ; TM62 (Route 39 Farmhouse)
+	db POUND        ; TM62 (Route 39 Farmhouse)
 	db WATER_PULSE  ; TM63 (Misty)
 	db EXPLOSION    ; TM64 (Underground)
 	db SHADOW_CLAW  ; TM65 (Lake of Rage)

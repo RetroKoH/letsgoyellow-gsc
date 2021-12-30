@@ -8479,9 +8479,8 @@ INCLUDE "engine/battle/effect_commands/perish_song.asm"
 
 INCLUDE "engine/battle/effect_commands/rollout.asm"
 
-BoostJumptable:
+BoostJumptable: ; For conditional boosts
 	dbw AVALANCHE, DoAvalanche
-	dbw ACROBATICS, DoAcrobatics
 	dbw FACADE, DoFacade
 	dbw HEX, DoHex
 	dbw VENOSHOCK, DoVenoshock
@@ -8497,18 +8496,6 @@ BattleCommand_conditionalboost:
 DoAvalanche:
 	call CheckOpponentWentFirst
 	jr DoubleDamageIfNZ
-
-DoAcrobatics:
-	ld a, [hBattleTurn]
-	and a
-	ld hl, wBattleMonItem
-	jr z, .got_item
-	ld hl, wEnemyMonItem
-.got_item
-	ld a, [hl]
-	and a
-	ret nz
-	jr DoubleDamage
 
 DoFacade:
 	ld a, BATTLE_VARS_STATUS

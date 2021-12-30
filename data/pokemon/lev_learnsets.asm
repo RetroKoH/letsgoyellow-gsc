@@ -1510,7 +1510,6 @@ FarfetchDLearnset:
 	db 25, SWORDS_DANCE
 	db 31, AGILITY
 	db 33, NIGHT_SLASH
-	db 37, ACROBATICS
 	db 43, HI_JUMP_KICK ; Feint → new move
 	db 45, FALSE_SWIPE
 	db 49, AIR_SLASH

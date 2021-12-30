@@ -1,6 +1,6 @@
 	const_def
 	const NO_MOVE      ; $00
-	const ACROBATICS   ; $01
+	const POUND   ; $01
 	const KARATE_CHOP  ; $02
 	const DOUBLE_SLAP  ; $03
 	const AERIAL_ACE   ; $04
@@ -119,7 +119,7 @@
 	const FLASH_CANNON ; $75
 	const METRONOME    ; $76
 	const SCALD        ; $77
-	const POUND        ; $78 - Was Trick Room
+	const TRICK_ROOM   ; $78
 	const SKILL_SWAP   ; $79
 	const LICK         ; $7a
 	const GUNK_SHOT    ; $7b

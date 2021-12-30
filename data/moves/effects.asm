@@ -1949,7 +1949,6 @@ Swagger:
 	endmove
 
 Avalanche:
-Acrobatics:
 Facade:
 Hex:
 Venoshock:

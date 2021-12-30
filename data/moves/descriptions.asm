@@ -1,5 +1,5 @@
 MoveDescriptions::
-	dw AcrobaticsDescription
+	dw PoundDescription
 	dw KarateChopDescription
 	dw DoubleSlapDescription
 	dw AerialAceDescription
@@ -653,10 +653,6 @@ GigaImpactDescription:
 DigDescription:
 	db   "1st turn: Burrow"
 	next "2nd turn: Attack@"
-
-AcrobaticsDescription:
-	db   "Damage doubles if"
-	next "user has no item.@"
 
 HexDescription:
 	db   "Damage doubles if"

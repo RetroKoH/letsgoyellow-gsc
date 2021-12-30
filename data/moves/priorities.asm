@@ -2,8 +2,6 @@ MovePriorities:
 	; no move is for explicit switch-out
 	db NO_MOVE,       10
 	db PROTECT,       4
-	db ENDURE,        4
-	db EXTREMESPEED,  2
 	db AQUA_JET,      1
 	db SUCKER_PUNCH,  1
 	db BULLET_PUNCH,  1

@@ -139,7 +139,7 @@ MoveEffectsPointers:
 	dw NormalHit
 	dw SwitchHit
 	dw SuckerPunch
-	dw ToxicSpikes
+	dw OHKOHit
 	dw Roost
 	dw CloseCombat
 	dw SkillSwap

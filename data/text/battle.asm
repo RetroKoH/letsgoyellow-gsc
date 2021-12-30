@@ -927,6 +927,10 @@ CriticalHitText: ; 0x81086
 	prompt
 ; 0x81097
 
+OneHitKOText:
+	text "It's a one-hit KO!"
+	prompt
+
 SuperEffectiveText: ; 0x810aa
 	text "It's super-"
 	line "effective!"

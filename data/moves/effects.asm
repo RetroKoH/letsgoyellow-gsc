@@ -74,7 +74,7 @@ OHKOHit:
 	doturn
 	hastarget
 	stab
-	checkhit ;ohko
+	ohko
 	hittarget
 	failuretext
 	checkfaint
@@ -1874,15 +1874,6 @@ Spikes:
 	hastarget
 	bounceback
 	spikes
-	endmove
-
-ToxicSpikes:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	bounceback
-	toxicspikes
 	endmove
 
 Foresight:

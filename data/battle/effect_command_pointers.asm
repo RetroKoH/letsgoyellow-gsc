@@ -175,7 +175,7 @@ BattleCommandPointers:
 	command bounceback
 	command pickpocket
 	command suckerpunch
-	command toxicspikes
+	command ohko
 	command roost
 	command skillswap
 	command trick

@@ -2833,14 +2833,22 @@ BattleCommand_suckerpunch:
 
 BattleCommand_criticaltext: ; 35175
 ; criticaltext
-; Prints the message for critical hits.
+; Prints the message for critical hits or one-hit KOs.
 
 ; If there is no message to be printed, wait 20 frames.
 	ld a, [wCriticalHit]
 	and a
 	jr z, .wait
 
-	ld hl, CriticalHitText
+	dec a
+	add a
+	ld hl, .texts
+	ld b, 0
+	ld c, a
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	call StdBattleTextBox
 
 	xor a
@@ -2862,6 +2870,9 @@ BattleCommand_criticaltext: ; 35175
 	ld c, 20
 	jp DelayFrames
 
+.texts
+	dw CriticalHitText
+	dw OneHitKOText
 
 BattleCommand_startloop: ; 35197
 ; startloop
@@ -6931,7 +6942,7 @@ CheckOpponentWentFirst:
 	pop hl
 	ret
 
-BattleCommand_OHKO:
+BattleCommand_ohko:
 ; ohko
 	call ResetDamage
 	ld a, [wTypeModifier]

@@ -1,7 +1,7 @@
 MoveDescriptions::
 	dw PoundDescription
 	dw KarateChopDescription
-	dw DoubleSlapDescription
+	dw MegaPunchDescription
 	dw AerialAceDescription
 	dw DragonClawDescription
 	dw PayDayDescription
@@ -287,10 +287,6 @@ DrainKissDescription:
 DrainPunchDescription:
 	db   "Steals 1/2 of the"
 	next "damage inflicted.@"
-
-DoubleSlapDescription:
-	db   "Repeatedly slaps"
-	next "2-5 times.@"
 
 FuryStrikesDescription:
 	db   "Scratches or jabs"
@@ -624,6 +620,10 @@ WrapDescription:
 PoundDescription:
 	db   "Pounds with fore-"
 	next "legs or tail.@"
+
+MegaPunchDescription:
+	db   "A powerful punch"
+	next "thrown very hard.@"
 
 ExplosionDescription:
 	db   "Very powerful but"

@@ -1,7 +1,7 @@
 MoveNames::
 	db "POUND@"
 	db "KARATE CHOP@"
-	db "DOUBLESLAP@"
+	db "MEGA PUNCH@"
 	db "AERIAL ACE@"
 	db "DRAGON CLAW@"
 	db "PAY DAY@"

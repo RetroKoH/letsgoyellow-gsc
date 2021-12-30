@@ -23,9 +23,11 @@ IceShard:
 KarateChop:
 MachPunch:
 Megahorn:
+MegaPunch:
 MegaKick:
 NightSlash:
 Peck:
+Pound:
 PowerGem:
 PowerWhip:
 Psystrike:
@@ -144,7 +146,6 @@ MultiHit:
 Bonemerang:
 CometPunch:
 DoubleKick:
-DoubleSlap:
 PinMissile:
 IcicleSpear:
 RockBlast:

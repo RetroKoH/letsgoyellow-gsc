@@ -638,7 +638,6 @@ ClefairyLearnset:
 	db 1, GROWL
 	db 1, ENCORE
 	db 7, SING
-	db 10, DOUBLE_SLAP
 	db 13, DEFENSE_CURL
 	db 16, SWEET_KISS ; Follow Me → new move
 	db 19, DIZZY_PUNCH ; Bestow → Crystal unique move
@@ -663,7 +662,6 @@ ClefableLearnset:
 	db 1, SING
 	db 1, MINIMIZE
 	db 1, METRONOME
-	db 1, DOUBLE_SLAP
 	db 0 ; no more level-up moves
 
 VulpixLearnset:
@@ -706,7 +704,6 @@ JigglypuffLearnset:
 	db 9, DIZZY_PUNCH ; Play Nice → Crystal unique move
 	db 11, DISARM_VOICE
 	db 14, DISABLE
-	db 17, DOUBLE_SLAP
 	db 20, ROLLOUT
 	db 22, CHARM ; Round → Igglybuff move
 	db 27, MEAN_LOOK ; Wake-Up Slap → new move
@@ -725,7 +722,6 @@ WigglytuffLearnset:
 	db 1, SING
 	db 1, DEFENSE_CURL
 	db 1, DISABLE
-	db 1, DOUBLE_SLAP
 	db 0 ; no more level-up moves
 
 ZubatLearnset:
@@ -1095,7 +1091,6 @@ PoliwagLearnset:
 	db 1, SWEET_KISS ; event move
 	db 1, WATER_GUN ; Water Sport → Water Gun
 	db 5, HYPNOSIS ; Water Gun → Hypnosis
-	db 8, DOUBLE_SLAP ; Hypnosis → Double Slap
 	db 11, AQUA_JET ; Bubble → new move
 	db 15, MUD_SLAP ; Double Slap → TM move
 	db 18, RAIN_DANCE
@@ -1112,7 +1107,6 @@ PoliwhirlLearnset:
 	db 1, SWEET_KISS ; event move
 	db 1, WATER_GUN ; Water Sport → Water Gun
 	db 5, HYPNOSIS ; Water Gun → Hypnosis
-	db 8, DOUBLE_SLAP ; Hypnosis → Double Slap
 	db 11, AQUA_JET ; Bubble → new move
 	db 15, MUD_SLAP ; Double Slap → TM move
 	db 18, RAIN_DANCE
@@ -1128,7 +1122,6 @@ PoliwhirlLearnset:
 PoliwrathLearnset:
 	db 1, BUBBLE_BEAM
 	db 1, HYPNOSIS
-	db 1, DOUBLE_SLAP
 	db 1, CLOSE_COMBAT ; evolution move
 	db 32, DYNAMICPUNCH
 	db 43, EARTH_POWER ; Mind Reader → Poliwhirl move
@@ -2114,7 +2107,6 @@ ChanseyLearnset:
 	db 1, GROWL
 	db 5, LEER ; Tail Whip → similar move
 	db 9, SWEET_KISS ; Refresh → Happiny move
-	db 12, DOUBLE_SLAP
 	db 16, SOFTBOILED
 	db 20, METRONOME ; Bestow → egg move
 	db 23, MINIMIZE
@@ -2269,7 +2261,6 @@ MrMimeLearnset:
 	db 1, CONFUSION
 	db 4, HYPNOSIS ; Copycat → egg move
 	db 8, CALM_MIND ; Meditate → TM move
-	db 11, DOUBLE_SLAP
 	db 13, PROTECT ; Mimic → event move
 	db 15, METRONOME ; Psywave → RBY TM move
 	db 18, ENCORE
@@ -2313,7 +2304,6 @@ JynxLearnset:
 	db 5, SING ; Lovely Kiss → Smoochum move
 	db 8, SCREECH ; Lovely Kiss → Let's Go move
 	db 11, ICY_WIND ; Powder Snow → TM move
-	db 15, DOUBLE_SLAP
 	db 18, ICE_PUNCH
 	db 21, METRONOME ; Heart Stamp → RBY TM move
 	db 25, MEAN_LOOK

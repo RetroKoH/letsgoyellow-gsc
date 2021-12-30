@@ -2,7 +2,7 @@ BattleAnimations::
 	dw BattleAnim_0
 	dw BattleAnim_Pound
 	dw BattleAnim_KarateChop
-	dw BattleAnim_DoubleSlap
+	dw BattleAnim_MegaPunch
 	dw BattleAnim_AerialAce
 	dw BattleAnim_DragonClaw
 	dw BattleAnim_PayDay
@@ -119,7 +119,7 @@ BattleAnimations::
 	dw BattleAnim_FlashCannon
 	dw BattleAnim_Metronome
 	dw BattleAnim_Scald
-	dw BattleAnim_TrickRoom ; Replace with Pound
+	dw BattleAnim_TrickRoom
 	dw BattleAnim_SkillSwap
 	dw BattleAnim_Lick
 	dw BattleAnim_GunkShot
@@ -698,7 +698,7 @@ BattleAnim_Shake:
 	anim_wait 40
 	anim_ret
 
-BattleAnim_Pound: ; removed
+BattleAnim_Pound:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 1, SFX_POUND
 	anim_obj ANIM_OBJ_08, -15, 0,   7, 0, $0
@@ -726,22 +726,19 @@ BattleAnim_KarateChop:
 	anim_wait 16
 	anim_ret
 
-BattleAnim_DoubleSlap:
+BattleAnim_MegaPunch:
 	anim_1gfx ANIM_GFX_HIT
-	anim_jumpif $1, BattleAnim_DoubleSlap_branch_c961b
-	anim_sound 0, 1, SFX_DOUBLE_SLAP
-	anim_obj ANIM_OBJ_08, -14, 0,   6, 0, $0
+	anim_bgeffect ANIM_BG_1F, $40, $2, $0
+	anim_wait 48
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
+.loop
+	anim_sound 0, 1, SFX_MEGA_PUNCH
+	anim_obj ANIM_OBJ_06, -15, 0,   7, 0, $0
+	anim_obj ANIM_OBJ_00, -15, 0,   7, 0, $0
 	anim_wait 6
-	anim_obj ANIM_OBJ_01, -14, 0,   6, 0, $0
-	anim_wait 8
-	anim_ret
-
-BattleAnim_DoubleSlap_branch_c961b:
-	anim_sound 0, 1, SFX_DOUBLE_SLAP
-	anim_obj ANIM_OBJ_08,  15, 0,   6, 0, $0
+	anim_obj ANIM_OBJ_06, -15, 0,   7, 0, $0
 	anim_wait 6
-	anim_obj ANIM_OBJ_01,  15, 0,   6, 0, $0
-	anim_wait 8
+	anim_loop 3, .loop
 	anim_ret
 
 BattleAnim_Stomp:
@@ -6002,21 +5999,6 @@ BattleAnim_Trick:
 ;	anim_wait 16
 ;	anim_loop 2, .loop
 ;	anim_wait 32
-;	anim_ret
-
-;BattleAnim_MegaPunch: ; removed
-;	anim_1gfx ANIM_GFX_HIT
-;	anim_bgeffect ANIM_BG_1F, $40, $2, $0
-;	anim_wait 48
-;	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-;.loop
-;	anim_sound 0, 1, SFX_MEGA_PUNCH
-;	anim_obj ANIM_OBJ_06, -15, 0,   7, 0, $0
-;	anim_obj ANIM_OBJ_00, -15, 0,   7, 0, $0
-;	anim_wait 6
-;	anim_obj ANIM_OBJ_06, -15, 0,   7, 0, $0
-;	anim_wait 6
-;	anim_loop 3, .loop
 ;	anim_ret
 
 ;BattleAnim_Nightmare: ; removed

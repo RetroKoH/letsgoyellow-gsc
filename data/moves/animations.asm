@@ -93,9 +93,11 @@ BattleAnimations::
 	dw BattleAnim_Screech
 	dw BattleAnim_DoubleTeam
 	dw BattleAnim_Recover
+	dw BattleAnim_MilkDrink
 	dw BattleAnim_Minimize
 	dw BattleAnim_Smokescreen
 	dw BattleAnim_ConfuseRay
+	dw BattleAnim_Sketch
 	dw BattleAnim_DefenseCurl
 	dw BattleAnim_Barrier
 	dw BattleAnim_LightScreen
@@ -103,6 +105,7 @@ BattleAnimations::
 	dw BattleAnim_Reflect
 	dw BattleAnim_FocusEnergy
 	dw BattleAnim_Metronome
+	dw BattleAnim_Extremespeed
 	dw BattleAnim_Lick
 	dw BattleAnim_FireBlast
 	dw BattleAnim_Waterfall
@@ -127,137 +130,133 @@ BattleAnimations::
 	dw BattleAnim_SuperFang
 	dw BattleAnim_Slash
 	dw BattleAnim_Substitute
-
-
-	dw BattleAnim_AerialAce
-	dw BattleAnim_XScissor
-	dw BattleAnim_NightSlash
-	dw BattleAnim_AirSlash
-	dw BattleAnim_SuckerPunch
-	dw BattleAnim_DazzlinGleam
-	dw BattleAnim_FlareBlitz
-	dw BattleAnim_StoneEdge
-	dw BattleAnim_FocusBlast
-	dw BattleAnim_Hex
-	dw BattleAnim_Hail
-	dw BattleAnim_UTurn
-	dw BattleAnim_CalmMind
-	dw BattleAnim_Avalanche
-	dw BattleAnim_DragonPulse
-	dw BattleAnim_RockBlast
-	dw BattleAnim_AquaTail
-	dw BattleAnim_FlashCannon
-	dw BattleAnim_Scald
-	dw BattleAnim_GunkShot
-	dw BattleAnim_Venoshock
-	dw BattleAnim_EarthPower
-	dw BattleAnim_IcicleCrash
-	dw BattleAnim_IronHead
-	dw BattleAnim_IcicleSpear
-	dw BattleAnim_Bulldoze
-	dw BattleAnim_Roost
-	dw BattleAnim_Softboiled
-	dw BattleAnim_PoisonJab
-	dw BattleAnim_BulletPunch
-	dw BattleAnim_BraveBird
-	dw BattleAnim_WaterPulse
-	dw BattleAnim_DizzyPunch
-	dw BattleAnim_Flash
-	dw BattleAnim_Extrasensory
-	dw BattleAnim_DragonDance
-	dw BattleAnim_BulkUp
-
-
-	dw BattleAnim_GigaImpact
-	dw BattleAnim_Sketch
+; STRUGGLE
 	dw BattleAnim_DrainPunch
-	dw BattleAnim_Thief
-	dw BattleAnim_WillOWisp
-	dw BattleAnim_ZenHeadbutt
-	dw BattleAnim_Facade
 	dw BattleAnim_FlameWheel
-	dw BattleAnim_HyperVoice
-	dw BattleAnim_Curse
-	dw BattleAnim_GyroBall
-	dw BattleAnim_EnergyBall
-	dw BattleAnim_Aeroblast
-	dw BattleAnim_SeedBomb
 	dw BattleAnim_Reversal
-	dw BattleAnim_Astonish
-	dw BattleAnim_IceShard
 	dw BattleAnim_Protect
 	dw BattleAnim_MachPunch
-	dw BattleAnim_ScaryFace
-	dw BattleAnim_FeintAttack
-	dw BattleAnim_SweetKiss
-	dw BattleAnim_BellyDrum
 	dw BattleAnim_SludgeBomb
-	dw BattleAnim_MudSlap
-	dw BattleAnim_Octazooka
-	dw BattleAnim_Spikes
-	dw BattleAnim_ZapCannon
-	dw BattleAnim_Foresight
-	dw BattleAnim_DestinyBond
-	dw BattleAnim_PerishSong
 	dw BattleAnim_IcyWind
-	dw BattleAnim_PowerGem
-	dw BattleAnim_WildCharge
-	dw BattleAnim_PowerWhip
 	dw BattleAnim_Outrage
 	dw BattleAnim_Sandstorm
-	dw BattleAnim_GigaDrain
-	dw BattleAnim_Endure
 	dw BattleAnim_Charm
 	dw BattleAnim_Rollout
-	dw BattleAnim_FalseSwipe
-	dw BattleAnim_Swagger
-	dw BattleAnim_MilkDrink
-	dw BattleAnim_Spark
-	dw BattleAnim_BugBite
-	dw BattleAnim_SteelWing
-	dw BattleAnim_MeanLook
-	dw BattleAnim_Attract
-	dw BattleAnim_SleepTalk
+	dw BattleAnim_GigaImpact
 	dw BattleAnim_HealBell
 	dw BattleAnim_Return
 	dw BattleAnim_Psystrike
-	dw BattleAnim_BugBuzz
-	dw BattleAnim_Safeguard
-	dw BattleAnim_PainSplit
-	dw BattleAnim_SacredFire
-	dw BattleAnim_Magnitude
 	dw BattleAnim_Dynamicpunch
 	dw BattleAnim_Megahorn
 	dw BattleAnim_Dragonbreath
-	dw BattleAnim_BatonPass
 	dw BattleAnim_Encore
 	dw BattleAnim_Pursuit
 	dw BattleAnim_RapidSpin
-	dw BattleAnim_ShadowClaw
 	dw BattleAnim_IronTail
 	dw BattleAnim_MetalClaw
-	dw BattleAnim_AuraSphere
 	dw BattleAnim_HealingLight
-	dw BattleAnim_Hurricane
-	dw BattleAnim_KnockOff
-	dw BattleAnim_HiddenPower
 	dw BattleAnim_CrossChop
-	dw BattleAnim_AquaJet
 	dw BattleAnim_RainDance
 	dw BattleAnim_SunnyDay
 	dw BattleAnim_Crunch
 	dw BattleAnim_MirrorCoat
-	dw BattleAnim_NastyPlot
-	dw BattleAnim_Extremespeed
 	dw BattleAnim_Ancientpower
 	dw BattleAnim_ShadowBall
-	dw BattleAnim_FutureSight
-	dw BattleAnim_RockSmash
 	dw BattleAnim_Whirlpool
+	dw BattleAnim_Hail
+	dw BattleAnim_WillOWisp
+	dw BattleAnim_Facade
+	dw BattleAnim_Curse
+	dw BattleAnim_BatonPass
+	dw BattleAnim_RockSmash
+	dw BattleAnim_KnockOff
+	dw BattleAnim_HyperVoice
+	dw BattleAnim_HiddenPower
+	dw BattleAnim_AerialAce
+	dw BattleAnim_IcicleSpear
+	dw BattleAnim_BulkUp
+	dw BattleAnim_Spark
+	dw BattleAnim_CalmMind
+	dw BattleAnim_Extrasensory
+	dw BattleAnim_DragonDance
+	dw BattleAnim_RockBlast
+	dw BattleAnim_WaterPulse
+	dw BattleAnim_Roost
+	dw BattleAnim_GyroBall
+	dw BattleAnim_FeintAttack
+	dw BattleAnim_UTurn
+	dw BattleAnim_SuckerPunch
+	dw BattleAnim_FlareBlitz
+	dw BattleAnim_PoisonJab
 	dw BattleAnim_DarkPulse
-	dw BattleAnim_Moonblast
-	dw BattleAnim_PlayRough
+	dw BattleAnim_NightSlash
+	dw BattleAnim_AquaTail
+	dw BattleAnim_AirSlash
+	dw BattleAnim_XScissor
+	dw BattleAnim_BugBuzz
+	dw BattleAnim_DragonPulse
+	dw BattleAnim_FocusBlast
+	dw BattleAnim_EnergyBall
+	dw BattleAnim_BraveBird
+	dw BattleAnim_EarthPower
+	dw BattleAnim_NastyPlot
+	dw BattleAnim_BulletPunch
+	dw BattleAnim_Avalanche
+	dw BattleAnim_IceShard
+	dw BattleAnim_Astonish
+	dw BattleAnim_ZenHeadbutt
+	dw BattleAnim_FlashCannon
+	dw BattleAnim_GigaDrain
+	dw BattleAnim_PowerWhip
+	dw BattleAnim_PowerGem
+	dw BattleAnim_ShadowClaw
+	dw BattleAnim_GunkShot
+	dw BattleAnim_IronHead
+	dw BattleAnim_StoneEdge
+	dw BattleAnim_Spikes
+	dw BattleAnim_AuraSphere
+	dw BattleAnim_BugBite
+	dw BattleAnim_AquaJet
+	dw BattleAnim_Flash
+	dw BattleAnim_SteelWing
+	dw BattleAnim_Endure
+	dw BattleAnim_Thief
+	dw BattleAnim_Venoshock
+	dw BattleAnim_Scald
+	dw BattleAnim_IcicleCrash
+	dw BattleAnim_Hex
+	dw BattleAnim_Bulldoze
+	dw BattleAnim_WildCharge
+	dw BattleAnim_Magnitude
+	dw BattleAnim_Hurricane
+	dw BattleAnim_DizzyPunch
 	dw BattleAnim_DisarmVoice
+	dw BattleAnim_PlayRough
+	dw BattleAnim_Softboiled
+	dw BattleAnim_Moonblast
+	dw BattleAnim_DazzlinGleam
+	dw BattleAnim_SeedBomb
+	dw BattleAnim_SacredFire
+	dw BattleAnim_Octazooka
+	dw BattleAnim_Aeroblast
+	dw BattleAnim_FutureSight
+
+
+	dw BattleAnim_ScaryFace
+	dw BattleAnim_SweetKiss
+	dw BattleAnim_BellyDrum
+	dw BattleAnim_MudSlap
+	dw BattleAnim_ZapCannon
+	dw BattleAnim_Foresight
+	dw BattleAnim_DestinyBond
+	dw BattleAnim_PerishSong
+	dw BattleAnim_FalseSwipe
+	dw BattleAnim_Swagger
+	dw BattleAnim_MeanLook
+	dw BattleAnim_Attract
+	dw BattleAnim_SleepTalk
+	dw BattleAnim_Safeguard
+	dw BattleAnim_PainSplit
 	dw BattleAnim_Struggle
 ; $100
 	dw BattleAnim_ThrowPokeBall

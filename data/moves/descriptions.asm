@@ -106,18 +106,24 @@ MoveDescriptions::
 	dw MetronomeDescription
 	dw ExtremespeedDescription
 	dw LickDescription
+	dw DestinyBondDescription
+	dw MudSlapDescription
 	dw FireBlastDescription
 	dw WaterfallDescription
 	dw SwiftDescription
+	dw ScaryFaceDescription
 	dw AmnesiaDescription
 	dw HiJumpKickDescription
 	dw GlareDescription
 	dw DreamEaterDescription
 	dw LeechLifeDescription
+	dw SweetKissDescription
 	dw DrainKissDescription
+	dw BellyDrumDescription
 	dw TransformDescription
 	dw SporeDescription
 	dw SplashDescription
+	dw ForesightDescription
 	dw CrabhammerDescription
 	dw ExplosionDescription
 	dw BonemerangDescription
@@ -162,14 +168,22 @@ MoveDescriptions::
 	dw AncientpowerDescription
 	dw ShadowBallDescription
 	dw WhirlpoolDescription
+	dw FalseSwipeDescription
 	dw HailDescription
 	dw WillOWispDescription
 	dw FacadeDescription
 	dw CurseDescription
 	dw BatonPassDescription
+	dw ZapCannonDescription
+	dw PerishSongDescription
+	dw SwaggerDescription
 	dw RockSmashDescription
+	dw MeanLookDescription
 	dw KnockOffDescription
 	dw HyperVoiceDescription
+	dw AttractDescription
+	dw SleepTalkDescription
+	dw SafeguardDescription
 	dw HiddenPowerDescription
 	dw AerialAceDescription
 	dw IcicleSpearDescription
@@ -235,27 +249,11 @@ MoveDescriptions::
 	dw MoonblastDescription
 	dw DazzlingleamDescription
 	dw SeedBombDescription
+	dw PainSplitDescription
 	dw SacredFireDescription
 	dw OctazookaDescription
 	dw AeroblastDescription
 	dw FutureSightDescription
-
-
-	dw ScaryFaceDescription
-	dw SweetKissDescription
-	dw BellyDrumDescription
-	dw MudSlapDescription
-	dw ZapCannonDescription
-	dw ForesightDescription
-	dw DestinyBondDescription
-	dw PerishSongDescription
-	dw FalseSwipeDescription
-	dw SwaggerDescription
-	dw MeanLookDescription
-	dw AttractDescription
-	dw SleepTalkDescription
-	dw SafeguardDescription
-	dw PainSplitDescription
 	dw StruggleDescription
 	dw Move00Description
 

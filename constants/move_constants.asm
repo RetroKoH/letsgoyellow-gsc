@@ -107,24 +107,24 @@
 	const METRONOME    ; $76
 	const EXTREMESPEED ; $f5 ; SELFDESTRUCT
 	const LICK         ; $7a
-; SMOG
-; SLUDGE
+	const DESTINY_BOND ; $c2 ; SMOG
+	const MUD_SLAP     ; $bd ; SLUDGE
 	const FIRE_BLAST   ; $7e
 	const WATERFALL    ; $7f
 	const SWIFT        ; $81
-; SKULL_BASH
+	const SCARY_FACE   ; $b8 ; SKULL_BASH
 	const AMNESIA      ; $85
 	const HI_JUMP_KICK ; $88
 	const GLARE        ; $89
 	const DREAM_EATER  ; $8a
 	const LEECH_LIFE
-; POISON_GAS
+	const SWEET_KISS   ; $ba ; POISON_GAS
 	const DRAIN_KISS   ; $8e ; LOVELY_KISS
-; SKY_ATTACK
+	const BELLY_DRUM   ; $bb ; SKY_ATTACK
 	const TRANSFORM    ; $90
 	const SPORE        ; $93
 	const SPLASH       ; $96
-; ACID_ARMOR
+	const FORESIGHT    ; $c1 ; ACID_ARMOR
 	const CRABHAMMER   ; $98
 	const EXPLOSION    ; $99
 	const BONEMERANG   ; $9b
@@ -169,26 +169,24 @@
 	const ANCIENTPOWER ; $f6
 	const SHADOW_BALL  ; $f7
 	const WHIRLPOOL    ; $fa
-;FAKE OUT
+	const FALSE_SWIPE  ; $ce ;FAKE OUT
 	const HAIL         ; $27
 	const WILL_O_WISP  ; $a9
 	const FACADE       ; $ab
 	const CURSE        ; $ae ; TAUNT
 	const BATON_PASS   ; $e2 ; HELPING HAND
-; WISH
-; SUPERPOWER
-; RECYCLE
+	const ZAP_CANNON   ; $c0 ; WISH
+	const PERISH_SONG  ; $c3 ; SUPERPOWER
+	const SWAGGER      ; $cf ; RECYCLE
 	const BRICK_BREAK  ; $f9
-; YAWN
+	const MEAN_LOOK    ; $d4 ; YAWN
 	const KNOCK_OFF    ; $ec
 	const HYPER_VOICE  ; $ad
-; POISON_FANG
-; METEOR_MASH
+	const ATTRACT      ; $d5 ; POISON_FANG
+	const SLEEP_TALK   ; $d6 ; METEOR_MASH
 	const HIDDEN_POWER ; $ed ; WEATHER BALL
-; SIGNAL_BEAM
+	const SAFEGUARD    ; $db ; SIGNAL_BEAM
 	const AERIAL_ACE   ; $16
-
-;------------------------------------
 	const ICICLE_SPEAR ; $83
 	const BULK_UP      ; $9f
 	const SPARK        ; $d1 ; VOLT TACKLE
@@ -252,27 +250,11 @@
 	const MOONBLAST    ; $fc
 	const DAZZLINGLEAM ; $1c
 	const SEED_BOMB    ; $b2 ; DRAGON HAMMER
+	const PAIN_SPLIT   ; $dc ; AURORA VEIL
 	const SACRED_FIRE  ; $dd ; SHADOW_BONE
 	const OCTAZOOKA    ; $be ; LIQUIDATION
 	const AEROBLAST    ; $b1 ; DOUBLEIRONBASH
 	const FUTURE_SIGHT ; $f8 ; STRANGE_STEAM
-
-
-	const SCARY_FACE   ; $b8
-	const SWEET_KISS   ; $ba
-	const BELLY_DRUM   ; $bb
-	const MUD_SLAP     ; $bd
-	const ZAP_CANNON   ; $c0
-	const FORESIGHT    ; $c1
-	const DESTINY_BOND ; $c2
-	const PERISH_SONG  ; $c3
-	const FALSE_SWIPE  ; $ce
-	const SWAGGER      ; $cf
-	const MEAN_LOOK    ; $d4
-	const ATTRACT      ; $d5
-	const SLEEP_TALK   ; $d6
-	const SAFEGUARD    ; $db
-	const PAIN_SPLIT   ; $dc
 	const STRUGGLE     ; $ff
 
 if !DEF(FAITHFUL)

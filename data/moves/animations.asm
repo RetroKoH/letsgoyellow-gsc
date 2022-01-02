@@ -107,18 +107,24 @@ BattleAnimations::
 	dw BattleAnim_Metronome
 	dw BattleAnim_Extremespeed
 	dw BattleAnim_Lick
+	dw BattleAnim_DestinyBond
+	dw BattleAnim_MudSlap
 	dw BattleAnim_FireBlast
 	dw BattleAnim_Waterfall
 	dw BattleAnim_Swift
+	dw BattleAnim_ScaryFace
 	dw BattleAnim_Amnesia
 	dw BattleAnim_HiJumpKick
 	dw BattleAnim_Glare
 	dw BattleAnim_DreamEater
 	dw BattleAnim_LeechLife
+	dw BattleAnim_SweetKiss
 	dw BattleAnim_DrainKiss
+	dw BattleAnim_BellyDrum
 	dw BattleAnim_Transform
 	dw BattleAnim_Spore
 	dw BattleAnim_Splash
+	dw BattleAnim_Foresight
 	dw BattleAnim_Crabhammer
 	dw BattleAnim_Explosion
 	dw BattleAnim_Bonemerang
@@ -163,15 +169,23 @@ BattleAnimations::
 	dw BattleAnim_Ancientpower
 	dw BattleAnim_ShadowBall
 	dw BattleAnim_Whirlpool
+	dw BattleAnim_FalseSwipe
 	dw BattleAnim_Hail
 	dw BattleAnim_WillOWisp
 	dw BattleAnim_Facade
 	dw BattleAnim_Curse
 	dw BattleAnim_BatonPass
+	dw BattleAnim_ZapCannon
+	dw BattleAnim_PerishSong
+	dw BattleAnim_Swagger
 	dw BattleAnim_RockSmash
+	dw BattleAnim_MeanLook
 	dw BattleAnim_KnockOff
 	dw BattleAnim_HyperVoice
+	dw BattleAnim_Attract
+	dw BattleAnim_SleepTalk
 	dw BattleAnim_HiddenPower
+	dw BattleAnim_Safeguard
 	dw BattleAnim_AerialAce
 	dw BattleAnim_IcicleSpear
 	dw BattleAnim_BulkUp
@@ -236,27 +250,11 @@ BattleAnimations::
 	dw BattleAnim_Moonblast
 	dw BattleAnim_DazzlinGleam
 	dw BattleAnim_SeedBomb
+	dw BattleAnim_PainSplit
 	dw BattleAnim_SacredFire
 	dw BattleAnim_Octazooka
 	dw BattleAnim_Aeroblast
 	dw BattleAnim_FutureSight
-
-
-	dw BattleAnim_ScaryFace
-	dw BattleAnim_SweetKiss
-	dw BattleAnim_BellyDrum
-	dw BattleAnim_MudSlap
-	dw BattleAnim_ZapCannon
-	dw BattleAnim_Foresight
-	dw BattleAnim_DestinyBond
-	dw BattleAnim_PerishSong
-	dw BattleAnim_FalseSwipe
-	dw BattleAnim_Swagger
-	dw BattleAnim_MeanLook
-	dw BattleAnim_Attract
-	dw BattleAnim_SleepTalk
-	dw BattleAnim_Safeguard
-	dw BattleAnim_PainSplit
 	dw BattleAnim_Struggle
 ; $100
 	dw BattleAnim_ThrowPokeBall

@@ -24,7 +24,7 @@ ENDM
 	const_def
 
 	add_tm DYNAMICPUNCH ; $00
-	add_tm DRAGON_CLAW  ; $01
+	add_tm TWINEEDLE    ; $01
 	add_tm CURSE        ; $02
 	add_tm CALM_MIND    ; $03
 	add_tm ROAR         ; $04

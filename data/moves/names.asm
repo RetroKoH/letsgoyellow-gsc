@@ -32,7 +32,7 @@ MoveNames::
 	db "DOUBLE-EDGE@"
 	db "TAIL WHIP@"
 	db "POISON STING@"
-	db "DRAGON CLAW@"
+	db "TWINEEDLE@"
 	db "PIN MISSILE@"
 	db "LEER@"
 	db "BITE@"

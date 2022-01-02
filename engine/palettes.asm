@@ -1225,7 +1225,7 @@ TMHMTypes:
 ; This merges data from battle/moves/moves.asm:Moves and engine/tmhm.asm:TMHMMoves
 ; for efficiency.
 	db FIGHTING ; DYNAMICPUNCH
-	db DRAGON   ; DRAGON_CLAW
+	db BUG      ; TWINEEDLE
 	db GHOST    ; CURSE
 	db PSYCHIC  ; CALM_MIND
 	db NORMAL   ; ROAR

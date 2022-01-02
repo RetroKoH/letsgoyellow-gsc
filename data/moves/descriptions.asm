@@ -32,7 +32,7 @@ MoveDescriptions::
 	dw DoubleEdgeDescription
 	dw TailWhipDescription
 	dw PoisonStingDescription
-	dw DragonClawDescription
+	dw TwineedleDescription
 	dw PinMissileDescription
 	dw LeerDescription
 	dw BiteDescription
@@ -292,6 +292,10 @@ DrainPunchDescription:
 FuryAttackDescription:
 	db   "Scratches or jabs"
 	next "2-5 times.@"
+
+TwineedleDescription:
+	db   "Jabs the foe twice"
+	next "using stingers.@"
 
 PinMissileDescription:
 	db   "Fires pins that"
@@ -752,10 +756,6 @@ PeckDescription:
 VineWhipDescription:
 	db   "Whips the foe with"
 	next "slender vines.@"
-
-DragonClawDescription:
-	db   "Slashes the foe"
-	next "with sharp claws.@"
 
 CutDescription:
 	db   "Cuts using claws,"

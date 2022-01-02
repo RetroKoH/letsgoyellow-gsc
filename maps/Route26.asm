@@ -13,10 +13,9 @@ Route26_MapScriptHeader:
 	db 1 ; bg events
 	bg_event  8,  6, SIGNPOST_JUMPTEXT, Route26SignText
 
-	db 3 ; object events
+	db 2 ; object events
 	fruittree_event 14, 54, FRUITTREE_ROUTE_26, SITRUS_BERRY
 	itemball_event  9, 15, MAX_ELIXIR, 1, EVENT_ROUTE_26_MAX_ELIXIR
-	tmhmball_event 13, 34, TM_DRAGON_CLAW, EVENT_ROUTE_26_TM_DRAGON_CLAW
 
 Route26SignText:
 	text "Route 26"

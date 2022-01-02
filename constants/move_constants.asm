@@ -32,19 +32,19 @@
 	const THRASH       ; $1e
 	const DOUBLE_EDGE  ; $1f
 	const TAIL_WHIP    ; $20
-	const POISON_STING ; $28
-	const DRAGON_CLAW  ; $17 ; TWINEEDLE
-	const PIN_MISSILE  ; $2a
-	const LEER         ; $2b
-	const BITE         ; $2c
-	const GROWL        ; $2d
-	const ROAR         ; $2e
-	const SING         ; $2f
-	const SUPERSONIC   ; $30
-	const DISABLE      ; $32
-	const ACID         ; $33
-	const EMBER        ; $34
-	const FLAMETHROWER ; $35
+	const POISON_STING ; $21
+	const TWINEEDLE    ; $22
+	const PIN_MISSILE  ; $23
+	const LEER         ; $24
+	const BITE         ; $25
+	const GROWL        ; $26
+	const ROAR         ; $27
+	const SING         ; $28
+	const SUPERSONIC   ; $29
+	const DISABLE      ; $2a
+	const ACID         ; $2b
+	const EMBER        ; $2c
+	const FLAMETHROWER ; $2d
 	const RAGE         ; $63 ; MIST
 	const WATER_GUN    ; $37
 	const HYDRO_PUMP   ; $38

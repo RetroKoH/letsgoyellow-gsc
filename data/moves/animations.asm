@@ -33,7 +33,7 @@ BattleAnimations::
 	dw BattleAnim_DoubleEdge
 	dw BattleAnim_TailWhip
 	dw BattleAnim_PoisonSting
-	dw BattleAnim_DragonClaw
+	dw BattleAnim_Twineedle
 	dw BattleAnim_PinMissile
 	dw BattleAnim_Leer
 	dw BattleAnim_Bite
@@ -4574,23 +4574,15 @@ BattleAnim_MetalClaw:
 	anim_wait 32
 	anim_ret
 
-; Dragon Claw animation from Pokémon Prism
-BattleAnim_DragonClaw:
-	anim_2gfx ANIM_GFX_CUT, ANIM_GFX_FIRE
-	anim_obp0 0, 1, 2, 3
-	anim_bgeffect ANIM_BG_1F, $40, $2, $0
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3
-	anim_sound 0, 1, SFX_CUT
-	anim_obj ANIM_OBJ_3A, 19, 0,  5, 0, $0
-	anim_obj ANIM_OBJ_3A, 18, 4,  4, 4, $0
-	anim_obj ANIM_OBJ_3A, 18, 0,  4, 0, $0
-	anim_obj ANIM_OBJ_3A, 17, 4,  3, 4, $0
-	anim_wait 8
-	anim_obj ANIM_OBJ_BURNED,  15, 0, 8, 4, 6
-	anim_obj ANIM_OBJ_BURNED,  14, 0, 7, 4, 7
-	anim_obj ANIM_OBJ_BURNED,  13, 0, 6, 4, 8
+BattleAnim_Twineedle:
+	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
+	anim_sound 0, 1, SFX_POISON_STING
+	anim_obj ANIM_OBJ_60,   8, 0,  11, 4, $14
+	anim_obj ANIM_OBJ_60,   7, 0,  10, 4, $14
 	anim_wait 16
-	anim_sound 0, 0, SFX_BURN
+	anim_sound 0, 1, SFX_POISON_STING
+	anim_obj ANIM_OBJ_05, -15, 0,   7, 0, $0
+	anim_obj ANIM_OBJ_05,  16, 0,   6, 0, $0
 	anim_wait 16
 	anim_ret
 
@@ -5458,18 +5450,6 @@ BattleAnim_GigaImpact:
 ; ================================
 ; unused animations below here
 ; ================================
-
-;BattleAnim_Twineedle: ; removed
-;	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
-;	anim_sound 0, 1, SFX_POISON_STING
-;	anim_obj ANIM_OBJ_60,   8, 0,  11, 4, $14
-;	anim_obj ANIM_OBJ_60,   7, 0,  10, 4, $14
-;	anim_wait 16
-;	anim_sound 0, 1, SFX_POISON_STING
-;	anim_obj ANIM_OBJ_05, -15, 0,   7, 0, $0
-;	anim_obj ANIM_OBJ_05,  16, 0,   6, 0, $0
-;	anim_wait 16
-;	anim_ret
 
 ;BattleAnim_BeatUp: ; removed
 ;	anim_jumpif $0, .current_mon

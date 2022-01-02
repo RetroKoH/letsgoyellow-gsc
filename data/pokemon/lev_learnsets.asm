@@ -867,7 +867,6 @@ ParasectLearnset:
 VenonatLearnset:
 	db 1, TACKLE
 	db 1, DISABLE
-	db 1, FORESIGHT
 	db 5, SUPERSONIC
 	db 11, CONFUSION
 	db 13, POISONPOWDER
@@ -885,7 +884,6 @@ VenomothLearnset:
 	db 1, BUG_BUZZ
 	db 1, TACKLE
 	db 1, DISABLE
-	db 1, FORESIGHT
 	db 5, SUPERSONIC
 	db 11, CONFUSION
 	db 13, POISONPOWDER
@@ -1134,7 +1132,6 @@ AbraLearnset:
 
 KadabraLearnset:
 	db 1, TELEPORT
-	db 1, FORESIGHT ; evolution move
 	db 16, CONFUSION
 	db 18, DISABLE
 	db 21, PSYBEAM
@@ -1153,7 +1150,6 @@ KadabraLearnset:
 AlakazamLearnset:
 	db 1, TRI_ATTACK ; RBY TM move
 	db 1, TELEPORT
-	db 1, FORESIGHT ; evolution move
 	db 16, CONFUSION
 	db 18, DISABLE
 	db 21, PSYBEAM
@@ -1174,7 +1170,6 @@ MachopLearnset:
 	db 1, LEER
 	db 3, FOCUS_ENERGY
 	db 7, KARATE_CHOP
-	db 9, FORESIGHT
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, REVERSAL ; Revenge → Sw/Sh move
@@ -1194,7 +1189,6 @@ MachokeLearnset:
 	db 1, LEER
 	db 3, FOCUS_ENERGY
 	db 7, KARATE_CHOP
-	db 9, FORESIGHT
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, REVERSAL ; Revenge → Sw/Sh move
@@ -1216,7 +1210,6 @@ MachampLearnset:
 	db 1, LEER
 	db 3, FOCUS_ENERGY
 	db 7, KARATE_CHOP
-	db 9, FORESIGHT
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, REVERSAL ; Revenge → Sw/Sh TM move
@@ -1917,8 +1910,6 @@ MarowakLearnset:
 
 TyrogueLearnset:
 	db 1, TACKLE
-	db 1, RAGE ; Fake Out → event move
-	db 1, FORESIGHT
 	db 0 ; no more level-up moves
 
 HitmonleeLearnset:
@@ -1932,7 +1923,6 @@ HitmonleeLearnset:
 	db 25, AERIAL_ACE ; Feint → new move
 	db 29, HI_JUMP_KICK
 	db 33, DOUBLE_TEAM ; Mind Reader → TM move
-	db 37, FORESIGHT
 	db 41, FOCUS_ENERGY ; Wide Guard → Let's Go move
 	db 45, REVERSAL ; Blaze Kick → Reversal
 	db 49, ENDURE
@@ -1950,7 +1940,6 @@ HitmonchanLearnset:
 	db 17, BULLET_PUNCH
 	db 21, AERIAL_ACE ; Feint → new move
 	db 26, SEISMIC_TOSS ; Vacuum Wave → RBY TM move
-	db 31, FORESIGHT ; Quick Guard → new move
 	db 36, THUNDERPUNCH
 	db 36, ICE_PUNCH
 	db 36, FIRE_PUNCH
@@ -1974,7 +1963,6 @@ HitmontopLearnset:
 	db 33, DOUBLE_KICK ; Triple Kick → similar move
 	db 37, AGILITY
 	db 42, GYRO_BALL
-	db 46, FORESIGHT ; Wide Guard + Quick Guard → new move
 	db 50, PROTECT ; Detect → similar move
 	db 55, CLOSE_COMBAT
 	db 60, REVERSAL ; Endeavor → new move
@@ -2421,7 +2409,6 @@ MiltankLearnset:
 	db 3, GROWL
 	db 5, DEFENSE_CURL
 	db 8, STOMP
-	db 11, MILK_DRINK
 	db 15, DIZZY_PUNCH ; Bide → egg move
 	db 19, ROLLOUT
 	db 24, BODY_SLAM

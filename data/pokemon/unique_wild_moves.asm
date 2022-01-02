@@ -1,7 +1,6 @@
 UniqueWildMoves:
 	; landmark, species, move
 	; TODO: finish unique moves
-	db VIRIDIAN_FOREST, PIKACHU, DISARM_VOICE ; Sketch-breed move
 	db CERULEAN_CAVE, MACHAMP, METRONOME ; RBY TM move
 	db CERULEAN_CAVE, GOLEM, METRONOME ; RBY TM move
 	db CERULEAN_CAVE, GENGAR, METRONOME ; RBY TM move

@@ -287,7 +287,7 @@ OddEgg2:
 
 	db TYROGUE
 	db NO_ITEM
-	db TACKLE, RAGE, FORESIGHT, DIZZY_PUNCH
+	db TACKLE, LEER, LOW_KICK, DIZZY_PUNCH
 	dw 02560 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs
@@ -310,7 +310,7 @@ OddEgg2:
 
 	db TYROGUE
 	db NO_ITEM
-	db TACKLE, RAGE, FORESIGHT, DIZZY_PUNCH
+	db TACKLE, LEER, LOW_KICK, DIZZY_PUNCH
 	dw 00256 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs

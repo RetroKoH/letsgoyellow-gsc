@@ -630,7 +630,6 @@ SubstituteBypassMoves::
 	db ATTRACT
 	db DISABLE
 	db ENCORE
-	db FORESIGHT
 	db SPIKES
 	db -1
 

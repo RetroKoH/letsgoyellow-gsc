@@ -255,8 +255,6 @@ InitBattleAnimBuffer: ; ccaaa
 	cp PSYSTRIKE
 	jr z, .sub_8
 	cp SOFTBOILED
-	jr z, .sub_8
-	cp MILK_DRINK
 	jr nz, .no_sub
 .sub_8
 	pop af

@@ -1698,14 +1698,6 @@ PainSplit:
 	painsplit
 	endmove
 
-Sketch:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	sketch
-	endmove
-
 SleepTalk:
 	checkobedience
 	usedmovetext

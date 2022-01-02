@@ -56,7 +56,6 @@ MoveDescriptions::
 	dw HyperBeamDescription
 	dw PeckDescription
 	dw DrillPeckDescription
-	dw CloseCombatDescription
 	dw LowKickDescription
 	dw CounterDescription
 	dw SeismicTossDescription
@@ -92,11 +91,11 @@ MoveDescriptions::
 	dw ScreechDescription
 	dw DoubleTeamDescription
 	dw RecoverDescription
-	dw MilkDrinkDescription
+	dw HardenDescription
 	dw MinimizeDescription
 	dw SmokescreenDescription
 	dw ConfuseRayDescription
-	dw SketchDescription
+	dw WithdrawDescription
 	dw DefenseCurlDescription
 	dw BarrierDescription
 	dw LightScreenDescription
@@ -123,7 +122,7 @@ MoveDescriptions::
 	dw TransformDescription
 	dw SporeDescription
 	dw SplashDescription
-	dw ForesightDescription
+	dw AcidArmorDescription
 	dw CrabhammerDescription
 	dw ExplosionDescription
 	dw BonemerangDescription
@@ -198,6 +197,7 @@ MoveDescriptions::
 	dw GyroBallDescription
 	dw FeintAttackDescription
 	dw UTurnDescription
+	dw CloseCombatDescription
 	dw SuckerPunchDescription
 	dw FlareBlitzDescription
 	dw PoisonJabDescription
@@ -492,9 +492,11 @@ SweetKissDescription:
 	db   "A move that may"
 	next "confuse the foe.@"
 
+HardenDescription:
+WithdrawDescription:
 DefenseCurlDescription:
 	db   "Raises the user's"
-	next "Defense.@"
+	next "DEFENSE.@"
 
 DoubleTeamDescription:
 	db   "Raises the user's"
@@ -508,9 +510,10 @@ SwordsDanceDescription:
 	db   "Sharply raises the"
 	next "user's Attack.@"
 
+AcidArmorDescription:
 BarrierDescription:
 	db   "Sharply raises the"
-	next "user's Defense.@"
+	next "user's DEFENSE.@"
 
 AgilityDescription:
 	db   "Sharply raises the"
@@ -597,7 +600,6 @@ LightScreenDescription:
 
 RecoverDescription:
 SoftboiledDescription:
-MilkDrinkDescription:
 	db   "Restores HP by 1/2"
 	next "the user's max HP.@"
 
@@ -905,10 +907,6 @@ StruggleDescription:
 	db   "Used only if all"
 	next "PP are exhausted.@"
 
-SketchDescription:
-	db   "Copies the foe's"
-	next "move permanently.@"
-
 ThiefDescription:
 	db   "An attack that may"
 	next "steal a held item.@"
@@ -940,10 +938,6 @@ ProtectDescription:
 BellyDrumDescription:
 	db   "Sacrifices HP to"
 	next "maximize Attack.@"
-
-ForesightDescription:
-	db   "Negates foe's eva-"
-	next "sion and immunity.@"
 
 DestinyBondDescription:
 	db   "The foe faints if"

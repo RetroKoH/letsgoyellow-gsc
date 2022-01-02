@@ -83,19 +83,19 @@ MoveEffectsPointers:
 	dw Transform
 	dw Substitute
 	dw HyperBeam
-	dw Rage
+	dw Rage         ; UNUSED
 	dw Metronome
 	dw LeechSeed
 	dw Splash
 	dw Disable
 	dw Counter
 	dw Encore
-	dw PainSplit
-	dw Sketch
-	dw SleepTalk
-	dw DestinyBond
-	dw Reversal
-	dw FalseSwipe
+	dw PainSplit    ; UNUSED
+	dw Splash       ; Was Sketch, UNUSED
+	dw SleepTalk    ; UNUSED
+	dw DestinyBond  ; UNUSED
+	dw Reversal ; FLAIL
+	dw FalseSwipe   ; UNUSED
 	dw HealBell
 	dw TripleKick
 	dw Thief

@@ -987,15 +987,6 @@ InvalidTypeChangeText:
 	line "that move's type!"
 	prompt
 
-SketchedText: ; 0x81143
-	text "<USER>"
-	line "sketched"
-	cont "@"
-	text_from_ram wStringBuffer1
-	text "!"
-	prompt
-; 0x81156
-
 DestinyBondEffectText: ; 0x81156
 	text "<USER> is"
 	line "trying to take its"

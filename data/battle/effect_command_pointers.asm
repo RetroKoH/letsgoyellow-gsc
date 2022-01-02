@@ -72,7 +72,6 @@ BattleCommandPointers:
 	command counter
 	command encore
 	command painsplit
-	command sketch
 	command sleeptalk
 	command destinybond
 	command falseswipe

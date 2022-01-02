@@ -45,26 +45,25 @@
 	const ACID         ; $2b
 	const EMBER        ; $2c
 	const FLAMETHROWER ; $2d
-	const RAGE         ; $63 ; MIST
-	const WATER_GUN    ; $37
-	const HYDRO_PUMP   ; $38
-	const SURF         ; $39
-	const ICE_BEAM     ; $3a
-	const BLIZZARD     ; $3b
-	const PSYBEAM      ; $3c
-	const BUBBLE_BEAM  ; $3d
-	const AURORA_BEAM  ; $3e
-	const HYPER_BEAM   ; $3f
-	const PECK         ; $40
-	const DRILL_PECK   ; $41
-	const CLOSE_COMBAT ; $42 ; SUBMISSION
-	const LOW_KICK     ; $43
-	const COUNTER      ; $44
-	const SEISMIC_TOSS ; $45
-	const ABSORB       ; $47
-	const MEGA_DRAIN   ; $48
-	const LEECH_SEED   ; $49
-	const GROWTH       ; $4a
+	const RAGE         ; $2e ; MIST
+	const WATER_GUN    ; $2f
+	const HYDRO_PUMP   ; $30
+	const SURF         ; $31
+	const ICE_BEAM     ; $32
+	const BLIZZARD     ; $33
+	const PSYBEAM      ; $34
+	const BUBBLE_BEAM  ; $35
+	const AURORA_BEAM  ; $36
+	const HYPER_BEAM   ; $37
+	const PECK         ; $38
+	const DRILL_PECK   ; $39
+	const LOW_KICK     ; $3a
+	const COUNTER      ; $3b
+	const SEISMIC_TOSS ; $3c
+	const ABSORB       ; $3d
+	const MEGA_DRAIN   ; $3e
+	const LEECH_SEED   ; $3f
+	const GROWTH       ; $40
 	const RAZOR_LEAF   ; $4b
 	const SOLAR_BEAM   ; $4c
 	const POISONPOWDER ; $4d
@@ -93,11 +92,11 @@
 	const SCREECH      ; $67
 	const DOUBLE_TEAM  ; $68
 	const RECOVER      ; $69
-	const MILK_DRINK   ; $d0 ; HARDEN
+	const HARDEN       ; $d0
 	const MINIMIZE     ; $6b
 	const SMOKESCREEN  ; $6c
 	const CONFUSE_RAY  ; $6d
-	const SKETCH       ; $a6; WITHDRAW
+	const WITHDRAW     ; $a6
 	const DEFENSE_CURL ; $6f
 	const BARRIER      ; $70
 	const LIGHT_SCREEN ; $71
@@ -105,7 +104,7 @@
 	const REFLECT      ; $73
 	const FOCUS_ENERGY ; $74
 	const METRONOME    ; $76
-	const EXTREMESPEED ; $f5 ; SELFDESTRUCT
+	const EXTREMESPEED ; $f5 ; LOW_SWEEP
 	const LICK         ; $7a
 	const DESTINY_BOND ; $c2 ; SMOG
 	const MUD_SLAP     ; $bd ; SLUDGE
@@ -124,7 +123,7 @@
 	const TRANSFORM    ; $90
 	const SPORE        ; $93
 	const SPLASH       ; $96
-	const FORESIGHT    ; $c1 ; ACID_ARMOR
+	const ACID_ARMOR   ; $c1
 	const CRABHAMMER   ; $98
 	const EXPLOSION    ; $99
 	const BONEMERANG   ; $9b
@@ -199,6 +198,7 @@
 	const GYRO_BALL    ; $af
 	const FEINT_ATTACK ; $b9 ; FEINT
 	const U_TURN       ; $29
+	const CLOSE_COMBAT ; $3a
 	const SUCKER_PUNCH ; $1b
 	const FLARE_BLITZ  ; $1d
 	const POISON_JAB   ; $8b

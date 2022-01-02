@@ -28,7 +28,6 @@ AI_Redundant: ; 2c41a
 	dbw EFFECT_SLEEP_TALK,    .SleepTalk
 	dbw EFFECT_MEAN_LOOK,     .MeanLook
 	dbw EFFECT_SPIKES,        .Spikes
-	dbw EFFECT_FORESIGHT,     .Foresight
 	dbw EFFECT_PERISH_SONG,   .PerishSong
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail

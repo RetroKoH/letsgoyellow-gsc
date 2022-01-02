@@ -10,7 +10,7 @@ TMHMMoves:
 	db VENOSHOCK    ; TM09 (Route 1)
 	db HIDDEN_POWER ; TM10 (Lake of Rage)
 	db SUNNY_DAY    ; TM11 (Celadon Dept. Store)
-	db HONE_CLAWS   ; TM12 (Route 35)
+	db TAIL_WHIP    ; TM12 (Route 35)
 	db ICE_BEAM     ; TM13 (Goldenrod Game Corner)
 	db BLIZZARD     ; TM14 (Goldenrod Dept. Store)
 	db HYPER_BEAM   ; TM15 (Goldenrod Dept. Store)

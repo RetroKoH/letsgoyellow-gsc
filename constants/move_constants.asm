@@ -31,7 +31,7 @@
 	const TAKE_DOWN    ; $1d
 	const THRASH       ; $1e
 	const DOUBLE_EDGE  ; $1f
-	const HONE_CLAWS   ; $20 ; TAIL_WHIP
+	const TAIL_WHIP    ; $20
 	const POISON_STING ; $28
 	const DRAGON_CLAW  ; $17 ; TWINEEDLE
 	const PIN_MISSILE  ; $2a

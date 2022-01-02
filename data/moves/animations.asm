@@ -31,7 +31,7 @@ BattleAnimations::
 	dw BattleAnim_TakeDown
 	dw BattleAnim_Thrash
 	dw BattleAnim_DoubleEdge
-	dw BattleAnim_HoneClaws
+	dw BattleAnim_TailWhip
 	dw BattleAnim_PoisonSting
 	dw BattleAnim_DragonClaw
 	dw BattleAnim_PinMissile
@@ -2989,22 +2989,14 @@ BattleAnim_DragonDance:
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-BattleAnim_HoneClaws:
-	anim_1gfx ANIM_GFX_CUT
-.loop
-	anim_sound 0, 1, SFX_SCRATCH
-	anim_obj ANIM_OBJ_HONE_CLAWS_LEFT,   8, 0,  11, 0, $0
-	anim_obj ANIM_OBJ_HONE_CLAWS_LEFT,   7, 4,  10, 4, $0
-	anim_obj ANIM_OBJ_HONE_CLAWS_LEFT,   7, 0,  10, 0, $0
-	anim_sound 0, 1, SFX_SCRATCH
+BattleAnim_TailWhip:
+	anim_1gfx ANIM_GFX_HIT
+	anim_call BattleAnim_FollowPlayerHead_0
+	anim_sound 0, 0, SFX_TAIL_WHIP
+	anim_bgeffect ANIM_BG_26, $0, $1, $0
 	anim_wait 32
-	anim_sound 0, 1, SFX_SCRATCH
-	anim_obj ANIM_OBJ_HONE_CLAWS_RIGHT,   3, 0,  11, 0, $0
-	anim_obj ANIM_OBJ_HONE_CLAWS_RIGHT,   3, 4,  10, 4, $0
-	anim_obj ANIM_OBJ_HONE_CLAWS_RIGHT,   4, 0,  10, 0, $0
-	anim_sound 0, 1, SFX_SCRATCH
-	anim_wait 32
-	anim_loop 2, .loop
+	anim_incbgeffect ANIM_BG_26
+	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
 BattleAnim_QuickAttack:
@@ -5725,16 +5717,6 @@ BattleAnim_GigaImpact:
 ;	anim_obj ANIM_OBJ_73, -16, 4,   5, 4, $38
 ;	anim_wait 128
 ;	anim_wait 48
-;	anim_ret
-
-;BattleAnim_TailWhip: ; removed
-;	anim_1gfx ANIM_GFX_HIT
-;	anim_call BattleAnim_FollowPlayerHead_0
-;	anim_sound 0, 0, SFX_TAIL_WHIP
-;	anim_bgeffect ANIM_BG_26, $0, $1, $0
-;	anim_wait 32
-;	anim_incbgeffect ANIM_BG_26
-;	anim_call BattleAnim_ShowMon_0
 ;	anim_ret
 
 ;BattleAnim_VitalThrow: ; removed

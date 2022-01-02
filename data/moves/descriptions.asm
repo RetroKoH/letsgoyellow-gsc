@@ -30,7 +30,7 @@ MoveDescriptions::
 	dw TakeDownDescription
 	dw ThrashDescription
 	dw DoubleEdgeDescription
-	dw HoneClawsDescription
+	dw TailWhipDescription
 	dw PoisonStingDescription
 	dw DragonClawDescription
 	dw PinMissileDescription
@@ -540,7 +540,7 @@ DragonDanceDescription:
 	db   "Raises the user's"
 	next "Attack and Speed.@"
 
-HoneClawsDescription:
+CoilDescription:
 	db   "Raises the user's"
 	next "Atk and accuracy.@"
 
@@ -548,9 +548,10 @@ GrowlDescription:
 	db   "A move that lowers"
 	next "the foe's Attack.@"
 
+TailWhipDescription:
 LeerDescription:
 	db   "A move that lowers"
-	next "the foe's Defense.@"
+	next "the foe's DEFENSE.@"
 
 StringShotDescription:
 	db   "A move that lowers"

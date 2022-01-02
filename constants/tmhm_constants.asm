@@ -34,7 +34,7 @@ ENDM
 	add_tm VENOSHOCK    ; $08
 	add_tm HIDDEN_POWER ; $09
 	add_tm SUNNY_DAY    ; $0a
-	add_tm HONE_CLAWS   ; $0b
+	add_tm TAIL_WHIP    ; $0b
 	add_tm ICE_BEAM     ; $0c
 	add_tm BLIZZARD     ; $0d
 	add_tm HYPER_BEAM   ; $0e

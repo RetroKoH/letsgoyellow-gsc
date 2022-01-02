@@ -1193,7 +1193,7 @@ AI_Smart_Encore: ; 38c3b
 	db FOCUS_ENERGY
 	db GROWTH
 	db HAZE
-	db HONE_CLAWS
+	db TAIL_WHIP
 	db LEECH_SEED
 	db LEER
 	db POISONPOWDER
@@ -2619,7 +2619,7 @@ AI_Opportunist: ; 39315
 	db GROWL
 	db GROWTH
 	db HAZE
-	db HONE_CLAWS
+	db TAIL_WHIP
 	db LEECH_SEED
 	db LEER
 	db LIGHT_SCREEN

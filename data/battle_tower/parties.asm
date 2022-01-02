@@ -179,7 +179,7 @@ BattleTowerMons2:
 
 	db GYARADOS
 	db LUM_BERRY
-	db HYPER_BEAM, DRAGON_RAGE, THUNDERBOLT, FIRE_BLAST
+	db HYPER_BEAM, HYDRO_PUMP, THUNDERBOLT, FIRE_BLAST
 	db $ff, $af, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -215,7 +215,7 @@ BattleTowerMons2:
 
 	db AERODACTYL
 	db SITRUS_BERRY
-	db REST, HYPER_BEAM, EARTHQUAKE, DRAGON_RAGE
+	db REST, HYPER_BEAM, EARTHQUAKE, TOXIC
 	db $bf, $bb, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -519,7 +519,7 @@ BattleTowerMons4:
 
 	db CHARIZARD
 	db KINGS_ROCK
-	db FIRE_SPIN, DRAGON_RAGE, FLY, SLASH
+	db FIRE_SPIN, DRAGONBREATH, FLY, SLASH
 	db $ff, $ef, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

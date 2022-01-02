@@ -20,11 +20,11 @@ BattleAnimations::
 	dw BattleAnim_Stomp
 	dw BattleAnim_DoubleKick
 	dw BattleAnim_Strength
-	dw BattleAnim_Sonicboom
+	dw BattleAnim_SandAttack
 	dw BattleAnim_Headbutt
 	dw BattleAnim_HornAttack
 	dw BattleAnim_FuryAttack
-	dw BattleAnim_DragonRage
+	dw BattleAnim_HornDrill ; Need to fix
 	dw BattleAnim_Tackle
 	dw BattleAnim_BodySlam
 	dw BattleAnim_Wrap
@@ -967,14 +967,25 @@ BattleAnim_FireSpin:
 	anim_wait 96
 	anim_ret
 
-BattleAnim_DragonRage:
-	anim_1gfx ANIM_GFX_FIRE
+BattleAnim_HornDrill:
+	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $40
+	anim_obj ANIM_OBJ_5F,   9, 0,  10, 0, $3
+	anim_wait 8
 .loop
-	anim_sound 6, 2, SFX_EMBER
-	anim_obj ANIM_OBJ_0C,   8, 0,  11, 4, $0
-	anim_wait 3
-	anim_loop 16, .loop
-	anim_wait 64
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_00,  -16, 4,   5, 0, $0
+	anim_wait 8
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_00, 140, 48, $0
+	anim_wait 8
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_00, 132, 56, $0
+	anim_wait 8
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_00, 124, 48, $0
+	anim_wait 8
+	anim_loop 3, .loop
 	anim_ret
 
 BattleAnim_Flamethrower:
@@ -1383,28 +1394,11 @@ BattleAnim_RazorWind:
 	anim_wait 24
 	anim_ret
 
-BattleAnim_Sonicboom:
-	anim_2gfx ANIM_GFX_WHIP, ANIM_GFX_HIT
-.loop
-	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_43,   8, 0,  10, 0, $3
-	anim_wait 8
-	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_43,   8, 0,  11, 0, $2
-	anim_wait 8
-	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_43,   8, 0,  12, 0, $4
-	anim_wait 8
-	anim_loop 2, .loop
-	anim_wait 32
-	anim_incobj  1
-	anim_incobj  2
-	anim_incobj  3
-	anim_incobj  4
-	anim_incobj  5
-	anim_incobj  6
-	anim_obj ANIM_OBJ_01, -15, 0,   7, 0, $0
-	anim_wait 16
+BattleAnim_SandAttack:
+BattleAnim_MudSlap:
+	anim_1gfx ANIM_GFX_SAND
+	anim_obp0 $fc
+	anim_call BattleAnim_MudSlap_branch_cbc5b
 	anim_ret
 
 BattleAnim_Gust:
@@ -3769,11 +3763,6 @@ BattleAnim_SludgeBomb:
 	anim_wait 64
 	anim_ret
 
-BattleAnim_MudSlap:
-	anim_1gfx ANIM_GFX_SAND
-	anim_obp0 $fc
-	anim_call BattleAnim_MudSlap_branch_cbc5b
-	anim_ret
 
 BattleAnim_Octazooka:
 	anim_3gfx ANIM_GFX_HAZE, ANIM_GFX_EGG, ANIM_GFX_SMOKE

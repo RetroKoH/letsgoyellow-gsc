@@ -19,19 +19,19 @@
 	const VINE_WHIP    ; $11
 	const STOMP        ; $12
 	const DOUBLE_KICK  ; $13
-	const STRENGTH     ; $46 ; MEGA_KICK
-	const SONIC_BOOM   ; $31 ; SAND_ATTACK
-	const HEADBUTT     ; $14
-	const HORN_ATTACK  ; $15
-	const FURY_ATTACK  ; $9a
-	const DRAGON_RAGE  ; $52 ; HORN_DRILL
-	const TACKLE       ; $21
-	const BODY_SLAM    ; $22
-	const WRAP         ; $23
-	const TAKE_DOWN    ; $24
-	const THRASH       ; $25
-	const DOUBLE_EDGE  ; $26
-	const HONE_CLAWS   ; $60 ; TAIL_WHIP
+	const STRENGTH     ; $14 ; MEGA_KICK
+	const SAND_ATTACK  ; $15
+	const HEADBUTT     ; $16
+	const HORN_ATTACK  ; $17
+	const FURY_ATTACK  ; $18
+	const HORN_DRILL   ; $19
+	const TACKLE       ; $1a
+	const BODY_SLAM    ; $1b
+	const WRAP         ; $1c
+	const TAKE_DOWN    ; $1d
+	const THRASH       ; $1e
+	const DOUBLE_EDGE  ; $1f
+	const HONE_CLAWS   ; $20 ; TAIL_WHIP
 	const POISON_STING ; $28
 	const DRAGON_CLAW  ; $17 ; TWINEEDLE
 	const PIN_MISSILE  ; $2a

@@ -7,7 +7,7 @@ TeachDratiniExtremeSpeed: ; 0x8b170
 	db EXTREMESPEED
 	db THUNDER_WAVE
 	db AQUA_JET
-	db DRAGON_RAGE
+	db DRAGONBREATH
 	db 0
 
 TeachShuckiePoisonJab:
@@ -29,7 +29,7 @@ TeachMagikarpDragonRage:
 
 .Moveset:
 	db SPLASH
-	db DRAGON_RAGE
+	db HYDRO_PUMP
 	db 0
 
 GetLastPartyMon: ; 0x8b1ce

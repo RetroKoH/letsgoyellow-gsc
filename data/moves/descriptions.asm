@@ -19,11 +19,11 @@ MoveDescriptions::
 	dw StompDescription
 	dw DoubleKickDescription
 	dw StrengthDescription
-	dw SonicboomDescription
+	dw SandAttackDescription
 	dw HeadbuttDescription
 	dw HornAttackDescription
 	dw FuryAttackDescription
-	dw DragonRageDescription
+	dw HornDrillDescription
 	dw TackleDescription
 	dw BodySlamDescription
 	dw WrapDescription
@@ -445,10 +445,6 @@ OctazookaDescription:
 	db   "An attack that may"
 	next "lower accuracy.@"
 
-SonicboomDescription:
-	db   "Always inflicts"
-	next "20HP damage.@"
-
 DragonRageDescription:
 	db   "Always inflicts"
 	next "40HP damage.@"
@@ -560,10 +556,11 @@ StringShotDescription:
 	db   "A move that lowers"
 	next "the foe's Speed.@"
 
+SandAttackDescription:
 SmokescreenDescription:
 FlashDescription:
 	db   "A move that lowers"
-	next "the foe's accuracy.@"
+	next "the foe's ACCURACY.@"
 
 CharmDescription:
 	db   "Sharply lowers the"

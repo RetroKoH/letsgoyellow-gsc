@@ -519,7 +519,7 @@ RaichuLearnset:
 SandshrewLearnset:
 	db 01, SCRATCH
 	db 01, DEFENSE_CURL
-	db 05, MUD_SLAP ; Sand Attack → similar move
+	db 05, SAND_ATTACK
 	db 10, SWIFT
 	db 15, FURY_ATTACK ; Fury Swipes → similar move
 	db 20, DIG
@@ -533,7 +533,7 @@ SandshrewLearnset:
 SandslashLearnset:
 	db 01, SCRATCH
 	db 01, DEFENSE_CURL
-	db 05, MUD_SLAP ; Sand Attack → similar move
+	db 05, SAND_ATTACK
 	db 10, SWIFT
 	db 15, FURY_ATTACK ; Fury Swipes → similar move
 	db 20, DIG
@@ -902,7 +902,7 @@ VenomothLearnset:
 	db 0 ; no more level-up moves
 
 DiglettLearnset:
-	db 1, MUD_SLAP ; Sand Attack → Mud-Slap
+	db 1, SAND_ATTACK
 	db 1, SCRATCH
 	db 1, CHARM ; XD move
 	db 4, GROWL
@@ -922,7 +922,7 @@ DiglettLearnset:
 DugtrioLearnset:
 	db 1, TRI_ATTACK ; Sand Tomb → Tri Attack ; evolution move
 	db 1, NIGHT_SLASH
-	db 1, MUD_SLAP ; Sand Attack → Mud-Slap
+	db 1, SAND_ATTACK
 	db 1, SCRATCH
 	db 1, CHARM ; XD move
 	db 4, GROWL
@@ -1452,7 +1452,6 @@ MagnemiteLearnset:
 	db 7, THUNDER_WAVE
 	db 11, QUICK_ATTACK ; Magnet Bomb → TCG move
 	db 13, LIGHT_SCREEN
-	db 17, SONIC_BOOM
 	db 19, SPARK
 	db 23, SWIFT ; Mirror Shot → TM move
 	db 25, SCREECH ; Metal Sound → Screech
@@ -1474,7 +1473,6 @@ MagnetonLearnset:
 	db 7, THUNDER_WAVE
 	db 11, QUICK_ATTACK ; Magnet Bomb → TCG move
 	db 13, LIGHT_SCREEN
-	db 17, SONIC_BOOM
 	db 19, SPARK
 	db 23, SWIFT ; Mirror Shot → TM move
 	db 25, SCREECH ; Metal Sound → Screech
@@ -1492,7 +1490,7 @@ FarfetchDLearnset:
 	db 1, POISON_JAB
 	db 1, BATON_PASS ; Brave Bird → event move
 	db 1, PECK
-	db 1, MUD_SLAP ; Sand Attack → similar move
+	db 1, SAND_ATTACK
 	db 1, LEER
 	db 7, FURY_ATTACK ; Fury Attack → similar move
 	db 9, AERIAL_ACE
@@ -1816,7 +1814,6 @@ KinglerLearnset:
 VoltorbLearnset:
 	db 1, TACKLE
 	db 1, THUNDERSHOCK ; Let's Go move
-	db 4, SONIC_BOOM
 	db 6, AGILITY ; Eerie Impulse → event move
 	db 9, SPARK
 	db 11, ROLLOUT
@@ -1836,7 +1833,6 @@ VoltorbLearnset:
 ElectrodeLearnset:
 	db 1, TACKLE
 	db 1, THUNDERSHOCK ; Let's Go move
-	db 4, SONIC_BOOM
 	db 6, AGILITY ; Eerie Impulse → event move
 	db 9, SPARK
 	db 11, ROLLOUT
@@ -2039,7 +2035,7 @@ WeezingLearnset:
 
 RhyhornLearnset:
 	db 1, TACKLE
-	db 1, MUD_SLAP ; Sand-Attack → similar move
+	db 1, SAND_ATTACK
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
 	db 6, FURY_ATTACK ; Fury Attack → similar move
@@ -2060,7 +2056,7 @@ RhyhornLearnset:
 RhydonLearnset:
 	db 1, OUTRAGE ; Hammer Arm → HGSS tutor move ; evolution move
 	db 1, TACKLE
-	db 1, MUD_SLAP ; Sand-Attack → similar move
+	db 1, SAND_ATTACK
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
 	db 6, FURY_ATTACK ; Fury Attack → similar move
@@ -2082,7 +2078,7 @@ RhyperiorLearnset:
 	db 1, OUTRAGE ; Hammer Arm → HGSS tutor move ; evolution move
 	db 1, POISON_JAB
 	db 1, TACKLE
-	db 1, MUD_SLAP ; Sand-Attack → similar move
+	db 1, SAND_ATTACK
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
 	db 6, FURY_ATTACK ; Fury Attack → similar move
@@ -2445,14 +2441,13 @@ GyaradosLearnset:
 	db 1, WATERFALL ; HM move
 	db 1, BITE ; evolution move
 	db 1, THRASH
-	db 1, DRAGON_RAGE
+	db 1, DRAGONBREATH
 	db 1, WRAP ; Bind → similar move
 	db 21, LEER
 	db 24, GUST ; Twister → new move
-	db 27, DRAGON_RAGE ; Ice Fang → Dragon Rage
 	db 30, AQUA_TAIL
 	db 33, SCARY_FACE
-	db 36, DRAGONBREATH ; Dragon Rage → GSC TM move
+	db 36, DRAGONBREATH
 	db 39, CRUNCH
 	db 42, HYDRO_PUMP
 	db 45, DRAGON_DANCE
@@ -2464,7 +2459,6 @@ GyaradosLearnset:
 
 LaprasLearnset:
 	db 1, ANCIENTPOWER ; HGSS tutor move
-	db 1, DRAGON_RAGE ; RBY TM move
 	db 1, DRAGONBREATH ; GSC TM move
 	db 1, SING
 	db 1, GROWL
@@ -2492,7 +2486,7 @@ EeveeLearnset:
 	db 1, GROWL
 	db 1, TACKLE
 	db 1, LEER ; Tail Whip → similar move
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 10, SWIFT
 	db 13, QUICK_ATTACK
@@ -2512,7 +2506,7 @@ VaporeonLearnset:
 	db 1, TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 1, WATER_GUN ; evolution move
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, WATER_PULSE
@@ -2530,7 +2524,7 @@ JolteonLearnset:
 	db 1, TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 1, THUNDERSHOCK ; evolution move
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, DOUBLE_KICK
@@ -2548,7 +2542,7 @@ FlareonLearnset:
 	db 1, TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 1, EMBER ; evolution move
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, BITE
@@ -2566,7 +2560,7 @@ EspeonLearnset:
 	db 1, TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 1, CONFUSION ; evolution move
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, SWIFT
@@ -2584,7 +2578,7 @@ UmbreonLearnset:
 	db 1, TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 1, PURSUIT ; evolution move
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, CONFUSE_RAY
@@ -2602,7 +2596,7 @@ LeafeonLearnset:
 	db 1, TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 1, RAZOR_LEAF ; evolution move
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, BITE ; Grass Whistle → new move
@@ -2620,7 +2614,7 @@ GlaceonLearnset:
 	db 1, TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 1, ICY_WIND ; evolution move
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, BITE
@@ -2638,7 +2632,7 @@ SylveonLearnset:
 	db 1, TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 1, DISARM_VOICE ; evolution move
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, SWIFT
@@ -2737,7 +2731,6 @@ KabutopsLearnset:
 	db 0 ; no more level-up moves
 
 AerodactylLearnset:
-	db 1, DRAGON_RAGE ; RBY TM move
 	db 1, DRAGONBREATH ; GSC TM move
 	db 1, WING_ATTACK
 	db 1, SUPERSONIC
@@ -2855,7 +2848,6 @@ DratiniLearnset:
 	db 1, LEER
 	db 5, THUNDER_WAVE
 	db 11, AQUA_JET ; Twister → egg move
-	db 15, DRAGON_RAGE
 	db 21, HEADBUTT ; Slam → tutor move
 	db 25, AGILITY
 	db 31, DRAGONBREATH ; Dragon Tail → GSC TM move
@@ -2872,7 +2864,6 @@ DragonairLearnset:
 	db 1, LEER
 	db 5, THUNDER_WAVE
 	db 11, AQUA_JET ; Twister → egg move
-	db 15, DRAGON_RAGE
 	db 21, HEADBUTT ; Slam → tutor move
 	db 25, AGILITY
 	db 33, DRAGONBREATH ; Dragon Tail → GSC TM move
@@ -2896,7 +2887,6 @@ DragoniteLearnset:
 	db 1, WING_ATTACK ; evolution move
 	db 5, THUNDER_WAVE
 	db 11, AQUA_JET ; Twister → egg move
-	db 15, DRAGON_RAGE
 	db 21, HEADBUTT ; Slam → tutor move
 	db 25, AGILITY
 	db 33, DRAGONBREATH ; Dragon Tail → GSC TM move

@@ -92,7 +92,7 @@ RedsHouse2FSNESText:
 	givepoke MEW, 100, LEFTOVERS
 	loadvar wPartyMon1Moves+0, FLY
 	loadvar wPartyMon1Moves+1, SURF
-	loadvar wPartyMon1Moves+2, RAZOR_WIND
+	loadvar wPartyMon1Moves+2, SAND_ATTACK
 	loadvar wPartyMon1Moves+3, CUT
 	loadvar wPartyMon1PP+0, 15
 	loadvar wPartyMon1PP+1, 15

@@ -30,11 +30,11 @@ Moves:: ; 41afb
 	move STOMP,        EFFECT_STOMP,              65, NORMAL,    100, 20,  30, PHYSICAL
 	move DOUBLE_KICK,  EFFECT_DOUBLE_HIT,         30, FIGHTING,  100, 30,   0, PHYSICAL
 	move STRENGTH,     EFFECT_NORMAL_HIT,         80, NORMAL,    100, 15,   0, PHYSICAL
-	move SONIC_BOOM,   EFFECT_STATIC_DAMAGE,      20, NORMAL,     90, 20,   0, SPECIAL
+	move SAND_ATTACK,  EFFECT_ACCURACY_DOWN,       0, GROUND,    100, 15,   0, STATUS
 	move HEADBUTT,     EFFECT_FLINCH_HIT,         70, NORMAL,    100, 15,  30, PHYSICAL
 	move HORN_ATTACK,  EFFECT_NORMAL_HIT,         65, NORMAL,    100, 25,   0, PHYSICAL
 	move FURY_ATTACK,  EFFECT_FURY_STRIKES,       20, NORMAL,     85, 15,   0, PHYSICAL ; Check for what this effect is in battle.
-	move DRAGON_RAGE,  EFFECT_STATIC_DAMAGE,      40, DRAGON,    100, 10,   0, SPECIAL
+	move HORN_DRILL,   EFFECT_OHKO,                0, NORMAL,     30,  5,   0, PHYSICAL
 	move TACKLE,       EFFECT_NORMAL_HIT,         40, NORMAL,    100, 35,   0, PHYSICAL
 	move BODY_SLAM,    EFFECT_BODY_SLAM,          85, NORMAL,    100, 15,  30, PHYSICAL
 	move WRAP,         EFFECT_TRAP,               20, NORMAL,     90, 20,   0, PHYSICAL

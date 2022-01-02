@@ -427,7 +427,6 @@ KangaskhanEggMoves:
 HorseaEggMoves:
 	db AURORA_BEAM
 	db DISABLE
-	db DRAGON_RAGE
 	db DRAGONBREATH
 	db OCTAZOOKA
 	db SPLASH
@@ -591,7 +590,6 @@ SpinarakEggMoves:
 	db MEGAHORN
 	db PSYBEAM
 	db PURSUIT
-	db SONIC_BOOM
 	db POISON_JAB
 	db NIGHT_SLASH
 	db TOXIC

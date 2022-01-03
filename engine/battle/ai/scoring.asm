@@ -353,7 +353,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_PAIN_SPLIT,        AI_Smart_PainSplit
 	dbw EFFECT_SLEEP_TALK,        AI_Smart_SleepTalk
 	dbw EFFECT_DESTINY_BOND,      AI_Smart_DestinyBond
-	dbw EFFECT_REVERSAL,          AI_Smart_Reversal
+	dbw EFFECT_FLAIL,             AI_Smart_Flail
 	dbw EFFECT_HEAL_BELL,         AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
 	dbw EFFECT_THIEF,             AI_Smart_Thief
@@ -375,7 +375,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_BATON_PASS,        AI_Smart_BatonPass
 	dbw EFFECT_PURSUIT,           AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,        AI_Smart_RapidSpin
-	dbw EFFECT_HEALING_LIGHT,     AI_Smart_HealingLight
+	dbw EFFECT_SYNTHESIS,         AI_Smart_Synthesis
 	dbw EFFECT_HIDDEN_POWER,      AI_Smart_HiddenPower
 	dbw EFFECT_RAIN_DANCE,        AI_Smart_RainDance
 	dbw EFFECT_SUNNY_DAY,         AI_Smart_SunnyDay
@@ -788,7 +788,7 @@ AI_Smart_Roar: ; 38a2a
 
 
 AI_Smart_Heal:
-AI_Smart_HealingLight:
+AI_Smart_Synthesis:
 AI_Smart_Roost:
 ; 90% chance to greatly encourage this move if enemy's HP is below 25%.
 ; Discourage this move if enemy's HP is higher than 50%.
@@ -1254,7 +1254,7 @@ AI_Smart_SleepTalk: ; 38cba
 
 
 AI_Smart_DestinyBond:
-AI_Smart_Reversal: ; 38d19
+AI_Smart_Flail: ; 38d19
 ; Discourage this move if enemy's HP is above 25%.
 
 	call AICheckEnemyQuarterHP
@@ -1739,7 +1739,7 @@ AI_Smart_Endure: ; 38fac
 	call AICheckEnemyQuarterHP
 	jr c, .asm_38fd9
 
-	ld b, EFFECT_REVERSAL
+	ld b, EFFECT_FLAIL
 	call AIHasMoveEffect
 	jr nc, .asm_38fcb
 
@@ -2114,7 +2114,7 @@ SunnyDayMoves: ; 39134
 	db FIRE_BLAST
 	db SACRED_FIRE
 	db FLARE_BLITZ
-	db HEALINGLIGHT
+	db SYNTHESIS
 	db $ff
 ; 3913d
 

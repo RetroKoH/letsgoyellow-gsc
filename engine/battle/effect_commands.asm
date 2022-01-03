@@ -4331,8 +4331,8 @@ BattleCommand_constantdamage: ; 35726
 	cp EFFECT_SUPER_FANG
 	jr z, .super_fang
 
-	cp EFFECT_REVERSAL
-	jr z, .reversal
+	cp EFFECT_FLAIL
+	jr z, .flail
 
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVar
@@ -4369,13 +4369,13 @@ BattleCommand_constantdamage: ; 35726
 	ld [hl], b
 	ret
 
-.reversal
+.flail
 	ld hl, wBattleMonHP
 	ld a, [hBattleTurn]
 	and a
-	jr z, .reversal_got_hp
+	jr z, .flail_got_hp
 	ld hl, wEnemyMonHP
-.reversal_got_hp
+.flail_got_hp
 	xor a
 	ld [hDividend], a
 	ld [hMultiplicand + 0], a
@@ -4416,14 +4416,14 @@ BattleCommand_constantdamage: ; 35726
 	call Divide
 	ld a, [hQuotient + 2]
 	ld b, a
-	ld hl, .ReversalPower
+	ld hl, .FlailPower
 
-.reversal_loop
+.flail_loop
 	ld a, [hli]
 	cp b
 	jr nc, .break_loop
 	inc hl
-	jr .reversal_loop
+	jr .flail_loop
 
 .break_loop
 	ld a, [hBattleTurn]
@@ -4449,7 +4449,7 @@ BattleCommand_constantdamage: ; 35726
 	ld [hl], 1
 	ret
 
-.ReversalPower:
+.FlailPower:
 	;  px,  bp
 	db  1, 200
 	db  4, 150

@@ -49,7 +49,7 @@ PidgeyEggMoves:
 RattataEggMoves:
 	db FLAME_WHEEL
 	db FURY_ATTACK
-	db REVERSAL
+	db FLAIL
 	db SCREECH
 	db BITE
 	db COUNTER
@@ -137,7 +137,7 @@ ZubatEggMoves:
 OddishEggMoves:
 	db CHARM
 	db RAZOR_LEAF
-	db HEALINGLIGHT
+	db SYNTHESIS
 	db SWORDS_DANCE
 	db $ff
 
@@ -154,7 +154,7 @@ ParasEggMoves:
 VenonatEggMoves:
 	db AGILITY
 	db BATON_PASS
-	db HEALINGLIGHT
+	db SYNTHESIS
 	db SCREECH
 	db TOXIC
 	db $ff
@@ -164,7 +164,7 @@ DiglettEggMoves:
 	db FEINT_ATTACK
 	db HEADBUTT
 	db PURSUIT
-	db REVERSAL
+	db FLAIL
 	db SCREECH
 	db $ff
 
@@ -191,7 +191,7 @@ PsyduckEggMoves:
 MankeyEggMoves:
 	db ENCORE
 	db BULK_UP
-	db REVERSAL
+	db FLAIL
 	db ROCK_SLIDE
 	db COUNTER
 	db GUNK_SHOT
@@ -202,7 +202,7 @@ MankeyEggMoves:
 GrowlitheEggMoves:
 	db DOUBLE_KICK
 	db FIRE_SPIN
-	db HEALINGLIGHT
+	db SYNTHESIS
 	db THRASH
 	db CRUNCH
 	db FLARE_BLITZ
@@ -241,7 +241,7 @@ BellsproutEggMoves:
 	db LEECH_LIFE
 	db SWORDS_DANCE
 	db REFLECT
-	db HEALINGLIGHT
+	db SYNTHESIS
 	db POWER_WHIP
 	db $ff
 
@@ -263,7 +263,7 @@ PonytaEggMoves:
 	db CHARM
 	db DOUBLE_KICK
 	db HYPNOSIS
-	db HEALINGLIGHT
+	db SYNTHESIS
 	db THRASH
 	db QUICK_ATTACK
 	db FLAME_WHEEL
@@ -357,8 +357,8 @@ KrabbyEggMoves:
 
 ExeggcuteEggMoves:
 	db MEGA_DRAIN
-	db HEALINGLIGHT
-	db HEALINGLIGHT
+	db SYNTHESIS
+	db SYNTHESIS
 	db ANCIENTPOWER
 	db REFLECT
 	db $ff
@@ -394,7 +394,7 @@ RhyhornEggMoves:
 	db CRUNCH
 	db MAGNITUDE
 	db PURSUIT
-	db REVERSAL
+	db FLAIL
 	db THRASH
 	db ROCK_SLIDE
 	db COUNTER
@@ -431,7 +431,7 @@ HorseaEggMoves:
 TogepiEggMoves:
 	db EXTRASENSORY
 	db FUTURE_SIGHT
-	db HEALINGLIGHT
+	db SYNTHESIS
 	db NASTY_PLOT
 	db PECK
 	db $ff
@@ -446,7 +446,7 @@ MrMimeEggMoves:
 ScytherEggMoves:
 	db BATON_PASS
 	db BUG_BUZZ
-	db REVERSAL
+	db FLAIL
 	db COUNTER
 	db SAFEGUARD
 	db LIGHT_SCREEN
@@ -524,7 +524,7 @@ GoldeenEggMoves:
 PichuEggMoves:
 	db DISARM_VOICE
 	db ENCORE
-	db REVERSAL
+	db FLAIL
 	db $ff
 
 MunchlaxEggMoves:
@@ -564,7 +564,7 @@ MagbyEggMoves:
 
 MiltankEggMoves:
 	db DIZZY_PUNCH
-	db REVERSAL
+	db FLAIL
 	db SEISMIC_TOSS
 	db $ff
 

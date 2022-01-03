@@ -94,7 +94,7 @@ MoveEffectsPointers:
 	dw Splash       ; Was Sketch, UNUSED
 	dw SleepTalk    ; UNUSED
 	dw DestinyBond  ; UNUSED
-	dw Reversal ; FLAIL
+	dw Flail
 	dw FalseSwipe   ; UNUSED
 	dw HealBell
 	dw TripleKick
@@ -119,7 +119,7 @@ MoveEffectsPointers:
 	dw BatonPass
 	dw Pursuit
 	dw RapidSpin
-	dw HealingLight
+	dw Synthesis
 	dw HiddenPower
 	dw RainDance
 	dw SunnyDay

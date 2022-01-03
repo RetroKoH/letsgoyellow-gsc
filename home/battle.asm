@@ -568,7 +568,7 @@ ContactMoves::
 	db RAGE
 	db RAPID_SPIN
 	db RETURN
-	db REVERSAL
+	db FLAIL
 	db ROCK_SMASH
 	db ROLLOUT
 	db SCRATCH
@@ -641,7 +641,7 @@ DynamicPowerMoves::
 	db MIRROR_COAT
 	db NIGHT_SHADE
 	db RETURN
-	db REVERSAL
+	db FLAIL
 	db SEISMIC_TOSS
 	db SUPER_FANG
 	db -1

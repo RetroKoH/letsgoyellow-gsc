@@ -138,7 +138,7 @@
 ; STRUGGLE
 	const TRIPLE_KICK  ; $a7
 	const FLAME_WHEEL  ; $ac
-	const REVERSAL     ; $b3
+	const FLAIL        ; $b3
 	const PROTECT      ; $b6
 	const MACH_PUNCH   ; $b7
 	const SLUDGE_BOMB  ; $bc
@@ -159,7 +159,7 @@
 	const RAPID_SPIN   ; $e5
 	const IRON_TAIL    ; $e7
 	const METAL_CLAW   ; $e8
-	const HEALINGLIGHT ; $ea ; SYNTHESIS
+	const SYNTHESIS    ; $ea
 	const CROSS_CHOP   ; $ee
 	const RAIN_DANCE   ; $f0
 	const SUNNY_DAY    ; $f1

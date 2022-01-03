@@ -36,7 +36,7 @@ AI_Redundant: ; 2c41a
 	dbw EFFECT_RAIN_DANCE,    .RainDance
 	dbw EFFECT_SUNNY_DAY,     .SunnyDay
 	dbw EFFECT_TELEPORT,      .Teleport
-	dbw EFFECT_HEALING_LIGHT, .HealingLight
+	dbw EFFECT_SYNTHESIS,     .Synthesis
 	dbw EFFECT_SWAGGER,       .Swagger
 	dbw EFFECT_FUTURE_SIGHT,  .FutureSight
 	dbw EFFECT_BATON_PASS,    .BatonPass
@@ -174,7 +174,7 @@ AI_Redundant: ; 2c41a
 	ret
 
 .Heal:
-.HealingLight:
+.Synthesis:
 .Roost:
 	farcall AICheckEnemyMaxHP
 	jr nc, .NotRedundant

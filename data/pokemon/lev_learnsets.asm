@@ -554,7 +554,7 @@ NidoranFLearnset:
 	db 21, BITE
 	db 25, SWEET_KISS ; Helping Hand → event move
 	db 31, TOXIC
-	db 33, HEALINGLIGHT ; Flatter → event move (Moonlight)
+	db 33, SYNTHESIS ; Flatter → event move (Moonlight)
 	db 37, CRUNCH
 	db 43, CHARM ; Captivate → egg move
 	db 45, POISON_JAB
@@ -570,7 +570,7 @@ NidorinaLearnset:
 	db 23, BITE
 	db 28, SWEET_KISS ; Helping Hand → event move
 	db 35, TOXIC
-	db 38, HEALINGLIGHT ; Flatter → event move (Moonlight)
+	db 38, SYNTHESIS ; Flatter → event move (Moonlight)
 	db 43, CRUNCH
 	db 50, CHARM ; Captivate → egg move
 	db 58, POISON_JAB
@@ -598,7 +598,7 @@ NidoranMLearnset:
 	db 21, HORN_ATTACK
 	db 25, SWEET_KISS ; Helping Hand → event move
 	db 31, TOXIC
-	db 33, HEALINGLIGHT ; Flatter → event move (Morning Sun)
+	db 33, SYNTHESIS ; Flatter → event move (Morning Sun)
 	db 37, POISON_JAB
 	db 43, CHARM ; Captivate → egg move
 	db 45, MEGAHORN ; Horn Drill → Nidoking move
@@ -614,7 +614,7 @@ NidorinoLearnset:
 	db 23, HORN_ATTACK
 	db 28, SWEET_KISS ; Helping Hand → event move
 	db 35, TOXIC
-	db 38, HEALINGLIGHT ; Flatter → event move (Morning Sun)
+	db 38, SYNTHESIS ; Flatter → event move (Morning Sun)
 	db 43, POISON_JAB
 	db 50, CHARM ; Captivate → egg move
 	db 58, MEGAHORN ; Horn Drill → Nidoking move
@@ -648,7 +648,7 @@ ClefairyLearnset:
 	db 34, REFLECT ; Cosmic Power → TM move
 	db 37, LIGHT_SCREEN ; Lucky Chant → TM move
 	db 40, BODY_SLAM
-	db 43, HEALINGLIGHT ; Moonlight → similar move
+	db 43, SYNTHESIS ; Moonlight → similar move
 	db 46, MOONBLAST
 	db 49, BELLY_DRUM ; Gravity → egg move
 	db 50, EXTRASENSORY ; Meteor Mash → new move
@@ -656,7 +656,7 @@ ClefairyLearnset:
 	db 0 ; no more level-up moves
 
 ClefableLearnset:
-	db 1, HEALINGLIGHT ; Moonlight → similar move
+	db 1, SYNTHESIS ; Moonlight → similar move
 	db 1, DISARM_VOICE
 	db 1, PLAY_ROUGH ; Let's Go TM move
 	db 1, SING
@@ -685,7 +685,7 @@ VulpixLearnset:
 	db 44, SHADOW_BALL ; Grudge → TM move
 	db 47, DISABLE ; Captivate → egg move
 	db 50, FLARE_BLITZ ; Inferno → egg move
-	db 53, HEALINGLIGHT ; new move
+	db 53, SYNTHESIS ; new move
 	db 0 ; no more level-up moves
 
 NinetalesLearnset:
@@ -793,7 +793,7 @@ OddishLearnset:
 	db 15, SLEEP_POWDER
 	db 19, MEGA_DRAIN
 	db 23, CHARM ; Lucky Chant → egg move
-	db 27, HEALINGLIGHT ; Moonlight → similar move
+	db 27, SYNTHESIS ; Moonlight → similar move
 	db 31, GIGA_DRAIN
 	db 35, TOXIC
 	db 39, HYPER_VOICE ; Natural Gift → tutor move
@@ -811,7 +811,7 @@ GloomLearnset:
 	db 15, SLEEP_POWDER
 	db 19, MEGA_DRAIN
 	db 24, CHARM ; Lucky Chant → egg move
-	db 29, HEALINGLIGHT ; Moonlight → similar move
+	db 29, SYNTHESIS ; Moonlight → similar move
 	db 34, GIGA_DRAIN
 	db 39, TOXIC
 	db 44, HYPER_VOICE ; Natural Gift → tutor move
@@ -843,7 +843,7 @@ ParasLearnset:
 	db 33, GROWTH
 	db 38, GIGA_DRAIN
 	db 43, LEECH_LIFE ; Aromatherapy → TM move
-	db 49, HEALINGLIGHT ; Rage Powder → new move
+	db 49, SYNTHESIS ; Rage Powder → new move
 	db 54, X_SCISSOR
 	db 0 ; no more level-up moves
 
@@ -860,7 +860,7 @@ ParasectLearnset:
 	db 37, GROWTH
 	db 44, GIGA_DRAIN
 	db 51, LEECH_LIFE ; Aromatherapy → TM move
-	db 59, HEALINGLIGHT ; Rage Powder → new move
+	db 59, SYNTHESIS ; Rage Powder → new move
 	db 66, X_SCISSOR
 	db 0 ; no more level-up moves
 
@@ -1022,7 +1022,7 @@ MankeyLearnset:
 	db 15, SEISMIC_TOSS
 	db 19, SWAGGER
 	db 22, CROSS_CHOP
-	db 26, REVERSAL ; Assurance → egg move
+	db 26, FLAIL ; Assurance → egg move
 	db 29, FEINT_ATTACK ; Punishment → new move
 	db 33, THRASH
 	db 36, CLOSE_COMBAT
@@ -1043,7 +1043,7 @@ PrimeapeLearnset:
 	db 15, SEISMIC_TOSS
 	db 19, SWAGGER
 	db 22, CROSS_CHOP
-	db 26, REVERSAL ; Assurance → egg move
+	db 26, FLAIL ; Assurance → egg move
 	db 30, FEINT_ATTACK ; Punishment → new move
 	db 35, THRASH
 	db 39, CLOSE_COMBAT
@@ -1061,7 +1061,7 @@ GrowlitheLearnset:
 	db 10, SAFEGUARD ; Odor Sleuth → egg move
 	db 12, BATON_PASS ; Helping Hand → new move
 	db 17, FLAME_WHEEL
-	db 19, REVERSAL
+	db 19, FLAIL
 	db 21, DOUBLE_KICK ; Fire Fang → egg move
 	db 23, TAKE_DOWN
 	db 28, FIRE_SPIN ; Flame Burst → egg move
@@ -1172,7 +1172,7 @@ MachopLearnset:
 	db 7, KARATE_CHOP
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
-	db 19, REVERSAL ; Revenge → Sw/Sh move
+	db 19, FLAIL ; Revenge → Sw/Sh move
 	db 21, KNOCK_OFF
 	db 25, MACH_PUNCH ; Vital Throw → egg move
 	db 27, BULLET_PUNCH ; Wake-Up Slap → egg move
@@ -1191,7 +1191,7 @@ MachokeLearnset:
 	db 7, KARATE_CHOP
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
-	db 19, REVERSAL ; Revenge → Sw/Sh move
+	db 19, FLAIL ; Revenge → Sw/Sh move
 	db 21, KNOCK_OFF
 	db 25, MACH_PUNCH ; Vital Throw → egg move
 	db 27, BULLET_PUNCH ; Wake-Up Slap → egg move
@@ -1212,7 +1212,7 @@ MachampLearnset:
 	db 7, KARATE_CHOP
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
-	db 19, REVERSAL ; Revenge → Sw/Sh TM move
+	db 19, FLAIL ; Revenge → Sw/Sh TM move
 	db 21, KNOCK_OFF
 	db 25, MACH_PUNCH ; Vital Throw → egg move
 	db 27, BULLET_PUNCH ; Wake-Up Slap → egg move
@@ -1234,7 +1234,7 @@ BellsproutLearnset:
 	db 23, ACID
 	db 27, KNOCK_OFF
 	db 29, SWEET_KISS ; Sweet Scent → event move
-	db 35, HEALINGLIGHT ; Gastro Acid → new move
+	db 35, SYNTHESIS ; Gastro Acid → new move
 	db 39, RAZOR_LEAF
 	db 41, POISON_JAB
 	db 47, SUCKER_PUNCH ; Slam → HGSS tutor move
@@ -1251,7 +1251,7 @@ WeepinbellLearnset:
 	db 24, ACID
 	db 29, KNOCK_OFF
 	db 32, SWEET_KISS ; Sweet Scent → event move
-	db 39, HEALINGLIGHT ; Gastro Acid → new move
+	db 39, SYNTHESIS ; Gastro Acid → new move
 	db 44, RAZOR_LEAF
 	db 47, POISON_JAB
 	db 54, SUCKER_PUNCH ; Slam → HGSS tutor move
@@ -1261,7 +1261,7 @@ WeepinbellLearnset:
 VictreebelLearnset:
 	db 1, VINE_WHIP
 	db 1, SLEEP_POWDER
-	db 1, HEALINGLIGHT ; Sweet Scent → new move
+	db 1, SYNTHESIS ; Sweet Scent → new move
 	db 1, RAZOR_LEAF
 	db 32, SUCKER_PUNCH ; Leaf Storm → prior move
 	db 44, SWORDS_DANCE ; Leaf Blade → prior move
@@ -1515,7 +1515,7 @@ DoduoLearnset:
 	db 36, SWORDS_DANCE
 	db 40, HI_JUMP_KICK ; Jump Kick → similar move
 	db 43, DRILL_PECK
-	db 47, REVERSAL ; Endeavor → new move
+	db 47, FLAIL ; Endeavor → new move
 	db 50, THRASH
 	db 0 ; no more level-up moves
 
@@ -1535,7 +1535,7 @@ DodrioLearnset:
 	db 38, SWORDS_DANCE
 	db 43, HI_JUMP_KICK ; Jump Kick → similar move
 	db 47, DRILL_PECK
-	db 52, REVERSAL ; Endeavor → new move
+	db 52, FLAIL ; Endeavor → new move
 	db 56, THRASH
 	db 0 ; no more level-up moves
 
@@ -1784,7 +1784,7 @@ KrabbyLearnset:
 	db 35, CLOSE_COMBAT ; Slam → new move
 	db 39, CRABHAMMER ; Brine → Crabhammer
 	db 41, ANCIENTPOWER ; Crabhammer → HGSS tutor move
-	db 45, REVERSAL ; Flail → similar move
+	db 45, FLAIL ; Flail → similar move
 	db 0 ; no more level-up moves
 
 KinglerLearnset:
@@ -1801,7 +1801,7 @@ KinglerLearnset:
 	db 44, CLOSE_COMBAT ; Slam → new move
 	db 51, CRABHAMMER ; Brine → Crabhammer
 	db 56, ANCIENTPOWER ; Crabhammer → HGSS tutor move
-	db 63, REVERSAL ; Flail → new move
+	db 63, FLAIL ; Flail → new move
 	db 0 ; no more level-up moves
 
 VoltorbLearnset:
@@ -1854,7 +1854,7 @@ ExeggcuteLearnset:
 	db 23, SLEEP_POWDER
 	db 27, PSYBEAM ; Confusion → Let's Go move
 	db 33, ANCIENTPOWER ; Worry Seed → HGSS tutor move
-	db 37, HEALINGLIGHT ; Natural Gift → new move
+	db 37, SYNTHESIS ; Natural Gift → new move
 	db 43, SOLAR_BEAM
 	db 47, EXTRASENSORY
 	db 50, PSYCHIC_M ; Bestow → TM move
@@ -1924,11 +1924,11 @@ HitmonleeLearnset:
 	db 29, HI_JUMP_KICK
 	db 33, DOUBLE_TEAM ; Mind Reader → TM move
 	db 41, FOCUS_ENERGY ; Wide Guard → Let's Go move
-	db 45, REVERSAL ; Blaze Kick → Reversal
+	db 45, FLAIL ; Blaze Kick → FLAIL
 	db 49, ENDURE
 	db 53, FOCUS_BLAST ; Mega Kick → TM move
 	db 57, CLOSE_COMBAT
-	db 61, COUNTER ; Reversal → TM move
+	db 61, COUNTER ; FLAIL → TM move
 	db 0 ; no more level-up moves
 
 HitmonchanLearnset:
@@ -1965,7 +1965,7 @@ HitmontopLearnset:
 	db 42, GYRO_BALL
 	db 50, PROTECT ; Detect → similar move
 	db 55, CLOSE_COMBAT
-	db 60, REVERSAL ; Endeavor → new move
+	db 60, FLAIL ; Endeavor → new move
 	db 0 ; no more level-up moves
 
 LickitungLearnset:
@@ -2115,7 +2115,7 @@ TangelaLearnset:
 	db 23, MEGA_DRAIN
 	db 27, KNOCK_OFF
 	db 30, STUN_SPORE
-	db 33, HEALINGLIGHT ; Natural Gift → new move
+	db 33, SYNTHESIS ; Natural Gift → new move
 	db 36, GIGA_DRAIN
 	db 38, ANCIENTPOWER
 	db 41, BODY_SLAM ; Slam → similar move
@@ -2140,7 +2140,7 @@ KangaskhanLearnset:
 	db 43, ENDURE
 	db 46, OUTRAGE
 	db 49, SUCKER_PUNCH
-	db 50, REVERSAL
+	db 50, FLAIL
 	db 0 ; no more level-up moves
 
 HorseaLearnset:
@@ -2180,7 +2180,7 @@ GoldeenLearnset:
 	db 4, SUPERSONIC
 	db 7, QUICK_ATTACK ; Let's Go move
 	db 10, HORN_ATTACK
-	db 13, REVERSAL ; Flail → similar move
+	db 13, FLAIL ; Flail → similar move
 	db 16, WATER_PULSE
 	db 21, RECOVER ; Aqua Ring → similar move
 	db 24, FURY_ATTACK ; Fury Attack → similar move
@@ -2198,7 +2198,7 @@ SeakingLearnset:
 	db 4, SUPERSONIC
 	db 7, QUICK_ATTACK ; Let's Go move
 	db 10, HORN_ATTACK
-	db 13, REVERSAL ; Flail → similar move
+	db 13, FLAIL ; Flail → similar move
 	db 16, WATER_PULSE
 	db 21, RECOVER ; Aqua Ring → similar move
 	db 24, FURY_ATTACK ; Fury Attack → similar move
@@ -2416,7 +2416,7 @@ MiltankLearnset:
 	db 35, SEISMIC_TOSS ; Captivate → egg move
 	db 41, GYRO_BALL
 	db 48, HEAL_BELL
-	db 50, REVERSAL ; Wake-Up Slap → egg move
+	db 50, FLAIL ; Wake-Up Slap → egg move
 	db 0 ; no more level-up moves
 
 MagikarpLearnset:
@@ -2485,7 +2485,7 @@ EeveeLearnset:
 	db 33, BATON_PASS
 	db 37, DOUBLE_EDGE
 	db 41, GROWTH ; Last Resort → event move
-	db 45, REVERSAL ; Trump Card → new move
+	db 45, FLAIL ; Trump Card → new move
 	db 0 ; no more level-up moves
 
 VaporeonLearnset:
@@ -2554,7 +2554,7 @@ EspeonLearnset:
 	db 20, PSYBEAM
 	db 25, FUTURE_SIGHT
 	db 29, REFLECT ; Psych Up → event move
-	db 33, HEALINGLIGHT ; Morning Sun → similar move
+	db 33, SYNTHESIS ; Morning Sun → similar move
 	db 37, PSYCHIC_M
 	db 41, DOUBLE_EDGE ; Last Resort → tutor move
 	db 45, POWER_GEM ; Power Swap → new move
@@ -2572,7 +2572,7 @@ UmbreonLearnset:
 	db 20, FEINT_ATTACK
 	db 25, TOXIC ; Assurance → TM move
 	db 29, SCREECH
-	db 33, HEALINGLIGHT ; Moonlight → similar move
+	db 33, SYNTHESIS ; Moonlight → similar move
 	db 37, SUCKER_PUNCH ; Mean Look → tutor move
 	db 41, DOUBLE_EDGE ; Last Resort → tutor move
 	db 45, MEAN_LOOK ; Guard Swap → Mean Look
@@ -2590,7 +2590,7 @@ LeafeonLearnset:
 	db 20, ENERGY_BALL ; Magical Leaf → TM move
 	db 25, GIGA_DRAIN
 	db 29, SWORDS_DANCE
-	db 33, HEALINGLIGHT ; Synthesis → similar move
+	db 33, SYNTHESIS ; Synthesis → similar move
 	db 37, SEED_BOMB ; Sunny Day → tutor move
 	db 41, DOUBLE_EDGE ; Last Resort → tutor move
 	db 45, SUNNY_DAY ; Leaf Blade → Sunny Day

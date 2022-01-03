@@ -1713,7 +1713,7 @@ DestinyBond:
 	destinybond
 	endmove
 
-Reversal:
+Flail:
 	checkobedience
 	usedmovetext
 	doturn
@@ -2149,7 +2149,7 @@ RapidSpin:
 	pickpocket
 	endmove
 
-HealingLight:
+Synthesis:
 	checkobedience
 	usedmovetext
 	doturn

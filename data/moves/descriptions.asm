@@ -137,7 +137,7 @@ MoveDescriptions::
 ; STRUGGLE
 	dw TripleKickDescription
 	dw FlameWheelDescription
-	dw ReversalDescription
+	dw FlailDescription
 	dw ProtectDescription
 	dw MachPunchDescription
 	dw SludgeBombDescription
@@ -158,7 +158,7 @@ MoveDescriptions::
 	dw RapidSpinDescription
 	dw IronTailDescription
 	dw MetalClawDescription
-	dw HealingLightDescription
+	dw SynthesisDescription
 	dw CrossChopDescription
 	dw RainDanceDescription
 	dw SunnyDayDescription
@@ -927,7 +927,7 @@ CurseDescription:
 	db   "Works differently"
 	next "for Ghost-types.@"
 
-ReversalDescription:
+FlailDescription:
 	db   "Stronger if the"
 	next "user's HP is low.@"
 
@@ -1027,7 +1027,7 @@ RapidSpinDescription:
 	db   "A high-speed"
 	next "spinning attack.@"
 
-HealingLightDescription:
+SynthesisDescription:
 	db   "Restores HP based"
 	next "on weather.@"
 

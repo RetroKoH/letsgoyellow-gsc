@@ -23,11 +23,7 @@ endc
 	dn 7, 7 ; frontpic dimensions
 	db CHLOROPHYLL ; ability 1
 	db CHLOROPHYLL ; ability 2
-if DEF(FAITHFUL)
-	db CHLOROPHYLL ; hidden ability
-else
-	db OWN_TEMPO ; hidden ability
-endc
+	db CHLOROPHYLL ; hidden ability (HEALER)
 	db MEDIUM_SLOW ; growth rate
 	dn PLANT, PLANT ; egg groups
 
@@ -36,5 +32,5 @@ endc
 	;         hp, atk, def, spd, sat, sdf
 
 	; tmhm
-	tmhm CURSE, TOXIC, HIDDEN_POWER, SUNNY_DAY, HYPER_BEAM, PROTECT, GIGA_DRAIN, SAFEGUARD, SOLAR_BEAM, RETURN, DOUBLE_TEAM, SLUDGE_BOMB, SUBSTITUTE, FACADE, REST, ATTRACT, DAZZLINGLEAM, ENERGY_BALL, ENDURE, DRAIN_PUNCH, GIGA_IMPACT, FLASH, SWORDS_DANCE, CUT, DOUBLE_EDGE, EARTH_POWER, HYPER_VOICE, SEED_BOMB, SLEEP_TALK, SWAGGER
+	tmhm TOXIC
 	; end

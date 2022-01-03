@@ -135,7 +135,7 @@ MoveNames::
 	db "SLASH@"
 	db "SUBSTITUTE@"
 ; STRUGGLE
-	db "DRAIN PUNCH@"
+	db "TRIPLE KICK@"
 	db "FLAME WHEEL@"
 	db "FLAIL@"
 	db "PROTECT@"

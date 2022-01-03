@@ -136,7 +136,7 @@
 	const SLASH        ; $a3
 	const SUBSTITUTE   ; $a4
 ; STRUGGLE
-	const DRAIN_PUNCH  ; $a7 ; TRIPLE_KICK
+	const TRIPLE_KICK  ; $a7
 	const FLAME_WHEEL  ; $ac
 	const REVERSAL     ; $b3
 	const PROTECT      ; $b6

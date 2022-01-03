@@ -135,7 +135,7 @@ MoveDescriptions::
 	dw SlashDescription
 	dw SubstituteDescription
 ; STRUGGLE
-	dw DrainPunchDescription
+	dw TripleKickDescription
 	dw FlameWheelDescription
 	dw ReversalDescription
 	dw ProtectDescription
@@ -906,6 +906,10 @@ SubstituteDescription:
 StruggleDescription:
 	db   "Used only if all"
 	next "PP are exhausted.@"
+
+TripleKickDescription:
+	db   "Hits three times"
+	next "with rising power.@"
 
 ThiefDescription:
 	db   "An attack that may"

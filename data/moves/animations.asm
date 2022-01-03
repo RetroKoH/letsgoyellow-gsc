@@ -136,7 +136,7 @@ BattleAnimations::
 	dw BattleAnim_Slash
 	dw BattleAnim_Substitute
 ; STRUGGLE
-	dw BattleAnim_DrainPunch
+	dw BattleAnim_TripleKick
 	dw BattleAnim_FlameWheel
 	dw BattleAnim_Reversal
 	dw BattleAnim_Protect
@@ -3302,16 +3302,32 @@ BattleAnim_Struggle:
 	anim_wait 16
 	anim_ret
 
-; Drain Punch animation from Pokémon Prism
-BattleAnim_DrainPunch:
-	anim_2gfx ANIM_GFX_SPEED, ANIM_GFX_HIT
-	anim_sound 0, 1, SFX_SUBMISSION
-	anim_obj ANIM_OBJ_06, 17, 0,  7, 0, $0
+BattleAnim_TripleKick:
+	anim_1gfx ANIM_GFX_HIT
+	anim_jumpif $1, BattleAnim_TripleKick_branch_cac95
+	anim_jumpif $2, BattleAnim_TripleKick_branch_caca5
+	anim_sound 0, 1, SFX_MEGA_KICK
+	anim_obj ANIM_OBJ_07, -14, 0,   6, 0, $0
 	anim_wait 6
-	anim_sound 0, 1, SFX_PLACE_PUZZLE_PIECE_DOWN
-	anim_obj ANIM_OBJ_01, 17, 0,  7, 0, $0
-	anim_wait 20
-	anim_jump BattleAnim_Absorb
+	anim_obj ANIM_OBJ_01, -14, 0,   6, 0, $0
+	anim_wait 8
+	anim_ret
+
+BattleAnim_TripleKick_branch_cac95:
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_07,  15, 0,   8, 0, $0
+	anim_wait 6
+	anim_obj ANIM_OBJ_01,  15, 0,   8, 0, $0
+	anim_wait 8
+	anim_ret
+
+BattleAnim_TripleKick_branch_caca5:
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_07, -16, 4,   4, 0, $0
+	anim_wait 6
+	anim_obj ANIM_OBJ_01, -16, 4,   4, 0, $0
+	anim_wait 8
+	anim_ret
 
 BattleAnim_Thief:
 	anim_1gfx ANIM_GFX_HIT
@@ -5862,33 +5878,6 @@ BattleAnim_GigaImpact:
 ;	anim_obj ANIM_OBJ_COTTON, -15, 0,   5, 0, $3f
 ;	anim_bgeffect ANIM_BG_06, $0, $2, $0
 ;	anim_wait 128
-;	anim_ret
-
-;BattleAnim_TripleKick: ; removed
-;	anim_1gfx ANIM_GFX_HIT
-;	anim_jumpif $1, BattleAnim_TripleKick_branch_cac95
-;	anim_jumpif $2, BattleAnim_TripleKick_branch_caca5
-;	anim_sound 0, 1, SFX_MEGA_KICK
-;	anim_obj ANIM_OBJ_07, -14, 0,   6, 0, $0
-;	anim_wait 6
-;	anim_obj ANIM_OBJ_01, -14, 0,   6, 0, $0
-;	anim_wait 8
-;	anim_ret
-
-;BattleAnim_TripleKick_branch_cac95:
-;	anim_sound 0, 1, SFX_DOUBLE_KICK
-;	anim_obj ANIM_OBJ_07,  15, 0,   8, 0, $0
-;	anim_wait 6
-;	anim_obj ANIM_OBJ_01,  15, 0,   8, 0, $0
-;	anim_wait 8
-;	anim_ret
-
-;BattleAnim_TripleKick_branch_caca5:
-;	anim_sound 0, 1, SFX_DOUBLE_KICK
-;	anim_obj ANIM_OBJ_07, -16, 4,   4, 0, $0
-;	anim_wait 6
-;	anim_obj ANIM_OBJ_01, -16, 4,   4, 0, $0
-;	anim_wait 8
 ;	anim_ret
 
 ;BattleAnim_Selfdestruct:

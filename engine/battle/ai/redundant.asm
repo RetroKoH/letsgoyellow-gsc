@@ -28,7 +28,6 @@ AI_Redundant: ; 2c41a
 	dbw EFFECT_SLEEP_TALK,    .SleepTalk
 	dbw EFFECT_MEAN_LOOK,     .MeanLook
 	dbw EFFECT_SPIKES,        .Spikes
-	dbw EFFECT_PERISH_SONG,   .PerishSong
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
 	dbw EFFECT_ATTRACT,       .Attract
@@ -89,11 +88,6 @@ AI_Redundant: ; 2c41a
 .MeanLook:
 	ld a, [wEnemySubStatus2]
 	bit SUBSTATUS_CANT_RUN, a
-	ret
-
-.PerishSong:
-	ld a, [wPlayerSubStatus1]
-	bit SUBSTATUS_PERISH, a
 	ret
 
 .Reflect:

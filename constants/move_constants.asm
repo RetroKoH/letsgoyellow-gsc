@@ -175,7 +175,7 @@
 	const CURSE        ; $ae ; TAUNT
 	const BATON_PASS   ; $e2 ; HELPING HAND
 	const ZAP_CANNON   ; $c0 ; WISH
-	const PERISH_SONG  ; $c3 ; SUPERPOWER
+	const SUPERPOWER   ; $c3
 	const SWAGGER      ; $cf ; RECYCLE
 	const BRICK_BREAK  ; $f9
 	const MEAN_LOOK    ; $d4 ; YAWN

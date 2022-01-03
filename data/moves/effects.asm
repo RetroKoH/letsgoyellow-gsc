@@ -1878,13 +1878,6 @@ Foresight:
 	foresight
 	endmove
 
-PerishSong:
-	checkobedience
-	usedmovetext
-	doturn
-	perishsong
-	endmove
-
 Sandstorm:
 	checkobedience
 	usedmovetext

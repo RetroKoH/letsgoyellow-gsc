@@ -8382,8 +8382,6 @@ INCLUDE "engine/battle/effect_commands/spikes.asm"
 
 INCLUDE "engine/battle/effect_commands/foresight.asm"
 
-INCLUDE "engine/battle/effect_commands/perish_song.asm"
-
 INCLUDE "engine/battle/effect_commands/rollout.asm"
 
 BoostJumptable: ; For conditional boosts

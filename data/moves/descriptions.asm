@@ -174,7 +174,7 @@ MoveDescriptions::
 	dw CurseDescription
 	dw BatonPassDescription
 	dw ZapCannonDescription
-	dw PerishSongDescription
+	dw StrengthDescription ; Superpower
 	dw SwaggerDescription
 	dw RockSmashDescription
 	dw MeanLookDescription

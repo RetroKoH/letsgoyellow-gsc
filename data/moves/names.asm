@@ -174,7 +174,7 @@ MoveNames::
 	db "CURSE@"
 	db "BATON PASS@"
 	db "ZAP CANNON@"
-	db "PERISH SONG@"
+	db "SUPERPOWER@"
 	db "SWAGGER@"
 	db "BRICK BREAK@"
 	db "MEAN LOOK@"

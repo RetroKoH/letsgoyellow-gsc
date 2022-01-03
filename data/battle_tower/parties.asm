@@ -91,9 +91,9 @@ BattleTowerPokemon2:
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db SNEASEL
+	db SCYTHER
 	db SITRUS_BERRY
-	db SLASH, FEINT_ATTACK, SURF, BLIZZARD
+	db SLASH, FEINT_ATTACK, SURF, X_SCISSOR
 	db $bf, $bb, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -103,13 +103,13 @@ BattleTowerPokemon2:
 	db $df, $bd, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db MISDREAVUS
+	db GASTLY
 	db FOCUS_BAND
-	db PERISH_SONG, MEAN_LOOK, PAIN_SPLIT, SHADOW_BALL
+	db LICK, MEAN_LOOK, PAIN_SPLIT, SHADOW_BALL
 	db $de, $fd, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db HOUNDOUR
+	db GROWLITHE
 	db SITRUS_BERRY
 	db FEINT_ATTACK, SOLAR_BEAM, ROAR, SUNNY_DAY
 	db $ff, $df, $ff ; DVs
@@ -1255,15 +1255,15 @@ BattleTowerMons10:
 	db $cf, $dc, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db MISDREAVUS
+	db GASTLY
 	db FOCUS_BAND
-	db PERISH_SONG, MEAN_LOOK, PAIN_SPLIT, SHADOW_BALL
+	db LICK, MEAN_LOOK, PAIN_SPLIT, SHADOW_BALL
 	db $eb, $de, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db SNEASEL
+	db SCYTHER
 	db SCOPE_LENS
-	db SLASH, BLIZZARD, DREAM_EATER, FEINT_ATTACK
+	db SLASH, X_SCISSOR, DREAM_EATER, FEINT_ATTACK
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

@@ -175,7 +175,7 @@ BattleAnimations::
 	dw BattleAnim_Curse
 	dw BattleAnim_BatonPass
 	dw BattleAnim_ZapCannon
-	dw BattleAnim_PerishSong
+	dw BattleAnim_Strength ; Superpower
 	dw BattleAnim_Swagger
 	dw BattleAnim_RockSmash
 	dw BattleAnim_MeanLook
@@ -3888,22 +3888,6 @@ BattleAnim_DestinyBond_branch_cb104:
 	anim_bgeffect ANIM_BG_RETURN_MON, $0, $0, $0
 	anim_wait 32
 	anim_bgp $e4
-	anim_ret
-
-BattleAnim_PerishSong:
-	anim_1gfx ANIM_GFX_NOISE
-	anim_bgeffect ANIM_BG_06, $0, $2, $0
-	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
-	anim_sound 0, 2, SFX_PERISH_SONG
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $0
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $8
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $10
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $18
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $20
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $28
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $30
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $38
-	anim_wait 112
 	anim_ret
 
 BattleAnim_IcyWind:

@@ -11,7 +11,6 @@ UniqueWildMoves:
 	db DIM_CAVE, GRAVELER, SUCKER_PUNCH ; HGSS tutor move
 	db DIM_CAVE, RHYDON, CRUNCH ; Prism tutor move
 	db SOUL_HOUSE, HAUNTER, MOONBLAST ; Prism tutor move
-	db LAV_RADIO_TOWER, MAROWAK, PERISH_SONG ; Dream World move
 	db LUCKY_ISLAND, CHANSEY, TRI_ATTACK ; RBY TM move
 	db LUCKY_ISLAND, TOGETIC, 0
 	db SAFARI_ZONE, TANGELA, LEECH_SEED ; Dream World move (hub)

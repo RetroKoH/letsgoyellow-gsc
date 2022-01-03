@@ -119,7 +119,6 @@ VulpixEggMoves:
 
 JigglypuffEggMoves:
 	db FEINT_ATTACK
-	db PERISH_SONG
 	db MOONBLAST
 	db $ff
 
@@ -299,7 +298,6 @@ SeelEggMoves:
 	db DISABLE
 	db LICK
 	db PECK
-	db PERISH_SONG
 	db ENCORE
 	db WATER_PULSE
 	db ICICLE_SPEAR
@@ -327,7 +325,6 @@ GastlyEggMoves:
 	db ASTONISH
 	db DISABLE
 	db HAZE
-	db PERISH_SONG
 	db SCARY_FACE
 	db NASTY_PLOT
 	db FEINT_ATTACK
@@ -367,7 +364,6 @@ CuboneEggMoves:
 	db ANCIENTPOWER
 	db BELLY_DRUM
 	db DOUBLE_KICK
-	db PERISH_SONG
 	db SCREECH
 	db ROCK_SLIDE
 	db SWORDS_DANCE

@@ -1552,7 +1552,6 @@ SeelLearnset:
 	db 31, AQUA_JET
 	db 33, BUBBLE_BEAM ; Brine → RBY TM move
 	db 37, TAKE_DOWN
-	db 41, PERISH_SONG ; Dive →  new move
 	db 43, AQUA_TAIL
 	db 47, ICE_BEAM
 	db 51, SAFEGUARD
@@ -1573,7 +1572,6 @@ DewgongLearnset:
 	db 31, AQUA_JET
 	db 33, BUBBLE_BEAM ; Brine → RBY TM move
 	db 39, TAKE_DOWN
-	db 45, PERISH_SONG ; Dive → new move
 	db 49, AQUA_TAIL
 	db 55, ICE_BEAM
 	db 61, SAFEGUARD
@@ -1666,7 +1664,6 @@ GastlyLearnset:
 	db 36, DARK_PULSE
 	db 40, DESTINY_BOND
 	db 43, HEX
-	db 47, PERISH_SONG ; Nightmare → new move
 	db 0 ; no more level-up moves
 
 HaunterLearnset:
@@ -1685,7 +1682,6 @@ HaunterLearnset:
 	db 44, DARK_PULSE
 	db 50, DESTINY_BOND
 	db 55, HEX
-	db 61, PERISH_SONG ; Nightmare → new move
 	db 0 ; no more level-up moves
 
 GengarLearnset:
@@ -1704,7 +1700,6 @@ GengarLearnset:
 	db 44, DARK_PULSE
 	db 50, DESTINY_BOND
 	db 55, HEX
-	db 61, PERISH_SONG ; Nightmare → new move
 	db 0 ; no more level-up moves
 
 OnixLearnset:
@@ -2295,7 +2290,6 @@ JynxLearnset:
 	db 39, AVALANCHE
 	db 44, BODY_SLAM
 	db 49, NASTY_PLOT ; Wring Out → egg move
-	db 55, PERISH_SONG
 	db 60, BLIZZARD
 	db 0 ; no more level-up moves
 
@@ -2456,7 +2450,6 @@ LaprasLearnset:
 	db 14, WATER_PULSE
 	db 18, BODY_SLAM
 	db 22, RAIN_DANCE
-	db 27, PERISH_SONG
 	db 32, ICE_BEAM
 	db 37, FUTURE_SIGHT ; Brine → event move
 	db 43, SAFEGUARD

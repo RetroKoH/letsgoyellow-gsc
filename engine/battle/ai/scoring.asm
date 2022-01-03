@@ -364,7 +364,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_CURSE,             AI_Smart_Curse
 	dbw EFFECT_PROTECT,           AI_Smart_Protect
 	dbw EFFECT_FORESIGHT,         AI_Smart_Foresight
-	dbw EFFECT_PERISH_SONG,       AI_Smart_PerishSong
 	dbw EFFECT_SANDSTORM,         AI_Smart_Sandstorm
 	dbw EFFECT_ENDURE,            AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
@@ -1643,44 +1642,6 @@ AI_Smart_Foresight: ; 38f1d
 	dec [hl]
 	ret
 ; 38f4a
-
-
-AI_Smart_PerishSong: ; 38f4a
-	push hl
-	farcall CheckAnyOtherAliveEnemyMons
-	pop hl
-	jr z, .no
-
-	ld a, [wPlayerSubStatus2]
-	bit SUBSTATUS_CANT_RUN, a
-	jr nz, .yes
-
-	push hl
-	farcall CheckPlayerMoveTypeMatchups
-	ld a, [wEnemyAISwitchScore]
-	cp 10 ; 1.0
-	pop hl
-	ret c
-
-	call AI_50_50
-	ret c
-
-	inc [hl]
-	ret
-
-.yes
-	call AI_50_50
-	ret c
-
-	dec [hl]
-	ret
-
-.no
-	ld a, [hl]
-	add 5
-	ld [hl], a
-	ret
-; 38f7a
 
 
 AI_Smart_Sandstorm: ; 38f7a

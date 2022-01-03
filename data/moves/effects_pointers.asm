@@ -105,7 +105,7 @@ MoveEffectsPointers:
 	dw Protect
 	dw Spikes
 	dw Foresight
-	dw PerishSong
+	dw Sing ; Was PerishSong, UNUSED
 	dw Sandstorm
 	dw Hail
 	dw Endure

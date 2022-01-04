@@ -117,8 +117,8 @@ BattleAnimations::
 	dw BattleAnim_Glare
 	dw BattleAnim_DreamEater
 	dw BattleAnim_LeechLife
-	dw BattleAnim_SweetKiss
-	dw BattleAnim_DrainKiss
+	dw BattleAnim_PoisonGas
+	dw BattleAnim_LovelyKiss
 	dw BattleAnim_BellyDrum
 	dw BattleAnim_Transform
 	dw BattleAnim_Spore
@@ -2514,20 +2514,14 @@ BattleAnim_PayDay:
 	anim_wait 64
 	anim_ret
 
-; Drain Kiss animation from Pokémon Prism
-BattleAnim_DrainKiss:
-	anim_3gfx ANIM_GFX_OBJECTS, ANIM_GFX_ANGELS, ANIM_GFX_BUBBLE
+BattleAnim_LovelyKiss:
+	anim_2gfx ANIM_GFX_OBJECTS, ANIM_GFX_ANGELS
 	anim_bgeffect ANIM_BG_07, $0, $2, $0
-	anim_obj ANIM_OBJ_97, 12, 0,  5, 0, $0
-	anim_sound 0, 1, SFX_SWEET_KISS
+	anim_obj ANIM_OBJ_96, -13, 0,   5, 0, $0
 	anim_wait 32
-	anim_sound 0, 1, SFX_SWEET_KISS_2
-	anim_obj ANIM_OBJ_HEART, 15, 0,  5, 0, $0
+	anim_sound 0, 1, SFX_LICK
+	anim_obj ANIM_OBJ_HEART,  16, 0,   5, 0, $0
 	anim_wait 40
-	anim_sound 6, 3, SFX_WATER_GUN
-	anim_call BattleAnim_LeechLife_branch_cbab3
-	anim_wait 128
-	anim_wait 48
 	anim_ret
 
 BattleAnim_Bonemerang:
@@ -3671,15 +3665,14 @@ BattleAnim_FeintAttack:
 	anim_wait 4
 	anim_ret
 
-BattleAnim_SweetKiss:
-	anim_2gfx ANIM_GFX_OBJECTS, ANIM_GFX_ANGELS
-	anim_bgeffect ANIM_BG_07, $0, $2, $0
-	anim_obj ANIM_OBJ_97,  12, 0,   5, 0, $0
-	anim_sound 0, 1, SFX_SWEET_KISS
-	anim_wait 32
-	anim_sound 0, 1, SFX_SWEET_KISS_2
-	anim_obj ANIM_OBJ_HEART,  15, 0,   5, 0, $0
-	anim_wait 40
+BattleAnim_PoisonGas:
+	anim_1gfx ANIM_GFX_HAZE
+	anim_sound 16, 2, SFX_BUBBLE_BEAM
+.loop
+	anim_obj ANIM_OBJ_5E,   5, 4,  10, 0, $2
+	anim_wait 8
+	anim_loop 10, .loop
+	anim_wait 128
 	anim_ret
 
 BattleAnim_BellyDrum:
@@ -5478,16 +5471,6 @@ BattleAnim_GigaImpact:
 ;	anim_wait 16
 ;	anim_ret
 
-;BattleAnim_PoisonGas: ; removed
-;	anim_1gfx ANIM_GFX_HAZE
-;	anim_sound 16, 2, SFX_BUBBLE_BEAM
-;.loop
-;	anim_obj ANIM_OBJ_5E,   5, 4,  10, 0, $2
-;	anim_wait 8
-;	anim_loop 10, .loop
-;	anim_wait 128
-;	anim_ret
-
 ;BattleAnim_Present: ; removed
 ;	anim_2gfx ANIM_GFX_STATUS, ANIM_GFX_BUBBLE
 ;	anim_sound 0, 1, SFX_PRESENT
@@ -5632,16 +5615,6 @@ BattleAnim_GigaImpact:
 ;	anim_wait 72
 ;	anim_incbgeffect ANIM_BG_1A
 ;	anim_call BattleAnim_ShowMon_0
-;	anim_ret
-
-;BattleAnim_LovelyKiss: ; removed
-;	anim_2gfx ANIM_GFX_OBJECTS, ANIM_GFX_ANGELS
-;	anim_bgeffect ANIM_BG_07, $0, $2, $0
-;	anim_obj ANIM_OBJ_96, -13, 0,   5, 0, $0
-;	anim_wait 32
-;	anim_sound 0, 1, SFX_LICK
-;	anim_obj ANIM_OBJ_HEART,  16, 0,   5, 0, $0
-;	anim_wait 40
 ;	anim_ret
 
 ;BattleAnim_SkullBash: ; removed

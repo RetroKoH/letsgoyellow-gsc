@@ -313,7 +313,7 @@ BattleTowerMons3:
 
 	db JYNX
 	db SITRUS_BERRY
-	db BLIZZARD, DRAIN_KISS, DREAM_EATER, ATTRACT
+	db BLIZZARD, LOVELY_KISS, DREAM_EATER, ATTRACT
 	db $ef, $be, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1001,7 +1001,7 @@ BattleTowerMons8:
 
 	db JYNX
 	db QUICK_CLAW
-	db DRAIN_KISS, BLIZZARD, DREAM_EATER, PSYCHIC_M
+	db LOVELY_KISS, BLIZZARD, DREAM_EATER, PSYCHIC_M
 	db $dd, $fd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

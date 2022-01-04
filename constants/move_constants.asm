@@ -117,8 +117,8 @@
 	const GLARE        ; $89
 	const DREAM_EATER  ; $8a
 	const LEECH_LIFE
-	const SWEET_KISS   ; $ba ; POISON_GAS
-	const DRAIN_KISS   ; $8e ; LOVELY_KISS
+	const POISON_GAS   ; $ba
+	const LOVELY_KISS  ; $8e
 	const BELLY_DRUM   ; $bb ; SKY_ATTACK
 	const TRANSFORM    ; $90
 	const SPORE        ; $93

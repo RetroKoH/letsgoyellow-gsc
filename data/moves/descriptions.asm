@@ -116,8 +116,8 @@ MoveDescriptions::
 	dw GlareDescription
 	dw DreamEaterDescription
 	dw LeechLifeDescription
-	dw SweetKissDescription
-	dw DrainKissDescription
+	dw PoisonGasDescription
+	dw LovelyKissDescription
 	dw BellyDrumDescription
 	dw TransformDescription
 	dw SporeDescription
@@ -459,6 +459,7 @@ NightShadeDescription:
 	next "user's level.@"
 
 PoisonpowderDescription:
+PoisonGasDescription:
 	db   "A move that may"
 	next "poison the foe.@"
 
@@ -475,6 +476,7 @@ GlareDescription:
 SingDescription:
 SleepPowderDescription:
 HypnosisDescription:
+LovelyKissDescription:
 	db   "May cause the foe"
 	next "to fall asleep.@"
 
@@ -488,7 +490,6 @@ ToxicDescription:
 
 ConfuseRayDescription:
 SupersonicDescription:
-SweetKissDescription:
 	db   "A move that may"
 	next "confuse the foe.@"
 

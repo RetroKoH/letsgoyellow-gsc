@@ -127,8 +127,8 @@ Moves:: ; 41afb
 	move GLARE,        EFFECT_PARALYZE,            0, NORMAL,    100, 30,   0, STATUS
 	move DREAM_EATER,  EFFECT_DREAM_EATER,       100, PSYCHIC,   100, 15,   0, SPECIAL
 	move LEECH_LIFE,   EFFECT_LEECH_HIT,          80, BUG,       100, 10,   0, PHYSICAL
-	move SWEET_KISS,   EFFECT_CONFUSE,             0, FAIRY,      75, 10,   0, STATUS
-	move DRAIN_KISS,   EFFECT_LEECH_HIT,          50, FAIRY,     100, 10,   0, SPECIAL
+	move POISON_GAS,   EFFECT_POISON,              0, POISON,     90, 40,   0, STATUS
+	move LOVELY_KISS,  EFFECT_SLEEP,               0, NORMAL,     75, 10,   0, STATUS
 	move BELLY_DRUM,   EFFECT_BELLY_DRUM,          0, NORMAL,    100, 10,   0, STATUS
 	move TRANSFORM,    EFFECT_TRANSFORM,           0, NORMAL,    100, 10,   0, STATUS
 	move SPORE,        EFFECT_SLEEP,               0, GRASS,     100, 15,   0, STATUS
@@ -185,7 +185,7 @@ Moves:: ; 41afb
 	move CURSE,        EFFECT_CURSE,               0, GHOST,     100, 10,   0, STATUS
 	move BATON_PASS,   EFFECT_BATON_PASS,          0, NORMAL,    100, 40,   0, STATUS
 	move ZAP_CANNON,   EFFECT_PARALYZE_HIT,      120, ELECTRIC,   50,  5, 100, SPECIAL
-	move SUPERPOWER,   EFFECT_CLOSE_COMBAT,      120, FIGHTING,  100,  5,   0, PHYSICAL ; Makes Contact
+	move SUPERPOWER,   EFFECT_CLOSE_COMBAT,      120, FIGHTING,  100,  5,   0, PHYSICAL
 	move SWAGGER,      EFFECT_SWAGGER,             0, NORMAL,     85, 15, 100, STATUS
 	move BRICK_BREAK,  EFFECT_BRICK_BREAK,        75, FIGHTING,  100, 15,   0, PHYSICAL ; WAS ROCK_SMASH
 	move MEAN_LOOK,    EFFECT_MEAN_LOOK,           0, NORMAL,    100,  5,   0, STATUS

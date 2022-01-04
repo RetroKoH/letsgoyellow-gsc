@@ -116,7 +116,7 @@ MoveNames::
 	db "GLARE@"
 	db "DREAM EATER@"
 	db "LEECH LIFE@"
-	db "SWEET KISS@"
+	db "POISON GAS@"
 	db "LOVELY KISS@"
 	db "BELLY DRUM@"
 	db "TRANSFORM@"

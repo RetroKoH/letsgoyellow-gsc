@@ -487,7 +487,6 @@ PichuLearnset:
 	db 01, CHARM
 	db 03, LEER ; Tail Whip → similar move
 	db 06, QUICK_ATTACK
-	db 09, SWEET_KISS
 	db 12, NASTY_PLOT
 	db 15, THUNDER_WAVE
 	db 0 ; no more level-up moves
@@ -552,7 +551,6 @@ NidoranFLearnset:
 	db 13, POISON_STING
 	db 19, FURY_ATTACK ; Fury Swipes → similar move
 	db 21, BITE
-	db 25, SWEET_KISS ; Helping Hand → event move
 	db 31, TOXIC
 	db 33, SYNTHESIS ; Flatter → event move (Moonlight)
 	db 37, CRUNCH
@@ -568,7 +566,6 @@ NidorinaLearnset:
 	db 13, POISON_STING
 	db 20, FURY_ATTACK ; Fury Swipes → similar move
 	db 23, BITE
-	db 28, SWEET_KISS ; Helping Hand → event move
 	db 35, TOXIC
 	db 38, SYNTHESIS ; Flatter → event move (Moonlight)
 	db 43, CRUNCH
@@ -596,7 +593,6 @@ NidoranMLearnset:
 	db 13, POISON_STING
 	db 19, FURY_ATTACK ; Fury Attack → similar move
 	db 21, HORN_ATTACK
-	db 25, SWEET_KISS ; Helping Hand → event move
 	db 31, TOXIC
 	db 33, SYNTHESIS ; Flatter → event move (Morning Sun)
 	db 37, POISON_JAB
@@ -612,9 +608,8 @@ NidorinoLearnset:
 	db 13, POISON_STING
 	db 20, FURY_ATTACK ; Fury Attack → similar move
 	db 23, HORN_ATTACK
-	db 28, SWEET_KISS ; Helping Hand → event move
 	db 35, TOXIC
-	db 38, SYNTHESIS ; Flatter → event move (Morning Sun)
+	db 38, RECOVER
 	db 43, POISON_JAB
 	db 50, CHARM ; Captivate → egg move
 	db 58, MEGAHORN ; Horn Drill → Nidoking move
@@ -639,11 +634,9 @@ ClefairyLearnset:
 	db 1, ENCORE
 	db 7, SING
 	db 13, DEFENSE_CURL
-	db 16, SWEET_KISS ; Follow Me → new move
 	db 19, DIZZY_PUNCH ; Bestow → Crystal unique move
 	db 22, TRI_ATTACK ; Wake-Up Slap → RBY TM move
 	db 25, MINIMIZE
-	db 28, DRAIN_KISS ; Stored Power → Sw/Sh move
 	db 31, METRONOME
 	db 34, REFLECT ; Cosmic Power → TM move
 	db 37, LIGHT_SCREEN ; Lucky Chant → TM move
@@ -698,7 +691,6 @@ NinetalesLearnset:
 
 JigglypuffLearnset:
 	db 1, SING
-	db 1, SWEET_KISS ; Igglybuff move
 	db 3, DEFENSE_CURL
 	db 5, TACKLE ; Pound → similar move
 	db 9, DIZZY_PUNCH ; Play Nice → Crystal unique move
@@ -1086,7 +1078,6 @@ ArcanineLearnset:
 	db 0 ; no more level-up moves
 
 PoliwagLearnset:
-	db 1, SWEET_KISS ; event move
 	db 1, WATER_GUN ; Water Sport → Water Gun
 	db 5, HYPNOSIS ; Water Gun → Hypnosis
 	db 11, AQUA_JET ; Bubble → new move
@@ -1102,7 +1093,6 @@ PoliwagLearnset:
 	db 0 ; no more level-up moves
 
 PoliwhirlLearnset:
-	db 1, SWEET_KISS ; event move
 	db 1, WATER_GUN ; Water Sport → Water Gun
 	db 5, HYPNOSIS ; Water Gun → Hypnosis
 	db 11, AQUA_JET ; Bubble → new move
@@ -1233,7 +1223,6 @@ BellsproutLearnset:
 	db 17, STUN_SPORE
 	db 23, ACID
 	db 27, KNOCK_OFF
-	db 29, SWEET_KISS ; Sweet Scent → event move
 	db 35, SYNTHESIS ; Gastro Acid → new move
 	db 39, RAZOR_LEAF
 	db 41, POISON_JAB
@@ -1250,7 +1239,6 @@ WeepinbellLearnset:
 	db 17, STUN_SPORE
 	db 24, ACID
 	db 29, KNOCK_OFF
-	db 32, SWEET_KISS ; Sweet Scent → event move
 	db 39, SYNTHESIS ; Gastro Acid → new move
 	db 44, RAZOR_LEAF
 	db 47, POISON_JAB
@@ -2085,7 +2073,6 @@ ChanseyLearnset:
 	db 1, TACKLE ; Pound → similar move
 	db 1, GROWL
 	db 5, LEER ; Tail Whip → similar move
-	db 9, SWEET_KISS ; Refresh → Happiny move
 	db 16, SOFTBOILED
 	db 20, METRONOME ; Bestow → egg move
 	db 23, MINIMIZE
@@ -2278,14 +2265,13 @@ JynxLearnset:
 	db 1, TACKLE ; Pound → similar move
 	db 1, LICK
 	db 1, CONFUSION ; Smoochum move
-	db 1, SWEET_KISS ; Smoochum move
+	db 1, LOVELY_KISS
 	db 5, SING ; Lovely Kiss → Smoochum move
 	db 8, SCREECH ; Lovely Kiss → Let's Go move
 	db 11, ICY_WIND ; Powder Snow → TM move
 	db 18, ICE_PUNCH
 	db 21, METRONOME ; Heart Stamp → RBY TM move
 	db 25, MEAN_LOOK
-	db 28, DRAIN_KISS ; Fake Tears → Drain Kiss
 	db 33, PSYBEAM ; Wake-Up Slap → new move
 	db 39, AVALANCHE
 	db 44, BODY_SLAM
@@ -2616,7 +2602,6 @@ SylveonLearnset:
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, SWIFT
-	db 20, DRAIN_KISS
 	db 25, SKILL_SWAP
 	db 29, HEAL_BELL ; Misty Terrain → HGSS tutor move
 	db 33, LIGHT_SCREEN
@@ -2730,7 +2715,6 @@ AerodactylLearnset:
 	db 0 ; no more level-up moves
 
 MunchlaxLearnset:
-	db 1, SWEET_KISS ; Recycle → event move
 	db 1, METRONOME
 	db 1, TACKLE
 	db 4, DEFENSE_CURL
@@ -2919,7 +2903,6 @@ TogepiLearnset:
 	db 1, GROWL
 	db 1, CHARM
 	db 5, METRONOME
-	db 9, SWEET_KISS
 	db 13, SING ; Yawn → similar move
 	db 17, ENCORE
 	db 21, DIZZY_PUNCH ; Follow Me → new move
@@ -2938,7 +2921,6 @@ TogeticLearnset:
 	db 1, CHARM
 	db 1, DISARM_VOICE ; evolution move
 	db 5, METRONOME
-	db 9, SWEET_KISS
 	db 13, SING ; Yawn → similar move
 	db 17, ENCORE
 	db 21, DIZZY_PUNCH ; Follow Me → new move

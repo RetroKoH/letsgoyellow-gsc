@@ -233,7 +233,7 @@ MoveDescriptions::
 	dw AquaJetDescription
 	dw FlashDescription
 	dw SteelWingDescription
-	dw EndureDescription
+	dw CoilDescription
 	dw ThiefDescription
 	dw VenoshockDescription
 	dw ScaldDescription
@@ -554,8 +554,8 @@ DragonDanceDescription:
 	next "Attack and Speed.@"
 
 CoilDescription:
-	db   "Raises the user's"
-	next "Atk and accuracy.@"
+	db   "Raises ATK, DEF,"
+	next "and ACCURACY.@"
 
 GrowlDescription:
 	db   "A move that lowers"
@@ -651,10 +651,6 @@ SkullBashDescription:
 ExplosionDescription:
 	db   "Very powerful but"
 	next "makes user faint.@"
-
-EndureDescription:
-	db   "Endures any hit"
-	next "with at least 1HP.@"
 
 FalseSwipeDescription:
 	db   "Leaves the foe"

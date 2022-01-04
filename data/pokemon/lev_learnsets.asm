@@ -1885,7 +1885,6 @@ HitmonleeLearnset:
 	db 33, DOUBLE_TEAM ; Mind Reader → TM move
 	db 41, FOCUS_ENERGY ; Wide Guard → Let's Go move
 	db 45, FLAIL ; Blaze Kick → FLAIL
-	db 49, ENDURE
 	db 53, FOCUS_BLAST ; Mega Kick → TM move
 	db 57, CLOSE_COMBAT
 	db 61, COUNTER ; FLAIL → TM move
@@ -1951,7 +1950,6 @@ KoffingLearnset:
 	db 1, TACKLE
 	db 4, ACID ; Smog → new move
 	db 7, SMOKESCREEN
-	db 12, ENDURE ; Assurance → TM move
 	db 15, WILL_O_WISP ; Clear Smog → TM move
 	db 18, VENOSHOCK ; Sludge → tutor move
 	db 23, RAGE ; Self-Destruct → RMY TM move
@@ -1967,7 +1965,6 @@ WeezingLearnset:
 	db 1, TACKLE
 	db 4, ACID ; Smog → new move
 	db 7, SMOKESCREEN
-	db 12, ENDURE ; Assurance → TM move
 	db 15, WILL_O_WISP ; Clear Smog → TM move
 	db 18, VENOSHOCK ; Sludge → tutor move
 	db 23, RAGE ; Self-Destruct → RMY TM move
@@ -2089,7 +2086,6 @@ KangaskhanLearnset:
 	db 31, STOMP ; Chip Away → egg move
 	db 34, MACH_PUNCH ; Dizzy Punch → new move
 	db 37, CRUNCH
-	db 43, ENDURE
 	db 46, OUTRAGE
 	db 49, SUCKER_PUNCH
 	db 50, FLAIL
@@ -2630,7 +2626,6 @@ KabutoLearnset:
 	db 11, LEER
 	db 16, ROCK_THROW ; Mud Shot → Rock Throw (event move)
 	db 21, LEER ; Sand Attack → Leer
-	db 26, ENDURE
 	db 31, AQUA_JET
 	db 36, MEGA_DRAIN
 	db 41, SCREECH ; Metal Sound → similar move
@@ -2646,7 +2641,6 @@ KabutopsLearnset:
 	db 11, LEER
 	db 16, ROCK_THROW ; Mud Shot → Rock Throw (event move)
 	db 21, LEER ; Sand Attack → Leer
-	db 26, ENDURE
 	db 31, AQUA_JET
 	db 36, MEGA_DRAIN
 	db 45, SCREECH ; Metal Sound → similar move
@@ -2751,7 +2745,6 @@ MoltresLearnset:
 	db 1, LEER ; Let's Go move
 	db 8, FIRE_SPIN
 	db 15, SAFEGUARD ; Agility → Safeguard
-	db 22, EXTRASENSORY ; Endure → event move
 	db 29, ANCIENTPOWER
 	db 36, AGILITY ; Flamethrower → Agility
 	db 43, FLAMETHROWER ; Safeguard → Flamethrower

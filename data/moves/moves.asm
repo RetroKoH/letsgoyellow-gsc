@@ -244,7 +244,7 @@ Moves:: ; 41afb
 	move AQUA_JET,     EFFECT_PRIORITY_HIT,       40, WATER,     100, 20,   0, PHYSICAL
 	move FLASH,        EFFECT_ACCURACY_DOWN,       0, NORMAL,    100, 20,   0, STATUS
 	move STEEL_WING,   EFFECT_DEFENSE_UP_HIT,     70, STEEL,      90, 25,  10, PHYSICAL
-	move ENDURE,       EFFECT_ENDURE,              0, NORMAL,    100, 10,   0, STATUS
+	move COIL,         EFFECT_COIL,                0, POISON,    100, 20,   0, STATUS
 	move THIEF,        EFFECT_THIEF,              60, DARK,      100, 25, 100, PHYSICAL
 	move VENOSHOCK,    EFFECT_CONDITIONAL_BOOST,  65, POISON,    100, 10,   0, SPECIAL
 	move SCALD,        EFFECT_BURN_HIT,           80, WATER,     100, 15,  30, SPECIAL

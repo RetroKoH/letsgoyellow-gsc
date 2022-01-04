@@ -84,7 +84,7 @@ endc
 	add_tm SCALD        ; $36
 	add_tm X_SCISSOR    ; $37
 	add_tm DARK_PULSE   ; $38
-	add_tm ENDURE       ; $39
+	add_tm GRASS_KNOT   ; $39
 	add_tm DRAGON_PULSE ; $3a
 	add_tm TRIPLE_KICK  ; $3b
 	add_tm WILL_O_WISP  ; $3c

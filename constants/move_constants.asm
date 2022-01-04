@@ -234,7 +234,7 @@
 	const AQUA_JET     ; $e7
 	const FLASH        ; $e8 ; QUIVER DANCE
 	const STEEL_WING   ; $e9 ; HEAVY_SLAM
-	const ENDURE       ; $ea ; COIL
+	const COIL         ; $ea
 	const THIEF        ; $eb ; FOUL_PLAY
 	const VENOSHOCK    ; $ec ; CLEAR_SMOG
 	const SCALD        ; $ed

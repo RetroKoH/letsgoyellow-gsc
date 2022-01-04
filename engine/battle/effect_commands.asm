@@ -5540,7 +5540,7 @@ BattleCommand_growth:
 	jr nz, DoubleUp
 	lb bc, ($10 | ATTACK), ($10 | SP_ATTACK)
 	jr DoubleUp
-BattleCommand_honeclaws:
+BattleCommand_coil: ; honeclaws
 	lb bc, ATTACK, ACCURACY
 DoubleUp:
 ; stats to raise are in bc

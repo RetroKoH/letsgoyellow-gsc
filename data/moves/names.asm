@@ -233,7 +233,7 @@ MoveNames::
 	db "AQUA JET@"
 	db "FLASH@"
 	db "STEEL WING@"
-	db "ENDURE@"
+	db "COIL@"
 	db "THIEF@"
 	db "VENOSHOCK@"
 	db "SCALD@"

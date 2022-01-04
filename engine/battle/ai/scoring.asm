@@ -363,7 +363,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_PROTECT,           AI_Smart_Protect
 	dbw EFFECT_FORESIGHT,         AI_Smart_Foresight
 	dbw EFFECT_SANDSTORM,         AI_Smart_Sandstorm
-	dbw EFFECT_ENDURE,            AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
 	dbw EFFECT_SWAGGER,           AI_Smart_Swagger
 	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
@@ -1681,50 +1680,6 @@ AI_Smart_Sandstorm: ; 38f7a
 	db STEEL
 	db $ff
 ; 38fac
-
-
-AI_Smart_Endure: ; 38fac
-	ld a, [wEnemyProtectCount]
-	and a
-	jr nz, .asm_38fd8
-
-	call AICheckEnemyMaxHP
-	jr c, .asm_38fd8
-
-	call AICheckEnemyQuarterHP
-	jr c, .asm_38fd9
-
-	ld b, EFFECT_FLAIL
-	call AIHasMoveEffect
-	jr nc, .asm_38fcb
-
-	call AI_80_20
-	ret c
-
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	ret
-
-.asm_38fcb
-	ld a, [wEnemySubStatus2]
-	bit SUBSTATUS_LOCK_ON, a
-	ret z
-
-	call AI_50_50
-	ret c
-
-	dec [hl]
-	dec [hl]
-	ret
-
-.asm_38fd8
-	inc [hl]
-
-.asm_38fd9
-	inc [hl]
-	ret
-; 38fdb
 
 
 AI_Smart_Rollout:

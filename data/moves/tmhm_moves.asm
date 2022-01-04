@@ -56,7 +56,7 @@ TMHMMoves:
 	db SCALD        ; TM55 (Route 19)
 	db X_SCISSOR    ; TM56 (Underground Warehouse)
 	db DARK_PULSE   ; TM57 (Dark Cave)
-	db ENDURE       ; TM58 (Burned Tower)
+	db GRASS_KNOT   ; TM58 (Burned Tower)
 	db DRAGON_PULSE ; TM59 (Clair)
 	db TRIPLE_KICK  ; TM60 (Noisy Forest)
 	db WILL_O_WISP  ; TM61 (Blaine)

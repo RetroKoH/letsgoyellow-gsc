@@ -161,7 +161,7 @@ BattleCommandPointers:
 	command raisesubnoanim
 	command lowersubnoanim
 	command dragondance
-	command honeclaws
+	command coil
 	command clearmissdamage
 	command movedelay
 	command hittarget

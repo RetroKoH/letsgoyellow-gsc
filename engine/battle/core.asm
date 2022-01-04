@@ -560,8 +560,6 @@ ParsePlayerAction:
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_PROTECT
 	jr z, .continue_protect
-	cp EFFECT_ENDURE
-	jr z, .continue_protect
 	xor a
 	ld [wPlayerProtectCount], a
 	jr .continue_protect
@@ -5446,8 +5444,6 @@ ParseEnemyAction:
 .no_rage
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_PROTECT
-	ret z
-	cp EFFECT_ENDURE
 	ret z
 	xor a
 	ld [wEnemyProtectCount], a

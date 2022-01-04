@@ -229,12 +229,12 @@ BattleAnimations::
 	dw BattleAnim_IronHead
 	dw BattleAnim_StoneEdge
 	dw BattleAnim_Spikes
-	dw BattleAnim_LowKick ; Need new animation
+	dw BattleAnim_LowKick ; GRASS KNOT - Need new animation
 	dw BattleAnim_BugBite
 	dw BattleAnim_AquaJet
 	dw BattleAnim_Flash
 	dw BattleAnim_SteelWing
-	dw BattleAnim_Endure
+	dw BattleAnim_Endure ; COIL - Need new animation
 	dw BattleAnim_Thief
 	dw BattleAnim_Venoshock
 	dw BattleAnim_Scald

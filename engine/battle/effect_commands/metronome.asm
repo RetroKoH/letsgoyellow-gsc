@@ -40,11 +40,8 @@ BattleCommand_metronome:
 MetronomeExcepts:
 	db NO_MOVE
 	db COUNTER
-	db ENDURE
 	db METRONOME
 	db MIRROR_COAT
 	db PROTECT
-	db SLEEP_TALK
-	db THIEF
 	db TRANSFORM
 	db -1

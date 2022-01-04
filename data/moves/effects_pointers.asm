@@ -51,7 +51,7 @@ MoveEffectsPointers:
 	dw CalmMind
 	dw Growth
 	dw DragonDance
-	dw HoneClaws
+	dw Coil
 	dw AttackDown
 	dw DefenseDown
 	dw StringShot

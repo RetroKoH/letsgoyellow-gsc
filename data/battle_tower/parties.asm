@@ -141,7 +141,7 @@ BattleTowerPokemon2:
 
 	db PINSIR
 	db SITRUS_BERRY
-	db FLAIL, ENDURE, COUNTER, ROCK_SMASH
+	db FLAIL, LOW_KICK, COUNTER, ROCK_SMASH
 	db $ff, $7f, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -203,7 +203,7 @@ BattleTowerMons2:
 
 	db PINSIR
 	db FOCUS_BAND
-	db ENDURE, FLAIL, MEGAHORN, EARTHQUAKE
+	db ROCK_SMASH, FLAIL, MEGAHORN, EARTHQUAKE
 	db $dd, $fd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -903,13 +903,13 @@ BattleTowerMons7:
 
 	db HITMONLEE
 	db FOCUS_BAND
-	db FLAIL, ENDURE, BODY_SLAM, HI_JUMP_KICK
+	db FLAIL, LOW_KICK, BODY_SLAM, HI_JUMP_KICK
 	db $ff, $ef, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
 	db PINSIR
 	db BRIGHTPOWDER
-	db FLAIL, ENDURE, MEGAHORN, EARTHQUAKE
+	db FLAIL, LOW_KICK, MEGAHORN, EARTHQUAKE
 	db $ff, $7f, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

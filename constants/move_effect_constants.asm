@@ -53,7 +53,7 @@
 	const EFFECT_CALM_MIND
 	const EFFECT_GROWTH
 	const EFFECT_DRAGON_DANCE
-	const EFFECT_HONE_CLAWS   ; Will be modified for Coil
+	const EFFECT_COIL
 	const EFFECT_ATTACK_DOWN
 	const EFFECT_DEFENSE_DOWN
 	const EFFECT_SPEED_DOWN

@@ -1074,11 +1074,12 @@ DragonDance:
 	dragondance
 	endmove
 
-HoneClaws:
+Coil:
 	checkobedience
 	usedmovetext
 	doturn
-	honeclaws
+	coil ; Attack and accuracy
+	defenseup ; Test this to ensure no bugs
 	endmove
 
 AttackDown:

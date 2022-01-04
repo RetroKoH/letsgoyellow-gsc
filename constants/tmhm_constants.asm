@@ -41,7 +41,7 @@ ENDM
 	add_tm LIGHT_SCREEN ; $0f
 	add_tm PROTECT      ; $10
 	add_tm RAIN_DANCE   ; $11
-	add_tm GIGA_DRAIN   ; $12
+	add_tm LEAF_STORM   ; $12
 	add_tm SAFEGUARD    ; $13
 	add_tm BULLDOZE     ; $14
 	add_tm SOLAR_BEAM   ; $15

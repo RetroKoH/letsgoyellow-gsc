@@ -219,7 +219,7 @@ MoveDescriptions::
 	dw AstonishDescription
 	dw ZenHeadbuttDescription
 	dw FlashCannonDescription
-	dw GigaDrainDescription
+	dw LeafStormDescription
 	dw PowerWhipDescription
 	dw PowerGemDescription
 	dw ShadowClawDescription
@@ -319,6 +319,10 @@ WildChargeDescription:
 BraveBirdDescription:
 	db   "A charge that also"
 	next "hurts the user.@"
+
+LeafStormDescription:
+	db   "An attack that"
+	next "weakens the user."
 
 StompDescription:
 HeadbuttDescription:

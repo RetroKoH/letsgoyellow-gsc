@@ -786,7 +786,6 @@ OddishLearnset:
 	db 19, MEGA_DRAIN
 	db 23, CHARM ; Lucky Chant → egg move
 	db 27, SYNTHESIS ; Moonlight → similar move
-	db 31, GIGA_DRAIN
 	db 35, TOXIC
 	db 39, HYPER_VOICE ; Natural Gift → tutor move
 	db 43, MOONBLAST
@@ -804,7 +803,6 @@ GloomLearnset:
 	db 19, MEGA_DRAIN
 	db 24, CHARM ; Lucky Chant → egg move
 	db 29, SYNTHESIS ; Moonlight → similar move
-	db 34, GIGA_DRAIN
 	db 39, TOXIC
 	db 44, HYPER_VOICE ; Natural Gift → tutor move
 	db 49, MOONBLAST
@@ -833,7 +831,6 @@ ParasLearnset:
 	db 22, SPORE
 	db 27, SLASH
 	db 33, GROWTH
-	db 38, GIGA_DRAIN
 	db 43, LEECH_LIFE ; Aromatherapy → TM move
 	db 49, SYNTHESIS ; Rage Powder → new move
 	db 54, X_SCISSOR
@@ -850,7 +847,6 @@ ParasectLearnset:
 	db 22, SPORE
 	db 29, SLASH
 	db 37, GROWTH
-	db 44, GIGA_DRAIN
 	db 51, LEECH_LIFE ; Aromatherapy → TM move
 	db 59, SYNTHESIS ; Rage Powder → new move
 	db 66, X_SCISSOR
@@ -2077,7 +2073,6 @@ TangelaLearnset:
 	db 27, KNOCK_OFF
 	db 30, STUN_SPORE
 	db 33, SYNTHESIS ; Natural Gift → new move
-	db 36, GIGA_DRAIN
 	db 38, ANCIENTPOWER
 	db 41, BODY_SLAM ; Slam → similar move
 	db 44, PAIN_SPLIT ; Tickle → HGSS tutor move
@@ -2543,7 +2538,6 @@ LeafeonLearnset:
 	db 13, QUICK_ATTACK
 	db 17, BITE ; Grass Whistle → new move
 	db 20, ENERGY_BALL ; Magical Leaf → TM move
-	db 25, GIGA_DRAIN
 	db 29, SWORDS_DANCE
 	db 33, SYNTHESIS ; Synthesis → similar move
 	db 37, SEED_BOMB ; Sunny Day → tutor move
@@ -2650,7 +2644,6 @@ KabutoLearnset:
 	db 36, MEGA_DRAIN
 	db 41, SCREECH ; Metal Sound → similar move
 	db 46, ANCIENTPOWER
-	db 51, GIGA_DRAIN ; Wring Out → TM move
 	db 56, IRON_HEAD ; new move
 	db 0 ; no more level-up moves
 

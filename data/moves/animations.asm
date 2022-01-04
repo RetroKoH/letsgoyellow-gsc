@@ -220,7 +220,7 @@ BattleAnimations::
 	dw BattleAnim_Astonish
 	dw BattleAnim_ZenHeadbutt
 	dw BattleAnim_FlashCannon
-	dw BattleAnim_GigaDrain
+	dw BattleAnim_LeafStorm
 	dw BattleAnim_PowerWhip
 	dw BattleAnim_PowerGem
 	dw BattleAnim_ShadowClaw
@@ -2491,6 +2491,7 @@ BattleAnim_Transform:
 	anim_ret
 
 BattleAnim_PetalDance:
+BattleAnim_LeafStorm:
 	anim_sound 0, 0, SFX_MENU
 	anim_2gfx ANIM_GFX_FLOWER, ANIM_GFX_HIT
 .loop
@@ -3973,35 +3974,6 @@ BattleAnim_Hail:
 	anim_wait 8
 	anim_ret
 
-BattleAnim_GigaDrain:
-	anim_2gfx ANIM_GFX_BUBBLE, ANIM_GFX_CHARGE
-	anim_call BattleAnim_FollowEnemyFeet_0
-	anim_bgeffect ANIM_BG_1C, $0, $0, $10
-	anim_sound 6, 3, SFX_GIGA_DRAIN
-	anim_call BattleAnim_GigaDrain_branch_cbab3
-	anim_wait 48
-	anim_wait 128
-	anim_incbgeffect ANIM_BG_1C
-	anim_call BattleAnim_ShowMon_0
-	anim_wait 1
-	anim_1gfx ANIM_GFX_SHINE
-	anim_bgeffect ANIM_BG_07, $0, $0, $0
-.loop
-	anim_sound 0, 0, SFX_METRONOME
-	anim_obj ANIM_OBJ_9D,   3, 0,   8, 0, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_9D,   7, 0,  13, 0, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_9D,   3, 0,  13, 0, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_9D,   7, 0,   8, 0, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_9D,   5, 0,  10, 4, $0
-	anim_wait 5
-	anim_loop 2, .loop
-	anim_wait 32
-	anim_ret
-
 BattleAnim_Endure:
 	anim_1gfx ANIM_GFX_SPEED
 	anim_call BattleAnim_FollowEnemyFeet_0
@@ -4920,7 +4892,6 @@ BattleAnim_Whirlpool:
 	anim_ret
 
 BattleAnim_DreamEater_branch_cbab3:
-BattleAnim_GigaDrain_branch_cbab3:
 BattleAnim_LeechLife_branch_cbab3:
 	anim_obj ANIM_OBJ_71, -16, 4,   5, 4, $0
 	anim_obj ANIM_OBJ_71, -16, 4,   5, 4, $8

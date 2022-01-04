@@ -220,7 +220,7 @@
 	const ASTONISH     ; $b4 ; PSYCHO_CUT
 	const ZEN_HEADBUTT ; $aa
 	const FLASH_CANNON ; $75
-	const GIGA_DRAIN   ; $ca ; LEAF_STORM
+	const LEAF_STORM   ; $ca
 	const POWER_WHIP   ; $c7
 	const POWER_GEM    ; $c5 ; ROCK_WRECKER
 	const SHADOW_CLAW  ; $e6 ; CROSS_POISON

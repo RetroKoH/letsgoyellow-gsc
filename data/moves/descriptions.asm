@@ -250,8 +250,8 @@ MoveDescriptions::
 	dw DazzlingleamDescription
 	dw SeedBombDescription
 	dw PainSplitDescription
-	dw SacredFireDescription
-	dw OctazookaDescription
+	dw ShadowBoneDescription
+	dw LiquidationDescription
 	dw DoubleIronBashDescription
 	dw StrangeSteamDescription
 	dw StruggleDescription
@@ -418,6 +418,8 @@ if !DEF(FAITHFUL)
 endc
 CrunchDescription:
 IronTailDescription:
+ShadowBoneDescription:
+LiquidationDescription:
 	db   "An attack that may"
 	next "lower Defense.@"
 
@@ -447,14 +449,6 @@ FlashCannonDescription:
 FocusBlastDescription:
 	db   "An attack that may"
 	next "lower Spcl.Def.@"
-
-MudSlapDescription:
-	db   "An attack that"
-	next "lowers ACCURACY.@"
-
-OctazookaDescription:
-	db   "An attack that may"
-	next "lower accuracy.@"
 
 DragonRageDescription:
 	db   "Always inflicts"
@@ -806,7 +800,7 @@ SuckerPunchDescription:
 
 DazzlingleamDescription:
 	db   "Dazzles with a"
-	next "powerful flash.@"
+	next "powerful FLASH.@"
 
 RoarDescription:
 	db   "Scares wild foes"

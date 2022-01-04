@@ -251,8 +251,8 @@
 	const DAZZLINGLEAM ; $1c
 	const SEED_BOMB    ; $b2 ; DRAGON HAMMER
 	const PAIN_SPLIT   ; $dc ; AURORA VEIL
-	const SACRED_FIRE  ; $dd ; SHADOW_BONE
-	const OCTAZOOKA    ; $be ; LIQUIDATION
+	const SHADOW_BONE  ; $fb
+	const LIQUIDATION  ; $fc
 	const DUOIRONBASH  ; $fd
 	const STRANGESTEAM ; $fe
 	const STRUGGLE     ; $ff

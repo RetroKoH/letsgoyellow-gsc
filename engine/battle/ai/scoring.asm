@@ -359,7 +359,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_MEAN_LOOK,         AI_Smart_MeanLook
 	dbw EFFECT_FLAME_WHEEL,       AI_Smart_FlameWheel
 	dbw EFFECT_FLARE_BLITZ,       AI_Smart_FlameWheel
-	dbw EFFECT_SACRED_FIRE,       AI_Smart_FlameWheel
 	dbw EFFECT_CURSE,             AI_Smart_Curse
 	dbw EFFECT_PROTECT,           AI_Smart_Protect
 	dbw EFFECT_FORESIGHT,         AI_Smart_Foresight
@@ -1975,7 +1974,7 @@ RainDanceMoves: ; 390e7
 	db BUBBLE_BEAM
 	db CRABHAMMER
 	db HYDRO_PUMP
-	db OCTAZOOKA
+	db LIQUIDATION
 	db SCALD
 	db SURF
 	db THUNDER
@@ -2069,7 +2068,6 @@ SunnyDayMoves: ; 39134
 	db FLAMETHROWER
 	db FIRE_SPIN
 	db FIRE_BLAST
-	db SACRED_FIRE
 	db FLARE_BLITZ
 	db SYNTHESIS
 	db $ff

@@ -675,8 +675,6 @@ ShadowBall:
 	endmove
 
 AccuracyDownHit:
-MudSlap:
-Octazooka:
 	checkobedience
 	usedmovetext
 	doturn

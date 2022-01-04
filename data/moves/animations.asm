@@ -251,8 +251,8 @@ BattleAnimations::
 	dw BattleAnim_DazzlinGleam
 	dw BattleAnim_SeedBomb
 	dw BattleAnim_PainSplit
-	dw BattleAnim_SacredFire
-	dw BattleAnim_Octazooka
+	dw BattleAnim_ShadowBone ; Need to modify animation
+	dw BattleAnim_Octazooka ; Needs new animation
 	dw BattleAnim_MegaPunch ; Needs new animation
 	dw BattleAnim_Smokescreen ; Needs new animation
 	dw BattleAnim_Struggle
@@ -5267,6 +5267,15 @@ BattleAnim_SuckerPunch:
 	anim_wait 4
 	anim_ret
 
+BattleAnim_ShadowBone:
+	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_MISC
+	anim_obj ANIM_OBJ_68,   8, 0,  11, 0, $2
+	anim_wait 32
+	anim_sound 0, 1, SFX_BONE_CLUB
+	anim_obj ANIM_OBJ_01, -15, 0,   7, 0, $0
+	anim_wait 16
+	anim_ret
+
 BattleAnim_GigaImpact:
 	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_CHARGE
 	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
@@ -5361,15 +5370,6 @@ BattleAnim_GigaImpact:
 ;	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $38
 ;	anim_wait 128
 ;	anim_wait 48
-;	anim_ret
-
-;BattleAnim_BoneClub: ; removed
-;	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_MISC
-;	anim_obj ANIM_OBJ_68,   8, 0,  11, 0, $2
-;	anim_wait 32
-;	anim_sound 0, 1, SFX_BONE_CLUB
-;	anim_obj ANIM_OBJ_01, -15, 0,   7, 0, $0
-;	anim_wait 16
 ;	anim_ret
 
 ;BattleAnim_Constrict: ; removed

@@ -43,7 +43,7 @@ TMHMMoves:
 	db FACADE       ; TM42 (Dim Cave)
 	db WILD_CHARGE  ; TM43 (Lt. Surge)
 	db REST         ; TM44 (Dim Cave)
-	db ATTRACT      ; TM45 (Whitney)
+	db POISON_FANG  ; TM45 (Whitney)
 	db THIEF        ; TM46 (Team Rocket Base)
 	db STEEL_WING   ; TM47 (Route 28)
 	db ROCK_SLIDE   ; TM48 (Brock)

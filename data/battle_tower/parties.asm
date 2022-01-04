@@ -2,13 +2,13 @@ BattleTowerMons:
 BattleTowerMons1:
 BattleTowerPokemon1:
 	db VENUSAUR, BIG_ROOT
-	db LEECH_SEED, TOXIC, SYNTHESIS, GIGA_DRAIN
+	db LEECH_SEED, TOXIC, SYNTHESIS, MEGA_DRAIN
 	db PERFECT_DVS
 	db HIDDEN_ABILITY | CALM, MALE ; Thick Fat, +SpDef -Atk
 
 BattleTowerPokemon2:
 	db VENUSAUR, LIFE_ORB
-	db GROWTH, SLUDGE_BOMB, GIGA_DRAIN, HIDDEN_POWER
+	db GROWTH, SLUDGE_BOMB, MEGA_DRAIN, HIDDEN_POWER
 	db BTDVS_HP_FIRE
 	db ABILITY_2 | MODEST, MALE ; Chlorophyll, +SpAtk -Atk
 
@@ -63,7 +63,7 @@ BattleTowerPokemon2:
 
 	db KANGASKHAN
 	db LUM_BERRY
-	db FLAIL, HYPER_BEAM, EARTHQUAKE, ATTRACT
+	db FLAIL, HYPER_BEAM, EARTHQUAKE, 0
 	db $ce, $fc, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -135,7 +135,7 @@ BattleTowerPokemon2:
 
 	db EXEGGUTOR
 	db KINGS_ROCK
-	db TOXIC, GIGA_DRAIN, THIEF, CONFUSION
+	db TOXIC, MEGA_DRAIN, THIEF, CONFUSION
 	db $ff, $ef, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -167,7 +167,7 @@ BattleTowerPokemon2:
 BattleTowerMons2:
 	db UMBREON
 	db LEFTOVERS
-	db PROTECT, TOXIC, HEADBUTT, ATTRACT
+	db PROTECT, TOXIC, HEADBUTT, 0
 	db $bc, $fb, $cc ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -221,7 +221,7 @@ BattleTowerMons2:
 
 	db BLISSEY
 	db BRIGHTPOWDER
-	db PSYCHIC_M, RETURN, SOFTBOILED, COUNTER
+	db PSYCHIC_M, RETURN, RECOVER, COUNTER
 	db $fb, $df, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -257,19 +257,19 @@ BattleTowerMons2:
 
 	db LAPRAS
 	db MYSTIC_WATER
-	db SURF, BLIZZARD, ATTRACT, RAIN_DANCE
+	db SURF, BLIZZARD, RAIN_DANCE, 0
 	db $fe, $df, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
 	db MILTANK
 	db KINGS_ROCK
-	db EARTHQUAKE, THUNDER, ATTRACT, SURF
+	db EARTHQUAKE, THUNDER, SURF, 0
 	db $fd, $ff, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
 	db WIGGLYTUFF
 	db SITRUS_BERRY
-	db HYPER_BEAM, BLIZZARD, FIRE_BLAST, ATTRACT
+	db HYPER_BEAM, BLIZZARD, FIRE_BLAST, 0
 	db $fc, $7f, $cc ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -313,7 +313,7 @@ BattleTowerMons3:
 
 	db JYNX
 	db SITRUS_BERRY
-	db BLIZZARD, LOVELY_KISS, DREAM_EATER, ATTRACT
+	db BLIZZARD, LOVELY_KISS, DREAM_EATER, 0
 	db $ef, $be, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -325,13 +325,13 @@ BattleTowerMons3:
 
 	db BELLOSSOM
 	db BRIGHTPOWDER
-	db GIGA_DRAIN, SUNNY_DAY, SOLAR_BEAM, DOUBLE_TEAM
+	db MEGA_DRAIN, SUNNY_DAY, SOLAR_BEAM, DOUBLE_TEAM
 	db $dd, $fd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
 	db BLISSEY
 	db LEFTOVERS
-	db TOXIC, REFLECT, SOFTBOILED, PROTECT
+	db TOXIC, REFLECT, RECOVER, PROTECT
 	db $ef, $be, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -349,7 +349,7 @@ BattleTowerMons3:
 
 	db CROBAT
 	db SITRUS_BERRY
-	db ATTRACT, CONFUSE_RAY, TOXIC, WING_ATTACK
+	db BRAVE_BIRD, CONFUSE_RAY, TOXIC, WING_ATTACK
 	db $de, $fd, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -397,7 +397,7 @@ BattleTowerMons3:
 
 	db GENGAR
 	db SITRUS_BERRY
-	db THIEF, LICK, NIGHT_SHADE, GIGA_DRAIN
+	db THIEF, LICK, NIGHT_SHADE, MEGA_DRAIN
 	db $ff, $7f, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -435,7 +435,7 @@ BattleTowerMons4:
 
 	db SNORLAX
 	db QUICK_CLAW
-	db ATTRACT, BODY_SLAM, CURSE, EARTHQUAKE
+	db BODY_SLAM, CURSE, EARTHQUAKE, 0
 	db $de, $dd, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -525,7 +525,7 @@ BattleTowerMons4:
 
 	db EXEGGUTOR
 	db BRIGHTPOWDER
-	db OUTRAGE, STOMP, MEGA_DRAIN, CONFUSION
+	db OUTRAGE, STOMP, ABSORB, CONFUSION
 	db $ef, $7e, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -629,7 +629,7 @@ BattleTowerMons5:
 
 	db CROBAT
 	db LEFTOVERS
-	db CONFUSE_RAY, ATTRACT, HYPER_BEAM, TOXIC
+	db CONFUSE_RAY, HYPER_BEAM, TOXIC, 0
 	db $fe, $ff, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -751,7 +751,7 @@ BattleTowerMons6:
 
 	db BLISSEY
 	db LEFTOVERS
-	db SOFTBOILED, TOXIC, PROTECT, PSYCHIC_M
+	db RECOVER, TOXIC, PROTECT, PSYCHIC_M
 	db $cf, $bc, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -793,7 +793,7 @@ BattleTowerMons6:
 
 	db PARASECT
 	db SITRUS_BERRY
-	db SPORE, GIGA_DRAIN, HYPER_BEAM, SLUDGE_BOMB
+	db SPORE, MEGA_DRAIN, HYPER_BEAM, SLUDGE_BOMB
 	db $56, $65, $66 ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -825,7 +825,7 @@ BattleTowerMons7:
 
 	db BLISSEY
 	db SITRUS_BERRY
-	db COUNTER, SOFTBOILED, SHADOW_BALL, THUNDERBOLT
+	db COUNTER, RECOVER, SHADOW_BALL, THUNDERBOLT
 	db $ed, $fe, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -855,7 +855,7 @@ BattleTowerMons7:
 
 	db EXEGGUTOR
 	db LUM_BERRY
-	db REST, EXPLOSION, PSYCHIC_M, GIGA_DRAIN
+	db REST, EXPLOSION, PSYCHIC_M, MEGA_DRAIN
 	db $ed, $de, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1043,7 +1043,7 @@ BattleTowerMons8:
 
 	db VICTREEBEL
 	db QUICK_CLAW
-	db GIGA_DRAIN, SLUDGE_BOMB, HYPER_BEAM, TOXIC
+	db MEGA_DRAIN, SLUDGE_BOMB, HYPER_BEAM, TOXIC
 	db $66, $56, $66 ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1087,7 +1087,7 @@ BattleTowerMons9:
 
 	db CROBAT
 	db SITRUS_BERRY
-	db WING_ATTACK, HAZE, HYPER_BEAM, GIGA_DRAIN
+	db WING_ATTACK, HAZE, HYPER_BEAM, MEGA_DRAIN
 	db $cf, $dc, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1141,7 +1141,7 @@ BattleTowerMons9:
 
 	db BLISSEY
 	db LEFTOVERS
-	db SOLAR_BEAM, SUNNY_DAY, SOFTBOILED, FIRE_BLAST
+	db SOLAR_BEAM, SUNNY_DAY, RECOVER, FIRE_BLAST
 	db $fb, $df, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1159,7 +1159,7 @@ BattleTowerMons9:
 
 	db TOGEKISS
 	db LEFTOVERS
-	db SOFTBOILED, ANCIENTPOWER, AIR_SLASH, FOCUS_BLAST
+	db RECOVER, ANCIENTPOWER, AIR_SLASH, FOCUS_BLAST
 	db $ff, $ef, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1171,19 +1171,19 @@ BattleTowerMons9:
 
 	db MILTANK
 	db LEFTOVERS
-	db RECOVER, EARTHQUAKE, ATTRACT, BODY_SLAM
+	db RECOVER, EARTHQUAKE, BODY_SLAM, 0
 	db $54, $75, $44 ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
 	db TAUROS
 	db SILK_SCARF
-	db THUNDERBOLT, HYPER_BEAM, ATTRACT, EARTHQUAKE
+	db THUNDERBOLT, HYPER_BEAM, EARTHQUAKE, 0
 	db $76, $57, $66 ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
 	db MUK
 	db QUICK_CLAW
-	db TOXIC, SLUDGE_BOMB, ATTRACT, GIGA_DRAIN
+	db TOXIC, SLUDGE_BOMB, MEGA_DRAIN, 0
 	db $45, $44, $55 ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 	db $ff
@@ -1275,7 +1275,7 @@ BattleTowerMons10:
 
 	db BLISSEY
 	db LEFTOVERS
-	db THUNDERBOLT, BLIZZARD, FIRE_BLAST, SOFTBOILED
+	db THUNDERBOLT, BLIZZARD, FIRE_BLAST, RECOVER
 	db $fd, $df, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1287,7 +1287,7 @@ BattleTowerMons10:
 
 	db EXEGGUTOR
 	db QUICK_CLAW
-	db PSYCHIC_M, TOXIC, EXPLOSION, GIGA_DRAIN
+	db PSYCHIC_M, TOXIC, EXPLOSION, MEGA_DRAIN
 	db $ff, $ef, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

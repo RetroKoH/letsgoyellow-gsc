@@ -13,7 +13,7 @@ AI_Redundant: ; 2c41a
 	ld l, a
 	jp hl
 
-.Moves: ; 2c42c
+.Moves: ; 2c42c ADD TOXIC to this list
 	dbw EFFECT_DREAM_EATER,   .DreamEater
 	dbw EFFECT_HEAL,          .Heal
 	dbw EFFECT_LIGHT_SCREEN,  .LightScreen
@@ -30,7 +30,6 @@ AI_Redundant: ; 2c41a
 	dbw EFFECT_SPIKES,        .Spikes
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
-	dbw EFFECT_ATTRACT,       .Attract
 	dbw EFFECT_SAFEGUARD,     .Safeguard
 	dbw EFFECT_RAIN_DANCE,    .RainDance
 	dbw EFFECT_SUNNY_DAY,     .SunnyDay
@@ -135,14 +134,6 @@ AI_Redundant: ; 2c41a
 	ld a, [wWeather]
 	cp WEATHER_HAIL
 	jr .InvertZero
-
-.Attract:
-	farcall CheckOppositeGender
-	jr c, .Redundant
-	jr z, .Redundant
-	ld a, [wPlayerSubStatus1]
-	bit SUBSTATUS_IN_LOVE, a
-	ret
 
 .RainDance:
 	ld a, [wWeather]

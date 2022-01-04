@@ -175,13 +175,13 @@ BattleAnimations::
 	dw BattleAnim_Curse
 	dw BattleAnim_BatonPass
 	dw BattleAnim_ZapCannon
-	dw BattleAnim_Strength ; Superpower
+	dw BattleAnim_Superpower ; Need to make new anim
 	dw BattleAnim_Swagger
 	dw BattleAnim_RockSmash
 	dw BattleAnim_MeanLook
 	dw BattleAnim_KnockOff
 	dw BattleAnim_HyperVoice
-	dw BattleAnim_Attract
+	dw BattleAnim_PoisonFang ; Need to make new anim
 	dw BattleAnim_SleepTalk
 	dw BattleAnim_HiddenPower
 	dw BattleAnim_Safeguard
@@ -2945,6 +2945,7 @@ BattleAnim_Smokescreen:
 	anim_ret
 
 BattleAnim_Strength:
+BattleAnim_Superpower:
 	anim_2gfx ANIM_GFX_ROCKS, ANIM_GFX_HIT
 	anim_bgeffect ANIM_BG_20, $10, $1, $20
 	anim_sound 0, 0, SFX_STRENGTH
@@ -4205,17 +4206,6 @@ BattleAnim_MeanLook:
 	anim_wait 128
 	anim_ret
 
-BattleAnim_Attract:
-	anim_1gfx ANIM_GFX_OBJECTS
-.loop
-	anim_sound 0, 0, SFX_ATTRACT
-	anim_obj ANIM_OBJ_66,   5, 4,  10, 0, $2
-	anim_wait 8
-	anim_loop 5, .loop
-	anim_wait 128
-	anim_wait 64
-	anim_ret
-
 BattleAnim_SleepTalk:
 	anim_1gfx ANIM_GFX_STATUS
 .loop
@@ -4600,6 +4590,7 @@ BattleAnim_Synthesis_branch_cbc80:
 	anim_ret
 
 BattleAnim_Crunch:
+BattleAnim_PoisonFang:
 	anim_2gfx ANIM_GFX_CUT, ANIM_GFX_HIT
 	anim_bgp $1b
 	anim_obp0 $c0

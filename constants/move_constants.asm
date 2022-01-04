@@ -119,7 +119,7 @@
 	const LEECH_LIFE
 	const POISON_GAS   ; $ba
 	const LOVELY_KISS  ; $8e
-	const BELLY_DRUM   ; $bb ; SKY_ATTACK
+	const BELLY_DRUM   ; $bb < Might keep. Sky Attack is out. This or Acrobatics
 	const TRANSFORM    ; $90
 	const SPORE        ; $93
 	const SPLASH       ; $96
@@ -168,7 +168,7 @@
 	const ANCIENTPOWER ; $f6
 	const SHADOW_BALL  ; $f7
 	const WHIRLPOOL    ; $fa
-	const FALSE_SWIPE  ; $ce ;FAKE OUT
+	const FALSE_SWIPE  ; $ce ; FAKE OUT
 	const HAIL         ; $27
 	const WILL_O_WISP  ; $a9
 	const FACADE       ; $ab
@@ -181,7 +181,7 @@
 	const MEAN_LOOK    ; $d4 ; YAWN
 	const KNOCK_OFF    ; $ec
 	const HYPER_VOICE  ; $ad
-	const ATTRACT      ; $d5 ; POISON_FANG
+	const POISON_FANG  ; $d5
 	const SLEEP_TALK   ; $d6 ; METEOR_MASH
 	const HIDDEN_POWER ; $ed ; WEATHER BALL
 	const SAFEGUARD    ; $db ; SIGNAL_BEAM

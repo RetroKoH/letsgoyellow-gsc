@@ -180,7 +180,7 @@ MoveDescriptions::
 	dw MeanLookDescription
 	dw KnockOffDescription
 	dw HyperVoiceDescription
-	dw AttractDescription
+	dw PoisonFangDescription
 	dw SleepTalkDescription
 	dw SafeguardDescription
 	dw HiddenPowerDescription
@@ -341,6 +341,7 @@ PoisonStingDescription:
 SmogDescription:
 SludgeDescription:
 SludgeBombDescription:
+PoisonFangDescription:
 PoisonJabDescription:
 GunkShotDescription:
 	db   "An attack that may"
@@ -970,10 +971,6 @@ BugBiteDescription:
 MeanLookDescription:
 	db   "Prevents fleeing"
 	next "or switching.@"
-
-AttractDescription:
-	db   "Makes the opposite"
-	next "gender infatuated.@"
 
 SleepTalkDescription:
 	db   "Randomly attacks"

@@ -8,10 +8,9 @@
 	const MONMENU_WHIRLPOOL  ; 7
 	const MONMENU_DIG        ; 8
 	const MONMENU_TELEPORT   ; 9
-	const MONMENU_SOFTBOILED ; 10
+	const MONMENU_RECOVER    ; 10
 	const MONMENU_HEADBUTT   ; 11
 	const MONMENU_ROCKSMASH  ; 12
-	const MONMENU_MILKDRINK  ; 13
 
 	const MONMENU_STATS      ; 14
 	const MONMENU_SWITCH     ; 15

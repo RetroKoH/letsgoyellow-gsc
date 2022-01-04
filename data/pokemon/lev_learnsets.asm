@@ -2044,7 +2044,7 @@ ChanseyLearnset:
 	db 1, TACKLE ; Pound → similar move
 	db 1, GROWL
 	db 5, LEER ; Tail Whip → similar move
-	db 16, SOFTBOILED
+	db 16, RECOVER
 	db 20, METRONOME ; Bestow → egg move
 	db 23, MINIMIZE
 	db 27, TAKE_DOWN
@@ -2864,7 +2864,7 @@ TogepiLearnset:
 	db 17, ENCORE
 	db 21, DIZZY_PUNCH ; Follow Me → new move
 	db 25, HEAL_BELL ; Bestow → HGSS tutor move
-	db 29, SOFTBOILED ; Wish → new move
+	db 29, RECOVER ; Wish → new move
 	db 33, ANCIENTPOWER
 	db 37, SAFEGUARD
 	db 41, BATON_PASS
@@ -2882,7 +2882,7 @@ TogeticLearnset:
 	db 17, ENCORE
 	db 21, DIZZY_PUNCH ; Follow Me → new move
 	db 25, HEAL_BELL ; Bestow → HGSS tutor move
-	db 29, SOFTBOILED ; Wish → new move
+	db 29, RECOVER ; Wish → new move
 	db 33, ANCIENTPOWER
 	db 37, SAFEGUARD
 	db 41, BATON_PASS

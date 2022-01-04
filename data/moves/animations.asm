@@ -205,6 +205,7 @@ BattleAnimations::
 	dw BattleAnim_DarkPulse
 	dw BattleAnim_NightSlash
 	dw BattleAnim_AquaTail
+	dw BattleAnim_SeedBomb
 	dw BattleAnim_AirSlash
 	dw BattleAnim_XScissor
 	dw BattleAnim_BugBuzz
@@ -246,10 +247,9 @@ BattleAnimations::
 	dw BattleAnim_DizzyPunch
 	dw BattleAnim_DisarmVoice
 	dw BattleAnim_PlayRough
-	dw BattleAnim_Softboiled
+	dw BattleAnim_Gust ; Needs new animation
 	dw BattleAnim_Moonblast
 	dw BattleAnim_DazzlinGleam
-	dw BattleAnim_SeedBomb
 	dw BattleAnim_PainSplit
 	dw BattleAnim_ShadowBone ; Need to modify animation
 	dw BattleAnim_Octazooka ; Needs new animation
@@ -2307,7 +2307,7 @@ BattleAnim_CloseCombat:
 	anim_ret
 
 BattleAnim_Hurricane:
-BattleAnim_Whirlwind: ; removed
+BattleAnim_Whirlwind:
 	anim_1gfx ANIM_GFX_WIND
 .loop
 	anim_sound 0, 0, SFX_RAZOR_WIND

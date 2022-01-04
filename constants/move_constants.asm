@@ -205,6 +205,7 @@
 	const DARK_PULSE   ; $fb
 	const NIGHT_SLASH  ; $19
 	const AQUA_TAIL    ; $6e
+	const SEED_BOMB    ; $b2
 	const AIR_SLASH    ; $1a
 	const X_SCISSOR    ; $18
 	const BUG_BUZZ     ; $da
@@ -243,14 +244,13 @@
 	const WILD_CHARGE  ; $c6
 	const MAGNITUDE    ; $de ; DRILL_RUN
 	const HURRICANE    ; $eb
-	const DIZZY_PUNCH  ; $92 ; FELL_STINGER
-	const DISARM_VOICE ; $fe
-	const PLAY_ROUGH   ; $fd
-	const SOFTBOILED   ; $87 ; FAIRY_WIND
-	const MOONBLAST    ; $fc
-	const DAZZLINGLEAM ; $1c
-	const SEED_BOMB    ; $b2 ; DRAGON HAMMER
-	const PAIN_SPLIT   ; $dc ; AURORA VEIL
+	const DIZZY_PUNCH  ; $f4 ; FELL_STINGER
+	const DISARM_VOICE ; $f5
+	const PLAY_ROUGH   ; $f6
+	const FAIRY_WIND   ; $f7
+	const MOONBLAST    ; $f8
+	const DAZZLINGLEAM ; $f9
+	const PAIN_SPLIT   ; $fa ; AURORA VEIL
 	const SHADOW_BONE  ; $fb
 	const LIQUIDATION  ; $fc
 	const DUOIRONBASH  ; $fd

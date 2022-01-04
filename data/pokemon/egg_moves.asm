@@ -100,8 +100,7 @@ ClefairyEggMoves:
 	db BELLY_DRUM
 	db METRONOME
 	db AMNESIA
-	db SPLASH ; requires Hoppip
-	db SOFTBOILED
+	db RECOVER
 	db $ff
 
 VulpixEggMoves:

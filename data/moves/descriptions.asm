@@ -204,6 +204,7 @@ MoveDescriptions::
 	dw DarkPulseDescription
 	dw NightSlashDescription
 	dw AquaTailDescription
+	dw SeedBombDescription
 	dw AirSlashDescription
 	dw XScissorDescription
 	dw BugBuzzDescription
@@ -245,10 +246,9 @@ MoveDescriptions::
 	dw DizzyPunchDescription
 	dw DisarmVoiceDescription
 	dw PlayRoughDescription
-	dw SoftboiledDescription
+	dw FairyWindDescription
 	dw MoonblastDescription
 	dw DazzlingleamDescription
-	dw SeedBombDescription
 	dw PainSplitDescription
 	dw ShadowBoneDescription
 	dw LiquidationDescription
@@ -321,7 +321,7 @@ BraveBirdDescription:
 
 LeafStormDescription:
 	db   "An attack that"
-	next "weakens the user."
+	next "weakens the user.@"
 
 StompDescription:
 HeadbuttDescription:
@@ -797,6 +797,10 @@ PayDayDescription:
 SuckerPunchDescription:
 	db   "Attacks before the"
 	next "foe does.@"
+
+FairyWindDescription:
+	db   "Stirs up wind and"
+	next "strikes the foe.@"
 
 DazzlingleamDescription:
 	db   "Dazzles with a"

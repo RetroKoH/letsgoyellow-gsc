@@ -106,8 +106,8 @@
 	const METRONOME    ; $76
 	const EXTREMESPEED ; $f5 ; LOW_SWEEP
 	const LICK         ; $7a
-	const DESTINY_BOND ; $c2 ; SMOG
-	const MUD_SLAP     ; $bd ; SLUDGE
+	const SMOG         ; $c2 
+	const SLUDGE       ; $bd 
 	const FIRE_BLAST   ; $7e
 	const WATERFALL    ; $7f
 	const SWIFT        ; $81

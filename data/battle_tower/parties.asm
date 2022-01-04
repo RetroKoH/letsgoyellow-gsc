@@ -45,7 +45,7 @@ BattleTowerPokemon2:
 
 	db ESPEON
 	db LEFTOVERS
-	db MUD_SLAP, PSYCHIC_M, CALM_MIND, TOXIC
+	db SAND_ATTACK, PSYCHIC_M, CALM_MIND, TOXIC
 	db $fe, $df, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -55,9 +55,9 @@ BattleTowerPokemon2:
 	db $ed, $be, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db WOBBUFFET
+	db GENGAR
 	db FOCUS_BAND
-	db COUNTER, MIRROR_COAT, SAFEGUARD, DESTINY_BOND
+	db COUNTER, MIRROR_COAT, LIGHT_SCREEN, HEX
 	db $d7, $fd, $77 ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -67,7 +67,7 @@ BattleTowerPokemon2:
 	db $ce, $fc, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db CORSOLA
+	db KABUTOPS
 	db SCOPE_LENS
 	db SURF, PSYCHIC_M, RECOVER, ANCIENTPOWER
 	db $ff, $ef, $ff ; DVs
@@ -117,7 +117,7 @@ BattleTowerPokemon2:
 
 	db NIDORINO
 	db KINGS_ROCK
-	db PSYBEAM, MUD_SLAP, SHADOW_BALL, AGILITY
+	db PSYBEAM, SAND_ATTACK, SHADOW_BALL, AGILITY
 	db $fe, $df, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -145,15 +145,15 @@ BattleTowerPokemon2:
 	db $ff, $7f, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db UNOWN
+	db MAGIKARP
 	db ORAN_BERRY
-	db HIDDEN_POWER, 0, 0, 0
+	db FLAIL, 0, 0, 0
 	db $ff, $ff, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
 	db TAUROS
 	db KINGS_ROCK
-	db HEADBUTT, SWAGGER, LEER, ICY_WIND
+	db HEADBUTT, TOXIC, LEER, ICY_WIND
 	db $56, $55, $66 ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -167,7 +167,7 @@ BattleTowerPokemon2:
 BattleTowerMons2:
 	db UMBREON
 	db LEFTOVERS
-	db PROTECT, TOXIC, MUD_SLAP, ATTRACT
+	db PROTECT, TOXIC, HEADBUTT, ATTRACT
 	db $bc, $fb, $cc ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -295,7 +295,7 @@ BattleTowerMons2:
 BattleTowerMons3:
 	db JOLTEON
 	db LUM_BERRY
-	db THUNDERBOLT, THUNDER_WAVE, ROAR, MUD_SLAP
+	db THUNDERBOLT, THUNDER_WAVE, ROAR, SAND_ATTACK
 	db $ed, $be, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -319,7 +319,7 @@ BattleTowerMons3:
 
 	db DUGTRIO
 	db KINGS_ROCK
-	db EARTHQUAKE, SLUDGE_BOMB, SLASH, MUD_SLAP
+	db EARTHQUAKE, SLUDGE_BOMB, SLASH, SAND_ATTACK
 	db $fe, $ff, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -463,9 +463,9 @@ BattleTowerMons4:
 	db $bf, $db, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db WOBBUFFET
+	db GENGAR
 	db SITRUS_BERRY
-	db COUNTER, MIRROR_COAT, SAFEGUARD, DESTINY_BOND
+	db COUNTER, MIRROR_COAT, SAFEGUARD, HEX
 	db $eb, $fe, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -483,7 +483,7 @@ BattleTowerMons4:
 
 	db DUGTRIO
 	db KINGS_ROCK
-	db EARTHQUAKE, HYPER_BEAM, SLUDGE_BOMB, MUD_SLAP
+	db EARTHQUAKE, HYPER_BEAM, SLUDGE_BOMB, SAND_ATTACK
 	db $bf, $eb, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -713,9 +713,9 @@ BattleTowerMons6:
 	db $fd, $df, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
-	db WOBBUFFET
+	db GENGAR
 	db SITRUS_BERRY
-	db COUNTER, MIRROR_COAT, DESTINY_BOND, SAFEGUARD
+	db COUNTER, MIRROR_COAT, HEX, SAFEGUARD
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -733,7 +733,7 @@ BattleTowerMons6:
 
 	db UMBREON
 	db SITRUS_BERRY
-	db MUD_SLAP, SYNTHESIS, PSYCHIC_M, FEINT_ATTACK
+	db SAND_ATTACK, SYNTHESIS, PSYCHIC_M, FEINT_ATTACK
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -813,7 +813,7 @@ BattleTowerMons7:
 
 	db VAPOREON
 	db LEFTOVERS
-	db BLIZZARD, SHADOW_BALL, SURF, MUD_SLAP
+	db BLIZZARD, SHADOW_BALL, SURF, SAND_ATTACK
 	db $eb, $fe, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1013,7 +1013,7 @@ BattleTowerMons8:
 
 	db FEAROW
 	db QUICK_CLAW
-	db STEEL_WING, FLY, MUD_SLAP, TOXIC
+	db STEEL_WING, FLY, SAND_ATTACK, TOXIC
 	db $ed, $de, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1037,7 +1037,7 @@ BattleTowerMons8:
 
 	db DUGTRIO
 	db SCOPE_LENS
-	db SLASH, EARTHQUAKE, THIEF, MUD_SLAP
+	db SLASH, EARTHQUAKE, THIEF, SAND_ATTACK
 	db $df, $dd, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1063,7 +1063,7 @@ BattleTowerMons8:
 BattleTowerMons9:
 	db UMBREON
 	db KINGS_ROCK
-	db FEINT_ATTACK, MUD_SLAP, SYNTHESIS, CONFUSE_RAY
+	db FEINT_ATTACK, SAND_ATTACK, SYNTHESIS, CONFUSE_RAY
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

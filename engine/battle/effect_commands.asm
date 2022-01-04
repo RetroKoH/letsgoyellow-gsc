@@ -3107,40 +3107,12 @@ ConsumeUserItem::
 	ret
 
 BattleCommand_postfainteffects:
-; Effects that run after faint by an attack (Destiny Bond, Moxie, Aftermath, etc)
+; Effects that run after faint by an attack (Moxie, Aftermath, etc)
 	call HasOpponentFainted
 	ret nz
 
-	ld a, BATTLE_VARS_SUBSTATUS2_OPP
-	call GetBattleVar
-	bit SUBSTATUS_DESTINY_BOND, a
-	jr z, .no_dbond
+; Removed Destiny Bond
 
-	ld hl, TookDownWithItText
-	call StdBattleTextBox
-
-	call GetMaxHP
-	farcall SubtractHPFromUser
-	call SwitchTurn
-	xor a
-	ld [wNumHits], a
-	ld [wFXAnimIDHi], a
-	inc a
-	ld [wKickCounter], a
-	ld a, DESTINY_BOND
-	call LoadAnim
-	call SwitchTurn
-
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .enemy_dbond
-	call UpdateBattleMonInParty
-	jr .finish
-.enemy_dbond
-	call UpdateEnemyMonInParty
-	jr .finish
-
-.no_dbond
 	farcall RunFaintAbilities
 	call BattleCommand_posthiteffects
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -4862,22 +4834,6 @@ BattleCommand_sleeptalk: ; 35b33
 
 BattleCommand_destinybond: ; 35bff
 ; destinybond
-
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
-	call GetBattleVarAddr
-	ld a, [hl]
-	ld [hl], $0
-	cp DESTINY_BOND
-	jr z, .failed
-	ld [hl], DESTINY_BOND
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVarAddr
-	set SUBSTATUS_DESTINY_BOND, [hl]
-	call AnimateCurrentMove
-	ld hl, DestinyBondEffectText
-	jp StdBattleTextBox
-.failed
-	call AnimateFailedMove
 	jp PrintButItFailed
 
 BattleCommand_falseswipe: ; 35c94

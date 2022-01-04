@@ -352,7 +352,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_ENCORE,            AI_Smart_Encore
 	dbw EFFECT_PAIN_SPLIT,        AI_Smart_PainSplit
 	dbw EFFECT_SLEEP_TALK,        AI_Smart_SleepTalk
-	dbw EFFECT_DESTINY_BOND,      AI_Smart_DestinyBond
 	dbw EFFECT_FLAIL,             AI_Smart_Flail
 	dbw EFFECT_HEAL_BELL,         AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
@@ -1252,7 +1251,6 @@ AI_Smart_SleepTalk: ; 38cba
 ; 38ccb
 
 
-AI_Smart_DestinyBond:
 AI_Smart_Flail: ; 38d19
 ; Discourage this move if enemy's HP is above 25%.
 

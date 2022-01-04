@@ -1081,7 +1081,6 @@ PoliwagLearnset:
 	db 1, WATER_GUN ; Water Sport → Water Gun
 	db 5, HYPNOSIS ; Water Gun → Hypnosis
 	db 11, AQUA_JET ; Bubble → new move
-	db 15, MUD_SLAP ; Double Slap → TM move
 	db 18, RAIN_DANCE
 	db 21, BODY_SLAM
 	db 25, BUBBLE_BEAM
@@ -1096,7 +1095,6 @@ PoliwhirlLearnset:
 	db 1, WATER_GUN ; Water Sport → Water Gun
 	db 5, HYPNOSIS ; Water Gun → Hypnosis
 	db 11, AQUA_JET ; Bubble → new move
-	db 15, MUD_SLAP ; Double Slap → TM move
 	db 18, RAIN_DANCE
 	db 21, BODY_SLAM
 	db 27, BUBBLE_BEAM
@@ -1297,7 +1295,6 @@ TentacruelLearnset:
 GeodudeLearnset:
 	db 1, TACKLE
 	db 1, DEFENSE_CURL
-	db 4, MUD_SLAP ; Mud Sport → TM move
 	db 6, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
 	db 12, MAGNITUDE
@@ -1316,7 +1313,6 @@ GeodudeLearnset:
 GravelerLearnset:
 	db 1, TACKLE
 	db 1, DEFENSE_CURL
-	db 4, MUD_SLAP ; Mud Sport → TM move
 	db 6, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
 	db 12, MAGNITUDE
@@ -1335,7 +1331,6 @@ GravelerLearnset:
 GolemLearnset:
 	db 1, TACKLE
 	db 1, DEFENSE_CURL
-	db 4, MUD_SLAP ; Mud Sport → TM move
 	db 6, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
 	db 12, MAGNITUDE
@@ -1571,7 +1566,6 @@ GrimerLearnset:
 	db 1, TACKLE ; Pound → similar move
 	db 1, ACID ; Poison Gas → new move
 	db 4, DEFENSE_CURL ; Harden → similar move
-	db 7, MUD_SLAP
 	db 12, DISABLE
 	db 15, VENOSHOCK ; Sludge → tutor move
 	db 18, HAZE ; Mud Bomb → egg move
@@ -1650,7 +1644,6 @@ GastlyLearnset:
 	db 29, SHADOW_BALL
 	db 33, DREAM_EATER
 	db 36, DARK_PULSE
-	db 40, DESTINY_BOND
 	db 43, HEX
 	db 0 ; no more level-up moves
 
@@ -1668,7 +1661,6 @@ HaunterLearnset:
 	db 33, SHADOW_BALL
 	db 39, DREAM_EATER
 	db 44, DARK_PULSE
-	db 50, DESTINY_BOND
 	db 55, HEX
 	db 0 ; no more level-up moves
 
@@ -1686,7 +1678,6 @@ GengarLearnset:
 	db 33, SHADOW_BALL
 	db 39, DREAM_EATER
 	db 44, DARK_PULSE
-	db 50, DESTINY_BOND
 	db 55, HEX
 	db 0 ; no more level-up moves
 
@@ -1857,7 +1848,6 @@ ExeggutorLearnset:
 CuboneLearnset:
 	db 1, GROWL
 	db 3, TACKLE ; Tail Whip → new move
-	db 7, MUD_SLAP ; Bone Club → TM move
 	db 11, HEADBUTT
 	db 13, LEER
 	db 17, FOCUS_ENERGY
@@ -1876,7 +1866,6 @@ MarowakLearnset:
 	db 1, PAIN_SPLIT ; evolution move
 	db 1, GROWL
 	db 3, TACKLE ; Tail Whip → new move
-	db 7, MUD_SLAP ; Bone Club → TM move
 	db 11, HEADBUTT
 	db 13, LEER
 	db 17, FOCUS_ENERGY
@@ -1982,7 +1971,6 @@ KoffingLearnset:
 	db 29, GYRO_BALL
 	db 34, SLUDGE_BOMB
 	db 37, EXPLOSION
-	db 40, DESTINY_BOND
 	db 42, PAIN_SPLIT ; Belch → HGSS tutor move
 	db 45, FIRE_BLAST ; Memento → TM move
 	db 0 ; no more level-up moves
@@ -1999,7 +1987,6 @@ WeezingLearnset:
 	db 29, GYRO_BALL
 	db 34, SLUDGE_BOMB
 	db 40, EXPLOSION
-	db 46, DESTINY_BOND
 	db 51, PAIN_SPLIT ; Belch → HGSS tutor move
 	db 57, FIRE_BLAST ; Memento → TM move
 	db 0 ; no more level-up moves
@@ -2664,9 +2651,9 @@ OmastarLearnset:
 
 KabutoLearnset:
 	db 1, SCRATCH
-	db 1, DEFENSE_CURL ; Harden → similar move
+	db 1, HARDEN
 	db 6, ABSORB
-	db 11, MUD_SLAP ; Leer → GSC TM move
+	db 11, LEER
 	db 16, ROCK_THROW ; Mud Shot → Rock Throw (event move)
 	db 21, LEER ; Sand Attack → Leer
 	db 26, ENDURE
@@ -2680,10 +2667,10 @@ KabutoLearnset:
 
 KabutopsLearnset:
 	db 1, SCRATCH
-	db 1, DEFENSE_CURL ; Harden → similar move
+	db 1, HARDEN
 	db 1, SLASH ; evolution move
 	db 6, ABSORB
-	db 11, MUD_SLAP ; Leer → GSC TM move
+	db 11, LEER
 	db 16, ROCK_THROW ; Mud Shot → Rock Throw (event move)
 	db 21, LEER ; Sand Attack → Leer
 	db 26, ENDURE

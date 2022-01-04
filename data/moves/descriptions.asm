@@ -105,8 +105,8 @@ MoveDescriptions::
 	dw MetronomeDescription
 	dw ExtremespeedDescription
 	dw LickDescription
-	dw DestinyBondDescription
-	dw MudSlapDescription
+	dw SmogDescription
+	dw SludgeDescription
 	dw FireBlastDescription
 	dw WaterfallDescription
 	dw SwiftDescription
@@ -338,11 +338,13 @@ IcicleCrashDescription:
 	next "cause flinching.@"
 
 PoisonStingDescription:
+SmogDescription:
+SludgeDescription:
 SludgeBombDescription:
 PoisonJabDescription:
 GunkShotDescription:
 	db   "An attack that may"
-	next "poison the foe.@"
+	next "POISON the foe.@"
 
 EmberDescription:
 FlamethrowerDescription:
@@ -351,7 +353,7 @@ FlameWheelDescription:
 SacredFireDescription:
 ScaldDescription:
 	db   "An attack that may"
-	next "inflict a burn.@"
+	next "inflict a BURN.@"
 
 BodySlamDescription:
 ThundershockDescription:
@@ -443,7 +445,7 @@ FocusBlastDescription:
 
 MudSlapDescription:
 	db   "An attack that"
-	next "lowers accuracy.@"
+	next "lowers ACCURACY.@"
 
 OctazookaDescription:
 	db   "An attack that may"
@@ -943,10 +945,6 @@ ProtectDescription:
 BellyDrumDescription:
 	db   "Sacrifices HP to"
 	next "maximize Attack.@"
-
-DestinyBondDescription:
-	db   "The foe faints if"
-	next "the user does.@"
 
 PerishSongDescription:
 	db   "Both user and foe"

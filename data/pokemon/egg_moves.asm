@@ -362,7 +362,6 @@ ExeggcuteEggMoves:
 
 CuboneEggMoves:
 	db ANCIENTPOWER
-	db BELLY_DRUM
 	db DOUBLE_KICK
 	db SCREECH
 	db ROCK_SLIDE
@@ -371,8 +370,6 @@ CuboneEggMoves:
 	db $ff
 
 LickitungEggMoves:
-	db BELLY_DRUM
-	db MAGNITUDE
 	db BODY_SLAM
 	db AMNESIA
 	db THRASH
@@ -382,8 +379,6 @@ LickitungEggMoves:
 KoffingEggMoves:
 	db PSYBEAM
 	db SCREECH
-	db DESTINY_BOND
-	db PAIN_SPLIT
 	db $ff
 
 RhyhornEggMoves:
@@ -403,7 +398,6 @@ ChanseyEggMoves:
 
 TangelaEggMoves:
 	db CONFUSION
-	db AMNESIA ; requires Hoppip
 	db LEECH_SEED
 	db $ff
 
@@ -501,7 +495,6 @@ AerodactylEggMoves:
 	db $ff
 
 DratiniEggMoves:
-	db EXTREMESPEED ; requires Dragon Shrine Dratini
 	db HAZE
 	db SUPERSONIC
 	db WATER_PULSE

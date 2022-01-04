@@ -106,8 +106,8 @@ BattleAnimations::
 	dw BattleAnim_Metronome
 	dw BattleAnim_Extremespeed
 	dw BattleAnim_Lick
-	dw BattleAnim_DestinyBond
-	dw BattleAnim_MudSlap
+	dw BattleAnim_Smog
+	dw BattleAnim_Sludge
 	dw BattleAnim_FireBlast
 	dw BattleAnim_Waterfall
 	dw BattleAnim_Swift
@@ -3195,7 +3195,7 @@ BattleAnim_PsychicM:
 	anim_ret
 
 BattleAnim_Venoshock: ; TODO: design new animation for Venoshock
-BattleAnim_Sludge: ; removed
+BattleAnim_Sludge:
 	anim_1gfx ANIM_GFX_POISON
 	anim_call BattleAnim_Sludge_branch_cbc15
 	anim_wait 56
@@ -3864,23 +3864,14 @@ BattleAnim_AcidArmor:
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-BattleAnim_DestinyBond:
-	anim_1gfx ANIM_GFX_ANGELS
-	anim_bgp $1b
-	anim_obp0 $0
-	anim_jumpif $1, BattleAnim_DestinyBond_branch_cb104
-	anim_sound 6, 2, SFX_WHIRLWIND
-	anim_obj ANIM_OBJ_9B,   5, 4,  15, 0, $2
-	anim_wait 128
-	anim_bgp $e4
-	anim_ret
-
-BattleAnim_DestinyBond_branch_cb104:
-	anim_obj ANIM_OBJ_9B, -16, 4,   9, 4, $0
-	anim_sound 0, 1, SFX_KINESIS
-	anim_bgeffect ANIM_BG_RETURN_MON, $0, $0, $0
-	anim_wait 32
-	anim_bgp $e4
+BattleAnim_Smog:
+	anim_1gfx ANIM_GFX_HAZE
+	anim_sound 0, 1, SFX_BUBBLE_BEAM
+.loop
+	anim_obj ANIM_OBJ_5D, -16, 4,   2, 0, $0
+	anim_wait 8
+	anim_loop 10, .loop
+	anim_wait 96
 	anim_ret
 
 BattleAnim_IcyWind:
@@ -5751,16 +5742,6 @@ BattleAnim_GigaImpact:
 ;	anim_sound 0, 1, SFX_NIGHTMARE
 ;	anim_wait 96
 ;	anim_bgp $e4
-;	anim_ret
-
-;BattleAnim_Smog: ; removed
-;	anim_1gfx ANIM_GFX_HAZE
-;	anim_sound 0, 1, SFX_BUBBLE_BEAM
-;.loop
-;	anim_obj ANIM_OBJ_5D, -16, 4,   2, 0, $0
-;	anim_wait 8
-;	anim_loop 10, .loop
-;	anim_wait 96
 ;	anim_ret
 
 ;BattleAnim_Slam: ; removed

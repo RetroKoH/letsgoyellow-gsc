@@ -58,7 +58,6 @@ RattataEggMoves:
 SpearowEggMoves:
 	db FEINT_ATTACK
 	db FALSE_SWIPE
-	db SCARY_FACE
 	db QUICK_ATTACK
 	db TRI_ATTACK
 	db -1 ; end
@@ -67,7 +66,6 @@ EkansEggMoves:
 	db CRUNCH
 	db DISABLE
 	db PURSUIT
-	db SCARY_FACE
 	db $ff
 
 SandshrewEggMoves:
@@ -307,7 +305,6 @@ GrimerEggMoves:
 	db HAZE
 	db LICK
 	db MEAN_LOOK
-	db SCARY_FACE
 	db $ff
 
 ShellderEggMoves:
@@ -325,7 +322,6 @@ GastlyEggMoves:
 	db ASTONISH
 	db DISABLE
 	db HAZE
-	db SCARY_FACE
 	db NASTY_PLOT
 	db FEINT_ATTACK
 	db $ff

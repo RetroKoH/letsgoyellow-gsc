@@ -111,7 +111,7 @@
 	const FIRE_BLAST   ; $7e
 	const WATERFALL    ; $7f
 	const SWIFT        ; $81
-	const SCARY_FACE   ; $b8 ; SKULL_BASH
+	const SKULL_BASH   ; $b8
 	const AMNESIA      ; $85
 	const HI_JUMP_KICK ; $88
 	const GLARE        ; $89

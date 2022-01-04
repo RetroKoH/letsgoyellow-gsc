@@ -111,7 +111,7 @@ BattleAnimations::
 	dw BattleAnim_FireBlast
 	dw BattleAnim_Waterfall
 	dw BattleAnim_Swift
-	dw BattleAnim_ScaryFace
+	dw BattleAnim_SkullBash
 	dw BattleAnim_Amnesia
 	dw BattleAnim_HiJumpKick
 	dw BattleAnim_Glare
@@ -3637,12 +3637,20 @@ BattleAnim_MachPunch:
 	anim_wait 16
 	anim_ret
 
-BattleAnim_ScaryFace:
-	anim_1gfx ANIM_GFX_BEAM
-	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
-	anim_bgeffect ANIM_BG_06, $0, $2, $0
-	anim_call BattleAnim_ScaryFace_branch_cbadc
-	anim_wait 64
+BattleAnim_SkullBash:
+	anim_1gfx ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_1F, $14, $2, $0
+	anim_wait 32
+	anim_call BattleAnim_FollowEnemyFeet_0
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
+	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
+	anim_wait 4
+.loop
+	anim_sound 0, 1, SFX_HEADBUTT
+	anim_obj ANIM_OBJ_01, -15, 0,   7, 0, $0
+	anim_wait 8
+	anim_loop 3, .loop
+	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
 BattleAnim_FeintAttack:
@@ -4935,7 +4943,6 @@ BattleAnim_LeechLife_branch_cbab3:
 
 BattleAnim_Glare_branch_cbadc:
 BattleAnim_Leer_branch_cbadc:
-BattleAnim_ScaryFace_branch_cbadc:
 	anim_sound 6, 2, SFX_LEER
 	anim_obj ANIM_OBJ_4E,   9, 0,  10, 4, $0
 	anim_obj ANIM_OBJ_4E,   8, 0,  10, 0, $0
@@ -5605,22 +5612,6 @@ BattleAnim_GigaImpact:
 ;	anim_bgeffect ANIM_BG_1A, $0, $1, $20
 ;	anim_wait 72
 ;	anim_incbgeffect ANIM_BG_1A
-;	anim_call BattleAnim_ShowMon_0
-;	anim_ret
-
-;BattleAnim_SkullBash: ; removed
-;	anim_1gfx ANIM_GFX_HIT
-;	anim_bgeffect ANIM_BG_1F, $14, $2, $0
-;	anim_wait 32
-;	anim_call BattleAnim_FollowEnemyFeet_0
-;	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-;	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
-;	anim_wait 4
-;.loop
-;	anim_sound 0, 1, SFX_HEADBUTT
-;	anim_obj ANIM_OBJ_01, -15, 0,   7, 0, $0
-;	anim_wait 8
-;	anim_loop 3, .loop
 ;	anim_call BattleAnim_ShowMon_0
 ;	anim_ret
 

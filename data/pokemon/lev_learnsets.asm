@@ -1168,7 +1168,6 @@ MachopLearnset:
 	db 33, CLOSE_COMBAT ; Submission → new move
 	db 37, BULK_UP
 	db 39, CROSS_CHOP
-	db 43, SCARY_FACE
 	db 45, DYNAMICPUNCH
 	db 0 ; no more level-up moves
 
@@ -1187,7 +1186,6 @@ MachokeLearnset:
 	db 37, CLOSE_COMBAT ; Submission → new move
 	db 43, BULK_UP
 	db 47, CROSS_CHOP
-	db 53, SCARY_FACE
 	db 57, DYNAMICPUNCH
 	db 0 ; no more level-up moves
 
@@ -1208,7 +1206,6 @@ MachampLearnset:
 	db 37, CLOSE_COMBAT ; Submission → new move
 	db 43, BULK_UP
 	db 47, CROSS_CHOP
-	db 53, SCARY_FACE
 	db 57, DYNAMICPUNCH
 	db 0 ; no more level-up moves
 
@@ -1572,7 +1569,6 @@ GrimerLearnset:
 	db 21, MINIMIZE
 	db 26, FEINT_ATTACK ; Fling → new move
 	db 29, SLUDGE_BOMB
-	db 32, SCARY_FACE ; Sludge Wave → egg move
 	db 37, SCREECH
 	db 40, GUNK_SHOT
 	db 43, PAIN_SPLIT ; Acid Armor → HGSS tutor move
@@ -1997,7 +1993,6 @@ RhyhornLearnset:
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
 	db 6, FURY_ATTACK ; Fury Attack → similar move
-	db 9, SCARY_FACE
 	db 13, MAGNITUDE ; Smack Down → egg move
 	db 17, STOMP
 	db 21, BULLDOZE
@@ -2018,7 +2013,6 @@ RhydonLearnset:
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
 	db 6, FURY_ATTACK ; Fury Attack → similar move
-	db 9, SCARY_FACE
 	db 13, MAGNITUDE ; Smack Down → egg move
 	db 17, STOMP
 	db 21, BULLDOZE
@@ -2040,8 +2034,6 @@ RhyperiorLearnset:
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
 	db 6, FURY_ATTACK ; Fury Attack → similar move
-	db 9, SCARY_FACE
-	db 13, MAGNITUDE ; Smack Down → egg move
 	db 17, STOMP
 	db 21, BULLDOZE
 	db 25, ANCIENTPOWER ; Chip Away → HGSS tutor move
@@ -2357,7 +2349,6 @@ TaurosLearnset:
 	db 3, LEER ; Tail Whip → similar move
 	db 5, RAGE
 	db 8, HORN_ATTACK
-	db 11, SCARY_FACE
 	db 15, PURSUIT
 	db 19, REST
 	db 24, QUICK_ATTACK ; Payback → event move
@@ -2400,7 +2391,6 @@ GyaradosLearnset:
 	db 21, LEER
 	db 24, GUST ; Twister → new move
 	db 30, AQUA_TAIL
-	db 33, SCARY_FACE
 	db 36, DRAGONBREATH
 	db 39, CRUNCH
 	db 42, HYDRO_PUMP
@@ -2501,7 +2491,6 @@ FlareonLearnset:
 	db 17, BITE
 	db 20, FLAME_WHEEL ; Fire Fang → new move
 	db 25, FIRE_SPIN
-	db 29, SCARY_FACE
 	db 33, SMOKESCREEN ; Smog → new move
 	db 37, FLAMETHROWER ; Lava Plume → new move
 	db 41, DOUBLE_EDGE ; Last Resort → tutor move
@@ -2687,7 +2676,6 @@ AerodactylLearnset:
 	db 1, WING_ATTACK
 	db 1, SUPERSONIC
 	db 1, BITE
-	db 1, SCARY_FACE
 	db 9, ROAR
 	db 13, ROCK_THROW ; Let's Go move
 	db 17, AGILITY

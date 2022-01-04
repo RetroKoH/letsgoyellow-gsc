@@ -110,7 +110,7 @@ MoveDescriptions::
 	dw FireBlastDescription
 	dw WaterfallDescription
 	dw SwiftDescription
-	dw ScaryFaceDescription
+	dw SkullBashDescription
 	dw AmnesiaDescription
 	dw HiJumpKickDescription
 	dw GlareDescription
@@ -641,7 +641,8 @@ HornDrillDescription:
 	next "hit KO attack.@"
 
 RazorWindDescription:
-	db   "1st turn: Prepare"
+SkullBashDescription:
+	db   "1st turn: Charge"
 	next "2nd turn: Attack@"
 
 ExplosionDescription:

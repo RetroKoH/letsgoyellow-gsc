@@ -110,7 +110,7 @@ MoveNames::
 	db "FIRE BLAST@"
 	db "WATERFALL@"
 	db "SWIFT@"
-	db "SCARY FACE@"
+	db "SKULL BASH@"
 	db "AMNESIA@"
 	db "HI JUMP KICK@"
 	db "GLARE@"

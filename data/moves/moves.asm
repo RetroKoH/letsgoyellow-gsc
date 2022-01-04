@@ -20,7 +20,7 @@ Moves:: ; 41afb
 	move SCRATCH,      EFFECT_NORMAL_HIT,         40, NORMAL,    100, 35,   0, PHYSICAL
 	move VICE_GRIP,    EFFECT_NORMAL_HIT,         55, NORMAL,    100, 30,   0, PHYSICAL
 	move GUILLOTINE,   EFFECT_OHKO,                0, NORMAL,     30,  5,   0, PHYSICAL
-	move RAZOR_WIND,   EFFECT_SOLAR_BEAM,        130, NORMAL,     75, 10,   0, SPECIAL ; Add Two-Turn and Sp.Def up
+	move RAZOR_WIND,   EFFECT_HYPER_BEAM,        130, NORMAL,    100, 10,   0, SPECIAL ; Add Sp.Def up
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,    100, 20,   0, STATUS
 	move GUST,         EFFECT_GUST,               40, FLYING,    100, 35,   0, SPECIAL
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,    100, 35,   0, PHYSICAL
@@ -121,7 +121,7 @@ Moves:: ; 41afb
 	move FIRE_BLAST,   EFFECT_BURN_HIT,          110, FIRE,       85,  5,  10, SPECIAL
 	move WATERFALL,    EFFECT_FLINCH_HIT,         80, WATER,     100, 15,  20, PHYSICAL
 	move SWIFT,        EFFECT_ALWAYS_HIT,         60, NORMAL,    100, 20,   0, SPECIAL
-	move SCARY_FACE,   EFFECT_SPEED_DOWN_2,        0, NORMAL,    100, 10,   0, STATUS
+	move SKULL_BASH,   EFFECT_HYPER_BEAM,        130, NORMAL,    100, 10,   0, PHYSICAL ; Add Def Up
 	move AMNESIA,      EFFECT_SP_DEF_UP_2,         0, PSYCHIC,   100, 20,   0, STATUS
 	move HI_JUMP_KICK, EFFECT_JUMP_KICK,         130, FIGHTING,   90, 10,   0, PHYSICAL
 	move GLARE,        EFFECT_PARALYZE,            0, NORMAL,    100, 30,   0, STATUS

@@ -229,18 +229,18 @@
 	const IRON_HEAD    ; $82
 	const STONE_EDGE   ; $1e
 	const SPIKES       ; $bf ; STEALTH_ROCK
-	const AURA_SPHERE  ; $e9 ; GRASS KNOT
-	const BUG_BITE     ; $d2
-	const AQUA_JET     ; $ef
-	const FLASH        ; $94 ; QUIVER DANCE
-	const STEEL_WING   ; $d3 ; HEAVY_SLAM
-	const ENDURE       ; $cb ; COIL
-	const THIEF        ; $a8 ; FOUL_PLAY
-	const VENOSHOCK    ; $7c ; CLEAR_SMOG
-	const SCALD        ; $77
-	const ICICLE_CRASH ; $80 ; SHELL_SMASH
-	const HEX          ; $20
-	const BULLDOZE     ; $84 ; DRAGON_TAIL
+	const GRASS_KNOT   ; $e5
+	const BUG_BITE     ; $e6
+	const AQUA_JET     ; $e7
+	const FLASH        ; $e8 ; QUIVER DANCE
+	const STEEL_WING   ; $e9 ; HEAVY_SLAM
+	const ENDURE       ; $ea ; COIL
+	const THIEF        ; $eb ; FOUL_PLAY
+	const VENOSHOCK    ; $ec ; CLEAR_SMOG
+	const SCALD        ; $ed
+	const ICICLE_CRASH ; $ee ; SHELL_SMASH
+	const HEX          ; $ef
+	const BULLDOZE     ; $f0 ; DRAGON_TAIL
 	const WILD_CHARGE  ; $f1
 	const DRILL_RUN    ; $f2
 	const HURRICANE    ; $f3

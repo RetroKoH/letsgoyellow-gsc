@@ -229,7 +229,7 @@ BattleAnimations::
 	dw BattleAnim_IronHead
 	dw BattleAnim_StoneEdge
 	dw BattleAnim_Spikes
-	dw BattleAnim_AuraSphere
+	dw BattleAnim_LowKick ; Need new animation
 	dw BattleAnim_BugBite
 	dw BattleAnim_AquaJet
 	dw BattleAnim_Flash

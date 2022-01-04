@@ -2833,10 +2833,8 @@ MewtwoLearnset:
 	db 46, RECOVER
 	db 55, PSYCHIC_M
 	db 64, CALM_MIND ; Barrier → TM move
-	db 73, AURA_SPHERE
 	db 82, AMNESIA
 	db 91, NASTY_PLOT ; Mist → Mew move
-	db 100, PSYSTRIKE
 	db 0 ; no more level-up moves
 
 MewLearnset:
@@ -2853,7 +2851,6 @@ MewLearnset:
 	db 70, SAFEGUARD ; Me First → Mewtwo move
 	db 80, AMNESIA ; Baton Pass → Amnesia
 	db 90, NASTY_PLOT
-	db 100, AURA_SPHERE
 	db 0 ; no more level-up moves
 
 TogepiLearnset:

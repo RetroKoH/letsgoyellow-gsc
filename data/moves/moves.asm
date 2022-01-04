@@ -67,7 +67,7 @@ Moves:: ; 41afb
 	move HYPER_BEAM,   EFFECT_HYPER_BEAM,        150, NORMAL,     90,  5,   0, SPECIAL
 	move PECK,         EFFECT_NORMAL_HIT,         35, FLYING,    100, 35,   0, PHYSICAL
 	move DRILL_PECK,   EFFECT_NORMAL_HIT,         80, FLYING,    100, 20,   0, PHYSICAL
-	move LOW_KICK,     EFFECT_LOW_KICK,            1, FIGHTING,  100, 20,  30, PHYSICAL
+	move LOW_KICK,     EFFECT_LOW_KICK,            1, FIGHTING,  100, 20,   0, PHYSICAL
 	move COUNTER,      EFFECT_COUNTER,             1, FIGHTING,  100, 20,   0, PHYSICAL
 	move SEISMIC_TOSS, EFFECT_LEVEL_DAMAGE,        1, FIGHTING,  100, 20,   0, PHYSICAL
 	move ABSORB,       EFFECT_LEECH_HIT,          40, GRASS,     100, 15,   0, SPECIAL
@@ -239,7 +239,7 @@ Moves:: ; 41afb
 	move IRON_HEAD,    EFFECT_FLINCH_HIT,         80, STEEL,     100, 15,  30, PHYSICAL
 	move STONE_EDGE,   EFFECT_NORMAL_HIT,        100, ROCK,       80,  5,   0, PHYSICAL
 	move SPIKES,       EFFECT_SPIKES,              0, GROUND,    100, 20,   0, STATUS
-	move AURA_SPHERE,  EFFECT_ALWAYS_HIT,         80, FIGHTING,  100, 20,   0, SPECIAL
+	move GRASS_KNOT,   EFFECT_LOW_KICK,            1, GRASS,     100, 20,   0, SPECIAL
 	move BUG_BITE,     EFFECT_BUG_BITE,           60, BUG,       100, 20,   0, PHYSICAL
 	move AQUA_JET,     EFFECT_PRIORITY_HIT,       40, WATER,     100, 20,   0, PHYSICAL
 	move FLASH,        EFFECT_ACCURACY_DOWN,       0, NORMAL,    100, 20,   0, STATUS

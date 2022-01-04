@@ -228,7 +228,7 @@ MoveNames::
 	db "IRON HEAD@"
 	db "STONE EDGE@"
 	db "SPIKES@"
-	db "AURA SPHERE@"
+	db "GRASS KNOT@"
 	db "BUG BITE@"
 	db "AQUA JET@"
 	db "FLASH@"

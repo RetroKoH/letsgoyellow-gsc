@@ -228,7 +228,7 @@ MoveDescriptions::
 	dw IronHeadDescription
 	dw StoneEdgeDescription
 	dw SpikesDescription
-	dw AuraSphereDescription
+	dw GrassKnotDescription
 	dw BugBiteDescription
 	dw AquaJetDescription
 	dw FlashDescription
@@ -328,6 +328,7 @@ StompDescription:
 HeadbuttDescription:
 BiteDescription:
 LowKickDescription:
+GrassKnotDescription:
 WaterfallDescription:
 RockSlideDescription:
 HyperFangDescription:

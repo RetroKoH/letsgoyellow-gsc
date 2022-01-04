@@ -522,6 +522,7 @@ ContactMoves::
 	db DOUBLE_KICK
 	db DOUBLE_EDGE
 	db DRILL_PECK
+	db DRILL_RUN
 	db DUOIRONBASH
 	db DYNAMICPUNCH
 	db EXTREMESPEED
@@ -535,6 +536,7 @@ ContactMoves::
 	db FURY_ATTACK
 	db GYRO_BALL
 	db GIGA_IMPACT
+	db GRASS_KNOT
 	db HEADBUTT
 	db HI_JUMP_KICK
 	db HORN_ATTACK
@@ -546,6 +548,7 @@ ContactMoves::
 	db KNOCK_OFF
 	db LEECH_LIFE
 	db LICK
+	db LIQUIDATION
 	db LOW_KICK
 	db MACH_PUNCH
 	db MEGAHORN
@@ -631,6 +634,7 @@ DynamicPowerMoves::
 ; used by Forewarn and for move power listing
 	db COUNTER
 	db FLAIL
+;	db GRASS_KNOT
 	db GYRO_BALL
 ;   db LOW_KICK
 	db MIRROR_COAT

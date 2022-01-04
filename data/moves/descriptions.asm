@@ -241,7 +241,7 @@ MoveDescriptions::
 	dw HexDescription
 	dw BulldozeDescription
 	dw WildChargeDescription
-	dw MagnitudeDescription
+	dw DrillRunDescription
 	dw HurricaneDescription
 	dw DizzyPunchDescription
 	dw DisarmVoiceDescription
@@ -268,6 +268,7 @@ CrossChopDescription:
 NightSlashDescription:
 ShadowClawDescription:
 StoneEdgeDescription:
+DrillRunDescription:
 	db   "Has a high criti-"
 	next "cal hit ratio.@"
 
@@ -391,8 +392,10 @@ DynamicpunchDescription:
 	next "confuses the foe.@"
 
 MetalClawDescription:
+MeteorMashDescription:
+FellStingerDescription:
 	db   "An attack that may"
-	next "up user's Attack.@"
+	next "up user's ATTACK.@"
 
 SteelWingDescription:
 	db   "An attack that may"
@@ -994,10 +997,6 @@ PsystrikeDescription:
 PainSplitDescription:
 	db   "Adds user & foe's"
 	next "HPs. Shares total.@"
-
-MagnitudeDescription:
-	db   "A Ground attack"
-	next "with random power.@"
 
 MegahornDescription:
 	db   "A powerful charge"

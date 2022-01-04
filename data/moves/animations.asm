@@ -242,7 +242,7 @@ BattleAnimations::
 	dw BattleAnim_Hex
 	dw BattleAnim_Bulldoze
 	dw BattleAnim_WildCharge
-	dw BattleAnim_Magnitude
+	dw BattleAnim_Magnitude ; Needs new animation
 	dw BattleAnim_Hurricane
 	dw BattleAnim_DizzyPunch
 	dw BattleAnim_DisarmVoice

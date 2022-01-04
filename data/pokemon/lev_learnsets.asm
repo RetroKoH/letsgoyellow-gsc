@@ -894,7 +894,7 @@ DiglettLearnset:
 	db 4, GROWL
 	db 7, ASTONISH
 	db 10, AGILITY ; Mud-Slap → Let's Go move
-	db 14, MAGNITUDE
+	db 14, DRILL_RUN
 	db 18, BULLDOZE
 	db 22, SUCKER_PUNCH
 	db 25, ANCIENTPOWER ; Mud Bomb → egg move
@@ -914,7 +914,7 @@ DugtrioLearnset:
 	db 4, GROWL
 	db 7, ASTONISH
 	db 10, AGILITY ; Mud-Slap → Let's Go move
-	db 14, MAGNITUDE
+	db 14, DRILL_RUN
 	db 18, BULLDOZE
 	db 22, SUCKER_PUNCH
 	db 25, ANCIENTPOWER ; Mud Bomb → egg move
@@ -1288,7 +1288,7 @@ GeodudeLearnset:
 	db 1, DEFENSE_CURL
 	db 6, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
-	db 12, MAGNITUDE
+	db 12, DRILL_RUN
 	db 16, ROCK_THROW
 	db 18, ANCIENTPOWER ; Smack Down → HGSS tutor move
 	db 22, BULLDOZE
@@ -1306,7 +1306,7 @@ GravelerLearnset:
 	db 1, DEFENSE_CURL
 	db 6, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
-	db 12, MAGNITUDE
+	db 12, DRILL_RUN
 	db 16, ROCK_THROW
 	db 18, ANCIENTPOWER ; Smack Down → HGSS tutor move
 	db 22, BULLDOZE
@@ -1324,7 +1324,7 @@ GolemLearnset:
 	db 1, DEFENSE_CURL
 	db 6, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
-	db 12, MAGNITUDE
+	db 12, DRILL_RUN
 	db 16, ROCK_THROW
 	db 18, ANCIENTPOWER ; Smack Down → HGSS tutor move
 	db 22, BULLDOZE
@@ -1844,7 +1844,7 @@ CuboneLearnset:
 	db 27, LOW_KICK ; False Swipe → HGSS tutor move
 	db 31, FALSE_SWIPE ; Thrash → False Swipe
 	db 33, THRASH ; Fling → Thrash
-	db 37, MAGNITUDE ; Stomping Tantrum → new move
+	db 37, DRILL_RUN ; Stomping Tantrum → new move
 	db 41, ROCK_SMASH ; Endeavor → TM move
 	db 43, DOUBLE_EDGE
 	db 47, OUTRAGE ; Bone Rush → HGSS tutor move
@@ -1862,7 +1862,7 @@ MarowakLearnset:
 	db 27, LOW_KICK ; False Swipe → HGSS tutor move
 	db 33, SHADOW_CLAW ; Thrash → TM move
 	db 37, THRASH ; Fling → Thrash
-	db 43, MAGNITUDE ; Stomping Tantrum → new move
+	db 43, DRILL_RUN ; Stomping Tantrum → new move
 	db 49, ROCK_SMASH ; Endeavor → TM move
 	db 53, DOUBLE_EDGE
 	db 59, OUTRAGE ; Bone Rush → HGSS tutor move
@@ -1985,7 +1985,7 @@ RhyhornLearnset:
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
 	db 6, FURY_ATTACK ; Fury Attack → similar move
-	db 13, MAGNITUDE ; Smack Down → egg move
+	db 13, DRILL_RUN ; Smack Down → egg move
 	db 17, STOMP
 	db 21, BULLDOZE
 	db 25, ANCIENTPOWER ; Chip Away → HGSS tutor move
@@ -2005,7 +2005,7 @@ RhydonLearnset:
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
 	db 6, FURY_ATTACK ; Fury Attack → similar move
-	db 13, MAGNITUDE ; Smack Down → egg move
+	db 13, DRILL_RUN ; Smack Down → egg move
 	db 17, STOMP
 	db 21, BULLDOZE
 	db 25, ANCIENTPOWER ; Chip Away → HGSS tutor move

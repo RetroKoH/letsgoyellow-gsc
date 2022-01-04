@@ -241,7 +241,7 @@ MoveNames::
 	db "HEX@"
 	db "BULLDOZE@"
 	db "WILD CHARGE@"
-	db "MAGNITUDE@"
+	db "DRILL RUN@"
 	db "HURRICANE@"
 	db "DIZZY PUNCH@"
 	db "DISARM VOICE@"

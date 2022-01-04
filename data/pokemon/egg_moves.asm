@@ -376,7 +376,6 @@ KoffingEggMoves:
 
 RhyhornEggMoves:
 	db CRUNCH
-	db MAGNITUDE
 	db PURSUIT
 	db FLAIL
 	db THRASH

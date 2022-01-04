@@ -2113,8 +2113,6 @@ BattleCommand_checkhit:
 
 	cp EARTHQUAKE
 	ret z
-	cp MAGNITUDE
-	ret z
 
 .LockedOn:
 	ld a, 1
@@ -2175,8 +2173,6 @@ BattleCommand_checkhit:
 
 	cp EARTHQUAKE
 	ret z
-	cp MAGNITUDE
-	ret
 
 
 .WeatherAccCheck:

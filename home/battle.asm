@@ -633,7 +633,6 @@ DynamicPowerMoves::
 	db FLAIL
 	db GYRO_BALL
 ;   db LOW_KICK
-	db MAGNITUDE
 	db MIRROR_COAT
 	db NIGHT_SHADE
 	db RETURN

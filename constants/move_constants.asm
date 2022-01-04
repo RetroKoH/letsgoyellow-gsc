@@ -241,9 +241,9 @@
 	const ICICLE_CRASH ; $80 ; SHELL_SMASH
 	const HEX          ; $20
 	const BULLDOZE     ; $84 ; DRAGON_TAIL
-	const WILD_CHARGE  ; $c6
-	const MAGNITUDE    ; $de ; DRILL_RUN
-	const HURRICANE    ; $eb
+	const WILD_CHARGE  ; $f1
+	const DRILL_RUN    ; $f2
+	const HURRICANE    ; $f3
 	const DIZZY_PUNCH  ; $f4 ; FELL_STINGER
 	const DISARM_VOICE ; $f5
 	const PLAY_ROUGH   ; $f6

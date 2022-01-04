@@ -252,6 +252,6 @@ MoveNames::
 	db "PAIN SPLIT@"
 	db "SACRED FIRE@"
 	db "OCTAZOOKA@"
-	db "AEROBLAST@"
-	db "FUTURE SIGHT@"
+	db "IRON BASHES@"
+	db "STRANGESTEAM@"
 	db "STRUGGLE@"

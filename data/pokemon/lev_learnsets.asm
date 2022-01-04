@@ -1128,7 +1128,6 @@ KadabraLearnset:
 	db 38, PSYCHIC_M
 	db 41, CALM_MIND
 	db 43, CONFUSE_RAY ; Role Play → new move
-	db 46, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 AlakazamLearnset:
@@ -1146,7 +1145,6 @@ AlakazamLearnset:
 	db 38, PSYCHIC_M
 	db 41, CALM_MIND
 	db 43, CONFUSE_RAY ; Role Play → new move
-	db 46, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 MachopLearnset:
@@ -1713,7 +1711,6 @@ DrowzeeLearnset:
 	db 49, PSYCHIC_M
 	db 53, NASTY_PLOT
 	db 57, TOXIC ; Psyshock → TM move
-	db 61, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 HypnoLearnset:
@@ -1733,7 +1730,6 @@ HypnoLearnset:
 	db 49, PSYCHIC_M
 	db 53, NASTY_PLOT
 	db 57, TOXIC ; Psyshock → TM move
-	db 61, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 KrabbyLearnset:
@@ -2210,8 +2206,6 @@ MrMimeLearnset:
 	db 29, SUBSTITUTE
 	db 32, CONFUSE_RAY ; Recycle → egg move
 	db 39, PSYCHIC_M
-	db 43, FUTURE_SIGHT ; Role Play → egg move
-	db 46, BATON_PASS
 	db 50, SAFEGUARD
 	db 0 ; no more level-up moves
 
@@ -2229,7 +2223,6 @@ ScytherLearnset:
 	db 37, DOUBLE_TEAM
 	db 41, X_SCISSOR
 	db 45, NIGHT_SLASH
-	db 49, BATON_PASS ; Double Hit → egg move
 	db 50, AIR_SLASH
 	db 57, SWORDS_DANCE
 	db 0 ; no more level-up moves
@@ -2409,7 +2402,6 @@ LaprasLearnset:
 	db 18, BODY_SLAM
 	db 22, RAIN_DANCE
 	db 32, ICE_BEAM
-	db 37, FUTURE_SIGHT ; Brine → event move
 	db 43, SAFEGUARD
 	db 47, HYDRO_PUMP
 	db 50, OUTRAGE ; Sheer Cold → HGSS tutor move
@@ -2502,7 +2494,6 @@ EspeonLearnset:
 	db 13, QUICK_ATTACK
 	db 17, SWIFT
 	db 20, PSYBEAM
-	db 25, FUTURE_SIGHT
 	db 29, REFLECT ; Psych Up → event move
 	db 33, SYNTHESIS ; Morning Sun → similar move
 	db 37, PSYCHIC_M
@@ -2732,7 +2723,6 @@ ArticunoLearnset:
 	db 78, BRAVE_BIRD ; Sheer Cold → new move
 	db 85, ROOST
 	db 92, HURRICANE
-	db 99, AEROBLAST ; new move
 	db 0 ; no more level-up moves
 
 ZapdosLearnset:
@@ -2839,7 +2829,6 @@ MewtwoLearnset:
 	db 1, DISABLE
 	db 10, SAFEGUARD
 	db 19, SWIFT
-	db 28, FUTURE_SIGHT
 	db 37, BARRIER ; Psych Up → Barrier
 	db 46, RECOVER
 	db 55, PSYCHIC_M

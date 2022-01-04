@@ -454,16 +454,10 @@ LegendaryMons::
 	db ARTICUNO
 	db ZAPDOS
 	db MOLTRES
-	db RAIKOU
-	db ENTEI
-	db SUICUNE
 UberMons::
 ; banned from Battle Tower
 	db MEWTWO
 	db MEW
-	db LUGIA
-	db HO_OH
-	db CELEBI
 	db -1
 
 MoldBreakerSuppressedAbilities:
@@ -528,6 +522,7 @@ ContactMoves::
 	db DOUBLE_KICK
 	db DOUBLE_EDGE
 	db DRILL_PECK
+	db DUOIRONBASH
 	db DYNAMICPUNCH
 	db EXTREMESPEED
 	db FALSE_SWIPE
@@ -605,6 +600,7 @@ PowderMoves::
 PunchingMoves::
 	db BULLET_PUNCH
 	db DIZZY_PUNCH
+	db DUOIRONBASH
 	db DYNAMICPUNCH
 	db FIRE_PUNCH
 	db ICE_PUNCH
@@ -634,13 +630,13 @@ SubstituteBypassMoves::
 DynamicPowerMoves::
 ; used by Forewarn and for move power listing
 	db COUNTER
+	db FLAIL
 	db GYRO_BALL
 ;   db LOW_KICK
 	db MAGNITUDE
 	db MIRROR_COAT
 	db NIGHT_SHADE
 	db RETURN
-	db FLAIL
 	db SEISMIC_TOSS
 	db SUPER_FANG
 	db -1

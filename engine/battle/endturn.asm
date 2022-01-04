@@ -390,7 +390,7 @@ HandleFutureSight:
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
 	push af
-	ld a, FUTURE_SIGHT
+	ld a, PSYCHIC_M ; Temporary until we remove this
 	ld [hl], a
 
 	farcall UpdateMoveData

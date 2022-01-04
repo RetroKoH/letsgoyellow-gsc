@@ -381,7 +381,7 @@ OddEgg2:
 MystriEgg:
 	db TOGEPI
 	db NO_ITEM
-	db GROWL, CHARM, MOONBLAST, AEROBLAST
+	db GROWL, CHARM, MOONBLAST, AERIAL_ACE
 	dw 08192 ; OT ID
 	dt 0 ; Exp
 	db 0, 0, 0, 0, 0, 0 ; EVs

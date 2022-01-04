@@ -253,8 +253,8 @@
 	const PAIN_SPLIT   ; $dc ; AURORA VEIL
 	const SACRED_FIRE  ; $dd ; SHADOW_BONE
 	const OCTAZOOKA    ; $be ; LIQUIDATION
-	const AEROBLAST    ; $b1 ; DOUBLEIRONBASH
-	const FUTURE_SIGHT ; $f8 ; STRANGE_STEAM
+	const DUOIRONBASH  ; $fd
+	const STRANGESTEAM ; $fe
 	const STRUGGLE     ; $ff
 
 if !DEF(FAITHFUL)

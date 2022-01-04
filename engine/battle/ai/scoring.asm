@@ -379,7 +379,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_BELLY_DRUM,        AI_Smart_BellyDrum
 	dbw EFFECT_MIRROR_COAT,       AI_Smart_MirrorCoat
 	dbw EFFECT_EARTHQUAKE,        AI_Smart_Earthquake
-	dbw EFFECT_FUTURE_SIGHT,      AI_Smart_FutureSight
 	dbw EFFECT_GUST,              AI_Smart_Gust
 	dbw EFFECT_STOMP,             AI_Smart_Stomp
 	dbw EFFECT_SOLAR_BEAM,        AI_Smart_SolarBeam
@@ -2193,7 +2192,7 @@ AI_Smart_Gust: ; 391d5
 	ret
 ; 391f3
 
-
+; Will reuse this for WISH
 AI_Smart_FutureSight: ; 391f3
 ; Greatly encourage this move if the player is
 ; flying or underground, and slower than the enemy.
@@ -2213,7 +2212,6 @@ AI_Smart_FutureSight: ; 391f3
 	dec [hl]
 	ret
 ; 39200
-
 
 AI_Smart_Stomp: ; 39200
 ; 80% chance to encourage this move if the player has used Minimize.

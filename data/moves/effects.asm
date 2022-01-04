@@ -2,7 +2,6 @@ MoveEffects:
 
 NormalHit:
 AerialAce:
-Aeroblast:
 AquaJet:
 AquaTail:
 AuraSphere:
@@ -111,7 +110,6 @@ LeechHit:
 Absorb:
 MegaDrain:
 LeechLife:
-GigaDrain:
 DrainKiss:
 DrainPunch:
 	checkobedience

@@ -252,8 +252,8 @@ MoveDescriptions::
 	dw PainSplitDescription
 	dw SacredFireDescription
 	dw OctazookaDescription
-	dw AeroblastDescription
-	dw FutureSightDescription
+	dw DoubleIronBashDescription
+	dw StrangeSteamDescription
 	dw StruggleDescription
 	dw Move00Description
 
@@ -264,7 +264,6 @@ KarateChopDescription:
 RazorLeafDescription:
 CrabhammerDescription:
 SlashDescription:
-AeroblastDescription:
 CrossChopDescription:
 NightSlashDescription:
 ShadowClawDescription:
@@ -383,6 +382,7 @@ ConfusionDescription:
 DizzyPunchDescription:
 WaterPulseDescription:
 HurricaneDescription:
+StrangeSteamDescription:
 	db   "An attack that may"
 	next "confuse the foe.@"
 
@@ -889,6 +889,7 @@ SplashDescription:
 	next "whatsoever.@"
 
 BonemerangDescription:
+DoubleIronBashDescription:
 	db   "An attack that"
 	next "strikes twice.@"
 
@@ -1039,10 +1040,6 @@ KnockOffDescription:
 HiddenPowerDescription:
 	db   "The type varies"
 	next "with the #mon.@"
-
-FutureSightDescription:
-	db   "An attack that"
-	next "hits on 3rd turn.@"
 
 GyroBallDescription:
 	db   "Does more damage"

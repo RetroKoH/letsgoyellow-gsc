@@ -253,8 +253,8 @@ BattleAnimations::
 	dw BattleAnim_PainSplit
 	dw BattleAnim_SacredFire
 	dw BattleAnim_Octazooka
-	dw BattleAnim_Aeroblast
-	dw BattleAnim_FutureSight
+	dw BattleAnim_MegaPunch ; Needs new animation
+	dw BattleAnim_Smokescreen ; Needs new animation
 	dw BattleAnim_Struggle
 ; $100
 	dw BattleAnim_ThrowPokeBall
@@ -3467,27 +3467,6 @@ BattleAnim_Conversion:
 	anim_obj ANIM_OBJ_91,   6, 0,  11, 0, $30
 	anim_obj ANIM_OBJ_91,   6, 0,  11, 0, $38
 	anim_wait 128
-	anim_ret
-
-BattleAnim_Aeroblast:
-	anim_2gfx ANIM_GFX_BEAM, ANIM_GFX_AEROBLAST
-	anim_bgp $1b
-	anim_bgeffect ANIM_BG_1F, $50, $4, $10
-	anim_bgeffect ANIM_BG_06, $0, $2, $0
-	anim_sound 0, 0, SFX_AEROBLAST
-	anim_obj ANIM_OBJ_B3,   9, 0,  11, 0, $0
-	anim_wait 32
-	anim_sound 0, 0, SFX_HYPER_BEAM
-	anim_obj ANIM_OBJ_27,  10, 0,  10, 4, $0
-	anim_wait 2
-	anim_sound 0, 1, SFX_HYPER_BEAM
-	anim_obj ANIM_OBJ_27,  12, 0,   9, 4, $0
-	anim_wait 2
-	anim_sound 0, 1, SFX_HYPER_BEAM
-	anim_obj ANIM_OBJ_27,  14, 0,   8, 4, $0
-	anim_obj ANIM_OBJ_28,  15, 6,   7, 6, $0
-	anim_wait 48
-	anim_bgp $e4
 	anim_ret
 
 ; Seed Bomb animation from Pokémon Prism

@@ -177,7 +177,6 @@ PsyduckEggMoves:
 	db CONFUSE_RAY
 	db CROSS_CHOP
 	db ENCORE
-	db FUTURE_SIGHT
 	db HYPNOSIS
 	db PSYBEAM
 	db ICE_BEAM
@@ -270,7 +269,6 @@ PonytaEggMoves:
 
 SlowpokeEggMoves:
 	db BELLY_DRUM
-	db FUTURE_SIGHT
 	db STOMP
 	db SAFEGUARD
 	db ZEN_HEADBUTT
@@ -408,15 +406,12 @@ HorseaEggMoves:
 	db AURORA_BEAM
 	db DISABLE
 	db DRAGONBREATH
-	db OCTAZOOKA
 	db SPLASH
 	db HAZE
 	db WATER_PULSE
 	db $ff
 
 TogepiEggMoves:
-	db EXTRASENSORY
-	db FUTURE_SIGHT
 	db SYNTHESIS
 	db NASTY_PLOT
 	db PECK
@@ -424,13 +419,11 @@ TogepiEggMoves:
 
 MrMimeEggMoves:
 	db CONFUSE_RAY
-	db FUTURE_SIGHT
 	db HYPNOSIS
 	db NASTY_PLOT
 	db $ff
 
 ScytherEggMoves:
-	db BATON_PASS
 	db BUG_BUZZ
 	db FLAIL
 	db COUNTER
@@ -454,7 +447,6 @@ PinsirEggMoves:
 LaprasEggMoves:
 	db AURORA_BEAM
 	db DRAGON_DANCE
-	db FUTURE_SIGHT
 	db HEAL_BELL
 	db $ff
 

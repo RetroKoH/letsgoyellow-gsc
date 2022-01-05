@@ -95,7 +95,7 @@ MoveEffectsPointers:
 	dw SleepTalk    ; UNUSED
 	dw DestinyBond  ; UNUSED
 	dw Flail
-	dw FalseSwipe   ; UNUSED
+	dw FakeOut
 	dw HealBell
 	dw TripleKick
 	dw Thief

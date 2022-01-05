@@ -99,7 +99,7 @@ RedsHouse2FSNESText:
 	loadvar wPartyMon1PP+2, 15
 	loadvar wPartyMon1PP+3, 30
 	loadvar wPartyMon2Moves+0, FLASH
-	loadvar wPartyMon2Moves+1, GUILLOTINE
+	loadvar wPartyMon2Moves+1, FAKE_OUT
 	loadvar wPartyMon2Moves+2, HEADBUTT
 	loadvar wPartyMon2Moves+3, PSYCHIC_M
 	loadvar wPartyMon2PP+0, 20

@@ -97,7 +97,7 @@
 	const EFFECT_SLEEP_TALK             ; UNUSED
 	const EFFECT_DESTINY_BOND           ; UNUSED
 	const EFFECT_FLAIL
-	const EFFECT_FALSE_SWIPE            ; UNUSED
+	const EFFECT_FAKE_OUT
 	const EFFECT_HEAL_BELL
 	const EFFECT_TRIPLE_KICK
 	const EFFECT_THIEF

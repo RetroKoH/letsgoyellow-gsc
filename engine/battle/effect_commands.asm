@@ -1886,6 +1886,16 @@ BattleCommand_checkhit:
 	ld a, ATKFAIL_PROTECT
 	jp nz, .Miss_skipset
 
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FAKE_OUT
+	jp nz, .not_fakeout
+
+	call .FakeOut
+	ld a, ATKFAIL_GENERIC
+	jp nz, .Miss_skipset	
+
+.not_fakeout
 	call .Substitute
 	ld a, ATKFAIL_GENERIC
 	jp nz, .Miss_skipset
@@ -2071,6 +2081,24 @@ BattleCommand_checkhit:
 	call GetBattleVar
 	bit SUBSTATUS_PROTECT, a
 	ret
+
+.FakeOut
+; Return nz if not the user's first turn
+	ld a, [hBattleTurn]
+	and a
+	jr z, .player
+;	jp .enemy
+
+.player
+	ld a, [wPlayerTurnsTaken]
+	cp a, 1 ; on the first turn, doturn will increment to 1 before this code is reached
+	ret
+
+.enemy
+;	ld a, [wEnemyTurnsTaken]
+;	and a
+;	ret
+
 
 .Substitute:
 ; Return nz if the opponent is behind a Substitute for certain moves
@@ -2629,37 +2657,37 @@ BattleCommand_checkfaint:
 ; 4 - Item consumed after use (i.e. Focus Sash)
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
-	bit SUBSTATUS_ENDURE, a
-	jr z, .not_enduring
+	bit SUBSTATUS_ENDURE, a ; Did the target use Endure?
+	jr z, .not_enduring ; if not, branch
 	ld b, $1
-	jr .enduring
+	jr .enduring ; skip ahead to enduring the hit with 1 HP
 
 .not_enduring
 	call GetOpponentItem
 	ld a, b
 	ld b, $3
-	cp HELD_FOCUS_BAND
-	jr z, .focus_band
+	cp HELD_FOCUS_BAND ; is the target holding focus band (non-consumable, random chance to endure)?
+	jr z, .focus_band ; if yes, branch
 	ld b, $4
-	cp HELD_FOCUS_SASH
-	jr z, .sturdy
+	cp HELD_FOCUS_SASH ; is the target holding focus sash (consumable)?
+	jr z, .sturdy ; if yes, branch
 	call GetOpponentAbilityAfterMoldBreaker
 	ld b, $2
-	cp STURDY
-	jr nz, .no_endure
+	cp STURDY ; does the target have sturdy ability
+	jr nz, .no_endure ; if not, branch. The target will not endure the hit.
 .sturdy
 	push bc
-	farcall CheckOpponentFullHP
+	farcall CheckOpponentFullHP ; STURDY only works if target has full HP when hit
 	pop bc
-	jr nz, .no_endure
-	jr .enduring
+	jr nz, .no_endure ; if not full HP, no enduring the hut
+	jr .enduring ; otherwise, branch
 .focus_band
 	call BattleRandom
 	cp c
-	jr nc, .no_endure
+	jr nc, .no_endure ; if random chance fails, focus band does not help you this time.
 .enduring
 	push bc
-	call BattleCommand_falseswipe
+	call BattleCommand_falseswipe ; False Swipe command handles HP w/ enduring hit
 	pop bc
 	jr nc, .no_endure
 	jr .okay

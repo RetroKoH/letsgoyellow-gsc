@@ -156,7 +156,6 @@ SwitchHit:
 	switchout
 	endmove
 
-
 MultiHit:
 Bonemerang:
 CometPunch:
@@ -1724,7 +1723,7 @@ Flail:
 	pickpocket
 	endmove
 
-FalseSwipe:
+FakeOut:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1734,7 +1733,6 @@ FalseSwipe:
 	damagecalc
 	stab
 	damagevariation
-	falseswipe
 	checkhit
 	hittarget
 	failuretext
@@ -1743,6 +1741,7 @@ FalseSwipe:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
+	flinchtarget
 	pickpocket
 	endmove
 

@@ -1262,7 +1262,7 @@ BattleCommand_critical: ; 34631
 	db CRABHAMMER
 	db SLASH
 	db CROSS_CHOP
-	db SHADOW_CLAW
+	db LEAF_BLADE
 	db STONE_EDGE
 	db $ff
 

@@ -93,7 +93,7 @@ BattleTowerPokemon2:
 
 	db SCYTHER
 	db SITRUS_BERRY
-	db SLASH, FEINT_ATTACK, SURF, X_SCISSOR
+	db SLASH, FEINT, SURF, X_SCISSOR
 	db $bf, $bb, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -111,7 +111,7 @@ BattleTowerPokemon2:
 
 	db GROWLITHE
 	db SITRUS_BERRY
-	db FEINT_ATTACK, SOLAR_BEAM, ROAR, SUNNY_DAY
+	db FEINT, SOLAR_BEAM, ROAR, SUNNY_DAY
 	db $ff, $df, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -733,7 +733,7 @@ BattleTowerMons6:
 
 	db UMBREON
 	db SITRUS_BERRY
-	db SAND_ATTACK, SYNTHESIS, PSYCHIC_M, FEINT_ATTACK
+	db SAND_ATTACK, SYNTHESIS, PSYCHIC_M, FEINT
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -819,7 +819,7 @@ BattleTowerMons7:
 
 	db UMBREON
 	db SITRUS_BERRY
-	db FEINT_ATTACK, SYNTHESIS, CONFUSE_RAY, TOXIC
+	db FEINT, SYNTHESIS, CONFUSE_RAY, TOXIC
 	db $dd, $dd, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -837,7 +837,7 @@ BattleTowerMons7:
 
 	db HOUNDOOM
 	db KINGS_ROCK
-	db CRUNCH, FLAMETHROWER, FEINT_ATTACK, ROAR
+	db CRUNCH, FLAMETHROWER, FEINT, ROAR
 	db $cd, $dc, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -861,7 +861,7 @@ BattleTowerMons7:
 
 	db UMBREON
 	db SITRUS_BERRY
-	db SYNTHESIS, FEINT_ATTACK, PSYCHIC_M, SHADOW_BALL
+	db SYNTHESIS, FEINT, PSYCHIC_M, SHADOW_BALL
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1063,7 +1063,7 @@ BattleTowerMons8:
 BattleTowerMons9:
 	db UMBREON
 	db KINGS_ROCK
-	db FEINT_ATTACK, SAND_ATTACK, SYNTHESIS, CONFUSE_RAY
+	db FEINT, SAND_ATTACK, SYNTHESIS, CONFUSE_RAY
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1263,7 +1263,7 @@ BattleTowerMons10:
 
 	db SCYTHER
 	db SCOPE_LENS
-	db SLASH, X_SCISSOR, DREAM_EATER, FEINT_ATTACK
+	db SLASH, X_SCISSOR, DREAM_EATER, FEINT
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

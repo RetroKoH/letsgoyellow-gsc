@@ -355,8 +355,6 @@ BeedrillLearnset:
 	db 13, RAGE
 	db 17, PURSUIT
 	db 20, FOCUS_ENERGY
-	db 23, VENOSHOCK
-	db 26, FEINT_ATTACK ; Assurance → similar move
 	db 29, TOXIC
 	db 32, PIN_MISSILE
 	db 35, POISON_JAB
@@ -666,7 +664,6 @@ VulpixLearnset:
 	db 15, FIRE_SPIN
 	db 18, NIGHT_SHADE ; Payback → new move
 	db 20, WILL_O_WISP
-	db 23, FEINT_ATTACK
 	db 26, HEX
 	db 28, PAIN_SPLIT ; Flame Burst → HGSS tutor move
 	db 36, FLAMETHROWER
@@ -918,7 +915,6 @@ MeowthLearnset:
 	db 06, BITE
 	db 14, FURY_ATTACK ; Fury Swipes → similar move
 	db 17, SCREECH
-	db 22, FEINT_ATTACK
 	db 25, PURSUIT ; Taunt → egg move
 	db 30, PAY_DAY
 	db 33, SLASH
@@ -937,9 +933,7 @@ PersianLearnset:
 	db 06, BITE
 	db 14, FURY_ATTACK ; Fury Swipes → similar move
 	db 17, SCREECH
-	db 22, FEINT_ATTACK
 	db 25, PURSUIT ; Taunt → egg move
-	db 32, POWER_GEM
 	db 37, SLASH
 	db 44, NASTY_PLOT
 	db 49, THIEF ; Assurance → TM move
@@ -996,7 +990,6 @@ MankeyLearnset:
 	db 19, SWAGGER
 	db 22, CROSS_CHOP
 	db 26, FLAIL ; Assurance → egg move
-	db 29, FEINT_ATTACK ; Punishment → new move
 	db 33, THRASH
 	db 36, CLOSE_COMBAT
 	db 40, SCREECH
@@ -1017,7 +1010,6 @@ PrimeapeLearnset:
 	db 19, SWAGGER
 	db 22, CROSS_CHOP
 	db 26, FLAIL ; Assurance → egg move
-	db 30, FEINT_ATTACK ; Punishment → new move
 	db 35, THRASH
 	db 39, CLOSE_COMBAT
 	db 44, SCREECH
@@ -1536,7 +1528,6 @@ GrimerLearnset:
 	db 15, VENOSHOCK ; Sludge → tutor move
 	db 18, HAZE ; Mud Bomb → egg move
 	db 21, MINIMIZE
-	db 26, FEINT_ATTACK ; Fling → new move
 	db 29, SLUDGE_BOMB
 	db 37, SCREECH
 	db 40, GUNK_SHOT
@@ -1554,7 +1545,6 @@ MukLearnset:
 	db 15, VENOSHOCK ; Sludge → tutor move
 	db 18, HAZE ; Mud Bomb → egg move
 	db 21, MINIMIZE
-	db 26, FEINT_ATTACK ; Fling → new move
 	db 29, SLUDGE_BOMB
 	db 32, CRUNCH
 	db 37, SCREECH
@@ -1883,7 +1873,6 @@ HitmontopLearnset:
 	db 10, PURSUIT
 	db 15, QUICK_ATTACK
 	db 19, RAPID_SPIN
-	db 24, FEINT_ATTACK ; Feint → new move
 	db 28, COUNTER
 	db 33, DOUBLE_KICK ; Triple Kick → similar move
 	db 37, AGILITY
@@ -1982,6 +1971,8 @@ RhydonLearnset:
 	db 0 ; no more level-up moves
 
 RhyperiorLearnset:
+	db $FF, ROCK_WRECKER
+	db 01, ROCK_WRECKER
 	db 01, OUTRAGE ; Hammer Arm → HGSS tutor move ; evolution move
 	db 01, POISON_JAB
 	db 01, TACKLE
@@ -2137,7 +2128,6 @@ StaryuLearnset:
 	db 28, PAIN_SPLIT ; Brine → HGSS tutor move
 	db 31, MINIMIZE
 	db 35, REFLECT ; Reflect Type → new move
-	db 37, POWER_GEM
 	db 40, CONFUSE_RAY
 	db 42, PSYCHIC_M
 	db 46, LIGHT_SCREEN
@@ -2244,7 +2234,6 @@ MagbyLearnset:
 	db 01, LEER
 	db 05, EMBER
 	db 08, SMOKESCREEN
-	db 12, FEINT_ATTACK
 	db 15, FIRE_SPIN
 	db 19, LOW_KICK ; Clear Smog → HGSS tutor move
 	db 22, FLAME_WHEEL ; Flame Burst → new move
@@ -2261,7 +2250,6 @@ MagmarLearnset:
 	db 01, LEER
 	db 05, EMBER
 	db 08, SMOKESCREEN
-	db 12, FEINT_ATTACK
 	db 15, FIRE_SPIN
 	db 19, LOW_KICK ; Clear Smog → HGSS tutor move
 	db 22, FLAME_WHEEL ; Flame Burst → new move
@@ -2283,7 +2271,6 @@ PinsirLearnset:
 	db 20, ROCK_THROW ; Brick Break → event move
 	db 26, ROCK_SMASH ; Vital Throw → TM move
 	db 29, X_SCISSOR
-	db 33, FEINT_ATTACK ; Submission → egg moves
 	db 36, OUTRAGE ; Storm Throw → Let's Go move
 	db 40, SWORDS_DANCE
 	db 43, THRASH
@@ -2456,7 +2443,6 @@ EspeonLearnset:
 	db 33, SYNTHESIS ; Morning Sun → similar move
 	db 37, PSYCHIC_M
 	db 41, DOUBLE_EDGE ; Last Resort → tutor move
-	db 45, POWER_GEM ; Power Swap → new move
 	db 0 ; no more level-up moves
 
 UmbreonLearnset:
@@ -2468,7 +2454,6 @@ UmbreonLearnset:
 	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, CONFUSE_RAY
-	db 20, FEINT_ATTACK
 	db 25, TOXIC ; Assurance → TM move
 	db 29, SCREECH
 	db 33, SYNTHESIS ; Moonlight → similar move
@@ -2558,7 +2543,6 @@ OmanyteLearnset:
 	db 37, ANCIENTPOWER
 	db 43, AURORA_BEAM ; Tickle → egg move
 	db 46, ROCK_BLAST
-	db 50, POWER_GEM ; Shell Smash → new move
 	db 55, HYDRO_PUMP
 	db 0 ; no more level-up moves
 
@@ -2576,7 +2560,6 @@ OmastarLearnset:
 	db 37, ANCIENTPOWER
 	db 48, SPIKES ; Tickle → new move
 	db 56, ROCK_BLAST
-	db 67, POWER_GEM ; Shell Smash → new move
 	db 75, HYDRO_PUMP
 	db 0 ; no more level-up moves
 

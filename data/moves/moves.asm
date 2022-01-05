@@ -206,7 +206,7 @@ Moves:: ; 41afb
 	move WATER_PULSE,  EFFECT_CONFUSE_HIT,        60, WATER,     100, 20,  20, SPECIAL
 	move ROOST,        EFFECT_ROOST,               0, FLYING,    100, 10,   0, STATUS
 	move GYRO_BALL,    EFFECT_GYRO_BALL,           1, STEEL,     100,  5,   0, PHYSICAL
-	move FEINT_ATTACK, EFFECT_ALWAYS_HIT,         60, DARK,      100, 20,   0, PHYSICAL
+	move FEINT,        EFFECT_BRICK_BREAK,        40, NORMAL,    100, 10,   0, PHYSICAL ; Change this to bypass Protect instead of Screens
 	move U_TURN,       EFFECT_SWITCH_HIT,         70, BUG,       100, 20,   0, PHYSICAL
 	move CLOSE_COMBAT, EFFECT_CLOSE_COMBAT,      120, FIGHTING,  100,  5,   0, PHYSICAL
 	move SUCKER_PUNCH, EFFECT_SUCKER_PUNCH,       70, DARK,      100,  5,   0, PHYSICAL
@@ -233,7 +233,7 @@ Moves:: ; 41afb
 	move FLASH_CANNON, EFFECT_SP_DEF_DOWN_HIT,    80, STEEL,     100, 10,  10, SPECIAL
 	move LEAF_STORM,   EFFECT_NORMAL_HIT,        130, GRASS,      90,  5,   0, SPECIAL
 	move POWER_WHIP,   EFFECT_NORMAL_HIT,        120, GRASS,      85, 10,   0, PHYSICAL
-	move POWER_GEM,    EFFECT_NORMAL_HIT,         80, ROCK,      100, 20,   0, SPECIAL
+	move ROCK_WRECKER, EFFECT_HYPER_BEAM,        150, ROCK,       90,  5,   0, PHYSICAL
 	move SHADOW_CLAW,  EFFECT_NORMAL_HIT,         70, GHOST,     100, 15,   0, PHYSICAL
 	move GUNK_SHOT,    EFFECT_POISON_HIT,        120, POISON,     80,  5,  30, PHYSICAL
 	move IRON_HEAD,    EFFECT_FLINCH_HIT,         80, STEEL,     100, 15,  30, PHYSICAL

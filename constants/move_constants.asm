@@ -196,7 +196,7 @@
 	const WATER_PULSE  ; $91
 	const ROOST        ; $86
 	const GYRO_BALL    ; $af
-	const FEINT_ATTACK ; $b9 ; FEINT
+	const FEINT        ; $b9
 	const U_TURN       ; $29
 	const CLOSE_COMBAT ; $3a
 	const SUCKER_PUNCH ; $1b
@@ -223,7 +223,7 @@
 	const FLASH_CANNON ; $75
 	const LEAF_STORM   ; $ca
 	const POWER_WHIP   ; $c7
-	const POWER_GEM    ; $c5 ; ROCK_WRECKER
+	const ROCK_WRECKER ; $c5
 	const SHADOW_CLAW  ; $e6 ; CROSS_POISON
 	const GUNK_SHOT    ; $7b
 	const IRON_HEAD    ; $82

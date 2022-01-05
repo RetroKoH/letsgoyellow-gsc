@@ -195,7 +195,7 @@ MoveDescriptions::
 	dw WaterPulseDescription
 	dw RoostDescription
 	dw GyroBallDescription
-	dw FeintAttackDescription
+	dw FeintDescription
 	dw UTurnDescription
 	dw CloseCombatDescription
 	dw SuckerPunchDescription
@@ -222,7 +222,7 @@ MoveDescriptions::
 	dw FlashCannonDescription
 	dw LeafStormDescription
 	dw PowerWhipDescription
-	dw PowerGemDescription
+	dw RockWreckerDescription
 	dw ShadowClawDescription
 	dw GunkShotDescription
 	dw IronHeadDescription
@@ -275,7 +275,6 @@ DrillRunDescription:
 	next "cal hit ratio.@"
 
 SwiftDescription:
-FeintAttackDescription:
 DisarmVoiceDescription:
 AerialAceDescription:
 AuraSphereDescription:
@@ -418,6 +417,11 @@ AuroraBeamDescription:
 PlayRoughDescription:
 	db   "An attack that may"
 	next "lower Attack.@"
+
+FeintDescription:
+	db   "At attack that can"
+	next "bypass PROTECT.@"
+
 
 RockSmashDescription:
 if !DEF(FAITHFUL)
@@ -665,6 +669,7 @@ FlyDescription:
 	next "2nd turn: Attack@"
 
 HyperBeamDescription:
+RockWreckerDescription:
 GigaImpactDescription:
 	db   "1st turn: Attack"
 	next "2nd turn: Rest@"
@@ -954,10 +959,6 @@ BellyDrumDescription:
 PerishSongDescription:
 	db   "Both user and foe"
 	next "faint in 3 turns.@"
-
-PowerGemDescription:
-	db   "Attacks with a ray"
-	next "of gem-like light.@"
 
 RolloutDescription:
 	db   "Attacks 5 turns"

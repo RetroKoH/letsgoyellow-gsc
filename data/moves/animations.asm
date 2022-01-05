@@ -196,7 +196,7 @@ BattleAnimations::
 	dw BattleAnim_WaterPulse
 	dw BattleAnim_Roost
 	dw BattleAnim_GyroBall
-	dw BattleAnim_FeintAttack
+	dw BattleAnim_Feint
 	dw BattleAnim_UTurn
 	dw BattleAnim_CloseCombat
 	dw BattleAnim_SuckerPunch
@@ -223,7 +223,7 @@ BattleAnimations::
 	dw BattleAnim_FlashCannon
 	dw BattleAnim_LeafStorm
 	dw BattleAnim_PowerWhip
-	dw BattleAnim_PowerGem
+	dw BattleAnim_RockWrecker
 	dw BattleAnim_ShadowClaw
 	dw BattleAnim_GunkShot
 	dw BattleAnim_IronHead
@@ -1440,6 +1440,7 @@ BattleAnim_Acid:
 	anim_ret
 
 BattleAnim_RockThrow:
+BattleAnim_RockWrecker:
 	anim_1gfx ANIM_GFX_ROCKS
 	anim_bgeffect ANIM_BG_1F, $60, $1, $0
 	anim_sound 0, 1, SFX_STRENGTH
@@ -3635,7 +3636,7 @@ BattleAnim_SkullBash:
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-BattleAnim_FeintAttack:
+BattleAnim_Feint:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 0, SFX_CURSE
 	anim_call BattleAnim_FollowEnemyFeet_0

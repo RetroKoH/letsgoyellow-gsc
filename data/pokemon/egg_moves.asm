@@ -36,7 +36,6 @@ SquirtleEggMoves:
 
 PidgeyEggMoves:
 	db PECK
-	db FEINT_ATTACK
 	db PURSUIT
 	db AIR_SLASH
 	db STEEL_WING
@@ -55,7 +54,6 @@ RattataEggMoves:
 	db $ff
 
 SpearowEggMoves:
-	db FEINT_ATTACK
 	db QUICK_ATTACK
 	db TRI_ATTACK
 	db -1 ; end
@@ -104,19 +102,16 @@ VulpixEggMoves:
 	db DISABLE
 	db FLARE_BLITZ
 	db HYPNOSIS
-	db FEINT_ATTACK
 	db CHARM
 	db ENERGY_BALL
 	db ROAR
 	db $ff
 
 JigglypuffEggMoves:
-	db FEINT_ATTACK
 	db MOONBLAST
 	db $ff
 
 ZubatEggMoves:
-	db FEINT_ATTACK
 	db GUST
 	db HYPNOSIS
 	db NASTY_PLOT
@@ -153,7 +148,6 @@ VenonatEggMoves:
 
 DiglettEggMoves:
 	db ANCIENTPOWER
-	db FEINT_ATTACK
 	db HEADBUTT
 	db PURSUIT
 	db FLAIL
@@ -275,7 +269,6 @@ FarfetchDEggMoves:
 	db $ff
 
 DoduoEggMoves:
-	db FEINT_ATTACK
 	db HAZE
 	db SUPERSONIC
 	db QUICK_ATTACK
@@ -311,7 +304,6 @@ GastlyEggMoves:
 	db DISABLE
 	db HAZE
 	db NASTY_PLOT
-	db FEINT_ATTACK
 	db $ff
 
 OnixEggMoves:
@@ -425,7 +417,6 @@ JynxEggMoves:
 	db $ff
 
 PinsirEggMoves:
-	db FEINT_ATTACK
 	db FURY_ATTACK
 	db QUICK_ATTACK
 	db CLOSE_COMBAT

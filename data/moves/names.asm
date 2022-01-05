@@ -183,7 +183,7 @@ MoveNames::
 	db "POISON FANG@"
 	db "METEOR MASH@"
 	db "WEATHER BALL@"
-	db "SAFEGUARD@"
+	db "SIGNAL BEAM@"
 	db "AERIAL ACE@"
 	db "ICICLE SPEAR@"
 	db "BULK UP@"

@@ -124,7 +124,7 @@ Celadon2FMart1:
 
 Celadon2FTMMart: ; 161ce
 	db 8 ; # items
-	dbw TM_SAFEGUARD,     10000
+	dbw TM_SIGNAL_BEAM,   10000
 	dbw TM_BULK_UP,       20000
 	dbw TM_CALM_MIND,     20000
 	dbw TM_SWORDS_DANCE,  20000

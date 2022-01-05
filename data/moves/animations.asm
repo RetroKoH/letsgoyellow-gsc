@@ -184,7 +184,7 @@ BattleAnimations::
 	dw BattleAnim_PoisonFang ; Need to make new anim
 	dw BattleAnim_CometPunch ; METEORMASH - Need new anim
 	dw BattleAnim_WeatherBall
-	dw BattleAnim_Safeguard
+	dw BattleAnim_SignalBeam ; Need to make new anim
 	dw BattleAnim_AerialAce
 	dw BattleAnim_IcicleSpear
 	dw BattleAnim_BulkUp
@@ -1570,6 +1570,7 @@ BattleAnim_AuroraBeam:
 
 ; Dragon Pulse animation from Pokémon Prism
 BattleAnim_DragonPulse:
+BattleAnim_SignalBeam:
 	anim_1gfx ANIM_GFX_EGG
 ;	anim_call BattleAnim_FollowEnemyFeet_0
 	anim_bgeffect ANIM_BG_1A, $0, $1, $20
@@ -4216,6 +4217,7 @@ BattleAnim_Psystrike:
 	anim_ret
 
 BattleAnim_Safeguard:
+BattleAnim_AuroraVeil:
 	anim_1gfx ANIM_GFX_MISC
 	anim_bgeffect ANIM_BG_06, $0, $2, $0
 	anim_obj ANIM_OBJ_89,  10, 0,  10, 0, $0
@@ -5413,24 +5415,6 @@ BattleAnim_GigaImpact:
 ;	anim_wait 12
 ;	anim_obj ANIM_OBJ_01, -15, 0,   6, 0, $0
 ;	anim_wait 16
-;	anim_ret
-
-;BattleAnim_Present: ; removed
-;	anim_2gfx ANIM_GFX_STATUS, ANIM_GFX_BUBBLE
-;	anim_sound 0, 1, SFX_PRESENT
-;	anim_obj ANIM_OBJ_8D,   8, 0,  11, 0, $6c
-;	anim_wait 56
-;	anim_obj ANIM_OBJ_53,  13, 0,   6, 0, $0
-;	anim_wait 48
-;	anim_incobj  2
-;	anim_incobj  1
-;	anim_wait 1
-;	anim_1gfx ANIM_GFX_EXPLOSION
-;	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $12
-;.loop
-;	anim_call BattleAnim_Present_branch_cbb8f
-;	anim_wait 16
-;	anim_jumpuntil .loop
 ;	anim_ret
 
 ;BattleAnim_Clamp: ; removed

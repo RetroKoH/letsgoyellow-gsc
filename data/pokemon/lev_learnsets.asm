@@ -317,9 +317,9 @@ BlastoiseLearnset:
 	db 0 ; no more level-up moves
 
 CaterpieLearnset:
-	db 1, TACKLE
-	db 1, STRING_SHOT
-	db 9, BUG_BITE
+	db 01, TACKLE
+	db 01, STRING_SHOT
+	db 09, BUG_BITE
 	db 0 ; no more level-up moves
 
 MetapodLearnset:
@@ -343,9 +343,9 @@ ButterfreeLearnset:
 	db 0 ; no more level-up moves
 
 WeedleLearnset:
-	db 1, POISON_STING
-	db 1, STRING_SHOT
-	db 9, BUG_BITE
+	db 01, POISON_STING
+	db 01, STRING_SHOT
+	db 09, BUG_BITE
 	db 0 ; no more level-up moves
 
 BeedrillLearnset:
@@ -544,10 +544,10 @@ SandslashLearnset:
 	db 0 ; no more level-up moves
 
 NidoranFLearnset:
-	db 1, GROWL
-	db 1, SCRATCH
-	db 7, LEER ; Tail Whip → similar move
-	db 9, DOUBLE_KICK
+	db 01, GROWL
+	db 01, SCRATCH
+	db 07, LEER ; Tail Whip → similar move
+	db 09, DOUBLE_KICK
 	db 13, POISON_STING
 	db 19, FURY_ATTACK ; Fury Swipes → similar move
 	db 21, BITE
@@ -559,10 +559,10 @@ NidoranFLearnset:
 	db 0 ; no more level-up moves
 
 NidorinaLearnset:
-	db 1, GROWL
-	db 1, SCRATCH
-	db 7, LEER ; Tail Whip → similar move
-	db 9, DOUBLE_KICK
+	db 01, GROWL
+	db 01, SCRATCH
+	db 07, LEER ; Tail Whip → similar move
+	db 09, DOUBLE_KICK
 	db 13, POISON_STING
 	db 20, FURY_ATTACK ; Fury Swipes → similar move
 	db 23, BITE
@@ -574,11 +574,11 @@ NidorinaLearnset:
 	db 0 ; no more level-up moves
 
 NidoqueenLearnset:
-	db 1, CLOSE_COMBAT ; Superpower → similar move
-	db 1, SCRATCH
-	db 1, LEER ; Tail Whip → similar move
-	db 1, DOUBLE_KICK
-	db 1, POISON_STING
+	db 01, CLOSE_COMBAT ; Superpower → similar move
+	db 01, SCRATCH
+	db 01, LEER ; Tail Whip → similar move
+	db 01, DOUBLE_KICK
+	db 01, POISON_STING
 	db 23, OUTRAGE ; Chip Away → HGSS tutor move
 	db 35, BODY_SLAM
 	db 43, EARTH_POWER
@@ -586,10 +586,10 @@ NidoqueenLearnset:
 	db 0 ; no more level-up moves
 
 NidoranMLearnset:
-	db 1, LEER
-	db 1, PECK
-	db 7, FOCUS_ENERGY
-	db 9, DOUBLE_KICK
+	db 01, LEER
+	db 01, PECK
+	db 07, FOCUS_ENERGY
+	db 09, DOUBLE_KICK
 	db 13, POISON_STING
 	db 19, FURY_ATTACK ; Fury Attack → similar move
 	db 21, HORN_ATTACK
@@ -601,10 +601,10 @@ NidoranMLearnset:
 	db 0 ; no more level-up moves
 
 NidorinoLearnset:
-	db 1, LEER
-	db 1, PECK
-	db 7, FOCUS_ENERGY
-	db 9, DOUBLE_KICK
+	db 01, LEER
+	db 01, PECK
+	db 07, FOCUS_ENERGY
+	db 09, DOUBLE_KICK
 	db 13, POISON_STING
 	db 20, FURY_ATTACK ; Fury Attack → similar move
 	db 23, HORN_ATTACK
@@ -616,11 +616,11 @@ NidorinoLearnset:
 	db 0 ; no more level-up moves
 
 NidokingLearnset:
-	db 1, MEGAHORN
-	db 1, PECK
-	db 1, FOCUS_ENERGY
-	db 1, DOUBLE_KICK
-	db 1, POISON_STING
+	db 01, MEGAHORN
+	db 01, PECK
+	db 01, FOCUS_ENERGY
+	db 01, DOUBLE_KICK
+	db 01, POISON_STING
 	db 23, OUTRAGE ; Chip Away → HGSS tutor move
 	db 35, THRASH
 	db 43, EARTH_POWER
@@ -628,11 +628,11 @@ NidokingLearnset:
 	db 0 ; no more level-up moves
 
 ClefairyLearnset:
-	db 1, DISARM_VOICE
-	db 1, TACKLE ; Pound → similar move
-	db 1, GROWL
-	db 1, ENCORE
-	db 7, SING
+	db 01, DISARM_VOICE
+	db 01, TACKLE ; Pound → similar move
+	db 01, GROWL
+	db 01, ENCORE
+	db 07, SING
 	db 13, DEFENSE_CURL
 	db 19, DIZZY_PUNCH ; Bestow → Crystal unique move
 	db 22, TRI_ATTACK ; Wake-Up Slap → RBY TM move
@@ -649,18 +649,18 @@ ClefairyLearnset:
 	db 0 ; no more level-up moves
 
 ClefableLearnset:
-	db 1, SYNTHESIS ; Moonlight → similar move
-	db 1, DISARM_VOICE
-	db 1, PLAY_ROUGH ; Let's Go TM move
-	db 1, SING
-	db 1, MINIMIZE
-	db 1, METRONOME
+	db 01, SYNTHESIS ; Moonlight → similar move
+	db 01, DISARM_VOICE
+	db 01, PLAY_ROUGH ; Let's Go TM move
+	db 01, SING
+	db 01, MINIMIZE
+	db 01, METRONOME
 	db 0 ; no more level-up moves
 
 VulpixLearnset:
-	db 1, EMBER
-	db 4, GROWL ; Tail Whip → new move
-	db 9, CHARM ; Baby-Doll Eyes → similar move
+	db 01, EMBER
+	db 04, GROWL ; Tail Whip → new move
+	db 09, CHARM ; Baby-Doll Eyes → similar move
 	db 10, QUICK_ATTACK
 	db 12, CONFUSE_RAY
 	db 15, FIRE_SPIN
@@ -670,7 +670,6 @@ VulpixLearnset:
 	db 26, HEX
 	db 28, PAIN_SPLIT ; Flame Burst → HGSS tutor move
 	db 31, EXTRASENSORY
-	db 34, SAFEGUARD
 	db 36, FLAMETHROWER
 	db 39, HYPNOSIS ; Imprison → egg move
 	db 42, FIRE_BLAST
@@ -681,18 +680,17 @@ VulpixLearnset:
 	db 0 ; no more level-up moves
 
 NinetalesLearnset:
-	db 1, NASTY_PLOT
-	db 1, FLAMETHROWER
-	db 1, QUICK_ATTACK
-	db 1, CONFUSE_RAY
-	db 1, SAFEGUARD
+	db 01, NASTY_PLOT
+	db 01, FLAMETHROWER
+	db 01, QUICK_ATTACK
+	db 01, CONFUSE_RAY
 	db 0 ; no more level-up moves
 
 JigglypuffLearnset:
-	db 1, SING
-	db 3, DEFENSE_CURL
-	db 5, TACKLE ; Pound → similar move
-	db 9, DIZZY_PUNCH ; Play Nice → Crystal unique move
+	db 01, SING
+	db 03, DEFENSE_CURL
+	db 05, TACKLE ; Pound → similar move
+	db 09, DIZZY_PUNCH ; Play Nice → Crystal unique move
 	db 11, DISARM_VOICE
 	db 14, DISABLE
 	db 20, ROLLOUT
@@ -706,17 +704,17 @@ JigglypuffLearnset:
 	db 0 ; no more level-up moves
 
 WigglytuffLearnset:
-	db 1, MINIMIZE ; Let's Go move
-	db 1, DOUBLE_EDGE
-	db 1, PLAY_ROUGH
-	db 1, SING
-	db 1, DEFENSE_CURL
-	db 1, DISABLE
+	db 01, MINIMIZE ; Let's Go move
+	db 01, DOUBLE_EDGE
+	db 01, PLAY_ROUGH
+	db 01, SING
+	db 01, DEFENSE_CURL
+	db 01, DISABLE
 	db 0 ; no more level-up moves
 
 ZubatLearnset:
-	db 1, ABSORB
-	db 5, SUPERSONIC
+	db 01, ABSORB
+	db 05, SUPERSONIC
 	db 11, BITE
 	db 13, GUST ; Wing Attack → egg move
 	db 17, CONFUSE_RAY
@@ -731,10 +729,10 @@ ZubatLearnset:
 	db 0 ; no more level-up moves
 
 GolbatLearnset:
-	db 1, SCREECH
-	db 1, ABSORB
-	db 1, CRUNCH ; Let's Go move
-	db 5, SUPERSONIC
+	db 01, SCREECH
+	db 01, ABSORB
+	db 01, CRUNCH ; Let's Go move
+	db 05, SUPERSONIC
 	db 11, BITE
 	db 13, GUST ; Wing Attack → egg move
 	db 17, CONFUSE_RAY
@@ -749,11 +747,11 @@ GolbatLearnset:
 	db 0 ; no more level-up moves
 
 CrobatLearnset:
-	db 1, X_SCISSOR ; evolution move
-	db 1, SCREECH
-	db 1, ABSORB
-	db 1, CRUNCH ; Let's Go move
-	db 5, SUPERSONIC
+	db 01, X_SCISSOR ; evolution move
+	db 01, SCREECH
+	db 01, ABSORB
+	db 01, CRUNCH ; Let's Go move
+	db 05, SUPERSONIC
 	db 11, BITE
 	db 13, GUST ; Wing Attack → egg move
 	db 17, CONFUSE_RAY
@@ -768,10 +766,10 @@ CrobatLearnset:
 	db 0 ; no more level-up moves
 
 OddishLearnset:
-	db 1, ABSORB
-	db 1, GROWTH
-	db 5, LEECH_SEED ; Sweet Scent → event move
-	db 9, ACID
+	db 01, ABSORB
+	db 01, GROWTH
+	db 05, LEECH_SEED ; Sweet Scent → event move
+	db 09, ACID
 	db 13, POISONPOWDER
 	db 14, STUN_SPORE
 	db 15, SLEEP_POWDER
@@ -786,9 +784,9 @@ OddishLearnset:
 	db 0 ; no more level-up moves
 
 GloomLearnset:
-	db 1, ABSORB
-	db 5, LEECH_SEED ; Sweet Scent → event move
-	db 9, ACID
+	db 01, ABSORB
+	db 05, LEECH_SEED ; Sweet Scent → event move
+	db 09, ACID
 	db 13, POISONPOWDER
 	db 14, STUN_SPORE
 	db 15, SLEEP_POWDER
@@ -803,10 +801,10 @@ GloomLearnset:
 	db 0 ; no more level-up moves
 
 VileplumeLearnset:
-	db 1, MEGA_DRAIN
-	db 1, HEAL_BELL ; Aromatherapy → similar move
-	db 1, POISONPOWDER
-	db 1, STUN_SPORE
+	db 01, MEGA_DRAIN
+	db 01, HEAL_BELL ; Aromatherapy → similar move
+	db 01, POISONPOWDER
+	db 01, STUN_SPORE
 	db 39, GROWTH
 	db 49, MOONBLAST ; Petal Blizzard → Gloom move
 	db 59, PETAL_DANCE
@@ -814,10 +812,10 @@ VileplumeLearnset:
 	db 0 ; no more level-up moves
 
 ParasLearnset:
-	db 1, SCRATCH
-	db 2, SLEEP_POWDER ; Let's Go move
-	db 4, STUN_SPORE
-	db 6, POISONPOWDER
+	db 01, SCRATCH
+	db 02, SLEEP_POWDER ; Let's Go move
+	db 04, STUN_SPORE
+	db 06, POISONPOWDER
 	db 11, ABSORB
 	db 17, BUG_BITE ; Fury Cutter → egg move
 	db 22, SPORE
@@ -829,11 +827,11 @@ ParasLearnset:
 	db 0 ; no more level-up moves
 
 ParasectLearnset:
-	db 1, SHADOW_CLAW ; evolution move
-	db 1, SCRATCH
-	db 2, SLEEP_POWDER ; Let's Go move
-	db 4, STUN_SPORE
-	db 6, POISONPOWDER
+	db 01, SHADOW_CLAW ; evolution move
+	db 01, SCRATCH
+	db 02, SLEEP_POWDER ; Let's Go move
+	db 04, STUN_SPORE
+	db 06, POISONPOWDER
 	db 11, ABSORB
 	db 17, BUG_BITE ; Fury Cutter → egg move
 	db 22, SPORE
@@ -845,9 +843,9 @@ ParasectLearnset:
 	db 0 ; no more level-up moves
 
 VenonatLearnset:
-	db 1, TACKLE
-	db 1, DISABLE
-	db 5, SUPERSONIC
+	db 01, TACKLE
+	db 01, DISABLE
+	db 05, SUPERSONIC
 	db 11, CONFUSION
 	db 13, POISONPOWDER
 	db 17, PSYBEAM
@@ -861,10 +859,10 @@ VenonatLearnset:
 	db 0 ; no more level-up moves
 
 VenomothLearnset:
-	db 1, BUG_BUZZ
-	db 1, TACKLE
-	db 1, DISABLE
-	db 5, SUPERSONIC
+	db 01, BUG_BUZZ
+	db 01, TACKLE
+	db 01, DISABLE
+	db 05, SUPERSONIC
 	db 11, CONFUSION
 	db 13, POISONPOWDER
 	db 17, PSYBEAM
@@ -880,10 +878,10 @@ VenomothLearnset:
 	db 0 ; no more level-up moves
 
 DiglettLearnset:
-	db 1, SAND_ATTACK
-	db 1, SCRATCH
-	db 1, CHARM ; XD move
-	db 4, GROWL
+	db 01, SAND_ATTACK
+	db 01, SCRATCH
+	db 01, CHARM ; XD move
+	db 04, GROWL
 	db 10, AGILITY ; Mud-Slap → Let's Go move
 	db 14, DRILL_RUN
 	db 18, BULLDOZE
@@ -897,12 +895,12 @@ DiglettLearnset:
 	db 0 ; no more level-up moves
 
 DugtrioLearnset:
-	db 1, TRI_ATTACK ; Sand Tomb → Tri Attack ; evolution move
-	db 1, NIGHT_SLASH
-	db 1, SAND_ATTACK
-	db 1, SCRATCH
-	db 1, CHARM ; XD move
-	db 4, GROWL
+	db 01, TRI_ATTACK ; Sand Tomb → Tri Attack ; evolution move
+	db 01, NIGHT_SLASH
+	db 01, SAND_ATTACK
+	db 01, SCRATCH
+	db 01, CHARM ; XD move
+	db 04, GROWL
 	db 10, AGILITY ; Mud-Slap → Let's Go move
 	db 14, DRILL_RUN
 	db 18, BULLDOZE
@@ -916,9 +914,9 @@ DugtrioLearnset:
 	db 0 ; no more level-up moves
 
 MeowthLearnset:
-	db 1, SCRATCH
-	db 1, GROWL
-	db 6, BITE
+	db 01, SCRATCH
+	db 01, GROWL
+	db 06, BITE
 	db 14, FURY_ATTACK ; Fury Swipes → similar move
 	db 17, SCREECH
 	db 22, FEINT_ATTACK
@@ -932,12 +930,12 @@ MeowthLearnset:
 	db 0 ; no more level-up moves
 
 PersianLearnset:
-	db 1, BUBBLE_BEAM ; RBY TM move
-	db 1, PLAY_ROUGH
-	db 1, SWIFT ; evolution move
-	db 1, SCRATCH
-	db 1, GROWL
-	db 6, BITE
+	db 01, BUBBLE_BEAM ; RBY TM move
+	db 01, PLAY_ROUGH
+	db 01, SWIFT ; evolution move
+	db 01, SCRATCH
+	db 01, GROWL
+	db 06, BITE
 	db 14, FURY_ATTACK ; Fury Swipes → similar move
 	db 17, SCREECH
 	db 22, FEINT_ATTACK
@@ -951,9 +949,9 @@ PersianLearnset:
 	db 0 ; no more level-up moves
 
 PsyduckLearnset:
-	db 1, SCRATCH
-	db 4, LEER ; Tail Whip → similar move
-	db 7, WATER_GUN
+	db 01, SCRATCH
+	db 04, LEER ; Tail Whip → similar move
+	db 07, WATER_GUN
 	db 10, CONFUSION
 	db 13, FURY_ATTACK ; Fury Swipes → similar move
 	db 16, WATER_PULSE
@@ -969,10 +967,10 @@ PsyduckLearnset:
 	db 0 ; no more level-up moves
 
 GolduckLearnset:
-	db 1, SCRATCH
-	db 1, AQUA_JET
-	db 4, LEER ; Tail Whip → similar move
-	db 7, WATER_GUN
+	db 01, SCRATCH
+	db 01, AQUA_JET
+	db 04, LEER ; Tail Whip → similar move
+	db 07, WATER_GUN
 	db 10, CONFUSION
 	db 13, FURY_ATTACK ; Fury Swipes → similar move
 	db 16, WATER_PULSE
@@ -988,12 +986,12 @@ GolduckLearnset:
 	db 0 ; no more level-up moves
 
 MankeyLearnset:
-	db 1, SCRATCH
-	db 1, LOW_KICK
-	db 1, LEER
-	db 1, FOCUS_ENERGY
-	db 5, FURY_ATTACK ; Fury Swipes → similar move
-	db 8, KARATE_CHOP
+	db 01, SCRATCH
+	db 01, LOW_KICK
+	db 01, LEER
+	db 01, FOCUS_ENERGY
+	db 05, FURY_ATTACK ; Fury Swipes → similar move
+	db 08, KARATE_CHOP
 	db 12, PURSUIT
 	db 15, SEISMIC_TOSS
 	db 19, SWAGGER
@@ -1008,13 +1006,13 @@ MankeyLearnset:
 	db 0 ; no more level-up moves
 
 PrimeapeLearnset:
-	db 1, RAGE
-	db 1, SCRATCH
-	db 1, LOW_KICK
-	db 1, LEER
-	db 1, FOCUS_ENERGY
-	db 5, FURY_ATTACK ; Fury Swipes → similar move
-	db 8, KARATE_CHOP
+	db 01, RAGE
+	db 01, SCRATCH
+	db 01, LOW_KICK
+	db 01, LEER
+	db 01, FOCUS_ENERGY
+	db 05, FURY_ATTACK ; Fury Swipes → similar move
+	db 08, KARATE_CHOP
 	db 12, PURSUIT
 	db 15, SEISMIC_TOSS
 	db 19, SWAGGER
@@ -1029,12 +1027,11 @@ PrimeapeLearnset:
 	db 0 ; no more level-up moves
 
 GrowlitheLearnset:
-	db 1, GROWL
-	db 1, BITE
-	db 1, ROAR
-	db 6, EMBER
-	db 8, LEER
-	db 10, SAFEGUARD ; Odor Sleuth → egg move
+	db 01, GROWL
+	db 01, BITE
+	db 01, ROAR
+	db 06, EMBER
+	db 08, LEER
 	db 12, BATON_PASS ; Helping Hand → new move
 	db 17, FLAME_WHEEL
 	db 19, FLAIL
@@ -1052,18 +1049,18 @@ GrowlitheLearnset:
 	db 0 ; no more level-up moves
 
 ArcanineLearnset:
-	db 1, DRAGON_DANCE ; new move
-	db 1, GROWL
-	db 1, BITE
-	db 1, ROAR
-	db 1, FLAME_WHEEL
-	db 1, TAKE_DOWN
-	db 1, EXTREMESPEED ; evolution move
+	db 01, DRAGON_DANCE ; new move
+	db 01, GROWL
+	db 01, BITE
+	db 01, ROAR
+	db 01, FLAME_WHEEL
+	db 01, TAKE_DOWN
+	db 01, EXTREMESPEED ; evolution move
 	db 0 ; no more level-up moves
 
 PoliwagLearnset:
-	db 1, WATER_GUN ; Water Sport → Water Gun
-	db 5, HYPNOSIS ; Water Gun → Hypnosis
+	db 01, WATER_GUN ; Water Sport → Water Gun
+	db 05, HYPNOSIS ; Water Gun → Hypnosis
 	db 11, AQUA_JET ; Bubble → new move
 	db 18, RAIN_DANCE
 	db 21, BODY_SLAM
@@ -1076,8 +1073,8 @@ PoliwagLearnset:
 	db 0 ; no more level-up moves
 
 PoliwhirlLearnset:
-	db 1, WATER_GUN ; Water Sport → Water Gun
-	db 5, HYPNOSIS ; Water Gun → Hypnosis
+	db 01, WATER_GUN ; Water Sport → Water Gun
+	db 05, HYPNOSIS ; Water Gun → Hypnosis
 	db 11, AQUA_JET ; Bubble → new move
 	db 18, RAIN_DANCE
 	db 21, BODY_SLAM
@@ -1090,20 +1087,20 @@ PoliwhirlLearnset:
 	db 0 ; no more level-up moves
 
 PoliwrathLearnset:
-	db 1, BUBBLE_BEAM
-	db 1, HYPNOSIS
-	db 1, CLOSE_COMBAT ; evolution move
+	db 01, BUBBLE_BEAM
+	db 01, HYPNOSIS
+	db 01, CLOSE_COMBAT ; evolution move
 	db 32, DYNAMICPUNCH
 	db 43, EARTH_POWER ; Mind Reader → Poliwhirl move
 	db 53, CROSS_CHOP ; Circle Throw → similar move
 	db 0 ; no more level-up moves
 
 AbraLearnset:
-	db 1, TELEPORT
+	db 01, TELEPORT
 	db 0 ; no more level-up moves
 
 KadabraLearnset:
-	db 1, TELEPORT
+	db 01, TELEPORT
 	db 16, CONFUSION
 	db 18, DISABLE
 	db 21, PSYBEAM
@@ -1119,8 +1116,8 @@ KadabraLearnset:
 	db 0 ; no more level-up moves
 
 AlakazamLearnset:
-	db 1, TRI_ATTACK ; RBY TM move
-	db 1, TELEPORT
+	db 01, TRI_ATTACK ; RBY TM move
+	db 01, TELEPORT
 	db 16, CONFUSION
 	db 18, DISABLE
 	db 21, PSYBEAM
@@ -1136,10 +1133,10 @@ AlakazamLearnset:
 	db 0 ; no more level-up moves
 
 MachopLearnset:
-	db 1, LOW_KICK
-	db 1, LEER
-	db 3, FOCUS_ENERGY
-	db 7, KARATE_CHOP
+	db 01, LOW_KICK
+	db 01, LEER
+	db 03, FOCUS_ENERGY
+	db 07, KARATE_CHOP
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, FLAIL ; Revenge → Sw/Sh move
@@ -1154,10 +1151,10 @@ MachopLearnset:
 	db 0 ; no more level-up moves
 
 MachokeLearnset:
-	db 1, LOW_KICK
-	db 1, LEER
-	db 3, FOCUS_ENERGY
-	db 7, KARATE_CHOP
+	db 01, LOW_KICK
+	db 01, LEER
+	db 03, FOCUS_ENERGY
+	db 07, KARATE_CHOP
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, FLAIL ; Revenge → Sw/Sh move
@@ -1172,12 +1169,12 @@ MachokeLearnset:
 	db 0 ; no more level-up moves
 
 MachampLearnset:
-	db 1, STRENGTH ; evolution move
-	db 1, ROCK_BLAST ; Sw/Sh move
-	db 1, LOW_KICK
-	db 1, LEER
-	db 3, FOCUS_ENERGY
-	db 7, KARATE_CHOP
+	db 01, STRENGTH ; evolution move
+	db 01, ROCK_BLAST ; Sw/Sh move
+	db 01, LOW_KICK
+	db 01, LEER
+	db 03, FOCUS_ENERGY
+	db 07, KARATE_CHOP
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, FLAIL ; Revenge → Sw/Sh TM move
@@ -1192,8 +1189,8 @@ MachampLearnset:
 	db 0 ; no more level-up moves
 
 BellsproutLearnset:
-	db 1, VINE_WHIP
-	db 7, GROWTH
+	db 01, VINE_WHIP
+	db 07, GROWTH
 	db 11, WRAP
 	db 13, SLEEP_POWDER
 	db 15, POISONPOWDER
@@ -1208,8 +1205,8 @@ BellsproutLearnset:
 	db 0 ; no more level-up moves
 
 WeepinbellLearnset:
-	db 1, VINE_WHIP
-	db 7, GROWTH
+	db 01, VINE_WHIP
+	db 07, GROWTH
 	db 11, WRAP
 	db 13, SLEEP_POWDER
 	db 15, POISONPOWDER
@@ -1224,18 +1221,18 @@ WeepinbellLearnset:
 	db 0 ; no more level-up moves
 
 VictreebelLearnset:
-	db 1, VINE_WHIP
-	db 1, SLEEP_POWDER
-	db 1, SYNTHESIS ; Sweet Scent → new move
-	db 1, RAZOR_LEAF
+	db 01, VINE_WHIP
+	db 01, SLEEP_POWDER
+	db 01, SYNTHESIS ; Sweet Scent → new move
+	db 01, RAZOR_LEAF
 	db 32, SUCKER_PUNCH ; Leaf Storm → prior move
 	db 44, SWORDS_DANCE ; Leaf Blade → prior move
 	db 0 ; no more level-up moves
 
 TentacoolLearnset:
-	db 1, POISON_STING
-	db 4, SUPERSONIC
-	db 7, WATER_GUN ; Constrict → new move
+	db 01, POISON_STING
+	db 04, SUPERSONIC
+	db 07, WATER_GUN ; Constrict → new move
 	db 10, ACID
 	db 13, TOXIC
 	db 16, WATER_PULSE
@@ -1252,10 +1249,10 @@ TentacoolLearnset:
 	db 0 ; no more level-up moves
 
 TentacruelLearnset:
-	db 1, POWER_WHIP ; evolution move
-	db 1, POISON_STING
-	db 4, SUPERSONIC
-	db 7, WATER_GUN ; Constrict → new move
+	db 01, POWER_WHIP ; evolution move
+	db 01, POISON_STING
+	db 04, SUPERSONIC
+	db 07, WATER_GUN ; Constrict → new move
 	db 10, ACID
 	db 13, TOXIC
 	db 16, WATER_PULSE
@@ -1272,9 +1269,9 @@ TentacruelLearnset:
 	db 0 ; no more level-up moves
 
 GeodudeLearnset:
-	db 1, TACKLE
-	db 1, DEFENSE_CURL
-	db 6, RAPID_SPIN ; Rock Polish → event move
+	db 01, TACKLE
+	db 01, DEFENSE_CURL
+	db 06, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
 	db 12, DRILL_RUN
 	db 16, ROCK_THROW
@@ -1290,9 +1287,9 @@ GeodudeLearnset:
 	db 0 ; no more level-up moves
 
 GravelerLearnset:
-	db 1, TACKLE
-	db 1, DEFENSE_CURL
-	db 6, RAPID_SPIN ; Rock Polish → event move
+	db 01, TACKLE
+	db 01, DEFENSE_CURL
+	db 06, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
 	db 12, DRILL_RUN
 	db 16, ROCK_THROW
@@ -1308,9 +1305,9 @@ GravelerLearnset:
 	db 0 ; no more level-up moves
 
 GolemLearnset:
-	db 1, TACKLE
-	db 1, DEFENSE_CURL
-	db 6, RAPID_SPIN ; Rock Polish → event move
+	db 01, TACKLE
+	db 01, DEFENSE_CURL
+	db 06, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
 	db 12, DRILL_RUN
 	db 16, ROCK_THROW
@@ -1327,10 +1324,10 @@ GolemLearnset:
 	db 0 ; no more level-up moves
 
 PonytaLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 4, LEER ; Tail Whip → similar move
-	db 9, EMBER
+	db 01, GROWL
+	db 01, TACKLE
+	db 04, LEER ; Tail Whip → similar move
+	db 09, EMBER
 	db 13, FLAME_WHEEL
 	db 17, STOMP
 	db 21, LOW_KICK ; Flame Charge → event move
@@ -1344,13 +1341,13 @@ PonytaLearnset:
 	db 0 ; no more level-up moves
 
 RapidashLearnset:
-	db 1, PLAY_ROUGH ; evolution move
-	db 1, POISON_JAB
-	db 1, MEGAHORN
-	db 1, GROWL
-	db 1, TACKLE
-	db 4, LEER ; Tail Whip → similar move
-	db 9, EMBER
+	db 01, PLAY_ROUGH ; evolution move
+	db 01, POISON_JAB
+	db 01, MEGAHORN
+	db 01, GROWL
+	db 01, TACKLE
+	db 04, LEER ; Tail Whip → similar move
+	db 09, EMBER
 	db 13, FLAME_WHEEL
 	db 17, STOMP
 	db 21, QUICK_ATTACK ; Flame Charge → egg move
@@ -1364,16 +1361,15 @@ RapidashLearnset:
 	db 0 ; no more level-up moves
 
 SlowpokeLearnset:
-	db 1, CURSE
-	db 1, TACKLE
-	db 5, GROWL
-	db 9, WATER_GUN
+	db 01, CURSE
+	db 01, TACKLE
+	db 05, GROWL
+	db 09, WATER_GUN
 	db 14, CONFUSION
 	db 19, DISABLE
 	db 23, HEADBUTT
 	db 28, WATER_PULSE
 	db 32, ZEN_HEADBUTT
-	db 36, SAFEGUARD ; Slack Off → egg move
 	db 41, AMNESIA
 	db 45, PSYCHIC_M
 	db 49, RAIN_DANCE
@@ -1382,17 +1378,16 @@ SlowpokeLearnset:
 	db 0 ; no more level-up moves
 
 SlowbroLearnset:
-	db 1, DEFENSE_CURL ; Withdraw → similar move ; evolution move
-	db 1, CURSE
-	db 1, TACKLE
-	db 5, GROWL
-	db 9, WATER_GUN
+	db 01, DEFENSE_CURL ; Withdraw → similar move ; evolution move
+	db 01, CURSE
+	db 01, TACKLE
+	db 05, GROWL
+	db 09, WATER_GUN
 	db 14, CONFUSION
 	db 19, DISABLE
 	db 23, HEADBUTT
 	db 28, WATER_PULSE
 	db 32, ZEN_HEADBUTT
-	db 36, SAFEGUARD ; Slack Off → egg move
 	db 43, AMNESIA
 	db 49, PSYCHIC_M
 	db 55, RAIN_DANCE
@@ -1401,10 +1396,10 @@ SlowbroLearnset:
 	db 0 ; no more level-up moves
 
 MagnemiteLearnset:
-	db 1, SUPERSONIC
-	db 1, TACKLE
-	db 5, THUNDERSHOCK
-	db 7, THUNDER_WAVE
+	db 01, SUPERSONIC
+	db 01, TACKLE
+	db 05, THUNDERSHOCK
+	db 07, THUNDER_WAVE
 	db 11, QUICK_ATTACK ; Magnet Bomb → TCG move
 	db 13, LIGHT_SCREEN
 	db 19, SPARK
@@ -1421,11 +1416,11 @@ MagnemiteLearnset:
 	db 0 ; no more level-up moves
 
 MagnetonLearnset:
-	db 1, TRI_ATTACK ; evolution move
-	db 1, SUPERSONIC
-	db 1, TACKLE
-	db 5, THUNDERSHOCK
-	db 7, THUNDER_WAVE
+	db 01, TRI_ATTACK ; evolution move
+	db 01, SUPERSONIC
+	db 01, TACKLE
+	db 05, THUNDERSHOCK
+	db 07, THUNDER_WAVE
 	db 11, QUICK_ATTACK ; Magnet Bomb → TCG move
 	db 13, LIGHT_SCREEN
 	db 19, SPARK
@@ -1442,13 +1437,13 @@ MagnetonLearnset:
 	db 0 ; no more level-up moves
 
 FarfetchDLearnset:
-	db 1, POISON_JAB
-	db 1, BATON_PASS ; Brave Bird → event move
-	db 1, PECK
-	db 1, SAND_ATTACK
-	db 1, LEER
-	db 7, FURY_ATTACK ; Fury Attack → similar move
-	db 9, AERIAL_ACE
+	db 01, POISON_JAB
+	db 01, BATON_PASS ; Brave Bird → event move
+	db 01, PECK
+	db 01, SAND_ATTACK
+	db 01, LEER
+	db 07, FURY_ATTACK ; Fury Attack → similar move
+	db 09, AERIAL_ACE
 	db 13, KNOCK_OFF
 	db 15, RAZOR_LEAF ; Let's Go move
 	db 19, SLASH
@@ -1462,10 +1457,10 @@ FarfetchDLearnset:
 	db 0 ; no more level-up moves
 
 DoduoLearnset:
-	db 1, PECK
-	db 1, GROWL
-	db 5, QUICK_ATTACK
-	db 8, RAGE
+	db 01, PECK
+	db 01, GROWL
+	db 05, QUICK_ATTACK
+	db 08, RAGE
 	db 12, FURY_ATTACK ; Fury Attack → similar move
 	db 15, PURSUIT
 	db 19, BATON_PASS ; Pluck → XD move
@@ -1481,11 +1476,11 @@ DoduoLearnset:
 	db 0 ; no more level-up moves
 
 DodrioLearnset:
-	db 1, TRI_ATTACK ; evolution move
-	db 1, PECK
-	db 1, GROWL
-	db 5, QUICK_ATTACK
-	db 9, RAGE
+	db 01, TRI_ATTACK ; evolution move
+	db 01, PECK
+	db 01, GROWL
+	db 05, QUICK_ATTACK
+	db 09, RAGE
 	db 12, FURY_ATTACK ; Fury Attack → similar move
 	db 15, PURSUIT
 	db 19, BATON_PASS ; Pluck → XD move
@@ -1501,9 +1496,9 @@ DodrioLearnset:
 	db 0 ; no more level-up moves
 
 SeelLearnset:
-	db 1, HEADBUTT
-	db 3, GROWL
-	db 7, WATER_GUN ; Water Sport → RBY TM move
+	db 01, HEADBUTT
+	db 03, GROWL
+	db 07, WATER_GUN ; Water Sport → RBY TM move
 	db 11, ICY_WIND
 	db 13, ENCORE
 	db 17, ICE_SHARD
@@ -1514,15 +1509,14 @@ SeelLearnset:
 	db 37, TAKE_DOWN
 	db 43, AQUA_TAIL
 	db 47, ICE_BEAM
-	db 51, SAFEGUARD
 	db 53, HAIL
 	db 0 ; no more level-up moves
 
 DewgongLearnset:
-	db 1, ICICLE_SPEAR ; Sheer Cold → egg move ; evolution move
-	db 1, HEADBUTT
-	db 3, GROWL
-	db 7, WATER_GUN ; Signal Beam → RBY TM move
+	db 01, ICICLE_SPEAR ; Sheer Cold → egg move ; evolution move
+	db 01, HEADBUTT
+	db 03, GROWL
+	db 07, WATER_GUN ; Signal Beam → RBY TM move
 	db 11, ICY_WIND
 	db 13, ENCORE
 	db 17, ICE_SHARD
@@ -1533,15 +1527,14 @@ DewgongLearnset:
 	db 39, TAKE_DOWN
 	db 49, AQUA_TAIL
 	db 55, ICE_BEAM
-	db 61, SAFEGUARD
 	db 65, HAIL
 	db 69, MEGAHORN ; Let's Go move
 	db 0 ; no more level-up moves
 
 GrimerLearnset:
-	db 1, TACKLE ; Pound → similar move
-	db 1, ACID ; Poison Gas → new move
-	db 4, DEFENSE_CURL ; Harden → similar move
+	db 01, TACKLE ; Pound → similar move
+	db 01, ACID ; Poison Gas → new move
+	db 04, DEFENSE_CURL ; Harden → similar move
 	db 12, DISABLE
 	db 15, VENOSHOCK ; Sludge → tutor move
 	db 18, HAZE ; Mud Bomb → egg move
@@ -1555,11 +1548,11 @@ GrimerLearnset:
 	db 0 ; no more level-up moves
 
 MukLearnset:
-	db 1, MOONBLAST ; Let's Go move
-	db 1, TACKLE ; Pound → similar move
-	db 1, ACID ; Poison Gas → new move
-	db 4, DEFENSE_CURL ; Harden → similar move
-	db 7, BITE
+	db 01, MOONBLAST ; Let's Go move
+	db 01, TACKLE ; Pound → similar move
+	db 01, ACID ; Poison Gas → new move
+	db 04, DEFENSE_CURL ; Harden → similar move
+	db 07, BITE
 	db 12, DISABLE
 	db 15, VENOSHOCK ; Sludge → tutor move
 	db 18, HAZE ; Mud Bomb → egg move
@@ -1574,9 +1567,9 @@ MukLearnset:
 	db 0 ; no more level-up moves
 
 ShellderLearnset:
-	db 1, TACKLE
-	db 4, DEFENSE_CURL ; Withdraw → similar move
-	db 8, SUPERSONIC
+	db 01, TACKLE
+	db 04, DEFENSE_CURL ; Withdraw → similar move
+	db 08, SUPERSONIC
 	db 13, ICICLE_SPEAR
 	db 16, PROTECT
 	db 20, LEER
@@ -1592,24 +1585,24 @@ ShellderLearnset:
 	db 0 ; no more level-up moves
 
 CloysterLearnset:
-	db 1, HYDRO_PUMP
-	db 1, TOXIC
-	db 1, FURY_ATTACK ; Spike Cannon → similar move
-	db 1, TRI_ATTACK ; Shell Smash → RBY TM move
-	db 1, DEFENSE_CURL ; Withdraw → similar move
-	db 1, SUPERSONIC
-	db 1, PROTECT
-	db 1, AURORA_BEAM
-	db 1, SPIKES ; evolution move
+	db 01, HYDRO_PUMP
+	db 01, TOXIC
+	db 01, FURY_ATTACK ; Spike Cannon → similar move
+	db 01, TRI_ATTACK ; Shell Smash → RBY TM move
+	db 01, DEFENSE_CURL ; Withdraw → similar move
+	db 01, SUPERSONIC
+	db 01, PROTECT
+	db 01, AURORA_BEAM
+	db 01, SPIKES ; evolution move
 	db 28, ICICLE_SPEAR ; Spikes → Icicle Spear
 	db 32, PIN_MISSILE ; Sw/Sh TM move
 	db 50, ICICLE_CRASH
 	db 0 ; no more level-up moves
 
 GastlyLearnset:
-	db 1, HYPNOSIS
-	db 1, LICK
-	db 5, DISABLE ; Spite → egg move
+	db 01, HYPNOSIS
+	db 01, LICK
+	db 05, DISABLE ; Spite → egg move
 	db 12, CURSE
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
@@ -1622,10 +1615,10 @@ GastlyLearnset:
 	db 0 ; no more level-up moves
 
 HaunterLearnset:
-	db 1, SHADOW_CLAW ; Shadow Punch → TM move ; evolution move
-	db 1, HYPNOSIS
-	db 1, LICK
-	db 5, DISABLE ; Spite → egg move
+	db 01, SHADOW_CLAW ; Shadow Punch → TM move ; evolution move
+	db 01, HYPNOSIS
+	db 01, LICK
+	db 05, DISABLE ; Spite → egg move
 	db 12, CURSE
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
@@ -1638,10 +1631,10 @@ HaunterLearnset:
 	db 0 ; no more level-up moves
 
 GengarLearnset:
-	db 1, SHADOW_CLAW ; Shadow Punch → TM move ; evolution move
-	db 1, HYPNOSIS
-	db 1, LICK
-	db 5, DISABLE ; Spite → egg move
+	db 01, SHADOW_CLAW ; Shadow Punch → TM move ; evolution move
+	db 01, HYPNOSIS
+	db 01, LICK
+	db 05, DISABLE ; Spite → egg move
 	db 12, CURSE
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
@@ -1654,11 +1647,11 @@ GengarLearnset:
 	db 0 ; no more level-up moves
 
 OnixLearnset:
-	db 1, TACKLE
-	db 1, DEFENSE_CURL ; Harden → similar move
-	db 1, WRAP ; Bind → similar move
-	db 4, CURSE
-	db 7, ROCK_THROW
+	db 01, TACKLE
+	db 01, DEFENSE_CURL ; Harden → similar move
+	db 01, WRAP ; Bind → similar move
+	db 04, CURSE
+	db 07, ROCK_THROW
 	db 10, RAGE
 	db 13, ROCK_BLAST ; Rock Tomb → egg move
 	db 16, BODY_SLAM ; Stealth Rock → TM move
@@ -1677,10 +1670,10 @@ OnixLearnset:
 	db 0 ; no more level-up moves
 
 DrowzeeLearnset:
-	db 1, TACKLE ; Pound → similar move
-	db 1, HYPNOSIS
-	db 5, DISABLE
-	db 9, CONFUSION
+	db 01, TACKLE ; Pound → similar move
+	db 01, HYPNOSIS
+	db 05, DISABLE
+	db 09, CONFUSION
 	db 13, HEADBUTT
 	db 17, LOW_KICK ; Poison Gas → HGSS tutor move
 	db 21, CALM_MIND ; Meditate → TM move
@@ -1696,10 +1689,10 @@ DrowzeeLearnset:
 	db 0 ; no more level-up moves
 
 HypnoLearnset:
-	db 1, TACKLE ; Pound → similar move
-	db 1, HYPNOSIS
-	db 5, DISABLE
-	db 9, CONFUSION
+	db 01, TACKLE ; Pound → similar move
+	db 01, HYPNOSIS
+	db 05, DISABLE
+	db 09, CONFUSION
 	db 13, HEADBUTT
 	db 17, LOW_KICK ; Poison Gas → HGSS tutor move
 	db 21, CALM_MIND ; Meditate → TM move
@@ -1715,9 +1708,9 @@ HypnoLearnset:
 	db 0 ; no more level-up moves
 
 KrabbyLearnset:
-	db 1, AQUA_JET ; Bubble → new move
-	db 5, SCRATCH ; Vice Grip → new move
-	db 9, LEER
+	db 01, AQUA_JET ; Bubble → new move
+	db 05, SCRATCH ; Vice Grip → new move
+	db 09, LEER
 	db 11, DEFENSE_CURL ; Harden → similar move
 	db 15, BUBBLE_BEAM
 	db 19, DIG ; Mud Shot → egg move
@@ -1732,9 +1725,9 @@ KrabbyLearnset:
 	db 0 ; no more level-up moves
 
 KinglerLearnset:
-	db 1, AQUA_JET ; Bubble → new move
-	db 5, SCRATCH ; Vice Grip → new move
-	db 9, LEER
+	db 01, AQUA_JET ; Bubble → new move
+	db 05, SCRATCH ; Vice Grip → new move
+	db 09, LEER
 	db 11, DEFENSE_CURL ; Harden → similar move
 	db 15, BUBBLE_BEAM
 	db 19, DIG ; Mud Shot → egg move
@@ -1749,10 +1742,10 @@ KinglerLearnset:
 	db 0 ; no more level-up moves
 
 VoltorbLearnset:
-	db 1, TACKLE
-	db 1, THUNDERSHOCK ; Let's Go move
-	db 6, AGILITY ; Eerie Impulse → event move
-	db 9, SPARK
+	db 01, TACKLE
+	db 01, THUNDERSHOCK ; Let's Go move
+	db 06, AGILITY ; Eerie Impulse → event move
+	db 09, SPARK
 	db 11, ROLLOUT
 	db 13, SCREECH
 	db 16, THUNDER_WAVE ; Charge Beam → TM move
@@ -1768,10 +1761,10 @@ VoltorbLearnset:
 	db 0 ; no more level-up moves
 
 ElectrodeLearnset:
-	db 1, TACKLE
-	db 1, THUNDERSHOCK ; Let's Go move
-	db 6, AGILITY ; Eerie Impulse → event move
-	db 9, SPARK
+	db 01, TACKLE
+	db 01, THUNDERSHOCK ; Let's Go move
+	db 06, AGILITY ; Eerie Impulse → event move
+	db 09, SPARK
 	db 11, ROLLOUT
 	db 13, SCREECH
 	db 16, THUNDER_WAVE ; Charge Beam → TM move
@@ -1787,9 +1780,9 @@ ElectrodeLearnset:
 	db 0 ; no more level-up moves
 
 ExeggcuteLearnset:
-	db 1, TACKLE ; Barrage → new move
-	db 1, HYPNOSIS
-	db 7, REFLECT
+	db 01, TACKLE ; Barrage → new move
+	db 01, HYPNOSIS
+	db 07, REFLECT
 	db 11, LEECH_SEED
 	db 14, CONFUSION
 	db 17, RAGE ; Bullet Seed → RBY TM move
@@ -1805,10 +1798,10 @@ ExeggcuteLearnset:
 	db 0 ; no more level-up moves
 
 ExeggutorLearnset:
-	db 1, TACKLE ; Barrage → new move
-	db 1, HYPNOSIS
-	db 1, CONFUSION
-	db 1, STOMP ; evolution move
+	db 01, TACKLE ; Barrage → new move
+	db 01, HYPNOSIS
+	db 01, CONFUSION
+	db 01, STOMP ; evolution move
 	db 17, LOW_KICK ; Psyshock → HGSS tutor move
 	db 27, ZEN_HEADBUTT ; Egg Bomb → tutor move
 	db 37, POWER_WHIP ; Wood Hammer → new move
@@ -1816,8 +1809,8 @@ ExeggutorLearnset:
 	db 0 ; no more level-up moves
 
 CuboneLearnset:
-	db 1, GROWL
-	db 3, TACKLE ; Tail Whip → new move
+	db 01, GROWL
+	db 03, TACKLE ; Tail Whip → new move
 	db 11, HEADBUTT
 	db 13, LEER
 	db 17, FOCUS_ENERGY
@@ -1831,8 +1824,8 @@ CuboneLearnset:
 	db 0 ; no more level-up moves
 
 MarowakLearnset:
-	db 1, GROWL
-	db 3, TACKLE ; Tail Whip → new move
+	db 01, GROWL
+	db 03, TACKLE ; Tail Whip → new move
 	db 11, HEADBUTT
 	db 13, LEER
 	db 17, FOCUS_ENERGY
@@ -1848,14 +1841,14 @@ MarowakLearnset:
 	db 0 ; no more level-up moves
 
 TyrogueLearnset:
-	db 1, TACKLE
+	db 01, TACKLE
 	db 0 ; no more level-up moves
 
 HitmonleeLearnset:
-	db 1, DOUBLE_KICK ; evolution move
-	db 1, BULK_UP ; Revenge → TM move
-	db 5, AGILITY ; Meditate → new move
-	db 9, PURSUIT ; Rolling Kick → egg move
+	db 01, DOUBLE_KICK ; evolution move
+	db 01, BULK_UP ; Revenge → TM move
+	db 05, AGILITY ; Meditate → new move
+	db 09, PURSUIT ; Rolling Kick → egg move
 	db 13, LOW_KICK ; Jump Kick → HGSS tutor move
 	db 17, STOMP ; Brick Break → new move
 	db 21, ROCK_SMASH ; Focus Energy → "Brick Break"
@@ -1870,9 +1863,9 @@ HitmonleeLearnset:
 	db 0 ; no more level-up moves
 
 HitmonchanLearnset:
-	db 1, DIZZY_PUNCH ; Comet Punch → Dizzy Punch ; evolution move
-	db 1, BULK_UP ; Revenge → TM move
-	db 6, AGILITY
+	db 01, DIZZY_PUNCH ; Comet Punch → Dizzy Punch ; evolution move
+	db 01, BULK_UP ; Revenge → TM move
+	db 06, AGILITY
 	db 11, PURSUIT
 	db 13, MACH_PUNCH
 	db 17, BULLET_PUNCH
@@ -1890,9 +1883,9 @@ HitmonchanLearnset:
 	db 0 ; no more level-up moves
 
 HitmontopLearnset:
-	db 1, LOW_KICK ; Rolling Kick → HGSS tutor move ; evolution move
-	db 1, BULK_UP ; Revenge → TM move
-	db 6, FOCUS_ENERGY
+	db 01, LOW_KICK ; Rolling Kick → HGSS tutor move ; evolution move
+	db 01, BULK_UP ; Revenge → TM move
+	db 06, FOCUS_ENERGY
 	db 10, PURSUIT
 	db 15, QUICK_ATTACK
 	db 19, RAPID_SPIN
@@ -1907,9 +1900,9 @@ HitmontopLearnset:
 	db 0 ; no more level-up moves
 
 LickitungLearnset:
-	db 1, LICK
-	db 5, SUPERSONIC
-	db 9, DEFENSE_CURL
+	db 01, LICK
+	db 05, SUPERSONIC
+	db 09, DEFENSE_CURL
 	db 12, THIEF ; Knock Off → similar move
 	db 15, WRAP
 	db 18, ACID ; Let's Go move
@@ -1926,9 +1919,9 @@ LickitungLearnset:
 	db 0 ; no more level-up moves
 
 KoffingLearnset:
-	db 1, TACKLE
-	db 4, ACID ; Smog → new move
-	db 7, SMOKESCREEN
+	db 01, TACKLE
+	db 04, ACID ; Smog → new move
+	db 07, SMOKESCREEN
 	db 15, WILL_O_WISP ; Clear Smog → TM move
 	db 18, VENOSHOCK ; Sludge → tutor move
 	db 23, RAGE ; Self-Destruct → RMY TM move
@@ -1941,9 +1934,9 @@ KoffingLearnset:
 	db 0 ; no more level-up moves
 
 WeezingLearnset:
-	db 1, TACKLE
-	db 4, ACID ; Smog → new move
-	db 7, SMOKESCREEN
+	db 01, TACKLE
+	db 04, ACID ; Smog → new move
+	db 07, SMOKESCREEN
 	db 15, WILL_O_WISP ; Clear Smog → TM move
 	db 18, VENOSHOCK ; Sludge → tutor move
 	db 23, RAGE ; Self-Destruct → RMY TM move
@@ -1956,11 +1949,11 @@ WeezingLearnset:
 	db 0 ; no more level-up moves
 
 RhyhornLearnset:
-	db 1, TACKLE
-	db 1, SAND_ATTACK
-	db 1, LEER ; Tail Whip → similar move
-	db 3, HORN_ATTACK
-	db 6, FURY_ATTACK ; Fury Attack → similar move
+	db 01, TACKLE
+	db 01, SAND_ATTACK
+	db 01, LEER ; Tail Whip → similar move
+	db 03, HORN_ATTACK
+	db 06, FURY_ATTACK ; Fury Attack → similar move
 	db 13, DRILL_RUN ; Smack Down → egg move
 	db 17, STOMP
 	db 21, BULLDOZE
@@ -1975,12 +1968,12 @@ RhyhornLearnset:
 	db 0 ; no more level-up moves
 
 RhydonLearnset:
-	db 1, OUTRAGE ; Hammer Arm → HGSS tutor move ; evolution move
-	db 1, TACKLE
-	db 1, SAND_ATTACK
-	db 1, LEER ; Tail Whip → similar move
-	db 3, HORN_ATTACK
-	db 6, FURY_ATTACK ; Fury Attack → similar move
+	db 01, OUTRAGE ; Hammer Arm → HGSS tutor move ; evolution move
+	db 01, TACKLE
+	db 01, SAND_ATTACK
+	db 01, LEER ; Tail Whip → similar move
+	db 03, HORN_ATTACK
+	db 06, FURY_ATTACK ; Fury Attack → similar move
 	db 13, DRILL_RUN ; Smack Down → egg move
 	db 17, STOMP
 	db 21, BULLDOZE
@@ -1995,13 +1988,13 @@ RhydonLearnset:
 	db 0 ; no more level-up moves
 
 RhyperiorLearnset:
-	db 1, OUTRAGE ; Hammer Arm → HGSS tutor move ; evolution move
-	db 1, POISON_JAB
-	db 1, TACKLE
-	db 1, SAND_ATTACK
-	db 1, LEER ; Tail Whip → similar move
-	db 3, HORN_ATTACK
-	db 6, FURY_ATTACK ; Fury Attack → similar move
+	db 01, OUTRAGE ; Hammer Arm → HGSS tutor move ; evolution move
+	db 01, POISON_JAB
+	db 01, TACKLE
+	db 01, SAND_ATTACK
+	db 01, LEER ; Tail Whip → similar move
+	db 03, HORN_ATTACK
+	db 06, FURY_ATTACK ; Fury Attack → similar move
 	db 17, STOMP
 	db 21, BULLDOZE
 	db 25, ANCIENTPOWER ; Chip Away → HGSS tutor move
@@ -2016,10 +2009,10 @@ RhyperiorLearnset:
 	db 0 ; no more level-up moves
 
 ChanseyLearnset:
-	db 1, DEFENSE_CURL
-	db 1, TACKLE ; Pound → similar move
-	db 1, GROWL
-	db 5, LEER ; Tail Whip → similar move
+	db 01, DEFENSE_CURL
+	db 01, TACKLE ; Pound → similar move
+	db 01, GROWL
+	db 05, LEER ; Tail Whip → similar move
 	db 16, RECOVER
 	db 20, METRONOME ; Bestow → egg move
 	db 23, MINIMIZE
@@ -2034,9 +2027,9 @@ ChanseyLearnset:
 	db 0 ; no more level-up moves
 
 TangelaLearnset:
-	db 1, WRAP ; Constrict → similar move
-	db 4, SLEEP_POWDER
-	db 7, VINE_WHIP
+	db 01, WRAP ; Constrict → similar move
+	db 04, SLEEP_POWDER
+	db 07, VINE_WHIP
 	db 10, ABSORB
 	db 14, POISONPOWDER
 	db 17, PROTECT ; Bind → TM move
@@ -2054,9 +2047,9 @@ TangelaLearnset:
 	db 0 ; no more level-up moves
 
 KangaskhanLearnset:
-	db 1, DIZZY_PUNCH ; Comet Punch → Dizzy Punch
-	db 1, LEER
-	db 7, LOW_KICK ; Fake Out → HGSS tutor move
+	db 01, DIZZY_PUNCH ; Comet Punch → Dizzy Punch
+	db 01, LEER
+	db 07, LOW_KICK ; Fake Out → HGSS tutor move
 	db 10, BITE ; Tail Whip → Bite
 	db 13, HEADBUTT ; Bite → tutor move
 	db 19, DOUBLE_KICK ; Double Hit → new move
@@ -2071,9 +2064,9 @@ KangaskhanLearnset:
 	db 0 ; no more level-up moves
 
 HorseaLearnset:
-	db 1, WATER_GUN ; Bubble → similar move
-	db 5, SMOKESCREEN
-	db 9, LEER
+	db 01, WATER_GUN ; Bubble → similar move
+	db 05, SMOKESCREEN
+	db 09, LEER
 	db 13, BUBBLE_BEAM ; Water Gun → Bubble Beam
 	db 17, AQUA_JET ; Twister → new move
 	db 21, WATER_PULSE ; Bubble Beam → TM move
@@ -2086,9 +2079,9 @@ HorseaLearnset:
 	db 0 ; no more level-up moves
 
 SeadraLearnset:
-	db 1, WATER_GUN ; Bubble → similar move
-	db 5, SMOKESCREEN
-	db 9, LEER
+	db 01, WATER_GUN ; Bubble → similar move
+	db 05, SMOKESCREEN
+	db 09, LEER
 	db 13, BUBBLE_BEAM ; Water Gun → Bubble Beam
 	db 17, AQUA_JET ; Twister → new move
 	db 21, WATER_PULSE ; Bubble Beam → TM move
@@ -2101,11 +2094,11 @@ SeadraLearnset:
 	db 0 ; no more level-up moves
 
 GoldeenLearnset:
-	db 1, PECK
-	db 1, LEER ; Tail Whip → similar move
-	db 1, WATER_GUN ; Water Sport → new move
-	db 4, SUPERSONIC
-	db 7, QUICK_ATTACK ; Let's Go move
+	db 01, PECK
+	db 01, LEER ; Tail Whip → similar move
+	db 01, WATER_GUN ; Water Sport → new move
+	db 04, SUPERSONIC
+	db 07, QUICK_ATTACK ; Let's Go move
 	db 10, HORN_ATTACK
 	db 13, FLAIL ; Flail → similar move
 	db 16, WATER_PULSE
@@ -2119,11 +2112,11 @@ GoldeenLearnset:
 	db 0 ; no more level-up moves
 
 SeakingLearnset:
-	db 1, PECK
-	db 1, LEER ; Tail Whip → similar move
-	db 1, WATER_GUN ; Water Sport → new move
-	db 4, SUPERSONIC
-	db 7, QUICK_ATTACK ; Let's Go move
+	db 01, PECK
+	db 01, LEER ; Tail Whip → similar move
+	db 01, WATER_GUN ; Water Sport → new move
+	db 04, SUPERSONIC
+	db 07, QUICK_ATTACK ; Let's Go move
 	db 10, HORN_ATTACK
 	db 13, FLAIL ; Flail → similar move
 	db 16, WATER_PULSE
@@ -2137,10 +2130,10 @@ SeakingLearnset:
 	db 0 ; no more level-up moves
 
 StaryuLearnset:
-	db 1, TACKLE
-	db 1, DEFENSE_CURL ; Harden → similar move
-	db 4, WATER_GUN
-	db 7, RAPID_SPIN
+	db 01, TACKLE
+	db 01, DEFENSE_CURL ; Harden → similar move
+	db 04, WATER_GUN
+	db 07, RAPID_SPIN
 	db 10, RECOVER
 	db 13, HYPNOSIS ; Psywave → new move
 	db 16, SWIFT
@@ -2158,20 +2151,20 @@ StaryuLearnset:
 	db 0 ; no more level-up moves
 
 StarmieLearnset:
-	db 1, HYDRO_PUMP
-	db 1, WATER_GUN
-	db 1, RAPID_SPIN
-	db 1, RECOVER
-	db 1, SWIFT
+	db 01, HYDRO_PUMP
+	db 01, WATER_GUN
+	db 01, RAPID_SPIN
+	db 01, RECOVER
+	db 01, SWIFT
 	db 40, CONFUSE_RAY
 	db 60, TRI_ATTACK ; RBY TM move
 	db 0 ; no more level-up moves
 
 MrMimeLearnset:
-	db 1, BARRIER
-	db 1, CONFUSION
-	db 4, HYPNOSIS ; Copycat → egg move
-	db 8, CALM_MIND ; Meditate → TM move
+	db 01, BARRIER
+	db 01, CONFUSION
+	db 04, HYPNOSIS ; Copycat → egg move
+	db 08, CALM_MIND ; Meditate → TM move
 	db 13, PROTECT ; Mimic → event move
 	db 15, METRONOME ; Psywave → RBY TM move
 	db 18, ENCORE
@@ -2181,14 +2174,13 @@ MrMimeLearnset:
 	db 29, SUBSTITUTE
 	db 32, CONFUSE_RAY ; Recycle → egg move
 	db 39, PSYCHIC_M
-	db 50, SAFEGUARD
 	db 0 ; no more level-up moves
 
 ScytherLearnset:
-	db 1, QUICK_ATTACK
-	db 1, LEER
-	db 5, FOCUS_ENERGY
-	db 9, PURSUIT
+	db 01, QUICK_ATTACK
+	db 01, LEER
+	db 05, FOCUS_ENERGY
+	db 09, PURSUIT
 	db 17, AGILITY
 	db 21, WING_ATTACK
 	db 25, BUG_BITE ; Fury Cutter → similar move
@@ -2202,13 +2194,13 @@ ScytherLearnset:
 	db 0 ; no more level-up moves
 
 JynxLearnset:
-	db 1, PETAL_DANCE ; event move
-	db 1, TACKLE ; Pound → similar move
-	db 1, LICK
-	db 1, CONFUSION ; Smoochum move
-	db 1, LOVELY_KISS
-	db 5, SING ; Lovely Kiss → Smoochum move
-	db 8, SCREECH ; Lovely Kiss → Let's Go move
+	db 01, PETAL_DANCE ; event move
+	db 01, TACKLE ; Pound → similar move
+	db 01, LICK
+	db 01, CONFUSION ; Smoochum move
+	db 01, LOVELY_KISS
+	db 05, SING ; Lovely Kiss → Smoochum move
+	db 08, SCREECH ; Lovely Kiss → Let's Go move
 	db 11, ICY_WIND ; Powder Snow → TM move
 	db 18, ICE_PUNCH
 	db 21, METRONOME ; Heart Stamp → RBY TM move
@@ -2220,10 +2212,10 @@ JynxLearnset:
 	db 0 ; no more level-up moves
 
 ElekidLearnset:
-	db 1, QUICK_ATTACK
-	db 1, LEER
-	db 5, THUNDERSHOCK
-	db 8, LOW_KICK
+	db 01, QUICK_ATTACK
+	db 01, LEER
+	db 05, THUNDERSHOCK
+	db 08, LOW_KICK
 	db 12, SWIFT
 	db 15, BULK_UP ; Shock Wave → TM move
 	db 19, THUNDER_WAVE
@@ -2237,10 +2229,10 @@ ElekidLearnset:
 	db 0 ; no more level-up moves
 
 ElectabuzzLearnset:
-	db 1, QUICK_ATTACK
-	db 1, LEER
-	db 5, THUNDERSHOCK
-	db 8, LOW_KICK
+	db 01, QUICK_ATTACK
+	db 01, LEER
+	db 05, THUNDERSHOCK
+	db 08, LOW_KICK
 	db 12, SWIFT
 	db 15, BULK_UP ; Shock Wave → TM move
 	db 19, THUNDER_WAVE
@@ -2254,10 +2246,10 @@ ElectabuzzLearnset:
 	db 0 ; no more level-up moves
 
 MagbyLearnset:
-	db 1, HAZE ; Smog → new move
-	db 1, LEER
-	db 5, EMBER
-	db 8, SMOKESCREEN
+	db 01, HAZE ; Smog → new move
+	db 01, LEER
+	db 05, EMBER
+	db 08, SMOKESCREEN
 	db 12, FEINT_ATTACK
 	db 15, FIRE_SPIN
 	db 19, LOW_KICK ; Clear Smog → HGSS tutor move
@@ -2271,10 +2263,10 @@ MagbyLearnset:
 	db 0 ; no more level-up moves
 
 MagmarLearnset:
-	db 1, HAZE ; Smog → new move
-	db 1, LEER
-	db 5, EMBER
-	db 8, SMOKESCREEN
+	db 01, HAZE ; Smog → new move
+	db 01, LEER
+	db 05, EMBER
+	db 08, SMOKESCREEN
 	db 12, FEINT_ATTACK
 	db 15, FIRE_SPIN
 	db 19, LOW_KICK ; Clear Smog → HGSS tutor move
@@ -2288,10 +2280,10 @@ MagmarLearnset:
 	db 0 ; no more level-up moves
 
 PinsirLearnset:
-	db 1, FURY_ATTACK ; Vice Grip → new move
-	db 1, FOCUS_ENERGY
-	db 4, WRAP ; Bind → similar move
-	db 8, SEISMIC_TOSS
+	db 01, FURY_ATTACK ; Vice Grip → new move
+	db 01, FOCUS_ENERGY
+	db 04, WRAP ; Bind → similar move
+	db 08, SEISMIC_TOSS
 	db 12, DEFENSE_CURL ; Harden → similar move
 	db 16, RAGE ; Revenge → RBY TM move
 	db 20, ROCK_THROW ; Brick Break → event move
@@ -2306,10 +2298,10 @@ PinsirLearnset:
 	db 0 ; no more level-up moves
 
 TaurosLearnset:
-	db 1, TACKLE
-	db 3, LEER ; Tail Whip → similar move
-	db 5, RAGE
-	db 8, HORN_ATTACK
+	db 01, TACKLE
+	db 03, LEER ; Tail Whip → similar move
+	db 05, RAGE
+	db 08, HORN_ATTACK
 	db 15, PURSUIT
 	db 19, REST
 	db 24, QUICK_ATTACK ; Payback → event move
@@ -2324,10 +2316,10 @@ TaurosLearnset:
 	db 0 ; no more level-up moves
 
 MiltankLearnset:
-	db 1, TACKLE
-	db 3, GROWL
-	db 5, DEFENSE_CURL
-	db 8, STOMP
+	db 01, TACKLE
+	db 03, GROWL
+	db 05, DEFENSE_CURL
+	db 08, STOMP
 	db 15, DIZZY_PUNCH ; Bide → egg move
 	db 19, ROLLOUT
 	db 24, BODY_SLAM
@@ -2339,16 +2331,16 @@ MiltankLearnset:
 	db 0 ; no more level-up moves
 
 MagikarpLearnset:
-	db 1, SPLASH
+	db 01, SPLASH
 	db 15, TACKLE
 	db 0 ; no more level-up moves
 
 GyaradosLearnset:
-	db 1, WATERFALL ; HM move
-	db 1, BITE ; evolution move
-	db 1, THRASH
-	db 1, DRAGONBREATH
-	db 1, WRAP ; Bind → similar move
+	db 01, WATERFALL ; HM move
+	db 01, BITE ; evolution move
+	db 01, THRASH
+	db 01, DRAGONBREATH
+	db 01, WRAP ; Bind → similar move
 	db 21, LEER
 	db 24, GUST ; Twister → new move
 	db 30, AQUA_TAIL
@@ -2363,34 +2355,33 @@ GyaradosLearnset:
 	db 0 ; no more level-up moves
 
 LaprasLearnset:
-	db 1, ANCIENTPOWER ; HGSS tutor move
-	db 1, DRAGONBREATH ; GSC TM move
-	db 1, SING
-	db 1, GROWL
-	db 1, WATER_GUN
-	db 4, BITE ; Mist → event move
-	db 7, CONFUSE_RAY
+	db 01, ANCIENTPOWER ; HGSS tutor move
+	db 01, DRAGONBREATH ; GSC TM move
+	db 01, SING
+	db 01, GROWL
+	db 01, WATER_GUN
+	db 04, BITE ; Mist → event move
+	db 07, CONFUSE_RAY
 	db 10, ICE_SHARD
 	db 14, WATER_PULSE
 	db 18, BODY_SLAM
 	db 22, RAIN_DANCE
 	db 32, ICE_BEAM
-	db 43, SAFEGUARD
 	db 47, HYDRO_PUMP
 	db 50, OUTRAGE ; Sheer Cold → HGSS tutor move
 	db 54, MEGAHORN ; Let's Go TM move
 	db 0 ; no more level-up moves
 
 DittoLearnset:
-	db 1, TRANSFORM
+	db 01, TRANSFORM
 	db 0 ; no more level-up moves
 
 EeveeLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 1, LEER ; Tail Whip → similar move
-	db 5, SAND_ATTACK
-	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
+	db 01, GROWL
+	db 01, TACKLE
+	db 01, LEER ; Tail Whip → similar move
+	db 05, SAND_ATTACK
+	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 10, SWIFT
 	db 13, QUICK_ATTACK
 	db 17, BITE
@@ -2405,12 +2396,12 @@ EeveeLearnset:
 	db 0 ; no more level-up moves
 
 VaporeonLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 1, LEER ; Tail Whip → similar move
-	db 1, WATER_GUN ; evolution move
-	db 5, SAND_ATTACK
-	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
+	db 01, GROWL
+	db 01, TACKLE
+	db 01, LEER ; Tail Whip → similar move
+	db 01, WATER_GUN ; evolution move
+	db 05, SAND_ATTACK
+	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, WATER_PULSE
 	db 20, AURORA_BEAM
@@ -2423,12 +2414,12 @@ VaporeonLearnset:
 	db 0 ; no more level-up moves
 
 JolteonLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 1, LEER ; Tail Whip → similar move
-	db 1, THUNDERSHOCK ; evolution move
-	db 5, SAND_ATTACK
-	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
+	db 01, GROWL
+	db 01, TACKLE
+	db 01, LEER ; Tail Whip → similar move
+	db 01, THUNDERSHOCK ; evolution move
+	db 05, SAND_ATTACK
+	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, DOUBLE_KICK
 	db 20, LIGHT_SCREEN ; Thunder Fang → TM move
@@ -2441,12 +2432,12 @@ JolteonLearnset:
 	db 0 ; no more level-up moves
 
 FlareonLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 1, LEER ; Tail Whip → similar move
-	db 1, EMBER ; evolution move
-	db 5, SAND_ATTACK
-	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
+	db 01, GROWL
+	db 01, TACKLE
+	db 01, LEER ; Tail Whip → similar move
+	db 01, EMBER ; evolution move
+	db 05, SAND_ATTACK
+	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, BITE
 	db 20, FLAME_WHEEL ; Fire Fang → new move
@@ -2458,12 +2449,12 @@ FlareonLearnset:
 	db 0 ; no more level-up moves
 
 EspeonLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 1, LEER ; Tail Whip → similar move
-	db 1, CONFUSION ; evolution move
-	db 5, SAND_ATTACK
-	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
+	db 01, GROWL
+	db 01, TACKLE
+	db 01, LEER ; Tail Whip → similar move
+	db 01, CONFUSION ; evolution move
+	db 05, SAND_ATTACK
+	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, SWIFT
 	db 20, PSYBEAM
@@ -2475,12 +2466,12 @@ EspeonLearnset:
 	db 0 ; no more level-up moves
 
 UmbreonLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 1, LEER ; Tail Whip → similar move
-	db 1, PURSUIT ; evolution move
-	db 5, SAND_ATTACK
-	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
+	db 01, GROWL
+	db 01, TACKLE
+	db 01, LEER ; Tail Whip → similar move
+	db 01, PURSUIT ; evolution move
+	db 05, SAND_ATTACK
+	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, CONFUSE_RAY
 	db 20, FEINT_ATTACK
@@ -2492,12 +2483,12 @@ UmbreonLearnset:
 	db 0 ; no more level-up moves
 
 LeafeonLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 1, LEER ; Tail Whip → similar move
-	db 1, RAZOR_LEAF ; evolution move
-	db 5, SAND_ATTACK
-	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
+	db 01, GROWL
+	db 01, TACKLE
+	db 01, LEER ; Tail Whip → similar move
+	db 01, RAZOR_LEAF ; evolution move
+	db 05, SAND_ATTACK
+	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, BITE ; Grass Whistle → new move
 	db 20, ENERGY_BALL ; Magical Leaf → TM move
@@ -2509,12 +2500,12 @@ LeafeonLearnset:
 	db 0 ; no more level-up moves
 
 GlaceonLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 1, LEER ; Tail Whip → similar move
-	db 1, ICY_WIND ; evolution move
-	db 5, SAND_ATTACK
-	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
+	db 01, GROWL
+	db 01, TACKLE
+	db 01, LEER ; Tail Whip → similar move
+	db 01, ICY_WIND ; evolution move
+	db 05, SAND_ATTACK
+	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, BITE
 	db 20, ICE_SHARD ; Ice Fang → Ice Shard
@@ -2527,12 +2518,12 @@ GlaceonLearnset:
 	db 0 ; no more level-up moves
 
 SylveonLearnset:
-	db 1, GROWL
-	db 1, TACKLE
-	db 1, LEER ; Tail Whip → similar move
-	db 1, DISARM_VOICE ; evolution move
-	db 5, SAND_ATTACK
-	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
+	db 01, GROWL
+	db 01, TACKLE
+	db 01, LEER ; Tail Whip → similar move
+	db 01, DISARM_VOICE ; evolution move
+	db 05, SAND_ATTACK
+	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, SWIFT
 	db 25, SKILL_SWAP
@@ -2544,10 +2535,10 @@ SylveonLearnset:
 	db 0 ; no more level-up moves
 
 PorygonLearnset:
-	db 1, TACKLE
-	db 1, CONVERSION
-	db 1, TELEPORT ; Sharpen → RBY TM move
-	db 7, PSYBEAM
+	db 01, TACKLE
+	db 01, CONVERSION
+	db 01, TELEPORT ; Sharpen → RBY TM move
+	db 07, PSYBEAM
 	db 12, AGILITY
 	db 18, RECOVER
 	db 23, GROWTH ; Magnet Rise → new move
@@ -2561,9 +2552,9 @@ PorygonLearnset:
 	db 0 ; no more level-up moves
 
 OmanyteLearnset:
-	db 1, WRAP ; Constrict → similar move
-	db 1, DEFENSE_CURL ; Withdraw → similar move
-	db 7, BITE
+	db 01, WRAP ; Constrict → similar move
+	db 01, DEFENSE_CURL ; Withdraw → similar move
+	db 07, BITE
 	db 10, WATER_GUN
 	db 16, ROCK_THROW ; Rollout → event move
 	db 19, LEER
@@ -2578,10 +2569,10 @@ OmanyteLearnset:
 	db 0 ; no more level-up moves
 
 OmastarLearnset:
-	db 1, WRAP ; Constrict → similar move
-	db 1, DEFENSE_CURL ; Withdraw → similar move
-	db 1, ICICLE_SPEAR ; Spike Cannon → new move ; evolution move
-	db 7, BITE
+	db 01, WRAP ; Constrict → similar move
+	db 01, DEFENSE_CURL ; Withdraw → similar move
+	db 01, ICICLE_SPEAR ; Spike Cannon → new move ; evolution move
+	db 07, BITE
 	db 10, WATER_GUN
 	db 16, ROCK_THROW ; Rollout → event move
 	db 19, LEER
@@ -2596,9 +2587,9 @@ OmastarLearnset:
 	db 0 ; no more level-up moves
 
 KabutoLearnset:
-	db 1, SCRATCH
-	db 1, HARDEN
-	db 6, ABSORB
+	db 01, SCRATCH
+	db 01, HARDEN
+	db 06, ABSORB
 	db 11, LEER
 	db 16, ROCK_THROW ; Mud Shot → Rock Throw (event move)
 	db 21, LEER ; Sand Attack → Leer
@@ -2610,10 +2601,10 @@ KabutoLearnset:
 	db 0 ; no more level-up moves
 
 KabutopsLearnset:
-	db 1, SCRATCH
-	db 1, HARDEN
-	db 1, SLASH ; evolution move
-	db 6, ABSORB
+	db 01, SCRATCH
+	db 01, HARDEN
+	db 01, SLASH ; evolution move
+	db 06, ABSORB
 	db 11, LEER
 	db 16, ROCK_THROW ; Mud Shot → Rock Throw (event move)
 	db 21, LEER ; Sand Attack → Leer
@@ -2626,11 +2617,11 @@ KabutopsLearnset:
 	db 0 ; no more level-up moves
 
 AerodactylLearnset:
-	db 1, DRAGONBREATH ; GSC TM move
-	db 1, WING_ATTACK
-	db 1, SUPERSONIC
-	db 1, BITE
-	db 9, ROAR
+	db 01, DRAGONBREATH ; GSC TM move
+	db 01, WING_ATTACK
+	db 01, SUPERSONIC
+	db 01, BITE
+	db 09, ROAR
 	db 13, ROCK_THROW ; Let's Go move
 	db 17, AGILITY
 	db 25, ANCIENTPOWER
@@ -2644,10 +2635,10 @@ AerodactylLearnset:
 	db 0 ; no more level-up moves
 
 MunchlaxLearnset:
-	db 1, METRONOME
-	db 1, TACKLE
-	db 4, DEFENSE_CURL
-	db 9, AMNESIA
+	db 01, METRONOME
+	db 01, TACKLE
+	db 04, DEFENSE_CURL
+	db 09, AMNESIA
 	db 12, LICK
 	db 17, RAGE ; Chip Away → RBY TM move
 	db 20, TAKE_DOWN ; Screech → RBY TM move
@@ -2659,9 +2650,9 @@ MunchlaxLearnset:
 	db 0 ; no more level-up moves
 
 SnorlaxLearnset:
-	db 1, TACKLE
-	db 4, DEFENSE_CURL
-	db 9, AMNESIA
+	db 01, TACKLE
+	db 04, DEFENSE_CURL
+	db 09, AMNESIA
 	db 12, LICK
 	db 17, RAGE ; Chip Away → RBY TM move
 	db 20, TAKE_DOWN ; Yawn → RBY TM move
@@ -2676,11 +2667,10 @@ SnorlaxLearnset:
 	db 0 ; no more level-up moves
 
 ArticunoLearnset:
-	db 1, GUST
-	db 1, ICY_WIND ; Powder Snow → similar move
-	db 1, LEER ; Let's Go move
-	db 8, ICE_SHARD ; Mist → Ice Shard
-	db 15, SAFEGUARD ; Ice Shard → new move
+	db 01, GUST
+	db 01, ICY_WIND ; Powder Snow → similar move
+	db 01, LEER ; Let's Go move
+	db 08, ICE_SHARD ; Mist → Ice Shard
 	db 29, ANCIENTPOWER
 	db 36, AGILITY
 	db 43, ICE_BEAM
@@ -2694,10 +2684,10 @@ ArticunoLearnset:
 	db 0 ; no more level-up moves
 
 ZapdosLearnset:
-	db 1, PECK
-	db 1, THUNDERSHOCK
-	db 1, LEER ; Let's Go move
-	db 8, THUNDER_WAVE
+	db 01, PECK
+	db 01, THUNDERSHOCK
+	db 01, LEER ; Let's Go move
+	db 08, THUNDER_WAVE
 	db 15, PROTECT ; Detect → similar move
 	db 22, EXTRASENSORY ; Pluck → event
 	db 29, ANCIENTPOWER
@@ -2714,14 +2704,13 @@ ZapdosLearnset:
 	db 0 ; no more level-up moves
 
 MoltresLearnset:
-	db 1, WING_ATTACK
-	db 1, EMBER
-	db 1, LEER ; Let's Go move
-	db 8, FIRE_SPIN
-	db 15, SAFEGUARD ; Agility → Safeguard
+	db 01, WING_ATTACK
+	db 01, EMBER
+	db 01, LEER ; Let's Go move
+	db 08, FIRE_SPIN
 	db 29, ANCIENTPOWER
-	db 36, AGILITY ; Flamethrower → Agility
-	db 43, FLAMETHROWER ; Safeguard → Flamethrower
+	db 36, AGILITY
+	db 43, FLAMETHROWER
 	db 50, AIR_SLASH
 	db 57, SUNNY_DAY
 	db 64, WILL_O_WISP ; Heat Wave → event move
@@ -2733,55 +2722,52 @@ MoltresLearnset:
 	db 0 ; no more level-up moves
 
 DratiniLearnset:
-	db 1, WRAP
-	db 1, LEER
-	db 5, THUNDER_WAVE
+	db 01, WRAP
+	db 01, LEER
+	db 05, THUNDER_WAVE
 	db 11, AQUA_JET ; Twister → egg move
 	db 21, HEADBUTT ; Slam → tutor move
 	db 25, AGILITY
 	db 31, DRAGONBREATH ; Dragon Tail → GSC TM move
 	db 35, AQUA_TAIL
 	db 41, BARRIER ; Dragon Rush → event move
-	db 45, SAFEGUARD
 	db 51, DRAGON_DANCE
 	db 55, OUTRAGE
 	db 61, HYPER_BEAM
 	db 0 ; no more level-up moves
 
 DragonairLearnset:
-	db 1, WRAP
-	db 1, LEER
-	db 5, THUNDER_WAVE
+	db 01, WRAP
+	db 01, LEER
+	db 05, THUNDER_WAVE
 	db 11, AQUA_JET ; Twister → egg move
 	db 21, HEADBUTT ; Slam → tutor move
 	db 25, AGILITY
 	db 33, DRAGONBREATH ; Dragon Tail → GSC TM move
 	db 39, AQUA_TAIL
 	db 47, BARRIER ; Dragon Rush → event move
-	db 53, SAFEGUARD
 	db 61, DRAGON_DANCE
 	db 67, OUTRAGE
 	db 75, HYPER_BEAM
 	db 0 ; no more level-up moves
 
 DragoniteLearnset:
-	db 1, HURRICANE
-	db 1, CLOSE_COMBAT
-	db 1, FIRE_PUNCH
-	db 1, THUNDERPUNCH
-	db 1, ROOST
-	db 1, WRAP
-	db 1, LEER
-	db 1, THUNDER_WAVE
-	db 1, WING_ATTACK ; evolution move
-	db 5, THUNDER_WAVE
+	db 01, HURRICANE
+	db 01, CLOSE_COMBAT
+	db 01, FIRE_PUNCH
+	db 01, THUNDERPUNCH
+	db 01, ROOST
+	db 01, WRAP
+	db 01, LEER
+	db 01, THUNDER_WAVE
+	db 01, WING_ATTACK ; evolution move
+	db 05, THUNDER_WAVE
 	db 11, AQUA_JET ; Twister → egg move
 	db 21, HEADBUTT ; Slam → tutor move
 	db 25, AGILITY
 	db 33, DRAGONBREATH ; Dragon Tail → GSC TM move
 	db 39, AQUA_TAIL
 	db 47, BARRIER ; Dragon Rush → event move
-	db 53, SAFEGUARD
 	db 61, DRAGON_DANCE
 	db 67, OUTRAGE
 	db 75, HYPER_BEAM
@@ -2789,12 +2775,11 @@ DragoniteLearnset:
 	db 0 ; no more level-up moves
 
 MewtwoLearnset:
-	db 1, TELEPORT ; Psywave → RBY TM move
-	db 1, AGILITY ; Sw/Sh move
-	db 1, FOCUS_ENERGY ; Laser Focus → similar move
-	db 1, CONFUSION
-	db 1, DISABLE
-	db 10, SAFEGUARD
+	db 01, TELEPORT ; Psywave → RBY TM move
+	db 01, AGILITY ; Sw/Sh move
+	db 01, FOCUS_ENERGY ; Laser Focus → similar move
+	db 01, CONFUSION
+	db 01, DISABLE
 	db 19, SWIFT
 	db 37, BARRIER ; Psych Up → Barrier
 	db 46, RECOVER
@@ -2805,32 +2790,30 @@ MewtwoLearnset:
 	db 0 ; no more level-up moves
 
 MewLearnset:
-	db 1, TELEPORT ; event move
-	db 1, TACKLE ; Pound → similar move
-	db 1, TRANSFORM
-	db 1, CONFUSION ; Let's Go move
+	db 01, TELEPORT ; event move
+	db 01, TACKLE ; Pound → similar move
+	db 01, TRANSFORM
+	db 01, CONFUSION ; Let's Go move
 	db 10, HEADBUTT ; Mega Punch → TM move
 	db 20, METRONOME
 	db 30, PSYCHIC_M
 	db 40, BARRIER
 	db 50, ANCIENTPOWER
 	db 60, BATON_PASS ; Amnesia → Baton Pass
-	db 70, SAFEGUARD ; Me First → Mewtwo move
 	db 80, AMNESIA ; Baton Pass → Amnesia
 	db 90, NASTY_PLOT
 	db 0 ; no more level-up moves
 
 TogepiLearnset:
-	db 1, GROWL
-	db 1, CHARM
-	db 5, METRONOME
+	db 01, GROWL
+	db 01, CHARM
+	db 05, METRONOME
 	db 13, SING ; Yawn → similar move
 	db 17, ENCORE
 	db 21, DIZZY_PUNCH ; Follow Me → new move
 	db 25, HEAL_BELL ; Bestow → HGSS tutor move
 	db 29, RECOVER ; Wish → new move
 	db 33, ANCIENTPOWER
-	db 37, SAFEGUARD
 	db 41, BATON_PASS
 	db 45, DOUBLE_EDGE
 	db 49, EXTRASENSORY ; Last Resort → egg move
@@ -2838,17 +2821,16 @@ TogepiLearnset:
 	db 0 ; no more level-up moves
 
 TogeticLearnset:
-	db 1, GROWL
-	db 1, CHARM
-	db 1, DISARM_VOICE ; evolution move
-	db 5, METRONOME
+	db 01, GROWL
+	db 01, CHARM
+	db 01, DISARM_VOICE ; evolution move
+	db 05, METRONOME
 	db 13, SING ; Yawn → similar move
 	db 17, ENCORE
 	db 21, DIZZY_PUNCH ; Follow Me → new move
 	db 25, HEAL_BELL ; Bestow → HGSS tutor move
 	db 29, RECOVER ; Wish → new move
 	db 33, ANCIENTPOWER
-	db 37, SAFEGUARD
 	db 41, BATON_PASS
 	db 45, DOUBLE_EDGE
 	db 49, EXTRASENSORY ; Last Resort → egg move

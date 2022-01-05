@@ -7,27 +7,15 @@ else
 	;   hp  atk  def  spd  sat  sdf
 endc
 
-if DEF(FAITHFUL)
 	db BUG, FLYING
-else
-	db BUG, PSYCHIC
-endc
 	db 45 ; catch rate
-if DEF(FAITHFUL)
 	db 160 ; base exp
-else
-	db 185 ; base exp
-endc
 	db SILVERPOWDER ; item 1
 	db SHED_SHELL ; item 2
 	dn FEMALE_50, 2 ; gender, step cycles to hatch
 	dn 7, 7 ; frontpic dimensions
 	db COMPOUND_EYES ; ability 1
-if DEF(FAITHFUL)
 	db COMPOUND_EYES ; ability 2
-else
-	db LEVITATE ; ability 2
-endc
 	db TINTED_LENS ; hidden ability
 	db MEDIUM_FAST ; growth rate
 	dn INSECT, INSECT ; egg groups
@@ -37,5 +25,5 @@ endc
 	;         hp, atk, def, spd, sat, sdf
 
 	; tmhm
-	tmhm CURSE, TOXIC, SUNNY_DAY, HYPER_BEAM, RAIN_DANCE, SAFEGUARD, SOLAR_BEAM, PSYCHIC, SHADOW_BALL, ROOST, DOUBLE_TEAM, REFLECT, SWIFT, AERIAL_ACE, SUBSTITUTE, FACADE, REST, ENERGY_BALL, GIGA_IMPACT, U_TURN, FLASH, DOUBLE_EDGE, DREAM_EATER, SKILL_SWAP,
+	tmhm TOXIC
 	; end

@@ -184,11 +184,11 @@
 	const POISON_FANG  ; $d5
 	const METEOR_MASH  ; $d6
 	const WEATHER_BALL ; $ed
-	const SAFEGUARD    ; $db ; SIGNAL_BEAM
+	const SIGNAL_BEAM  ; $db
 	const AERIAL_ACE   ; $16
 	const ICICLE_SPEAR ; $83
 	const BULK_UP      ; $9f
-	const SPARK        ; $d1 ; VOLT TACKLE
+	const SPARK        ; $d1 ; VOLT_TACKLE
 	const CALM_MIND    ; $36
 	const EXTRASENSORY ; $95 ; LEAF_BLADE
 	const DRAGON_DANCE ; $97

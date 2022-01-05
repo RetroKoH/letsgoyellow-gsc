@@ -363,7 +363,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_SANDSTORM,         AI_Smart_Sandstorm
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
 	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
-	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
+;	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
 	dbw EFFECT_BATON_PASS,        AI_Smart_BatonPass
 	dbw EFFECT_PURSUIT,           AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,        AI_Smart_RapidSpin
@@ -1684,7 +1684,6 @@ AI_Smart_Swagger:
 AI_Smart_FakeOut:
 ; 80% chance to encourage this move during the first turn of player's Pokemon.
 ; 80% chance to discourage this move otherwise.
-
 	ld a, [wPlayerTurnsTaken]
 	and a
 	jr z, .first_turn
@@ -1701,18 +1700,6 @@ AI_Smart_FakeOut:
 	dec [hl]
 	ret
 ; 3903a
-
-
-AI_Smart_Safeguard: ; 3903a
-; 80% chance to discourage this move if player's HP is below 50%.
-
-	call AICheckPlayerHalfHP
-	ret c
-	call AI_80_20
-	ret c
-	inc [hl]
-	ret
-; 39044
 
 
 AI_Smart_Earthquake: ; 39044

@@ -29,7 +29,7 @@ AI_Redundant: ; 2c41a
 	dbw EFFECT_SPIKES,        .Spikes
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
-	dbw EFFECT_SAFEGUARD,     .Safeguard
+;	dbw EFFECT_SAFEGUARD,     .Safeguard
 	dbw EFFECT_RAIN_DANCE,    .RainDance
 	dbw EFFECT_SUNNY_DAY,     .SunnyDay
 	dbw EFFECT_TELEPORT,      .Teleport

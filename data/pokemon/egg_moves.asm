@@ -13,7 +13,6 @@ BulbasaurEggMoves:
 	db CHARM
 	db PETAL_DANCE
 	db LIGHT_SCREEN
-	db SAFEGUARD
 	db POWER_WHIP
 	db $ff
 
@@ -70,7 +69,6 @@ EkansEggMoves:
 SandshrewEggMoves:
 	db METAL_CLAW
 	db RAPID_SPIN
-	db SAFEGUARD
 	db COUNTER
 	db NIGHT_SLASH
 	db $ff
@@ -201,7 +199,6 @@ GrowlitheEggMoves:
 	db CRUNCH
 	db FLARE_BLITZ
 	db BODY_SLAM
-	db SAFEGUARD
 	db CLOSE_COMBAT
 	db $ff
 
@@ -245,7 +242,6 @@ TentacoolEggMoves:
 	db HAZE
 	db MIRROR_COAT
 	db RAPID_SPIN
-	db SAFEGUARD
 	db KNOCK_OFF
 	db $ff
 
@@ -268,7 +264,6 @@ PonytaEggMoves:
 SlowpokeEggMoves:
 	db BELLY_DRUM
 	db STOMP
-	db SAFEGUARD
 	db ZEN_HEADBUTT
 	db $ff
 
@@ -394,7 +389,6 @@ KangaskhanEggMoves:
 	db DISABLE
 	db FOCUS_ENERGY
 	db STOMP
-	db SAFEGUARD
 	db $ff
 
 HorseaEggMoves:
@@ -422,7 +416,6 @@ ScytherEggMoves:
 	db BUG_BUZZ
 	db FLAIL
 	db COUNTER
-	db SAFEGUARD
 	db LIGHT_SCREEN
 	db NIGHT_SLASH
 	db $ff

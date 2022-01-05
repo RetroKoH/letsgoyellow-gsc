@@ -183,7 +183,7 @@ MoveDescriptions::
 	dw PoisonFangDescription
 	dw MeteorMashDescription
 	dw WeatherBallDescription
-	dw SafeguardDescription
+	dw SignalBeamDescription
 	dw AerialAceDescription
 	dw IcicleSpearDescription
 	dw BulkUpDescription
@@ -379,6 +379,7 @@ BlizzardDescription:
 
 PsybeamDescription:
 ConfusionDescription:
+SignalBeamDescription:
 DizzyPunchDescription:
 WaterPulseDescription:
 HurricaneDescription:
@@ -594,10 +595,6 @@ ScaryFaceDescription:
 HazeDescription:
 	db   "Eliminates all"
 	next "stat changes.@"
-
-SafeguardDescription:
-	db   "Prevents all"
-	next "status problems.@"
 
 ReflectDescription:
 	db   "Raises Defense"

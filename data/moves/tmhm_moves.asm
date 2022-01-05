@@ -18,7 +18,7 @@ TMHMMoves:
 	db PROTECT      ; TM17 (Goldenrod Dept. Store)
 	db RAIN_DANCE   ; TM18 (Celadon Dept. Store)
 	db LEAF_STORM   ; TM19 (Erika)
-	db SAFEGUARD    ; TM20 (Celadon Dept. Store)
+	db SIGNAL_BEAM  ; TM20 (Celadon Dept. Store)
 	db BULLDOZE     ; TM21 (Route 39)
 	db SOLAR_BEAM   ; TM22 (Goldenrod Dept. Store)
 	db IRON_TAIL    ; TM23 (Jasmine)

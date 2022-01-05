@@ -17,7 +17,7 @@ TeachShuckiePoisonJab:
 
 .Moveset:
 	db POISON_JAB
-	db SAFEGUARD
+	db PROTECT
 	db REST
 	db ROCK_THROW
 	db 0

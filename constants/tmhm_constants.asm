@@ -42,7 +42,7 @@ ENDM
 	add_tm PROTECT      ; $10
 	add_tm RAIN_DANCE   ; $11
 	add_tm LEAF_STORM   ; $12
-	add_tm SAFEGUARD    ; $13
+	add_tm SIGNAL_BEAM   ; $13
 	add_tm BULLDOZE     ; $14
 	add_tm SOLAR_BEAM   ; $15
 	add_tm IRON_TAIL    ; $16

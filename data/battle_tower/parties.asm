@@ -465,7 +465,7 @@ BattleTowerMons4:
 
 	db GENGAR
 	db SITRUS_BERRY
-	db COUNTER, MIRROR_COAT, SAFEGUARD, HEX
+	db COUNTER, MIRROR_COAT, LICK, HEX
 	db $eb, $fe, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -715,7 +715,7 @@ BattleTowerMons6:
 
 	db GENGAR
 	db SITRUS_BERRY
-	db COUNTER, MIRROR_COAT, HEX, SAFEGUARD
+	db COUNTER, MIRROR_COAT, HEX, LICK
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

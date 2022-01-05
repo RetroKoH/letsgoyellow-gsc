@@ -660,7 +660,6 @@ ClefableLearnset:
 VulpixLearnset:
 	db 1, EMBER
 	db 4, GROWL ; Tail Whip → new move
-	db 7, ASTONISH ; Roar → new move
 	db 9, CHARM ; Baby-Doll Eyes → similar move
 	db 10, QUICK_ATTACK
 	db 12, CONFUSE_RAY
@@ -719,7 +718,6 @@ WigglytuffLearnset:
 ZubatLearnset:
 	db 1, ABSORB
 	db 5, SUPERSONIC
-	db 7, ASTONISH
 	db 11, BITE
 	db 13, GUST ; Wing Attack → egg move
 	db 17, CONFUSE_RAY
@@ -739,7 +737,6 @@ GolbatLearnset:
 	db 1, ABSORB
 	db 1, CRUNCH ; Let's Go move
 	db 5, SUPERSONIC
-	db 7, ASTONISH
 	db 11, BITE
 	db 13, GUST ; Wing Attack → egg move
 	db 17, CONFUSE_RAY
@@ -760,7 +757,6 @@ CrobatLearnset:
 	db 1, ABSORB
 	db 1, CRUNCH ; Let's Go move
 	db 5, SUPERSONIC
-	db 7, ASTONISH
 	db 11, BITE
 	db 13, GUST ; Wing Attack → egg move
 	db 17, CONFUSE_RAY
@@ -892,7 +888,6 @@ DiglettLearnset:
 	db 1, SCRATCH
 	db 1, CHARM ; XD move
 	db 4, GROWL
-	db 7, ASTONISH
 	db 10, AGILITY ; Mud-Slap → Let's Go move
 	db 14, DRILL_RUN
 	db 18, BULLDOZE
@@ -912,7 +907,6 @@ DugtrioLearnset:
 	db 1, SCRATCH
 	db 1, CHARM ; XD move
 	db 4, GROWL
-	db 7, ASTONISH
 	db 10, AGILITY ; Mud-Slap → Let's Go move
 	db 14, DRILL_RUN
 	db 18, BULLDOZE
@@ -929,7 +923,6 @@ MeowthLearnset:
 	db 1, SCRATCH
 	db 1, GROWL
 	db 6, BITE
-	db 9, ASTONISH ; Fake Out → new move
 	db 14, FURY_ATTACK ; Fury Swipes → similar move
 	db 17, SCREECH
 	db 22, FEINT_ATTACK
@@ -949,7 +942,6 @@ PersianLearnset:
 	db 1, SCRATCH
 	db 1, GROWL
 	db 6, BITE
-	db 9, ASTONISH ; Fake Out → new move
 	db 14, FURY_ATTACK ; Fury Swipes → similar move
 	db 17, SCREECH
 	db 22, FEINT_ATTACK

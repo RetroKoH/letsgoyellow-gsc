@@ -506,7 +506,6 @@ MoldBreakerSuppressedAbilities:
 ContactMoves::
 	db AERIAL_ACE
 	db AQUA_TAIL
-	db ASTONISH
 	db BITE
 	db BODY_SLAM
 	db BUG_BITE

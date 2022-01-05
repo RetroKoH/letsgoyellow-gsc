@@ -220,7 +220,6 @@ BraveBird:
 
 FlinchHit:
 AirSlash:
-Astonish:
 Bite:
 DarkPulse:
 Extrasensory:

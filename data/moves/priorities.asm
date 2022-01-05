@@ -1,6 +1,7 @@
 MovePriorities:
 	; no move is for explicit switch-out
 	db NO_MOVE,       10
+;	HELPING_HAND	  6
 	db PROTECT,       4
 	db AQUA_JET,      1
 	db SUCKER_PUNCH,  1

@@ -217,7 +217,7 @@ MoveDescriptions::
 	dw BulletPunchDescription
 	dw AvalancheDescription
 	dw IceShardDescription
-	dw AstonishDescription
+	dw PsychoCutDescription
 	dw ZenHeadbuttDescription
 	dw FlashCannonDescription
 	dw LeafStormDescription
@@ -268,6 +268,7 @@ CrossChopDescription:
 NightSlashDescription:
 ShadowClawDescription:
 StoneEdgeDescription:
+PsychoCutDescription:
 DrillRunDescription:
 	db   "Has a high criti-"
 	next "cal hit ratio.@"
@@ -327,8 +328,6 @@ LeafStormDescription:
 StompDescription:
 HeadbuttDescription:
 BiteDescription:
-LowKickDescription:
-GrassKnotDescription:
 WaterfallDescription:
 RockSlideDescription:
 HyperFangDescription:
@@ -337,7 +336,6 @@ IronHeadDescription:
 ZenHeadbuttDescription:
 ExtrasensoryDescription:
 DarkPulseDescription:
-AstonishDescription:
 IcicleCrashDescription:
 	db   "An attack that may"
 	next "cause flinching.@"
@@ -391,6 +389,11 @@ StrangeSteamDescription:
 DynamicpunchDescription:
 	db   "An attack that"
 	next "confuses the foe.@"
+
+LowKickDescription:
+GrassKnotDescription:
+	db   "Does more damage"
+	next "to heavy foes.@"
 
 MetalClawDescription:
 MeteorMashDescription:

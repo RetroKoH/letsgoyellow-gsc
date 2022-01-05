@@ -218,7 +218,7 @@ BattleAnimations::
 	dw BattleAnim_BulletPunch
 	dw BattleAnim_Avalanche
 	dw BattleAnim_IceShard
-	dw BattleAnim_Astonish
+	dw BattleAnim_PsychoCut ; needs new animation
 	dw BattleAnim_ZenHeadbutt
 	dw BattleAnim_FlashCannon
 	dw BattleAnim_LeafStorm
@@ -4028,6 +4028,7 @@ BattleAnim_Rollout:
 	anim_ret
 
 BattleAnim_FalseSwipe:
+BattleAnim_PsychoCut:
 	anim_2gfx ANIM_GFX_SHINE, ANIM_GFX_CUT
 	anim_bgeffect ANIM_BG_07, $0, $0, $0
 	anim_sound 0, 1, SFX_CUT

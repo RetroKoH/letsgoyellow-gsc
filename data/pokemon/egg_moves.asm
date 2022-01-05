@@ -316,7 +316,6 @@ ShellderEggMoves:
 	db $ff
 
 GastlyEggMoves:
-	db ASTONISH
 	db DISABLE
 	db HAZE
 	db NASTY_PLOT

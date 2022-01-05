@@ -218,7 +218,7 @@
 	const BULLET_PUNCH ; $8c
 	const AVALANCHE    ; $5a
 	const ICE_SHARD    ; $b5
-	const ASTONISH     ; $b4 ; PSYCHO_CUT
+	const PSYCHO_CUT   ; $b4
 	const ZEN_HEADBUTT ; $aa
 	const FLASH_CANNON ; $75
 	const LEAF_STORM   ; $ca

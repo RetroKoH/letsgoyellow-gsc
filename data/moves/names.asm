@@ -217,7 +217,7 @@ MoveNames::
 	db "BULLET PUNCH@"
 	db "AVALANCHE@"
 	db "ICE SHARD@"
-	db "ASTONISH@"
+	db "PSYCHO CUT@"
 	db "ZEN HEADBUTT@"
 	db "FLASH CANNON@"
 	db "LEAF STORM@"

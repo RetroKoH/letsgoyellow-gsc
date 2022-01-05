@@ -188,9 +188,9 @@
 	const AERIAL_ACE   ; $16
 	const ICICLE_SPEAR ; $83
 	const BULK_UP      ; $9f
-	const SPARK        ; $d1 ; VOLT_TACKLE
+	const VOLT_TACKLE  ; $d1
 	const CALM_MIND    ; $36
-	const EXTRASENSORY ; $95 ; LEAF_BLADE
+	const LEAF_BLADE   ; $95
 	const DRAGON_DANCE ; $97
 	const ROCK_BLAST   ; $6a
 	const WATER_PULSE  ; $91
@@ -244,7 +244,7 @@
 	const WILD_CHARGE  ; $f1
 	const DRILL_RUN    ; $f2
 	const HURRICANE    ; $f3
-	const DIZZY_PUNCH  ; $f4 ; FELL_STINGER
+	const DIZZY_PUNCH  ; $f4 ; FELL_STINGER < Might keep Dizzy Punch
 	const DISARM_VOICE ; $f5
 	const PLAY_ROUGH   ; $f6
 	const FAIRY_WIND   ; $f7

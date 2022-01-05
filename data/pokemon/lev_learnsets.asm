@@ -644,7 +644,7 @@ ClefairyLearnset:
 	db 43, SYNTHESIS ; Moonlight → similar move
 	db 46, MOONBLAST
 	db 49, BELLY_DRUM ; Gravity → egg move
-	db 50, EXTRASENSORY ; Meteor Mash → new move
+	db 50, METEOR_MASH
 	db 55, HEAL_BELL ; Healing Wish → HGSS tutor move
 	db 0 ; no more level-up moves
 
@@ -669,7 +669,6 @@ VulpixLearnset:
 	db 23, FEINT_ATTACK
 	db 26, HEX
 	db 28, PAIN_SPLIT ; Flame Burst → HGSS tutor move
-	db 31, EXTRASENSORY
 	db 36, FLAMETHROWER
 	db 39, HYPNOSIS ; Imprison → egg move
 	db 42, FIRE_BLAST
@@ -1402,7 +1401,6 @@ MagnemiteLearnset:
 	db 07, THUNDER_WAVE
 	db 11, QUICK_ATTACK ; Magnet Bomb → TCG move
 	db 13, LIGHT_SCREEN
-	db 19, SPARK
 	db 23, SWIFT ; Mirror Shot → TM move
 	db 25, SCREECH ; Metal Sound → Screech
 	db 29, THUNDERBOLT ; Electro Ball → TM move
@@ -1423,7 +1421,6 @@ MagnetonLearnset:
 	db 07, THUNDER_WAVE
 	db 11, QUICK_ATTACK ; Magnet Bomb → TCG move
 	db 13, LIGHT_SCREEN
-	db 19, SPARK
 	db 23, SWIFT ; Mirror Shot → TM move
 	db 25, SCREECH ; Metal Sound → Screech
 	db 29, THUNDERBOLT ; Electro Ball → TM move
@@ -1745,7 +1742,6 @@ VoltorbLearnset:
 	db 01, TACKLE
 	db 01, THUNDERSHOCK ; Let's Go move
 	db 06, AGILITY ; Eerie Impulse → event move
-	db 09, SPARK
 	db 11, ROLLOUT
 	db 13, SCREECH
 	db 16, THUNDER_WAVE ; Charge Beam → TM move
@@ -1764,7 +1760,6 @@ ElectrodeLearnset:
 	db 01, TACKLE
 	db 01, THUNDERSHOCK ; Let's Go move
 	db 06, AGILITY ; Eerie Impulse → event move
-	db 09, SPARK
 	db 11, ROLLOUT
 	db 13, SCREECH
 	db 16, THUNDER_WAVE ; Charge Beam → TM move
@@ -1793,7 +1788,6 @@ ExeggcuteLearnset:
 	db 33, ANCIENTPOWER ; Worry Seed → HGSS tutor move
 	db 37, SYNTHESIS ; Natural Gift → new move
 	db 43, SOLAR_BEAM
-	db 47, EXTRASENSORY
 	db 50, PSYCHIC_M ; Bestow → TM move
 	db 0 ; no more level-up moves
 
@@ -2689,7 +2683,6 @@ ZapdosLearnset:
 	db 01, LEER ; Let's Go move
 	db 08, THUNDER_WAVE
 	db 15, PROTECT ; Detect → similar move
-	db 22, EXTRASENSORY ; Pluck → event
 	db 29, ANCIENTPOWER
 	db 36, AGILITY ; Charge → Agility
 	db 43, THUNDERBOLT ; Agility → TM move
@@ -2816,7 +2809,6 @@ TogepiLearnset:
 	db 33, ANCIENTPOWER
 	db 41, BATON_PASS
 	db 45, DOUBLE_EDGE
-	db 49, EXTRASENSORY ; Last Resort → egg move
 	db 53, PLAY_ROUGH ; After You → Sw/Sh move
 	db 0 ; no more level-up moves
 
@@ -2833,7 +2825,6 @@ TogeticLearnset:
 	db 33, ANCIENTPOWER
 	db 41, BATON_PASS
 	db 45, DOUBLE_EDGE
-	db 49, EXTRASENSORY ; Last Resort → egg move
 	db 53, PLAY_ROUGH ; After You → Sw/Sh move
 MissingNoLearnset:
 	db 0 ; no more level-up moves

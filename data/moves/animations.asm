@@ -188,9 +188,9 @@ BattleAnimations::
 	dw BattleAnim_AerialAce
 	dw BattleAnim_IcicleSpear
 	dw BattleAnim_BulkUp
-	dw BattleAnim_Spark
+	dw BattleAnim_VoltTackle ; Need New Anim
 	dw BattleAnim_CalmMind
-	dw BattleAnim_Extrasensory
+	dw BattleAnim_PowerWhip ; Need a new anim
 	dw BattleAnim_DragonDance
 	dw BattleAnim_RockBlast
 	dw BattleAnim_WaterPulse
@@ -4052,7 +4052,7 @@ BattleAnim_Yawn:
 	anim_wait 40
 	anim_ret
 
-BattleAnim_Spark:
+BattleAnim_VoltTackle:
 	anim_2gfx ANIM_GFX_LIGHTNING, ANIM_GFX_EXPLOSION
 	anim_sound 0, 0, SFX_ZAP_CANNON
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $4, $3

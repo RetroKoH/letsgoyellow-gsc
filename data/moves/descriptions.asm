@@ -187,9 +187,9 @@ MoveDescriptions::
 	dw AerialAceDescription
 	dw IcicleSpearDescription
 	dw BulkUpDescription
-	dw SparkDescription
+	dw VoltTackleDescription
 	dw CalmMindDescription
-	dw ExtrasensoryDescription
+	dw LeafBladeDescription
 	dw DragonDanceDescription
 	dw RockBlastDescription
 	dw WaterPulseDescription
@@ -264,6 +264,7 @@ KarateChopDescription:
 RazorLeafDescription:
 CrabhammerDescription:
 SlashDescription:
+LeafBladeDescription:
 CrossChopDescription:
 NightSlashDescription:
 ShadowClawDescription:
@@ -334,7 +335,6 @@ HyperFangDescription:
 AirSlashDescription:
 IronHeadDescription:
 ZenHeadbuttDescription:
-ExtrasensoryDescription:
 DarkPulseDescription:
 IcicleCrashDescription:
 	db   "An attack that may"
@@ -364,7 +364,7 @@ ThundershockDescription:
 ThunderboltDescription:
 ThunderDescription:
 LickDescription:
-SparkDescription:
+VoltTackleDescription:
 	db   "An attack that may"
 	next "cause paralysis.@"
 

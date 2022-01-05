@@ -534,7 +534,6 @@ ContactMoves::
 	db FLY
 	db FURY_ATTACK
 	db GYRO_BALL
-	db GIGA_IMPACT
 	db GRASS_KNOT
 	db HEADBUTT
 	db HI_JUMP_KICK
@@ -552,6 +551,7 @@ ContactMoves::
 	db MACH_PUNCH
 	db MEGAHORN
 	db METAL_CLAW
+	db METEOR_MASH
 	db NIGHT_SLASH
 	db OUTRAGE
 	db PECK
@@ -570,7 +570,6 @@ ContactMoves::
 	db SEISMIC_TOSS
 	db SHADOW_CLAW
 	db SLASH
-	db SPARK
 	db STEEL_WING
 	db STOMP
 	db STRENGTH
@@ -584,6 +583,7 @@ ContactMoves::
 	db TRIPLE_KICK
 	db U_TURN
 	db VINE_WHIP
+	db VOLT_TACKLE
 	db WATERFALL
 	db WILD_CHARGE
 	db WING_ATTACK

@@ -177,7 +177,7 @@ MoveDescriptions::
 	dw StrengthDescription ; Superpower
 	dw SwaggerDescription
 	dw RockSmashDescription
-	dw MeanLookDescription
+	dw YawnDescription
 	dw KnockOffDescription
 	dw HyperVoiceDescription
 	dw PoisonFangDescription
@@ -974,9 +974,9 @@ BugBiteDescription:
 	db   "Bites the foe and"
 	next "eats a held Berry.@"
 
-MeanLookDescription:
-	db   "Prevents fleeing"
-	next "or switching.@"
+YawnDescription:
+	db   "Makes the foe"
+	next "feel drowsy.@"
 
 SleepTalkDescription:
 	db   "Randomly attacks"

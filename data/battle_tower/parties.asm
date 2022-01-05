@@ -105,7 +105,7 @@ BattleTowerPokemon2:
 
 	db GASTLY
 	db FOCUS_BAND
-	db LICK, MEAN_LOOK, PAIN_SPLIT, SHADOW_BALL
+	db LICK, NIGHT_SHADE, PAIN_SPLIT, SHADOW_BALL
 	db $de, $fd, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1257,7 +1257,7 @@ BattleTowerMons10:
 
 	db GASTLY
 	db FOCUS_BAND
-	db LICK, MEAN_LOOK, PAIN_SPLIT, SHADOW_BALL
+	db LICK, NIGHT_SHADE, PAIN_SPLIT, SHADOW_BALL
 	db $eb, $de, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

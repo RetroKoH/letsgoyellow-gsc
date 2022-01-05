@@ -178,7 +178,7 @@
 	const SUPERPOWER   ; $c3
 	const SWAGGER      ; $cf ; RECYCLE
 	const BRICK_BREAK  ; $f9
-	const MEAN_LOOK    ; $d4 ; YAWN
+	const YAWN         ; $d4
 	const KNOCK_OFF    ; $ec
 	const HYPER_VOICE  ; $ad
 	const POISON_FANG  ; $d5

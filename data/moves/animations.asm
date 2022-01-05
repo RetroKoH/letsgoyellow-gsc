@@ -178,7 +178,7 @@ BattleAnimations::
 	dw BattleAnim_Superpower ; Need to make new anim
 	dw BattleAnim_Swagger
 	dw BattleAnim_RockSmash
-	dw BattleAnim_MeanLook
+	dw BattleAnim_Yawn ; Need to edit animation
 	dw BattleAnim_KnockOff
 	dw BattleAnim_HyperVoice
 	dw BattleAnim_PoisonFang ; Need to make new anim
@@ -4038,6 +4038,7 @@ BattleAnim_PsychoCut:
 	anim_ret
 
 BattleAnim_Swagger:
+BattleAnim_Yawn:
 	anim_2gfx ANIM_GFX_MISC, ANIM_GFX_WIND
 .loop
 	anim_sound 0, 0, SFX_MENU
@@ -4141,21 +4142,7 @@ BattleAnim_SteelWing:
 	anim_wait 16
 	anim_ret
 
-BattleAnim_MeanLook:
-	anim_1gfx ANIM_GFX_PSYCHIC
-	anim_obp0 $e0
-	anim_sound 0, 1, SFX_MEAN_LOOK
-	anim_obj ANIM_OBJ_AC, -14, 4,   4, 0, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_AC,  14, 4,   8, 0, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_AC, -14, 4,   8, 0, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_AC,  14, 4,   4, 0, $0
-	anim_wait 5
-	anim_obj ANIM_OBJ_AC, -16, 4,   6, 0, $0
-	anim_wait 128
-	anim_ret
+
 
 BattleAnim_SleepTalk:
 	anim_1gfx ANIM_GFX_STATUS

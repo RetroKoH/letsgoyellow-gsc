@@ -300,7 +300,6 @@ SeelEggMoves:
 GrimerEggMoves:
 	db HAZE
 	db LICK
-	db MEAN_LOOK
 	db $ff
 
 ShellderEggMoves:

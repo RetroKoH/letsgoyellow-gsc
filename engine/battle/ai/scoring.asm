@@ -356,7 +356,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_HEAL_BELL,         AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
 	dbw EFFECT_THIEF,             AI_Smart_Thief
-	dbw EFFECT_MEAN_LOOK,         AI_Smart_MeanLook
 	dbw EFFECT_FLAME_WHEEL,       AI_Smart_FlameWheel
 	dbw EFFECT_FLARE_BLITZ,       AI_Smart_FlameWheel
 	dbw EFFECT_CURSE,             AI_Smart_Curse
@@ -364,7 +363,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_FORESIGHT,         AI_Smart_Foresight
 	dbw EFFECT_SANDSTORM,         AI_Smart_Sandstorm
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
-	dbw EFFECT_SWAGGER,           AI_Smart_Swagger
+	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
 	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
 	dbw EFFECT_BATON_PASS,        AI_Smart_BatonPass
 	dbw EFFECT_PURSUIT,           AI_Smart_Pursuit
@@ -1389,48 +1388,6 @@ AI_Smart_Disable: ; 38dd1
 	inc [hl]
 	ret
 ; 38dfb
-
-
-AI_Smart_MeanLook: ; 38dfb
-	call AICheckEnemyHalfHP
-	jr nc, .asm_38e24
-
-	push hl
-	call AICheckLastPlayerMon
-	pop hl
-	jp z, AIDiscourageMove
-
-; 80% chance to greatly encourage this move if the player is badly poisoned
-	ld a, [wBattleMonStatus]
-	bit TOX, a
-	jr nz, .asm_38e26
-
-; 80% chance to greatly encourage this move if the player is either
-; in love, identified, or stuck in Rollout.
-	ld a, [wPlayerSubStatus1]
-	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_ROLLOUT | 1<<SUBSTATUS_IDENTIFIED
-	jr nz, .asm_38e26
-
-; Otherwise, discourage this move unless the player only has not very effective moves against the enemy.
-	push hl
-	farcall CheckPlayerMoveTypeMatchups
-	ld a, [wEnemyAISwitchScore]
-	cp $b ; not very effective
-	pop hl
-	ret nc
-
-.asm_38e24
-	inc [hl]
-	ret
-
-.asm_38e26
-	call AI_80_20
-	ret c
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	ret
-; 38e2e
 
 
 AICheckLastPlayerMon: ; 38e2e

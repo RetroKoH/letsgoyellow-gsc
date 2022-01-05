@@ -26,7 +26,7 @@ AI_Redundant: ; 2c41a
 	dbw EFFECT_DISABLE,       .Disable
 	dbw EFFECT_ENCORE,        .Encore
 	dbw EFFECT_SLEEP_TALK,    .SleepTalk
-	dbw EFFECT_MEAN_LOOK,     .MeanLook
+	dbw EFFECT_FAKE_OUT,      .FakeOut
 	dbw EFFECT_SPIKES,        .Spikes
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
@@ -84,9 +84,9 @@ AI_Redundant: ; 2c41a
 	bit SCREENS_LIGHT_SCREEN, a
 	ret
 
-.MeanLook:
-	ld a, [wEnemySubStatus2]
-	bit SUBSTATUS_CANT_RUN, a
+.FakeOut:
+	ld a, [wEnemyTurnsTaken]
+	and a ; before the first turn is counted, so if usable, this should be 0
 	ret
 
 .Reflect:

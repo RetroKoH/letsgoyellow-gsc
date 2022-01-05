@@ -697,7 +697,6 @@ JigglypuffLearnset:
 	db 14, DISABLE
 	db 20, ROLLOUT
 	db 22, CHARM ; Round → Igglybuff move
-	db 27, MEAN_LOOK ; Wake-Up Slap → new move
 	db 30, REST
 	db 32, BODY_SLAM
 	db 35, GYRO_BALL
@@ -724,7 +723,6 @@ ZubatLearnset:
 	db 19, WING_ATTACK ; Air Cutter → Wing Attack
 	db 23, SWIFT
 	db 25, SUPER_FANG ; Poison Fang → HGSS tutor move
-	db 29, MEAN_LOOK
 	db 31, LEECH_LIFE
 	db 35, HAZE
 	db 37, VENOSHOCK
@@ -743,7 +741,6 @@ GolbatLearnset:
 	db 19, WING_ATTACK ; Air Cutter → Wing Attack
 	db 24, SWIFT
 	db 27, SUPER_FANG ; Poison Fang → HGSS tutor move
-	db 32, MEAN_LOOK
 	db 35, LEECH_LIFE
 	db 40, HAZE
 	db 43, VENOSHOCK
@@ -763,7 +760,6 @@ CrobatLearnset:
 	db 19, WING_ATTACK ; Air Cutter → Wing Attack
 	db 24, SWIFT
 	db 27, SUPER_FANG ; Poison Fang → HGSS tutor move
-	db 32, MEAN_LOOK
 	db 35, LEECH_LIFE
 	db 40, HAZE
 	db 43, VENOSHOCK
@@ -1616,7 +1612,6 @@ GastlyLearnset:
 	db 1, HYPNOSIS
 	db 1, LICK
 	db 5, DISABLE ; Spite → egg move
-	db 8, MEAN_LOOK
 	db 12, CURSE
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
@@ -1633,7 +1628,6 @@ HaunterLearnset:
 	db 1, HYPNOSIS
 	db 1, LICK
 	db 5, DISABLE ; Spite → egg move
-	db 8, MEAN_LOOK
 	db 12, CURSE
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
@@ -1650,7 +1644,6 @@ GengarLearnset:
 	db 1, HYPNOSIS
 	db 1, LICK
 	db 5, DISABLE ; Spite → egg move
-	db 8, MEAN_LOOK
 	db 12, CURSE
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
@@ -2221,7 +2214,6 @@ JynxLearnset:
 	db 11, ICY_WIND ; Powder Snow → TM move
 	db 18, ICE_PUNCH
 	db 21, METRONOME ; Heart Stamp → RBY TM move
-	db 25, MEAN_LOOK
 	db 33, PSYBEAM ; Wake-Up Slap → new move
 	db 39, AVALANCHE
 	db 44, BODY_SLAM
@@ -2499,7 +2491,6 @@ UmbreonLearnset:
 	db 33, SYNTHESIS ; Moonlight → similar move
 	db 37, SUCKER_PUNCH ; Mean Look → tutor move
 	db 41, DOUBLE_EDGE ; Last Resort → tutor move
-	db 45, MEAN_LOOK ; Guard Swap → Mean Look
 	db 0 ; no more level-up moves
 
 LeafeonLearnset:

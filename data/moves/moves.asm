@@ -188,7 +188,7 @@ Moves:: ; 41afb
 	move SUPERPOWER,   EFFECT_CLOSE_COMBAT,      120, FIGHTING,  100,  5,   0, PHYSICAL
 	move SWAGGER,      EFFECT_SWAGGER,             0, NORMAL,     85, 15, 100, STATUS
 	move BRICK_BREAK,  EFFECT_BRICK_BREAK,        75, FIGHTING,  100, 15,   0, PHYSICAL ; WAS ROCK_SMASH
-	move MEAN_LOOK,    EFFECT_MEAN_LOOK,           0, NORMAL,    100,  5,   0, STATUS
+	move YAWN,         EFFECT_SLEEP,               0, NORMAL,    100, 10,   0, STATUS ; Need to add multi-turn effect akin to Future Sight
 	move KNOCK_OFF,    EFFECT_KNOCK_OFF,          65, DARK,      100, 20, 100, PHYSICAL
 	move HYPER_VOICE,  EFFECT_NORMAL_HIT,         90, NORMAL,    100, 10,   0, SPECIAL
 	move POISON_FANG,  EFFECT_POISON_HIT,         60, POISON,    100, 15,  50, PHYSICAL ; Should apply Toxic Poison

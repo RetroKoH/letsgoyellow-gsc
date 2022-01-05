@@ -177,7 +177,7 @@ MoveNames::
 	db "SUPERPOWER@"
 	db "SWAGGER@"
 	db "BRICK BREAK@"
-	db "MEAN LOOK@"
+	db "YAWN@"
 	db "KNOCK OFF@"
 	db "HYPER VOICE@"
 	db "POISON FANG@"

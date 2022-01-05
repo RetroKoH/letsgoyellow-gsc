@@ -182,7 +182,7 @@ BattleAnimations::
 	dw BattleAnim_KnockOff
 	dw BattleAnim_HyperVoice
 	dw BattleAnim_PoisonFang ; Need to make new anim
-	dw BattleAnim_SleepTalk
+	dw BattleAnim_CometPunch ; METEORMASH - Need new anim
 	dw BattleAnim_WeatherBall
 	dw BattleAnim_Safeguard
 	dw BattleAnim_AerialAce
@@ -5263,6 +5263,24 @@ BattleAnim_ShadowBone:
 	anim_wait 16
 	anim_ret
 
+BattleAnim_CometPunch: ; METEOR MASH
+	anim_1gfx ANIM_GFX_HIT
+	anim_jumpif $1, BattleAnim_CometPunch_branch_c9641
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_06, -14, 0,   6, 0, $0
+	anim_wait 6
+	anim_obj ANIM_OBJ_01, -14, 0,   6, 0, $0
+	anim_wait 8
+	anim_ret
+
+BattleAnim_CometPunch_branch_c9641:
+	anim_sound 0, 1, SFX_COMET_PUNCH
+	anim_obj ANIM_OBJ_06,  15, 0,   8, 0, $0
+	anim_wait 6
+	anim_obj ANIM_OBJ_01,  15, 0,   8, 0, $0
+	anim_wait 8
+	anim_ret
+
 BattleAnim_GigaImpact:
 	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_CHARGE
 	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
@@ -5476,39 +5494,6 @@ BattleAnim_GigaImpact:
 ;	anim_wait 4
 ;	anim_obj ANIM_OBJ_5A,   8, 0,  10, 4, $0
 ;	anim_wait 64
-;	anim_ret
-
-;BattleAnim_CometPunch: ; removed
-;	anim_1gfx ANIM_GFX_HIT
-;	anim_jumpif $1, BattleAnim_CometPunch_branch_c9641
-;	anim_sound 0, 1, SFX_COMET_PUNCH
-;	anim_obj ANIM_OBJ_06, -14, 0,   6, 0, $0
-;	anim_wait 6
-;	anim_obj ANIM_OBJ_01, -14, 0,   6, 0, $0
-;	anim_wait 8
-;	anim_ret
-
-;BattleAnim_CometPunch_branch_c9641:
-;	anim_sound 0, 1, SFX_COMET_PUNCH
-;	anim_obj ANIM_OBJ_06,  15, 0,   8, 0, $0
-;	anim_wait 6
-;	anim_obj ANIM_OBJ_01,  15, 0,   8, 0, $0
-;	anim_wait 8
-;	anim_ret
-
-;BattleAnim_Conversion2: ; removed
-;	anim_1gfx ANIM_GFX_EXPLOSION
-;	anim_sound 63, 3, SFX_SHARPEN
-;	anim_obj ANIM_OBJ_73, -16, 4,   5, 4, $0
-;	anim_obj ANIM_OBJ_73, -16, 4,   5, 4, $8
-;	anim_obj ANIM_OBJ_73, -16, 4,   5, 4, $10
-;	anim_obj ANIM_OBJ_73, -16, 4,   5, 4, $18
-;	anim_obj ANIM_OBJ_73, -16, 4,   5, 4, $20
-;	anim_obj ANIM_OBJ_73, -16, 4,   5, 4, $28
-;	anim_obj ANIM_OBJ_73, -16, 4,   5, 4, $30
-;	anim_obj ANIM_OBJ_73, -16, 4,   5, 4, $38
-;	anim_wait 128
-;	anim_wait 48
 ;	anim_ret
 
 ;BattleAnim_VitalThrow: ; removed

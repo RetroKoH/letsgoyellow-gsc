@@ -941,7 +941,7 @@ BattleTowerMons8:
 
 	db SNORLAX
 	db LEFTOVERS
-	db REST, BELLY_DRUM, SLEEP_TALK, EARTHQUAKE
+	db REST, BELLY_DRUM, HYPER_BEAM, EARTHQUAKE
 	db $ed, $be, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

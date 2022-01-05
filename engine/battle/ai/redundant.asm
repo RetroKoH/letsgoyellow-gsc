@@ -25,7 +25,6 @@ AI_Redundant: ; 2c41a
 	dbw EFFECT_LEECH_SEED,    .LeechSeed
 	dbw EFFECT_DISABLE,       .Disable
 	dbw EFFECT_ENCORE,        .Encore
-	dbw EFFECT_SLEEP_TALK,    .SleepTalk
 	dbw EFFECT_FAKE_OUT,      .FakeOut
 	dbw EFFECT_SPIKES,        .Spikes
 	dbw EFFECT_SANDSTORM,     .Sandstorm
@@ -113,11 +112,6 @@ AI_Redundant: ; 2c41a
 	ld a, [wEnemySubStatus2]
 	bit SUBSTATUS_TRANSFORMED, a
 	ret
-
-.SleepTalk:
-	ld a, [wEnemyMonStatus]
-	and SLP
-	jr .InvertZero
 
 .Spikes:
 	ld a, [wPlayerScreens]

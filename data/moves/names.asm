@@ -181,7 +181,7 @@ MoveNames::
 	db "KNOCK OFF@"
 	db "HYPER VOICE@"
 	db "POISON FANG@"
-	db "SLEEP TALK@"
+	db "METEOR MASH@"
 	db "WEATHER BALL@"
 	db "SAFEGUARD@"
 	db "AERIAL ACE@"

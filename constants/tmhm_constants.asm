@@ -134,7 +134,7 @@ NUM_HMS = const_value - HM01
 	add_mt SEED_BOMB    ; $64
 	add_mt SEISMIC_TOSS ; $65
 	add_mt SKILL_SWAP   ; $66
-	add_mt SLEEP_TALK   ; $67
+	add_mt METEOR_MASH  ; $67
 	add_mt SUCKER_PUNCH ; $68
 	add_mt SWAGGER      ; $69
 	add_mt THUNDERPUNCH ; $6a

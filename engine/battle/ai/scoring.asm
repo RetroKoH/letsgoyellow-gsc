@@ -351,7 +351,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_COUNTER,           AI_Smart_Counter
 	dbw EFFECT_ENCORE,            AI_Smart_Encore
 	dbw EFFECT_PAIN_SPLIT,        AI_Smart_PainSplit
-	dbw EFFECT_SLEEP_TALK,        AI_Smart_SleepTalk
 	dbw EFFECT_FLAIL,             AI_Smart_Flail
 	dbw EFFECT_HEAL_BELL,         AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
@@ -2416,6 +2415,7 @@ UsefulMoves: ; 39301
 	db RECOVER
 	db FIRE_BLAST
 	db SUPER_FANG
+	db METEOR_MASH
 	db MOONBLAST
 	db PLAY_ROUGH
 	db HURRICANE

@@ -229,13 +229,6 @@ BattleCommand_checkturn:
 .fast_asleep
 	ld hl, FastAsleepText
 	call StdBattleTextBox
-
-	; Sleep Talk bypasses sleep.
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	cp SLEEP_TALK
-	jr z, .not_asleep
-
 	call CantMove
 	jp EndTurn
 
@@ -995,12 +988,6 @@ BattleCommand_checkobedience: ; 343db
 
 
 IgnoreSleepOnly: ; 3451f
-
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-
-	cp SLEEP_TALK
-	jr z, .CheckSleep
 	and a
 	ret
 

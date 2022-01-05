@@ -181,7 +181,7 @@ MoveDescriptions::
 	dw KnockOffDescription
 	dw HyperVoiceDescription
 	dw PoisonFangDescription
-	dw SleepTalkDescription
+	dw MeteorMashDescription
 	dw WeatherBallDescription
 	dw SafeguardDescription
 	dw AerialAceDescription
@@ -977,10 +977,6 @@ BugBiteDescription:
 YawnDescription:
 	db   "Makes the foe"
 	next "feel drowsy.@"
-
-SleepTalkDescription:
-	db   "Randomly attacks"
-	next "while asleep.@"
 
 HealBellDescription:
 	db   "Eliminates all"

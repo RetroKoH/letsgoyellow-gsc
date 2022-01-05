@@ -1508,7 +1508,6 @@ SeelLearnset:
 	db 13, ENCORE
 	db 17, ICE_SHARD
 	db 21, REST
-	db 23, SLEEP_TALK ; Aqua Ring → TM move
 	db 27, AURORA_BEAM
 	db 31, AQUA_JET
 	db 33, BUBBLE_BEAM ; Brine → RBY TM move
@@ -1528,7 +1527,6 @@ DewgongLearnset:
 	db 13, ENCORE
 	db 17, ICE_SHARD
 	db 21, REST
-	db 23, SLEEP_TALK ; Aqua Ring → TM move
 	db 27, AURORA_BEAM
 	db 31, AQUA_JET
 	db 33, BUBBLE_BEAM ; Brine → RBY TM move
@@ -2669,7 +2667,6 @@ SnorlaxLearnset:
 	db 20, TAKE_DOWN ; Yawn → RBY TM move
 	db 25, BODY_SLAM
 	db 28, REST
-	db 33, SLEEP_TALK
 	db 36, ROLLOUT
 	db 41, OUTRAGE ; Block → HGSS tutor move
 	db 44, BELLY_DRUM
@@ -2684,7 +2681,6 @@ ArticunoLearnset:
 	db 1, LEER ; Let's Go move
 	db 8, ICE_SHARD ; Mist → Ice Shard
 	db 15, SAFEGUARD ; Ice Shard → new move
-	db 22, EXTRASENSORY ; Mind Reader → event move
 	db 29, ANCIENTPOWER
 	db 36, AGILITY
 	db 43, ICE_BEAM

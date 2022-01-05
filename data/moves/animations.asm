@@ -224,7 +224,7 @@ BattleAnimations::
 	dw BattleAnim_LeafStorm
 	dw BattleAnim_PowerWhip
 	dw BattleAnim_RockWrecker
-	dw BattleAnim_ShadowClaw
+	dw BattleAnim_XScissor ; CROSS_POISON - Maybe need new anim
 	dw BattleAnim_GunkShot
 	dw BattleAnim_IronHead
 	dw BattleAnim_StoneEdge

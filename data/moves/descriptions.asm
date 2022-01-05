@@ -223,7 +223,7 @@ MoveDescriptions::
 	dw LeafStormDescription
 	dw PowerWhipDescription
 	dw RockWreckerDescription
-	dw ShadowClawDescription
+	dw CrossPoisonDescription
 	dw GunkShotDescription
 	dw IronHeadDescription
 	dw StoneEdgeDescription
@@ -267,7 +267,6 @@ SlashDescription:
 LeafBladeDescription:
 CrossChopDescription:
 NightSlashDescription:
-ShadowClawDescription:
 StoneEdgeDescription:
 PsychoCutDescription:
 DrillRunDescription:
@@ -345,6 +344,7 @@ SludgeDescription:
 SludgeBombDescription:
 PoisonFangDescription:
 PoisonJabDescription:
+CrossPoisonDescription:
 GunkShotDescription:
 	db   "An attack that may"
 	next "POISON the foe.@"

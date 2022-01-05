@@ -743,7 +743,8 @@ GolbatLearnset:
 	db 0 ; no more level-up moves
 
 CrobatLearnset:
-	db 01, X_SCISSOR ; evolution move
+	db $FF, CROSS_POISON
+	db 01, X_SCISSOR
 	db 01, SCREECH
 	db 01, ABSORB
 	db 01, CRUNCH ; Let's Go move
@@ -823,7 +824,6 @@ ParasLearnset:
 	db 0 ; no more level-up moves
 
 ParasectLearnset:
-	db 01, SHADOW_CLAW ; evolution move
 	db 01, SCRATCH
 	db 02, SLEEP_POWDER ; Let's Go move
 	db 04, STUN_SPORE
@@ -1602,7 +1602,6 @@ GastlyLearnset:
 	db 0 ; no more level-up moves
 
 HaunterLearnset:
-	db 01, SHADOW_CLAW ; Shadow Punch → TM move ; evolution move
 	db 01, HYPNOSIS
 	db 01, LICK
 	db 05, DISABLE ; Spite → egg move
@@ -1618,7 +1617,6 @@ HaunterLearnset:
 	db 0 ; no more level-up moves
 
 GengarLearnset:
-	db 01, SHADOW_CLAW ; Shadow Punch → TM move ; evolution move
 	db 01, HYPNOSIS
 	db 01, LICK
 	db 05, DISABLE ; Spite → egg move
@@ -1816,8 +1814,7 @@ MarowakLearnset:
 	db 21, BONEMERANG
 	db 23, RAGE
 	db 27, LOW_KICK
-	db 33, SHADOW_CLAW ; Thrash → TM move
-	db 37, THRASH ; Fling → Thrash
+	db 37, THRASH
 	db 43, DRILL_RUN ; Stomping Tantrum → new move
 	db 49, ROCK_SMASH ; Endeavor → TM move
 	db 53, DOUBLE_EDGE

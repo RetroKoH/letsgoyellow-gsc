@@ -135,7 +135,6 @@ ParasEggMoves:
 	db PSYBEAM
 	db PURSUIT
 	db SCREECH
-	db SHADOW_CLAW
 	db $ff
 
 VenonatEggMoves:

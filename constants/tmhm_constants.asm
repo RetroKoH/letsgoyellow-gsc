@@ -91,7 +91,7 @@ endc
 	add_tm POUND        ; $3d
 	add_tm WATER_PULSE  ; $3e
 	add_tm EXPLOSION    ; $3f
-	add_tm SHADOW_CLAW  ; $40
+	add_tm CROSS_POISON ; $40
 	add_tm POISON_JAB   ; $41
 	add_tm AVALANCHE    ; $42
 	add_tm GIGA_IMPACT  ; $43

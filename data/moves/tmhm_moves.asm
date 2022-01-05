@@ -63,7 +63,7 @@ TMHMMoves:
 	db POUND        ; TM62 (Route 39 Farmhouse)
 	db WATER_PULSE  ; TM63 (Misty)
 	db EXPLOSION    ; TM64 (Underground)
-	db SHADOW_CLAW  ; TM65 (Lake of Rage)
+	db CROSS_POISON ; TM65 (Lake of Rage)
 	db POISON_JAB   ; TM66 (Janine)
 	db AVALANCHE    ; TM67 (Pryce)
 	db GIGA_IMPACT  ; TM68 (Celadon Game Corner)

@@ -514,6 +514,7 @@ ContactMoves::
 	db COUNTER
 	db CRABHAMMER
 	db CROSS_CHOP
+	db CROSS_POISON
 	db CRUNCH
 	db CUT
 	db DIG
@@ -568,7 +569,6 @@ ContactMoves::
 	db ROLLOUT
 	db SCRATCH
 	db SEISMIC_TOSS
-	db SHADOW_CLAW
 	db SLASH
 	db STEEL_WING
 	db STOMP

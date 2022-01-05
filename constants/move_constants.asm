@@ -224,7 +224,7 @@
 	const LEAF_STORM   ; $ca
 	const POWER_WHIP   ; $c7
 	const ROCK_WRECKER ; $c5
-	const SHADOW_CLAW  ; $e6 ; CROSS_POISON
+	const CROSS_POISON ; $e6
 	const GUNK_SHOT    ; $7b
 	const IRON_HEAD    ; $82
 	const STONE_EDGE   ; $1e

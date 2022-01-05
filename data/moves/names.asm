@@ -223,7 +223,7 @@ MoveNames::
 	db "LEAF STORM@"
 	db "POWER WHIP@"
 	db "ROCK WRECKER@"
-	db "SHADOW CLAW@"
+	db "CROSS POISON@"
 	db "GUNK SHOT@"
 	db "IRON HEAD@"
 	db "STONE EDGE@"

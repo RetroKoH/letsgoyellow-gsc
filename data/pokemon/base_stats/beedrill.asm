@@ -1,18 +1,9 @@
-if DEF(FAITHFUL)
 	db  65,  90,  40,  75,  45,  80
 	;   hp  atk  def  spd  sat  sdf
-else
-	db  65, 100,  40, 115,  45,  90
-	;   hp  atk  def  spd  sat  sdf
-endc
 
 	db BUG, POISON
 	db 45 ; catch rate
-if DEF(FAITHFUL)
 	db 159 ; base exp
-else
-	db 184 ; base exp
-endc
 	db POISON_BARB ; item 1
 	db SHED_SHELL ; item 2
 	dn FEMALE_50, 2 ; gender, step cycles to hatch
@@ -28,5 +19,5 @@ endc
 	;         hp, atk, def, spd, sat, sdf
 
 	; tmhm
-	tmhm CURSE, TOXIC, SUNNY_DAY, HYPER_BEAM, SOLAR_BEAM, ROOST, DOUBLE_TEAM, SLUDGE_BOMB, SWIFT, AERIAL_ACE, SUBSTITUTE, FACADE, REST, ROCK_SMASH, LEECH_LIFE, FALSE_SWIPE, X_SCISSOR, POISON_JAB, GIGA_IMPACT, U_TURN, FLASH, SWORDS_DANCE, CUT, DOUBLE_EDGE, KNOCK_OFF,
+	tmhm TOXIC
 	; end

@@ -57,7 +57,6 @@ RattataEggMoves:
 
 SpearowEggMoves:
 	db FEINT_ATTACK
-	db FALSE_SWIPE
 	db QUICK_ATTACK
 	db TRI_ATTACK
 	db -1 ; end

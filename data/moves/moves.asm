@@ -178,7 +178,7 @@ Moves:: ; 41afb
 	move ANCIENTPOWER, EFFECT_ALL_UP_HIT,         60, ROCK,      100,  5,  10, SPECIAL
 	move SHADOW_BALL,  EFFECT_SP_DEF_DOWN_HIT,    80, GHOST,     100, 15,  20, SPECIAL
 	move WHIRLPOOL,    EFFECT_TRAP,               35, WATER,      90, 15,   0, SPECIAL
-	move FALSE_SWIPE,  EFFECT_FALSE_SWIPE,        40, NORMAL,    100, 40,   0, PHYSICAL
+	move FAKE_OUT,     EFFECT_FLINCH_HIT,         40, NORMAL,    100, 10, 100, PHYSICAL ; Should only work if turns taken is 0
 	move HAIL,         EFFECT_HAIL,                0, ICE,       100, 10,   0, STATUS
 	move WILL_O_WISP,  EFFECT_BURN,                0, FIRE,       85, 15,   0, STATUS
 	move FACADE,       EFFECT_CONDITIONAL_BOOST,  70, NORMAL,    100, 20,   0, PHYSICAL

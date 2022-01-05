@@ -1461,7 +1461,6 @@ FarfetchDLearnset:
 	db 31, AGILITY
 	db 33, NIGHT_SLASH
 	db 43, HI_JUMP_KICK ; Feint → new move
-	db 45, FALSE_SWIPE
 	db 49, AIR_SLASH
 	db 55, BRAVE_BIRD
 	db 0 ; no more level-up moves
@@ -1832,9 +1831,7 @@ CuboneLearnset:
 	db 13, LEER
 	db 17, FOCUS_ENERGY
 	db 21, BONEMERANG
-	db 23, RAGE
-	db 27, LOW_KICK ; False Swipe → HGSS tutor move
-	db 31, FALSE_SWIPE ; Thrash → False Swipe
+	db 27, LOW_KICK
 	db 33, THRASH ; Fling → Thrash
 	db 37, DRILL_RUN ; Stomping Tantrum → new move
 	db 41, ROCK_SMASH ; Endeavor → TM move
@@ -1843,7 +1840,6 @@ CuboneLearnset:
 	db 0 ; no more level-up moves
 
 MarowakLearnset:
-	db 1, PAIN_SPLIT ; evolution move
 	db 1, GROWL
 	db 3, TACKLE ; Tail Whip → new move
 	db 11, HEADBUTT
@@ -1851,7 +1847,7 @@ MarowakLearnset:
 	db 17, FOCUS_ENERGY
 	db 21, BONEMERANG
 	db 23, RAGE
-	db 27, LOW_KICK ; False Swipe → HGSS tutor move
+	db 27, LOW_KICK
 	db 33, SHADOW_CLAW ; Thrash → TM move
 	db 37, THRASH ; Fling → Thrash
 	db 43, DRILL_RUN ; Stomping Tantrum → new move
@@ -2202,7 +2198,6 @@ ScytherLearnset:
 	db 1, LEER
 	db 5, FOCUS_ENERGY
 	db 9, PURSUIT
-	db 13, FALSE_SWIPE
 	db 17, AGILITY
 	db 21, WING_ATTACK
 	db 25, BUG_BITE ; Fury Cutter → similar move

@@ -168,7 +168,7 @@ BattleAnimations::
 	dw BattleAnim_Ancientpower
 	dw BattleAnim_ShadowBall
 	dw BattleAnim_Whirlpool
-	dw BattleAnim_FalseSwipe
+	dw BattleAnim_FakeOut ; Needs new anim
 	dw BattleAnim_Hail
 	dw BattleAnim_WillOWisp
 	dw BattleAnim_Facade
@@ -2676,7 +2676,7 @@ BattleAnim_Flash:
 	anim_ret
 
 ; Astonish animation from Pokémon Prism
-BattleAnim_Astonish:
+BattleAnim_FakeOut:
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnim_FollowEnemyFeet_0
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
@@ -4027,7 +4027,6 @@ BattleAnim_Rollout:
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-BattleAnim_FalseSwipe:
 BattleAnim_PsychoCut:
 	anim_2gfx ANIM_GFX_SHINE, ANIM_GFX_CUT
 	anim_bgeffect ANIM_BG_07, $0, $0, $0

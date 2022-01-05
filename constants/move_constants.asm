@@ -168,7 +168,7 @@
 	const ANCIENTPOWER ; $f6
 	const SHADOW_BALL  ; $f7
 	const WHIRLPOOL    ; $fa
-	const FALSE_SWIPE  ; $ce ; FAKE OUT
+	const FAKE_OUT     ; $ce
 	const HAIL         ; $27
 	const WILL_O_WISP  ; $a9
 	const FACADE       ; $ab

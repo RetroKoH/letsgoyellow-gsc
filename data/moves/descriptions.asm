@@ -167,7 +167,7 @@ MoveDescriptions::
 	dw AncientpowerDescription
 	dw ShadowBallDescription
 	dw WhirlpoolDescription
-	dw FalseSwipeDescription
+	dw FakeOutDescription
 	dw HailDescription
 	dw WillOWispDescription
 	dw FacadeDescription
@@ -655,9 +655,9 @@ ExplosionDescription:
 	db   "Very powerful but"
 	next "makes user faint.@"
 
-FalseSwipeDescription:
-	db   "Leaves the foe"
-	next "with at least 1HP.@"
+FakeOutDescription:
+	db   "Causes flinching,"
+	next "on the 1st turn.@"
 
 SolarBeamDescription:
 	db   "1st turn: Prepare"

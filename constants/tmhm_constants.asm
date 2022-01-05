@@ -80,7 +80,7 @@ endc
 	add_tm ROOST        ; $32
 	add_tm FOCUS_BLAST  ; $33
 	add_tm ENERGY_BALL  ; $34
-	add_tm FALSE_SWIPE  ; $35
+	add_tm FAKE_OUT     ; $35
 	add_tm SCALD        ; $36
 	add_tm X_SCISSOR    ; $37
 	add_tm DARK_PULSE   ; $38

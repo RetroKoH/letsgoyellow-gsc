@@ -167,7 +167,7 @@ MoveNames::
 	db "ANCIENTPOWER@"
 	db "SHADOW BALL@"
 	db "WHIRLPOOL@"
-	db "FALSE SWIPE@"
+	db "FAKE OUT@"
 	db "HAIL@"
 	db "WILL-O-WISP@"
 	db "FACADE@"

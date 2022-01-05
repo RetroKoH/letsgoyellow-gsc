@@ -182,8 +182,8 @@ MoveDescriptions::
 	dw HyperVoiceDescription
 	dw PoisonFangDescription
 	dw SleepTalkDescription
+	dw WeatherBallDescription
 	dw SafeguardDescription
-	dw HiddenPowerDescription
 	dw AerialAceDescription
 	dw IcicleSpearDescription
 	dw BulkUpDescription
@@ -1034,9 +1034,9 @@ KnockOffDescription:
 	db   "Slaps down the"
 	next "foe's held item.@"
 
-HiddenPowerDescription:
+WeatherBallDescription:
 	db   "The type varies"
-	next "with the #mon.@"
+	next "with the weather.@"
 
 GyroBallDescription:
 	db   "Does more damage"

@@ -1413,7 +1413,7 @@ MagnemiteLearnset:
 	db 29, THUNDERBOLT ; Electro Ball → TM move
 	db 31, FLASH_CANNON
 	db 35, EXPLOSION ; Screech → TM move
-	db 37, HIDDEN_POWER ; Discharge → TM move
+	db 37, WEATHER_BALL ; Discharge → TM move
 	db 41, AGILITY ; Lock-On → event move
 	db 43, GYRO_BALL ; Magnet Rise → Gyro Ball
 	db 47, THUNDER ; Gyro Ball → TM move
@@ -1434,7 +1434,7 @@ MagnetonLearnset:
 	db 29, THUNDERBOLT ; Electro Ball → TM move
 	db 33, FLASH_CANNON
 	db 39, EXPLOSION ; Screech → TM move
-	db 43, HIDDEN_POWER ; Discharge → TM move
+	db 43, WEATHER_BALL ; Discharge → TM move
 	db 49, AGILITY ; Lock-On → event move
 	db 53, GYRO_BALL ; Magnet Rise → Gyro Ball
 	db 59, THUNDER ; Gyro Ball → TM move

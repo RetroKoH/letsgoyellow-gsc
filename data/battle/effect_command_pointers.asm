@@ -103,7 +103,7 @@ BattleCommandPointers:
 	command pursuit
 	command clearhazards
 	command healweather
-	command hiddenpower
+	command weatherball
 	command startrain
 	command startsun
 	command attackup

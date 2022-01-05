@@ -182,7 +182,7 @@ MoveNames::
 	db "HYPER VOICE@"
 	db "POISON FANG@"
 	db "SLEEP TALK@"
-	db "HIDDEN POWER@"
+	db "WEATHER BALL@"
 	db "SAFEGUARD@"
 	db "AERIAL ACE@"
 	db "ICICLE SPEAR@"

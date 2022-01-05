@@ -369,7 +369,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_PURSUIT,           AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,        AI_Smart_RapidSpin
 	dbw EFFECT_SYNTHESIS,         AI_Smart_Synthesis
-	dbw EFFECT_HIDDEN_POWER,      AI_Smart_HiddenPower
+	dbw EFFECT_WEATHER_BALL,      AI_Smart_WeatherBall
 	dbw EFFECT_RAIN_DANCE,        AI_Smart_RainDance
 	dbw EFFECT_SUNNY_DAY,         AI_Smart_SunnyDay
 	dbw EFFECT_BELLY_DRUM,        AI_Smart_BellyDrum
@@ -1817,34 +1817,34 @@ AI_Smart_RapidSpin: ; 39084
 ; 3909e
 
 
-AI_Smart_HiddenPower: ; 3909e
+AI_Smart_WeatherBall: ; 3909e
 	push hl
 	ld a, 1
 	ld [hBattleTurn], a
 
-; Calculate Hidden Power's type and base power based on enemy's DVs.
-	farcall HiddenPowerDamageStats
+; Calculate Weather Ball's type and base power based on enemy's DVs.
+	farcall WeatherBallDamageStats
 	farcall BattleCheckTypeMatchup
 	pop hl
 
-; Discourage Hidden Power if not very effective.
+; Discourage Weather Ball if not very effective.
 	ld a, [wd265]
 	cp 10
 	jr c, .bad
 
-; Discourage Hidden Power if its base power	is lower than 50.
+; Discourage Weather Ball if its base power is lower than 50.
 	ld a, d
 	cp 50
-	jr c, .bad
+	jr z, .bad
 
-; Encourage Hidden Power if super-effective.
+; Encourage Weather Ball if super-effective.
 	ld a, [wd265]
 	cp 11
 	jr nc, .good
 
-; Encourage Hidden Power if its base power is 70.
+; Encourage Weather Ball if its base power is 100.
 	ld a, d
-	cp 70
+	cp 100
 	ret c
 
 .good
@@ -2577,7 +2577,7 @@ AI_Aggressive: ; 39369
 	call AIGetEnemyMove
 
 ; Ignore this move if its power is 0 or 1.
-; Moves such as Seismic Toss, Hidden Power,
+; Moves such as Seismic Toss, Mirror Coat,
 ; Counter and Fissure have a base power of 1.
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	cp 2

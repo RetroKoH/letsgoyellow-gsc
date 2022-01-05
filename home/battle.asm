@@ -621,6 +621,16 @@ SoundMoves::
 	db SUPERSONIC
 	db -1
 
+BombBallMoves::
+	db ENERGY_BALL
+	db FOCUS_BLAST
+	db GYRO_BALL
+	db ROCK_BLAST
+	db SEED_BOMB
+	db SHADOW_BALL
+	db SLUDGE_BOMB
+	db WEATHER_BALL
+
 SubstituteBypassMoves::
 ; used by Magic Bounce so it can check Substitute unconditionally as long as it isn't here
 ; (Sound moves aren't included)

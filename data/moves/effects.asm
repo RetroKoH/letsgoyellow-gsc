@@ -2142,13 +2142,13 @@ Synthesis:
 	healweather
 	endmove
 
-HiddenPower:
+WeatherBall:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
 	critical
-	hiddenpower
+	weatherball
 	damagecalc
 	stab
 	damagevariation

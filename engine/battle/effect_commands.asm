@@ -2095,9 +2095,9 @@ BattleCommand_checkhit:
 	ret
 
 .enemy
-;	ld a, [wEnemyTurnsTaken]
-;	and a
-;	ret
+	ld a, [wEnemyTurnsTaken]
+	cp a, 1 ; on the first turn, doturn will increment to 1 before this code is reached
+	ret
 
 
 .Substitute:
@@ -8938,14 +8938,13 @@ BattleCommand_healweather:
 	ld hl, HPIsFullText
 	jp StdBattleTextBox
 
-BattleCommand_hiddenpower: ; 37be8
-; hiddenpower
+BattleCommand_weatherball: ; 37be8
+; weatherball
 
 	ld a, [wAttackMissed]
 	and a
 	ret nz
-	farjp HiddenPowerDamageStats
-
+	farjp WeatherBallDamageStats
 ; 37bf4
 
 

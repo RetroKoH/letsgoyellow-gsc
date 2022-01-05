@@ -183,7 +183,7 @@
 	const HYPER_VOICE  ; $ad
 	const POISON_FANG  ; $d5
 	const SLEEP_TALK   ; $d6 ; METEOR_MASH
-	const HIDDEN_POWER ; $ed ; WEATHER BALL
+	const WEATHER_BALL ; $ed
 	const SAFEGUARD    ; $db ; SIGNAL_BEAM
 	const AERIAL_ACE   ; $16
 	const ICICLE_SPEAR ; $83

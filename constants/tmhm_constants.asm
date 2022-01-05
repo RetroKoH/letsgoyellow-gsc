@@ -32,7 +32,7 @@ ENDM
 	add_tm HAIL         ; $06
 	add_tm BULK_UP      ; $07
 	add_tm VENOSHOCK    ; $08
-	add_tm HIDDEN_POWER ; $09
+	add_tm WEATHER_BALL ; $09
 	add_tm SUNNY_DAY    ; $0a
 	add_tm TAIL_WHIP    ; $0b
 	add_tm ICE_BEAM     ; $0c

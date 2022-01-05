@@ -183,7 +183,7 @@ BattleAnimations::
 	dw BattleAnim_HyperVoice
 	dw BattleAnim_PoisonFang ; Need to make new anim
 	dw BattleAnim_SleepTalk
-	dw BattleAnim_HiddenPower
+	dw BattleAnim_WeatherBall
 	dw BattleAnim_Safeguard
 	dw BattleAnim_AerialAce
 	dw BattleAnim_IcicleSpear
@@ -4545,7 +4545,7 @@ BattleAnim_PoisonFang:
 	anim_bgp $e4
 	anim_ret
 
-BattleAnim_HiddenPower:
+BattleAnim_WeatherBall:
 	anim_1gfx ANIM_GFX_CHARGE
 	anim_call BattleAnim_FollowEnemyFeet_0
 	anim_bgeffect ANIM_BG_1A, $0, $1, $20

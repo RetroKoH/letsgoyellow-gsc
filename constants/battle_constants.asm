@@ -281,12 +281,13 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | (1 << TOX) | 
 	enum SUBSTATUS_CURLED ; formely in its own substatus
 
 ; environmental, things that stack are bitmasks
+; wPlayerScreens and wEnemyScreens
 SCREENS_REFLECT      EQU 0 ; %00000001
 SCREENS_LIGHT_SCREEN EQU 1 ; %00000010
-SCREENS_SAFEGUARD    EQU 2 ; %00000100
-;SCREENS_MIST         EQU 3   %00001000 TODO
-SCREENS_SPIKES       EQU     %00110000
-SCREENS_TOXIC_SPIKES EQU     %11000000
+SCREENS_AURORA_VEIL  EQU 2 ; %00000100
+SCREENS_MIST         EQU 3 ; %00001000 TO-DO
+SCREENS_SPIKES       EQU     %00110000 ; CHANGE TO STEALTH ROCK
+;                    EQU     %11000000 ; UNUSED
 
 ; weather
 	const_def

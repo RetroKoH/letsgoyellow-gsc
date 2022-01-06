@@ -3501,11 +3501,24 @@ BattleCommand_brickbreak:
 	ld a, [hBattleTurn]
 	and a
 	ld hl, wEnemyScreens
-	ld bc, wEnemyLightScreenCount
+	ld bc, wEnemyAuroraVeilCount
 	jr z, .got_screens
 	ld hl, wPlayerScreens
-	ld bc, wPlayerLightScreenCount
+	ld bc, wPlayerAuroraVeilCount
 .got_screens
+	bit SCREENS_AURORA_VEIL, [hl]
+	jr z, .aurora_veil_done
+	res SCREENS_AURORA_VEIL, [hl]
+	xor a
+	ld [bc], a
+	push hl
+	push bc
+	ld hl, BrokeAuroraVeilText
+	call StdBattleTextBox
+	pop bc
+	pop hl
+.aurora_veil_done
+	inc bc
 	bit SCREENS_LIGHT_SCREEN, [hl]
 	jr z, .light_screen_done
 	res SCREENS_LIGHT_SCREEN, [hl]
@@ -3560,17 +3573,17 @@ PlayerAttackDamage: ; 352e2
 	ld b, a
 	ld c, [hl]
 
-if !DEF(FAITHFUL)
-	call HailDefenseBoost
-endc
+	call HailDefenseBoost ; ICE BUFF
 
 	ld hl, wBattleMonAttack
 	ld a, [wEnemyAbility]
 	cp INFILTRATOR
 	jr z, .thickcluborlightball
 	ld a, [wEnemyScreens]
-	bit SCREENS_REFLECT, a
+	and 1 << SCREENS_AURORA_VEIL | 1 << SCREENS_REFLECT
 	jr z, .thickcluborlightball
+;	bit SCREENS_REFLECT, a
+;	jr z, .thickcluborlightball
 	ld a, [wCriticalHit]
 	and a
 	jr nz, .thickcluborlightball
@@ -3581,8 +3594,6 @@ endc
 .special
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	cp EFFECT_PSYSTRIKE
-	jr z, .psystrike
 
 	ld hl, wEnemyMonSpclDef
 	ld a, [hli]
@@ -3591,22 +3602,15 @@ endc
 
 	call SandstormSpDefBoost
 
-	jr .lightscreen
-
-.psystrike
-	ld hl, wEnemyMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-.lightscreen
 	ld hl, wBattleMonSpclAtk
 	ld a, [wEnemyAbility]
 	cp INFILTRATOR
 	jr z, .lightball
 	ld a, [wEnemyScreens]
-	bit SCREENS_LIGHT_SCREEN, a
+	and 1 << SCREENS_AURORA_VEIL | 1 << SCREENS_LIGHT_SCREEN
 	jr z, .lightball
+;	bit SCREENS_LIGHT_SCREEN, a
+;	jr z, .lightball
 	ld a, [wCriticalHit]
 	and a
 	jr nz, .lightball
@@ -3669,8 +3673,10 @@ endc
 	cp INFILTRATOR
 	jr z, .thickcluborlightball
 	ld a, [wPlayerScreens]
-	bit SCREENS_REFLECT, a
+	and 1 << SCREENS_AURORA_VEIL | 1 << SCREENS_REFLECT
 	jr z, .thickcluborlightball
+;	bit SCREENS_REFLECT, a
+;	jr z, .thickcluborlightball
 	ld a, [wCriticalHit]
 	and a
 	jr nz, .thickcluborlightball
@@ -3681,8 +3687,6 @@ endc
 .special
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	cp EFFECT_PSYSTRIKE
-	jr z, .psystrike
 
 	ld hl, wBattleMonSpclDef
 	ld a, [hli]
@@ -3691,22 +3695,15 @@ endc
 
 	call SandstormSpDefBoost
 
-	jr .lightscreen
-
-.psystrike
-	ld hl, wBattleMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-.lightscreen
 	ld hl, wEnemyMonSpclAtk
 	ld a, [wPlayerAbility]
 	cp INFILTRATOR
 	jr z, .lightball
 	ld a, [wPlayerScreens]
-	bit SCREENS_LIGHT_SCREEN, a
+	and 1 << SCREENS_AURORA_VEIL | 1 << SCREENS_LIGHT_SCREEN
 	jr z, .lightball
+;	bit SCREENS_LIGHT_SCREEN, a
+;	jr z, .lightball
 	ld a, [wCriticalHit]
 	and a
 	jr nz, .lightball
@@ -4630,77 +4627,6 @@ BattleCommand_encore: ; 35864
 ; 35926
 
 
-BattleCommand_painsplit:
-	call CheckHiddenOpponent
-	jr nz, .failed
-
-	call AnimateCurrentMove
-
-	; Get HP
-	ld a, [hBattleTurn]
-	and a
-	ld de, wBattleMonHP + 1
-	ld hl, wEnemyMonHP + 1
-	jr z, .got_hp
-	push de
-	ld d, h
-	ld e, l
-	pop hl
-
-.got_hp
-	; Set bc to [de] - [hl] (user HP - target HP)
-	ld a, [de]
-	sub [hl]
-	ld c, a
-	dec de
-	dec hl
-	ld a, [de]
-	sbc [hl]
-	jr c, .target_has_more
-	ld b, a
-	or c
-	jr z, .done ; do nothing, they're equal
-
-	; User has more
-.share
-	; updates HP anim buffers
-	push bc
-	call GetMaxHP
-	pop bc
-	srl b
-	rr c
-	push bc
-	jr nc, .even_share
-	inc bc ; HP difference is odd, so round down result (HP decrease is done first)
-.even_share
-	farcall SubtractHPFromUser
-	call UpdateUserInParty
-	call SwitchTurn
-	call GetMaxHP
-	pop bc
-	farcall RestoreHP
-	call UpdateUserInParty
-	call SwitchTurn
-.done
-	ld hl, SharedPainText ; text is turn agnostic, so turn swap if target>user is OK
-	jp StdBattleTextBox
-
-.target_has_more
-	cpl
-	ld b, a
-	ld a, c
-	cpl
-	ld c, a
-	inc bc
-	call SwitchTurn
-	call .share
-	jp SwitchTurn
-
-.failed
-	call AnimateFailedMove
-	jp PrintButItFailed
-
-
 BattleCommand_sleeptalk: ; 35b33
 ; sleeptalk
 
@@ -5495,8 +5421,6 @@ BattleCommand_freezetarget:
 	ret z
 	ld a, [wEffectFailed]
 	and a
-	ret nz
-	call SafeCheckSafeguard
 	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
@@ -6384,8 +6308,6 @@ BattleCommand_checkrampage: ; 3671a
 
 	res SUBSTATUS_RAMPAGE, [hl]
 	call SwitchTurn
-	call SafeCheckSafeguard
-	jr nz, .switchturn_continue_rampage
 	ld a, BATTLE_VARS_ABILITY
 	call GetBattleVar
 	cp OWN_TEMPO
@@ -7128,8 +7050,6 @@ BattleCommand_confusetarget: ; 36d1d
 	ret z
 	ld a, [wEffectFailed]
 	and a
-	ret nz
-	call SafeCheckSafeguard
 	ret nz
 	call CheckSubstituteOpp
 	ret nz
@@ -8034,18 +7954,33 @@ BattleCommand_trickroom:
 
 BattleCommand_screen: ; 372fc
 ; screen
-
 	ld hl, wPlayerScreens
-	ld bc, wPlayerLightScreenCount
+	ld bc, wPlayerAuroraVeilCount
 	ld a, [hBattleTurn]
 	and a
 	jr z, .got_screens_pointer
 	ld hl, wEnemyScreens
-	ld bc, wEnemyLightScreenCount
+	ld bc, wEnemyAuroraVeilCount
 
 .got_screens_pointer
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
+	cp EFFECT_AURORA_VEIL
+	jr nz, .lightscreen
+
+; Can only set this if there is HAIL
+	call GetWeatherAfterCloudNine
+	cp WEATHER_HAIL
+	jr nz, .failed
+; If there is hail, let's go!
+	bit SCREENS_AURORA_VEIL, [hl]
+	jr nz, .failed
+	set SCREENS_AURORA_VEIL, [hl]
+	ld hl, AuroraVeilEffectText
+	jr .set_timer
+
+.lightscreen
+	inc bc ; AuroraVeilCount -> LightScreenCount
 	cp EFFECT_LIGHT_SCREEN
 	jr nz, .reflect
 
@@ -8054,12 +7989,14 @@ BattleCommand_screen: ; 372fc
 	set SCREENS_LIGHT_SCREEN, [hl]
 	ld hl, LightScreenEffectText
 	jr .set_timer
+
 .reflect
 	bit SCREENS_REFLECT, [hl]
 	jr nz, .failed
 	set SCREENS_REFLECT, [hl]
 	inc bc ; LightScreenCount -> ReflectCount
 	ld hl, ReflectEffectText
+
 .set_timer
 	ld a, HELD_PROLONG_SCREENS
 	call GetItemBoostedDuration
@@ -8454,121 +8391,22 @@ BattleCommand_happinesspower: ; 3784b
 
 BattleCommand_safeguard: ; 37939
 ; safeguard
-
-	ld hl, wPlayerScreens
-	ld de, wPlayerSafeguardCount
-	ld a, [hBattleTurn]
-	and a
-	jr z, .ok
-	ld hl, wEnemyScreens
-	ld de, wEnemySafeguardCount
-.ok
-	bit SCREENS_SAFEGUARD, [hl]
-	jr nz, .failed
-	set SCREENS_SAFEGUARD, [hl]
-	ld a, 5
-	ld [de], a
-	call AnimateCurrentMove
-	ld hl, CoveredByVeilText
-	jp StdBattleTextBox
-
-.failed
 	call AnimateFailedMove
 	jp PrintButItFailed
 
 ; 37962
 
 
-SafeCheckSafeguard: ; 37962
-	push hl
-	ld hl, wEnemyScreens
-	ld a, [wEnemyAbility]
-	ld b, a
-	ld a, [hBattleTurn]
-	and a
-	jr z, .got_turn
-	ld hl, wPlayerScreens
-	ld a, [wPlayerAbility]
-	ld b, a
-
-.got_turn
-	bit SCREENS_SAFEGUARD, [hl]
-	jr z, .done
-	ld a, b
-	cp INFILTRATOR
-
-.done
-	pop hl
-	ret
-
-; 37972
-
-
+BattleCommand_painsplit:
 BattleCommand_checksafeguard: ; 37972
 ; checksafeguard
-	ld hl, wEnemyScreens
-	ld a, [wEnemyAbility]
-	ld b, a
-	ld a, [hBattleTurn]
-	and a
-	jr z, .got_turn
-	ld hl, wPlayerScreens
-	ld a, [wPlayerAbility]
-	ld b, a
-.got_turn
-	bit SCREENS_SAFEGUARD, [hl]
-	ret z
-	ld a, b
-	cp INFILTRATOR
-	ret z
-	ld a, 1
-	ld [wAttackMissed], a
-	call BattleCommand_movedelay
-	ld hl, SafeguardProtectText
-	call StdBattleTextBox
-	jp EndMoveEffect
-
+	ret
 ; 37991
 
 
 BattleCommand_getmagnitude: ; 37991
 ; getmagnitude
-
-	push bc
-	call BattleRandom
-	ld b, a
-	ld hl, .Magnitudes
-.loop
-	ld a, [hli]
-	cp b
-	jr nc, .ok
-	inc hl
-	inc hl
-	jr .loop
-
-.ok
-	ld d, [hl]
-	push de
-	inc hl
-	ld a, [hl]
-	ld [wTypeMatchup], a
-	call BattleCommand_movedelay
-	ld hl, MagnitudeText
-	call StdBattleTextBox
-	pop de
-	pop bc
 	ret
-
-.Magnitudes:
-	;  /255, BP, magnitude
-	db  13,  10,  4
-	db  38,  30,  5
-	db  89,  50,  6
-	db 166,  70,  7
-	db 217,  90,  8
-	db 242, 110,  9
-	db 255, 150, 10
-; 379c9
 
 BattleCommand_gyroball:
 	push bc
@@ -8841,15 +8679,6 @@ BattleCommand_clearhazards: ; 37b39
 	call StdBattleTextBox
 	pop hl
 .no_spikes
-	ld a, [hl]
-	and SCREENS_TOXIC_SPIKES
-	jr z, .no_toxic_spikes
-	cpl
-	and [hl]
-	ld [hl], a
-	ld hl, BlewToxicSpikesText
-	call StdBattleTextBox
-.no_toxic_spikes
 	pop de
 	ld a, [de]
 	and a

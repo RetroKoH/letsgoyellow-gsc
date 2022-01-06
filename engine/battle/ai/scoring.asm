@@ -51,11 +51,6 @@ AI_Basic: ; 38591
 	and a
 	jr nz, .discourage
 
-; Dismiss Safeguard if it's already active.
-	ld a, [wPlayerScreens]
-	bit SCREENS_SAFEGUARD, a
-	jr z, .checkmove
-
 .discourage
 	call AIDiscourageMove
 	jr .checkmove
@@ -350,7 +345,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_DISABLE,           AI_Smart_Disable
 	dbw EFFECT_COUNTER,           AI_Smart_Counter
 	dbw EFFECT_ENCORE,            AI_Smart_Encore
-	dbw EFFECT_PAIN_SPLIT,        AI_Smart_PainSplit
 	dbw EFFECT_FLAIL,             AI_Smart_Flail
 	dbw EFFECT_HEAL_BELL,         AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
@@ -363,7 +357,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_SANDSTORM,         AI_Smart_Sandstorm
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
 	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
-;	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
+	dbw EFFECT_AURORA_VEIL,       AI_Smart_AuroraVeil
 	dbw EFFECT_BATON_PASS,        AI_Smart_BatonPass
 	dbw EFFECT_PURSUIT,           AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,        AI_Smart_RapidSpin
@@ -814,9 +808,10 @@ AI_Smart_LeechSeed: ; 38a4e
 
 
 AI_Smart_LightScreen:
-AI_Smart_Reflect: ; 38a54
+AI_Smart_Reflect:
+AI_Smart_AuroraVeil: ; 38a54
 ; Over 90% chance to discourage this move unless enemy's HP is full.
-
+; Need to also discourage AV if Hail is not up
 	call AICheckEnemyMaxHP
 	ret c
 	call Random
@@ -1198,28 +1193,6 @@ AI_Smart_Encore: ; 38c3b
 	db TELEPORT
 	db $ff
 ; 38ca4
-
-
-AI_Smart_PainSplit: ; 38ca4
-; Discourage this move if [enemy's current HP * 2 > player's current HP].
-
-	push hl
-	ld hl, wEnemyMonHP
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-	sla c
-	rl b
-	ld hl, wBattleMonHP + 1
-	ld a, [hld]
-	cp c
-	ld a, [hl]
-	sbc b
-	pop hl
-	ret nc
-	inc [hl]
-	ret
-; 38cba
 
 
 AI_Smart_SleepTalk: ; 38cba

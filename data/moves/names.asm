@@ -249,7 +249,7 @@ MoveNames::
 	db "FAIRY_WIND@"
 	db "MOONBLAST@"
 	db "DAZZLE GLEAM@"
-	db "PAIN SPLIT@"
+	db "AURORA VEIL@"
 	db "SHADOW BONE@"
 	db "LIQUIDATION@"
 	db "2x IRON BASH@"

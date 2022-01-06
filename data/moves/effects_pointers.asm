@@ -67,7 +67,7 @@ MoveEffectsPointers:
 	dw AccuracyDown2
 	dw EvasionDown2
 	dw ResetStats
-	dw Safeguard
+	dw AuroraVeil
 	dw Reflect
 	dw LightScreen
 	dw Heal

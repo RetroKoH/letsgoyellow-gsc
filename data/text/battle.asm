@@ -174,13 +174,19 @@ BattleText_UserRecoveredPPUsing:
 BrokeLightScreenText:
 	text "<USER>"
 	line "broke the target's"
-	cont "Light Screen!"
+	cont "LIGHT SCREEN!"
 	prompt
 
 BrokeReflectText:
 	text "<USER>"
 	line "broke the target's"
-	cont "Reflect!"
+	cont "REFLECT!"
+	prompt
+
+BrokeAuroraVeilText:
+	text "<USER>"
+	line "broke the target's"
+	cont "AURORA VEIL!"
 	prompt
 
 BattleText_ItemLowered:
@@ -290,14 +296,21 @@ BattleText_SafeguardFaded: ; 0x808d2
 BattleText_PkmnLightScreenFell: ; 0x808e7
 	text_from_ram wStringBuffer1
 	text " #mon's"
-	line "Light Screen fell!"
+	line "LIGHT SCREEN fell!"
 	prompt
 ; 0x80905
 
 BattleText_PkmnReflectFaded: ; 0x80905
 	text_from_ram wStringBuffer1
 	text " #mon's"
-	line "Reflect faded!"
+	line "REFLECT faded!"
+	prompt
+; 0x8091f
+
+BattleText_PkmnAuroraFaded: ; 0x80905
+	text_from_ram wStringBuffer1
+	text " #mon's"
+	line "AURORA VEIL faded!"
 	prompt
 ; 0x8091f
 
@@ -1283,6 +1296,11 @@ ReflectEffectText: ; 0x814c7
 	line "Defense rose!"
 	prompt
 ; 0x814d9
+
+AuroraVeilEffectText:
+	text "An icy veil"
+	line "covers the team."
+	prompt
 
 NothingHappenedText: ; 0x814d9
 	text "But nothing"

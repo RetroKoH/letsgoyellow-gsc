@@ -71,7 +71,7 @@ BattleCommandPointers:
 	command constantdamage
 	command counter
 	command encore
-	command painsplit
+	command painsplit ; unused
 	command sleeptalk
 	command destinybond
 	command falseswipe

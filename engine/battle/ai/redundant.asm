@@ -29,7 +29,7 @@ AI_Redundant: ; 2c41a
 	dbw EFFECT_SPIKES,        .Spikes
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
-;	dbw EFFECT_SAFEGUARD,     .Safeguard
+	dbw EFFECT_AURORA_VEIL,   .AuroraVeil
 	dbw EFFECT_RAIN_DANCE,    .RainDance
 	dbw EFFECT_SUNNY_DAY,     .SunnyDay
 	dbw EFFECT_TELEPORT,      .Teleport
@@ -43,10 +43,7 @@ AI_Redundant: ; 2c41a
 .Confuse:
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_CONFUSED, a
-	ret nz
-	ld a, [wPlayerScreens]
-	bit SCREENS_SAFEGUARD, a
-	ret
+	ret ; nz if already confused
 
 .Disable:
 	ld a, [wPlayerDisableCount]
@@ -78,14 +75,14 @@ AI_Redundant: ; 2c41a
 	bit SUBSTATUS_LEECH_SEED, a
 	ret
 
-.LightScreen:
-	ld a, [wEnemyScreens]
-	bit SCREENS_LIGHT_SCREEN, a
-	ret
-
 .FakeOut:
 	ld a, [wEnemyTurnsTaken]
 	and a ; before the first turn is counted, so if usable, this should be 0
+	ret
+
+.LightScreen:
+	ld a, [wEnemyScreens]
+	bit SCREENS_LIGHT_SCREEN, a
 	ret
 
 .Reflect:
@@ -93,9 +90,9 @@ AI_Redundant: ; 2c41a
 	bit SCREENS_REFLECT, a
 	ret
 
-.Safeguard:
+.AuroraVeil:
 	ld a, [wEnemyScreens]
-	bit SCREENS_SAFEGUARD, a
+	bit SCREENS_AURORA_VEIL, a
 	ret
 
 .Substitute:

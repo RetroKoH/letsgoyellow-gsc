@@ -250,7 +250,7 @@ BattleAnimations::
 	dw BattleAnim_Gust ; Needs new animation
 	dw BattleAnim_Moonblast
 	dw BattleAnim_DazzlinGleam
-	dw BattleAnim_PainSplit
+	dw BattleAnim_AuroraVeil
 	dw BattleAnim_ShadowBone ; Need to modify animation
 	dw BattleAnim_Octazooka ; Needs new animation
 	dw BattleAnim_MegaPunch ; Needs new animation
@@ -4217,7 +4217,6 @@ BattleAnim_Psystrike:
 	anim_bgp $e4
 	anim_ret
 
-BattleAnim_Safeguard:
 BattleAnim_AuroraVeil:
 	anim_1gfx ANIM_GFX_MISC
 	anim_bgeffect ANIM_BG_06, $0, $2, $0

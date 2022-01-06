@@ -573,20 +573,20 @@ wPlayerScreens::
 ; bit
 ; 4 reflect
 ; 3 light screen
-; 2 safeguard
+; 2 aurora veil
 ; 0 spikes
-	ds 1
+	ds 1 ; c6fd
 
 wEnemyScreens::
 ; see wPlayerScreens
+	ds 1 ; c6fe
+
+wPlayerAuroraVeilCount:: ds 1   ; c6ff
+wPlayerLightScreenCount:: ds 1  ; c700
+wPlayerReflectCount:: ds 1      ; c701
 	ds 1
 
-wPlayerSafeguardCount:: ds 1
-wPlayerLightScreenCount:: ds 1
-wPlayerReflectCount:: ds 1
-	ds 1
-
-wEnemySafeguardCount:: ds 1
+wEnemyAuroraVeilCount:: ds 1
 wEnemyLightScreenCount:: ds 1
 wEnemyReflectCount:: ds 1
 	ds 1

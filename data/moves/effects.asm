@@ -1306,15 +1306,9 @@ Haze:
 	resetstats
 	endmove
 
-Safeguard:
-	checkobedience
-	usedmovetext
-	doturn
-	safeguard
-	endmove
-
 Screen:
 Reflect:
+AuroraVeil:
 LightScreen:
 	checkobedience
 	usedmovetext
@@ -1688,7 +1682,7 @@ PainSplit:
 	doturn
 	hastarget
 	checkhit
-	painsplit
+	sleeptalk
 	endmove
 
 SleepTalk:

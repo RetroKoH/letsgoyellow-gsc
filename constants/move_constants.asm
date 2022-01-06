@@ -250,7 +250,7 @@
 	const FAIRY_WIND   ; $f7
 	const MOONBLAST    ; $f8
 	const DAZZLINGLEAM ; $f9
-	const PAIN_SPLIT   ; $fa ; AURORA VEIL
+	const AURORA_VEIL  ; $fa
 	const SHADOW_BONE  ; $fb
 	const LIQUIDATION  ; $fc
 	const DUOIRONBASH  ; $fd

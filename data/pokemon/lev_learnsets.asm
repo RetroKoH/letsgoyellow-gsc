@@ -352,7 +352,6 @@ BeedrillLearnset:
 	db $FF, U_TURN ; Twineedle
 	db 01, U_TURN ; Twineedle
 	db 01, PECK
-	db 13, RAGE
 	db 17, PURSUIT
 	db 20, FOCUS_ENERGY
 	db 29, TOXIC
@@ -665,7 +664,6 @@ VulpixLearnset:
 	db 18, NIGHT_SHADE ; Payback → new move
 	db 20, WILL_O_WISP
 	db 26, HEX
-	db 28, PAIN_SPLIT ; Flame Burst → HGSS tutor move
 	db 36, FLAMETHROWER
 	db 39, HYPNOSIS ; Imprison → egg move
 	db 42, FIRE_BLAST
@@ -998,7 +996,6 @@ MankeyLearnset:
 	db 0 ; no more level-up moves
 
 PrimeapeLearnset:
-	db 01, RAGE
 	db 01, SCRATCH
 	db 01, LOW_KICK
 	db 01, LEER
@@ -1128,7 +1125,6 @@ MachopLearnset:
 	db 01, LEER
 	db 03, FOCUS_ENERGY
 	db 07, KARATE_CHOP
-	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, FLAIL ; Revenge → Sw/Sh move
 	db 21, KNOCK_OFF
@@ -1146,7 +1142,6 @@ MachokeLearnset:
 	db 01, LEER
 	db 03, FOCUS_ENERGY
 	db 07, KARATE_CHOP
-	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, FLAIL ; Revenge → Sw/Sh move
 	db 21, KNOCK_OFF
@@ -1166,7 +1161,6 @@ MachampLearnset:
 	db 01, LEER
 	db 03, FOCUS_ENERGY
 	db 07, KARATE_CHOP
-	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, FLAIL ; Revenge → Sw/Sh TM move
 	db 21, KNOCK_OFF
@@ -1449,7 +1443,6 @@ DoduoLearnset:
 	db 01, PECK
 	db 01, GROWL
 	db 05, QUICK_ATTACK
-	db 08, RAGE
 	db 12, FURY_ATTACK ; Fury Attack → similar move
 	db 15, PURSUIT
 	db 19, BATON_PASS ; Pluck → XD move
@@ -1469,7 +1462,6 @@ DodrioLearnset:
 	db 01, PECK
 	db 01, GROWL
 	db 05, QUICK_ATTACK
-	db 09, RAGE
 	db 12, FURY_ATTACK ; Fury Attack → similar move
 	db 15, PURSUIT
 	db 19, BATON_PASS ; Pluck → XD move
@@ -1531,7 +1523,6 @@ GrimerLearnset:
 	db 29, SLUDGE_BOMB
 	db 37, SCREECH
 	db 40, GUNK_SHOT
-	db 43, PAIN_SPLIT ; Acid Armor → HGSS tutor move
 	db 46, EXPLOSION ; Belch → TM move
 	db 0 ; no more level-up moves
 
@@ -1549,7 +1540,6 @@ MukLearnset:
 	db 32, CRUNCH
 	db 37, SCREECH
 	db 40, GUNK_SHOT
-	db 46, PAIN_SPLIT ; Acid Armor → HGSS tutor move
 	db 52, EXPLOSION ; Belch → TM move
 	db 0 ; no more level-up moves
 
@@ -1594,7 +1584,6 @@ GastlyLearnset:
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
 	db 22, SUCKER_PUNCH
-	db 26, PAIN_SPLIT ; Payback → HGSS tutor move
 	db 29, SHADOW_BALL
 	db 33, DREAM_EATER
 	db 36, DARK_PULSE
@@ -1609,7 +1598,6 @@ HaunterLearnset:
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
 	db 22, SUCKER_PUNCH
-	db 28, PAIN_SPLIT ; Payback → HGSS tutor move
 	db 33, SHADOW_BALL
 	db 39, DREAM_EATER
 	db 44, DARK_PULSE
@@ -1624,7 +1612,6 @@ GengarLearnset:
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
 	db 22, SUCKER_PUNCH
-	db 28, PAIN_SPLIT ; Payback → HGSS tutor move
 	db 33, SHADOW_BALL
 	db 39, DREAM_EATER
 	db 44, DARK_PULSE
@@ -1637,7 +1624,6 @@ OnixLearnset:
 	db 01, WRAP ; Bind → similar move
 	db 04, CURSE
 	db 07, ROCK_THROW
-	db 10, RAGE
 	db 13, ROCK_BLAST ; Rock Tomb → egg move
 	db 16, BODY_SLAM ; Stealth Rock → TM move
 	db 19, SANDSTORM ; Rock Polish → Sandstorm
@@ -1768,7 +1754,6 @@ ExeggcuteLearnset:
 	db 07, REFLECT
 	db 11, LEECH_SEED
 	db 14, CONFUSION
-	db 17, RAGE ; Bullet Seed → RBY TM move
 	db 19, STUN_SPORE
 	db 21, POISONPOWDER
 	db 23, SLEEP_POWDER
@@ -1812,7 +1797,6 @@ MarowakLearnset:
 	db 13, LEER
 	db 17, FOCUS_ENERGY
 	db 21, BONEMERANG
-	db 23, RAGE
 	db 27, LOW_KICK
 	db 37, THRASH
 	db 43, DRILL_RUN ; Stomping Tantrum → new move
@@ -1904,12 +1888,10 @@ KoffingLearnset:
 	db 07, SMOKESCREEN
 	db 15, WILL_O_WISP ; Clear Smog → TM move
 	db 18, VENOSHOCK ; Sludge → tutor move
-	db 23, RAGE ; Self-Destruct → RMY TM move
 	db 26, HAZE
 	db 29, GYRO_BALL
 	db 34, SLUDGE_BOMB
 	db 37, EXPLOSION
-	db 42, PAIN_SPLIT ; Belch → HGSS tutor move
 	db 45, FIRE_BLAST ; Memento → TM move
 	db 0 ; no more level-up moves
 
@@ -1919,12 +1901,10 @@ WeezingLearnset:
 	db 07, SMOKESCREEN
 	db 15, WILL_O_WISP ; Clear Smog → TM move
 	db 18, VENOSHOCK ; Sludge → tutor move
-	db 23, RAGE ; Self-Destruct → RMY TM move
 	db 26, HAZE
 	db 29, GYRO_BALL
 	db 34, SLUDGE_BOMB
 	db 40, EXPLOSION
-	db 51, PAIN_SPLIT ; Belch → HGSS tutor move
 	db 57, FIRE_BLAST ; Memento → TM move
 	db 0 ; no more level-up moves
 
@@ -2022,7 +2002,6 @@ TangelaLearnset:
 	db 33, SYNTHESIS ; Natural Gift → new move
 	db 38, ANCIENTPOWER
 	db 41, BODY_SLAM ; Slam → similar move
-	db 44, PAIN_SPLIT ; Tickle → HGSS tutor move
 	db 46, SWORDS_DANCE ; Wring Out → TM move
 	db 48, BATON_PASS ; Grassy Terrain → new move
 	db 50, POWER_WHIP
@@ -2035,7 +2014,6 @@ KangaskhanLearnset:
 	db 10, BITE ; Tail Whip → Bite
 	db 13, HEADBUTT ; Bite → tutor move
 	db 19, DOUBLE_KICK ; Double Hit → new move
-	db 22, RAGE
 	db 25, TAKE_DOWN ; Mega Punch → RBY TM move
 	db 31, STOMP ; Chip Away → egg move
 	db 34, MACH_PUNCH ; Dizzy Punch → new move
@@ -2122,7 +2100,6 @@ StaryuLearnset:
 	db 18, BUBBLE_BEAM
 	db 22, AGILITY ; Camouflage → new move
 	db 24, GYRO_BALL
-	db 28, PAIN_SPLIT ; Brine → HGSS tutor move
 	db 31, MINIMIZE
 	db 35, REFLECT ; Reflect Type → new move
 	db 40, CONFUSE_RAY
@@ -2264,7 +2241,6 @@ PinsirLearnset:
 	db 04, WRAP ; Bind → similar move
 	db 08, SEISMIC_TOSS
 	db 12, DEFENSE_CURL ; Harden → similar move
-	db 16, RAGE ; Revenge → RBY TM move
 	db 20, ROCK_THROW ; Brick Break → event move
 	db 26, ROCK_SMASH ; Vital Throw → TM move
 	db 29, X_SCISSOR
@@ -2278,7 +2254,6 @@ PinsirLearnset:
 TaurosLearnset:
 	db 01, TACKLE
 	db 03, LEER ; Tail Whip → similar move
-	db 05, RAGE
 	db 08, HORN_ATTACK
 	db 15, PURSUIT
 	db 19, REST
@@ -2614,7 +2589,6 @@ MunchlaxLearnset:
 	db 04, DEFENSE_CURL
 	db 09, AMNESIA
 	db 12, LICK
-	db 17, RAGE ; Chip Away → RBY TM move
 	db 20, TAKE_DOWN ; Screech → RBY TM move
 	db 25, BODY_SLAM
 	db 28, SCREECH ; Stockpile → Screech
@@ -2628,7 +2602,6 @@ SnorlaxLearnset:
 	db 04, DEFENSE_CURL
 	db 09, AMNESIA
 	db 12, LICK
-	db 17, RAGE ; Chip Away → RBY TM move
 	db 20, TAKE_DOWN ; Yawn → RBY TM move
 	db 25, BODY_SLAM
 	db 28, REST

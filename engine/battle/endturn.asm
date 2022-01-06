@@ -49,7 +49,6 @@ HandleBetweenTurnEffects:
 	call HandleTrickRoom
 	call HandleLeppaBerry
 	call HandleScreens
-	call HandleSafeguard
 	call HandleHealingItems
 	farcall HandleAbilities
 
@@ -790,7 +789,7 @@ HandleScreens:
 	ld de, .Your
 	call .Copy
 	ld hl, wPlayerScreens
-	ld de, wPlayerLightScreenCount
+	ld de, wPlayerAuroraVeilCount
 	jr .TickScreens
 
 .CheckEnemy:
@@ -798,11 +797,15 @@ HandleScreens:
 	ld de, .Enemy
 	call .Copy
 	ld hl, wEnemyScreens
-	ld de, wEnemyLightScreenCount
+	ld de, wEnemyAuroraVeilCount
 
 .TickScreens:
+	bit SCREENS_AURORA_VEIL, [hl]
+	call nz, .AuroraVeilTick
+	inc de
 	bit SCREENS_LIGHT_SCREEN, [hl]
 	call nz, .LightScreenTick
+	inc de
 	bit SCREENS_REFLECT, [hl]
 	call nz, .ReflectTick
 	ret
@@ -817,8 +820,22 @@ HandleScreens:
 	db "Foe@"
 
 
+.AuroraVeilTick:
+	ld a, [de] ; a = wAuroraVeilCount
+	dec a
+	ld [de], a
+	ret nz
+	res SCREENS_AURORA_VEIL, [hl]
+	push hl
+	push de
+	ld hl, BattleText_PkmnAuroraFaded
+	call StdBattleTextBox
+	pop de
+	pop hl
+	ret
+
 .LightScreenTick:
-	ld a, [de]
+	ld a, [de] ; a = wLightScreenCount
 	dec a
 	ld [de], a
 	ret nz
@@ -832,48 +849,12 @@ HandleScreens:
 	ret
 
 .ReflectTick:
-	inc de
-	ld a, [de]
+	ld a, [de] ; a = wReflectCount
 	dec a
 	ld [de], a
 	ret nz
 	res SCREENS_REFLECT, [hl]
 	ld hl, BattleText_PkmnReflectFaded
-	jp StdBattleTextBox
-
-HandleSafeguard:
-	call CheckSpeed
-	jr z, .player_first
-
-	call .CheckEnemy
-.CheckPlayer:
-	ld a, [wPlayerScreens]
-	bit SCREENS_SAFEGUARD, a
-	ret z
-	ld hl, wPlayerSafeguardCount
-	dec [hl]
-	ret nz
-	res SCREENS_SAFEGUARD, a
-	ld [wPlayerScreens], a
-	xor a
-	jr .print
-
-.player_first
-	call .CheckPlayer
-.CheckEnemy:
-	ld a, [wEnemyScreens]
-	bit SCREENS_SAFEGUARD, a
-	ret z
-	ld hl, wEnemySafeguardCount
-	dec [hl]
-	ret nz
-	res SCREENS_SAFEGUARD, a
-	ld [wEnemyScreens], a
-	ld a, $1
-
-.print
-	ld [hBattleTurn], a
-	ld hl, BattleText_SafeguardFaded
 	jp StdBattleTextBox
 
 HandleHealingItems:

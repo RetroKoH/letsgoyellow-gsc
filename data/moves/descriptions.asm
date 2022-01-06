@@ -249,7 +249,7 @@ MoveDescriptions::
 	dw FairyWindDescription
 	dw MoonblastDescription
 	dw DazzlingleamDescription
-	dw PainSplitDescription
+	dw AuroraVeilDescription
 	dw ShadowBoneDescription
 	dw LiquidationDescription
 	dw DoubleIronBashDescription
@@ -607,6 +607,10 @@ ReflectDescription:
 LightScreenDescription:
 	db   "Ups Spcl.Def with"
 	next "a wall of light.@"
+
+AuroraVeilDescription:
+	db   "Ups defenses with"
+	next "an icy light veil.@"
 
 RecoverDescription:
 SoftboiledDescription:
@@ -987,10 +991,6 @@ ReturnDescription:
 PsystrikeDescription:
 	db   "A wave that does"
 	next "physical damage.@"
-
-PainSplitDescription:
-	db   "Adds user & foe's"
-	next "HPs. Shares total.@"
 
 MegahornDescription:
 	db   "A powerful charge"

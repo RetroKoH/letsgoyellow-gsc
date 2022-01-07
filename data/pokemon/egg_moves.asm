@@ -38,7 +38,6 @@ PidgeyEggMoves:
 	db PECK
 	db PURSUIT
 	db AIR_SLASH
-	db STEEL_WING
 	db CHARM
 	db EXTREMESPEED
 	db BRAVE_BIRD
@@ -262,7 +261,6 @@ SlowpokeEggMoves:
 FarfetchDEggMoves:
 	db GUST
 	db QUICK_ATTACK
-	db STEEL_WING
 	db NIGHT_SLASH
 	db ROOST
 	db $ff
@@ -455,7 +453,6 @@ KabutoEggMoves:
 
 AerodactylEggMoves:
 	db PURSUIT
-	db STEEL_WING
 	db ROOST
 	db $ff
 

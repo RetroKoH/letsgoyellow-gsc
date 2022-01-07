@@ -232,10 +232,10 @@ MoveDescriptions::
 	dw BugBiteDescription
 	dw AquaJetDescription
 	dw FlashDescription
-	dw SteelWingDescription
+	dw HeavySlamDescription
 	dw CoilDescription
-	dw ThiefDescription
-	dw VenoshockDescription
+	dw FoulPlayDescription
+	dw ClearSmogDescription
 	dw ScaldDescription
 	dw IcicleCrashDescription
 	dw HexDescription
@@ -274,9 +274,9 @@ DrillRunDescription:
 	next "cal hit ratio.@"
 
 SwiftDescription:
+ClearSmogDescription
 DisarmVoiceDescription:
 AerialAceDescription:
-AuraSphereDescription:
 	db   "An attack that"
 	next "never misses.@"
 
@@ -389,6 +389,10 @@ StrangeSteamDescription:
 DynamicpunchDescription:
 	db   "An attack that"
 	next "confuses the foe.@"
+
+HeavySlamDescription:
+	db   "A move to be used"
+	next "by heavy #mon.@"
 
 LowKickDescription:
 GrassKnotDescription:
@@ -690,10 +694,6 @@ AvalancheDescription:
 	db   "Damage doubles if"
 	next "user is hit first.@"
 
-VenoshockDescription:
-	db   "Damage doubles if"
-	next "foe is poisoned.@"
-
 RainDanceDescription:
 	db   "Boosts Water-type"
 	next "moves for 5 turns.@"
@@ -928,9 +928,9 @@ TripleKickDescription:
 	db   "Hits three times"
 	next "with rising power.@"
 
-ThiefDescription:
-	db   "An attack that may"
-	next "steal a held item.@"
+FoulPlayDescription:
+	db   "Uses a foe's power"
+	next "against them.@"
 
 FacadeDescription:
 	db   "Double damage with"

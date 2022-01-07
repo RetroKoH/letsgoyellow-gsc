@@ -31,7 +31,7 @@ ENDM
 	add_tm TOXIC        ; $05
 	add_tm HAIL         ; $06
 	add_tm BULK_UP      ; $07
-	add_tm VENOSHOCK    ; $08
+	add_tm CLEAR_SMOG   ; $08
 	add_tm WEATHER_BALL ; $09
 	add_tm SUNNY_DAY    ; $0a
 	add_tm TAIL_WHIP    ; $0b
@@ -72,8 +72,8 @@ endc
 	add_tm WILD_CHARGE  ; $2a
 	add_tm REST         ; $2b
 	add_tm POISON_FANG  ; $2c
-	add_tm THIEF        ; $2d
-	add_tm STEEL_WING   ; $2e
+	add_tm FOUL_PLAY    ; $2d
+	add_tm HEAVY_SLAM   ; $2e
 	add_tm ROCK_SLIDE   ; $2f
 	add_tm DAZZLINGLEAM ; $30
 	add_tm LEECH_LIFE   ; $31

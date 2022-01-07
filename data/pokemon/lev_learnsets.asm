@@ -717,7 +717,6 @@ ZubatLearnset:
 	db 25, SUPER_FANG ; Poison Fang → HGSS tutor move
 	db 31, LEECH_LIFE
 	db 35, HAZE
-	db 37, VENOSHOCK
 	db 41, AIR_SLASH
 	db 43, PURSUIT ; Quick Guard → egg move
 	db 0 ; no more level-up moves
@@ -735,7 +734,6 @@ GolbatLearnset:
 	db 27, SUPER_FANG ; Poison Fang → HGSS tutor move
 	db 35, LEECH_LIFE
 	db 40, HAZE
-	db 43, VENOSHOCK
 	db 48, AIR_SLASH
 	db 51, PURSUIT ; Quick Guard → egg move
 	db 0 ; no more level-up moves
@@ -755,7 +753,6 @@ CrobatLearnset:
 	db 27, SUPER_FANG ; Poison Fang → HGSS tutor move
 	db 35, LEECH_LIFE
 	db 40, HAZE
-	db 43, VENOSHOCK
 	db 48, AIR_SLASH
 	db 51, CRUNCH ; Quick Guard → new move
 	db 0 ; no more level-up moves
@@ -917,7 +914,7 @@ MeowthLearnset:
 	db 30, PAY_DAY
 	db 33, SLASH
 	db 38, NASTY_PLOT
-	db 41, THIEF ; Assurance → TM move
+	db 41, FOUL_PLAY ; Assurance → TM move
 	db 46, CHARM ; Captivate → egg move
 	db 49, NIGHT_SLASH
 	db 0 ; no more level-up moves
@@ -934,7 +931,7 @@ PersianLearnset:
 	db 25, PURSUIT ; Taunt → egg move
 	db 37, SLASH
 	db 44, NASTY_PLOT
-	db 49, THIEF ; Assurance → TM move
+	db 49, FOUL_PLAY ; Assurance → TM move
 	db 56, CHARM ; Captivate → egg move
 	db 61, NIGHT_SLASH
 	db 0 ; no more level-up moves
@@ -1225,8 +1222,7 @@ TentacoolLearnset:
 	db 22, CONFUSE_RAY ; Acid Spray → event move
 	db 25, BUBBLE_BEAM
 	db 28, BARRIER
-	db 31, POISON_JAB
-	db 34, VENOSHOCK ; Brine → tutor move
+	db 31, POISON_JAB ; Brine → tutor move
 	db 37, SCREECH
 	db 40, HEX
 	db 43, SLUDGE_BOMB ; Sludge Wave → TM move
@@ -1245,8 +1241,7 @@ TentacruelLearnset:
 	db 22, CONFUSE_RAY ; Acid Spray → event move
 	db 25, BUBBLE_BEAM
 	db 28, BARRIER
-	db 32, POISON_JAB
-	db 36, VENOSHOCK ; Brine → tutor move
+	db 32, POISON_JAB ; Brine → tutor move
 	db 40, SCREECH
 	db 44, HEX
 	db 48, SLUDGE_BOMB ; Sludge Wave → TM move
@@ -1516,8 +1511,7 @@ GrimerLearnset:
 	db 01, TACKLE ; Pound → similar move
 	db 01, ACID ; Poison Gas → new move
 	db 04, DEFENSE_CURL ; Harden → similar move
-	db 12, DISABLE
-	db 15, VENOSHOCK ; Sludge → tutor move
+	db 12, DISABLE ; Sludge → tutor move
 	db 18, HAZE ; Mud Bomb → egg move
 	db 21, MINIMIZE
 	db 29, SLUDGE_BOMB
@@ -1532,8 +1526,7 @@ MukLearnset:
 	db 01, ACID ; Poison Gas → new move
 	db 04, DEFENSE_CURL ; Harden → similar move
 	db 07, BITE
-	db 12, DISABLE
-	db 15, VENOSHOCK ; Sludge → tutor move
+	db 12, DISABLE ; Sludge → tutor move
 	db 18, HAZE ; Mud Bomb → egg move
 	db 21, MINIMIZE
 	db 29, SLUDGE_BOMB
@@ -1867,7 +1860,7 @@ LickitungLearnset:
 	db 01, LICK
 	db 05, SUPERSONIC
 	db 09, DEFENSE_CURL
-	db 12, THIEF ; Knock Off → similar move
+	db 12, FOUL_PLAY ; Knock Off → similar move
 	db 15, WRAP
 	db 18, ACID ; Let's Go move
 	db 21, STOMP
@@ -1886,8 +1879,7 @@ KoffingLearnset:
 	db 01, TACKLE
 	db 04, ACID ; Smog → new move
 	db 07, SMOKESCREEN
-	db 15, WILL_O_WISP ; Clear Smog → TM move
-	db 18, VENOSHOCK ; Sludge → tutor move
+	db 15, WILL_O_WISP ; Clear Smog → TM move ; Sludge → tutor move
 	db 26, HAZE
 	db 29, GYRO_BALL
 	db 34, SLUDGE_BOMB
@@ -1899,8 +1891,7 @@ WeezingLearnset:
 	db 01, TACKLE
 	db 04, ACID ; Smog → new move
 	db 07, SMOKESCREEN
-	db 15, WILL_O_WISP ; Clear Smog → TM move
-	db 18, VENOSHOCK ; Sludge → tutor move
+	db 15, WILL_O_WISP ; Clear Smog → TM move ; Sludge → tutor move
 	db 26, HAZE
 	db 29, GYRO_BALL
 	db 34, SLUDGE_BOMB
@@ -2339,7 +2330,7 @@ EeveeLearnset:
 	db 13, QUICK_ATTACK
 	db 17, BITE
 	db 20, HEAL_BELL ; Refresh → HGSS tutor move
-	db 23, THIEF ; Covet → TM move
+	db 23, FOUL_PLAY ; Covet → TM move
 	db 25, TAKE_DOWN
 	db 29, CHARM
 	db 33, BATON_PASS

@@ -1932,7 +1932,6 @@ Swagger:
 Avalanche:
 Facade:
 Hex:
-Venoshock:
 ConditionalBoostHit:
 	checkobedience
 	usedmovetext

@@ -135,7 +135,7 @@ BattleTowerPokemon2:
 
 	db EXEGGUTOR
 	db KINGS_ROCK
-	db TOXIC, MEGA_DRAIN, THIEF, CONFUSION
+	db TOXIC, MEGA_DRAIN, FOUL_PLAY, CONFUSION
 	db $ff, $ef, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -239,7 +239,7 @@ BattleTowerMons2:
 
 	db SCIZOR
 	db FOCUS_BAND
-	db STEEL_WING, SLASH, TOXIC, SANDSTORM
+	db BULLET_PUNCH, SLASH, TOXIC, SANDSTORM
 	db $ff, $df, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -397,7 +397,7 @@ BattleTowerMons3:
 
 	db GENGAR
 	db SITRUS_BERRY
-	db THIEF, LICK, NIGHT_SHADE, MEGA_DRAIN
+	db FOUL_PLAY, LICK, NIGHT_SHADE, MEGA_DRAIN
 	db $ff, $7f, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -477,7 +477,7 @@ BattleTowerMons4:
 
 	db SCIZOR
 	db SCOPE_LENS
-	db SLASH, STEEL_WING, PURSUIT, HYPER_BEAM
+	db SLASH, BULLET_PUNCH, PURSUIT, HYPER_BEAM
 	db $fb, $df, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -495,7 +495,7 @@ BattleTowerMons4:
 
 	db PORYGON2
 	db NO_ITEM
-	db ICE_BEAM, THUNDERBOLT, PSYBEAM, THIEF
+	db ICE_BEAM, THUNDERBOLT, PSYBEAM, FOUL_PLAY
 	db $eb, $ce, $bb ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -641,7 +641,7 @@ BattleTowerMons5:
 
 	db FEAROW
 	db SITRUS_BERRY
-	db SANDSTORM, FLY, STEEL_WING, TOXIC
+	db SANDSTORM, DRILL_RUN, DRILL_PECK, TOXIC
 	db $ed, $7e, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -745,7 +745,7 @@ BattleTowerMons6:
 
 	db FEAROW
 	db LUM_BERRY
-	db STEEL_WING, FLY, TOXIC, PROTECT
+	db DRILL_RUN, FLY, TOXIC, PROTECT
 	db $ef, $be, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -971,7 +971,7 @@ BattleTowerMons8:
 
 	db GENGAR
 	db NO_ITEM
-	db THUNDERBOLT, SHADOW_BALL, CONFUSE_RAY, THIEF
+	db THUNDERBOLT, SHADOW_BALL, CONFUSE_RAY, FOUL_PLAY
 	db $dd, $ed, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1013,13 +1013,13 @@ BattleTowerMons8:
 
 	db FEAROW
 	db QUICK_CLAW
-	db STEEL_WING, FLY, SAND_ATTACK, TOXIC
+	db DRILL_RUN, FLY, SAND_ATTACK, TOXIC
 	db $ed, $de, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
 	db MOLTRES
 	db CHARCOAL
-	db FLAMETHROWER, BRAVE_BIRD, STEEL_WING, HYPER_BEAM
+	db FLAMETHROWER, BRAVE_BIRD, ROOST, HYPER_BEAM
 	db $fd, $df, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1037,7 +1037,7 @@ BattleTowerMons8:
 
 	db DUGTRIO
 	db SCOPE_LENS
-	db SLASH, EARTHQUAKE, THIEF, SAND_ATTACK
+	db SLASH, EARTHQUAKE, FOUL_PLAY, SAND_ATTACK
 	db $df, $dd, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1153,7 +1153,7 @@ BattleTowerMons9:
 
 	db FEAROW
 	db QUICK_CLAW
-	db SANDSTORM, STEEL_WING, TOXIC, RETURN
+	db SANDSTORM, ROOST, TOXIC, RETURN
 	db $fe, $ff, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1251,7 +1251,7 @@ BattleTowerMons10:
 
 	db PIDGEOT
 	db KINGS_ROCK
-	db DRILL_PECK, STEEL_WING, HURRICANE, SWIFT
+	db DRILL_PECK, ROOST, HURRICANE, SWIFT
 	db $cf, $dc, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1269,7 +1269,7 @@ BattleTowerMons10:
 
 	db SCIZOR
 	db QUICK_CLAW
-	db STEEL_WING, HYPER_BEAM, SLASH, TOXIC
+	db ROOST, HYPER_BEAM, SLASH, TOXIC
 	db $ff, $bf, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

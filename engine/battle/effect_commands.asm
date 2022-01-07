@@ -8278,7 +8278,6 @@ BoostJumptable: ; For conditional boosts
 	dbw AVALANCHE, DoAvalanche
 	dbw FACADE, DoFacade
 	dbw HEX, DoHex
-	dbw VENOSHOCK, DoVenoshock
 	dbw KNOCK_OFF, DoKnockOff
 	dbw -1, -1
 
@@ -8302,12 +8301,6 @@ DoHex:
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	and a
-	jr DoubleDamageIfNZ
-
-DoVenoshock:
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVar
-	bit PSN, a
 	jr DoubleDamageIfNZ
 
 BattleCommand_doubleflyingdamage:

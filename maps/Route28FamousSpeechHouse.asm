@@ -22,7 +22,7 @@ Celebrity:
 	opentext
 	writetext CelebrityText1
 	buttonsound
-	verbosegivetmhm TM_STEEL_WING
+	verbosegivetmhm TM_HEAVY_SLAM
 	setevent EVENT_GOT_TM47_STEEL_WING
 	endtext
 

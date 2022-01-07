@@ -243,10 +243,10 @@ Moves:: ; 41afb
 	move BUG_BITE,     EFFECT_BUG_BITE,           60, BUG,       100, 20,   0, PHYSICAL
 	move AQUA_JET,     EFFECT_PRIORITY_HIT,       40, WATER,     100, 20,   0, PHYSICAL
 	move FLASH,        EFFECT_ACCURACY_DOWN,       0, NORMAL,    100, 20,   0, STATUS
-	move STEEL_WING,   EFFECT_DEFENSE_UP_HIT,     70, STEEL,      90, 25,  10, PHYSICAL
+	move HEAVY_SLAM,   EFFECT_NORMAL_HIT,         70, STEEL,     100, 10,  10, PHYSICAL ; Need to add weight effect to this move
 	move COIL,         EFFECT_COIL,                0, POISON,    100, 20,   0, STATUS
-	move THIEF,        EFFECT_THIEF,              60, DARK,      100, 25, 100, PHYSICAL
-	move VENOSHOCK,    EFFECT_CONDITIONAL_BOOST,  65, POISON,    100, 10,   0, SPECIAL
+	move FOUL_PLAY,    EFFECT_NORMAL_HIT,         95, DARK,      100, 15,   0, PHYSICAL ; Need to make the move use opponent's ATTACK
+	move CLEAR_SMOG,   EFFECT_ALWAYS_HIT,         50, POISON,    100, 15,   0, SPECIAL ; Need to add a one-sided HAZE effect
 	move SCALD,        EFFECT_BURN_HIT,           80, WATER,     100, 15,  30, SPECIAL
 	move ICICLE_CRASH, EFFECT_FLINCH_HIT,         85, ICE,        90, 10,  30, PHYSICAL
 	move HEX,          EFFECT_CONDITIONAL_BOOST,  65, GHOST,     100, 10,   0, SPECIAL

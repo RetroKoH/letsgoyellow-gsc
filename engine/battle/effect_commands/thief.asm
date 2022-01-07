@@ -1,5 +1,5 @@
 BattleCommand_thief:
-	; Pickpocket uses this too
+	; Pickpocket ability uses this too
 	call CanStealItem
 	ret nz
 

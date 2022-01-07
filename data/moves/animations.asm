@@ -233,10 +233,10 @@ BattleAnimations::
 	dw BattleAnim_BugBite
 	dw BattleAnim_AquaJet
 	dw BattleAnim_Flash
-	dw BattleAnim_SteelWing
+	dw BattleAnim_HeavySlam ; Need to add to this animation
 	dw BattleAnim_Endure ; COIL - Need new animation
-	dw BattleAnim_Thief
-	dw BattleAnim_Venoshock
+	dw BattleAnim_FoulPlay ; Maybe tweak the animation
+	dw BattleAnim_ClearSmog
 	dw BattleAnim_Scald
 	dw BattleAnim_IcicleCrash
 	dw BattleAnim_Hex
@@ -247,7 +247,7 @@ BattleAnimations::
 	dw BattleAnim_DizzyPunch
 	dw BattleAnim_DisarmVoice
 	dw BattleAnim_PlayRough
-	dw BattleAnim_Gust ; Needs new animation
+	dw BattleAnim_Mist ; FAIRY WIND - Needs new animation
 	dw BattleAnim_Moonblast
 	dw BattleAnim_DazzlinGleam
 	dw BattleAnim_AuroraVeil
@@ -3198,7 +3198,6 @@ BattleAnim_PsychicM:
 	anim_wait 4
 	anim_ret
 
-BattleAnim_Venoshock: ; TODO: design new animation for Venoshock
 BattleAnim_Sludge:
 	anim_1gfx ANIM_GFX_POISON
 	anim_call BattleAnim_Sludge_branch_cbc15
@@ -3325,22 +3324,6 @@ BattleAnim_TripleKick_branch_caca5:
 	anim_wait 6
 	anim_obj ANIM_OBJ_01, -16, 4,   4, 0, $0
 	anim_wait 8
-	anim_ret
-
-BattleAnim_Thief:
-	anim_1gfx ANIM_GFX_HIT
-	anim_call BattleAnim_FollowEnemyFeet_0
-	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
-	anim_wait 16
-	anim_sound 0, 1, SFX_THIEF
-	anim_obj ANIM_OBJ_01,  16, 0,   6, 0, $0
-	anim_wait 16
-	anim_call BattleAnim_ShowMon_0
-	anim_wait 1
-	anim_1gfx ANIM_GFX_STATUS
-	anim_sound 0, 1, SFX_THIEF_2
-	anim_obj ANIM_OBJ_8B,  15, 0,   9, 4, $1
-	anim_wait 64
 	anim_ret
 
 ; Bug Buzz animation from Pokémon Prism
@@ -3856,6 +3839,7 @@ BattleAnim_AcidArmor:
 	anim_ret
 
 BattleAnim_Smog:
+BattleAnim_ClearSmog:
 	anim_1gfx ANIM_GFX_HAZE
 	anim_sound 0, 1, SFX_BUBBLE_BEAM
 .loop
@@ -5221,6 +5205,17 @@ BattleAnim_UTurn:
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_ret
 
+BattleAnim_FoulPlay:
+	anim_1gfx ANIM_GFX_HIT
+	anim_call BattleAnim_FollowEnemyFeet_0
+	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
+	anim_wait 4
+	anim_sound 0, 1, SFX_BEAT_UP
+	anim_obj ANIM_OBJ_00, -15, 0,   6, 0, $0
+	anim_wait 8
+	anim_call BattleAnim_ShowMon_0
+	anim_ret
+
 BattleAnim_SuckerPunch:
 	anim_2gfx ANIM_GFX_SPEED, ANIM_GFX_HIT
 	anim_sound 0, 0, SFX_LICK
@@ -5283,6 +5278,14 @@ BattleAnim_CometPunch_branch_c9641:
 	anim_wait 8
 	anim_ret
 
+BattleAnim_HeavySlam:
+	anim_1gfx ANIM_GFX_HIT
+	anim_sound 0, 1, SFX_WING_ATTACK
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $2
+	anim_obj ANIM_OBJ_01,  15, 4,   5, 0, $0
+	anim_wait 16
+	anim_ret
+
 BattleAnim_GigaImpact:
 	anim_2gfx ANIM_GFX_HIT, ANIM_GFX_CHARGE
 	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
@@ -5312,41 +5315,6 @@ BattleAnim_GigaImpact:
 ; unused animations below here
 ; ================================
 
-;BattleAnim_BeatUp: ; removed
-;	anim_jumpif $0, .current_mon
-;	anim_sound 0, 0, SFX_BALL_POOF
-;	anim_bgeffect ANIM_BG_RETURN_MON, $0, $1, $0
-;	anim_wait 16
-;	anim_beatup
-;	anim_sound 0, 0, SFX_BALL_POOF
-;	anim_bgeffect ANIM_BG_ENTER_MON, $0, $1, $0
-;	anim_wait 16
-;.current_mon
-;	anim_1gfx ANIM_GFX_HIT
-;	anim_call BattleAnim_FollowEnemyFeet_0
-;	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0
-;	anim_wait 4
-;	anim_sound 0, 1, SFX_BEAT_UP
-;	anim_obj ANIM_OBJ_00, -15, 0,   6, 0, $0
-;	anim_wait 8
-;	anim_call BattleAnim_ShowMon_0
-;	anim_ret
-
-;BattleAnim_Bind: ; removed
-;	anim_1gfx ANIM_GFX_ROPE
-;	anim_sound 0, 1, SFX_BIND
-;	anim_obj ANIM_OBJ_48, -16, 4,   8, 0, $0
-;	anim_wait 8
-;	anim_obj ANIM_OBJ_49, -16, 4,   7, 0, $0
-;	anim_wait 8
-;	anim_obj ANIM_OBJ_48, -16, 4,   6, 0, $0
-;	anim_wait 64
-;	anim_sound 0, 1, SFX_BIND
-;	anim_incobj  1
-;	anim_incobj  2
-;	anim_incobj  3
-;	anim_wait 96
-;	anim_ret
 
 ;BattleAnim_SweetScent: ; removed
 ;	anim_2gfx ANIM_GFX_FLOWER, ANIM_GFX_MISC
@@ -5630,14 +5598,6 @@ BattleAnim_GigaImpact:
 ;	anim_sound 0, 1, SFX_NIGHTMARE
 ;	anim_wait 96
 ;	anim_bgp $e4
-;	anim_ret
-
-;BattleAnim_Slam: ; removed
-;	anim_1gfx ANIM_GFX_HIT
-;	anim_sound 0, 1, SFX_WING_ATTACK
-;	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $2
-;	anim_obj ANIM_OBJ_01,  15, 4,   5, 0, $0
-;	anim_wait 16
 ;	anim_ret
 
 ;BattleAnim_SweetScent2: ; removed

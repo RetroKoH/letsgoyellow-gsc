@@ -98,8 +98,8 @@ MoveEffectsPointers:
 	dw FakeOut
 	dw HealBell
 	dw TripleKick
-	dw Thief
-	dw MeanLook
+	dw Thief       ; UNUSED
+	dw MeanLook    ; UNUSED
 	dw FlameWheel
 	dw Curse
 	dw Protect

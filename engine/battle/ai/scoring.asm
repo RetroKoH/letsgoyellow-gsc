@@ -348,7 +348,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_FLAIL,             AI_Smart_Flail
 	dbw EFFECT_HEAL_BELL,         AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
-	dbw EFFECT_THIEF,             AI_Smart_Thief
 	dbw EFFECT_FLAME_WHEEL,       AI_Smart_FlameWheel
 	dbw EFFECT_FLARE_BLITZ,       AI_Smart_FlameWheel
 	dbw EFFECT_CURSE,             AI_Smart_Curse
@@ -1317,16 +1316,6 @@ AI_Smart_PriorityHit: ; 38d5a
 	dec [hl]
 	ret
 ; 38d93
-
-
-AI_Smart_Thief: ; 38d93
-; Don't use Thief unless it's the only move available.
-
-	ld a, [hl]
-	add $1e
-	ld [hl], a
-	ret
-; 38d98
 
 
 AI_Smart_Disable: ; 38dd1

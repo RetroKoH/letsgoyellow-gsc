@@ -45,7 +45,7 @@
 	const ACID         ; $2b
 	const EMBER        ; $2c
 	const FLAMETHROWER ; $2d
-	const RAGE         ; $2e ; MIST
+	const RAGE         ; $2e ; FELL_STINGER
 	const WATER_GUN    ; $2f
 	const HYDRO_PUMP   ; $30
 	const SURF         ; $31
@@ -233,10 +233,10 @@
 	const BUG_BITE     ; $e6
 	const AQUA_JET     ; $e7
 	const FLASH        ; $e8 ; QUIVER DANCE
-	const STEEL_WING   ; $e9 ; HEAVY_SLAM
+	const HEAVY_SLAM   ; $e9
 	const COIL         ; $ea
-	const THIEF        ; $eb ; FOUL_PLAY
-	const VENOSHOCK    ; $ec ; CLEAR_SMOG
+	const FOUL_PLAY    ; $eb
+	const CLEAR_SMOG   ; $ec
 	const SCALD        ; $ed
 	const ICICLE_CRASH ; $ee ; SHELL_SMASH
 	const HEX          ; $ef
@@ -244,7 +244,7 @@
 	const WILD_CHARGE  ; $f1
 	const DRILL_RUN    ; $f2
 	const HURRICANE    ; $f3
-	const DIZZY_PUNCH  ; $f4 ; FELL_STINGER < Might keep Dizzy Punch
+	const DIZZY_PUNCH  ; $f4 ; Might keep Dizzy Punch
 	const DISARM_VOICE ; $f5
 	const PLAY_ROUGH   ; $f6
 	const FAIRY_WIND   ; $f7

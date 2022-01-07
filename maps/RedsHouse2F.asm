@@ -92,7 +92,7 @@ RedsHouse2FSNESText:
 	loadvar wPartyMon1Moves+0, SURF
 	loadvar wPartyMon1Moves+1, REFLECT
 	loadvar wPartyMon1Moves+2, LIGHT_SCREEN
-	loadvar wPartyMon1Moves+3, AURORA_VEIL
+	loadvar wPartyMon1Moves+3, FELL_STINGER
 	loadvar wPartyMon1PP+0, 15
 	loadvar wPartyMon1PP+1, 15
 	loadvar wPartyMon1PP+2, 15

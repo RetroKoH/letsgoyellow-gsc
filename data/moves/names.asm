@@ -44,7 +44,7 @@ MoveNames::
 	db "ACID@"
 	db "EMBER@"
 	db "FLAMETHROWER@"
-	db "RAGE@"
+	db "FELL STINGER@"
 	db "WATER GUN@"
 	db "HYDRO PUMP@"
 	db "SURF@"

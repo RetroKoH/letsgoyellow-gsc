@@ -45,7 +45,7 @@ BattleAnimations::
 	dw BattleAnim_Acid
 	dw BattleAnim_Ember
 	dw BattleAnim_Flamethrower
-	dw BattleAnim_Rage
+	dw BattleAnim_FellStinger ; Need to fix
 	dw BattleAnim_WaterGun
 	dw BattleAnim_HydroPump
 	dw BattleAnim_Surf
@@ -2402,6 +2402,7 @@ BattleAnim_HornAttack:
 	anim_ret
 
 BattleAnim_PoisonSting:
+BattleAnim_FellStinger:
 	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
 	anim_obj ANIM_OBJ_60,   8, 0,  11, 4, $14
 	anim_wait 16

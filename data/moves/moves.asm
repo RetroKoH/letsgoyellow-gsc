@@ -55,7 +55,7 @@ Moves:: ; 41afb
 	move ACID,         EFFECT_SP_DEF_DOWN_HIT,    40, POISON,    100, 30,  10, SPECIAL
 	move EMBER,        EFFECT_BURN_HIT,           40, FIRE,      100, 25,  10, SPECIAL
 	move FLAMETHROWER, EFFECT_BURN_HIT,           90, FIRE,      100, 15,  10, SPECIAL
-	move RAGE,         EFFECT_RAGE,               20, NORMAL,    100, 20,   0, PHYSICAL
+	move FELL_STINGER, EFFECT_NORMAL_HIT,         50, BUG,       100, 25,   0, PHYSICAL
 	move WATER_GUN,    EFFECT_NORMAL_HIT,         40, WATER,     100, 25,   0, SPECIAL
 	move HYDRO_PUMP,   EFFECT_NORMAL_HIT,        110, WATER,      80,  5,   0, SPECIAL
 	move SURF,         EFFECT_NORMAL_HIT,         90, WATER,     100, 15,   0, SPECIAL

@@ -527,6 +527,7 @@ ContactMoves::
 	db DYNAMICPUNCH
 	db EXTREMESPEED
 	db FAKE_OUT
+	db FELL_STINGER
 	db FIRE_PUNCH
 	db FLAIL
 	db FLAME_WHEEL
@@ -564,7 +565,6 @@ ContactMoves::
 	db POWER_WHIP
 	db PURSUIT
 	db QUICK_ATTACK
-	db RAGE
 	db RAPID_SPIN
 	db RETURN
 	db ROCK_SMASH

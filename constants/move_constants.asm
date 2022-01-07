@@ -45,7 +45,7 @@
 	const ACID         ; $2b
 	const EMBER        ; $2c
 	const FLAMETHROWER ; $2d
-	const RAGE         ; $2e ; FELL_STINGER
+	const FELL_STINGER ; $2e
 	const WATER_GUN    ; $2f
 	const HYDRO_PUMP   ; $30
 	const SURF         ; $31

@@ -340,7 +340,6 @@ AI_Smart: ; 386be
 	dbw EFFECT_SPEED_DOWN_HIT,    AI_Smart_SpeedDownHit
 	dbw EFFECT_SUBSTITUTE,        AI_Smart_Substitute
 	dbw EFFECT_HYPER_BEAM,        AI_Smart_HyperBeam
-	dbw EFFECT_RAGE,              AI_Smart_Rage
 	dbw EFFECT_LEECH_SEED,        AI_Smart_LeechSeed
 	dbw EFFECT_DISABLE,           AI_Smart_Disable
 	dbw EFFECT_COUNTER,           AI_Smart_Counter
@@ -1027,22 +1026,10 @@ AI_Smart_HyperBeam: ; 38b63
 ; 38b7f
 
 
-AI_Smart_Rage: ; 38b7f
-	ld a, [wEnemySubStatus4]
-	bit SUBSTATUS_RAGE, a
-	jr z, .asm_38b9b
-
-; If enemy's Rage is building, 50% chance to encourage this move.
-	call AI_50_50
-	ret c
-
-	dec [hl]
-	ret
-
-.asm_38b9b
-; If enemy's Rage is not building, discourage this move if enemy's HP is below 50%.
+AI_Smart_FellStinger: ; 38b7f
+; discourage this move if enemy's HP is at/above 50%.
 	call AICheckEnemyHalfHP
-	jr nc, .asm_38ba6
+	jr c, .asm_38ba6
 
 ; 50% chance to encourage this move otherwise.
 	call AI_80_20
@@ -2434,7 +2421,6 @@ AI_Opportunist: ; 39315
 	db LEECH_SEED
 	db LEER
 	db LIGHT_SCREEN
-	db RAGE
 	db REFLECT
 	db SCREECH
 	db SPLASH

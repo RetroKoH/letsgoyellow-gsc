@@ -44,7 +44,7 @@ MoveDescriptions::
 	dw AcidDescription
 	dw EmberDescription
 	dw FlamethrowerDescription
-	dw RageDescription
+	dw FellStingerDescription
 	dw WaterGunDescription
 	dw HydroPumpDescription
 	dw SurfDescription
@@ -854,10 +854,6 @@ RockThrowDescription:
 EarthquakeDescription:
 	db   "Tough but useless"
 	next "vs. flying foes.@"
-
-RageDescription:
-	db   "Raises Attack if"
-	next "the user is hit.@"
 
 TeleportDescription:
 	db   "A move for fleeing"

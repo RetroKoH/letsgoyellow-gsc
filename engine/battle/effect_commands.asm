@@ -3119,8 +3119,16 @@ BattleCommand_postfainteffects:
 	call HasOpponentFainted
 	ret nz
 
-; Removed Destiny Bond
+	ld a, BATTLE_VARS_MOVE
+	call GetBattleVar
+	cp FELL_STINGER
+	jr nz, .no_fellstinger
 
+	call BattleCommand_attackup2
+	ld hl, FellStingerText
+	call StdBattleTextBox
+
+.no_fellstinger
 	farcall RunFaintAbilities
 	call BattleCommand_posthiteffects
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -6007,11 +6015,11 @@ BattleCommand_statupmessage: ; 363b8
 	ret
 
 .wayup
-	text_jump UnknownText_0x1c0cd0
+	text_jump UnknownText_0x1c0cd0 ; Sharply rose
 	db "@"
 
 .up
-	text_jump UnknownText_0x1c0ce0
+	text_jump UnknownText_0x1c0ce0 ; Rose
 	db "@"
 
 BattleCommand_statdownmessage:

@@ -1555,6 +1555,12 @@ BellyDrumText: ; 0x817d2
 	prompt
 ; 0x817f6
 
+FellStingerText:
+	text "<USER>'s"
+	line "ATTACK just rose"
+	cont "drastically!"
+	prompt
+
 ForesawAttackText: ; 0x81817
 	text "<USER>"
 	line "foresaw an attack!"

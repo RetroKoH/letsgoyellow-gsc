@@ -592,18 +592,18 @@ PokemonActionSubmenu: ; 12a88
 	ret
 
 .Actions:
-	dbw MONMENU_CUT,        MonMenu_Cut ; Cut
-	dbw MONMENU_FLY,        MonMenu_Fly ; Fly
-	dbw MONMENU_SURF,       MonMenu_Surf ; Surf
-	dbw MONMENU_STRENGTH,   MonMenu_Strength ; Strength
-	dbw MONMENU_FLASH,      MonMenu_Flash ; Flash
-	dbw MONMENU_WHIRLPOOL,  MonMenu_Whirlpool ; Whirlpool
-	dbw MONMENU_DIG,        MonMenu_Dig ; Dig
-	dbw MONMENU_TELEPORT,   MonMenu_Teleport ; Teleport
-	dbw MONMENU_RECOVER,    MonMenu_Recover ; Recover
-	dbw MONMENU_HEADBUTT,   MonMenu_Headbutt ; Headbutt
-	dbw MONMENU_WATERFALL,  MonMenu_Waterfall ; Waterfall
-	dbw MONMENU_ROCKSMASH,  MonMenu_RockSmash ; RockSmash
+	dbw MONMENU_CHOP,    MonMenu_Cut ; Cut
+	dbw MONMENU_SOAR,    MonMenu_Fly ; Fly
+	dbw MONMENU_SWIM,    MonMenu_Surf ; Surf
+	dbw MONMENU_PUSH,    MonMenu_Strength ; Strength
+	dbw MONMENU_GLOW,    MonMenu_Flash ; Flash
+;	dbw MONMENU_WHIRLPOOL,  MonMenu_Whirlpool ; Whirlpool
+;	dbw MONMENU_DIG,        MonMenu_Dig ; Dig
+	dbw MONMENU_WARP,    MonMenu_Teleport ; Teleport
+	dbw MONMENU_HEAL,    MonMenu_Recover ; Recover
+;	dbw MONMENU_HEADBUTT,   MonMenu_Headbutt ; Headbutt
+;	dbw MONMENU_WATERFALL,  MonMenu_Waterfall ; Waterfall
+;	dbw MONMENU_ROCKSMASH,  MonMenu_RockSmash ; RockSmash
 	dbw MONMENU_STATS,      OpenPartyStats
 	dbw MONMENU_SWITCH,     SwitchPartyMons
 	dbw MONMENU_ITEM,       GiveTakePartyMonItem

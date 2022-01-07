@@ -300,3 +300,15 @@ endc
 	const BATTLEANIM_WOBBLE
 	const BATTLEANIM_SHAKE
 	const BATTLEANIM_HIT_CONFUSION
+
+; Field techniques
+	const_def
+	const CHOP
+	const SOAR
+	const SWIM
+	const PUSH_T
+	const GLOW
+	const WARP
+	const HEAL
+	const LURE
+	const LULL

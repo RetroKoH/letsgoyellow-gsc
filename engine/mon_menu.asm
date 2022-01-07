@@ -95,22 +95,26 @@ PopulateMonMenu: ; 24d91
 ; 24db0
 
 GetMonMenuString: ; 24db0
-	ld hl, MonMenuOptions + 1
-	ld de, 3
+	ld hl, MonMenuOptions + 1 ; Menu item constant
+	ld de, 3                  ; 3rd item is text reference
 	call IsInArray
 	dec hl
-	ld a, [hli]
+	ld a, [hli]               ; a = menu option type (standard or field move)
 	cp MONMENU_MENUOPTION
 	jr z, .NotMove
 	inc hl
 	ld a, [hl]
-	ld [wd265], a
-	jp GetMoveName
+	dec a                       ; a = zero-based index
+	ld hl, MonMenuFieldStrings
+	call GetNthString
+	ld d, h
+	ld e, l
+	ret
 
 .NotMove:
 	inc hl
 	ld a, [hl]
-	dec a
+	dec a                       ; a = zero-based index
 	ld hl, MonMenuOptionStrings
 	call GetNthString
 	ld d, h
@@ -123,33 +127,36 @@ GetMonSubmenuItems: ; 24dd4
 	ld a, MON_IS_EGG
 	call GetPartyParamLocation
 	bit MON_IS_EGG_F, [hl]
-	jr nz, .egg
+	jr nz, .egg                ; if this mon is an egg, branch and skip
 	ld a, [wLinkMode]
 	and a
-	jr nz, .skip_moves
-	ld a, MON_MOVES
-	call GetPartyParamLocation
-	ld d, h
-	ld e, l
-	ld c, NUM_MOVES
-.loop
-	push bc
-	push de
-	ld a, [de]
-	and a
-	jr z, .next
-	push hl
-	call IsFieldMove
-	pop hl
-	jr nc, .next
-	call AddMonMenuItem
+	jr nz, .skip_moves         ; if we are in link mode, skip field moves
 
-.next
-	pop de
+; GET MENU ITEMS BASED ON THE HARDCODED DATA
+	ld a, MON_SPECIES
+	call GetPartyParamLocation
+	ld a, [hl] ; a = SPECIES of current mon
+
+	ld hl, TechniquesPointerTable
+	ld b, 0
+	dec a       ; zero-based index
+	ld c, a
+	add hl, bc
+	add hl, bc	; hl points to the species' techniques list pointer
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a     ; de now points to actual techniques list
+;	ld hl, wTechniques ; hl points to techniques stored in RAM
+.loop
+	ld a, [de]		    ; field technique ID
+	and a               ; is a == 0? (End of tech list)
+	jr z, .skip_moves   ; if yes, branch and skip ahead
+	inc a
+	call AddMonMenuItem ; if a field move is detected, add the item to the menu
+
 	inc de
-	pop bc
-	dec c
-	jr nz, .loop
+	jr .loop
+; ------------------------------------
 
 .skip_moves
 	ld a, MONMENU_STATS
@@ -248,3 +255,5 @@ AddMonMenuItem: ; 24e83
 	pop hl
 	ret
 ; 24e99
+
+INCLUDE "data/pokemon/field_techniques.asm"

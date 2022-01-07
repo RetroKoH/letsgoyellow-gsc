@@ -1,24 +1,19 @@
 	const_def 1
-	const MONMENU_CUT        ; 1
-	const MONMENU_FLY        ; 2
-	const MONMENU_SURF       ; 3
-	const MONMENU_STRENGTH   ; 4
-	const MONMENU_WATERFALL  ; 5
-	const MONMENU_FLASH      ; 6
-	const MONMENU_WHIRLPOOL  ; 7
-	const MONMENU_DIG        ; 8
-	const MONMENU_TELEPORT   ; 9
-	const MONMENU_RECOVER    ; 10
-	const MONMENU_HEADBUTT   ; 11
-	const MONMENU_ROCKSMASH  ; 12
+	const MONMENU_CHOP   ; 1
+	const MONMENU_SOAR   ; 2
+	const MONMENU_SWIM   ; 3
+	const MONMENU_PUSH   ; 4
+	const MONMENU_GLOW   ; 5
+	const MONMENU_WARP   ; 6
+	const MONMENU_HEAL   ; 7
 
-	const MONMENU_STATS      ; 14
-	const MONMENU_SWITCH     ; 15
-	const MONMENU_ITEM       ; 16
-	const MONMENU_CANCEL     ; 17
-	const MONMENU_MOVE       ; 18
-	const MONMENU_MAIL       ; 19
-	const MONMENU_ERROR      ; 20
+	const MONMENU_STATS      ; 8
+	const MONMENU_SWITCH     ; 9
+	const MONMENU_ITEM       ; 10
+	const MONMENU_CANCEL     ; 11
+	const MONMENU_MOVE       ; 12
+	const MONMENU_MAIL       ; 13
+	const MONMENU_ERROR      ; 14
 
 MONMENU_FIELD_MOVE EQU 0
 MONMENU_MENUOPTION EQU 1

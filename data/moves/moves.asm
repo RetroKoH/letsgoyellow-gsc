@@ -248,7 +248,7 @@ Moves:: ; 41afb
 	move FOUL_PLAY,    EFFECT_NORMAL_HIT,         95, DARK,      100, 15,   0, PHYSICAL ; Need to make the move use opponent's ATTACK
 	move CLEAR_SMOG,   EFFECT_ALWAYS_HIT,         50, POISON,    100, 15,   0, SPECIAL ; Need to add a one-sided HAZE effect
 	move SCALD,        EFFECT_BURN_HIT,           80, WATER,     100, 15,  30, SPECIAL
-	move ICICLE_CRASH, EFFECT_FLINCH_HIT,         85, ICE,        90, 10,  30, PHYSICAL
+	move SHELL_SMASH,  EFFECT_SHELL_SMASH,         0, ICE,       100, 15,   0, STATUS
 	move HEX,          EFFECT_CONDITIONAL_BOOST,  65, GHOST,     100, 10,   0, SPECIAL
 	move BULLDOZE,     EFFECT_SPEED_DOWN_HIT,     60, GROUND,    100, 20, 100, PHYSICAL
 	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, ELECTRIC,  100, 15,   0, PHYSICAL

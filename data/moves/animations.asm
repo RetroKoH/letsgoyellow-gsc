@@ -238,7 +238,7 @@ BattleAnimations::
 	dw BattleAnim_FoulPlay ; Maybe tweak the animation
 	dw BattleAnim_ClearSmog
 	dw BattleAnim_Scald
-	dw BattleAnim_IcicleCrash
+	dw BattleAnim_ShellSmash ; Need to modify anim
 	dw BattleAnim_Hex
 	dw BattleAnim_Bulldoze
 	dw BattleAnim_WildCharge
@@ -2399,26 +2399,6 @@ BattleAnim_HornAttack:
 	anim_sound 0, 1, SFX_HORN_ATTACK
 	anim_obj ANIM_OBJ_01, -15, 0,   7, 0, $0
 	anim_wait 16
-	anim_ret
-
-BattleAnim_IcicleCrash:
-	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
-	anim_obj ANIM_OBJ_ICICLE,   9, 0,  10, 0, $3
-	anim_wait 8
-.loop
-	anim_sound 0, 1, SFX_HORN_ATTACK
-	anim_obj ANIM_OBJ_00, -16, 4,   5, 0, $0
-	anim_wait 8
-	anim_sound 0, 1, SFX_HORN_ATTACK
-	anim_obj ANIM_OBJ_00, -15, 4,   6, 0, $0
-	anim_wait 8
-	anim_sound 0, 1, SFX_HORN_ATTACK
-	anim_obj ANIM_OBJ_00, -16, 4,   7, 0, $0
-	anim_wait 8
-	anim_sound 0, 1, SFX_HORN_ATTACK
-	anim_obj ANIM_OBJ_00,  15, 4,   6, 0, $0
-	anim_wait 8
-	anim_loop 3, .loop
 	anim_ret
 
 BattleAnim_PoisonSting:
@@ -4900,7 +4880,7 @@ BattleAnim_SolarBeam_branch_cbb39:
 	anim_ret
 
 BattleAnim_Explosion_branch_cbb62:
-BattleAnim_Selfdestruct_branch_cbb62: ; removed
+BattleAnim_Selfdestruct_branch_cbb62:
 	anim_sound 0, 0, SFX_EGG_BOMB
 	anim_obj ANIM_OBJ_17,   3, 0,   8, 0, $0
 	anim_wait 5
@@ -4919,8 +4899,7 @@ BattleAnim_Selfdestruct_branch_cbb62: ; removed
 
 BattleAnim_Dynamicpunch_branch_cbb8f:
 BattleAnim_Explosion_branch_cbb8f:
-BattleAnim_Selfdestruct_branch_cbb8f: ; removed
-BattleAnim_Present_branch_cbb8f: ; removed
+BattleAnim_Selfdestruct_branch_cbb8f:
 	anim_sound 0, 1, SFX_EGG_BOMB
 	anim_obj ANIM_OBJ_17, -14, 4,   4, 0, $0
 	anim_wait 5
@@ -5278,6 +5257,24 @@ BattleAnim_CometPunch_branch_c9641:
 	anim_wait 8
 	anim_ret
 
+BattleAnim_ShellSmash:
+	anim_1gfx ANIM_GFX_EXPLOSION
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $24
+	anim_jumpif $1, .loop
+	anim_call BattleAnim_Selfdestruct_branch_cbb8f
+	anim_wait 16
+	anim_bgp $e4
+	anim_ret
+
+.loop
+	anim_call BattleAnim_Selfdestruct_branch_cbb62
+	anim_wait 5
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
+	anim_loop 1, .loop
+	anim_wait 16
+	anim_bgp $e4
+	anim_ret
+
 BattleAnim_HeavySlam:
 	anim_1gfx ANIM_GFX_HIT
 	anim_sound 0, 1, SFX_WING_ATTACK
@@ -5611,24 +5608,6 @@ BattleAnim_GigaImpact:
 ;	anim_obj ANIM_OBJ_COTTON, -15, 0,   5, 0, $3f
 ;	anim_bgeffect ANIM_BG_06, $0, $2, $0
 ;	anim_wait 128
-;	anim_ret
-
-;BattleAnim_Selfdestruct:
-;	anim_1gfx ANIM_GFX_EXPLOSION
-;	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $24
-;	anim_jumpif $1, .loop
-;	anim_call BattleAnim_Selfdestruct_branch_cbb8f
-;	anim_wait 16
-;	anim_bgp $e4
-;	anim_ret
-;
-;.loop
-;	anim_call BattleAnim_Selfdestruct_branch_cbb62
-;	anim_wait 5
-;	anim_bgeffect ANIM_BG_HIDE_MON, $0, $1, $0
-;	anim_loop 2, .loop
-;	anim_wait 16
-;	anim_bgp $e4
 ;	anim_ret
 
 ;BattleAnim_Submission: ; removed

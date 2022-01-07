@@ -237,7 +237,7 @@ MoveDescriptions::
 	dw FoulPlayDescription
 	dw ClearSmogDescription
 	dw ScaldDescription
-	dw IcicleCrashDescription
+	dw ShellSmashDescription
 	dw HexDescription
 	dw BulldozeDescription
 	dw WildChargeDescription
@@ -466,10 +466,6 @@ FocusBlastDescription:
 	db   "An attack that may"
 	next "lower Spcl.Def.@"
 
-DragonRageDescription:
-	db   "Always inflicts"
-	next "40HP damage.@"
-
 SeismicTossDescription:
 NightShadeDescription:
 	db   "Damage equals the"
@@ -560,6 +556,10 @@ BulkUpDescription:
 CalmMindDescription:
 	db   "Raises the user's"
 	next "Sp.Atk and Sp.Def.@"
+
+ShellSmashDescription:
+	db   "Lowers defenses to"
+	next "raise its power.@"
 
 DragonDanceDescription:
 	db   "Raises the user's"

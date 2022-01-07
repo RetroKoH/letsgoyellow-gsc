@@ -232,13 +232,13 @@
 	const GRASS_KNOT   ; $e5
 	const BUG_BITE     ; $e6
 	const AQUA_JET     ; $e7
-	const FLASH        ; $e8 ; QUIVER DANCE
+	const FLASH        ; $e8 ; QUIVER_DANCE
 	const HEAVY_SLAM   ; $e9
 	const COIL         ; $ea
 	const FOUL_PLAY    ; $eb
 	const CLEAR_SMOG   ; $ec
 	const SCALD        ; $ed
-	const ICICLE_CRASH ; $ee ; SHELL_SMASH
+	const SHELL_SMASH  ; $ee
 	const HEX          ; $ef
 	const BULLDOZE     ; $f0 ; DRAGON_TAIL
 	const WILD_CHARGE  ; $f1

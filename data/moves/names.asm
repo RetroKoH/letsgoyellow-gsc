@@ -237,7 +237,7 @@ MoveNames::
 	db "FOUL PLAY@"
 	db "CLEAR SMOG@"
 	db "SCALD@"
-	db "ICICLE CRASH@"
+	db "SHELL SMASH@"
 	db "HEX@"
 	db "BULLDOZE@"
 	db "WILD CHARGE@"

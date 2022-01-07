@@ -1566,7 +1566,7 @@ CloysterLearnset:
 	db 01, SPIKES ; evolution move
 	db 28, ICICLE_SPEAR ; Spikes → Icicle Spear
 	db 32, PIN_MISSILE ; Sw/Sh TM move
-	db 50, ICICLE_CRASH
+	db 50, SHELL_SMASH
 	db 0 ; no more level-up moves
 
 GastlyLearnset:

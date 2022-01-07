@@ -92,7 +92,7 @@
 	const EFFECT_DISABLE
 	const EFFECT_COUNTER
 	const EFFECT_ENCORE
-	const EFFECT_PAIN_SPLIT             ; UNUSED
+	const EFFECT_SHELL_SMASH
 	const EFFECT_SKETCH                 ; UNUSED
 	const EFFECT_SLEEP_TALK             ; UNUSED
 	const EFFECT_DESTINY_BOND           ; UNUSED

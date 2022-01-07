@@ -90,7 +90,7 @@ MoveEffectsPointers:
 	dw Disable
 	dw Counter
 	dw Encore
-	dw PainSplit    ; UNUSED
+	dw ShellSmash
 	dw Splash       ; Was Sketch, UNUSED
 	dw SleepTalk    ; UNUSED
 	dw DestinyBond  ; UNUSED

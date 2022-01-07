@@ -1072,12 +1072,44 @@ DragonDance:
 	dragondance
 	endmove
 
+QuiverDance:
+	checkobedience
+	usedmovetext
+	doturn
+	calmmind ; SpAttack and SpDefense
+	speedup ; Test this to ensure no bugs
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
+	statupfailtext
+	endmove
+
 Coil:
 	checkobedience
 	usedmovetext
 	doturn
 	coil ; Attack and accuracy
 	defenseup ; Test this to ensure no bugs
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
+	statupfailtext
+	endmove
+
+ShellSmash:
+	checkobedience
+	usedmovetext
+	doturn
+	; Add self-defenses down
+	dragondance ; Attack and speed
+	specialattackup ; Test this to ensure no bugs
+	lowersub
+	statupanim
+	raisesub
+	statupmessage
+	statupfailtext
 	endmove
 
 AttackDown:
@@ -1674,15 +1706,6 @@ Encore:
 	checkhit
 	bounceback
 	encore
-	endmove
-
-PainSplit:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	checkhit
-	sleeptalk
 	endmove
 
 SleepTalk:

@@ -5470,6 +5470,7 @@ BattleCommand_calmmind:
 	lb bc, SP_ATTACK, SP_DEFENSE
 	jr DoubleUp
 BattleCommand_dragondance:
+BattleCommand_shellsmash:
 	lb bc, ATTACK, SPEED
 	jr DoubleUp
 BattleCommand_growth:
@@ -8386,11 +8387,9 @@ BattleCommand_safeguard: ; 37939
 ; safeguard
 	call AnimateFailedMove
 	jp PrintButItFailed
-
 ; 37962
 
 
-BattleCommand_painsplit:
 BattleCommand_checksafeguard: ; 37972
 ; checksafeguard
 	ret

@@ -78,7 +78,7 @@
 	const THUNDER      ; $57
 	const ROCK_THROW   ; $58
 	const EARTHQUAKE   ; $59
-	const TRICK_ROOM   ; $78 ; FISSURE
+	const FISSURE      ; $78
 	const DIG          ; $5b
 	const TOXIC        ; $5c
 	const CONFUSION    ; $5d
@@ -88,7 +88,7 @@
 	const QUICK_ATTACK ; $62
 	const TELEPORT     ; $64
 	const NIGHT_SHADE  ; $65
-	const SKILL_SWAP   ; $79 ; MIMIC
+	const MIMIC        ; $79
 	const SCREECH      ; $67
 	const DOUBLE_TEAM  ; $68
 	const RECOVER      ; $69

@@ -1479,21 +1479,12 @@ Roar:
 	forceswitch
 	endmove
 
-SkillSwap:
+Mimic:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
-	skillswap
-	endmove
-
-Trick:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	checkhit
-	trick
+	mimic
 	endmove
 
 Conversion:

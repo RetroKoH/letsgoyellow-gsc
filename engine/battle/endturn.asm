@@ -8,7 +8,6 @@ HandleBetweenTurnEffects:
 	call HandleWeather
 	call CheckFaint
 	ret c
-	; Self-curing status from high Affection
 	call HandleFutureSight
 	call CheckFaint
 	ret c
@@ -16,8 +15,6 @@ HandleBetweenTurnEffects:
 	call HandleEndturnBlockA
 	call CheckFaint
 	ret c
-	; aqua ring
-	; ingrain
 	call HandleLeechSeed
 	call CheckFaint
 	ret c
@@ -27,7 +24,6 @@ HandleBetweenTurnEffects:
 	call HandleBurn
 	call CheckFaint
 	ret c
-	; nightmare
 	call HandleCurse
 	call CheckFaint
 	ret c
@@ -37,10 +33,6 @@ HandleBetweenTurnEffects:
 	; taunt
 	call HandleEncore
 	; disable (currently not at endturn)
-	; magnet rise
-	; telekinesis
-	; heal block
-	; embargo
 	; yawn
 	call HandlePerishSong
 	call CheckFaint

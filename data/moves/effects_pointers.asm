@@ -142,8 +142,8 @@ MoveEffectsPointers:
 	dw OHKOHit
 	dw Roost
 	dw CloseCombat
-	dw SkillSwap
-	dw Trick
+	dw Mimic
+	dw Mimic ; (TRICK) UNUSED
 	dw KnockOff
 	dw FuryStrikes
 	dw BugBite

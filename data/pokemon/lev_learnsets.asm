@@ -2467,7 +2467,6 @@ SylveonLearnset:
 	db 09, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 13, QUICK_ATTACK
 	db 17, SWIFT
-	db 25, SKILL_SWAP
 	db 29, HEAL_BELL ; Misty Terrain → HGSS tutor move
 	db 33, LIGHT_SCREEN
 	db 37, MOONBLAST

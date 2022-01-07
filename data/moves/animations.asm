@@ -78,7 +78,7 @@ BattleAnimations::
 	dw BattleAnim_Thunder
 	dw BattleAnim_RockThrow
 	dw BattleAnim_Earthquake
-	dw BattleAnim_TrickRoom
+	dw BattleAnim_Fissure
 	dw BattleAnim_Dig
 	dw BattleAnim_Toxic
 	dw BattleAnim_Confusion
@@ -88,7 +88,7 @@ BattleAnimations::
 	dw BattleAnim_QuickAttack
 	dw BattleAnim_Teleport
 	dw BattleAnim_NightShade
-	dw BattleAnim_SkillSwap
+	dw BattleAnim_Mimic
 	dw BattleAnim_Screech
 	dw BattleAnim_DoubleTeam
 	dw BattleAnim_Recover
@@ -2756,24 +2756,13 @@ BattleAnim_NightShade:
 	anim_bgp $e4
 	anim_ret
 
-BattleAnim_TrickRoom:
-	anim_1gfx ANIM_GFX_EXPLOSION
-	anim_bgeffect ANIM_BG_WHIRLPOOL, $0, $0, $0
-	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
-	anim_obj ANIM_OBJ_TRICK_ROOM, 88, 0, $0
-	anim_obj ANIM_OBJ_TRICK_ROOM, 88, 0, $8
-	anim_obj ANIM_OBJ_TRICK_ROOM, 88, 0, $10
-	anim_obj ANIM_OBJ_TRICK_ROOM, 88, 0, $18
-	anim_obj ANIM_OBJ_TRICK_ROOM, 88, 0, $20
-	anim_obj ANIM_OBJ_TRICK_ROOM, 88, 0, $28
-	anim_obj ANIM_OBJ_TRICK_ROOM, 88, 0, $30
-	anim_obj ANIM_OBJ_TRICK_ROOM, 88, 0, $38
+BattleAnim_Fissure:
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $40
+	anim_bgeffect ANIM_BG_1F, $60, $4, $0
 .loop
-	anim_sound 0, 2, SFX_SHARPEN
-	anim_wait 18
+	anim_sound 0, 1, SFX_EMBER
+	anim_wait 24
 	anim_loop 4, .loop
-	anim_wait 36
-	anim_incbgeffect ANIM_BG_WHIRLPOOL
 	anim_ret
 
 BattleAnim_Lick:
@@ -5107,6 +5096,22 @@ BattleAnim_RockBlast:
 	anim_wait 32
 	anim_ret
 
+BattleAnim_Mimic:
+	anim_1gfx ANIM_GFX_SPEED
+	anim_obp0 $fc
+	anim_sound 63, 3, SFX_LICK
+	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $0
+	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $8
+	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $10
+	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $18
+	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $20
+	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $28
+	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $30
+	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $38
+	anim_wait 128
+	anim_wait 48
+	anim_ret
+
 BattleAnim_SkillSwap:
 	anim_2gfx ANIM_GFX_ICE, ANIM_GFX_CHARGE
 	anim_sound 6, 2, SFX_SHARPEN
@@ -5342,22 +5347,6 @@ BattleAnim_FuryCutter:
 ;	anim_obj ANIM_OBJ_COTTON, -15, 0,   5, 0, $2a
 ;	anim_obj ANIM_OBJ_COTTON, -15, 0,   5, 0, $3f
 ;	anim_wait 128
-;	anim_ret
-
-;BattleAnim_Mimic: ; removed
-;	anim_1gfx ANIM_GFX_SPEED
-;	anim_obp0 $fc
-;	anim_sound 63, 3, SFX_LICK
-;	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $0
-;	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $8
-;	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $10
-;	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $18
-;	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $20
-;	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $28
-;	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $30
-;	anim_obj ANIM_OBJ_65, -16, 4,   5, 4, $38
-;	anim_wait 128
-;	anim_wait 48
 ;	anim_ret
 
 ;BattleAnim_Constrict: ; removed
@@ -5659,13 +5648,4 @@ BattleAnim_FuryCutter:
 ;	anim_wait 32
 ;	anim_incbgeffect ANIM_BG_PSYCHIC
 ;	anim_wait 4
-;	anim_ret
-
-;BattleAnim_Fissure: ; removed
-;	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $40
-;	anim_bgeffect ANIM_BG_1F, $60, $4, $0
-;.loop
-;	anim_sound 0, 1, SFX_EMBER
-;	anim_wait 24
-;	anim_loop 4, .loop
 ;	anim_ret

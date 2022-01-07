@@ -101,7 +101,7 @@ TMHMMoves:
 	db ROLLOUT      ; MT20 (Route 46)
 	db SEED_BOMB    ; MT19 (Yellow Forest)
 	db SEISMIC_TOSS ; MT21 (Pewter City)
-	db SKILL_SWAP   ; MT22 (Route 27)
+	db MIMIC        ; MT22 (Route 27)
 	db METEOR_MASH  ; MT23 (Route 31)
 	db SUCKER_PUNCH ; MT24 (Scary Cave)
 	db SWAGGER      ; MT25 (Celadon City)

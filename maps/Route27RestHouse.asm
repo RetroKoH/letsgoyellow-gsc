@@ -48,7 +48,7 @@ Route27RestHouseGranny:
 	iffalse .NoSilverLeaf
 	yesorno
 	iffalse .TutorRefused
-	writebyte SKILL_SWAP
+	writebyte MIMIC
 	writetext .ClearText
 	special Special_MoveTutor
 	ifequal $0, .TeachMove

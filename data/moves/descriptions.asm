@@ -77,7 +77,7 @@ MoveDescriptions::
 	dw ThunderDescription
 	dw RockThrowDescription
 	dw EarthquakeDescription
-	dw SkillSwapDescription ; TrickRoomDescription
+	dw FissureDescription
 	dw DigDescription
 	dw ToxicDescription
 	dw ConfusionDescription
@@ -87,7 +87,7 @@ MoveDescriptions::
 	dw QuickAttackDescription
 	dw TeleportDescription
 	dw NightShadeDescription
-	dw SkillSwapDescription
+	dw MimicDescription
 	dw ScreechDescription
 	dw DoubleTeamDescription
 	dw RecoverDescription
@@ -874,9 +874,9 @@ MetronomeDescription:
 	db   "Randomly uses any"
 	next "#mon move.@"
 
-SkillSwapDescription:
-	db   "Swaps abilities"
-	next "with the foe.@"
+MimicDescription:
+	db   "Copies a move last"
+	next "used by the foe.@"
 
 HiJumpKickDescription:
 	db   "May miss and hurt"
@@ -1034,7 +1034,3 @@ WeatherBallDescription:
 GyroBallDescription:
 	db   "Does more damage"
 	next "at lower speed.@"
-
-TrickDescription:
-	db   "Swaps held items"
-	next "with the foe.@"

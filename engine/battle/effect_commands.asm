@@ -1067,6 +1067,8 @@ BattleCommand_doturn:
 	jp EndMoveEffect
 
 .continuousmoves ; 34602
+;	db EFFECT_RAZOR_WIND
+;	db EFFECT_SKULL_BASH
 	db EFFECT_SOLAR_BEAM
 	db EFFECT_FLY
 	db EFFECT_ROLLOUT
@@ -1117,7 +1119,7 @@ BattleConsumePP:
 	ld de, wEnemyMonPP
 	ld hl, wOTPartyMon1PP
 .set_party_pp
-	call GetPartyLocation
+	call GetPartyLocation ; Need to add for checking Mimic
 .pp_vars_ok
 	ld a, [bc]
 	ld c, a
@@ -7584,36 +7586,59 @@ BattleCommand_payday:
 
 ; 3707f
 
-BattleCommand_skillswap:
+BattleCommand_mimic:
+; mimic
+
+	call ClearLastMove
+	call BattleCommand_movedelay
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .fail
+	ld hl, wBattleMonMoves
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .player_turn
+	ld hl, wEnemyMonMoves
+.player_turn
 	call CheckHiddenOpponent
-	jr nz, .failed
-
-	call AnimateCurrentMove
-
-	ld a, [wPlayerAbility]
+	jr nz, .fail
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+	call GetBattleVar
+	and a
+	jr z, .fail
+	cp STRUGGLE
+	jr z, .fail
 	ld b, a
-	ld a, [wEnemyAbility]
-	ld [wPlayerAbility], a
-	ld a, b
-	ld [wEnemyAbility], a
+	ld c, NUM_MOVES
+.check_already_knows_move
+	ld a, [hli]
+	cp b
+	jr z, .fail
+	dec c
+	jr nz, .check_already_knows_move
+	dec hl
+.find_mimic
+	ld a, [hld]
+	cp MIMIC
+	jr nz, .find_mimic
+	inc hl
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+	call GetBattleVar
+	ld [hl], a
+	ld [wNamedObjectIndexBuffer], a
+	ld bc, wBattleMonPP - wBattleMonMoves
+	add hl, bc
+	ld [hl], 5
+	call GetMoveName
+	call AnimateCurrentMove
+	ld hl, MimicLearnedMoveText
+	jp StdBattleTextBox
 
-	ld hl, SwappedAbilitiesText
-	call StdBattleTextBox
+.fail
+	ld hl, ButItFailedText ; 'but it failed!'
+	ld de, ItFailedText    ; 'it failed!'
+	jp FailText_CheckOpponentProtect
 
-	; Don't use RunBothActivationAbilities, because
-	; Skill Swap always runs the user first
-	farcall RunActivationAbilitiesInner
-	call SwitchTurn
-	farcall RunActivationAbilitiesInner
-	jp SwitchTurn
-
-.failed
-	call AnimateFailedMove
-	jp PrintButItFailed
-
-BattleCommand_trick:
-	call AnimateFailedMove
-	jp PrintButItFailed
 
 BattleCommand_conversion:
 ; In vanilla later generations, we change type into what is in the first slot.
@@ -7963,7 +7988,6 @@ ClearLastMove: ; 372d8
 	xor a
 	ld [hl], a
 	ret
-
 ; 372e7
 
 

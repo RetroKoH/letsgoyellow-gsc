@@ -1218,6 +1218,14 @@ SubFadedText: ; 0x813d0
 	prompt
 ; 0x813e6
 
+MimicLearnedMoveText:
+	text "<USER>"
+	line "learned"
+	cont "@"
+	text_from_ram wStringBuffer1
+	text "!"
+	prompt
+
 WasSeededText: ; 0x813f8
 	text "<TARGET>"
 	line "was seeded!"

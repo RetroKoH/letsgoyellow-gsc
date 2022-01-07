@@ -174,8 +174,7 @@ BattleCommandPointers:
 	command suckerpunch
 	command ohko
 	command roost
-	command skillswap
-	command trick
+	command mimic
 	command knockoff
 	command bugbite
 	command toxic

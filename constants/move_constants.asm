@@ -147,7 +147,7 @@
 	const SANDSTORM    ; $c9
 	const CHARM        ; $cc
 	const ROLLOUT      ; $cd
-	const GIGA_IMPACT  ; $a5 ; FURY_CUTTER
+	const FURY_CUTTER  ; $a5
 	const HEAL_BELL    ; $d7
 	const RETURN       ; $d8
 	const PSYSTRIKE    ; $d9 ; FRUSTRATION
@@ -244,7 +244,7 @@
 	const WILD_CHARGE  ; $f1
 	const DRILL_RUN    ; $f2
 	const HURRICANE    ; $f3
-	const DIZZY_PUNCH  ; $f4 ; Might keep Dizzy Punch
+	const DIZZY_PUNCH  ; $f4 ; Swap places with Fell Stinger
 	const DISARM_VOICE ; $f5
 	const PLAY_ROUGH   ; $f6
 	const FAIRY_WIND   ; $f7

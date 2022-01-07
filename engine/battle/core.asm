@@ -517,8 +517,6 @@ ParsePlayerAction:
 	ld a, [wBattlePlayerAction]
 	cp $2
 	jp z, .reset_rage
-	and a
-	jr nz, .reset_bide
 	xor a
 	ld [wMoveSelectionMenuType], a
 	inc a ; ld a, POUND
@@ -549,7 +547,13 @@ ParsePlayerAction:
 	farcall UpdateMoveData
 	xor a
 	ld [wPlayerCharging], a
+	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
+	cp EFFECT_FURY_CUTTER
+	jr z, .continue_fury_cutter
+	xor a
+	ld [wPlayerFuryCutterCount], a
 
+.continue_fury_cutter
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_RAGE
 	jr z, .continue_rage
@@ -564,11 +568,9 @@ ParsePlayerAction:
 	ld [wPlayerProtectCount], a
 	jr .continue_protect
 
-.reset_bide
-	; unsure when this is called, but what this used to do was removed to free up
-	; SUBSTATUS_BIDE (it fellthrough to locked_in afterwards)
 .locked_in
 	xor a
+	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
 	ld hl, wPlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
@@ -580,6 +582,7 @@ ParsePlayerAction:
 
 .reset_rage
 	xor a
+	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
 	ld hl, wPlayerSubStatus4
 	res SUBSTATUS_RAGE, [hl]
@@ -2852,6 +2855,7 @@ NewEnemyMonStatus: ; 3d834
 	ld [hli], a
 	ld [hl], a
 	ld [wEnemyDisableCount], a
+	ld [wEnemyFuryCutterCount], a
 	ld [wEnemyProtectCount], a
 	ld [wEnemyToxicCount], a
 	ld [wEnemyDisabledMove], a
@@ -3045,6 +3049,7 @@ rept NUM_MOVES + -1
 endr
 	ld [hl], a
 	ld [wPlayerDisableCount], a
+	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
 	ld [wPlayerToxicCount], a
 	ld [wDisabledMove], a
@@ -5368,6 +5373,13 @@ ParseEnemyAction:
 
 .raging
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_FURY_CUTTER
+	jr z, .fury_cutter
+	xor a
+	ld [wEnemyFuryCutterCount], a
+
+.fury_cutter
+	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_RAGE
 	jr z, .no_rage
 	ld hl, wEnemySubStatus4
@@ -5389,6 +5401,7 @@ ParseEnemyAction:
 
 ResetVarsForSubstatusRage: ; 3e8c1
 	xor a
+	ld [wEnemyFuryCutterCount], a
 	ld [wEnemyProtectCount], a
 	ld hl, wEnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]

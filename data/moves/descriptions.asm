@@ -146,7 +146,7 @@ MoveDescriptions::
 	dw SandstormDescription
 	dw CharmDescription
 	dw RolloutDescription
-	dw GigaImpactDescription
+	dw FuryCutterDescription
 	dw HealBellDescription
 	dw ReturnDescription
 	dw PsystrikeDescription
@@ -678,9 +678,12 @@ FlyDescription:
 
 HyperBeamDescription:
 RockWreckerDescription:
-GigaImpactDescription:
 	db   "1st turn: Attack"
 	next "2nd turn: Rest@"
+
+FuryCutterDescription:
+	db   "Successive hits"
+	next "raise power.@"
 
 DigDescription:
 	db   "1st turn: Burrow"

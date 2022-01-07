@@ -94,7 +94,7 @@ endc
 	add_tm CROSS_POISON ; $40
 	add_tm POISON_JAB   ; $41
 	add_tm AVALANCHE    ; $42
-	add_tm GIGA_IMPACT  ; $43
+	add_tm FURY_CUTTER  ; $43
 	add_tm U_TURN       ; $44
 	add_tm FLASH        ; $45
 	add_tm STONE_EDGE   ; $46

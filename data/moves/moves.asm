@@ -157,7 +157,7 @@ Moves:: ; 41afb
 	move SANDSTORM,    EFFECT_SANDSTORM,           0, ROCK,      100, 10,   0, STATUS
 	move CHARM,        EFFECT_ATTACK_DOWN_2,       0, FAIRY,     100, 20,   0, STATUS
 	move ROLLOUT,      EFFECT_ROLLOUT,            30, ROCK,       90, 20,   0, PHYSICAL
-	move GIGA_IMPACT,  EFFECT_HYPER_BEAM,        150, NORMAL,     90,  5,   0, PHYSICAL
+	move FURY_CUTTER,  EFFECT_FURY_CUTTER,        10, BUG,        95, 20,   0, PHYSICAL
 	move HEAL_BELL,    EFFECT_HEAL_BELL,           0, NORMAL,    100,  5,   0, STATUS
 	move RETURN,       EFFECT_RETURN,              1, NORMAL,    100, 20,   0, PHYSICAL
 	move PSYSTRIKE,    EFFECT_PSYSTRIKE,         100, PSYCHIC,   100, 10,   0, SPECIAL

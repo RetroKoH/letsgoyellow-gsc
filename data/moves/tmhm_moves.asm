@@ -66,7 +66,7 @@ TMHMMoves:
 	db CROSS_POISON ; TM65 (Lake of Rage)
 	db POISON_JAB   ; TM66 (Janine)
 	db AVALANCHE    ; TM67 (Pryce)
-	db GIGA_IMPACT  ; TM68 (Celadon Game Corner)
+	db FURY_CUTTER  ; TM68 (Celadon Game Corner)
 	db U_TURN       ; TM69 (Bugsy)
 	db FLASH        ; TM70 (Sprout Tower)
 	db STONE_EDGE   ; TM71 (Blue)

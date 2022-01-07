@@ -91,7 +91,7 @@ MoveEffectsPointers:
 	dw Counter
 	dw Encore
 	dw ShellSmash
-	dw Splash       ; Was Sketch, UNUSED
+	dw FuryCutter
 	dw SleepTalk    ; UNUSED
 	dw DestinyBond  ; UNUSED
 	dw Flail

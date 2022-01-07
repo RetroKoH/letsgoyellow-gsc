@@ -2255,7 +2255,6 @@ TaurosLearnset:
 	db 48, SWAGGER
 	db 55, THRASH
 	db 63, DOUBLE_EDGE
-	db 71, GIGA_IMPACT
 	db 80, OUTRAGE ; HGSS tutor move
 	db 0 ; no more level-up moves
 
@@ -2571,7 +2570,6 @@ AerodactylLearnset:
 	db 57, IRON_HEAD
 	db 65, HYPER_BEAM
 	db 73, ROCK_SLIDE
-	db 81, GIGA_IMPACT
 	db 0 ; no more level-up moves
 
 MunchlaxLearnset:
@@ -2600,8 +2598,7 @@ SnorlaxLearnset:
 	db 41, OUTRAGE ; Block → HGSS tutor move
 	db 44, BELLY_DRUM
 	db 49, CRUNCH
-	db 50, CLOSE_COMBAT ; Heavy Slam → new move
-	db 57, GIGA_IMPACT
+	db 50, HEAVY_SLAM
 	db 0 ; no more level-up moves
 
 ArticunoLearnset:

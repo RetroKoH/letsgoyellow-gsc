@@ -1708,6 +1708,28 @@ Encore:
 	encore
 	endmove
 
+FuryCutter:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	critical
+	damagestats
+	damagecalc
+	stab
+	checkhit
+	furycutter
+	damagevariation
+	hittarget
+	failuretext
+	checkfaint
+	criticaltext
+	supereffectivetext
+	postfainteffects
+	posthiteffects
+	pickpocket
+	endmove
+
 SleepTalk:
 	checkobedience
 	usedmovetext

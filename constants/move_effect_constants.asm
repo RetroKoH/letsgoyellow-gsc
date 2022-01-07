@@ -93,7 +93,7 @@
 	const EFFECT_COUNTER
 	const EFFECT_ENCORE
 	const EFFECT_SHELL_SMASH
-	const EFFECT_SKETCH                 ; UNUSED
+	const EFFECT_FURY_CUTTER
 	const EFFECT_SLEEP_TALK             ; UNUSED
 	const EFFECT_DESTINY_BOND           ; UNUSED
 	const EFFECT_FLAIL

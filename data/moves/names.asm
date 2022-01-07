@@ -146,7 +146,7 @@ MoveNames::
 	db "SANDSTORM@"
 	db "CHARM@"
 	db "ROLLOUT@"
-	db "GIGA IMPACT@"
+	db "FURY CUTTER@"
 	db "HEAL BELL@"
 	db "RETURN@"
 	db "FRUSTRATION@"

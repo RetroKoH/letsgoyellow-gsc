@@ -354,6 +354,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_FORESIGHT,         AI_Smart_Foresight
 	dbw EFFECT_SANDSTORM,         AI_Smart_Sandstorm
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
+	dbw EFFECT_FURY_CUTTER,       AI_Smart_FuryCutter
 	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
 	dbw EFFECT_AURORA_VEIL,       AI_Smart_AuroraVeil
 	dbw EFFECT_BATON_PASS,        AI_Smart_BatonPass
@@ -1543,7 +1544,6 @@ AI_Smart_Foresight: ; 38f1d
 
 
 AI_Smart_Sandstorm: ; 38f7a
-
 ; Greatly discourage this move if the player is immune to Sandstorm damage.
 	ld a, [wBattleMonType1]
 	push hl
@@ -1586,8 +1586,28 @@ AI_Smart_Sandstorm: ; 38f7a
 	db $ff
 ; 38fac
 
+AI_Smart_FuryCutter:
+; Encourage this move based on Fury Cutter's count.
+
+	ld a, [wEnemyFuryCutterCount]
+	and a
+	jr z, AI_Smart_Rollout
+	dec [hl]
+
+	cp 2
+	jr c, AI_Smart_Rollout
+	dec [hl]
+	dec [hl]
+
+	cp 3
+	jr c, AI_Smart_Rollout
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	; fallthrough
 
 AI_Smart_Rollout:
+; Rollout, Fury Cutter
 ; 80% chance to discourage this move if the enemy is in love, confused, or paralyzed.
 	ld a, [wEnemySubStatus1]
 	bit SUBSTATUS_IN_LOVE, a

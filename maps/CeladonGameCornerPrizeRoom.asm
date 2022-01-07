@@ -32,7 +32,7 @@ CeladonPrizeRoom_tmcounterloop:
 	closewindow
 	ifequal $1, .doubleteam
 	ifequal $2, .toxic
-	ifequal $3, .gigaimpact
+	ifequal $3, .furycutter
 	jumpopenedtext CeladonPrizeRoom_ComeAgainText
 
 .doubleteam
@@ -59,15 +59,15 @@ CeladonPrizeRoom_tmcounterloop:
 	takecoins 5500
 	jump CeladonPrizeRoom_purchased
 
-.gigaimpact
-	checktmhm TM_GIGA_IMPACT
+.furycutter
+	checktmhm TM_FURY_CUTTER
 	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins 7500
 	ifequal $2, CeladonPrizeRoom_notenoughcoins
-	tmhmtotext TM_GIGA_IMPACT, $0
+	tmhmtotext TM_FURY_CUTTER, $0
 	scall CeladonPrizeRoom_askbuytm
 	iffalse_jumpopenedtext CeladonPrizeRoom_ComeAgainText
-	givetmhm TM_GIGA_IMPACT
+	givetmhm TM_FURY_CUTTER
 	takecoins 7500
 	jump CeladonPrizeRoom_purchased
 

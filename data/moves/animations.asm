@@ -147,7 +147,7 @@ BattleAnimations::
 	dw BattleAnim_Sandstorm
 	dw BattleAnim_Charm
 	dw BattleAnim_Rollout
-	dw BattleAnim_GigaImpact
+	dw BattleAnim_FuryCutter
 	dw BattleAnim_HealBell
 	dw BattleAnim_Return
 	dw BattleAnim_Psystrike
@@ -5309,6 +5309,21 @@ BattleAnim_GigaImpact:
 	anim_wait 16
 	anim_ret
 
+BattleAnim_FuryCutter:
+	anim_1gfx ANIM_GFX_CUT
+.loop
+	anim_sound 0, 1, SFX_CUT
+	anim_jumpand $1, .obj1
+	anim_obj ANIM_OBJ_3A, -13, 0,   5, 0, $0
+	anim_jump .okay
+
+.obj1
+	anim_obj ANIM_OBJ_3B,  14, 0,   5, 0, $0
+.okay
+	anim_wait 16
+	anim_jumpuntil .loop
+	anim_ret
+
 ; ================================
 ; unused animations below here
 ; ================================
@@ -5653,19 +5668,4 @@ BattleAnim_GigaImpact:
 ;	anim_sound 0, 1, SFX_EMBER
 ;	anim_wait 24
 ;	anim_loop 4, .loop
-;	anim_ret
-
-;BattleAnim_FuryCutter: ; removed
-;	anim_1gfx ANIM_GFX_CUT
-;.loop
-;	anim_sound 0, 1, SFX_CUT
-;	anim_jumpand $1, .obj1
-;	anim_obj ANIM_OBJ_3A, -13, 0,   5, 0, $0
-;	anim_jump .okay
-;
-;.obj1
-;	anim_obj ANIM_OBJ_3B,  14, 0,   5, 0, $0
-;.okay
-;	anim_wait 16
-;	anim_jumpuntil .loop
 ;	anim_ret

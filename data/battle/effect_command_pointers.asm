@@ -153,7 +153,7 @@ BattleCommandPointers:
 	command thunderaccuracy
 	command teleport
 	command switchout
-	command ragedamage
+	command furycutter
 	command resettypematchup
 	command allstatsup
 	command calmmind

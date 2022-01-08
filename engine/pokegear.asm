@@ -2239,29 +2239,29 @@ INCLUDE "data/maps/flypoints.asm"
 FlyMap: ; 91c90
 	call GetCurrentLandmark
 ; The first 46 locations are part of Johto. The rest are in Kanto
-	cp KANTO_LANDMARK
-	jr nc, .KantoFlyMap
+;	cp KANTO_LANDMARK
+;	jr nc, .KantoFlyMap
 ;.JohtoFlyMap:
 ; Note that .NoKanto should be modified in tandem with this branch
-	push af
+;	push af
 ; Start from New Bark Town
-	ld a, FLY_NEW_BARK
-	ld [wTownMapPlayerIconLandmark], a
+;	ld a, FLY_PALLET
+;	ld [wTownMapPlayerIconLandmark], a
 ; Flypoints begin at New Bark Town...
-	ld [wStartFlypoint], a
+;	ld [wStartFlypoint], a
 ; ..and end at Silver Cave
-	ld a, FLY_MT_SILVER
-	ld [wEndFlypoint], a
+;	ld a, FLY_MT_SILVER
+;	ld [wEndFlypoint], a
 ; Fill out the map
-	call FillJohtoMap
-	call TownMapBubble
-	call TownMapPals
-	call TownMapJohtoFlips
-	call .MapHud
-	pop af
-	jp TownMapPlayerIcon
+;	call FillJohtoMap
+;	call TownMapBubble
+;	call TownMapPals
+;	call TownMapJohtoFlips
+;	call .MapHud
+;	pop af
+;	jp TownMapPlayerIcon
 
-.KantoFlyMap:
+;.KantoFlyMap:
 ; The event that there are no flypoints enabled in a map is not
 
 ; accounted for. As a result, if you attempt to select a flypoint
@@ -2275,10 +2275,10 @@ FlyMap: ; 91c90
 
 ; visited and its flypoint enabled
 	push af
-	ld c, SPAWN_INDIGO
-	call HasVisitedSpawn
-	and a
-	jr z, .NoKanto
+;	ld c, SPAWN_INDIGO
+;	call HasVisitedSpawn
+;	and a
+;	jr z, .NoKanto
 ; Kanto's map is only loaded if we've visited Indigo Plateau
 
 ; Flypoints begin at Pallet Town...
@@ -2300,22 +2300,22 @@ FlyMap: ; 91c90
 	pop af
 	jp TownMapPlayerIcon
 
-.NoKanto:
+;.NoKanto:
 ; If Indigo Plateau hasn't been visited, we use Johto's map instead
 
 ; Start from New Bark Town
-	ld a, FLY_NEW_BARK
-	ld [wTownMapPlayerIconLandmark], a
+;	ld a, FLY_NEW_BARK
+;	ld [wTownMapPlayerIconLandmark], a
 ; Flypoints begin at New Bark Town...
-	ld [wStartFlypoint], a
+;	ld [wStartFlypoint], a
 ; ..and end at Silver Cave
-	ld a, FLY_MT_SILVER
-	ld [wEndFlypoint], a
-	call FillJohtoMap
-	pop af
-	call TownMapBubble
-	call TownMapPals
-	call TownMapJohtoFlips
+;	ld a, FLY_MT_SILVER
+;	ld [wEndFlypoint], a
+;	call FillJohtoMap
+;	pop af
+;	call TownMapBubble
+;	call TownMapPals
+;	call TownMapJohtoFlips
 .MapHud:
 	hlbgcoord 0, 0 ; BG Map 0
 	call TownMapBGUpdate

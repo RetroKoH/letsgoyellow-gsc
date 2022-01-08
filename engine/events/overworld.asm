@@ -663,9 +663,9 @@ FlyFunction: ; ca3b
 
 .TryFly: ; ca52
 ; Fly
-	ld de, ENGINE_STORMBADGE
-	call CheckBadge
-	jr c, .nostormbadge
+;	ld de, ENGINE_STORMBADGE
+;	call CheckBadge
+;	jr c, .nostormbadge
 	call CheckFlyAllowedOnMap
 	jr nz, .indoors
 
@@ -752,10 +752,10 @@ WaterfallFunction: ; cade
 
 .TryWaterfall: ; cae7
 ; Waterfall
-	ld de, ENGINE_RISINGBADGE
-	farcall CheckBadge
-	ld a, $80
-	ret c
+;	ld de, ENGINE_RISINGBADGE
+;	farcall CheckBadge
+;	ld a, $80
+;	ret c
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld hl, Script_WaterfallFromMenu

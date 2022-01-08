@@ -9,8 +9,8 @@
 	dn FEMALE_12_5, 3 ; gender, step cycles to hatch
 	dn 7, 7 ; frontpic dimensions
 	db OVERGROW ; ability 1
-	db CHLOROPHYLL ; ability 2
-	db THICK_FAT ; hidden ability
+	db OVERGROW ; ability 2
+	db CHLOROPHYLL ; hidden ability
 	db MEDIUM_SLOW ; growth rate
 	dn MONSTER, PLANT ; egg groups
 

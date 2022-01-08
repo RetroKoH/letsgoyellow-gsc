@@ -592,17 +592,21 @@ PokemonActionSubmenu: ; 12a88
 	ret
 
 .Actions:
-	dbw MONMENU_CHOP,    MonMenu_Cut ; Cut
-	dbw MONMENU_SOAR,    MonMenu_Fly ; Fly
-	dbw MONMENU_SWIM,    MonMenu_Surf ; Surf
-	dbw MONMENU_PUSH,    MonMenu_Strength ; Strength
-	dbw MONMENU_GLOW,    MonMenu_Flash ; Flash
+	dbw MONMENU_CHOP,    MonMenu_Cut
+	dbw MONMENU_SOAR,    MonMenu_Fly
+	dbw MONMENU_SWIM,    MonMenu_Surf
+	dbw MONMENU_PUSH,    MonMenu_Strength
+	dbw MONMENU_GLOW,    MonMenu_Flash
+	dbw MONMENU_WARP,    MonMenu_Teleport
+	dbw MONMENU_LURE,    MonMenu_SweetScent
+	dbw MONMENU_LULL,    MonMenu_SweetScent
+	dbw MONMENU_HEAL,    MonMenu_Recover
+
+
 ;	dbw MONMENU_WHIRLPOOL,  MonMenu_Whirlpool ; Whirlpool
 ;	dbw MONMENU_DIG,        MonMenu_Dig ; Dig
-	dbw MONMENU_WARP,    MonMenu_Teleport ; Teleport
-	dbw MONMENU_HEAL,    MonMenu_Recover ; Recover
-;	dbw MONMENU_HEADBUTT,   MonMenu_Headbutt ; Headbutt
 ;	dbw MONMENU_WATERFALL,  MonMenu_Waterfall ; Waterfall
+;	dbw MONMENU_HEADBUTT,   MonMenu_Headbutt ; Headbutt
 ;	dbw MONMENU_ROCKSMASH,  MonMenu_RockSmash ; RockSmash
 	dbw MONMENU_STATS,      OpenPartyStats
 	dbw MONMENU_SWITCH,     SwitchPartyMons
@@ -614,7 +618,6 @@ PokemonActionSubmenu: ; 12a88
 
 
 SwitchPartyMons: ; 12aec
-
 ; Don't try if there's nothing to switch!
 	ld a, [wPartyCount]
 	cp 2
@@ -1164,6 +1167,12 @@ MonMenu_Dig: ; 12ed1
 	farcall DigFunction
 	jr _MonMenu_StandardCheck
 ; 12ee6
+
+MonMenu_SweetScent:
+	farcall SweetScentFunction
+	ld b, $4
+	ld a, $2
+	ret
 
 MonMenu_Headbutt: ; 12f26
 	farcall HeadbuttFunction

@@ -207,22 +207,22 @@ UnknownText_0x1c0609::
 _UsedSurfText::
 	text_from_ram wStringBuffer2
 	text " used"
-	line "Sea Swim!"
+	line "SEA SWIM!"
 	done
 
 _CantSurfText::
-	text "You can't Swim"
-	line "here."
+	text "You can't use"
+	line "SEA SWIM here."
 	prompt
 
 _AlreadySurfingText::
 	text "You're already"
-	line "Swimming."
+	line "swimming."
 	prompt
 
 _AskSurfText::
 	text "The water is calm."
-	line "Want to Swim?"
+	line "Want to swim?"
 	done
 
 UnknownText_0x1c068e::
@@ -466,6 +466,17 @@ ForfeitToTrainerText::
 
 	para "<PLAYER> blacked"
 	line "out!"
+	done
+
+_UseSweetScentText::
+	text_from_ram wStringBuffer3
+	text " used"
+	line "SWEET LURE!"
+	done
+
+_SweetScentNothingText::
+	text "Looks like there's"
+	line "nothing here…"
 	done
 
 UnknownText_0x1c0a77::

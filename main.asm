@@ -2547,6 +2547,7 @@ INCLUDE "engine/bsod.asm"
 INCLUDE "engine/events/stats_judge.asm"
 
 INCLUDE "engine/events/poisonstep.asm"
+INCLUDE "engine/events/sweet_scent.asm"
 INCLUDE "engine/events/squirtbottle.asm"
 INCLUDE "engine/events/card_key.asm"
 INCLUDE "engine/events/sacred_ash.asm"

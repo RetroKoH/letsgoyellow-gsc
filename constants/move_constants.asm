@@ -302,13 +302,13 @@ endc
 	const BATTLEANIM_HIT_CONFUSION
 
 ; Field techniques
-	const_def
+	const_def 1
 	const CHOP
 	const SOAR
 	const SWIM
 	const PUSH_T
 	const GLOW
 	const WARP
-	const HEAL
 	const LURE
 	const LULL
+	const HEAL

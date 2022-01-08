@@ -150,7 +150,6 @@ GetMonSubmenuItems: ; 24dd4
 	ld a, [de]		    ; field technique ID
 	and a               ; is a == 0? (End of tech list)
 	jr z, .skip_moves   ; if yes, branch and skip ahead
-	inc a
 	call AddMonMenuItem ; if a field move is detected, add the item to the menu
 
 	inc de

@@ -5,7 +5,9 @@
 	const MONMENU_PUSH   ; 4
 	const MONMENU_GLOW   ; 5
 	const MONMENU_WARP   ; 6
-	const MONMENU_HEAL   ; 7
+	const MONMENU_LURE   ; 7
+	const MONMENU_LULL   ; 8
+	const MONMENU_HEAL   ; 9
 
 	const MONMENU_STATS      ; 8
 	const MONMENU_SWITCH     ; 9

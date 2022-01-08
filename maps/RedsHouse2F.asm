@@ -88,15 +88,33 @@ RedsHouse2FSNESText:
 	giveitem SHINY_CHARM
 	setflag ENGINE_HAVE_SHINY_CHARM
 	; hm slaves
-	givepoke BLASTOISE, 70, LEFTOVERS
-	loadvar wPartyMon1Moves+0, FLASH_CANNON
-	loadvar wPartyMon1Moves+1, WATER_PULSE
-	loadvar wPartyMon1Moves+2, DARK_PULSE
-	loadvar wPartyMon1Moves+3, WITHDRAW
+	givepoke VENUSAUR, 70, LEFTOVERS
+	loadvar wPartyMon1Moves+0, SUNNY_DAY
+	loadvar wPartyMon1Moves+1, WEATHER_BALL
+	loadvar wPartyMon1Moves+2, MEGA_DRAIN
+	loadvar wPartyMon1Moves+3, SYNTHESIS
 	loadvar wPartyMon1PP+0, 15
 	loadvar wPartyMon1PP+1, 15
 	loadvar wPartyMon1PP+2, 15
 	loadvar wPartyMon1PP+3, 15
+	givepoke CHARIZARD, 70, LEFTOVERS
+	loadvar wPartyMon2Moves+0, SUNNY_DAY
+	loadvar wPartyMon2Moves+1, FLARE_BLITZ
+	loadvar wPartyMon2Moves+2, AIR_SLASH
+	loadvar wPartyMon2Moves+3, ROOST
+	loadvar wPartyMon2PP+0, 15
+	loadvar wPartyMon2PP+1, 15
+	loadvar wPartyMon2PP+2, 15
+	loadvar wPartyMon2PP+3, 15
+	givepoke BLASTOISE, 70, LEFTOVERS
+	loadvar wPartyMon3Moves+0, RAIN_DANCE
+	loadvar wPartyMon3Moves+1, HYDRO_PUMP
+	loadvar wPartyMon3Moves+2, FLASH_CANNON
+	loadvar wPartyMon3Moves+3, DRAGON_PULSE
+	loadvar wPartyMon3PP+0, 15
+	loadvar wPartyMon3PP+1, 15
+	loadvar wPartyMon3PP+2, 15
+	loadvar wPartyMon3PP+3, 15
 	setflag ENGINE_POKEDEX
 	callasm FillPokedex
 	thistext

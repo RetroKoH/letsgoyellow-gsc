@@ -218,11 +218,9 @@ CharizardTechniques:
 	db CHOP
 	db SOAR
 	db PUSH_T
-	db SOAR
 	db 0
 
 BlastoiseTechniques:
-; Evolutions
 	db SWIM
 	db PUSH_T
 	db 0

@@ -207,22 +207,22 @@ UnknownText_0x1c0609::
 _UsedSurfText::
 	text_from_ram wStringBuffer2
 	text " used"
-	line "Surf!"
+	line "Sea Swim!"
 	done
 
 _CantSurfText::
-	text "You can't Surf"
+	text "You can't Swim"
 	line "here."
 	prompt
 
 _AlreadySurfingText::
 	text "You're already"
-	line "Surfing."
+	line "Swimming."
 	prompt
 
 _AskSurfText::
 	text "The water is calm."
-	line "Want to Surf?"
+	line "Want to Swim?"
 	done
 
 UnknownText_0x1c068e::

@@ -146,7 +146,6 @@ GetMonSubmenuItems: ; 24dd4
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a     ; de now points to actual techniques list
-;	ld hl, wTechniques ; hl points to techniques stored in RAM
 .loop
 	ld a, [de]		    ; field technique ID
 	and a               ; is a == 0? (End of tech list)
@@ -200,25 +199,6 @@ GetMonSubmenuItems: ; 24dd4
 	call AddMonMenuItem
 	jp TerminateMonSubmenu
 ; 24e52
-
-IsFieldMove: ; 24e52
-	ld b, a
-	ld hl, MonMenuOptions
-.next
-	ld a, [hli]
-	cp -1
-	ret z
-	cp MONMENU_MENUOPTION
-	ret z
-	ld d, [hl]
-	inc hl
-	ld a, [hli]
-	cp b
-	jr nz, .next
-	ld a, d
-	scf
-	ret
-; 24e68
 
 ResetMonSubmenu: ; 24e68
 	xor a

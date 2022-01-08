@@ -88,11 +88,11 @@ RedsHouse2FSNESText:
 	giveitem SHINY_CHARM
 	setflag ENGINE_HAVE_SHINY_CHARM
 	; hm slaves
-	givepoke MEW, 70, LEFTOVERS
-	loadvar wPartyMon1Moves+0, SURF
-	loadvar wPartyMon1Moves+1, REFLECT
-	loadvar wPartyMon1Moves+2, ROCK_WRECKER
-	loadvar wPartyMon1Moves+3, MIMIC
+	givepoke BLASTOISE, 70, LEFTOVERS
+	loadvar wPartyMon1Moves+0, FLASH_CANNON
+	loadvar wPartyMon1Moves+1, WATER_PULSE
+	loadvar wPartyMon1Moves+2, DARK_PULSE
+	loadvar wPartyMon1Moves+3, WITHDRAW
 	loadvar wPartyMon1PP+0, 15
 	loadvar wPartyMon1PP+1, 15
 	loadvar wPartyMon1PP+2, 15

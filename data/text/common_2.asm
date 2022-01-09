@@ -479,6 +479,17 @@ _SweetScentNothingText::
 	line "nothing here…"
 	done
 
+_UseSoftLullText::
+	text_from_ram wStringBuffer3
+	text " used"
+	line "SOFT LULL!"
+	done
+
+_SoftLullNothingText::
+	text "That's quite a"
+	line "nice melody…"
+	done
+
 UnknownText_0x1c0a77::
 	text "Yes! Itemfinder"
 	line "indicates there's"

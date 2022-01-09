@@ -1,3 +1,59 @@
+CheckPartyTechnique: ; c742
+; Check if a monster in your party has field technique d.
+	ld e, 0
+	xor a
+	ld [wCurPartyMon], a
+.loop
+	ld c, e
+	ld b, 0
+	ld hl, wPartySpecies
+	add hl, bc
+	ld a, [hl]
+	call IsAPokemon
+	jr c, .no
+
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld hl, wPartyMon1Form
+	ld a, e
+	rst AddNTimes
+	bit MON_IS_EGG_F, [hl]
+	jr nz, .next                 ; if this mon is an egg, branch and skip
+	ld bc, MON_SPECIES - MON_FORM
+	add hl, bc
+	ld a, [hl]                   ; a = SPECIES of current mon
+
+	ld b, 0
+	dec a       ; zero-based index
+	ld c, a
+	ld hl, TechniquesPointerTable
+	add hl, bc
+	add hl, bc	; hl points to the species' techniques list pointer
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a     ; bc now points to actual techniques list
+
+.check
+	ld a, [bc]		    ; a = field technique ID
+	and a               ; is a == 0? (End of tech list)
+	jr z, .next         ; if yes, branch and skip to next mon
+	cp d                ; is a == d? (The tech we want)
+	jr z, .yes          ; if yes, branch and proceed
+	inc bc
+	jr nz, .check
+
+.next
+	inc e
+	jr .loop
+
+.yes
+	ld a, e
+	ld [wCurPartyMon], a ; which mon has the move
+	xor a
+	ret
+.no
+	scf
+	ret
+
 TechniquesPointerTable:
 	dw TechniqueChop		; BULBASAUR
 	dw IvysaurTechniques
@@ -212,6 +268,7 @@ TechniqueGlow:
 IvysaurTechniques:
 	db CHOP
 	db LURE
+	db LULL
 	db 0
 
 CharizardTechniques:
@@ -223,6 +280,7 @@ CharizardTechniques:
 BlastoiseTechniques:
 	db SWIM
 	db PUSH_T
+	db HEAL
 	db 0
 
 ButterfreeTechniques:

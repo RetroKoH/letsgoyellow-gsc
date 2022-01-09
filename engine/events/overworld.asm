@@ -61,62 +61,6 @@ CheckBadge: ; c731
 	text_jump _BadgeRequiredText
 	db "@"
 
-CheckPartyTechnique: ; c742
-; Check if a monster in your party has field technique d.
-	ld e, 0
-	xor a
-	ld [wCurPartyMon], a
-.loop
-	ld c, e
-	ld b, 0
-	ld hl, wPartySpecies
-	add hl, bc
-	ld a, [hl]
-	call IsAPokemon
-	jr c, .no
-
-	ld bc, PARTYMON_STRUCT_LENGTH
-	ld hl, wPartyMon1Form
-	ld a, e
-	rst AddNTimes
-	bit MON_IS_EGG_F, [hl]
-	jr nz, .next                 ; if this mon is an egg, branch and skip
-	ld bc, MON_SPECIES - MON_FORM
-	add hl, bc
-	ld a, [hl]                   ; a = SPECIES of current mon
-
-	ld hl, TechniquesPointerTable
-	ld b, 0
-	dec a       ; zero-based index
-	ld c, a
-	add hl, bc
-	add hl, bc	; hl points to the species' techniques list pointer
-	ld a, [hli]
-	ld b, [hl]
-	ld c, a     ; de now points to actual techniques list
-
-.check
-	ld a, [bc]		    ; a = field technique ID
-	and a               ; is a == 0? (End of tech list)
-	jr z, .next         ; if yes, branch and skip to next mon
-	cp d                ; is a == d? (The tech we want)
-	jr z, .yes          ; if yes, branch and proceed
-	inc bc
-	jr nz, .check
-
-.next
-	inc e
-	jr .loop
-
-.yes
-	ld a, e
-	ld [wCurPartyMon], a ; which mon has the move
-	xor a
-	ret
-.no
-	scf
-	ret
-
 CheckForSurfingPikachu: ; Called by Rte 19 Beach House
 .no:
 	xor a ; FALSE
@@ -580,7 +524,7 @@ TrySurfOW:: ; c9e7
 
 ; Change to finding the field technique
 	ld d, SWIM
-	call CheckPartyTechnique
+	farcall CheckPartyTechnique
 	jr c, .quit
 
 	ld hl, wOWState
@@ -828,7 +772,7 @@ Script_AutoWaterfall:
 
 TryWaterfallOW:: ; cb56
 	ld d, WATERFALL
-	call CheckPartyTechnique
+	farcall CheckPartyTechnique
 	jr c, .failed
 	ld de, ENGINE_RISINGBADGE
 	call CheckEngineFlag
@@ -1171,7 +1115,7 @@ UnknownText_0xcd73: ; 0xcd73
 
 TryStrengthOW: ; cd78
 	ld d, STRENGTH
-	call CheckPartyTechnique
+	farcall CheckPartyTechnique
 	jr c, .nope
 
 	ld de, ENGINE_PLAINBADGE
@@ -1326,7 +1270,7 @@ Script_AutoWhirlpool:
 
 TryWhirlpoolOW:: ; ce3e
 	ld d, WHIRLPOOL
-	call CheckPartyTechnique
+	farcall CheckPartyTechnique
 	jr c, .failed
 	ld de, ENGINE_GLACIERBADGE
 	call CheckEngineFlag
@@ -1432,7 +1376,7 @@ AutoHeadbuttScript:
 
 TryHeadbuttOW:: ; cec9
 	ld d, HEADBUTT
-	call CheckPartyTechnique
+	farcall CheckPartyTechnique
 	jr c, .no
 
 	ld a, BANK(AskHeadbuttScript)
@@ -1572,7 +1516,7 @@ UnknownText_0xcf77: ; 0xcf77
 
 HasRockSmash: ; cf7c
 	ld d, ROCK_SMASH
-	call CheckPartyTechnique
+	farcall CheckPartyTechnique
 	ld a, 1
 	jr c, .done
 	xor a
@@ -1956,8 +1900,8 @@ GotOffTheBikeText: ; 0xd181
 	db "@"
 
 HasCutAvailable:: ; d186
-	ld d, CUT
-	call CheckPartyTechnique
+	ld d, CHOP
+	farcall CheckPartyTechnique
 	jr c, .no
 
 	ld de, ENGINE_HIVEBADGE

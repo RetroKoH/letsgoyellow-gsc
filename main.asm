@@ -2550,7 +2550,7 @@ INCLUDE "engine/events/poisonstep.asm"
 INCLUDE "engine/events/sweet_scent.asm"
 INCLUDE "engine/events/squirtbottle.asm"
 INCLUDE "engine/events/card_key.asm"
-INCLUDE "engine/events/sacred_ash.asm"
+INCLUDE "engine/events/soft_lull.asm"
 
 
 SECTION "Code 13", ROMX

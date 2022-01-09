@@ -5678,6 +5678,12 @@ endc
 	call CheckSleepingTreeMon
 	ld a, SLP & 3 ; Asleep for 3 turns
 	jr c, .UpdateStatus
+
+	; Otherwise check for Soft Lull in effect; monsters will enter battle asleep
+.notTree
+	ld a, [wMapMusic]
+	cp MUSIC_POKEMON_LULLABY
+	jr z, .UpdateStatus
 	; Otherwise, no status
 	xor a
 

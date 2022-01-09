@@ -599,10 +599,8 @@ PokemonActionSubmenu: ; 12a88
 	dbw MONMENU_GLOW,    MonMenu_Flash
 	dbw MONMENU_WARP,    MonMenu_Teleport
 	dbw MONMENU_LURE,    MonMenu_SweetScent
-	dbw MONMENU_LULL,    MonMenu_SweetScent
+	dbw MONMENU_LULL,    MonMenu_SoftLull
 	dbw MONMENU_HEAL,    MonMenu_Recover
-
-
 ;	dbw MONMENU_WHIRLPOOL,  MonMenu_Whirlpool ; Whirlpool
 ;	dbw MONMENU_DIG,        MonMenu_Dig ; Dig
 ;	dbw MONMENU_WATERFALL,  MonMenu_Waterfall ; Waterfall
@@ -1170,6 +1168,12 @@ MonMenu_Dig: ; 12ed1
 
 MonMenu_SweetScent:
 	farcall SweetScentFunction
+	ld b, $4
+	ld a, $2
+	ret
+
+MonMenu_SoftLull:
+	farcall SoftLullFunction
 	ld b, $4
 	ld a, $2
 	ret

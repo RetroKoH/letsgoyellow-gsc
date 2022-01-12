@@ -19,7 +19,7 @@ BattleAnimations::
 	dw BattleAnim_VineWhip
 	dw BattleAnim_Stomp
 	dw BattleAnim_DoubleKick
-	dw BattleAnim_Strength
+	dw BattleAnim_MegaKick
 	dw BattleAnim_SandAttack
 	dw BattleAnim_Headbutt
 	dw BattleAnim_HornAttack
@@ -738,6 +738,21 @@ BattleAnim_MegaPunch:
 	anim_obj ANIM_OBJ_00, -15, 0,   7, 0, $0
 	anim_wait 6
 	anim_obj ANIM_OBJ_06, -15, 0,   7, 0, $0
+	anim_wait 6
+	anim_loop 3, .loop
+	anim_ret
+
+BattleAnim_MegaKick:
+	anim_1gfx ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_1F, $40, $2, $0
+	anim_wait 67
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
+.loop
+	anim_sound 0, 1, SFX_MEGA_KICK
+	anim_obj ANIM_OBJ_07, -15, 0,   7, 0, $0
+	anim_obj ANIM_OBJ_00, -15, 0,   7, 0, $0
+	anim_wait 6
+	anim_obj ANIM_OBJ_07, -15, 0,   7, 0, $0
 	anim_wait 6
 	anim_loop 3, .loop
 	anim_ret
@@ -5360,21 +5375,6 @@ BattleAnim_FuryCutter:
 ;	anim_wait 8
 ;	anim_obj ANIM_OBJ_48, -16, 4,   7, 0, $0
 ;	anim_wait 64
-;	anim_ret
-
-;BattleAnim_MegaKick: ; removed
-;	anim_1gfx ANIM_GFX_HIT
-;	anim_bgeffect ANIM_BG_1F, $40, $2, $0
-;	anim_wait 67
-;	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-;.loop
-;	anim_sound 0, 1, SFX_MEGA_KICK
-;	anim_obj ANIM_OBJ_07, -15, 0,   7, 0, $0
-;	anim_obj ANIM_OBJ_00, -15, 0,   7, 0, $0
-;	anim_wait 6
-;	anim_obj ANIM_OBJ_07, -15, 0,   7, 0, $0
-;	anim_wait 6
-;	anim_loop 3, .loop
 ;	anim_ret
 
 ;BattleAnim_RollingKick: ; removed

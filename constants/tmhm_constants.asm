@@ -107,7 +107,7 @@ NUM_TMS = const_value - TM01
 	add_hm CUT          ; $4b
 	add_hm FLY          ; $4c
 	add_hm SURF         ; $4d
-	add_hm STRENGTH     ; $4e
+	add_hm MEGA_KICK    ; $4e
 	add_hm WHIRLPOOL    ; $4f
 	add_hm WATERFALL    ; $50
 NUM_HMS = const_value - HM01

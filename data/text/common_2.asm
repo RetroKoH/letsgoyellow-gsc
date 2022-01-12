@@ -267,7 +267,7 @@ UnknownText_0x1c073b::
 UnknownText_0x1c0774::
 	text_from_ram wStringBuffer2
 	text " used"
-	line "Strength!"
+	line "Strong Slam!"
 	done
 
 UnknownText_0x1c0788::
@@ -281,7 +281,7 @@ UnknownText_0x1c07a0::
 	line "able to move this."
 
 	para "Want to use"
-	line "Strength?"
+	line "Strong Slam?"
 	done
 
 UnknownText_0x1c07d8::

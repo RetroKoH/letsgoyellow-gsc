@@ -18,7 +18,7 @@ MoveDescriptions::
 	dw VineWhipDescription
 	dw StompDescription
 	dw DoubleKickDescription
-	dw StrengthDescription
+	dw MegaKickDescription
 	dw SandAttackDescription
 	dw HeadbuttDescription
 	dw HornAttackDescription
@@ -643,6 +643,10 @@ PoundDescription:
 
 MegaPunchDescription:
 	db   "A powerful punch"
+	next "thrown very hard.@"
+
+MegaKickDescription:
+	db   "A powerful kick"
 	next "thrown very hard.@"
 
 ViceGripDescription:

@@ -77,9 +77,11 @@ TMHMMoves:
 	db CUT          ; HM01 (Ilex Forest)
 	db FLY          ; HM02 (Cianwood City)
 	db SURF         ; HM03 (Ecruteak City)
-	db STRENGTH     ; HM04 (Cianwood City)
+	db MEGA_KICK    ; HM04 (Cianwood City)
 	db WHIRLPOOL    ; HM05 (Route 42)
 	db WATERFALL    ; HM06 (Ice Path)
+
+; MOVE TUTORS
 	db AGILITY      ; MT01 (TODO)
 	db AQUA_TAIL    ; MT02 (Route 4)
 	db BATON_PASS   ; MT03 (TODO)

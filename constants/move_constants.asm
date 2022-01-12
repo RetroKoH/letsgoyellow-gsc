@@ -19,7 +19,7 @@
 	const VINE_WHIP    ; $11
 	const STOMP        ; $12
 	const DOUBLE_KICK  ; $13
-	const STRENGTH     ; $14 ; MEGA_KICK
+	const MEGA_KICK    ; $14
 	const SAND_ATTACK  ; $15
 	const HEADBUTT     ; $16
 	const HORN_ATTACK  ; $17

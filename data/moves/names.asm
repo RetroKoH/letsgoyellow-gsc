@@ -18,7 +18,7 @@ MoveNames::
 	db "VINE WHIP@"
 	db "STOMP@"
 	db "DOUBLE KICK@"
-	db "STRENGTH@"
+	db "MEGA KICK@"
 	db "SAND ATTACK@"
 	db "HEADBUTT@"
 	db "HORN ATTACK@"

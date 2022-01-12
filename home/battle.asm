@@ -554,6 +554,8 @@ ContactMoves::
 	db LOW_KICK
 	db MACH_PUNCH
 	db MEGAHORN
+	db MEGA_PUNCH
+	db MEGA_KICK
 	db METAL_CLAW
 	db METEOR_MASH
 	db NIGHT_SLASH
@@ -573,7 +575,6 @@ ContactMoves::
 	db SEISMIC_TOSS
 	db SLASH
 	db STOMP
-	db STRENGTH
 	db SUPER_FANG
 	db SUPERPOWER
 	db TACKLE

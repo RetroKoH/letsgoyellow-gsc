@@ -38,7 +38,6 @@ SeedBomb:
 ShadowClaw:
 Slash:
 StoneEdge:
-Strength:
 Surf:
 Swift:
 Tackle:

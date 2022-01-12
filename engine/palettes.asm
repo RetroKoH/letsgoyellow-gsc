@@ -1302,7 +1302,7 @@ TMHMTypes:
 	db NORMAL   ; CUT
 	db FLYING   ; FLY
 	db WATER    ; SURF
-	db NORMAL   ; STRENGTH
+	db NORMAL   ; MEGA_KICK
 	db WATER    ; WHIRLPOOL
 	db WATER    ; WATERFALL
 

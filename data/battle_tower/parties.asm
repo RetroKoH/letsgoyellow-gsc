@@ -123,7 +123,7 @@ BattleTowerPokemon2:
 
 	db BLISSEY
 	db QUICK_CLAW
-	db HEADBUTT, SOLAR_BEAM, ROLLOUT, STRENGTH
+	db HEADBUTT, SOLAR_BEAM, ROLLOUT, SEISMIC_TOSS
 	db $cd, $fc, $dd ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -233,7 +233,7 @@ BattleTowerMons2:
 
 	db PIKACHU
 	db LIGHT_BALL
-	db THUNDERBOLT, THUNDER_WAVE, STRENGTH, TOXIC
+	db THUNDERBOLT, THUNDER_WAVE, SEISMIC_TOSS, TOXIC
 	db $ff, $cf, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -373,7 +373,7 @@ BattleTowerMons3:
 
 	db LAPRAS
 	db LEFTOVERS
-	db RAIN_DANCE, WATER_GUN, ICY_WIND, STRENGTH
+	db RAIN_DANCE, WATER_GUN, ICY_WIND, HEADBUTT
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -1049,7 +1049,7 @@ BattleTowerMons8:
 
 	db PINSIR
 	db SITRUS_BERRY
-	db HYPER_BEAM, CLOSE_COMBAT, STRENGTH, TOXIC
+	db HYPER_BEAM, CLOSE_COMBAT, BUG_BITE, TOXIC
 	db $67, $46, $77 ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

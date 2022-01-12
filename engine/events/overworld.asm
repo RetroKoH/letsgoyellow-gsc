@@ -771,7 +771,7 @@ Script_AutoWaterfall:
 	step_end
 
 TryWaterfallOW:: ; cb56
-	ld d, WATERFALL
+	ld d, SWIM
 	farcall CheckPartyTechnique
 	jr c, .failed
 	ld de, ENGINE_RISINGBADGE
@@ -1029,14 +1029,14 @@ StrengthFunction: ; cce5
 
 .TryStrength: ; ccee
 ; Strength
-	ld de, ENGINE_PLAINBADGE
-	call CheckBadge
-	jr c, .Failed
-	jr .UseStrength
+;	ld de, ENGINE_PLAINBADGE
+;	call CheckBadge
+;	jr c, .Failed
+;	jr .UseStrength
 
-.Failed: ; cd06
-	ld a, $80
-	ret
+;.Failed: ; cd06
+;	ld a, $80
+;	ret
 
 .UseStrength: ; cd09
 	ld hl, Script_StrengthFromMenu
@@ -1099,7 +1099,7 @@ AskStrengthScript:
 	endtext
 
 UnknownText_0xcd69: ; 0xcd69
-	; A #MON may be able to move this. Want to use STRENGTH?
+	; A #MON may be able to move this. Want to use STRONG SLAM?
 	text_jump UnknownText_0x1c07a0
 	db "@"
 
@@ -1114,7 +1114,7 @@ UnknownText_0xcd73: ; 0xcd73
 	db "@"
 
 TryStrengthOW: ; cd78
-	ld d, STRENGTH
+	ld d, PUSH_T
 	farcall CheckPartyTechnique
 	jr c, .nope
 

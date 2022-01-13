@@ -150,7 +150,7 @@
 	const FURY_CUTTER  ; $a5
 	const HEAL_BELL    ; $d7
 	const RETURN       ; $d8
-	const PSYSTRIKE    ; $d9 ; FRUSTRATION
+	const FRUSTRATION  ; $d9
 	const DYNAMICPUNCH ; $df
 	const MEGAHORN     ; $e0
 	const DRAGONBREATH ; $e1

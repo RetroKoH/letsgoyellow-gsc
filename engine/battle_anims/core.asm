@@ -252,7 +252,7 @@ InitBattleAnimBuffer: ; ccaaa
 	or a
 	jr nz, .no_sub
 	ld a, [wFXAnimIDLo]
-	cp PSYSTRIKE
+	cp FRUSTRATION ; Maybe can remove this later
 	jr nz, .no_sub
 .sub_8
 	pop af

@@ -376,7 +376,7 @@ ApplyPhysicalDefenseDamageMod::
 	ld c, a
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	cp EFFECT_PSYSTRIKE
+	cp EFFECT_PSYSTRIKE ; Keeping this in case we use Psyshock
 	ld a, c
 	pop bc
 	jr z, ApplySpecialAttackDamageMod

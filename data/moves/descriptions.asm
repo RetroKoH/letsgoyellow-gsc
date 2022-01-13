@@ -149,7 +149,7 @@ MoveDescriptions::
 	dw FuryCutterDescription
 	dw HealBellDescription
 	dw ReturnDescription
-	dw PsystrikeDescription
+	dw FrustrationDescription
 	dw DynamicpunchDescription
 	dw MegahornDescription
 	dw DragonbreathDescription
@@ -991,7 +991,11 @@ ReturnDescription:
 	db   "An attack that is"
 	next "based on loyalty.@"
 
-PsystrikeDescription:
+FrustrationDescription:
+	db   "A SHADOW move that"
+	next "hurts the user.@"
+
+PsyshockDescription:
 	db   "A wave that does"
 	next "physical damage.@"
 

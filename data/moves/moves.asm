@@ -159,8 +159,8 @@ Moves:: ; 41afb
 	move ROLLOUT,      EFFECT_ROLLOUT,            30, ROCK,       90, 20,   0, PHYSICAL
 	move FURY_CUTTER,  EFFECT_FURY_CUTTER,        10, BUG,        95, 20,   0, PHYSICAL
 	move HEAL_BELL,    EFFECT_HEAL_BELL,           0, NORMAL,    100,  5,   0, STATUS
-	move RETURN,       EFFECT_RETURN,              1, NORMAL,    100, 20,   0, PHYSICAL
-	move PSYSTRIKE,    EFFECT_PSYSTRIKE,         100, PSYCHIC,   100, 10,   0, SPECIAL
+	move RETURN,       EFFECT_RETURN,              1, NORMAL,    100, 20,   0, PHYSICAL ; Partner move. Always STAB
+	move FRUSTRATION,  EFFECT_RECOIL_HIT,        100, UNKNOWN_T, 100, 10,   0, PHYSICAL ; Shadow move
 	move DYNAMICPUNCH, EFFECT_CONFUSE_HIT,       100, FIGHTING,   50,  5, 100, PHYSICAL
 	move MEGAHORN,     EFFECT_NORMAL_HIT,        120, BUG,        85, 10,   0, PHYSICAL
 	move DRAGONBREATH, EFFECT_PARALYZE_HIT,       60, DRAGON,    100, 20,  30, SPECIAL

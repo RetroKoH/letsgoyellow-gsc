@@ -1474,10 +1474,6 @@ GetParticipantsNotFainted::
 	ret
 
 GetParticipantVar::
-	ld hl, wGivingExperienceToExpShareHolders
-	ld a, [hl]
-	and a
-	ret nz
 	ld a, [wCurOTMon]
 	ld b, 0
 	ld c, a
@@ -1862,21 +1858,10 @@ GiveExperiencePointsAfterCatch:
 	call GetExpShareParticipants
 	ld a, d
 	ld [wGivingExperienceToExpShareHolders], a
-	and a
-	jr z, .skip_exp_share
-
-	; Give exp to exp share holders
-	ld a, [wEnemyMonBaseExp]
-	srl a
-	ld [wBackupEnemyMonBaseExp], a
 	call GiveExperiencePoints
 	xor a
 	ld [wGivingExperienceToExpShareHolders], a
-	ld a, [wBackupEnemyMonBaseExp]
-	ld [wEnemyMonBaseExp], a
-
-.skip_exp_share
-	jp GiveExperiencePoints
+	ret
 
 GetExpShareParticipants:
 	ld a, [wPartyCount]
@@ -6090,7 +6075,6 @@ GiveExperiencePoints: ; 3ee3b
 	bit 0, a
 	ret nz
 
-	call .EvenlyDivideExpAmongParticipants
 	xor a
 	ld [wCurPartyMon], a
 	ld bc, wPartyMon1Species
@@ -6102,18 +6086,18 @@ GiveExperiencePoints: ; 3ee3b
 	or [hl]
 	jp z, .next_mon ; fainted
 
+	ld hl, wGivingExperienceToExpShareHolders
+	push bc
+	call .CheckParticipation
+	pop bc
+	jr nz, .participating
 	push bc
 	call GetParticipantVar
-	ld a, [wCurPartyMon]
-	ld c, a
-	ld b, CHECK_FLAG
-	ld d, $0
-	predef FlagPredef
-	ld a, c
-	and a
+	call .CheckParticipation
 	pop bc
 	jp z, .next_mon
 
+.participating
 	call GiveBattleEVs
 
 	; No experience at level 100
@@ -6132,7 +6116,12 @@ GiveExperiencePoints: ; 3ee3b
 	ld a, [wEnemyMonLevel]
 	ld [hMultiplier], a
 	call Multiply
+	ld a, [wInitialOptions]
+	bit SCALED_EXP, a
 	ld a, 7
+	jr z, .got_exp_divisor
+	ld a, 5
+.got_exp_divisor
 	ld [hDivisor], a
 	ld b, 4
 	call Divide
@@ -6151,15 +6140,16 @@ GiveExperiencePoints: ; 3ee3b
 	jr z, .no_boost
 	ld a, [wInitialOptions]
 	bit TRADED_AS_OT_OPT, a
+	ld a, 0
 	jr nz, .no_boost
 
 .boosted
 	call BoostExp
-	ld a, $1
+	ld a, 1
 
 .no_boost
 ; Boost experience for a trainer battle
-	ld [wStringBuffer2 + 2], a
+	ld [wStringBuffer2 + 3], a
 	ld a, [wBattleMode]
 	dec a
 	call nz, BoostExp
@@ -6170,19 +6160,35 @@ GiveExperiencePoints: ; 3ee3b
 	ld a, [hl]
 	cp LUCKY_EGG
 	call z, BoostExp
+
+	call .MaybeScaleExp
+
+	; make sure to give at least 1 exp
+	ld hl, hQuotient
+	ld a, [hli]
+	or [hl]
+	inc hl
+	or [hl]
+	jr nz, .exp_ok
+	inc [hl]
+.exp_ok
 	ld a, [hQuotient + 2]
-	ld [wStringBuffer2 + 1], a
+	ld [wStringBuffer2 + 2], a
 	ld a, [hQuotient + 1]
+	ld [wStringBuffer2 + 1], a
+	ld a, [hQuotient]
 	ld [wStringBuffer2], a
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
 	call GetNick
 	ld hl, Text_PkmnGainedExpPoint
 	call BattleTextBox
-	ld a, [wStringBuffer2 + 1]
+	ld a, [wStringBuffer2 + 2]
 	ld [hQuotient + 2], a
-	ld a, [wStringBuffer2]
+	ld a, [wStringBuffer2 + 1]
 	ld [hQuotient + 1], a
+	ld a, [wStringBuffer2]
+	ld [hQuotient], a
 	pop bc
 	call AnimateExpBar
 	push bc
@@ -6379,29 +6385,177 @@ GiveExperiencePoints: ; 3ee3b
 	ld c, l
 	jp .loop
 
-.EvenlyDivideExpAmongParticipants:
-; count number of battle participants
-	call GetParticipantsNotFainted
-	ld b, a
-	ld c, PARTY_LENGTH
-	ld d, 0
-.count_loop
-	xor a
-	srl b
-	adc d
-	ld d, a
-	dec c
-	jr nz, .count_loop
-	cp 2
-	ret c
-	ld [wd265], a
+.CheckParticipation:
+	ld a, [wCurPartyMon]
 	ld c, a
-	ld a, [wEnemyMonBaseExp]
-	call SimpleDivide
-	ld a, b
-	ld [wEnemyMonBaseExp], a
+	ld b, CHECK_FLAG
+	ld d, $0
+	predef FlagPredef
+	ld a, c
+	and a
 	ret
-; 3f106
+
+.MaybeScaleExp:
+; Distribute Exp Points evenly among participants, and maybe scale Exp on level
+	push bc
+
+	; Distribute among participants as follows:
+	; p=participats e=exp share holders
+	; If p or e is zero, just do 1/p or 1/e.
+	; Otherwise; P=e if participant, otherwise 0, E=p if holder, otherwise 0
+	; exp = current(E+P)/(2ep)
+	ld a, [wGivingExperienceToExpShareHolders]
+	ld d, a
+	call GetParticipantsNotFainted
+	ld e, a
+	and a
+	ld a, d
+	jr z, .single_factor
+	and a
+	ld a, e
+	jr z, .single_factor
+
+	; We are dealing with both participants and exp share holders.
+	; First, verify that we are a participant.
+	push de
+	ld b, 0
+	ld hl, wGivingExperienceToExpShareHolders
+	push bc
+	call .CheckParticipation
+	pop bc
+	pop de
+	push af
+	ld a, d
+	call .GetBits
+	ld d, a
+	pop af
+	jr z, .done_exp_share_pe
+	inc b
+
+.done_exp_share_pe
+	push de
+	push bc
+	call GetParticipantVar
+	call .CheckParticipation
+	pop bc
+	pop de
+	push af
+	ld a, e
+	call .GetBits
+	ld e, a
+	pop af
+	jr z, .done_participants_pe
+	set 1, b
+
+.done_participants_pe
+	push de
+	xor a
+	bit 0, b
+	jr z, .not_a_participant
+	add e
+.not_a_participant
+	bit 1, b
+	jr z, .not_a_holder
+	add d
+.not_a_holder
+	ld [hMultiplier], a
+	call Multiply
+	pop de
+	ld a, d
+	ld c, e
+	call SimpleMultiply
+	add a
+	ld [hDivisor], a
+	ld b, 4
+	call Divide
+	jr .done_sharing_exp
+
+.single_factor
+	call .GetBits
+	ld [hDivisor], a
+	ld b, 4
+	call Divide
+
+.done_sharing_exp
+	ld a, [wInitialOptions]
+	bit SCALED_EXP, a
+	jr z, .done_scaling
+
+	; Level multiplier
+	ld a, [wEnemyMonLevel]
+	ld c, a
+	add a
+	add 10
+	ld d, a
+
+	; Level divider
+	ld hl, wPartyMon1Level
+	ld a, [wCurPartyMon]
+	call GetPartyLocation
+	ld a, [hl]
+	add c
+	add 10
+	ld e, a
+
+	call .ScaleMod
+	call .ScaleMod
+	ld a, d
+	call .GetSqrt
+	ld d, a
+	ld a, e
+	call .GetSqrt
+	ld e, a
+	call .ScaleMod
+
+.done_scaling
+	pop bc
+	ret
+
+.ScaleMod:
+	ld a, d
+	ld [hMultiplier], a
+	call Multiply
+	ld a, e
+	ld [hDivisor], a
+	ld b, 4
+	jp Divide
+
+.GetSqrt:
+	push bc
+	cp 225
+	ld c, 15
+	jr nc, .got_result
+	ld b, a
+	ld c, 0
+.squareloop
+	inc c
+	ld a, c
+	call SimpleMultiply
+	cp b
+	jr c, .squareloop
+	jr z, .got_result
+	dec c
+.got_result
+	ld a, c
+	pop bc
+	ret
+
+.GetBits:
+; get amounts of bits set among bit 0-5 in a
+	push bc
+	ld b, 6
+	ld c, 0
+.bitloop
+	rrca
+	jr nc, .bitloopnext
+	inc c
+.bitloopnext
+	dec b
+	jr nz, .bitloop
+	ld a, c
+	pop bc
+	ret
+
 
 GiveBattleEVs:
 ; prepare registers for EV gain loop.
@@ -6522,32 +6676,15 @@ GiveBattleEVs:
 	set (6 - SP_DEFENSE), e ; 2
 	ret
 
-BoostExp: ; 3f106
-; Multiply experience by 1.5x
-	push bc
-; load experience value
-	ld a, [hProduct + 2]
-	ld b, a
-	ld a, [hProduct + 3]
-	ld c, a
-; halve it
-	srl b
-	rr c
-; add it back to the whole exp value
-	add c
-	ld [hProduct + 3], a
-	ld a, [hProduct + 2]
-	adc b
-	ld [hProduct + 2], a
-	pop bc
-	ret
-; 3f11b
+BoostExp:
+	ld a, $32
+	jp ApplyDamageMod
 
 Text_PkmnGainedExpPoint: ; 3f11b
 	text_jump Text_Gained
 	start_asm
 	ld hl, TextJump_StringBuffer2ExpPoints
-	ld a, [wStringBuffer2 + 2] ; IsTradedMon
+	ld a, [wStringBuffer2 + 3] ; IsTradedMon
 	and a
 	ret z
 

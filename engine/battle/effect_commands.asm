@@ -2485,6 +2485,7 @@ BattleCommand_statupanim: ; 34fd1
 ; 34fdb
 
 
+; NEED to remove this, as the moves are actually implemented
 StatUpDownAnim: ; 34feb
 	ld [wNumHits], a
 

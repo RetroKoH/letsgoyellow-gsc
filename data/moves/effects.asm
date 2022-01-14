@@ -1018,7 +1018,8 @@ ShellSmash:
 	checkobedience
 	usedmovetext
 	doturn
-	; Add self-defenses down
+	forcelowerstat DEFENSE
+	forcelowerstat SP_DEFENSE
 	forceraisestat ATTACK
 	forceraisestat SPEED
 	forceraisestat SP_ATTACK

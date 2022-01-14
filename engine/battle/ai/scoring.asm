@@ -349,7 +349,7 @@ AI_Smart: ; 386be
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
 	dbw EFFECT_FLAME_WHEEL,       AI_Smart_FlameWheel
 	dbw EFFECT_FLARE_BLITZ,       AI_Smart_FlameWheel
-	dbw EFFECT_CURSE,             AI_Smart_Curse
+	dbw EFFECT_TAUNT,             AI_Smart_Taunt
 	dbw EFFECT_PROTECT,           AI_Smart_Protect
 	dbw EFFECT_FORESIGHT,         AI_Smart_Foresight
 	dbw EFFECT_SANDSTORM,         AI_Smart_Sandstorm
@@ -967,6 +967,7 @@ AI_Smart_Paralyze: ; 38b26
 
 
 AI_Smart_SpeedDownHit: ; 38b40
+AI_Smart_Taunt:: ; Temporary
 ; Icy Wind
 
 ; Almost 90% chance to greatly encourage this move if the following conditions all meet:
@@ -1377,90 +1378,6 @@ rept 5
 endr
 	ret
 ; 38e5c
-
-
-AI_Smart_Curse: ; 38e5c
-	ld a, [wEnemyMonType1]
-	cp GHOST
-	jr z, .ghostcurse
-	ld a, [wEnemyMonType2]
-	cp GHOST
-	jr z, .ghostcurse
-
-	call AICheckEnemyHalfHP
-	jr nc, .asm_38e93
-
-	ld a, [wEnemyAtkLevel]
-	cp $b
-	jr nc, .asm_38e93
-	cp $9
-	ret nc
-
-	ld a, [wBattleMonType1]
-	cp GHOST
-	jr z, .asm_38e92
-	call AI_80_20
-	ret c
-	dec [hl]
-	dec [hl]
-	ret
-
-.asm_38e90
-	inc [hl]
-	inc [hl]
-.asm_38e92
-	inc [hl]
-.asm_38e93
-	inc [hl]
-	ret
-
-.ghostcurse
-	ld a, [wPlayerSubStatus1]
-	bit SUBSTATUS_CURSE, a
-	jp nz, AIDiscourageMove
-
-	push hl
-	farcall CheckAnyOtherAliveEnemyMons
-	pop hl
-	jr nc, .asm_38eb0
-
-	push hl
-	call AICheckLastPlayerMon
-	pop hl
-	jr nz, .asm_38e90
-
-	jr .asm_38eb7
-
-
-.asm_38eb0
-	push hl
-	call AICheckLastPlayerMon
-	pop hl
-	jr z, .asm_38ecb
-
-
-.asm_38eb7
-	call AICheckEnemyQuarterHP
-	jp nc, .asm_38e90
-
-	call AICheckEnemyHalfHP
-	jr nc, .asm_38e92
-
-	call AICheckEnemyMaxHP
-	ret nc
-
-	ld a, [wPlayerTurnsTaken]
-	and a
-	ret nz
-
-.asm_38ecb
-	call AI_50_50
-	ret c
-
-	dec [hl]
-	dec [hl]
-	ret
-; 38ed2
 
 
 AI_Smart_Protect: ; 38ed2

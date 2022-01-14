@@ -182,7 +182,7 @@ Moves:: ; 41afb
 	move HAIL,         EFFECT_HAIL,                0, ICE,       100, 10,   0, STATUS
 	move WILL_O_WISP,  EFFECT_BURN,                0, FIRE,       85, 15,   0, STATUS
 	move FACADE,       EFFECT_CONDITIONAL_BOOST,  70, NORMAL,    100, 20,   0, PHYSICAL
-	move CURSE,        EFFECT_CURSE,               0, GHOST,     100, 10,   0, STATUS
+	move TAUNT,        EFFECT_TAUNT,               0, DARK,      100, 10,   0, STATUS
 	move BATON_PASS,   EFFECT_BATON_PASS,          0, NORMAL,    100, 40,   0, STATUS
 	move ZAP_CANNON,   EFFECT_PARALYZE_HIT,      120, ELECTRIC,   50,  5, 100, SPECIAL
 	move SUPERPOWER,   EFFECT_CLOSE_COMBAT,      120, FIGHTING,  100,  5,   0, PHYSICAL

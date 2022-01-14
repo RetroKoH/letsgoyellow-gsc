@@ -171,7 +171,7 @@ MoveNames::
 	db "HAIL@"
 	db "WILL-O-WISP@"
 	db "FACADE@"
-	db "CURSE@"
+	db "TAUNT@"
 	db "BATON PASS@"
 	db "ZAP CANNON@"
 	db "SUPERPOWER@"

@@ -873,7 +873,6 @@ BattleCommand_checkobedience: ; 343db
 
 
 .UseInstead:
-
 ; Can't use another move if the monster only has one!
 	ld a, [wBattleMonMoves + 1]
 	and a
@@ -4569,7 +4568,6 @@ Counterattack:
 
 BattleCommand_encore: ; 35864
 ; encore
-
 	ld hl, wEnemyMonMoves
 	ld de, wEnemyEncoreCount
 	ld a, [hBattleTurn]
@@ -4580,38 +4578,34 @@ BattleCommand_encore: ; 35864
 .ok
 	ld a, BATTLE_VARS_LAST_MOVE_OPP
 	call GetBattleVar
-	and a
+	and a                   ; If target hasn't used a move, Encore fails
 	jp z, .failed
-	cp STRUGGLE
+	cp STRUGGLE             ; If target last used Struggle, Encore fails
 	jp z, .failed
-	cp ENCORE
+	cp ENCORE               ; If target last used encore, this Encore fails
 	jp z, .failed
-	ld b, a
+	ld b, a                 ; b = target's last used move
 
 .got_move
-	ld a, [hli]
-	cp b
-	jr nz, .got_move
+	ld a, [hli]             ; iterate through the target's moveset
+	cp b                    ; was this the last used move?
+	jr nz, .got_move        ; if not, loop back and check the next one
 
 	ld bc, wBattleMonPP - wBattleMonMoves - 1
 	add hl, bc
 	ld a, [hl]
 	and $3f
-	jp z, .failed
+	jp z, .failed                   ; if the last used move has no PP, Encore fails
 	ld a, [wAttackMissed]
 	and a
-	jp nz, .failed
+	jp nz, .failed                  ; obviously if this misses, Encore fails
 	ld a, BATTLE_VARS_SUBSTATUS2_OPP
 	call GetBattleVarAddr
 	bit SUBSTATUS_ENCORED, [hl]
-	jp nz, .failed
-	set SUBSTATUS_ENCORED, [hl]
-	call BattleRandom
-	and $3
-	inc a
-	inc a
-	inc a
-	ld [de], a
+	jp nz, .failed                  ; if the target is already Encored, Encore fails
+	set SUBSTATUS_ENCORED, [hl]     ; set Encore status bit
+	ld a, 3
+	ld [de], a                      ; set number of turns to be encored to 3
 	call CheckOpponentWentFirst
 	jr nz, .finish_move
 	ld a, [hBattleTurn]
@@ -4686,156 +4680,50 @@ BattleCommand_encore: ; 35864
 
 .failed
 	jp PrintDidntAffect2
-
 ; 35926
 
+BattleCommand_taunt:
+; taunt
+	ld de, wEnemyTauntCount
+	ld a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld de, wPlayerTauntCount
+.ok
+	ld a, [wAttackMissed]
+	and a
+	jr nz, .failed
+	ld a, BATTLE_VARS_SUBSTATUS2_OPP
+	call GetBattleVarAddr
+	bit SUBSTATUS_TAUNTED, [hl]
+	jr nz, .failed                  ; if the target is already Taunted, Taunt fails
+	set SUBSTATUS_TAUNTED, [hl]     ; set Taunt status bit
+; Determine number of Taunt turns: 3 turns (4 if the target acted first)
+	call CheckOpponentWentFirst
+	jr nz, .oppwentfirst
+	ld a, 3
+	jr .finish_move
+
+.oppwentfirst
+	ld a, 4
+.finish_move
+	ld [de], a                      ; set number of turns to be taunted
+	call AnimateCurrentMove
+	ld hl, GotTauntedText
+	call StdBattleTextBox
+	jp CheckOpponentMentalHerb
+
+.failed
+	jp PrintDidntAffect2
 
 BattleCommand_sleeptalk: ; 35b33
 ; sleeptalk
-
-	call ClearLastMove
-	ld a, [wAttackMissed]
-	and a
-	jr nz, .fail
-	ld a, [hBattleTurn]
-	and a
-	ld hl, wBattleMonMoves + 1
-	ld a, [wDisabledMove]
-	ld d, a
-	jr z, .got_moves
-	ld hl, wEnemyMonMoves + 1
-	ld a, [wEnemyDisabledMove]
-	ld d, a
-.got_moves
-	ld a, BATTLE_VARS_STATUS
-	call GetBattleVar
-	and SLP
-	jr z, .fail
-	ld a, [hl]
-	and a
-	jr z, .fail
-	call .safely_check_has_usable_move
-	jr c, .fail
-	dec hl
-.sample_move
-	push hl
-	call BattleRandom
-	and %11 ; NUM_MOVES - 1
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	pop hl
-	and a
-	jr z, .sample_move
-	ld e, a
-	ld a, BATTLE_VARS_MOVE
-	call GetBattleVar
-	cp e
-	jr z, .sample_move
-	ld a, e
-	cp d
-	jr z, .sample_move
-	call .check_two_turn_move
-	jr z, .sample_move
-	ld a, BATTLE_VARS_MOVE
-	call GetBattleVarAddr
-	ld a, e
-	ld [hl], a
-	call CheckUserIsCharging
-	jr nz, .charging
-	ld a, [wKickCounter]
-	push af
-	call BattleCommand_lowersub
-	pop af
-	ld [wKickCounter], a
-.charging
-	call LoadMoveAnim
-	call UpdateMoveData
-	jp ResetTurn
-
-.fail
-	call AnimateFailedMove
-	jp TryPrintButItFailed
-
-.safely_check_has_usable_move
-	push hl
-	push de
-	push bc
-	call .check_has_usable_move
-	pop bc
-	pop de
-	pop hl
-	ret
-
-.check_has_usable_move
-	ld a, [hBattleTurn]
-	and a
-	ld a, [wDisabledMove]
-	jr z, .got_move_2
-
-	ld a, [wEnemyDisabledMove]
-.got_move_2
-	ld b, a
-	ld a, BATTLE_VARS_MOVE
-	call GetBattleVar
-	ld c, a
-	dec hl
-	ld d, NUM_MOVES
-.loop2
-	ld a, [hl]
-	and a
-	jr z, .carry
-
-	cp c
-	jr z, .nope
-	cp b
-	jr z, .nope
-
-	call .check_two_turn_move
-	jr nz, .no_carry
-
-.nope
-	inc hl
-	dec d
-	jr nz, .loop2
-
-.carry
-	scf
-	ret
-
-.no_carry
-	and a
-	ret
-
-.check_two_turn_move
-	push hl
-	push de
-	push bc
-
-	ld b, a
-	farcall GetMoveEffect
-	ld a, b
-
-	pop bc
-	pop de
-	pop hl
-
-	cp EFFECT_SOLAR_BEAM
-	ret z
-	cp EFFECT_FLY
-	ret
-
-; 35bff
-
-
 BattleCommand_destinybond: ; 35bff
 ; destinybond
 	jp PrintButItFailed
 
 BattleCommand_falseswipe: ; 35c94
-; falseswipe
-
+; falseswipe - Don't remove. This is used elsewhere as well.
 	ld hl, wEnemyMonHP
 	ld a, [hBattleTurn]
 	and a
@@ -6183,7 +6071,7 @@ GetStatName:
 	db "Spcl.Def@"
 	db "Accuracy@"
 	db "Evasion@"
-	db "stats@" ; used by Curse
+	db "stats@" ; used by Curse (Now unused)
 
 
 StatLevelMultipliers: ; 364e6
@@ -6272,7 +6160,6 @@ BattleCommand_curl: ; 365a7
 	call GetBattleVarAddr
 	set SUBSTATUS_CURLED, [hl]
 	ret
-
 ; 365af
 
 
@@ -8225,9 +8112,9 @@ BattleCommand_selfdestruct: ; 37380
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVarAddr
 	res SUBSTATUS_LEECH_SEED, [hl]
-	ld a, BATTLE_VARS_SUBSTATUS2_OPP
-	call GetBattleVarAddr
-	res SUBSTATUS_DESTINY_BOND, [hl]
+;	ld a, BATTLE_VARS_SUBSTATUS2_OPP
+;	call GetBattleVarAddr
+;	res SUBSTATUS_DESTINY_BOND, [hl]
 	call _CheckBattleEffects
 	ret nc
 	farcall DrawPlayerHUD
@@ -8346,9 +8233,6 @@ BattleCommand_defrost: ; 37563
 	jp StdBattleTextBox
 
 ; 37588
-
-
-INCLUDE "engine/battle/effect_commands/curse.asm"
 
 INCLUDE "engine/battle/effect_commands/protect.asm"
 

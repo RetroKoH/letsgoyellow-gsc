@@ -106,14 +106,6 @@ HailHitsText:
 	cont "the hail!"
 	prompt
 
-PerishCountText: ; 0x80864
-	text "<USER>'s"
-	line "Perish count is @"
-	deciram wd265, 1, 1
-	text "!"
-	prompt
-; 0x80880
-
 BattleText_UserLostSomeOfItsHP:
 	text "<USER>"
 	line "lost some of its"
@@ -612,6 +604,11 @@ BattleText_UserEncoreEnded: ; 0x80c8a
 	prompt
 ; 0x80c9c
 
+BattleText_UserTauntEnded:
+	text "<USER>'s"
+	line "taunt ended!"
+	prompt
+
 BattleText_StringBuffer1GrewToLevel: ; 0x80c9c
 	text_from_ram wStringBuffer1
 	text " grew to"
@@ -975,19 +972,11 @@ GotAnEncoreText: ; 0x81109
 	prompt
 ; 0x8111b
 
-SharedPainText:
-	text "The battlers"
-	line "shared pain!"
-	prompt
-
-SwappedAbilitiesText:
-	text "The battlers"
-	line "swapped abilities!"
-	prompt
-
-SwappedItemsText:
-	text "The battlers"
-	line "swapped items!"
+GotTauntedText:
+	text "<TARGET>"
+	line "fell for the"
+	cont "taunt! It can"
+	cont "only attack!"
 	prompt
 
 ChangeIntoTypeText:

@@ -123,6 +123,25 @@ CheckMentalHerb:
 	ld [hl], a
 
 .encore_done
+	; Check Taunt
+	ld a, BATTLE_VARS_SUBSTATUS2
+	call GetBattleVarAddr
+	bit SUBSTATUS_TAUNTED, [hl]
+	jr z, .encore_done
+	res SUBSTATUS_TAUNTED, [hl]
+	set 1, b
+
+	; Also remove other taunt vars
+	ld a, [hBattleTurn]
+	and a
+	ld hl, wPlayerTauntCount
+	jr z, .got_tauntcount
+	ld hl, wPlayerTauntCount
+.got_tauntcount
+	xor a
+	ld [hl], a
+
+.taunt_done
 	; Check Disable
 	ld a, [hBattleTurn]
 	and a

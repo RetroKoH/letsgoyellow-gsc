@@ -271,18 +271,6 @@ AIWantsSwitchCheck:
 	and a
 	ret z ; We can't switch
 
-	ld a, [wEnemyPerishCount]
-	cp 1
-	ld a, [wEnemyAISwitchScore]
-	jr nz, .no_perish
-
-	; Perish count is 1
-	cp 8
-	ret c ; Bad or no choices, sacrifice active mon instead...
-	ld b, $30
-	jr .set_switch_score
-
-.no_perish
 	; Figure out the difference between active and best choice
 	sub e
 	add 7 ; Make the number easier to work with (changes worst from -6 to +1)

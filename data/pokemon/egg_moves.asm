@@ -481,7 +481,6 @@ PichuEggMoves:
 MunchlaxEggMoves:
 	db CHARM
 	db COUNTER
-	db CURSE
 	db DOUBLE_EDGE
 	db LICK
 	db GUNK_SHOT

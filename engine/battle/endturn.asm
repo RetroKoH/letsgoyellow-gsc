@@ -30,13 +30,11 @@ HandleBetweenTurnEffects:
 	call HandleWrap
 	call CheckFaint
 	ret c
-	; taunt
+	call HandleTaunt
 	call HandleEncore
 	; disable (currently not at endturn)
 	; yawn
-	call HandlePerishSong
-	call CheckFaint
-	ret c
+	; Perish Sond Removed
 	; Things below are yet to be updated to be handled in correct order
 	call HandleTrickRoom
 	call HandleLeppaBerry
@@ -658,6 +656,37 @@ HandleWrap:
 	call GetMoveName
 	jp StdBattleTextBox
 
+HandleTaunt:
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
+
+.do_it
+	call HasUserFainted
+	ret z
+
+	ld a, BATTLE_VARS_SUBSTATUS2
+	call GetBattleVarAddr
+	bit SUBSTATUS_TAUNTED, [hl]
+	ret z
+
+	ld a, [hBattleTurn]
+	and a
+	ld hl, wPlayerTauntCount
+	jr z, .got_taunt_count
+	ld hl, wEnemyTauntCount
+.got_taunt_count
+	dec [hl]
+	jr z, .end_taunt
+	ret
+
+.end_taunt
+	ld a, BATTLE_VARS_SUBSTATUS2
+	call GetBattleVarAddr
+	res SUBSTATUS_TAUNTED, [hl]
+	ld hl, BattleText_UserTauntEnded
+	jp StdBattleTextBox
+
 HandleEncore:
 	call SetFastestTurn
 	call .do_it
@@ -701,41 +730,6 @@ HandleEncore:
 	res SUBSTATUS_ENCORED, [hl]
 	ld hl, BattleText_UserEncoreEnded
 	jp StdBattleTextBox
-
-HandlePerishSong:
-	call SetFastestTurn
-	call .do_it
-	call SwitchTurn
-
-.do_it
-	call HasUserFainted
-	ret z
-
-	ld hl, wPlayerPerishCount
-	ld a, [hBattleTurn]
-	and a
-	jr z, .got_count
-	ld hl, wEnemyPerishCount
-
-.got_count
-	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVar
-	bit SUBSTATUS_PERISH, a
-	ret z
-	dec [hl]
-	ld a, [hl]
-	ld [wd265], a
-	push af
-	ld hl, PerishCountText
-	call StdBattleTextBox
-	pop af
-	ret nz
-	ld a, BATTLE_VARS_SUBSTATUS1
-	call GetBattleVarAddr
-	res SUBSTATUS_PERISH, [hl]
-
-	call GetMaxHP
-	farjp SubtractHPFromUser
 
 HandleTrickRoom:
 	ld hl, wTrickRoom

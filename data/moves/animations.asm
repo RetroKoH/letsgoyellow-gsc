@@ -172,7 +172,7 @@ BattleAnimations::
 	dw BattleAnim_Hail
 	dw BattleAnim_WillOWisp
 	dw BattleAnim_Facade
-	dw BattleAnim_Curse
+	dw BattleAnim_Metronome ; Taunt - Need modified anim
 	dw BattleAnim_BatonPass
 	dw BattleAnim_ZapCannon
 	dw BattleAnim_Superpower ; Need to make new anim

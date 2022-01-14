@@ -81,7 +81,7 @@ BattleCommandPointers:
 	command thief
 	command arenatrap
 	command defrost
-	command curse
+	command taunt
 	command protect
 	command spikes
 	command foresight

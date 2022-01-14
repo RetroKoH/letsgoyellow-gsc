@@ -171,7 +171,7 @@ MoveDescriptions::
 	dw HailDescription
 	dw WillOWispDescription
 	dw FacadeDescription
-	dw CurseDescription
+	dw TauntDescription
 	dw BatonPassDescription
 	dw ZapCannonDescription
 	dw StrengthDescription ; Superpower
@@ -943,9 +943,9 @@ HyperVoiceDescription:
 	db   "Attack the foe"
 	next "with sound waves.@"
 
-CurseDescription:
-	db   "Works differently"
-	next "for Ghost-types.@"
+TauntDescription:
+	db   "Taunts foe into"
+	next "only attacking.@"
 
 FlailDescription:
 	db   "Stronger if the"
@@ -962,10 +962,6 @@ ProtectDescription:
 BellyDrumDescription:
 	db   "Sacrifices HP to"
 	next "maximize Attack.@"
-
-PerishSongDescription:
-	db   "Both user and foe"
-	next "faint in 3 turns.@"
 
 RolloutDescription:
 	db   "Attacks 5 turns"

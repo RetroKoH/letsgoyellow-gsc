@@ -435,7 +435,7 @@ BattleTowerMons4:
 
 	db SNORLAX
 	db QUICK_CLAW
-	db BODY_SLAM, CURSE, EARTHQUAKE, 0
+	db BODY_SLAM, BELLY_DRUM, EARTHQUAKE, 0
 	db $de, $dd, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -513,7 +513,7 @@ BattleTowerMons4:
 
 	db OMASTAR
 	db SITRUS_BERRY
-	db CURSE, WATER_GUN, ANCIENTPOWER, ROCK_SMASH
+	db SHELL_SMASH, WATER_GUN, ANCIENTPOWER, ROCK_SMASH
 	db $fe, $ff, $ee ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 
@@ -569,7 +569,7 @@ BattleTowerMons5:
 
 	db SNORLAX
 	db LEFTOVERS
-	db HYPER_BEAM, EARTHQUAKE, SURF, CURSE
+	db HYPER_BEAM, EARTHQUAKE, SURF, 0
 	db $ef, $de, $ff ; DVs
 	db ABILITY_1 | QUIRKY, MALE ; Personality
 

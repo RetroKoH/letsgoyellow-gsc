@@ -500,18 +500,18 @@ ParsePlayerAction:
 
 .using_move
 	ld a, [wBattleType]
-	cp BATTLETYPE_GHOST
-	jp z, .lavender_ghost
+	cp BATTLETYPE_GHOST ; Are we fighting against the Lavender Tower Ghost?
+	jp z, .lavender_ghost ; If yes, branch
 
 	call SetPlayerTurn
 	call CheckLockedIn
 	jr nz, .locked_in
 	ld hl, wPlayerSubStatus2
-	bit SUBSTATUS_ENCORED, [hl]
-	jr z, .not_encored
+	bit SUBSTATUS_ENCORED, [hl] ; has the user been ENCORED?
+	jr z, .not_encored          ; if no, branch and skip ahead
 	ld a, [wLastPlayerMove]
-	ld [wCurPlayerMove], a
-	jr .encored
+	ld [wCurPlayerMove], a      ; Set current move to the last one used before Encore was set
+	jr .encored                 ; branch ahead
 
 .not_encored
 	ld a, [wBattlePlayerAction]
@@ -722,9 +722,9 @@ GetMoveEffect: ; 3c5ec
 
 
 PerformMove:
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVarAddr
-	res SUBSTATUS_DESTINY_BOND, [hl]
+;	ld a, BATTLE_VARS_SUBSTATUS2
+;	call GetBattleVarAddr
+;	res SUBSTATUS_DESTINY_BOND, [hl]
 	call HasUserFainted
 	jr z, .end_protect_destinybond
 	ld a, [hBattleTurn]
@@ -739,9 +739,9 @@ PerformMove:
 	call GetBattleVarAddr
 	res SUBSTATUS_PROTECT, [hl]
 	res SUBSTATUS_ENDURE, [hl]
-	ld a, BATTLE_VARS_SUBSTATUS2_OPP
-	call GetBattleVarAddr
-	res SUBSTATUS_DESTINY_BOND, [hl]
+;	ld a, BATTLE_VARS_SUBSTATUS2_OPP
+;	call GetBattleVarAddr
+;	res SUBSTATUS_DESTINY_BOND, [hl]
 	; fallthrough
 
 ResolveFaints:
@@ -1167,7 +1167,7 @@ SendInUserPkmn:
 	res SUBSTATUS_PROTECT, [hl]
 	inc hl
 	res SUBSTATUS_CANT_RUN, [hl]
-	res SUBSTATUS_DESTINY_BOND, [hl]
+	res SUBSTATUS_TAUNTED, [hl]
 	res SUBSTATUS_ENCORED, [hl]
 	res SUBSTATUS_TRANSFORMED, [hl]
 	res SUBSTATUS_MAGIC_BOUNCE, [hl]
@@ -4840,13 +4840,13 @@ MoveSelectionScreen:
 	ld c, a
 	call CheckUsableMove
 	dec a
-	jr z, .no_pp_left
+	jr z, .no_pp_left ; move cannot be used (no PP)
 	dec a
-	jr z, .move_disabled
+	jr z, .move_disabled ; chosen move is disabled
 	dec a
-	jr z, .choiced
+	jr z, .choiced ; locked into one chosen move
 	dec a
-	jr z, .assault_vest
+	jr z, .assault_vest ; status move disabled
 	ld b, 0
 	ld hl, wBattleMonMoves
 	add hl, bc
@@ -5186,6 +5186,7 @@ CheckUsableMove:
 ; 2 - disabled
 ; 3 - choiced
 ; 4 - assault vest on status move
+; 5 - TAUNT on status move (To add)
 	push bc
 	push de
 	push hl
@@ -5236,10 +5237,21 @@ CheckUsableMove:
 	pop bc
 	cp HELD_CHOICE
 	jr z, .check_choiced
-	cp HELD_ASSAULT_VEST
-	jr nz, .usable
+	cp HELD_ASSAULT_VEST      ; is mon holding assault vest?
+	jr z, .check_statusmoves  ; if yes, branch
 
-	; Assault Vest check
+	ld a, [hBattleTurn]
+	and a
+	ld hl, wPlayerTauntCount
+	jr z, .got_taunt_count
+	ld hl, wEnemyTauntCount
+.got_taunt_count
+	ld a, [hl]
+	cp 0
+	jr z, .usable ; if user is not taunted, continue on
+
+.check_statusmoves
+	; Assault Vest and Taunt check
 	ld hl, Moves + MOVE_CATEGORY
 	ld a, c
 	dec a

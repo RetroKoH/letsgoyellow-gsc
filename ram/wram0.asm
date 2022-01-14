@@ -380,7 +380,7 @@ wPlayerSubStatus1::
 wPlayerSubStatus2::
 ; bit
 ; 7 cant run
-; 6 destiny bond
+; 6 taunt
 ; 5 lock-on
 ; 4 encore
 ; 3 transformed
@@ -431,7 +431,7 @@ wPlayerConfuseCount:: ds 1
 wPlayerToxicCount:: ds 1
 wPlayerDisableCount:: ds 1
 wPlayerEncoreCount:: ds 1
-wPlayerPerishCount:: ds 1
+wPlayerTauntCount:: ds 1
 wPlayerProtectCount:: ds 1
 wPlayerFuryCutterCount:: ds 1
 
@@ -441,7 +441,7 @@ wEnemyConfuseCount:: ds 1
 wEnemyToxicCount:: ds 1
 wEnemyDisableCount:: ds 1
 wEnemyEncoreCount:: ds 1
-wEnemyPerishCount:: ds 1
+wEnemyTauntCount:: ds 1
 wEnemyProtectCount:: ds 1
 wEnemyFuryCutterCount:: ds 1
 
@@ -628,8 +628,8 @@ wTempLevel:: ds 1
 
 wLastPlayerMon:: ds 1
 
-wLastPlayerMove:: ds 1
-wLastEnemyMove:: ds 1
+wLastPlayerMove:: ds 1 ; C718
+wLastEnemyMove:: ds 1 ; C719
 
 wEnemyUsingItem:: ds 1
 

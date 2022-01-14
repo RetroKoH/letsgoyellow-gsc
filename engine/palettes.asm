@@ -1226,7 +1226,7 @@ TMHMTypes:
 ; for efficiency.
 	db FIGHTING ; DYNAMICPUNCH
 	db BUG      ; TWINEEDLE
-	db GHOST    ; CURSE
+	db DARK     ; CURSE
 	db PSYCHIC  ; CALM_MIND
 	db NORMAL   ; ROAR
 	db POISON   ; TOXIC

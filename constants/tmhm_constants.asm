@@ -25,7 +25,7 @@ ENDM
 
 	add_tm DYNAMICPUNCH ; $00
 	add_tm TWINEEDLE    ; $01
-	add_tm CURSE        ; $02
+	add_tm TAUNT        ; $02
 	add_tm CALM_MIND    ; $03
 	add_tm ROAR         ; $04
 	add_tm TOXIC        ; $05

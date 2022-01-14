@@ -101,7 +101,7 @@ MoveEffectsPointers:
 	dw Thief       ; UNUSED
 	dw MeanLook    ; UNUSED
 	dw FlameWheel
-	dw Curse
+	dw Taunt
 	dw Protect
 	dw Spikes
 	dw Foresight

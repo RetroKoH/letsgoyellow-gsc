@@ -1867,11 +1867,14 @@ FlameWheel:
 	pickpocket
 	endmove
 
-Curse:
+Taunt:
 	checkobedience
 	usedmovetext
 	doturn
-	curse
+	hastarget
+	checkhit
+	bounceback
+	taunt
 	endmove
 
 Protect:

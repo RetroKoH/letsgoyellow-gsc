@@ -1,7 +1,7 @@
 TMHMMoves:
 	db DYNAMICPUNCH ; TM01 (Chuck)
 	db TWINEEDLE    ; TM02 (Route 27)
-	db CURSE        ; TM03 (Celadon Mansion)
+	db TAUNT        ; TM03 (Celadon Mansion)
 	db CALM_MIND    ; TM04 (Celadon Dept. Store)
 	db ROAR         ; TM05 (Route 32)
 	db TOXIC        ; TM06 (Celadon Game Corner)

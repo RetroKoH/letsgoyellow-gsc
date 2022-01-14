@@ -172,7 +172,7 @@
 	const HAIL         ; $27
 	const WILL_O_WISP  ; $a9
 	const FACADE       ; $ab
-	const CURSE        ; $ae ; TAUNT
+	const TAUNT        ; $ae
 	const BATON_PASS   ; $e2 ; HELPING HAND
 	const ZAP_CANNON   ; $c0 ; WISH
 	const SUPERPOWER   ; $c3

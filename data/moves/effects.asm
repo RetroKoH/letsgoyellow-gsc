@@ -456,8 +456,7 @@ MetalClaw:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	attackup
-	statupmessage
+	raisestathit ATTACK
 	pickpocket
 	endmove
 
@@ -481,8 +480,7 @@ SteelWing:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	defenseup
-	statupmessage
+	raisestathit DEFENSE
 	pickpocket
 	endmove
 
@@ -506,7 +504,11 @@ Ancientpower:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	allstatsup
+	raisestathit ATTACK
+	raisestathit DEFENSE
+	raisestathit SPEED
+	raisestathit SP_ATTACK
+	raisestathit SP_DEFENSE
 	pickpocket
 	endmove
 
@@ -530,8 +532,7 @@ AuroraBeam:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	attackdown
-	statdownmessage
+	loweroppstathit ATTACK
 	pickpocket
 	endmove
 
@@ -556,8 +557,7 @@ IronTail:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	defensedown
-	statdownmessage
+	loweroppstathit DEFENSE
 	pickpocket
 	endmove
 
@@ -582,8 +582,6 @@ BrickBreak:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	defensedown
-	statdownmessage
 	pickpocket
 	endmove
 
@@ -609,8 +607,7 @@ Bulldoze:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	speeddown
-	statdownmessage
+	loweroppstathit SPEED
 	pickpocket
 	endmove
 
@@ -634,8 +631,7 @@ Moonblast:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	specialattackdown
-	statdownmessage
+	loweroppstathit SP_ATTACK
 	pickpocket
 	endmove
 
@@ -666,8 +662,7 @@ ShadowBall:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	specialdefensedown
-	statdownmessage
+	loweroppstathit SP_DEFENSE
 	pickpocket
 	endmove
 
@@ -690,8 +685,7 @@ AccuracyDownHit:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	accuracydown
-	statdownmessage
+	loweroppstathit ACCURACY
 	pickpocket
 	endmove
 
@@ -714,8 +708,7 @@ EvasionDownHit:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	evasiondown
-	statdownmessage
+	loweroppstathit EVASION
 	pickpocket
 	endmove
 
@@ -863,72 +856,42 @@ AttackUp:
 	checkobedience
 	usedmovetext
 	doturn
-	attackup
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat ATTACK
 	endmove
 
 DefenseUp:
 	checkobedience
 	usedmovetext
 	doturn
-	defenseup
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat DEFENSE
 	endmove
 
 SpeedUp:
 	checkobedience
 	usedmovetext
 	doturn
-	speedup
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat SPEED
 	endmove
 
 SpecialAttackUp:
 	checkobedience
 	usedmovetext
 	doturn
-	specialattackup
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat SP_ATTACK
 	endmove
 
 SpecialDefenseUp:
 	checkobedience
 	usedmovetext
 	doturn
-	specialdefenseup
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat SP_DEFENSE
 	endmove
 
 AccuracyUp:
 	checkobedience
 	usedmovetext
 	doturn
-	accuracyup
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat ACCURACY
 	endmove
 
 EvasionUp:
@@ -936,13 +899,7 @@ DoubleTeam:
 	checkobedience
 	usedmovetext
 	doturn
-	lowersub
-	evasionup
-	statupanim
-	lowersubnoanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat EVASION
 	endmove
 
 CriticalUp:
@@ -958,12 +915,7 @@ SwordsDance:
 	checkobedience
 	usedmovetext
 	doturn
-	attackup2
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat $10 | ATTACK
 	endmove
 
 DefenseUp2:
@@ -971,12 +923,7 @@ Barrier:
 	checkobedience
 	usedmovetext
 	doturn
-	defenseup2
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat $10 | DEFENSE
 	endmove
 
 SpeedUp2:
@@ -984,12 +931,7 @@ Agility:
 	checkobedience
 	usedmovetext
 	doturn
-	speedup2
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat $10 | SPEED
 	endmove
 
 SpecialAttackUp2:
@@ -997,12 +939,7 @@ NastyPlot:
 	checkobedience
 	usedmovetext
 	doturn
-	specialattackup2
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat $10 | SP_ATTACK
 	endmove
 
 SpecialDefenseUp2:
@@ -1010,24 +947,14 @@ Amnesia:
 	checkobedience
 	usedmovetext
 	doturn
-	specialdefenseup2
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat $10 | SP_DEFENSE
 	endmove
 
 AccuracyUp2:
 	checkobedience
 	usedmovetext
 	doturn
-	accuracyup2
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat $10 | ACCURACY
 	endmove
 
 EvasionUp2:
@@ -1035,26 +962,23 @@ Minimize:
 	checkobedience
 	usedmovetext
 	doturn
-	evasionup2
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat $10 | EVASION
 	endmove
 
 BulkUp:
 	checkobedience
 	usedmovetext
 	doturn
-	bulkup
+	forceraisestat ATTACK
+	forceraisestat DEFENSE
 	endmove
 
 CalmMind:
 	checkobedience
 	usedmovetext
 	doturn
-	calmmind
+	forceraisestat SP_ATTACK
+	forceraisestat SP_DEFENSE
 	endmove
 
 Growth:
@@ -1068,33 +992,26 @@ DragonDance:
 	checkobedience
 	usedmovetext
 	doturn
-	dragondance
+	forceraisestat ATTACK
+	forceraisestat SPEED
 	endmove
 
 QuiverDance:
 	checkobedience
 	usedmovetext
 	doturn
-	calmmind ; SpAttack and SpDefense
-	speedup ; Test this to ensure no bugs
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat SP_ATTACK
+	forceraisestat SP_DEFENSE
+	forceraisestat SPEED
 	endmove
 
 Coil:
 	checkobedience
 	usedmovetext
 	doturn
-	coil ; Attack and accuracy
-	defenseup ; Test this to ensure no bugs
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat ATTACK
+	forceraisestat DEFENSE
+	forceraisestat ACCURACY
 	endmove
 
 ShellSmash:
@@ -1102,13 +1019,9 @@ ShellSmash:
 	usedmovetext
 	doturn
 	; Add self-defenses down
-	dragondance ; Attack and speed
-	specialattackup ; Test this to ensure no bugs
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
+	forceraisestat ATTACK
+	forceraisestat SPEED
+	forceraisestat SP_ATTACK
 	endmove
 
 AttackDown:
@@ -1119,12 +1032,7 @@ Growl:
 	hastarget
 	checkhit
 	bounceback
-	attackdown
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat ATTACK
 	endmove
 
 DefenseDown:
@@ -1135,12 +1043,7 @@ Leer:
 	hastarget
 	checkhit
 	bounceback
-	defensedown
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat DEFENSE
 	endmove
 
 SpeedDown:
@@ -1151,12 +1054,7 @@ StringShot:
 	hastarget
 	checkhit
 	bounceback
-	speeddown
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat SPEED
 	endmove
 
 SpecialAttackDown:
@@ -1166,12 +1064,7 @@ SpecialAttackDown:
 	hastarget
 	checkhit
 	bounceback
-	specialattackdown
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat SP_ATTACK
 	endmove
 
 SpecialDefenseDown:
@@ -1181,12 +1074,7 @@ SpecialDefenseDown:
 	hastarget
 	checkhit
 	bounceback
-	specialdefensedown
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat SP_DEFENSE
 	endmove
 
 AccuracyDown:
@@ -1198,12 +1086,7 @@ Flash:
 	hastarget
 	checkhit
 	bounceback
-	accuracydown
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat ACCURACY
 	endmove
 
 EvasionDown:
@@ -1213,12 +1096,7 @@ EvasionDown:
 	hastarget
 	checkhit
 	bounceback
-	evasiondown
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat EVASION
 	endmove
 
 AttackDown2:
@@ -1229,12 +1107,7 @@ Charm:
 	hastarget
 	checkhit
 	bounceback
-	attackdown2
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat $10 | ATTACK
 	endmove
 
 DefenseDown2:
@@ -1245,12 +1118,7 @@ Screech:
 	hastarget
 	checkhit
 	bounceback
-	defensedown2
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat $10 | DEFENSE
 	endmove
 
 SpeedDown2:
@@ -1261,12 +1129,7 @@ ScaryFace:
 	hastarget
 	checkhit
 	bounceback
-	speeddown2
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat $10 | SPEED
 	endmove
 
 SpecialAttackDown2:
@@ -1276,12 +1139,7 @@ SpecialAttackDown2:
 	hastarget
 	checkhit
 	bounceback
-	specialattackdown2
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat $10 | SP_ATTACK
 	endmove
 
 SpecialDefenseDown2:
@@ -1291,12 +1149,7 @@ SpecialDefenseDown2:
 	hastarget
 	checkhit
 	bounceback
-	specialdefensedown2
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat $10 | SP_DEFENSE
 	endmove
 
 AccuracyDown2:
@@ -1306,12 +1159,7 @@ AccuracyDown2:
 	hastarget
 	checkhit
 	bounceback
-	accuracydown2
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat $10 | ACCURACY
 	endmove
 
 EvasionDown2:
@@ -1321,12 +1169,7 @@ EvasionDown2:
 	hastarget
 	checkhit
 	bounceback
-	evasiondown2
-	lowersub
-	statdownanim
-	raisesub
-	statdownmessage
-	statdownfailtext
+	loweroppstat $10 | EVASION
 	endmove
 
 ResetStats:
@@ -1954,16 +1797,7 @@ Swagger:
 	hastarget
 	checkhit
 	bounceback
-	switchturn
-	attackup2
-	switchturn
-	lowersub
-	statupanim
-	raisesub
-	failuretext
-	switchturn
-	statupmessage
-	switchturn
+	raiseoppstat $10 | ATTACK
 	confusetarget
 	endmove
 
@@ -2398,13 +2232,8 @@ DefenseCurl:
 	checkobedience
 	usedmovetext
 	doturn
-	defenseup
+	forceraisestat DEFENSE
 	curl
-	lowersub
-	statupanim
-	raisesub
-	statupmessage
-	statupfailtext
 	endmove
 
 FlareBlitz:

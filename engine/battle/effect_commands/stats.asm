@@ -146,6 +146,8 @@ FarChangeStat:
 	bit STAT_TARGET_F, b
 	call nz, SwitchTurn
 	farcall ShowPotentialAbilityActivation
+	ld c, 30
+	call DelayFrames ; Delay before stating that stats won't rise/lower
 	bit STAT_TARGET_F, b
 	call nz, SwitchTurn
 	ld hl, WontRiseAnymoreText

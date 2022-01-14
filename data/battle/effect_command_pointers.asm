@@ -49,7 +49,6 @@ BattleCommandPointers:
 	command paralyzetarget
 	command selfdestruct
 	command statup
-	command statdown
 	command payday
 	command conversion
 	command resetstats
@@ -100,7 +99,6 @@ BattleCommandPointers:
 	command endure
 	command checkcurl
 	command rolloutpower
-	command bulkup
 	command conditionalboost
 	command attract
 	command happinesspower
@@ -115,41 +113,7 @@ BattleCommandPointers:
 	command weatherball
 	command startrain
 	command startsun
-	command attackup
-	command defenseup
-	command speedup
-	command specialattackup
-	command specialdefenseup
-	command accuracyup
-	command evasionup
-	command attackup2
-	command defenseup2
-	command speedup2
-	command specialattackup2
-	command specialdefenseup2
-	command accuracyup2
-	command evasionup2
-	command attackdown
-	command defensedown
-	command speeddown
-	command specialattackdown
-	command specialdefensedown
-	command accuracydown
-	command evasiondown
-	command attackdown2
-	command defensedown2
-	command speeddown2
-	command specialattackdown2
-	command specialdefensedown2
-	command accuracydown2
-	command evasiondown2
-	command statupmessage
-	command statdownmessage
-	command statupfailtext
-	command statdownfailtext
 	command effectchance
-	command statdownanim
-	command statupanim
 	command switchturn
 	command bellydrum
 	command rage
@@ -166,11 +130,8 @@ BattleCommandPointers:
 	command furycutter
 	command resettypematchup
 	command allstatsup
-	command calmmind
 	command raisesubnoanim
 	command lowersubnoanim
-	command dragondance
-	command coil
 	command clearmissdamage
 	command movedelay
 	command hittarget

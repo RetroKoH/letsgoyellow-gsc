@@ -88,42 +88,15 @@ RedsHouse2FSNESText:
 	giveitem SHINY_CHARM
 	setflag ENGINE_HAVE_SHINY_CHARM
 	; hm slaves
-	givepoke VENUSAUR, 70, LEFTOVERS
-	loadvar wPartyMon2Moves+0, SUNNY_DAY
-	loadvar wPartyMon2Moves+1, WEATHER_BALL
-	loadvar wPartyMon2Moves+2, MEGA_DRAIN
-	loadvar wPartyMon2Moves+3, SYNTHESIS
+	givepoke ARBOK, 70, BLACK_SLUDGE
+	loadvar wPartyMon2Moves+0, COIL
+	loadvar wPartyMon2Moves+1, GUNK_SHOT
+	loadvar wPartyMon2Moves+2, IRON_TAIL
+	loadvar wPartyMon2Moves+3, EARTHQUAKE
 	loadvar wPartyMon2PP+0, 15
 	loadvar wPartyMon2PP+1, 15
 	loadvar wPartyMon2PP+2, 15
 	loadvar wPartyMon2PP+3, 15
-	givepoke CHARIZARD, 70, LEFTOVERS
-	loadvar wPartyMon3Moves+0, SUNNY_DAY
-	loadvar wPartyMon3Moves+1, FLARE_BLITZ
-	loadvar wPartyMon3Moves+2, AIR_SLASH
-	loadvar wPartyMon3Moves+3, ROOST
-	loadvar wPartyMon3PP+0, 15
-	loadvar wPartyMon3PP+1, 15
-	loadvar wPartyMon3PP+2, 15
-	loadvar wPartyMon3PP+3, 15
-	givepoke BLASTOISE, 70, LEFTOVERS
-	loadvar wPartyMon4Moves+0, RAIN_DANCE
-	loadvar wPartyMon4Moves+1, HYDRO_PUMP
-	loadvar wPartyMon4Moves+2, FLASH_CANNON
-	loadvar wPartyMon4Moves+3, DRAGON_PULSE
-	loadvar wPartyMon4PP+0, 15
-	loadvar wPartyMon4PP+1, 15
-	loadvar wPartyMon4PP+2, 15
-	loadvar wPartyMon4PP+3, 15
-	givepoke MACHAMP, 70, ASSAULT_VEST
-	loadvar wPartyMon5Moves+0, ENCORE
-	loadvar wPartyMon5Moves+1, TAUNT
-	loadvar wPartyMon5Moves+2, DYNAMICPUNCH
-	loadvar wPartyMon5Moves+3, ROCK_SLIDE
-	loadvar wPartyMon5PP+0, 15
-	loadvar wPartyMon5PP+1, 15
-	loadvar wPartyMon5PP+2, 15
-	loadvar wPartyMon5PP+3, 15
 	setflag ENGINE_POKEDEX
 	callasm FillPokedex
 	thistext

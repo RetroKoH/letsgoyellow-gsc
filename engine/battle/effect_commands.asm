@@ -608,24 +608,7 @@ CheckPowerHerb:
 	call ConsumeUserItem
 	jp ResetTurn
 
-GetItemStatMessage:
-	farcall ItemRecoveryAnim
-	call GetCurItemName
-	ld a, [wLoweredStat]
-	and $f
-	ld b, a
-	inc b
-	call GetStatName
-	ld a, [wLoweredStat]
-	and $f0
-	ld hl, BattleText_ItemRaised
-	jr z, .got_msg
-	ld hl, BattleText_ItemSharplyRaised
-.got_msg
-	jp StdBattleTextBox
-
 MoveDisabled: ; 3438d
-
 	; Make sure any charged moves fail
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVarAddr
@@ -2473,20 +2456,16 @@ BattleCommand_hittargetnosub: ; 34f60
 ; 34fd1
 
 
-BattleCommand_statupanim: ; 34fd1
-	ld a, [wAttackMissed]
-	and a
-	jp nz, BattleCommand_movedelay
+StatUpDownAnim: ; 34feb
+	call CheckAlreadyExecuted
+	ret nz
 
 	xor a
-	jr StatUpDownAnim
-; 34fdb
-
-
-; NEED to remove this, as the moves are actually implemented
-StatUpDownAnim: ; 34feb
 	ld [wNumHits], a
 
+; (Need to remove this, since these moves are re-implemented)
+; Defense Curl, Withdraw, and Harden were merged, so use the correct
+; animation for the Pokémon that learned each one
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld e, a
@@ -5388,9 +5367,6 @@ BattleCommand_growth:
 	ld b, c
 	jp ForceRaiseStat
 
-BattleCommand_statup:
-	jp ForceRaiseStat
-
 CheckAlreadyExecuted:
 	ld a, [wAlreadyExecuted]
 	and a
@@ -5497,191 +5473,19 @@ ChangeStat:
 ; b contains stat to alter, or zero if it should be read from the move script
 	farjp FarChangeStat
 
-CheckIfStatCanBeRaised:
-	ld a, b
-	ld [wLoweredStat], a
-	ld hl, wPlayerStatLevels
-	ld a, [hBattleTurn]
-	and a
-	jr z, .got_stat_levels
-	ld hl, wEnemyStatLevels
-.got_stat_levels
-	ld a, [wAttackMissed]
-	and a
-	jp nz, .stat_raise_failed
-	ld a, [wEffectFailed]
-	and a
-	jp nz, .stat_raise_failed
-	ld a, [wLoweredStat]
-	and $f
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld b, [hl]
-	inc b
-	ld a, $d
-	cp b
-	jp c, .cant_raise_stat
-	ld a, [wLoweredStat]
-	and $f0
-	jr z, .got_num_stages
-	inc b
-	ld a, $d
-	cp b
-	jr nc, .got_num_stages
-	ld b, a
-.got_num_stages
-	ld [hl], b
-	xor a
-	ld [wFailedMessage], a
-	ret
-
-.cant_raise_stat
-	ld a, $2
-	ld [wFailedMessage], a
-	ld a, $1
-	ld [wAttackMissed], a
-	ret
-
-.stat_raise_failed
-	ld a, $1
-	ld [wFailedMessage], a
-	ret
-
-StatUpAnimation:
-	ld bc, wPlayerMinimized
-	ld hl, DropPlayerSub
-	ld a, [hBattleTurn]
-	and a
-	jr z, .do_player
-	ld bc, wEnemyMinimized
-	ld hl, DropEnemySub
-.do_player
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	cp MINIMIZE
-	ret nz
-
-	ld a, $1
-	ld [bc], a
-	call _CheckBattleEffects
-	ret nc
-
-	xor a
-	ld [hBGMapMode], a
-	call CallBattleCore
-	call ApplyTilemapInVBlank
-	jp BattleCommand_movedelay
-; 362ad
-
-BattleCommand_statupmessage: ; 363b8
-	ld a, [wFailedMessage]
-	and a
-	ret nz
-	ld a, [wLoweredStat]
-	and $f
-	ld b, a
-	inc b
-	call GetStatName
-	ld hl, .stat
-	jp BattleTextBox
-
-.stat
-	text_jump UnknownText_0x1c0cc6
-	start_asm
-	ld hl, .up
-	ld a, [wLoweredStat]
-	and $f0
-	ret z
-	ld hl, .wayup
-	ret
-
-.wayup
-	text_jump UnknownText_0x1c0cd0 ; Sharply rose
-	db "@"
-
-.up
-	text_jump UnknownText_0x1c0ce0 ; Rose
-	db "@"
-
-BattleCommand_statupfailtext: ; 3644c
-; statupfailtext
-	ld a, [wFailedMessage]
-	and a
-	ret z
-	push af
-	call BattleCommand_movedelay
-	pop af
-	dec a
-	jp z, TryPrintButItFailed
-	ld a, [wLoweredStat]
-	and $f
-	ld b, a
-	inc b
-	call GetStatName
-	ld hl, WontRiseAnymoreText
-	jp StdBattleTextBox
-; 3646a
-
-
-GetStatName:
-	ld hl, .names
-	ld c, "@"
-.CheckName:
-	dec b
-	jr z, .Copy
-.GetName:
-	ld a, [hli]
-	cp c
-	jr z, .CheckName
-	jr .GetName
-
-.Copy:
-	ld de, wStringBuffer2
-	ld bc, wStringBuffer3 - wStringBuffer2
-	rst CopyBytes
-	ret
-
-.names
-	db "Attack@"
-	db "Defense@"
-	db "Speed@"
-	db "Spcl.Atk@"
-	db "Spcl.Def@"
-	db "Accuracy@"
-	db "Evasion@"
-	db "stats@" ; used by Curse (Now unused)
-
-
-StatLevelMultipliers: ; 364e6
-	db 25, 100 ; 0.25x
-	db 28, 100 ; 0.28x
-	db 33, 100 ; 0.33x
-	db 40, 100 ; 0.40x
-	db 50, 100 ; 0.50x
-	db 66, 100 ; 0.66x
-	db  1,   1 ; 1.00x
-	db 15,  10 ; 1.50x
-	db  2,   1 ; 2.00x
-	db 25,  10 ; 2.50x
-	db  3,   1 ; 3.00x
-	db 35,  10 ; 3.50x
-	db  4,   1 ; 4.00x
-; 36500
-
 
 BattleCommand_allstatsup: ; 36500
 ; allstatsup
 	ld b, ATTACK
-	call RaiseStat
+	call RaiseStatHit
 	ld b, DEFENSE
-	call RaiseStat
+	call RaiseStatHit
 	ld b, SPEED
-	call RaiseStat
+	call RaiseStatHit
 	ld b, SP_ATTACK
-	call RaiseStat
+	call RaiseStatHit
 	ld b, SP_DEFENSE
-	jp RaiseStat
+	jp RaiseStatHit
 
 
 ResetMiss: ; 3652d
@@ -7286,7 +7090,9 @@ BattleCommand_conversion:
 	ld a, [hBattleTurn]
 	and a
 	ld hl, InvalidTypeChangeText
+	push de
 	call z, StdBattleTextBox
+	pop de
 
 	; skip move delay after the first selection
 	ld a, [hBattleTurn]

@@ -129,7 +129,7 @@ FarChangeStat:
 	and $f
 	ld b, a
 	inc b
-	farcall GetStatName
+	call GetStatName
 	pop bc
 	bit STAT_TARGET_F, b
 	call nz, SwitchTurn
@@ -152,29 +152,15 @@ FarChangeStat:
 	bit STAT_SKIPTEXT_F, b
 	ret nz
 	bit STAT_SILENT_F, b
-
 	push bc
 	jr nz, .anim_done
-	farcall TryAnimateCurrentMove
+	farcall StatUpDownAnim
 
 .anim_done
 	farcall ShowPotentialAbilityActivation
 	pop bc
 PrintStatChange:
-	ld a, [wLoweredStat]
-	and $f0
-	swap a
-	and a
-	ld hl, StatRoseText
-	ld de, StatFellText
-	jr z, DoPrintStatChange
-	dec a
-	ld hl, StatRoseSharplyText
-	ld de, StatHarshlyFellText
-	jr z, DoPrintStatChange
-	ld hl, StatRoseDrasticallyText
-	ld de, StatSeverelyFellText
-	xor a
+	call GetStatRaiseMessage
 DoPrintStatChange:
 	push af
 	and a
@@ -215,6 +201,23 @@ DoPrintStatChange:
 .printmsg
 	jp StdBattleTextBox
 
+GetStatRaiseMessage:
+	ld a, [wLoweredStat]
+	and $f0
+	swap a
+	and a
+	ld hl, StatRoseText
+	ld de, StatFellText
+	ret z
+	dec a
+	ld hl, StatRoseSharplyText
+	ld de, StatHarshlyFellText
+	ret z
+	ld hl, StatRoseDrasticallyText
+	ld de, StatSeverelyFellText
+	xor a
+	ret
+
 UseStatItemText:
 ; doesn't consume the item in case of multiple stats
 	push bc
@@ -222,11 +225,12 @@ UseStatItemText:
 	and $f
 	ld b, a
 	inc b
-	farcall GetStatName
+	call GetStatName
 	farcall CheckAlreadyExecuted
 	jr nz, .item_anim_done
 	farcall ItemRecoveryAnim
 .item_anim_done
+	call GetCurItemName
 	ld a, [wLoweredStat]
 	and $f0
 	swap a
@@ -245,6 +249,35 @@ UseStatItemText:
 	call DoPrintStatChange
 	pop bc
 	ret
+
+GetStatName:
+	ld hl, .names
+	ld c, "@"
+.CheckName:
+	dec b
+	jr z, .Copy
+.GetName:
+	ld a, [hli]
+	cp c
+	jr z, .CheckName
+	jr .GetName
+
+.Copy:
+	ld de, wStringBuffer2
+	ld bc, wStringBuffer3 - wStringBuffer2
+	rst CopyBytes
+	ret
+
+.names
+	db "Attack@"
+	db "Defense@"
+	db "Speed@"
+	db "Spcl.Atk@"
+	db "Spcl.Def@"
+	db "Accuracy@"
+	db "Evasion@"
+	db "stats@" ; used by Curse
+
 
 DoLowerStat:
 	or 1

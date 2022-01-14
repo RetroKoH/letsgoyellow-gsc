@@ -1336,25 +1336,12 @@ endc
 	ld [wEnemyMonBaseExp], a
 
 	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr nz, .skip_unown
-	ld a, [wFirstUnownSeen]
-	and a
-	jr nz, .skip_unown
-	ld hl, wEnemyMonForm
-	predef GetVariant
-	ld a, [wCurForm]
-	ld [wFirstUnownSeen], a
-.skip_unown
-
-	ld a, [wCurPartySpecies]
 	cp MAGIKARP
 	jr nz, .enemy_extras_done
 	ld a, [wFirstMagikarpSeen]
 	and a
 	jr nz, .enemy_extras_done
-	ld hl, wEnemyMonForm
-	predef GetVariant
+	call GetEnemyMonVariant
 	ld a, [wCurForm]
 	ld [wFirstMagikarpSeen], a
 
@@ -1497,6 +1484,18 @@ GetParticipantVar::
 	ld hl, wPartyParticipants
 	add hl, bc
 	ret
+
+GetEnemyMonVariant:
+	ld a, [wCurOTMon]
+	ld hl, wOTPartyMon1Form
+	call GetPartyLocation
+	predef_jump GetVariant
+
+GetBattleMonVariant:
+	ld a, [wCurBattleMon]
+	ld hl, wPartyMon1Form
+	call GetPartyLocation
+	predef_jump GetVariant
 
 CheckOpponentFullHP:
 	call CallOpponentTurn
@@ -2942,8 +2941,7 @@ GetEnemyMonPersonality:
 	jp GetPartyLocation
 
 SendOutPlayerMon: ; 3db5f
-	ld hl, wBattleMonForm
-	predef GetVariant
+	call GetBattleMonVariant
 	hlcoord 1, 5
 	lb bc, 7, 8
 	call ClearBox
@@ -7133,8 +7131,7 @@ DropPlayerSub: ; 3f447
 	push af
 	ld a, [wBattleMonSpecies]
 	ld [wCurPartySpecies], a
-	ld hl, wBattleMonForm
-	predef GetVariant
+	call GetBattleMonVariant
 	ld de, VTiles2 tile $31
 	predef GetBackpic
 	pop af
@@ -7172,8 +7169,7 @@ DropEnemySub: ; 3f486
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData
-	ld hl, wEnemyMonForm
-	predef GetVariant
+	call GetEnemyMonVariant
 	ld de, VTiles2
 	predef FrontpicPredef
 	pop af

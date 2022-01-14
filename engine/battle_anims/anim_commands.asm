@@ -877,8 +877,7 @@ BattleAnimCmd_Transform: ; cc5dc (33:45dc)
 
 	ld a, [wTempBattleMonSpecies] ; TempBattleMonSpecies
 	ld [wCurPartySpecies], a ; CurPartySpecies
-	ld hl, wBattleMonForm
-	predef GetVariant
+	farcall GetBattleMonVariant
 	ld de, VTiles0 tile $00
 	predef GetFrontpic
 	jr .done
@@ -886,8 +885,7 @@ BattleAnimCmd_Transform: ; cc5dc (33:45dc)
 .player
 	ld a, [wTempEnemyMonSpecies] ; TempEnemyMonSpecies
 	ld [wCurPartySpecies], a ; CurPartySpecies
-	ld hl, wEnemyMonForm
-	predef GetVariant
+	farcall GetEnemyMonVariant
 	ld de, VTiles0 tile $00
 	predef GetBackpic
 
@@ -1130,39 +1128,6 @@ BattleAnimCmd_DropSub: ; cc750 (33:4750)
 	ret
 
 BattleAnimCmd_BeatUp: ; cc776 (33:4776)
-	ld a, [rSVBK]
-	push af
-	ld a, $1
-	ld [rSVBK], a
-	ld a, [wCurPartySpecies] ; CurPartySpecies
-	push af
-
-	ld a, [wBattleAnimParam]
-	ld [wCurPartySpecies], a ; CurPartySpecies
-
-	ld a, [hBattleTurn]
-	and a
-	jr z, .player
-
-	ld hl, wBattleMonForm
-	predef GetVariant
-	ld de, VTiles2 tile $00
-	predef GetFrontpic
-	jr .done
-
-.player
-	ld hl, wEnemyMonForm
-	predef GetVariant
-	ld de, VTiles2 tile $31
-	predef GetBackpic
-
-.done
-	pop af
-	ld [wCurPartySpecies], a ; CurPartySpecies
-	ld b, CGB_BATTLE_COLORS
-	call GetCGBLayout
-	pop af
-	ld [rSVBK], a
 	ret
 
 BattleAnimCmd_OAMOn: ; cc7bb (33:47bb)

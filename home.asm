@@ -1474,18 +1474,14 @@ GetCurNick:: ; 389c
 
 GetNick:: ; 38a2
 ; Get nickname a from list hl.
-
 	push hl
 	push bc
-
 	call SkipNames
 	ld de, wStringBuffer1
-
 	push de
 	ld bc, PKMN_NAME_LENGTH
 	rst CopyBytes
 	pop de
-
 	pop bc
 	pop hl
 	ret

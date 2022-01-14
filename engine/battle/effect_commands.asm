@@ -569,20 +569,18 @@ CheckThroatSpray:
 	ret nc
 
 	call GetUserItemAfterUnnerve
+	call GetCurItemName
 	ld a, b
 	cp HELD_THROAT_SPRAY
 	ret nz
 
-	ld a, [wAttackMissed]
-	and a
-	ret nz
-
 	ld b, c
-	call BattleCommand_statup
+	ld a, STAT_SKIPTEXT
+	call _RaiseStat
 	ld a, [wFailedMessage]
 	and a
 	ret nz
-	call GetItemStatMessage
+	farcall UseStatItemText
 	jp ConsumeUserItem
 
 CheckPowerHerb:
@@ -2947,70 +2945,38 @@ BattleCommand_supereffectivetext: ; 351ad
 	farjp UseBattleItem
 
 .weakness_policy
-	ld a, [wAttackMissed]
-	ld b, a
-	ld a, [wEffectFailed]
-	ld c, a
-	xor a
-	ld [wEffectFailed], a
-	push bc
-	push hl
 	call SwitchTurn
-	call ResetMiss
-	call BattleCommand_attackup2
+	ld a, STAT_SKIPTEXT
+	ld b, $10 | ATTACK
+	call _RaiseStat
+	ld a, [wFailedMessage]
+	ld b, 0
+	push bc
+	and a
+	jr nz, .atk_done
+	farcall UseStatItemText
+	pop bc
+	inc b
+	push bc
+.atk_done
+	ld a, STAT_SKIPTEXT
+	ld b, $10 | SP_ATTACK
+	call _RaiseStat
+	ld a, [wFailedMessage]
+	and a
+	jr nz, .spatk_done
+	farcall UseStatItemText
+	pop bc
+	inc b
+	push bc
+.spatk_done
+	pop bc
+	ld a, b
+	and a
+	call nz, ConsumeUserItem
 	xor a
-	ld b, a
-	ld c, a
-	ld a, [wFailedMessage]
-	and a
-	jr z, .ok
-	inc b
-.ok
-	push bc
-	call ResetMiss
-	call BattleCommand_specialattackup2
-	pop bc
-	ld a, [wFailedMessage]
-	and a
-	jr z, .ok2
-	inc c
-	ld a, b
-	and a
-	jr nz, .end
-.ok2
-	farcall ItemRecoveryAnim
-	ld a, b
-	and a
-	pop hl
-	push hl
-	push bc
-	jr nz, .atk_msg_done
-	call GetCurItemName
-	ld a, ATTACK
-	call .print_msg
-.atk_msg_done
-	pop bc
-	ld a, c
-	and a
-	jr nz, .satk_msg_done
-	ld a, SP_ATTACK
-	call .print_msg
-.satk_msg_done
-	call ConsumeUserItem
-.end
-	pop hl
-	pop bc
-	ld a, b
-	ld [wAttackMissed], a
-	ld a, c
-	ld [wEffectFailed], a
+	ld [wAlreadyExecuted], a
 	jp SwitchTurn
-.print_msg
-	ld b, a
-	inc b
-	call GetStatName
-	ld hl, BattleText_ItemSharplyRaised
-	jp StdBattleTextBox
 
 CheckSheerForceNegation:
 ; Check if a secondary effect was suppressed due to Sheer Force.
@@ -3112,7 +3078,9 @@ BattleCommand_postfainteffects:
 	cp FELL_STINGER
 	jr nz, .no_fellstinger
 
-	call BattleCommand_attackup2
+	ld a, STAT_SKIPTEXT
+	ld b, $18 | ATTACK
+	call _ForceRaiseStat
 	ld hl, FellStingerText
 	call StdBattleTextBox
 
@@ -3174,17 +3142,20 @@ BattleCommand_posthiteffects:
 	jr z, .rage_done
 
 	call SwitchTurn
-	call ResetMiss
-	call BattleCommand_attackup
 
-	; don't print a failure message if we're maxed out in atk
+	; use skiptext so we can print the rage msg first
+	ld b, ATTACK
+	ld a, STAT_SKIPTEXT
+	call _RaiseStat
 	ld a, [wFailedMessage]
 	and a
 	jr nz, .rage_done_switchturn
 
+	push bc
 	ld hl, RageBuildingText
 	call StdBattleTextBox
-	call BattleCommand_statupmessage
+	pop bc
+	farcall PrintStatChange
 
 .rage_done_switchturn
 	call SwitchTurn
@@ -3237,11 +3208,13 @@ BattleCommand_posthiteffects:
 	jr nz, .rocky_helmet_done
 .got_stat
 	call SwitchTurn
-	call BattleCommand_statup
+	ld a, STAT_SKIPTEXT
+	call _RaiseStat
 	ld a, [wFailedMessage]
 	and a
 	jr nz, .defend_hit_done
-	call GetItemStatMessage
+	call GetCurItemName
+	farcall UseStatItemText
 	call ConsumeUserItem
 .defend_hit_done
 	call SwitchTurn
@@ -4923,7 +4896,9 @@ GetMoveData::
 	jp FarCopyBytes
 
 IsOpponentLeafGuardActive:
-	call CallOpponentTurn
+	ld a, BATTLE_VARS_ABILITY
+	call GetBattleVar
+	jr DoLeafGuardCheck
 IsLeafGuardActive:
 ; returns z if leaf guard applies for enemy
 	call GetOpponentAbilityAfterMoldBreaker
@@ -5413,56 +5388,6 @@ BattleCommand_growth:
 	ld b, c
 	jp ForceRaiseStat
 
-BattleCommand_attackup: ; 361ac
-; attackup
-	ld b, ATTACK
-	jr BattleCommand_statup
-
-BattleCommand_defenseup: ; 361b0
-; defenseup
-	ld b, DEFENSE
-	jr BattleCommand_statup
-
-BattleCommand_speedup: ; 361b4
-; speedup
-	ld b, SPEED
-	jr BattleCommand_statup
-
-BattleCommand_specialattackup: ; 361b8
-; specialattackup
-	ld b, SP_ATTACK
-	jr BattleCommand_statup
-
-BattleCommand_specialdefenseup: ; 361bc
-; specialdefenseup
-	ld b, SP_DEFENSE
-	jr BattleCommand_statup
-
-BattleCommand_attackup2: ; 361c8
-; attackup2
-	ld b, $10 | ATTACK
-	jr BattleCommand_statup
-
-BattleCommand_defenseup2: ; 361cc
-; defenseup2
-	ld b, $10 | DEFENSE
-	jr BattleCommand_statup
-
-BattleCommand_speedup2: ; 361d0
-; speedup2
-	ld b, $10 | SPEED
-	jr BattleCommand_statup
-
-BattleCommand_specialattackup2: ; 361d4
-; specialattackup2
-	ld b, $10 | SP_ATTACK
-	jr BattleCommand_statup
-
-BattleCommand_specialdefenseup2: ; 361d8
-; specialdefenseup2
-	ld b, $10 | SP_DEFENSE
-	; fallthrough
-
 BattleCommand_statup:
 	jp ForceRaiseStat
 
@@ -5696,32 +5621,7 @@ BattleCommand_statupfailtext: ; 3644c
 	call GetStatName
 	ld hl, WontRiseAnymoreText
 	jp StdBattleTextBox
-
 ; 3646a
-
-
-BattleCommand_statdownfailtext: ; 3646a
-; statdownfailtext
-	ld a, [wFailedMessage]
-	and a
-	ret z
-	push af
-	call BattleCommand_movedelay
-	pop af
-	dec a
-	jp z, TryPrintButItFailed
-	dec a
-	ld hl, ProtectedByMistText
-	jp z, StdBattleTextBox
-	ld a, [wLoweredStat]
-	and $f
-	ld b, a
-	inc b
-	call GetStatName
-	ld hl, WontDropAnymoreText
-	jp StdBattleTextBox
-
-; 3648f
 
 
 GetStatName:
@@ -8417,33 +8317,28 @@ BattleCommand_bellydrum: ; 37c1a
 	jr c, .failed
 	jr z, .failed
 
-	call BattleCommand_attackup2
-	ld a, [wAttackMissed]
+	ld b, $f0 | ATTACK
+	ld a, STAT_SKIPTEXT
+	call _ForceRaiseStat
+	ld a, [wFailedMessage]
 	and a
 	jr nz, .failed
 
-	push bc
-	call AnimateCurrentMove
-	pop bc
 	call GetHalfMaxHP
 	farcall SubtractHPFromUser
 	call UpdateUserInParty
-	ld a, 5
-
-.max_attack_loop
-	push af
-	call BattleCommand_attackup2
-	pop af
-	dec a
-	jr nz, .max_attack_loop
-
+	ld a, BATTLE_VARS_ABILITY
+	call GetBattleVar
+	cp CONTRARY
+	ld hl, BellyDrumContraryText
+	jr z, .print
 	ld hl, BellyDrumText
+.print
 	jp StdBattleTextBox
 
 .failed
 	call AnimateFailedMove
 	jp PrintButItFailed
-
 ; 37c55
 
 

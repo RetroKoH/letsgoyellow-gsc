@@ -1558,6 +1558,12 @@ FellStingerText:
 	cont "drastically!"
 	prompt
 
+BellyDrumContraryText:
+	text "<USER>"
+	line "cut its HP and"
+	cont "minimized Attack!"
+	prompt
+
 ForesawAttackText: ; 0x81817
 	text "<USER>"
 	line "foresaw an attack!"

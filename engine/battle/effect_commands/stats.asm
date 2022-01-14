@@ -25,8 +25,7 @@ FarChangeStat:
 	farcall CheckAlreadyExecuted
 	ret nz
 	farcall AnimateFailedMove
-	ld hl, AttackMissedText
-	jp StdBattleTextBox
+	farjp GetFailureResultText
 
 .no_miss
 	; check secondary
@@ -147,7 +146,7 @@ FarChangeStat:
 	ld hl, WontRiseAnymoreText
 	ld de, WontDropAnymoreText
 	or 1
-	jp .print
+	jp DoPrintStatChange
 
 .check_anim
 	bit STAT_SKIPTEXT_F, b
@@ -161,21 +160,22 @@ FarChangeStat:
 .anim_done
 	farcall ShowPotentialAbilityActivation
 	pop bc
+PrintStatChange:
 	ld a, [wLoweredStat]
 	and $f0
 	swap a
 	and a
 	ld hl, StatRoseText
 	ld de, StatFellText
-	jr z, .print
+	jr z, DoPrintStatChange
 	dec a
 	ld hl, StatRoseSharplyText
 	ld de, StatHarshlyFellText
-	jr z, .print
+	jr z, DoPrintStatChange
 	ld hl, StatRoseDrasticallyText
 	ld de, StatSeverelyFellText
 	xor a
-.print
+DoPrintStatChange:
 	bit STAT_TARGET_F, b
 	jr z, .do_print
 	push af
@@ -198,10 +198,12 @@ FarChangeStat:
 	ret z
 	and a
 	ret nz
-	ld a, [wFailedMessage]
+	ld a, [wAlreadyExecuted]
 	push af
 	farcall RunStatIncreaseAbilities
 	pop af
+	ld [wAlreadyExecuted], a
+	xor a
 	ld [wFailedMessage], a
 	ret
 
@@ -234,14 +236,9 @@ UseStatItemText:
 	ld hl, BattleText_ItemDrasticallyRaised
 	ld de, BattleText_ItemSeverelyLowered
 .gotmsg
-	bit STAT_LOWER_F, b
-	jr z, .print
-	ld h, d
-	ld l, e
-
-.print
+	call DoPrintStatChange
 	pop bc
-	jp StdBattleTextBox
+	ret
 
 DoLowerStat:
 	or 1

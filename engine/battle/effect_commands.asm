@@ -8486,10 +8486,8 @@ BattleCommand_lowkick:
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
-	ld b, a
-	ld a, [hli]
 	sub e
-	ld a, b
+	ld a, [hli]
 	sbc d
 	jr nc, .loop2
 .got_power

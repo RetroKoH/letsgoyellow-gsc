@@ -1047,7 +1047,7 @@ BattleCommand_doturn:
 	jp EndMoveEffect
 
 .continuousmoves ; 34602
-;	db EFFECT_RAZOR_WIND
+;	db EFFECT_RAZOR_WIND ; TO DO: Add these moves' proper effects
 ;	db EFFECT_SKULL_BASH
 	db EFFECT_SOLAR_BEAM
 	db EFFECT_FLY
@@ -2420,6 +2420,7 @@ BattleCommand_hittargetnosub: ; 34f60
 	ld [wNumHits], a
 	jp PlayFXAnimID
 
+; TO DO: Double check this
 ; Fury Swipes and Fury Attack were merged into Fury Strikes, so use the correct
 ; animation for the Pokémon that learned each one
 .fury_strikes
@@ -2469,7 +2470,7 @@ StatUpDownAnim: ; 34feb
 	xor a
 	ld [wNumHits], a
 
-; (Need to remove this, since these moves are re-implemented)
+; (TO DO: Need to remove this, since these moves are re-implemented)
 ; Defense Curl, Withdraw, and Harden were merged, so use the correct
 ; animation for the Pokémon that learned each one
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -5442,7 +5443,7 @@ BattleCommand_forceloweroppstat:
 ForceLowerOppStat:
 	xor a
 _ForceLowerOppStat:
-	or STAT_TARGET | STAT_LOWER | STAT_MISS
+	or STAT_TARGET | STAT_LOWER
 	jr ChangeStat
 
 BattleCommand_raiseoppstat:
@@ -5458,7 +5459,7 @@ BattleCommand_loweroppstat:
 LowerOppStat:
 	xor a
 _LowerOppStat:
-	or STAT_TARGET | STAT_LOWER
+	or STAT_TARGET | STAT_LOWER | STAT_MISS
 	jr ChangeStat
 
 BattleCommand_raiseoppstathit:
@@ -6772,6 +6773,13 @@ BattleCommand_bugbite:
 	cp STICKY_HOLD
 	ret z
 	cp UNNERVE
+	ret z
+
+	; EV reducing berries are forbidden fruit
+	; (TO-DO: Maybe change this to having no effect)
+	call GetOpponentItem
+	ld a, b
+	cp HELD_REDUCE_EV
 	ret z
 
 	; does the opponent even have a berry? DON'T check EdibleBerries,

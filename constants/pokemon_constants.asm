@@ -2,7 +2,9 @@
 ; indexes for:
 ; - PokemonNames (see data/pokemon/names.asm)
 ; - BaseData (see data/pokemon/base_stats.asm)
-; - EvosAttacksPointers (see data/pokemon/evos_attacks_pointers.asm)
+; - EvolutionPointers (see data/pokemon/lev_evolutions.asm)
+; - LearnsetPointers (see data/pokemon/lev_learnsets.asm)
+; - CheckPartyTechnique (see data/pokemon/field_techniques.asm)
 ; - EggMovePointers (see data/pokemon/egg_move_pointers.asm)
 ; - PokemonCries (see data/pokemon/cries.asm)
 ; - MonMenuIcons (see data/pokemon/menu_icons.asm)

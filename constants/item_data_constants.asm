@@ -152,7 +152,7 @@ ITEMMENU_CLOSE   EQU 6
 	const HELD_CUSTAP_BERRY
 	const HELD_THROAT_SPRAY
 	const HELD_BERSERK_GENE
-
+	const HELD_REDUCE_EV ; not a held item effect, used to prevent Bug Bite
 
 ; mart types
 	const_def

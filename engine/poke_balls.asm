@@ -26,11 +26,11 @@ GetModifiedCaptureRate:
 	ld e, [hl]
 	ld h, d
 	ld l, e
-	add hl, de
-	add hl, de
 
-	; Save 3M for later division
+	; Save M for later division
 	push hl
+	add hl, de
+	add hl, de
 
 	sla c
 	rl b
@@ -78,7 +78,11 @@ GetModifiedCaptureRate:
 	jr z, .pop_hl_and_gurantee
 
 .status_done
-	; Divide by 3M
+	; Divide by 3
+	ld a, $13
+	call ApplyDamageMod
+
+	; Divide by M (first reduce it to a 1-byte number)
 	pop hl
 
 .loop
@@ -141,6 +145,8 @@ CheckCriticalCapture:
 	jr .loop
 .got_multiplier
 	; Catch Charm doubles capture rate (Unverified for SwSh!)
+	ld a, [wCurItem]
+	push af
 	ld a, CATCH_CHARM
 	ld [wCurKeyItem], a
 	push hl
@@ -157,11 +163,9 @@ CheckCriticalCapture:
 	swap b
 	or b
 	call ApplyDamageMod
+	pop af
+	ld [wCurItem], a
 	ld a, [hQuotient + 2]
-	and a
-	jr nz, .got_rate
-	inc a
-.got_rate
 	ld b, a
 	call Random
 	cp b

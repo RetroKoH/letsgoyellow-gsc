@@ -770,30 +770,50 @@ AI_Smart_Roar: ; 38a2a
 	ret
 ; 38a3a
 
-
-AI_Smart_Heal:
 AI_Smart_Synthesis:
-AI_Smart_Roost:
-; 90% chance to greatly encourage this move if enemy's HP is below 25%.
-; Discourage this move if enemy's HP is higher than 50%.
-; Do nothing otherwise.
+; use healing scoring, then -1 in sun, +2 in other weather
+	call AI_Smart_Heal
 
-	call AICheckEnemyQuarterHP
-	jr nc, .asm_38a45
-	call AICheckEnemyHalfHP
-	ret nc
+	call GetWeatherAfterCloudNine
+	and a
+	ret z
+	dec [hl]
+	cp WEATHER_SUN
+	ret z
+	inc [hl]
 	inc [hl]
 	ret
 
-.asm_38a45
-	call Random
-	cp $19
-	ret c
+AI_Smart_Heal:
+AI_Smart_Roost:
+; Score the move as follows (lower is better):
+; <33%: -2
+; 33-50%: -1
+; 50-66%: +0
+; >66%: +2
 	dec [hl]
+	call CheckPinch
+	jr nz, .no_pinch
 	dec [hl]
 	ret
-; 38a4e
 
+.no_pinch
+	push hl
+	call GetHalfMaxHP
+	call CompareHP
+	pop hl
+	ret c
+	inc [hl]
+	push hl
+	call GetThirdMaxHP
+	sla c
+	rl b
+	call CompareHP
+	pop hl
+	ret c
+	inc [hl]
+	inc [hl]
+	ret
 
 AI_Smart_Toxic:
 AI_Smart_LeechSeed: ; 38a4e

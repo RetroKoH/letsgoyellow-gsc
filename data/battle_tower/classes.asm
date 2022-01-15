@@ -1,131 +1,131 @@
 BattleTowerTrainers:
-	db "Y", "a", "y", "o", "i", "@", "@", "@", "@", "@", ARTIST
-	db "S", "a", "w", "y", "e", "r", "@", "@", "@", "@", POKEMANIAC
-	db "S", "a", "n", "t", "i", "a", "g", "o", "@", "@", FISHER
-	db "M", "o", "r", "d", "e", "c", "a", "i", "@", "@", SCIENTIST
-	db "N", "e", "w", "m", "a", "n", "@", "@", "@", "@", SAILOR
-	db "H", "a", "m", "i", "l", "t", "o", "n", "@", "@", COOLTRAINERF
-	db "A", "n", "g", "e", "l", "i", "c", "a", "@", "@", BEAUTY
-	db "H", "a", "r", "e", "@", "@", "@", "@", "@", "@", GENTLEMAN
-	db "M", "u", "r", "r", "a", "y", "@", "@", "@", "@", SAILOR
-	db "S", "u", "h", "@", "@", "@", "@", "@", "@", "@", MEDIUM
-	db "S", "i", "e", "g", "f", "r", "i", "e", "d", "@", TAMER
-	db "S", "c", "i", "p", "i", "o", "@", "@", "@", "@", BURGLAR
-	db "W", "a", "l", "t", "e", "r", "@", "@", "@", "@", MEDIUM
-	db "E", "l", "e", "n", "i", "@", "@", "@", "@", "@", BATTLE_GIRL
-	db "I", "c", "h", "i", "g", "o", "@", "@", "@", "@", SAILOR
-	db "E", "s", "t", "é", "e", "@", "@", "@", "@", "@", AROMA_LADY
-	db "W", "a", "y", "n", "e", "@", "@", "@", "@", "@", SCHOOLBOY
-	db "M", "c", "M", "a", "n", "u", "s", "@", "@", "@", CAMPER
-	db "D", "a", "r", "y", "l", "@", "@", "@", "@", "@", SWIMMERM
-	db "K", "i", "m", "@", "@", "@", "@", "@", "@", "@", JUGGLER
-	db "W", "i", "l", "d", "e", "r", "@", "@", "@", "@", LASS
-	db "D", "e", "n", "n", "e", "t", "t", "@", "@", "@", GENTLEMAN
-	db "V", "i", "@", "@", "@", "@", "@", "@", "@", "@", BATTLE_GIRL
-	db "H", "i", "r", "o", "t", "o", "@", "@", "@", "@", GENTLEMAN
-	db "S", "a", "t", "o", "s", "h", "i", "@", "@", "@", BUG_CATCHER
-	db "A", "d", "a", "m", "@", "@", "@", "@", "@", "@", YOUNGSTER
-	db "O", "a", "k", "l", "e", "y", "@", "@", "@", "@", LASS
-	db "A", "n", "n", "i", "e", "@", "@", "@", "@", "@", BATTLE_GIRL
-	db "P", "a", "r", "k", "@", "@", "@", "@", "@", "@", ENGINEER
-	db "P", "a", "t", "r", "i", "c", "i", "a", "@", "@", POKEMANIAC
-	db "R", "a", "j", "a", "n", "@", "@", "@", "@", "@", PICNICKER
-	db "D", "i", "a", "z", "@", "@", "@", "@", "@", "@", PICNICKER
-	db "M", "o", "z", "i", "@", "@", "@", "@", "@", "@", MEDIUM
-	db "A", "d", "r", "i", "á", "n", "@", "@", "@", "@", GENTLEMAN
-	db "T", "o", "m", "o", "y", "o", "@", "@", "@", "@", POKEMANIAC
-	db "E", "b", "o", "n", "y", "@", "@", "@", "@", "@", COOLTRAINERF
-	db "P", "i", "r", "s", "i", "g", "@", "@", "@", "@", MEDIUM
-	db "C", "o", "r", "e", "y", "@", "@", "@", "@", "@", BLACKBELT_T
-	db "S", "y", "d", "@", "@", "@", "@", "@", "@", "@", ENGINEER
-	db "E", "t", "h", "e", "l", "@", "@", "@", "@", "@", MEDIUM
-	db "S", "a", "g", "a", "n", "@", "@", "@", "@", "@", SCIENTIST
-	db "L", "e", "n", "i", "e", "@", "@", "@", "@", "@", SWIMMERF
-	db "F", "r", "o", "s", "t", "@", "@", "@", "@", "@", COOLTRAINERM
-	db "S", "o", "p", "h", "i", "a", "@", "@", "@", "@", AROMA_LADY
-	db "J", "o", "a", "n", "n", "a", "@", "@", "@", "@", LADY
-	db "N", "e", "w", "t", "o", "n", "@", "@", "@", "@", SCIENTIST
-	db "C", "h", "e", "l", "s", "e", "a", "@", "@", "@", MEDIUM
-	db "K", "u", "r", "o", "k", "i", "@", "@", "@", "@", SUPER_NERD
-	db "H", "i", "t", "e", "s", "h", "@", "@", "@", "@", POKEMANIAC
-	db "A", "b", "d", "u", "l", "@", "@", "@", "@", "@", ENGINEER
-	db "E", "m", "i", "l", "y", "@", "@", "@", "@", "@", LASS
-	db "H", "o", "p", "p", "e", "r", "@", "@", "@", "@", COOLTRAINERF
-	db "M", "a", "r", "c", "@", "@", "@", "@", "@", "@", HIKER
-	db "L", "a", "u", "r", "a", "@", "@", "@", "@", "@", BATTLE_GIRL
-	db "S", "w", "a", "r", "t", "z", "@", "@", "@", "@", COOLTRAINERM
-	db "C", "o", "b", "b", "@", "@", "@", "@", "@", "@", SCHOOLBOY
-	db "Y", "u", "f", "u", "n", "e", "@", "@", "@", "@", BLACKBELT_T
-	db "M", "ó", "n", "i", "c", "a", "@", "@", "@", "@", LADY
-	db "D", "a", "n", "i", "e", "l", "@", "@", "@", "@", TAMER
-	db "T", "o", "s", "h", "i", "@", "@", "@", "@", "@", BLACKBELT_T
-	db "C", "h", "a", "r", "l", "i", "e", "@", "@", "@", JUGGLER
-	db "F", "a", "g", "i", "n", "@", "@", "@", "@", "@", BURGLAR
-	db "B", "u", "c", "k", "l", "e", "y", "@", "@", "@", RICH_BOY
-	db "M", "a", "t", "e", "o", "@", "@", "@", "@", "@", COOLTRAINERM
-	db "N", "e", "w", "a", "n", "d", "y", "k", "e", "@", BLACKBELT_T
-	db "R", "e", "b", "e", "c", "c", "a", "@", "@", "@", LASS
-	db "S", "a", "n", "t", "i", "a", "g", "o", "@", "@", PSYCHIC_T
-	db "B", "l", "a", "k", "e", "@", "@", "@", "@", "@", YOUNGSTER
-	db "J", "a", "m", "e", "s", "@", "@", "@", "@", "@", YOUNGSTER
-	db "K", "u", "b", "r", "i", "c", "k", "@", "@", "@", SUPER_NERD
-	db "A", "l", "i", "s", "h", "a", "@", "@", "@", "@", LASS
-	db "S", "u", "n", "n", "i", "@", "@", "@", "@", "@", BEAUTY
-	db "A", "n", "d", "r", "e", "@", "@", "@", "@", "@", ROUGHNECK
-	db "H", "i", "l", "l", "@", "@", "@", "@", "@", "@", COOLTRAINERM
-	db "T", "a", "r", "a", "@", "@", "@", "@", "@", "@", SWIMMERF
-	db "M", "o", "r", "s", "e", "@", "@", "@", "@", "@", SUPER_NERD
-	db "P", "h", "e", "l", "p", "s", "@", "@", "@", "@", SWIMMERM
-	db "Z", "e", "k", "e", "@", "@", "@", "@", "@", "@", DRAGON_TAMER
-	db "B", "i", "s", "o", "m", "@", "@", "@", "@", "@", TEACHER
-	db "N", "a", "d", "i", "a", "@", "@", "@", "@", "@", TAMER
-	db "H", "a", "t", "c", "h", "e", "r", "@", "@", "@", GENTLEMAN
-	db "F", "r", "i", "d", "a", "@", "@", "@", "@", "@", ARTIST
-	db "N", "i", "m", "u", "e", "@", "@", "@", "@", "@", LADY
-	db "A", "l", "i", "c", "e", "@", "@", "@", "@", "@", BEAUTY
-	db "V", "a", "l", "e", "n", "t", "i", "n", "e", "@", BEAUTY
-	db "U", "r", "i", "@", "@", "@", "@", "@", "@", "@", PSYCHIC_T
-	db "W", "o", "n", "g", "@", "@", "@", "@", "@", "@", JUGGLER
-	db "C", "h", "i", "y", "o", "@", "@", "@", "@", "@", BEAUTY
-	db "S", "i", "d", "n", "e", "y", "@", "@", "@", "@", BIKER
-	db "N", "e", "r", "a", "i", "@", "@", "@", "@", "@", HIKER
-	db "G", "w", "e", "n", "@", "@", "@", "@", "@", "@", LADY
-	db "A", "x", "l", "@", "@", "@", "@", "@", "@", "@", SUPER_NERD
-	db "G", "e", "r", "a", "l", "d", "@", "@", "@", "@", SCHOOLBOY
-	db "K", "a", "f", "u", "k", "a", "@", "@", "@", "@", SCHOOLGIRL
-	db "H", "o", "n", "g", "@", "@", "@", "@", "@", "@", TEACHER
-	db "P", "o", "v", "@", "@", "@", "@", "@", "@", "@", YOUNGSTER
-	db "C", "o", "l", "l", "i", "n", "s", "@", "@", "@", SUPER_NERD
-	db "D", "a", "r", "w", "i", "n", "@", "@", "@", "@", BUG_CATCHER
-	db "T", "a", "t", "i", "a", "n", "a", "@", "@", "@", TEACHER
-	db "P", "i", "t", "t", "@", "@", "@", "@", "@", "@", GENTLEMAN
-	db "T", "a", "j", "i", "r", "i", "@", "@", "@", "@", BUG_CATCHER
-	db "H", "e", "i", "n", "l", "e", "n", "@", "@", "@", CAMPER
-	db "H", "u", "g", "h", "e", "s", "@", "@", "@", "@", FISHER
-	db "K", "i", "r", "b", "y", "@", "@", "@", "@", "@", BUG_CATCHER
-	db "R", "i", "c", "k", "y", "@", "@", "@", "@", "@", BIRD_KEEPER
-	db "J", "o", "a", "n", "@", "@", "@", "@", "@", "@", PICNICKER
-	db "A", "b", "e", "d", "@", "@", "@", "@", "@", "@", SUPER_NERD
-	db "A", "m", "e", "l", "i", "a", "@", "@", "@", "@", BEAUTY
-	db "D", "e", "e", "d", "e", "e", "@", "@", "@", "@", PICNICKER
-	db "G", "a", "r", "r", "e", "t", "t", "@", "@", "@", JUGGLER
-	db "M", "o", "l", "l", "y", "@", "@", "@", "@", "@", SAILOR
-	db "S", "a", "l", "i", "m", "@", "@", "@", "@", "@", ROUGHNECK
-	db "D", "i", "j", "k", "s", "t", "r", "a", "@", "@", COOLTRAINERM
-	db "R", "a", "i", "n", "e", "@", "@", "@", "@", "@", COOLTRAINERF
-	db "D", "o", "r", "o", "t", "h", "y", "@", "@", "@", LASS
-	db "S", "h", "i", "r", "l", "e", "y", "@", "@", "@", SCHOOLGIRL
-	db "D", "o", "u", "g", "l", "a", "s", "@", "@", "@", SCHOOLBOY
-	db "A", "r", "m", "s", "t", "r", "o", "n", "g", "@", BIKER
-	db "R", "e", "m", "y", "@", "@", "@", "@", "@", "@", COOLTRAINERF
-	db "D", "r", "a", "k", "e", "@", "@", "@", "@", "@", RICH_BOY
-	db "M", "o", "r", "i", "@", "@", "@", "@", "@", "@", SCHOOLGIRL
-	db "J", "o", "r", "g", "e", "@", "@", "@", "@", "@", DRAGON_TAMER
-	db "L", "a", "v", "i", "g", "n", "e", "@", "@", "@", SCHOOLGIRL
-	db "P", "a", "u", "l", "@", "@", "@", "@", "@", "@", ENGINEER
-	db "H", "o", "l", "m", "e", "s", "@", "@", "@", "@", SCIENTIST
-	db "C", "r", "a", "m", "e", "r", "@", "@", "@", "@", DRAGON_TAMER
-	db "M", "a", "k", "o", "@", "@", "@", "@", "@", "@", TAMER
-	db "A", "r", "g", "o", "@", "@", "@", "@", "@", "@", BIRD_KEEPER
+	rawchar "Yayoi@@@@@", ARTIST
+	rawchar "Sawyer@@@@", POKEMANIAC
+	rawchar "Santiago@@", FISHER
+	rawchar "Mordecai@@", SCIENTIST
+	rawchar "Newman@@@@", SAILOR
+	rawchar "Hamilton@@", COOLTRAINERF
+	rawchar "Angelica@@", BEAUTY
+	rawchar "Hare@@@@@@", GENTLEMAN
+	rawchar "Murray@@@@", SAILOR
+	rawchar "Suh@@@@@@@", MEDIUM
+	rawchar "Siegfried@", TAMER
+	rawchar "Scipio@@@@", BURGLAR
+	rawchar "Walter@@@@", MEDIUM
+	rawchar "Eleni@@@@@", BATTLE_GIRL
+	rawchar "Ichigo@@@@", SAILOR
+	rawchar "Estée@@@@@", AROMA_LADY
+	rawchar "Wayne@@@@@", SCHOOLBOY
+	rawchar "McManus@@@", CAMPER
+	rawchar "Daryl@@@@@", SWIMMERM
+	rawchar "Kim@@@@@@@", JUGGLER
+	rawchar "Wilder@@@@", LASS
+	rawchar "Dennett@@@", GENTLEMAN
+	rawchar "Vi@@@@@@@@", BATTLE_GIRL
+	rawchar "Hiroto@@@@", GENTLEMAN
+	rawchar "Satoshi@@@", BUG_CATCHER
+	rawchar "Adam@@@@@@", YOUNGSTER
+	rawchar "Oakley@@@@", LASS
+	rawchar "Annie@@@@@", BATTLE_GIRL
+	rawchar "Park@@@@@@", ENGINEER
+	rawchar "Patricia@@", POKEMANIAC
+	rawchar "Rajan@@@@@", PICNICKER
+	rawchar "Diaz@@@@@@", PICNICKER
+	rawchar "Mozi@@@@@@", MEDIUM
+	rawchar "Adrián@@@@", GENTLEMAN
+	rawchar "Tomoyo@@@@", POKEMANIAC
+	rawchar "Ebony@@@@@", COOLTRAINERF
+	rawchar "Pirsig@@@@", MEDIUM
+	rawchar "Corey@@@@@", BLACKBELT_T
+	rawchar "Syd@@@@@@@", ENGINEER
+	rawchar "Ethel@@@@@", MEDIUM
+	rawchar "Sagan@@@@@", SCIENTIST
+	rawchar "Lenie@@@@@", SWIMMERF
+	rawchar "Frost@@@@@", COOLTRAINERM
+	rawchar "Sophia@@@@", AROMA_LADY
+	rawchar "Joanna@@@@", LADY
+	rawchar "Newton@@@@", SCIENTIST
+	rawchar "Chelsea@@@", MEDIUM
+	rawchar "Kuroki@@@@", SUPER_NERD
+	rawchar "Hitesh@@@@", POKEMANIAC
+	rawchar "Abdul@@@@@", ENGINEER
+	rawchar "Emily@@@@@", LASS
+	rawchar "Hopper@@@@", COOLTRAINERF
+	rawchar "Marc@@@@@@", HIKER
+	rawchar "Laura@@@@@", BATTLE_GIRL
+	rawchar "Swartz@@@@", COOLTRAINERM
+	rawchar "Cobb@@@@@@", SCHOOLBOY
+	rawchar "Yufune@@@@", BLACKBELT_T
+	rawchar "Mónica@@@@", LADY
+	rawchar "Daniel@@@@", TAMER
+	rawchar "Toshi@@@@@", BLACKBELT_T
+	rawchar "Charlie@@@", JUGGLER
+	rawchar "Fagin@@@@@", BURGLAR
+	rawchar "Buckley@@@", RICH_BOY
+	rawchar "Mateo@@@@@", COOLTRAINERM
+	rawchar "Newandyke@", BLACKBELT_T
+	rawchar "Rebecca@@@", LASS
+	rawchar "Santiago@@", PSYCHIC_T
+	rawchar "Blake@@@@@", YOUNGSTER
+	rawchar "James@@@@@", YOUNGSTER
+	rawchar "Kubrick@@@", SUPER_NERD
+	rawchar "Alisha@@@@", LASS
+	rawchar "Sunni@@@@@", BEAUTY
+	rawchar "Andre@@@@@", ROUGHNECK
+	rawchar "Hill@@@@@@", COOLTRAINERM
+	rawchar "Tara@@@@@@", SWIMMERF
+	rawchar "Morse@@@@@", SUPER_NERD
+	rawchar "Phelps@@@@", SWIMMERM
+	rawchar "Zeke@@@@@@", DRAGON_TAMER
+	rawchar "Bisom@@@@@", TEACHER
+	rawchar "Nadia@@@@@", TAMER
+	rawchar "Hatcher@@@", GENTLEMAN
+	rawchar "Frida@@@@@", ARTIST
+	rawchar "Nimue@@@@@", LADY
+	rawchar "Alice@@@@@", BEAUTY
+	rawchar "Valentine@", BEAUTY
+	rawchar "Uri@@@@@@@", PSYCHIC_T
+	rawchar "Wong@@@@@@", JUGGLER
+	rawchar "Chiyo@@@@@", BEAUTY
+	rawchar "Sidney@@@@", BIKER
+	rawchar "Nerai@@@@@", HIKER
+	rawchar "Gwen@@@@@@", LADY
+	rawchar "Axl@@@@@@@", SUPER_NERD
+	rawchar "Gerald@@@@", SCHOOLBOY
+	rawchar "Kafuka@@@@", SCHOOLGIRL
+	rawchar "Hong@@@@@@", TEACHER
+	rawchar "Pov@@@@@@@", YOUNGSTER
+	rawchar "Collins@@@", SUPER_NERD
+	rawchar "Darwin@@@@", BUG_CATCHER
+	rawchar "Tatiana@@@", TEACHER
+	rawchar "Pitt@@@@@@", GENTLEMAN
+	rawchar "Tajiri@@@@", BUG_CATCHER
+	rawchar "Heinlen@@@", CAMPER
+	rawchar "Hughes@@@@", FISHER
+	rawchar "Kirby@@@@@", BUG_CATCHER
+	rawchar "Ricky@@@@@", BIRD_KEEPER
+	rawchar "Joan@@@@@@", PICNICKER
+	rawchar "Abed@@@@@@", SUPER_NERD
+	rawchar "Amelia@@@@", BEAUTY
+	rawchar "Deedee@@@@", PICNICKER
+	rawchar "Garrett@@@", JUGGLER
+	rawchar "Molly@@@@@", SAILOR
+	rawchar "Salim@@@@@", ROUGHNECK
+	rawchar "Dijkstra@@", COOLTRAINERM
+	rawchar "Raine@@@@@", COOLTRAINERF
+	rawchar "Dorothy@@@", LASS
+	rawchar "Shirley@@@", SCHOOLGIRL
+	rawchar "Douglas@@@", SCHOOLBOY
+	rawchar "Armstrong@", BIKER
+	rawchar "Remy@@@@@@", COOLTRAINERF
+	rawchar "Drake@@@@@", RICH_BOY
+	rawchar "Mori@@@@@@", SCHOOLGIRL
+	rawchar "Jorge@@@@@", DRAGON_TAMER
+	rawchar "Lavigne@@@", SCHOOLGIRL
+	rawchar "Paul@@@@@@", ENGINEER
+	rawchar "Holmes@@@@", SCIENTIST
+	rawchar "Cramer@@@@", DRAGON_TAMER
+	rawchar "Mako@@@@@@", TAMER
+	rawchar "Argo@@@@@@", BIRD_KEEPER
 ;BattleTowerTycoon:
-	db "P", "a", "l", "m", "e", "r", "@", "@", "@", "@", TOWERTYCOON
+	rawchar "Palmer@@@@", TOWERTYCOON

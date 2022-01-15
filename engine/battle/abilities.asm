@@ -665,6 +665,9 @@ PoisonTouchAbility:
 	; Doesn't apply when opponent has a Substitute up...
 	farcall CheckSubstituteOpp
 	ret nz
+	call GetOpponentAbilityAfterMoldBreaker
+	cp SHIELD_DUST
+	ret z
 PoisonPointAbility:
 	call CheckIfTargetIsPoisonType
 	ret z

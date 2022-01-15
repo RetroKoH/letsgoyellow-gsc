@@ -461,6 +461,7 @@ ParsePlayerAction:
 	call GetBattleVarAddr
 	xor a
 	ld [hl], a
+	farcall UpdateMoveData
 	jr .encored
 
 .using_move
@@ -692,13 +693,7 @@ PerformMove:
 ;	res SUBSTATUS_DESTINY_BOND, [hl]
 	call HasUserFainted
 	jr z, .end_protect_destinybond
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .enemy
-	farcall DoPlayerTurn
-	jr .end_protect_destinybond
-.enemy
-	farcall DoEnemyTurn
+	farcall DoTurn
 .end_protect_destinybond
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarAddr
@@ -1965,8 +1960,8 @@ FaintUserPokemon:
 
 	ld hl, wBattleMonSpecies
 	call GetUserMonAttr
-	ld b, [hl]
-	farcall PlayFaintingCry
+	ld a, [hl]
+	farcall PlaySlowCryA
 	ld de, SFX_KINESIS
 	call PlaySFX
 
@@ -5257,6 +5252,7 @@ ParseEnemyAction:
 	call GetBattleVarAddr
 	xor a
 	ld [hl], a
+	farcall UpdateMoveData
 	jr .skip_load
 
 .using_move

@@ -1,44 +1,31 @@
-DoPlayerTurn: ; 34000
-	call SetPlayerTurn
-
-	ld a, [wBattleType]
-	cp BATTLETYPE_GHOST
-	jr nz, DoTurn
-
-	ld hl, ScaredText
-	jp StdBattleTextBox
-; 3400a
-
-
-DoEnemyTurn: ; 3400a
-	call SetEnemyTurn
-
+DoTurn:
 	ld a, [wBattleType]
 	cp BATTLETYPE_GHOST
 	jr nz, .not_ghost
 
+	ld a, [hBattleTurn]
+	and a
+	ld hl, ScaredText
+	jr z, .got_ghost_text
 	ld hl, GetOutText
+.got_ghost_text
 	jp StdBattleTextBox
 
 .not_ghost
-	ld a, [wLinkMode]
-	and a
-	jr z, DoTurn
-
-	ld a, [wBattleAction]
-	cp BATTLEACTION_STRUGGLE
-	jr z, DoTurn
-	cp BATTLEACTION_SWITCH1
-	ret nc
-
-	; fallthrough
-; 3401d
-
-
-DoTurn: ; 3401d
 ; Read in and execute the user's move effects for this turn.
-	xor a
-	ld [wTurnEnded], a
+	; Clear physical/special move use for user.
+	; For Counter/Mirror Coat, we store last damage done.
+	; This damage is stored alongside flags for whether it was physical
+	; or special in wMoveState.
+	ld hl, wMoveState
+	ld a, [hBattleTurn]
+	and a
+	ld a, 1 << PHYSICAL | 1 << SPECIAL
+	jr nz, .got_cat_opp_side
+	swap a
+.got_cat_opp_side
+	and [hl]
+	ld [hl], a
 
 	ld a, [hBattleTurn]
 	and a
@@ -54,8 +41,8 @@ DoTurn: ; 3401d
 	; Effect command checkturn is called for every move.
 	call CheckTurn
 
-	ld a, [wTurnEnded]
-	and a
+	ld a, [wMoveState]
+	bit 7, a
 	ret nz
 
 	call UpdateMoveData
@@ -412,8 +399,9 @@ BattleCommand_checkturn:
 
 
 EndTurn:
-	ld a, $1
-	ld [wTurnEnded], a
+	ld a, [wMoveState]
+	set 7, a
+	ld [wMoveState], a
 	jp ResetDamage
 
 
@@ -481,6 +469,8 @@ IncreaseMetronomeCount:
 	ret
 
 CheckWhiteHerb:
+	call CheckSheerForceNegation
+	ret z
 	ld a, [hBattleTurn]
 	ld b, a
 	push bc
@@ -2355,6 +2345,29 @@ BattleCommand_hittargetnosub: ; 34f60
 	and a
 	jp nz, BattleCommand_movedelay
 
+	; We hit, mark physical/special damage on opponent.
+	ld a, BATTLE_VARS_MOVE_CATEGORY
+	call GetBattleVar
+	cp PHYSICAL
+	ld a, 1 << PHYSICAL
+	jr z, .got_cat
+	ld a, 1 << SPECIAL
+.got_cat
+	push bc
+	ld b, a
+	ld a, [hBattleTurn]
+	and a
+	ld a, b
+	pop bc
+	jr z, .got_cat_side
+	swap a
+.got_cat_side
+	push hl
+	ld hl, wMoveState
+	or [hl]
+	ld [hl], a
+	pop hl
+
 	ld a, [hBattleTurn]
 	and a
 	ld de, wPlayerRolloutCount
@@ -3157,6 +3170,8 @@ BattleCommand_posthiteffects:
 	jr z, .rocky_helmet
 	cp HELD_SWITCH_TARGET
 	jr nz, .not_switch_target
+	call CheckSheerForceNegation
+	jr z, .not_switch_target
 	ld a, c
 	call SetDeferredSwitch
 	jr .rocky_helmet_done
@@ -3171,6 +3186,8 @@ BattleCommand_posthiteffects:
 	jr z, .held_offend_hit
 	cp HELD_DEFEND_HIT
 	jr nz, .check_type_hit
+	call CheckSheerForceNegation
+	jr z, .rocky_helmet_done
 	ld a, c
 	cp PHYSICAL
 	ld b, DEFENSE
@@ -3235,6 +3252,8 @@ BattleCommand_posthiteffects:
 	jr z, .shell_bell
 	cp HELD_SWITCH
 	jr nz, .not_switch
+	call CheckSheerForceNegation
+	jr z, .not_switch
 	ld a, c
 	call SetDeferredSwitch
 	jp .checkfaint
@@ -3246,6 +3265,9 @@ BattleCommand_posthiteffects:
 .flinch_up
 	; Ensure that the move doesn't already have a flinch rate.
 	call HasOpponentFainted
+	ret z
+	call GetOpponentAbilityAfterMoldBreaker
+	cp SHIELD_DUST
 	ret z
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
@@ -4444,26 +4466,10 @@ BattleCommand_constantdamage: ; 35726
 
 
 BattleCommand_counter:
-	lb bc, EFFECT_COUNTER, PHYSICAL
-	jr Counterattack
-BattleCommand_mirrorcoat:
-	lb bc, EFFECT_MIRROR_COAT, SPECIAL
-Counterattack:
 	ld a, 1
 	ld [wAttackMissed], a
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call GetBattleVar
-	and a
-	ret z
 
-	push bc
-	ld b, a
-	farcall GetMoveEffect
-	ld a, b
-	pop bc
-	cp b
-	ret z
-
+	; Doesn't work if the target is immune to this mvoe's type
 	call BattleCommand_resettypematchup
 	ld a, [wTypeMatchup]
 	and a
@@ -4472,21 +4478,26 @@ Counterattack:
 	call CheckOpponentWentFirst
 	ret z
 
-	push bc
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+	; Only works if countering of the same move category
+	ld a, BATTLE_VARS_MOVE_CATEGORY
 	call GetBattleVar
-	dec a
-	ld de, wStringBuffer1
-	call GetMoveData
-	pop bc
-
-	ld a, [wStringBuffer1 + MOVE_POWER]
+	cp PHYSICAL
+	ld a, 1 << PHYSICAL
+	jr z, .got_cat
+	ld a, 1 << SPECIAL
+.got_cat
+	push bc
+	ld b, a
+	ld a, [hBattleTurn]
 	and a
+	ld a, b
+	pop bc
+	jr nz, .got_cat_opp_side
+	swap a
+.got_cat_opp_side
+	ld hl, wMoveState
+	and [hl]
 	ret z
-
-	ld a, [wStringBuffer1 + MOVE_CATEGORY]
-	cp c
-	ret nz
 
 	ld hl, wCurDamage
 	ld a, [hli]
@@ -4859,12 +4870,25 @@ UpdateMoveData:
 	ld d, h
 	ld e, l
 
-	; Don't update if the move doesn't exist
+	; Zerofill if the move doesn't exist
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	and a
-	ret z
+	jr nz, .not_null
+	push hl
+	push de
+	push bc
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVarAddr
+	ld bc, wPlayerMoveStructEnd - wPlayerMoveStruct
+	xor a
+	call ByteFill
+	pop bc
+	pop de
+	pop hl
+	ret
 
+.not_null
 	ld [wCurMove], a
 	ld [wNamedObjectIndexBuffer], a
 

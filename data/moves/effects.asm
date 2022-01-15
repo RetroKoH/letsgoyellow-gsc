@@ -2054,7 +2054,7 @@ MirrorCoat:
 	checkobedience
 	usedmovetext
 	doturn
-	mirrorcoat
+	counter
 	hittarget
 	failuretext
 	checkfaint

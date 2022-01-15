@@ -105,9 +105,9 @@ wMoveScreenMoves:: ds 55
 
 NEXTU
 ; miscellaneous
-wTempDayOfWeek::
-wUnusedApricorns:: ds 1
-	ds 2
+wTempDayOfWeek:: ds 1
+
+	ds 2 ; unused
 
 wStartFlypoint:: ds 1
 wEndFlypoint:: ds 1
@@ -640,6 +640,7 @@ wPokedexShowPointerBank:: ds 1
 wFailedToFlee:: ds 1
 wNumFleeAttempts:: ds 1
 
+wLinkOTExchangeStart::
 wOTPlayerName:: ds NAME_LENGTH
 wOTPlayerID:: ds 2
 wOTPartyCount:: ds 1
@@ -673,6 +674,7 @@ wOTPartyMonsEnd::
 wOTPartyMonOT:: ds NAME_LENGTH * PARTY_LENGTH
 wOTPartyMonNicknames:: ds PKMN_NAME_LENGTH * PARTY_LENGTH
 wOTPartyDataEnd::
+wLinkOTExchangeEnd::
 
 wBattleAction:: ds 1
 wLinkBattleSentAction:: ds 1

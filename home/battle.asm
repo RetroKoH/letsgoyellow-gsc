@@ -644,10 +644,10 @@ DynamicPowerMoves::
 ; used by Forewarn and for move power listing
 	db COUNTER
 	db FLAIL
-;	db GRASS_KNOT
+	db GRASS_KNOT
 	db GYRO_BALL
 ;	db HEAVY_SLAM
-;   db LOW_KICK
+    db LOW_KICK
 	db MIRROR_COAT
 	db NIGHT_SHADE
 	db RETURN

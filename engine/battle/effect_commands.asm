@@ -944,7 +944,7 @@ BattleCommand_checkobedience: ; 343db
 .EndDisobedience:
 	xor a
 	ld [wLastPlayerMove], a
-	ld [wLastEnemyCounterMove], a
+	ld [wLastPlayerCounterMove], a
 
 	; Break Encore too.
 	ld hl, wPlayerSubStatus2
@@ -1322,7 +1322,7 @@ BattleCommand_stab: ; 346d2
 	ld a, [wAttackMissed]
 	and a
 	ret nz
-	ld a, 1
+	ld a, ATKFAIL_IMMUNE
 	ld [wAttackMissed], a
 	ret
 

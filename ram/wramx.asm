@@ -1389,11 +1389,6 @@ SECTION "Attributes", WRAMX
 wDecompressedAttributes:: ds 256 * 16
 
 
-SECTION "Music Player Notes", WRAMX
-
-wMPNotes:: ds 4 * 256
-
-
 SECTION "GBC Video", WRAMX
 
 ; 8 4-color palettes
@@ -1482,10 +1477,13 @@ wBattleAnimEnd::
 wSurfWaveBGEffectEnd::
 
 
-SECTION "Collisions", WRAMX
+SECTION "Collisions or Music Player", WRAMX
 
+UNION
 wDecompressedCollisions:: ds 256 * 4
-
+NEXTU
+wMPNotes:: ds 4 * 256
+ENDU
 
 SECTION "Scratch RAM", WRAMX
 

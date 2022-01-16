@@ -378,7 +378,6 @@ PokeBallEffect: ; e8a2
 	farcall GetModifiedCaptureRate
 	ld [wBuffer1], a
 	ld a, [wTempEnemyMonSpecies]
-	ld [wEnemyMonSpecies], a
 	ld [wWildMon], a
 
 	; Figure out if we should do a critical capture
@@ -705,6 +704,11 @@ PokeBallEffect: ; e8a2
 
 .shake_and_break_free
 	push hl
+	ld a, [wTempEnemyMonSpecies]
+	push af
+	ld a, [wEnemyMonSpecies]
+	ld [wTempEnemyMonSpecies], a
+	ld [wCurPartySpecies], a
 	farcall BattleCheckEnemyShininess
 	jr nc, .not_shiny
 	ld a, 1 ; shiny anim
@@ -730,17 +734,20 @@ PokeBallEffect: ; e8a2
 	call PlayStereoCry
 
 .skip_cry
+	pop af
+	ld [wTempEnemyMonSpecies], a
 	pop hl
 .print
-	ld a, 0
-	ld [wWildMon], a
 	call PrintText
 	call ClearSprites
-
-.return_from_capture
 	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL
 	ret z
+	xor a
+	ld [wWildMon], a
+
+.return_from_capture
+	ld a, [wBattleType]
 	cp BATTLETYPE_CONTEST
 	jr z, .used_park_ball
 	cp BATTLETYPE_SAFARI

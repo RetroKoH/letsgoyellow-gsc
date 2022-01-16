@@ -1,7 +1,7 @@
 GetPokeBallWobble: ; f971 (3:7971)
 ; Returns whether a Poke Ball will wobble in the catch animation.
 ; Whether a Pokemon is caught is determined beforehand.
-
+	ld a, BANK(wBuffer2)
 	call StackCallInWRAMBankA
 .Function:
 ; Wobble up to 3 times.

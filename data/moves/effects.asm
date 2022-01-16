@@ -1473,8 +1473,8 @@ Rage:
 	damagestats
 	damagecalc
 	stab
-	checkhit
 	damagevariation
+	checkhit
 	hittarget
 	failuretext
 	rage
@@ -1660,13 +1660,13 @@ Thief:
 	doturn
 	hastarget
 	critical
+	; Yes, thief is 100% but this makes Sheer Force and Substitute be handled correctly
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
 	checkhit
-	; Yes, thief is 100% but this makes Sheer Force and Substitute be handled correctly
 	hittarget
 	failuretext
 	checkfaint
@@ -2182,10 +2182,10 @@ Thunder:
 	effectchance
 	damagestats
 	damagecalc
-	thunderaccuracy
-	checkhit
 	stab
 	damagevariation
+	thunderaccuracy
+	checkhit
 	hittarget
 	failuretext
 	checkfaint

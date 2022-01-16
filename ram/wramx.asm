@@ -389,7 +389,9 @@ wSpinning:: ds 1
 
 wBGMapAnchor:: ds 2
 
-	ds 64 ; unused
+wOldTileset:: ds 1
+
+	ds 63 ; unused
 
 wOverworldMapAnchor:: ds 2
 wMetatileStandingY:: ds 1
@@ -455,8 +457,11 @@ wEastConnectionStripXOffset:: ds 1
 wEastConnectionWindow:: ds 2
 
 wTilesetHeader::
-wTilesetGFXBank:: ds 1
-wTilesetGFXAddress:: ds 2
+wTilesetGFX0Bank:: ds 1
+wTilesetGFX0Address:: ds 2
+wTilesetGFX1Bank:: ds 1
+wTilesetGFX1Address:: ds 2
+wTilesetGFX2Bank:: ds 1
 wTilesetGFX2Address:: ds 2
 wTilesetBlocksBank:: ds 1
 wTilesetBlocksAddress:: ds 2

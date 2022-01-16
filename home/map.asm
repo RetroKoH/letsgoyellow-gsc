@@ -239,14 +239,17 @@ CheckIndoorMap:: ; 22f4
 	ret
 ; 2300
 
-LoadMapAttributes:: ; 2309
+LoadMapAttributes::
+	ld a, [wTileset]
+	ld [wOldTileset], a
 	call CopyMapHeaders
 	call SwitchToMapScriptHeaderBank
 	xor a ; FALSE
 	jr ReadMapScripts
-; 2317
 
-LoadMapAttributes_SkipPeople:: ; 2317
+LoadMapAttributes_Continue::
+	ld a, -1
+	ld [wOldTileset], a
 	call CopyMapHeaders
 	call SwitchToMapScriptHeaderBank
 	ld a, TRUE
@@ -1277,63 +1280,63 @@ UpdateBGMapColumn:: ; 27f8
 	ret
 ; 2816
 
-LoadTileset:: ; 2821
-	ld hl, wTilesetGFXAddress
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, [wTilesetGFXBank]
-	ld [hTilesetGFXBank], a
+LoadGraphicsAndDelay::
+	push hl
+	push de
+	push bc
+	ld a, [rVBK]
+	push af
+	xor a
+	ld [hDelayFrameLY], a
 
-	ld a, BANK(wDecompressScratch)
-	ld [rSVBK], a
+	; only allow this if we have time to spare
+	ld a, [rLY]
+	cp $20
+	jr nc, .done
 
-	ld a, [hTilesetGFXBank]
-	ld de, wDecompressScratch
-	call FarDecompress
+	ld a, [wPendingOverworldGraphics]
+	and a
+	jr z, .done
 
-	ld hl, wDecompressScratch
-	ld de, VTiles2
-	ld bc, $7f tiles
-	rst CopyBytes
+	dec a
+	ld [wPendingOverworldGraphics], a
+	call _LoadTileset
+	xor a
+	ld [hTileAnimFrame], a
 
-	ld a, $1
+.done
+	ld a, [hDelayFrameLY]
+	and a
+	call z, DelayFrame
+	pop af
 	ld [rVBK], a
+	pop bc
+	pop de
+	pop hl
+	ret
 
-	ld hl, wDecompressScratch + $80 tiles
-	ld de, VTiles5
-	ld bc, $80 tiles
-	rst CopyBytes
-
-	ld a, $1
-	ld [rSVBK], a
-
+_LoadTileset:
+; Loads one of up to 3 tileset groups depending on a
+	jr z, _LoadTileset0
+	dec a
+	jr z, _LoadTileset1
+_LoadTileset2:
+	ld a, 1
+	ld [rVBK], a
 	ld hl, wTilesetGFX2Address
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	or h
-	jr z, .no_gfx2
-
-	ld a, BANK(wDecompressScratch)
-	ld [rSVBK], a
-
-	ld a, [hTilesetGFXBank]
-	ld de, wDecompressScratch
-	call FarDecompress
-
-	ld hl, wDecompressScratch
+	ld a, [wTilesetGFX2Bank]
 	ld de, VTiles4
-	ld bc, $80 tiles
-	rst CopyBytes
+	jr _DoLoadTileset
 
-.no_gfx2
+_LoadTileset0:
+	ld a, [rSVBK]
+	push af
 	xor a
 	ld [rVBK], a
-
 	inc a
 	ld [rSVBK], a
 
+	; Check roof tiles
 	ld a, [wTileset]
 	cp TILESET_JOHTO_TRADITIONAL
 	jr z, .load_roof
@@ -1344,12 +1347,71 @@ LoadTileset:: ; 2821
 
 .load_roof
 	farcall LoadMapGroupRoof
+	ld hl, wTilesetGFX0Address
+	ld a, [wTilesetGFX0Bank]
+	ld de, VTiles2
+	ld c, $ff
+	call _DoLoadTileset0
+	jr .done
 
 .skip_roof
+	ld hl, wTilesetGFX0Address
+	ld a, [wTilesetGFX0Bank]
+	ld de, VTiles2
+	ld c, $7f
+	call _DoLoadTileset0
+.done
+	pop af
+	ld [rSVBK], a
+	ret
+
+_LoadTileset1:
+	ld a, 1
+	ld [rVBK], a
+	ld hl, wTilesetGFX1Address
+	ld a, [wTilesetGFX1Bank]
+	ld de, VTiles5
+	; fallthrough
+
+_DoLoadTileset:
+	ld c, $80
+_DoLoadTileset0:
+	ld b, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	or h
+	ret z
+
+	inc c
+	jr z, .special_load
+	dec c
+	jp DecompressRequest2bpp
+.special_load
+	; Skip roof tiles when writing to VRAM
+	ld c, $7f
+	push de
+	push bc
+	call FarDecompressWRA6InB
+	pop bc
+	pop hl
+	ld de, wDecompressScratch
+	ld c, $a ; write tiles $00-09
+	call Request2bppInWRA6
+	ld de, wDecompressScratch tile $13
+	ld hl, VTiles2 tile $13
+	ld c, $6c ; write tiles $13-$7e
+	jp Request2bppInWRA6
+
+LoadTileset::
+	xor a
+	ld [wPendingOverworldGraphics], a
+	call _LoadTileset1
+	call _LoadTileset2
+	call _LoadTileset0
 	xor a
 	ld [hTileAnimFrame], a
 	ret
-; 2879
 
 BufferScreen:: ; 2879
 	ld hl, wOverworldMapAnchor
@@ -1465,6 +1527,9 @@ SaveScreen_LoadNeighbor:: ; 28f7
 	ret
 ; 2914
 
+GenericFinishBridge::
+	ld a, 1
+	ld [wOverworldDelaySkip], a
 GetMovementPermissions:: ; 2914
 	xor a
 	ld [wTilePermissions], a
@@ -2293,7 +2358,19 @@ GetFishingGroup:: ; 2d19
 	ret
 ; 2d27
 
-LoadTilesetHeader:: ; 2d27
+TilesetUnchanged::
+; returns z if tileset is unchanged from last tileset
+	push bc
+	ld a, [wOldTileset]
+	ld b, a
+	ld a, [wTileset]
+	cp b
+	pop bc
+	ret
+
+LoadTilesetHeader::
+	call TilesetUnchanged
+	ret z
 	push hl
 	push bc
 
@@ -2312,7 +2389,6 @@ LoadTilesetHeader:: ; 2d27
 	pop bc
 	pop hl
 	ret
-; 2d43
 
 GetOvercastIndex::
 ; Some maps are overcast, depending on certain conditions

@@ -54,7 +54,7 @@ DecompressRequest2bpp::
 	ld de, wDecompressScratch
 
 ; fallthrough
-Request2bppInWRA6:
+Request2bppInWRA6::
 	ldh a, [hROMBank]
 	ld b, a
 	call RunFunctionInWRA6

@@ -1,9 +1,16 @@
-GetPlayerIcon: ; 8832c
+GetPlayerIcon:
 ; Get the player icon corresponding to gender
 ; Modify this later to allow for character class outfits
+	push hl
+	call _GetPlayerIcon
+	call FarDecompressWRA6InB
+	pop hl
+	ld de, wDecompressScratch
+	ret
 
+_GetPlayerIcon:
 ; Male
-	ld de, RedSpriteGFX
+	ld hl, RedSpriteGFX
 	ld b, BANK(RedSpriteGFX)
 
 	ld a, [wPlayerGender]
@@ -11,10 +18,9 @@ GetPlayerIcon: ; 8832c
 	ret z
 
 ; Female
-	ld de, GreenSpriteGFX
+	ld hl, GreenSpriteGFX
 	ld b, BANK(GreenSpriteGFX)
 	ret
-
 
 GetCardPic: ; 8833e
 	ld hl, RedCardPic

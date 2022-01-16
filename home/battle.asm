@@ -459,17 +459,6 @@ PowderMoves::
 	db STUN_SPORE
 	db -1
 
-PunchingMoves::
-	db BULLET_PUNCH
-	db DIZZY_PUNCH
-	db DUOIRONBASH
-	db DYNAMICPUNCH
-	db FIRE_PUNCH
-	db ICE_PUNCH
-	db MACH_PUNCH
-	db THUNDERPUNCH
-	db -1
-
 SoundMoves::
 	db BUG_BUZZ
 	db DISARM_VOICE

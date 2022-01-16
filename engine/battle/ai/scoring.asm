@@ -1307,7 +1307,7 @@ AI_Smart_PriorityHit: ; 38d5a
 	ld a, $1
 	ld [hBattleTurn], a
 	push hl
-	farcall EnemyAttackDamage
+	farcall AttackDamage
 	farcall BattleCommand_damagecalc
 	farcall BattleCommand_stab
 	pop hl
@@ -2513,7 +2513,7 @@ AIDamageCalc: ; 393e7
 	farjp BattleCommand_constantdamage
 
 .no_special_damage
-	farcall EnemyAttackDamage
+	farcall AttackDamage
 	farcall BattleCommand_damagecalc
 	farcall BattleCommand_stab
 

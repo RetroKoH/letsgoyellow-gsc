@@ -3568,35 +3568,27 @@ BattleCommand_brickbreak:
 	ld hl, BrokeReflectText
 	jp StdBattleTextBox
 
-BattleCommand_damagestats: ; 352dc
-; damagestats
-
-	ld a, [hBattleTurn]
-	and a
-	jp nz, EnemyAttackDamage
-
-	; fallthrough
-; 352e2
-
-PlayerAttackDamage: ; 352e2
+BattleCommand_damagestats:
+AttackDamage: ; damagestats
 ; Return move power d, player level e, enemy defense c and player attack b.
 
 	call ResetDamage
 
 ; No damage dealt with 0 power.
-	ld hl, wPlayerMoveStructPower
-	ld a, [hl]
+	ld a, BATTLE_VARS_MOVE_POWER
+	call GetBattleVar
 	and a
 	ld d, a
 	ret z
 
-	ld hl, wPlayerMoveStructCategory
-	ld a, [hl]
+	ld a, BATTLE_VARS_MOVE_CATEGORY
+	call GetBattleVar
 	cp SPECIAL
 	jr nc, .special
 
 .physical
-	ld hl, wEnemyMonDefense
+	ld hl, wBattleMonDefense
+	call GetOpponentMonAttr
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
@@ -3604,107 +3596,18 @@ PlayerAttackDamage: ; 352e2
 	call HailDefenseBoost ; ICE BUFF
 
 	ld hl, wBattleMonAttack
-	ld a, [wEnemyAbility]
-	cp INFILTRATOR
-	jr z, .thickcluborlightball
-	ld a, [wEnemyScreens]
-	and 1 << SCREENS_AURORA_VEIL | 1 << SCREENS_REFLECT
-	jr z, .thickcluborlightball
-;	bit SCREENS_REFLECT, a
-;	jr z, .thickcluborlightball
-	ld a, [wCriticalHit]
-	and a
-	jr nz, .thickcluborlightball
-	sla c
-	rl b
-	jr .thickcluborlightball
-
-.special
-	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetUserMonAttr
+	ld a, BATTLE_VARS_ABILITY
 	call GetBattleVar
-
-	ld hl, wEnemyMonSpclDef
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-	call SandstormSpDefBoost
-
-	ld hl, wBattleMonSpclAtk
-	ld a, [wEnemyAbility]
-	cp INFILTRATOR
-	jr z, .lightball
-	ld a, [wEnemyScreens]
-	and 1 << SCREENS_AURORA_VEIL | 1 << SCREENS_LIGHT_SCREEN
-	jr z, .lightball
-;	bit SCREENS_LIGHT_SCREEN, a
-;	jr z, .lightball
-	ld a, [wCriticalHit]
-	and a
-	jr nz, .lightball
-	sla c
-	rl b
-
-.lightball
-; Note: Returns player special attack at hl in hl.
-	call LightBallBoost
-	jr .done
-
-.thickcluborlightball
-; Note: Returns player attack at hl in hl.
-	call ThickClubOrLightBallBoost
-
-.done
-	call TruncateHL_BC
-
-	ld a, [wBattleMonLevel]
-	ld e, a
-	call DittoMetalPowder
-	call UnevolvedEviolite
-
-	ld a, 1
-	and a
-	ret
-
-; 3534d
-
-
-EnemyAttackDamage: ; 353f6
-; Return move power d, enemy level e, player defense c and enemy attack b.
-
-	call ResetDamage
-
-; No damage dealt with 0 power.
-	ld hl, wEnemyMoveStructPower
-	ld a, [hl]
-	and a
-	ld d, a
-	ret z
-
-	ld hl, wEnemyMoveStructCategory
-	ld a, [hl]
-	cp SPECIAL
-	jr nc, .special
-
-.physical
-	ld hl, wBattleMonDefense
-	ld a, [hli]
-	ld b, a
-	ld c, [hl]
-
-if !DEF(FAITHFUL)
-	call HailDefenseBoost
-endc
-
-	ld hl, wEnemyMonAttack
-	ld a, [wPlayerAbility]
 	cp INFILTRATOR
 	jr z, .thickcluborlightball
+	ld a, [hBattleTurn]
+	and a
+	jr z, .got_opp_screens
 	ld a, [wPlayerScreens]
+.got_opp_screens
 	and 1 << SCREENS_AURORA_VEIL | 1 << SCREENS_REFLECT
 	jr z, .thickcluborlightball
-;	bit SCREENS_REFLECT, a
-;	jr z, .thickcluborlightball
 	ld a, [wCriticalHit]
 	and a
 	jr nz, .thickcluborlightball
@@ -3717,21 +3620,27 @@ endc
 	call GetBattleVar
 
 	ld hl, wBattleMonSpclDef
+	call GetOpponentMonAttr
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 
 	call SandstormSpDefBoost
 
-	ld hl, wEnemyMonSpclAtk
-	ld a, [wPlayerAbility]
+	ld hl, wBattleMonSpclAtk
+	call GetUserMonAttr
+	ld a, BATTLE_VARS_ABILITY
+	call GetBattleVar
 	cp INFILTRATOR
 	jr z, .lightball
+	ld a, [hBattleTurn]
+	and a
+	ld a, [wEnemyScreens]
+	jr z, .got_opp_screens2
 	ld a, [wPlayerScreens]
+.got_opp_screens2
 	and 1 << SCREENS_AURORA_VEIL | 1 << SCREENS_LIGHT_SCREEN
 	jr z, .lightball
-;	bit SCREENS_LIGHT_SCREEN, a
-;	jr z, .lightball
 	ld a, [wCriticalHit]
 	and a
 	jr nz, .lightball
@@ -3739,7 +3648,7 @@ endc
 	rl b
 
 .lightball
-; Note: Returns enemy special attack at hl in hl.
+; Note: Returns player special attack at hl in hl.
 	call LightBallBoost
 	jr .done
 
@@ -3758,8 +3667,6 @@ endc
 	ld a, 1
 	and a
 	ret
-
-; 35461
 
 
 TruncateHL_BC: ; 3534d
@@ -4431,24 +4338,14 @@ BattleCommand_constantdamage: ; 35726
 	jr .flail_loop
 
 .break_loop
-	ld a, [hBattleTurn]
-	and a
 	ld a, [hl]
-	jr nz, .notPlayersTurn
-
-	ld hl, wPlayerMoveStructPower
+	push af
+	ld a, BATTLE_VARS_MOVE_POWER
+	call GetBattleVarAddr
+	pop af
 	ld [hl], a
 	push hl
-	call PlayerAttackDamage
-	jr .notEnemysTurn
-
-.notPlayersTurn
-	ld hl, wEnemyMoveStructPower
-	ld [hl], a
-	push hl
-	call EnemyAttackDamage
-
-.notEnemysTurn
+	call AttackDamage
 	call BattleCommand_damagecalc
 	pop hl
 	ld [hl], 1

@@ -1119,7 +1119,7 @@ DisplayDexEntry: ; 4424d
 	call Mul16
 	ld de, hTmpd
 	hlcoord 11, 7
-	lb bc, 2, PRINTNUM_LEFTALIGN | 5
+	ln bc, 0, 2, 4, 5 ; lb bc, 2, PRINTNUM_LEFTALIGN | 5
 	call PrintNum
 	pop hl
 	jr .skip_height
@@ -1131,7 +1131,7 @@ DisplayDexEntry: ; 4424d
 	ld d, h
 	ld e, l
 	hlcoord 12, 7
-	lb bc, 2, PRINTNUM_MONEY | 4
+	ln bc, 0, 2, 2, 4 ; lb bc, 2, PRINTNUM_MONEY | 4
 	call PrintNum
 	hlcoord 14, 7
 	ld a, "′"
@@ -1166,7 +1166,7 @@ DisplayDexEntry: ; 4424d
 	call Mul16
 	ld de, hTmpd
 	hlcoord 11, 9
-	lb bc, 2, PRINTNUM_LEFTALIGN | 5
+	ln bc, 0, 2, 4, 5 ; lb bc, 2, PRINTNUM_LEFTALIGN | 5
 	call PrintNum
 	jr .skip_weight
 
@@ -1176,7 +1176,7 @@ DisplayDexEntry: ; 4424d
 	ld d, h
 	ld e, l
 	hlcoord 11, 9
-	lb bc, 2, PRINTNUM_LEFTALIGN | 5
+	ln bc, 0, 2, 4, 5 ; lb bc, 2, PRINTNUM_LEFTALIGN | 5
 	call PrintNum
 	pop de
 

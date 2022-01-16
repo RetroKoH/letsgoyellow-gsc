@@ -3124,6 +3124,8 @@ BattleCommand_posthiteffects:
 	jr z, .rocky_helmet_done
 	call CheckContactMove
 	jr c, .rocky_helmet_done
+	; see above comment
+	call GetOpponentItem
 	call GetSixthMaxHP
 .got_hurt_item_damage
 	ld a, b

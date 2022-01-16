@@ -245,7 +245,6 @@ IntimidateAbility:
 
 DownloadAbility:
 ; Increase Atk if enemy Def is lower than SpDef, otherwise SpAtk
-	call ShowAbilityActivation
 	call DisableAnimations
 	ld hl, wEnemyMonDefense
 	ld a, [hBattleTurn]
@@ -886,7 +885,8 @@ SpeedBoostAbility:
 StatUpAbility:
 	call HasUserFainted
 	ret z
-	ld a, STAT_SKIPTEXT | STAT_SILENT
+	call DisableAnimations
+	ld a, STAT_SILENT
 	farcall _ForceRaiseStat
 	ld a, [wFailedMessage]
 	and a

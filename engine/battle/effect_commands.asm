@@ -3460,15 +3460,9 @@ ResetFuryCutterCount:
 
 
 DittoMetalPowder: ; 352b1
+; grabs true species -- works even if transformed to non-Ditto
 	ld a, MON_SPECIES
-	call UserPartyAttr
-	ld a, [hBattleTurn]
-	and a
-	ld a, [hl]
-	jr nz, .continue
-	ld a, [wTempEnemyMonSpecies]
-
-.continue:
+	call OpponentPartyAttr
 	cp DITTO
 	ret nz
 
@@ -3495,19 +3489,11 @@ DittoMetalPowder: ; 352b1
 	rr c
 	ret
 
-; 352dc
-
 
 UnevolvedEviolite:
 	ld a, MON_SPECIES
-	call UserPartyAttr
-	ld a, [hBattleTurn]
-	and a
-	ld a, [hl]
-	jr nz, .continue
-	ld a, [wTempEnemyMonSpecies]
+	call OpponentPartyAttr
 
-.continue:
 	dec a
 	push hl
 	push bc
@@ -3682,7 +3668,7 @@ AttackDamage: ; damagestats
 
 	ld a, [wEnemyMonLevel]
 	ld e, a
-	call DittoMetalPowder
+	call DittoMetalPowder ; Handles this and Quick Powder
 	call UnevolvedEviolite
 
 	ld a, 1

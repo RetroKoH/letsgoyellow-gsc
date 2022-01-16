@@ -3207,7 +3207,7 @@ BattleCommand_posthiteffects:
 	cp HELD_DEFEND_HIT
 	jr nz, .check_type_hit
 	call CheckSheerForceNegation
-	jr z, .rocky_helmet_done
+	jp z, .rocky_helmet_done
 	ld a, c
 	cp PHYSICAL
 	ld b, DEFENSE
@@ -3243,10 +3243,18 @@ BattleCommand_posthiteffects:
 	call SwitchTurn
 	jr .rocky_helmet_done
 .held_offend_hit
+	; we want to ensure we have the correct item name for hurt message
+	call GetTrueUserAbility
+	cp MAGIC_GUARD
+	jr z, .rocky_helmet_done
+	call GetOpponentItem
 	call ConsumeOpponentItem
 	call GetEighthMaxHP
 	jr .got_hurt_item_damage
 .rocky_helmet
+	call GetTrueUserAbility
+	cp MAGIC_GUARD
+	jr z, .rocky_helmet_done
 	call CheckContactMove
 	jr c, .rocky_helmet_done
 	call GetSixthMaxHP
@@ -7718,7 +7726,7 @@ BattleCommand_lowkick:
 	ld d, h
 	ld e, l
 
-	call GetTrueUserAbility
+	call GetOpponentAbilityAfterMoldBreaker
 	cp LIGHT_METAL
 	jr nz, .not_light_metal
 	srl d

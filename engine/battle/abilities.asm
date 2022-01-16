@@ -1700,10 +1700,13 @@ _GetOpponentAbilityAfterMoldBreaker:: ; 39e1
 .MoldBreakerSuppressedAbilities:
 	db BATTLE_ARMOR
 	db BIG_PECKS
+	db CLEAR_BODY
+	db CONTRARY
 	db DAMP
 	db DRY_SKIN
 	db FILTER
 	db FLASH_FIRE
+	db FUR_COAT
 	db HYPER_CUTTER
 	db IMMUNITY
 	db INNER_FOCUS
@@ -1711,6 +1714,7 @@ _GetOpponentAbilityAfterMoldBreaker:: ; 39e1
 	db KEEN_EYE
 	db LEAF_GUARD
 	db LEVITATE
+	db LIGHT_METAL
 	db LIGHTNING_ROD
 	db LIMBER
 	db MAGIC_BOUNCE
@@ -1731,6 +1735,7 @@ _GetOpponentAbilityAfterMoldBreaker:: ; 39e1
 	db STICKY_HOLD
 	db STURDY
 	db SUCTION_CUPS
+	db TANGLED_FEET
 	db THICK_FAT
 	db UNAWARE
 	db VITAL_SPIRIT

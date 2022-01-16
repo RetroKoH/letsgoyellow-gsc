@@ -138,7 +138,6 @@ BattleCommandPointers:
 	command curl
 	command burn
 	command bounceback
-	command pickpocket
 	command suckerpunch
 	command ohko
 	command roost

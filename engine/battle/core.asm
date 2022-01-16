@@ -689,9 +689,9 @@ GetMoveEffect: ; 3c5ec
 
 
 PerformMove:
-;	ld a, BATTLE_VARS_SUBSTATUS2
-;	call GetBattleVarAddr
-;	res SUBSTATUS_DESTINY_BOND, [hl]
+	xor a
+	ld [wDamageTaken], a
+	ld [wDamageTaken + 1], a
 	call HasUserFainted
 	jr z, .end_protect_destinybond
 	farcall DoTurn
@@ -700,9 +700,6 @@ PerformMove:
 	call GetBattleVarAddr
 	res SUBSTATUS_PROTECT, [hl]
 	res SUBSTATUS_ENDURE, [hl]
-;	ld a, BATTLE_VARS_SUBSTATUS2_OPP
-;	call GetBattleVarAddr
-;	res SUBSTATUS_DESTINY_BOND, [hl]
 	; fallthrough
 
 ResolveFaints:
@@ -2313,9 +2310,6 @@ PlayerMonFaintHappinessMod:
 	res SUBSTATUS_IN_LOOP, [hl]
 	xor a
 	ld [wLowHealthAlarm], a
-	ld hl, wPlayerDamageTaken
-	ld [hli], a
-	ld [hl], a
 	ld [wBattleMonStatus], a
 	call UpdateBattleMonInParty
 	ld c, HAPPINESS_FAINTED

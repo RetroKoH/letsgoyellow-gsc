@@ -416,39 +416,31 @@ ApplyDamageMod::
 	ret
 
 
-GetOpponentAbilityAfterMoldBreaker:: ; 39e1
-; Returns an opponent's ability unless Mold Breaker
-; will suppress it. Preserves bc/de/hl.
-	push de
-	push bc
+GetOpponentAbility::
 	ld a, BATTLE_VARS_ABILITY_OPP
 	call GetBattleVar
+	cp NEUTRALIZING_GAS
+	ret z
+	push bc
 	ld b, a
 	ld a, BATTLE_VARS_ABILITY
 	call GetBattleVar
-	and a
-	cp MOLD_BREAKER
-	jr z, .cont_check
+	cp NEUTRALIZING_GAS
 	ld a, b
-	jr .end
-.cont_check
-	ld a, b
-	ld de, 1
-	push hl
-	push bc
-	ld hl, MoldBreakerSuppressedAbilities
-	call IsInArray
 	pop bc
-	pop hl
-	jr c, .suppressed
-	ld a, b
-	jr .end
-.suppressed:
-	ld a, NO_ABILITY
-.end
-	pop bc
-	pop de
+	ret nz
+	xor a
 	ret
+
+GetTrueUserAbility::
+; Get true user ability after Neutralizing Gas.
+; A "true" user might be external, if Future Sight is active.
+	farjp _GetTrueUserAbility
+
+GetOpponentAbilityAfterMoldBreaker:: ; 39e1
+; Returns an opponent's ability unless Mold Breaker
+; will suppress it. Preserves bc/de/hl.
+	farjp _GetOpponentAbilityAfterMoldBreaker
 
 LegendaryMons::
 	db ARTICUNO
@@ -458,139 +450,6 @@ UberMons::
 ; banned from Battle Tower
 	db MEWTWO
 	db MEW
-	db -1
-
-MoldBreakerSuppressedAbilities:
-	db BATTLE_ARMOR
-	db BIG_PECKS
-	db DAMP
-	db DRY_SKIN
-	db FILTER
-	db FLASH_FIRE
-	db HYPER_CUTTER
-	db IMMUNITY
-	db INNER_FOCUS
-	db INSOMNIA
-	db KEEN_EYE
-	db LEAF_GUARD
-	db LEVITATE
-	db LIGHTNING_ROD
-	db LIMBER
-	db MAGIC_BOUNCE
-	db MAGMA_ARMOR
-	db MARVEL_SCALE
-	db MOTOR_DRIVE
-	db MULTISCALE
-	db OBLIVIOUS
-	db OVERCOAT
-	db OWN_TEMPO
-	db SAND_VEIL
-	db SAP_SIPPER
-	db SHELL_ARMOR
-	db SHIELD_DUST
-	db SNOW_CLOAK
-	db SOLID_ROCK
-	db SOUNDPROOF
-	db STICKY_HOLD
-	db STURDY
-	db SUCTION_CUPS
-	db THICK_FAT
-	db UNAWARE
-	db VITAL_SPIRIT
-	db VOLT_ABSORB
-	db WATER_ABSORB
-	db WATER_VEIL
-	db WONDER_SKIN
-	db -1
-
-ContactMoves::
-	db AERIAL_ACE
-	db AQUA_TAIL
-	db BITE
-	db BODY_SLAM
-	db BUG_BITE
-	db BULLET_PUNCH
-	db CLOSE_COMBAT
-	db COUNTER
-	db CRABHAMMER
-	db CROSS_CHOP
-	db CROSS_POISON
-	db CRUNCH
-	db CUT
-	db DIG
-	db DIZZY_PUNCH
-	db DOUBLE_KICK
-	db DOUBLE_EDGE
-	db DRILL_PECK
-	db DRILL_RUN
-	db DUOIRONBASH
-	db DYNAMICPUNCH
-	db EXTREMESPEED
-	db FAKE_OUT
-	db FELL_STINGER
-	db FIRE_PUNCH
-	db FLAIL
-	db FLAME_WHEEL
-	db FLARE_BLITZ
-	db FLY
-	db FOUL_PLAY
-	db FURY_ATTACK
-	db GYRO_BALL
-	db GRASS_KNOT
-	db HEADBUTT
-	db HEAVY_SLAM
-	db HI_JUMP_KICK
-	db HORN_ATTACK
-	db HYPER_FANG
-	db ICE_PUNCH
-	db IRON_HEAD
-	db IRON_TAIL
-	db KARATE_CHOP
-	db KNOCK_OFF
-	db LEAF_BLADE
-	db LEECH_LIFE
-	db LICK
-	db LIQUIDATION
-	db LOW_KICK
-	db MACH_PUNCH
-	db MEGAHORN
-	db MEGA_PUNCH
-	db MEGA_KICK
-	db METAL_CLAW
-	db METEOR_MASH
-	db NIGHT_SLASH
-	db OUTRAGE
-	db PECK
-	db PETAL_DANCE
-	db PLAY_ROUGH
-	db POISON_JAB
-	db POWER_WHIP
-	db PURSUIT
-	db QUICK_ATTACK
-	db RAPID_SPIN
-	db RETURN
-	db ROCK_SMASH
-	db ROLLOUT
-	db SCRATCH
-	db SEISMIC_TOSS
-	db SLASH
-	db STOMP
-	db SUPER_FANG
-	db SUPERPOWER
-	db TACKLE
-	db TAKE_DOWN
-	db THRASH
-	db THUNDERPUNCH
-	db TRIPLE_KICK
-	db U_TURN
-	db VINE_WHIP
-	db VOLT_TACKLE
-	db WATERFALL
-	db WILD_CHARGE
-	db WING_ATTACK
-	db WRAP
-	db X_SCISSOR
-	db ZEN_HEADBUTT
 	db -1
 
 PowderMoves::
@@ -763,20 +622,7 @@ CheckOpponentContactMove::
 	call CallOpponentTurn
 CheckContactMove::
 ; Check if user's move made contact. Returns nc if it is
-	farcall GetUserItemAfterUnnerve
-	ld a, b
-	cp HELD_PROTECTIVE_PADS
-	jr z, .protective_pads
-	ld a, BATTLE_VARS_MOVE
-	call GetBattleVar
-	cp STRUGGLE
-	ret z
-	ld hl, ContactMoves
-	ld de, 1
-	call IsInArray
-.protective_pads
-	ccf
-	ret
+	farjp _CheckContactMove
 
 HasUserFainted::
 	ld a, [hBattleTurn]
@@ -800,13 +646,24 @@ CheckIfHPIsZero::
 GetWeatherAfterCloudNine::
 ; Returns 0 if a cloud nine user is on the field,
 ; [wWeather] otherwise.
+	call CheckNeutralizingGas
+	jr z, .weather
 	ld a, [wPlayerAbility]
 	xor CLOUD_NINE
 	ret z
 	ld a, [wEnemyAbility]
 	xor CLOUD_NINE
 	ret z
+.weather
 	ld a, [wWeather]
+	ret
+
+CheckNeutralizingGas::
+	ld a, [wPlayerAbility]
+	cp NEUTRALIZING_GAS
+	ret z
+	ld a, [wEnemyAbility]
+	cp NEUTRALIZING_GAS
 	ret
 
 CheckSpeedWithQuickClaw::

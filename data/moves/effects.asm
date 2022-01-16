@@ -181,9 +181,9 @@ FuryStrikes:
 	checkfaint
 	criticaltext
 	cleartext
-	supereffectivelooptext
 	postfainteffects
 	posthiteffects
+	supereffectivetext
 	endloop
 	pickpocket
 	raisesub
@@ -1645,9 +1645,9 @@ TripleKick:
 	checkfaint
 	criticaltext
 	cleartext
-	supereffectivelooptext
 	postfainteffects
 	posthiteffects
+	supereffectivetext
 	kickcounter
 	endloop
 	raisesub

@@ -222,9 +222,9 @@ HandleWeather:
 .PrintWeatherMessage:
 	ld a, [wWeather]
 	dec a
+	add a
 	ld c, a
 	ld b, 0
-	add hl, bc
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]

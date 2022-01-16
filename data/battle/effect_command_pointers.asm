@@ -134,7 +134,6 @@ BattleCommandPointers:
 	command movedelay
 	command hittarget
 	command tristatuschance
-	command supereffectivelooptext
 	command startloop
 	command curl
 	command burn

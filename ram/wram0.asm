@@ -579,9 +579,7 @@ wWeather::
 ; 01 rain
 ; 02 sun
 ; 03 sandstorm
-; 04 rain stopped
-; 05 sunliight faded
-; 06 sandstorm subsided
+; 04 hail
 	ds 1
 
 wWeatherCount:: ds 1 ; # turns remaining

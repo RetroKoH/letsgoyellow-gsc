@@ -88,6 +88,11 @@ RedsHouse2FSNESText:
 	givekeyitem ITEMFINDER
 	givekeyitem SHINY_CHARM
 	setflag ENGINE_HAVE_SHINY_CHARM
+	givetmhm TM_POISON_JAB
+	givetmhm TM_SUNNY_DAY
+	givetmhm HM_SURF
+	givetmhm TM_POISON_FANG
+	givetmhm TM_AVALANCHE
 	; hm slaves
 	givepoke HITMONTOP, 70, ORAN_BERRY
 	loadvar wPartyMon2Moves+0, TRIPLE_KICK

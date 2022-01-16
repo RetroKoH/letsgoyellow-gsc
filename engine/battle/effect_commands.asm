@@ -2863,6 +2863,9 @@ BattleCommand_startloop: ; 35197
 .ok
 	xor a
 	ld [hl], a
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVarAddr
+	res SUBSTATUS_IN_LOOP, [hl]
 	ret
 
 ; 351a5

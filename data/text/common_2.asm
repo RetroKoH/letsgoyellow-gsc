@@ -490,17 +490,6 @@ _SoftLullNothingText::
 	line "nice melody…"
 	done
 
-UnknownText_0x1c0a77::
-	text "Yes! Itemfinder"
-	line "indicates there's"
-	cont "an item nearby."
-	prompt
-
-UnknownText_0x1c0aa9::
-	text "Nope! Itemfinder"
-	line "isn't responding."
-	prompt
-
 UnknownText_0x1c0acc::
 	text_from_ram wStringBuffer3
 	text ""

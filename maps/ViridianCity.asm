@@ -16,12 +16,13 @@ ViridianCity_MapScriptHeader:
 	coord_event 19,  9, 0, ViridianCityLyingOldManTrigger
 	coord_event 32,  8, 1, ViridianCityGymDoorLockTrigger
 
-	db 5 ; bg events
+	db 6 ; bg events
 	bg_event 17, 17, SIGNPOST_JUMPTEXT, ViridianCitySignText
 	bg_event 27,  7, SIGNPOST_JUMPTEXT, ViridianGymSignText
 	bg_event 19,  1, SIGNPOST_JUMPTEXT, ViridianCityTrainerTips1Text
 	bg_event 21, 29, SIGNPOST_JUMPTEXT, ViridianCityTrainerTips2Text
 	bg_event 21, 15, SIGNPOST_JUMPTEXT, TrainerHouseSignText
+	bg_event 15, 4,  SIGNPOST_ITEM + POTION, EVENT_VIRIDIAN_FOREST_HIDDEN_POTION
 
 	db 9 ; object events
 	object_event 13, 20, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, PERSONTYPE_COMMAND, jumptextfaceplayer, ViridianCityText1, -1

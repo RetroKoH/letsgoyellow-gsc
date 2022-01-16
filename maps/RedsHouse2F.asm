@@ -85,7 +85,8 @@ RedsHouse2FSNESText:
 	setflag ENGINE_FLYPOINT_FUCHSIA
 	setflag ENGINE_FLYPOINT_SAFFRON
 	setflag ENGINE_FLYPOINT_CINNABAR
-	giveitem SHINY_CHARM
+	givekeyitem ITEMFINDER
+	givekeyitem SHINY_CHARM
 	setflag ENGINE_HAVE_SHINY_CHARM
 	; hm slaves
 	givepoke HITMONTOP, 70, ORAN_BERRY

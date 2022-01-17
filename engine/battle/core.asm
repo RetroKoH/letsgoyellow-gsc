@@ -461,7 +461,7 @@ ParsePlayerAction:
 	xor a
 	ld [hl], a
 	farcall UpdateMoveData
-	jr .encored
+	jr .setmovedata
 
 .using_move
 	ld a, [wBattleType]
@@ -472,13 +472,6 @@ ParsePlayerAction:
 	call CheckLockedIn
 	jr nz, .locked_in
 	ld hl, wPlayerSubStatus2
-	bit SUBSTATUS_ENCORED, [hl] ; has the user been ENCORED?
-	jr z, .not_encored          ; if no, branch and skip ahead
-	ld a, [wLastPlayerMove]
-	ld [wCurPlayerMove], a      ; Set current move to the last one used before Encore was set
-	jr .encored                 ; branch ahead
-
-.not_encored
 	ld a, [wBattlePlayerAction]
 	cp $2
 	jp z, .reset_rage
@@ -507,7 +500,7 @@ ParsePlayerAction:
 	pop af
 	ret nz
 
-.encored
+.setmovedata
 	call SetPlayerTurn
 	farcall UpdateMoveData
 	xor a
@@ -1127,7 +1120,6 @@ SendInUserPkmn:
 	inc hl
 	res SUBSTATUS_CANT_RUN, [hl]
 	res SUBSTATUS_TAUNTED, [hl]
-	res SUBSTATUS_ENCORED, [hl]
 	res SUBSTATUS_TRANSFORMED, [hl]
 	res SUBSTATUS_MAGIC_BOUNCE, [hl]
 	res SUBSTATUS_FAINTED, [hl]
@@ -2818,10 +2810,10 @@ NewEnemyMonStatus: ; 3d834
 	ld [hli], a
 	ld [hl], a
 	ld [wEnemyDisableCount], a
+	ld [wEnemyEncoreCount], a
 	ld [wEnemyFuryCutterCount], a
 	ld [wEnemyProtectCount], a
 	ld [wEnemyToxicCount], a
-	ld [wEnemyDisabledMove], a
 	ld [wEnemyMinimized], a
 	ld [wPlayerWrapCount], a
 	ld [wEnemyWrapCount], a
@@ -3011,10 +3003,10 @@ rept NUM_MOVES + -1
 endr
 	ld [hl], a
 	ld [wPlayerDisableCount], a
+	ld [wPlayerEncoreCount], a
 	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
 	ld [wPlayerToxicCount], a
-	ld [wDisabledMove], a
 	ld [wPlayerMinimized], a
 	ld [wEnemyWrapCount], a
 	ld [wPlayerWrapCount], a
@@ -4808,6 +4800,8 @@ MoveSelectionScreen:
 	jr z, .choiced ; locked into one chosen move
 	dec a
 	jr z, .assault_vest ; status move disabled
+	dec a
+	jr z, .encored ; locked into the last used move
 	ld b, 0
 	ld hl, wBattleMonMoves
 	add hl, bc
@@ -4818,6 +4812,14 @@ MoveSelectionScreen:
 
 .move_disabled
 	ld hl, BattleText_TheMoveIsDisabled
+	jr .place_textbox_start_over
+
+.encored
+	ld a, [wPlayerSelectedMove]
+	ld [wNamedObjectIndexBuffer], a
+	call GetMoveName
+
+	ld hl, BattleText_EncoreOnlyAllowsMove
 	jr .place_textbox_start_over
 
 .choiced
@@ -4910,35 +4912,10 @@ SwapBattleMoves:
 	ld hl, wBattleMonPP
 	call .swap_bytes
 	ld hl, wPlayerDisableCount
-	ld a, [hl]
-	swap a
-	and $f
-	ld b, a
-	ld a, [wMenuCursorY]
-	cp b
-	jr nz, .not_swapping_disabled_move
-	ld a, [hl]
-	and $f
-	ld b, a
-	ld a, [wMoveSwapBuffer]
-	swap a
-	add b
-	ld [hl], a
-	jr .swap_moves_in_party_struct
+	call .swap_high
+	ld hl, wPlayerEncoreCount
+	call .swap_high
 
-.not_swapping_disabled_move
-	ld a, [wMoveSwapBuffer]
-	cp b
-	jr nz, .swap_moves_in_party_struct
-	ld a, [hl]
-	and $f
-	ld b, a
-	ld a, [wMenuCursorY]
-	swap a
-	add b
-	ld [hl], a
-
-.swap_moves_in_party_struct
 ; Fixes the COOLTRAINER glitch
 	ld a, [wPlayerSubStatus2]
 	bit SUBSTATUS_TRANSFORMED, a
@@ -4972,6 +4949,29 @@ SwapBattleMoves:
 	ld [hl], a
 	ld a, b
 	ld [de], a
+	ret
+
+.swap_high
+	ld a, [wMenuCursorY]
+	ld d, a
+	ld a, [wMoveSwapBuffer]
+	ld e, a
+	swap d
+	swap e
+	call .do_high_swap
+	ld a, d
+	ld d, e
+	ld e, a
+
+.do_high_swap
+	ld a, [hl]
+	and $f0
+	cp d
+	ret nz
+	ld a, $f
+	and [hl]
+	add e
+	ld [hl], a
 	ret
 
 MoveInfoBox: ; 3e6c8
@@ -5147,7 +5147,8 @@ CheckUsableMove:
 ; 2 - disabled
 ; 3 - choiced
 ; 4 - assault vest on status move
-; 5 - TAUNT on status move (To add)
+; 5 - encore (refactored)
+; 6 - Taunt (Coming soon) for now, Taunt uses #4
 	push bc
 	push de
 	push hl
@@ -5167,6 +5168,22 @@ CheckUsableMove:
 	ld a, 1
 	jr z, .end
 
+	; Check Encore
+	ld a, [hBattleTurn]
+	and a
+	ld a, [wPlayerEncoreCount]
+	jr z, .got_encore_count
+	ld a, [wEnemyEncoreCount]
+.got_encore_count
+	swap a
+	and $f
+	jr z, .not_encored
+	dec a
+	cp c
+	ld a, 5
+	jr nz, .end
+
+.not_encored
 	; Check Disable
 	ld a, [hBattleTurn]
 	and a
@@ -5223,12 +5240,8 @@ CheckUsableMove:
 	jr .usable
 .check_choiced
 	; Check if we did a move yet
-	ld a, [hBattleTurn]
-	and a
-	ld a, [wPlayerSelectedMove]
-	jr z, .got_selected_move
-	ld a, [wEnemySelectedMove]
-.got_selected_move
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
+	call GetBattleVar
 	and a
 	jr z, .usable
 	cp c
@@ -5312,10 +5325,6 @@ ParseEnemyAction:
 	call CheckUsableMoves
 	jp nz, .struggle
 
-	ld hl, wEnemySubStatus2
-	bit SUBSTATUS_ENCORED, [hl]
-	ld a, [wLastEnemyMove]
-	jp nz, .finish
 	ld hl, wEnemyMonMoves
 	ld b, 0
 	add hl, bc
@@ -5326,13 +5335,6 @@ ParseEnemyAction:
 	call SetEnemyTurn
 	call CheckUsableMoves
 	jp nz, .struggle
-	ld hl, wEnemySubStatus2
-	bit SUBSTATUS_ENCORED, [hl]
-	jr z, .skip_encore
-	ld a, [wLastEnemyMove]
-	jp .finish
-
-.skip_encore
 	call SetEnemyTurn
 	call CheckLockedIn
 	jp nz, ResetVarsForSubstatusRage

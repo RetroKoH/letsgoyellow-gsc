@@ -250,38 +250,6 @@ BattleCommand_checkturn:
 	call BattleCommand_defrost
 
 .not_frozen
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .enemy3
-	ld hl, wPlayerDisableCount
-	jr .ok3
-.enemy3
-	ld hl, wEnemyDisableCount
-.ok3
-	ld a, [hl]
-	and a
-	jr z, .not_disabled
-
-	dec a
-	ld [hl], a
-	and $f
-	jr nz, .not_disabled
-
-	ld [hl], a
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .enemy4
-	xor a
-	ld [wDisabledMove], a
-	jr .ok4
-.enemy4
-	xor a
-	ld [wEnemyDisabledMove], a
-.ok4
-	ld hl, DisabledNoMoreText
-	call StdBattleTextBox
-
-.not_disabled
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
 	add a ; bit SUBSTATUS_CONFUSED, a
@@ -352,21 +320,22 @@ BattleCommand_checkturn:
 	jp EndTurn
 
 .not_infatuated
-
-
 	; Are we using a disabled move?
 	ld a, [hBattleTurn]
 	and a
 	jr nz, .enemy6
-	ld a, [wDisabledMove]
-	ld hl, wCurPlayerMove
+	ld a, [wPlayerDisableCount]
+	ld hl, wCurMoveNum
 	jr .ok6
 .enemy6
-	ld a, [wEnemyDisabledMove]
-	ld hl, wCurEnemyMove
+	ld a, [wEnemyDisableCount]
+	ld hl, wCurEnemyMoveNum
 .ok6
 	and a
 	jr z, .no_disabled_move ; can't disable a move that doesn't exist
+	swap a
+	and $f
+	dec a
 	cp [hl]
 	jr nz, .no_disabled_move
 
@@ -742,7 +711,7 @@ BattleCommand_checkobedience: ; 343db
 	jr z, .DoNothing
 
 ; Don't bother trying to handle Disable.
-	ld a, [wDisabledMove]
+	ld a, [wPlayerDisableCount]
 	and a
 	jr nz, .DoNothing
 
@@ -841,8 +810,6 @@ BattleCommand_checkobedience: ; 343db
 	ld [wLastPlayerCounterMove], a
 
 	; Break Encore too.
-	ld hl, wPlayerSubStatus2
-	res SUBSTATUS_ENCORED, [hl]
 	xor a
 	ld [wPlayerEncoreCount], a
 
@@ -4422,122 +4389,122 @@ BattleCommand_counter:
 	ld [wAttackMissed], a
 	ret
 
+UserKnowsMove:
+; Returns z if user knows move a starting from hl to NUM_MOVES
+; If so, c points to move offset, hl to move address
+	ld c, NUM_MOVES
+.loop
+	cp [hl]
+	jr z, .got_move
+	inc hl
+	dec c
+	jr nz, .loop
 
-BattleCommand_encore: ; 35864
+	; User doesn't know move
+	inc c
+	ret
+.got_move
+	ld a, NUM_MOVES
+	sub c
+	ld c, a
+	xor a
+	ret
+
+BattleCommand_encore:
 ; encore
-	ld hl, wEnemyMonMoves
-	ld de, wEnemyEncoreCount
 	ld a, [hBattleTurn]
 	and a
-	jr z, .ok
-	ld hl, wBattleMonMoves
+	ld b, ENCORE
+	ld de, wEnemyEncoreCount
+	ld hl, wEnemyMonMoves
+	jr z, DoEncoreDisable
 	ld de, wPlayerEncoreCount
-.ok
-	ld a, BATTLE_VARS_LAST_MOVE_OPP
+	ld hl, wBattleMonMoves
+	jr DoEncoreDisable
+
+BattleCommand_disable:
+; encore
+	ld a, [hBattleTurn]
+	and a
+	ld b, DISABLE
+	ld de, wEnemyDisableCount
+	ld hl, wEnemyMonMoves
+	jr z, DoEncoreDisable
+	ld de, wPlayerDisableCount
+	ld hl, wBattleMonMoves
+
+DoEncoreDisable:
+	ld a, [de]
+	and a
+	jr nz, .failed
+
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
 	call GetBattleVar
 	and a                   ; If target hasn't used a move, Encore fails
-	jp z, .failed
+	jr z, .failed
 	cp STRUGGLE             ; If target last used Struggle, Encore fails
-	jp z, .failed
-	cp ENCORE               ; If target last used encore, this Encore fails
-	jp z, .failed
-	ld b, a                 ; b = target's last used move
+	jr z, .failed
 
-.got_move
-	ld a, [hli]             ; iterate through the target's moveset
+	; Don't allow encoring Encore
 	cp b                    ; was this the last used move?
-	jr nz, .got_move        ; if not, loop back and check the next one
+	jr nz, .move_ok
+	cp ENCORE
+	jr z, .failed
+.move_ok
+	push hl
+	push de
+	push af
+	ld [wNamedObjectIndexBuffer], a
+	call GetMoveName
+	pop af
+	pop de
+	pop hl
+	call UserKnowsMove
+	ret nz
 
-	ld bc, wBattleMonPP - wBattleMonMoves - 1
+	; Can't Disable/Encore moves with no PP left
+	push bc
+	ld bc, wBattleMonPP - wBattleMonMoves
 	add hl, bc
+	pop bc
 	ld a, [hl]
 	and $3f
-	jp z, .failed                   ; if the last used move has no PP, Encore fails
-	ld a, [wAttackMissed]
-	and a
-	jp nz, .failed                  ; obviously if this misses, Encore fails
-	ld a, BATTLE_VARS_SUBSTATUS2_OPP
-	call GetBattleVarAddr
-	bit SUBSTATUS_ENCORED, [hl]
-	jp nz, .failed                  ; if the target is already Encored, Encore fails
-	set SUBSTATUS_ENCORED, [hl]     ; set Encore status bit
-	ld a, 3
-	ld [de], a                      ; set number of turns to be encored to 3
-	call CheckOpponentWentFirst
-	jr nz, .finish_move
-	ld a, [hBattleTurn]
-	and a
-	jr z, .force_last_enemy_move
+	jr z, .failed
 
-	push hl
-	ld a, [wLastPlayerMove]
-	ld b, a
-	ld c, 0
-	ld hl, wBattleMonMoves
-.find_player_move
-	ld a, [hli]
-	cp b
-	jr z, .got_player_move
-	inc c
-	ld a, c
-	cp NUM_MOVES
-	jr c, .find_player_move
-	pop hl
-	res SUBSTATUS_ENCORED, [hl]
-	xor a
-	ld [de], a
-	jr .failed
+	; Potential Cursed Body message
+	call ShowPotentialAbilityActivation
 
-.got_player_move
-	pop hl
-	ld a, c
-	ld [wCurMoveNum], a
+	; Get move effect text and duration
 	ld a, b
-	ld [wCurPlayerMove], a
-	dec a
-	ld de, wPlayerMoveStruct
-	call GetMoveData
-	jr .finish_move
-
-.force_last_enemy_move
-	push hl
-	ld a, [wLastEnemyMove]
-	ld b, a
-	ld c, 0
-	ld hl, wEnemyMonMoves
-.find_enemy_move
-	ld a, [hli]
-	cp b
-	jr z, .got_enemy_move
-	inc c
-	ld a, c
-	cp NUM_MOVES
-	jr c, .find_enemy_move
-	pop hl
-	res SUBSTATUS_ENCORED, [hl]
-	xor a
-	ld [de], a
-	jr .failed
-
-.got_enemy_move
-	pop hl
-	ld a, c
-	ld [wCurEnemyMoveNum], a
-	ld a, b
-	ld [wCurEnemyMove], a
-	dec a
-	ld de, wEnemyMoveStruct
-	call GetMoveData
-
-.finish_move
-	call AnimateCurrentMove
+	cp DISABLE
+	ld hl, WasDisabledText
+	ld a, 4
+	jr z, .got_text_and_duration
 	ld hl, GotAnEncoreText
+	dec a
+
+	; Force opponent to use encored move in case it moves second
+	push hl
+	push af
+	ld a, BATTLE_VARS_MOVE_OPP
+	call GetBattleVarAddr
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+	call GetBattleVar
+	ld [hl], a
+	pop af
+	pop hl
+.got_text_and_duration
+	inc c
+	swap c
+	or c
+	ld [de], a
+	call AnimateCurrentMove
 	call StdBattleTextBox
 	jp CheckOpponentMentalHerb
 
 .failed
-	jp PrintDidntAffect2
-; 35926
+	call AnimateFailedMove
+	jp PrintButItFailed
 
 BattleCommand_taunt:
 ; taunt
@@ -4794,6 +4761,32 @@ UpdateMoveData:
 	ld [wCurMove], a
 	ld [wNamedObjectIndexBuffer], a
 
+	push hl
+	push de
+	push bc
+	push af
+
+	; Write to move selection
+	ld c, a
+	ld hl, wBattleMonMoves
+	call GetUserMonAttr
+	ld a, c
+	call UserKnowsMove
+	jr nz, .done
+
+	ld a, [hBattleTurn]
+	and a
+	ld hl, wCurMoveNum
+	jr z, .got_move_num
+	ld hl, wCurEnemyMoveNum
+.got_move_num
+	ld [hl], c
+
+.done
+	pop af
+	pop bc
+	pop de
+	pop hl
 	dec a
 	call GetMoveData
 	call GetMoveName
@@ -6514,100 +6507,14 @@ BattleCommand_leechseed: ; 36f9d
 	call AnimateFailedMove
 	ld hl, EvadedText
 	jp StdBattleTextBox
-
 ; 36fe1
 
 
 BattleCommand_splash: ; 36fe1
 	call AnimateCurrentMove
 	jp PrintNothingHappened
-
 ; 36fed
 
-
-BattleCommand_disable: ; 36fed
-; disable
-
-	ld a, [wAttackMissed]
-	and a
-	jr nz, .failed
-
-	ld de, wEnemyDisableCount
-	ld hl, wEnemyMonMoves
-	ld a, [hBattleTurn]
-	and a
-	jr z, .got_moves
-	ld de, wPlayerDisableCount
-	ld hl, wBattleMonMoves
-.got_moves
-
-	ld a, [de]
-	and a
-	jr nz, .failed
-
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call GetBattleVar
-	and a
-	jr z, .failed
-	cp STRUGGLE
-	jr z, .failed
-
-	ld b, a
-	ld c, $ff
-.loop
-	inc c
-	ld a, [hli]
-	cp b
-	jr nz, .loop
-
-	ld a, [hBattleTurn]
-	and a
-	ld hl, wEnemyMonPP
-	jr z, .got_pp
-	ld hl, wBattleMonPP
-.got_pp
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	and a
-	jr z, .failed
-	call ShowPotentialAbilityActivation
-	; check for wAnimationsDisabled to determine if this is via Cursed Body, in
-	; which we want to change the duration to always be 3 turns
-	ld a, [wAnimationsDisabled]
-	and a
-	ld a, 4
-	jr z, .got_duration
-	ld a, 2
-.got_duration
-	inc c
-	swap c
-	add c
-	ld [de], a
-	call AnimateCurrentMove
-	ld hl, wDisabledMove
-	ld a, [hBattleTurn]
-	and a
-	jr nz, .got_disabled_move_pointer
-	inc hl
-.got_disabled_move_pointer
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
-	call GetBattleVar
-	ld [hl], a
-	ld [wNamedObjectIndexBuffer], a
-	call GetMoveName
-	ld hl, WasDisabledText
-	call StdBattleTextBox
-	jp CheckOpponentMentalHerb
-
-.failed
-	; If this was by an ability, don't display anything
-	ld a, [wAnimationsDisabled]
-	and a
-	ret nz
-	jp FailDisable
-
-; 3705c
 
 BattleCommand_knockoff:
 	ld a, [wAttackMissed]
@@ -7138,13 +7045,11 @@ ResetActorDisable: ; 372e7
 
 	xor a
 	ld [wEnemyDisableCount], a
-	ld [wEnemyDisabledMove], a
 	ret
 
 .player
 	xor a
 	ld [wPlayerDisableCount], a
-	ld [wDisabledMove], a
 	ret
 
 ; 372fc

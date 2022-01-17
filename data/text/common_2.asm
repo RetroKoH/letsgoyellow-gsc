@@ -1269,7 +1269,7 @@ UnknownText_0x1c1cf3::
 _InitialOptionsText::
 	text "Please choose how"
 	line "you want to play"
-	cont "Polished Crystal."
+	cont "Let's Go Yellow."
 	prompt
 
 _OakText1::

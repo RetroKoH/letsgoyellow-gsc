@@ -11,25 +11,29 @@ DisplayUsedMoveText: ; 105db0
 .start
 	ld a, BATTLE_VARS_LAST_MOVE
 	call GetBattleVarAddr
-	ld d, h
-	ld e, l
-
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
-	call GetBattleVarAddr
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld [wd265], a
 
-	push hl
-	farcall CheckUserIsCharging
-	pop hl
-	jr nz, .charging
+	; Skip last move update if move was called (1=called, 2=Power Herb)
+	ld a, [hBattleTurn]
+	and a
+	ld a, [wPlayerCharging]
+	jr z, .got_charging
+	ld a, [wEnemyCharging]
+.got_charging
+	cp 1
+	jr z, .charging
 
 	; update last move
+	push hl
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
+	call GetBattleVarAddr
 	ld a, [wd265]
 	ld [hl], a
-	ld [de], a
+	pop hl
+	ld [hl], a
 
 .charging
 	; check obedience

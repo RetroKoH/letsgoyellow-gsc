@@ -18,7 +18,7 @@
 ; * DVs cannot be $ff -- use $00 instead (ReadTrainerParty converts it to $ff)
 ; * "9" cannot be used in nicknames
 
-; TODO: boss trainers need better movesets, held items, ZUBATres, and abilities
+; TODO: boss trainers need better movesets, held items, natures, and abilities
 ; TODO: swap ABILITY_1 and ABILITY_2 in base data as need so that ABILITY_1 is the better one for default NPCs (e.g. NPCs should have Sturdy when possible)
 
 

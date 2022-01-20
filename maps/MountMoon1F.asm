@@ -15,175 +15,112 @@ MountMoon1F_MapScriptHeader:
 	bg_event  2, 23, SIGNPOST_ITEM + RARE_CANDY, EVENT_MOUNT_MOON_1F_HIDDEN_RARE_CANDY
 	bg_event  4, 14, SIGNPOST_ITEM + FULL_RESTORE, EVENT_MOUNT_MOON_1F_HIDDEN_FULL_RESTORE
 
-	db 3 ; object events
+	db 10 ; object events
+	object_event  5,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 2, GenericTrainerHikerMarcos, -1
+	object_event 12, 14, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterJosh, -1
+	object_event 32,  3, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerLassMiriam, -1
+	object_event 26, 29, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerSuperNerdJovan, -1
+	object_event 16, 21, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerLassIris, -1
+	object_event 7, 22, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerBugCatcherKent, -1
+	object_event 32, 25, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerBugCatcherRob, -1
 	itemball_event  3,  2, REVIVE, 1, EVENT_MOUNT_MOON_1F_REVIVE
 	itemball_event  2, 26, X_ACCURACY, 1, EVENT_MOUNT_MOON_1F_X_ACCURACY
-	itemball_event 12, 14, CALCIUM, 1, EVENT_MOUNT_MOON_1F_CALCIUM
+	itemball_event 13, 14, CALCIUM, 1, EVENT_MOUNT_MOON_1F_CALCIUM
 
+GenericTrainerHikerMarcos:
+	generictrainer HIKER, MARCOS, EVENT_BEAT_HIKER_MARCOS, .seen, .beaten
 
-
-MountMoon1FSilverMovementBefore:
-	step_down
-	step_down
-	step_down
-	step_down
-	turn_head_right
-	step_end
-
-MountMoon1FPlayerMovement:
-	slow_step_up
-	turn_head_down
-	step_end
-
-MountMoon1FSilverMovementAfter:
-	step_right
-	turn_head_down
-	step_end
-
-MountMoonSilverTextBefore:
-	text "…… …… ……"
-
-	para "It's been a while,"
-	line "<PLAYER>."
-
-	para "…Since I lost to"
-	line "you, I thought"
-
-	para "about what I was"
-	line "lacking with my"
-	cont "#mon…"
-
-	para "And we came up"
-	line "with an answer."
-
-	para "<PLAYER>, now we'll"
-	line "show you!"
+	text "Oh no."
 	done
 
-MountMoonSilverTextWin:
-	text "…… …… ……"
-
-	para "I thought I raised"
-	line "my #mon to be"
-
-	para "the best they"
-	line "could be…"
-
-	para "…But it still"
-	line "wasn't enough…"
+.seen:
+	text "Hi!"
 	done
 
-MountMoonSilverTextAfter:
-	text "…… …… ……"
-
-	para "…You won, fair"
-	line "and square."
-
-	para "I admit it. But"
-	line "this isn't the"
-	cont "end."
-
-	para "After some more"
-	line "training in"
-	cont "Dragon's Den…"
-
-	para "I'm going to be"
-	line "the greatest #-"
-	cont "mon trainer ever."
-
-	para "Because these guys"
-	line "are behind me."
-
-	para "…Listen, <PLAYER>."
-
-	para "One of these days"
-	line "I'm going to prove"
-
-	para "how good I am by"
-	line "beating you."
+.beaten:
+	text "Lost! Lost! Lost!"
 	done
 
-MountMoonSilverTextLoss:
-	text "…… …… ……"
+GenericTrainerYoungsterJosh:
+	generictrainer YOUNGSTER, JOSH, EVENT_BEAT_YOUNGSTER_JOSH, .seen, .beaten
 
-	para "I've repaid my"
-	line "debt to you."
-
-	para "With my #mon,"
-	line "I'm going to beat"
-
-	para "the Champion and"
-	line "become the world's"
-	cont "greatest trainer."
+	text "Oh no."
 	done
 
-BugManiacKentaSeenText:
-	text "I saw a red-haired"
-	line "boy training here."
-
-	para "Have you battled"
-	line "him?"
+.seen:
+	text "Hi!"
 	done
 
-BugManiacKentaBeatenText:
-	text "You got me!"
+.beaten:
+	text "Lost! Lost! Lost!"
 	done
 
-LassMiriamSeenText:
-	text "When I was young-"
-	line "er, I always used"
+GenericTrainerLassMiriam:
+	generictrainer LASS, MIRIAM, EVENT_BEAT_LASS_MIRIAM, .seen, .beaten
 
-	para "to get lost in"
-	line "this place."
+	text "Oh no."
 	done
 
-LassMiriamBeatenText:
-	text "Oh! I lost it!"
+.seen:
+	text "Hi!"
 	done
 
-SuperNerdJovanSeenText:
-	text "What! Don't sneak"
-	line "up on me!"
+.beaten:
+	text "Lost! Lost! Lost!"
 	done
 
-SuperNerdJovanBeatenText:
-	text "My #mon"
-	line "won't do!"
+GenericTrainerSuperNerdJovan:
+	generictrainer SUPER_NERD, JOVAN, EVENT_BEAT_SUPER_NERD_JOVAN, .seen, .beaten
+
+	text "Oh no."
 	done
 
-BugManiacRobbySeenText:
-	text "You need to go"
-	line "through this cave"
-
-	para "to get to Cerulean"
-	line "City."
+.seen:
+	text "Hi!"
 	done
 
-BugManiacRobbyBeatenText:
-	text "I lost…"
+.beaten:
+	text "Lost! Lost! Lost!"
 	done
 
-LassIrisSeenText:
-	text "Have you seen a"
-	line "Clefairy?"
+GenericTrainerLassIris:
+	generictrainer LASS, IRIS, EVENT_BEAT_LASS_IRIS, .seen, .beaten
 
-	para "They're so cute!"
+	text "Oh no."
 	done
 
-LassIrisBeatenText:
-	text "That was so fast…"
+.seen:
+	text "Hi!"
 	done
 
-HikerMarcosSeenText:
-	text "Kids like you"
-	line "shouldn't be"
-
-	para "wandering around"
-	line "here in the dark."
+.beaten:
+	text "Lost! Lost! Lost!"
 	done
 
-HikerMarcosBeatenText:
-	text "Woah!"
-	line "You're strong!"
+GenericTrainerBugCatcherKent:
+	generictrainer BUG_CATCHER, KENT, EVENT_BEAT_BUG_CATCHER_KENT, .seen, .beaten
+
+	text "Oh no."
 	done
 
+.seen:
+	text "Hi!"
+	done
+
+.beaten:
+	text "Lost! Lost! Lost!"
+	done
+
+GenericTrainerBugCatcherRob:
+	generictrainer BUG_CATCHER, ROB, EVENT_BEAT_BUG_CATCHER_ROB, .seen, .beaten
+
+	text "Oh no."
+	done
+
+.seen:
+	text "Hi!"
+	done
+
+.beaten:
+	text "Lost! Lost! Lost!"
+	done

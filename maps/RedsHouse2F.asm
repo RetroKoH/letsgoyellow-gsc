@@ -93,16 +93,61 @@ RedsHouse2FSNESText:
 	givetmhm HM_SURF
 	givetmhm TM_POISON_FANG
 	givetmhm TM_AVALANCHE
+
 	; hm slaves
-	givepoke HITMONTOP, 70, ORAN_BERRY
-	loadvar wPartyMon2Moves+0, TRIPLE_KICK
-	loadvar wPartyMon2Moves+1, RAPID_SPIN
-	loadvar wPartyMon2Moves+2, COUNTER
-	loadvar wPartyMon2Moves+3, SUCKER_PUNCH
-	loadvar wPartyMon2PP+0, 15
-	loadvar wPartyMon2PP+1, 15
-	loadvar wPartyMon2PP+2, 15
-	loadvar wPartyMon2PP+3, 15
+	givepoke VENUSAUR, 70, ORAN_BERRY
+	loadvar wPartyMon2Ability, 2
+	loadvar wPartyMon2Moves+0, GROWTH
+	loadvar wPartyMon2Moves+1, MEGA_DRAIN
+	loadvar wPartyMon2Moves+2, WEATHER_BALL
+	loadvar wPartyMon2Moves+3, SYNTHESIS
+	loadvar wPartyMon2PP+0, 5
+	loadvar wPartyMon2PP+1, 5
+	loadvar wPartyMon2PP+2, 5
+	loadvar wPartyMon2PP+3, 5
+
+	givepoke CHARIZARD, 70, LEFTOVERS
+	loadvar wPartyMon3Ability, 2
+	loadvar wPartyMon3Moves+0, SUNNY_DAY
+	loadvar wPartyMon3Moves+1, FLARE_BLITZ
+	loadvar wPartyMon3Moves+2, AIR_SLASH
+	loadvar wPartyMon3Moves+3, ROOST
+	loadvar wPartyMon3PP+0, 5
+	loadvar wPartyMon3PP+1, 5
+	loadvar wPartyMon3PP+2, 5
+	loadvar wPartyMon3PP+3, 5
+
+	givepoke BLASTOISE, 70, LEFTOVERS
+	loadvar wPartyMon4Ability, 2
+	loadvar wPartyMon4Moves+0, SHELL_SMASH
+	loadvar wPartyMon4Moves+1, RAIN_DANCE
+	loadvar wPartyMon4Moves+2, HYDRO_PUMP
+	loadvar wPartyMon4Moves+3, FLASH_CANNON
+	loadvar wPartyMon4PP+0, 5
+	loadvar wPartyMon4PP+1, 5
+	loadvar wPartyMon4PP+2, 5
+	loadvar wPartyMon4PP+3, 5
+
+	givepoke GENGAR, 70, LEFTOVERS
+	loadvar wPartyMon5Moves+0, SHADOW_BALL
+	loadvar wPartyMon5Moves+1, SLUDGE_BOMB
+	loadvar wPartyMon5Moves+2, TAUNT
+	loadvar wPartyMon5Moves+3, ENCORE
+	loadvar wPartyMon5PP+0, 5
+	loadvar wPartyMon5PP+1, 5
+	loadvar wPartyMon5PP+2, 5
+	loadvar wPartyMon5PP+3, 5
+
+	givepoke DRAGONITE, 70, LEFTOVERS
+	loadvar wPartyMon6Moves+0, DRAGON_DANCE
+	loadvar wPartyMon6Moves+1, EXTREMESPEED
+	loadvar wPartyMon6Moves+2, DRAGONBREATH
+	loadvar wPartyMon6Moves+3, FLY
+	loadvar wPartyMon6PP+0, 5
+	loadvar wPartyMon6PP+1, 5
+	loadvar wPartyMon6PP+2, 5
+	loadvar wPartyMon6PP+3, 5
+
 	setflag ENGINE_POKEDEX
 	callasm FillPokedex
 	thistext

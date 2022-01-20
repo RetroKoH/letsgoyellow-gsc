@@ -426,7 +426,7 @@ wPlayerRolloutCount:: ds 1
 wPlayerConfuseCount:: ds 1
 wPlayerToxicCount:: ds 1
 wPlayerDisableCount:: ds 1
-wPlayerEncoreCount:: ds 1
+wPlayerEncoreCount:: ds 1 ; also for choice-locking
 wPlayerTauntCount:: ds 1
 wPlayerProtectCount:: ds 1
 wPlayerFuryCutterCount:: ds 1
@@ -436,7 +436,7 @@ wEnemyRolloutCount:: ds 1
 wEnemyConfuseCount:: ds 1
 wEnemyToxicCount:: ds 1
 wEnemyDisableCount:: ds 1
-wEnemyEncoreCount:: ds 1
+wEnemyEncoreCount:: ds 1 ; also for choice-locking
 wEnemyTauntCount:: ds 1
 wEnemyProtectCount:: ds 1
 wEnemyFuryCutterCount:: ds 1

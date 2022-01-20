@@ -4807,6 +4807,10 @@ MoveSelectionScreen:
 	add hl, bc
 	ld a, [hl]
 	ld [wCurPlayerMove], a
+
+	; Lock in the used move as last move
+	call SetPlayerTurn
+	call SetChoiceLock
 	xor a
 	ret
 
@@ -4904,6 +4908,28 @@ MoveSelectionScreen:
 	ld c, 60
 	call DelayFrames
 	xor a
+	ret
+
+SetChoiceLock:
+; Set choice lock to move choice c (0-3)
+	push hl
+	push bc
+	ld a, [hBattleTurn]
+	and a
+	ld hl, wPlayerEncoreCount
+	jr z, .got_encore_count
+	ld hl, wEnemyEncoreCount
+.got_encore_count
+	ld a, [hl]
+	and $f
+	ld b, a
+	ld a, c
+	inc a
+	swap a
+	or b
+	ld [hl], a
+	pop bc
+	pop hl
 	ret
 
 SwapBattleMoves:
@@ -5166,7 +5192,7 @@ CheckUsableMove:
 	ld a, [hl]
 	and $3f
 	ld a, 1
-	jr z, .end
+	jp z, .end
 
 	; Check Encore
 	ld a, [hBattleTurn]
@@ -5175,6 +5201,10 @@ CheckUsableMove:
 	jr z, .got_encore_count
 	ld a, [wEnemyEncoreCount]
 .got_encore_count
+	ld b, a
+	and $f
+	jr z, .not_encored
+	ld a, b
 	swap a
 	and $f
 	jr z, .not_encored
@@ -5208,7 +5238,7 @@ CheckUsableMove:
 	ld hl, wEnemyMonMoves
 .got_moves
 	add hl, bc
-	ld c, [hl]
+	ld b, [hl]
 	push bc
 	farcall GetUserItem
 	ld a, b
@@ -5231,7 +5261,7 @@ CheckUsableMove:
 .check_statusmoves
 	; Assault Vest and Taunt check
 	ld hl, Moves + MOVE_CATEGORY
-	ld a, c
+	ld a, b
 	dec a
 	call GetMoveAttr
 	cp STATUS
@@ -5240,10 +5270,16 @@ CheckUsableMove:
 	jr .usable
 .check_choiced
 	; Check if we did a move yet
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
-	call GetBattleVar
+	ld a, [hBattleTurn]
 	and a
+	ld a, [wPlayerEncoreCount]
+	jr z, .got_encore_count2
+	ld a, [wEnemyEncoreCount]
+.got_encore_count2
+	swap a
+	and $f
 	jr z, .usable
+	dec a
 	cp c
 	ld a, 3
 	jr nz, .end
@@ -5325,6 +5361,10 @@ ParseEnemyAction:
 	call CheckUsableMoves
 	jp nz, .struggle
 
+	call SetEnemyTurn
+	ld a, [wCurEnemyMoveNum]
+	ld c, a
+	call SetChoiceLock
 	ld hl, wEnemyMonMoves
 	ld b, 0
 	add hl, bc
@@ -5335,7 +5375,11 @@ ParseEnemyAction:
 	call SetEnemyTurn
 	call CheckUsableMoves
 	jp nz, .struggle
+
 	call SetEnemyTurn
+	ld a, [wCurEnemyMoveNum]
+	ld c, a
+	call SetChoiceLock
 	call CheckLockedIn
 	jp nz, ResetVarsForSubstatusRage
 

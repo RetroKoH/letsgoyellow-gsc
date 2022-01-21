@@ -347,20 +347,11 @@ Continue: ; 5d65
 	ld c, 20
 	call DelayFrames
 	call ConfirmContinue
-	jr nc, .Check1Pass
-	jp CloseWindow
-
-.Check1Pass:
+	jp c, CloseWindow
 	call Continue_CheckRTC_RestartClock
-	jr nc, .Check2Pass
-	jp CloseWindow
-
-.Check2Pass:
+	jp c, CloseWindow
 	call Continue_CheckEGO_ResetInitialOptions
-;	jr nc, .Check3Pass
-;	jp CloseWindow
-
-;.Check3Pass:
+;	jp c, CloseWindow
 	ld a, $8
 	ld [wMusicFade], a
 	ld a, MUSIC_NONE % $100
@@ -452,10 +443,7 @@ FinishContinueFunction: ; 5e5d
 	farcall OverworldLoop
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_LEAF
-	jr z, .AfterGreen
-	jp SoftReset
-
-.AfterGreen:
+	jp nz, SoftReset
 	call SpawnAfterGreen
 	jr .loop
 ; 5e85

@@ -394,34 +394,7 @@ ScrollTileRightLeft: ; fc309
 	ld [wTileAnimationTimer], a
 	and 4
 	jr nz, ScrollTileLeft
-	jr ScrollTileRight
-; fc318
-
-;ScrollTileUpDown: ; fc318
-;; Scroll up for 4 ticks, then down for 4 ticks.
-;	ld a, [wTileAnimationTimer]
-;	inc a
-;	and 7
-;	ld [wTileAnimationTimer], a
-;	and 4
-;	jr nz, ScrollTileDown
-;	jr ScrollTileUp
-;; fc327
-
-ScrollTileLeft: ; fc327
-	ld h, d
-	ld l, e
-	ld c, 4
-.loop
-	rept 4
-	ld a, [hl]
-	rlca
-	ld [hli], a
-	endr
-	dec c
-	jr nz, .loop
-	ret
-; fc33b
+	; fallthrough
 
 ScrollTileRight: ; fc33b
 	ld h, d
@@ -431,6 +404,21 @@ ScrollTileRight: ; fc33b
 	rept 4
 	ld a, [hl]
 	rrca
+	ld [hli], a
+	endr
+	dec c
+	jr nz, .loop
+	ret
+; fc34f
+
+ScrollTileLeft: ; fc327
+	ld h, d
+	ld l, e
+	ld c, 4
+.loop
+	rept 4
+	ld a, [hl]
+	rlca
 	ld [hli], a
 	endr
 	dec c

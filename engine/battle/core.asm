@@ -5237,6 +5237,7 @@ CheckUsableMove:
 	jr z, .got_moves
 	ld hl, wEnemyMonMoves
 .got_moves
+	ld b, 0
 	add hl, bc
 	ld b, [hl]
 	push bc

@@ -1705,7 +1705,7 @@ FlagPredef: ; 4d7c1
 
 .check
 	ld a, d
-	cp 0
+	and a
 	jr nz, .farcheck
 
 	ld a, [hl]

@@ -772,7 +772,7 @@ FindFirstAliveMonAndStartBattle: ; 2ee2f
 	add hl, de
 	ld a, [hl]
 	ld [wBattleMonLevel], a
-	predef Predef_StartBattle
+	farcall DoBattleTransition
 	farcall _LoadBattleFontsHPBar
 	ld a, 1
 	ld [hBGMapMode], a
@@ -2327,7 +2327,7 @@ FindThatSpecies: ; 4dc56
 	and a
 	ret
 
-INCLUDE "engine/stats_screen.asm"
+INCLUDE "engine/pokemon/stats_screen.asm"
 
 CatchTutorial:: ; 4e554
 	ld a, [wBattleType]
@@ -2791,7 +2791,7 @@ PrintTempMonStats: ; 50b7b
 rept 8
 	inc hl
 endr
-	predef PrintNatureIndicators
+	farcall PrintNatureIndicators
 	pop hl
 	pop bc
 

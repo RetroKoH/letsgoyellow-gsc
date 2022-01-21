@@ -422,7 +422,7 @@ DexEntryScreen_MenuActionJumptable: ; 402f2
 	call Pokedex_GetSelectedMon
 	ld a, [wDexCurrentLocation]
 	ld e, a
-	predef _Area
+	farcall Pokedex_GetArea
 	call Pokedex_BlackOutBG
 	call DelayFrame
 	xor a
@@ -2378,8 +2378,7 @@ Pokedex_LoadSelectedMonTiles: ; 4143b
 	ld [wCurPartySpecies], a
 	call GetBaseData
 	ld de, VTiles2
-	predef GetFrontpic
-	ret
+	predef_jump GetFrontpic
 
 .QuestionMark:
 	ld a, BANK(sScratch)

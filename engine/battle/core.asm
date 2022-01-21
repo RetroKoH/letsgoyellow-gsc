@@ -2066,7 +2066,7 @@ WinTrainerBattle: ; 3cfa4
 	ld a, [wBattleType]
 	cp BATTLETYPE_CANLOSE
 	jr nz, .skip_heal
-	predef HealParty
+	farcall HealParty
 .skip_heal
 	ld a, [wMonStatusFlags]
 	bit 0, a
@@ -7698,7 +7698,7 @@ ExitBattle: ; 3f69e
 	call CheckPayDay
 	xor a
 	ld [wForceEvolution], a
-	predef EvolveAfterBattle
+	farcall EvolveAfterBattle
 	farjp GivePokerusAndConvertBerries
 ; 3f6d0
 

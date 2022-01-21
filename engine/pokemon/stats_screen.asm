@@ -546,7 +546,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	hlcoord 5, 10
 	push hl
 	ld de, wTempMonStatus
-	predef PlaceStatusString
+	farcall PlaceStatusString
 	pop hl
 	jr nz, .done_status
 	jr .StatusOK
@@ -560,7 +560,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	call PlaceString
 .done_status
 	hlcoord 1, 12
-	predef PrintMonTypes
+	farcall PrintMonTypes
 	call .PlaceOTInfo
 	hlcoord 9, 8
 	ld de, SCREEN_WIDTH
@@ -595,7 +595,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld a, [wTempMonLevel]
 	ld b, a
 	ld de, wTempMonExp + 2
-	predef FillInExpBar
+	farcall FillInExpBar
 	hlcoord 10, 16
 	ld [hl], "<XP1>"
 	inc hl
@@ -772,8 +772,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	jr nz, .BluePageVerticalDivider
 	hlcoord 11, 8
 	ld bc, 6
-	predef PrintTempMonStats
-	ret
+	farjp PrintTempMonStats
 
 .PlaceNatureInfo:
 	ld de, .NatureString
@@ -783,8 +782,7 @@ StatsScreen_LoadGFX: ; 4dfb6 (13:5fb6)
 	ld b, a
 	farcall GetNature
 	hlcoord 1, 13
-	predef PrintNature
-	ret
+	farjp PrintNature
 
 .NatureString:
 	db "Nature/@"
@@ -813,10 +811,9 @@ OrangePage_:
 	farcall GetAbility
 	; PlaceString as used in PrintAbility doesn't preserve any register, so push it.
 	push bc
-	predef PrintAbility
+	farcall PrintAbility
 	pop bc
-	predef PrintAbilityDescription
-	ret
+	farjp PrintAbilityDescription
 
 .ability
 	db "Ability/@"

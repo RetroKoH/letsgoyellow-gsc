@@ -1,4 +1,4 @@
-Predef_StartBattle: ; 8c20f
+DoBattleTransition: ; 8c20f
 	call .InitGFX
 	ld a, [rBGP]
 	ld [wBGP], a

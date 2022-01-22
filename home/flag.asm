@@ -1,6 +1,6 @@
-EventFlagAction:: ; 0x2e6f
+EventFlagAction::
 	ld hl, wEventFlags
-FlagAction:: ; 0x2e76
+FlagAction::
 ; Perform action b on bit de in flag array hl.
 
 ; inputs:
@@ -12,68 +12,55 @@ FlagAction:: ; 0x2e76
 ; hl: index within bit table
 
 	; get index within the byte
-	ld a, e
-	and 7
+	ld a, 1
 
 	; shift de right by three bits (get the index within memory)
 	srl d
 	rr e
-	srl d
-	rr e
-	srl d
-	rr e
-	add hl, de
-
-	; implement a decoder
-	ld c, 1
-	rrca
 	jr nc, .one
-	rlc c
+	add a
 .one
-	rrca
+	srl d
+	rr e
 	jr nc, .two
-	rlc c
-	rlc c
+	add a
+	add a
 .two
-	rrca
+	srl d
+	rr e
 	jr nc, .three
-	swap c
+	swap a
 .three
+	add hl, de
+	ld c, a ; mimic behaviour of old FlagAction to appease legacy code
 
 	; check b's value: 0, 1, 2
-	ld a, b
-	cp 1
-	jr c, .clearbit ; 0
-	jr z, .setbit ; 1
+	inc b
+	dec b
+	jr z, .clearbit
+	dec b
+	jr z, .setbit
 
-	; check bit
-	ld a, [hl]
-	and c
-	ld c, a
-	ret
-
-.setbit
-	; set bit
-	ld a, [hl]
-	or c
-	ld [hl], a
+	; Check bit
+	and [hl]
+	ld c, a ; legacy code assumes the flag check places the result here
 	ret
 
 .clearbit
-	; clear bit
-	ld a, c
 	cpl
 	and [hl]
 	ld [hl], a
 	ret
-; 0x2ead
 
+.setbit
+	or [hl]
+	ld [hl], a
+	ret
 
-CheckReceivedDex:: ; 2ead
+CheckReceivedDex::
 	ld de, ENGINE_POKEDEX
 	ld b, CHECK_FLAG
 	farcall EngineFlagAction
 	ld a, c
 	and a
 	ret
-; 2ebb

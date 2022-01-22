@@ -1,77 +1,84 @@
 PewterGym_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  4, 13, PEWTER_CITY, 2
 	warp_event  5, 13, PEWTER_CITY, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
-	bg_event  2, 11, SIGNPOST_READ, PewterGymStatue
-	bg_event  7, 11, SIGNPOST_READ, PewterGymStatue
+	def_bg_events
+	bg_event  2, 11, BGEVENT_READ, PewterGymStatue
+	bg_event  7, 11, BGEVENT_READ, PewterGymStatue
 
-	db 4 ; object events
-	object_event  5,  1, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, LeaderBrockScript, -1
-	object_event  2,  7, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerCamperJerry, -1
-	object_event  7,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, PERSONTYPE_GENERICTRAINER, 3, GenericTrainerHikerEdwin, -1
-	object_event  6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 1, PewterGymGuyScript, -1
+	def_object_events
+	object_event  5,  1, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterGymBrockScript, -1
+	object_event  2,  7, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerCamperJerry, -1
+	object_event  7,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHikerEdwin, -1
+	object_event  6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, PewterGymGuyScript, -1
 
-LeaderBrockScript:
+PewterGymBrockScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_BOULDERBADGE
-	iftrue .BeatBrock
-	writetext PewterGymBrockIntroduction
+	iftrue .FightDone
+	writetext BrockIntroText
 	waitbutton
 	closetext
-	winlosstext PewterGymDefeatedBrockText, 0
+	winlosstext BrockWinLossText, 0
 	loadtrainer BROCK, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BROCK
 	setevent EVENT_BEAT_CAMPER_JERRY
 	setevent EVENT_BEAT_HIKER_EDWIN
-	; Remove optional rival. Can make other changes too
-	;setmapscene ROUTE_22, $2
 	opentext
-	writetext PewterGymBrockAfterBattleText
+	writetext ReceivedBoulderBadgeText
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_BOULDERBADGE
-
+	readvar VAR_BADGES
+	ifequal 9, .FirstBadge
+	ifequal 10, .SecondBadge
+	ifequal 12, .LyrasEgg
+	sjump .FightDone
+.FirstBadge:
+	specialphonecall SPECIALCALL_FIRSTBADGE
+	sjump .FightDone
+.SecondBadge:
+	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
+	iftrue .FightDone
+	specialphonecall SPECIALCALL_SECONDBADGE
+	sjump .FightDone
+.LyrasEgg:
+	specialphonecall SPECIALCALL_LYRASEGG
+.FightDone:
 	checkevent EVENT_GOT_TM48_ROCK_SLIDE
-	iftrue_jumpopenedtext PewterGymRematchText
-	writetext PewterGymTMtext
-	buttonsound
+	iftrue_jumpopenedtext BrockFightDoneText
+	writetext BrockBoulderBadgeText
+	promptbutton
 	verbosegivetmhm TM_ROCK_SLIDE
 	setevent EVENT_GOT_TM48_ROCK_SLIDE
-	writetext PewterGymDescribeTMText
-	waitbutton
-.BeatBrock:
-	thisopenedtext
-	text "There are all"
-	line "kinds of trainers"
-	cont "in the world."
+	jumpthisopenedtext
 
-	para "I'm in training to"
-	line "become a #mon"
-	cont "breeder."
-
-	para "Just wait and see."
-	line "I'm going to be-"
-	cont "come a lot strong-"
-	cont "er too."
+	text "It can sometimes"
+	line "cause your foe to"
+	cont "flinch."
 	done
 
 GenericTrainerCamperJerry:
-	generictrainer CAMPER, JERRY, EVENT_BEAT_CAMPER_JERRY, CamperLiamSeenText, CamperLiamBeatenText
+	generictrainer CAMPER, JERRY, EVENT_BEAT_CAMPER_JERRY, CamperJerrySeenText, CamperJerryBeatenText
 
-	text "You're pretty hot,"
-	line "but not as hot"
-	cont "as Brock!"
+	text "Hey, you! Trainer"
+	line "from Johto! Brock"
+
+	para "is tough. He'll"
+	line "punish you if you"
+
+	para "don't take him"
+	line "seriously."
 	done
 
 GenericTrainerHikerEdwin:
@@ -87,98 +94,100 @@ PewterGymGuyScript:
 	jumptextfaceplayer PewterGymGuyText
 
 PewterGymStatue:
-	trainertotext BROCK, 1, $1
+	gettrainername BROCK, 1, $1
 	checkflag ENGINE_BOULDERBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
 .Beaten:
 	jumpstd gymstatue2
 
-PewterGymBrockIntroduction:
-	text "I'm Brock!"
-	line "I'm Pewter's Gym"
-	cont "Leader!"
+BrockIntroText:
+	text "Brock: Wow, it's"
+	line "not often that we"
 
-	para "I believe in rock"
-	line "hard defense and"
-	cont "determination!"
+	para "get a challenger"
+	line "from Johto."
 
-	para "That's why my"
-	line "#mon are all"
-	cont "the Rock type!"
+	para "I'm Brock, the"
+	line "Pewter Gym Leader."
 
-	para "Do you still want"
-	line "to challenge me?"
-	cont "Fine then! Show"
-	cont "me your best!"
+	para "I'm an expert on"
+	line "Rock-type #mon."
+
+	para "My #mon are im-"
+	line "pervious to most"
+
+	para "physical attacks."
+	line "You'll have a hard"
+
+	para "time inflicting"
+	line "any damage."
+
+	para "Come on!"
 	done
 
-PewterGymDefeatedBrockText:
-	text "I took you for"
-	line "granted."
+BrockWinLossText:
+	text "Brock: Your #-"
+	line "mon's powerful at-"
+	cont "tacks overcame my"
+	cont "rock-hard defense…"
+
+	para "You're stronger"
+	line "than I expected…"
+
+	para "Go ahead--take"
+	line "this Badge."
 	done
 
-PewterGymBrockAfterBattleText:
-	text "As proof of your"
-	line "victory, here's"
-	cont "the Boulder Badge!"
-
-	para "<PLAYER> received"
-	line "the Boulder Badge!"
+ReceivedBoulderBadgeText:
+	text "<PLAYER> received"
+	line "the Boulder Badge."
 	done
 
-PewterGymTMtext:
-	text "Wait! Take this"
-	line "with you!"
+BrockBoulderBadgeText:
+	text "Brock: <PLAYER>,"
+	line "thanks. I enjoyed"
+
+	para "battling you, even"
+	line "though I am a bit"
+	cont "upset."
+
+	para "I'll give you the"
+	line "TM for Rock Slide,"
+	cont "too."
 	done
 
-PewterGymDescribeTMText:
-	text "A TM contains a"
-	line "technique that"
-	cont "can be taught to"
-	cont "#mon."
-	
-	para "They can be used"
-	line "again and again,"
-	cont "so put them to"
-	cont "good use when you"
-	cont "find them!"
+BrockFightDoneText:
+	text "Brock: The world"
+	line "is huge. There are"
 
-	para "That TM contains"
-	line "Rock Slide."
+	para "still many strong"
+	line "trainers like you."
 
-	para "It hits hard and"
-	line "can sometimes make"
-	cont "your foe flinch."
-	done
-
-PewterGymRematchText:
-	text "The world is huge."
-	line "There are many"
-
-	para "other trainers"
-	line "just like you."
-
-	para "I'm going to be-"
-	line "come a lot strong-"
+	para "Just wait and see."
+	line "I'm going to be-"
+	cont "come a lot strong-"
 	cont "er too."
 	done
 
-CamperLiamSeenText:
-	text "Stop right there,"
-	line "kid!"
+CamperJerrySeenText:
+	text "The trainers of"
+	line "this Gym use Rock-"
+	cont "type #mon."
 
-	para "You're still light"
-	line "years from facing"
-	cont "Brock!"
+	para "The Rock-type has"
+	line "high Defense."
+
+	para "Battles could end"
+	line "up going a long"
+
+	para "time. Are you"
+	line "ready for this?"
 	done
 
-CamperLiamBeatenText:
-	text "Darn!"
-
-	para "Light years isn't"
-	line "time! It measures"
-	cont "distance!"
+CamperJerryBeatenText:
+	text "I have to win"
+	line "these battles…"
 	done
 
 HikerEdwinSeenText:

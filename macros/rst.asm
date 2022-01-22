@@ -1,35 +1,32 @@
-FarCall    EQU $08
-Bankswitch EQU $10
-AddNTimes  EQU $18
-CopyBytes  EQU $20
-JumpTable  EQU $28
-Predef     EQU $30
-
-anonbankpush: macro
+anonbankpush: MACRO
 	call AnonBankPush
 	db BANK(\1)
-endm
+ENDM
 
-farcall: macro ; bank, address
+farcall: MACRO ; bank, address
 	rst FarCall
 	dbw BANK(\1), \1
-endm
+ENDM
 
-farjp: macro ; bank, address
+farjp: MACRO ; bank, address
 	rst FarCall
 	dbw BANK(\1) | $80, \1
-endm
+ENDM
 
-homecall: macro ; bank, address
-	ld a, [hROMBank]
+homecall: MACRO ; bank, address
+	ldh a, [hROMBank]
 	push af
-if _NARG == 2
-	ld a, \2
-else
-	ld a, BANK(\1)
-endc
+	if _NARG == 2
+		if STRIN("\2", "[h") == 1 || STRIN("\2", "[r") == 1
+			ldh a, \2
+		else
+			ld a, \2
+		endc
+	else
+		ld a, BANK(\1)
+	endc
 	rst Bankswitch
 	call \1
 	pop af
 	rst Bankswitch
-endm
+ENDM

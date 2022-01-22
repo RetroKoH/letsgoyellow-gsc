@@ -1,3 +1,11 @@
+; item ids
+; indexes for:
+; - ItemNames (see data/items/names.asm)
+; - ItemNameOrder (see data/items/name_order.asm)
+; - ItemDescriptions (see data/items/descriptions.asm)
+; - ItemAttributes (see data/items/attributes.asm)
+; - ItemIconPointers (see data/items/icon_pointers.asm)
+; - ItemEffects (see engine/items/item_effects.asm)
 	const_def
 	const NO_ITEM      ; 00
 
@@ -16,7 +24,7 @@
 	const HEAVY_BALL   ; 0b
 	const LOVE_BALL    ; 0c
 
-	const PARK_BALL    ; 0d
+	const ABILITYPATCH ; 0d
 
 	const REPEAT_BALL  ; 0e
 	const TIMER_BALL   ; 0f
@@ -277,7 +285,7 @@
 
 	const MULCH        ; f2
 	const SWEET_HONEY  ; f3
-	const MINT         ; f4
+	const MINT_LEAF    ; f4
 
 	const FLOWER_MAIL  ; f5
 	const SURF_MAIL    ; f6
@@ -289,14 +297,18 @@
 	const BLUESKY_MAIL ; fc
 	const MUSIC_MAIL   ; fd
 	const MIRAGE_MAIL  ; fe
-NUM_ITEMS EQU const_value +- 1
+NUM_ITEMS EQU const_value - 1
 
-	const ITEM_FROM_MEM ; ff
+PARK_BALL      EQU $00
+USE_SCRIPT_VAR EQU $00
+ITEM_FROM_MEM  EQU $ff
+ALWAYS_ITEM_2  EQU $ff
 
-; See data/items/name_order.asm
+; Alphabetical order (see data/items/name_order.asm)
 	const_def
 	const NAM_NO_ITEM
 	const NAM_ABILITY_CAP
+	const NAM_ABILITYPATCH
 	const NAM_ABSORB_BULB
 	const NAM_AIR_BALLOON
 	const NAM_AMULET_COIN
@@ -323,6 +335,9 @@ NUM_ITEMS EQU const_value +- 1
 	const NAM_BRICK_PIECE
 	const NAM_BRIGHTPOWDER
 	const NAM_BURN_HEAL
+if !DEF(FAITHFUL)
+	const NAM_RAGECANDYBAR ; Cake of Rage
+endc
 	const NAM_CALCIUM
 	const NAM_CARBOS
 	const NAM_CELL_BATTERY
@@ -431,7 +446,7 @@ NUM_ITEMS EQU const_value +- 1
 	const NAM_METAL_COAT
 	const NAM_METAL_POWDER
 	const NAM_METRONOME_I
-	const NAM_MINT
+	const NAM_MINT_LEAF
 	const NAM_MIRACLE_SEED
 	const NAM_MIRAGE_MAIL
 	const NAM_MOOMOO_MILK
@@ -450,7 +465,6 @@ NUM_ITEMS EQU const_value +- 1
 	const NAM_OLD_AMBER
 	const NAM_ORAN_BERRY
 	const NAM_PARALYZEHEAL
-	const NAM_PARK_BALL
 	const NAM_PEARL
 	const NAM_PEARL_STRING
 	const NAM_PECHA_BERRY
@@ -481,7 +495,9 @@ NUM_ITEMS EQU const_value +- 1
 	const NAM_QUICK_BALL
 	const NAM_QUICK_CLAW
 	const NAM_QUICK_POWDER
+if DEF(FAITHFUL)
 	const NAM_RAGECANDYBAR
+endc
 	const NAM_RARE_BONE
 	const NAM_RARE_CANDY
 	const NAM_RAWST_BERRY
@@ -560,9 +576,14 @@ NUM_ITEMS EQU const_value +- 1
 	const WHT_APRICORN ; 5
 	const BLK_APRICORN ; 6
 	const PNK_APRICORN ; 7
-NUM_APRICORNS EQU const_value +- 1
+NUM_APRICORNS EQU const_value - 1
 
-; Key Item constants
+; key item ids
+; indexes for:
+; - KeyItemNames (see data/items/key_names.asm)
+; - KeyItemDescriptions (see data/items/descriptions.asm)
+; - KeyItemAttributes (see data/items/attributes.asm)
+; - KeyItemEffects (see engine/items/item_effects.asm)
 	const_def
 	const BICYCLE      ; 00
 	const OLD_ROD      ; 01
@@ -571,7 +592,7 @@ NUM_APRICORNS EQU const_value +- 1
 	const COIN_CASE    ; 04
 	const ITEMFINDER   ; 05
 	const MYSTERY_EGG  ; 06
-	const OAKS_PARCEL  ; 07 * Changed
+	const SQUIRTBOTTLE ; 07
 	const SECRETPOTION ; 08
 	const RED_SCALE    ; 09
 	const CARD_KEY     ; 0a
@@ -593,4 +614,5 @@ NUM_APRICORNS EQU const_value +- 1
 	const CATCH_CHARM  ; 1a
 	const SILPHSCOPE2  ; 1b
 	const APRICORN_BOX ; 1c
+	const TYPE_CHART   ; 1d
 NUM_KEY_ITEMS EQU const_value

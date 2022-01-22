@@ -1,22 +1,4 @@
-_AddNTimes:: ; 0x30fe
-; Add bc * a to hl. Don't optimize this for space.
-	and a
-	ret z
-
-	push bc
-.loop
-	rra ; and a from below and above resets carry
-	jr nc, .noadd
-	add hl, bc
-.noadd
-	sla c
-	rl b
-	and a
-	jr nz, .loop
-	pop bc
-	ret
-
-SimpleMultiply:: ; 3105
+SimpleMultiply::
 ; Return a * c.
 	and a
 	ret z
@@ -30,8 +12,6 @@ SimpleMultiply:: ; 3105
 	jr nz, .loop
 	pop bc
 	ret
-; 3110
-
 
 SimpleDivide::
 ; Divide a by c. Return quotient b and remainder a.
@@ -39,37 +19,29 @@ SimpleDivide::
 	dec c
 	jr z, .div0
 	ld b, 0
-	and a
-	ret z
 .loop
 	inc b
 	sub c
 	jr nc, .loop
-	ret z
-	add c
 	dec b
+	add c
 	ret
 .div0
-	rst 0 ; crash
+	ld a, ERR_DIV_ZERO
+	jmp Crash
 
-
-Multiply:: ; 3119
+Multiply::
 ; Multiply hMultiplicand (3 bytes) by hMultiplier. Result in hProduct.
 ; All values are big endian.
 	push hl
-	push bc
 	push de
+	push bc
 
 	farcall _Multiply
 
-	pop de
-	pop bc
-	pop hl
-	ret
-; 3124
+	jmp PopBCDEHL
 
-
-Divide:: ; 3124
+Divide::
 ; Divide hDividend length b (max 4 bytes) by hDivisor. Result in hQuotient.
 ; All values are big endian.
 	push hl
@@ -78,8 +50,22 @@ Divide:: ; 3124
 
 	homecall _Divide
 
+	jmp PopBCDEHL
+
+MultiplyAndDivide::
+; a = $xy: multiply multiplicands by x, then divide by y
+; Used for damage modifiers, catch rate modifiers, etc.
+	push bc
+	ld b, a
+	swap a
+	and $f
+	ld c, LOW(hMultiplier)
+	ldh [c], a
+	call Multiply
+	ld a, b
+	and $f
+	ldh [c], a
+	ld b, 4
+	call Divide
 	pop bc
-	pop de
-	pop hl
 	ret
-; 3136

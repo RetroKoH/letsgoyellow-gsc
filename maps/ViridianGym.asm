@@ -1,23 +1,29 @@
 ViridianGym_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  6, 45, VIRIDIAN_CITY, 1
 	warp_event  7, 45, VIRIDIAN_CITY, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 2 ; bg events
-	bg_event  4, 43, SIGNPOST_READ, ViridianGymStatue
-	bg_event  9, 43, SIGNPOST_READ, ViridianGymStatue
+	def_bg_events
+	bg_event  4, 43, BGEVENT_READ, ViridianGymStatue
+	bg_event  9, 43, BGEVENT_READ, ViridianGymStatue
 
-	db 2 ; object events
-	object_event  7,  2, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BlueScript_0x9aa26, EVENT_VIRIDIAN_GYM_BLUE
-	object_event  8, 43, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
+	def_object_events
+	object_event  7,  2, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
+	object_event  8, 43, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
+	object_event  7, 35, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoAraandbela1, -1
+	object_event  6, 35, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoAraandbela2, -1
+	object_event  3, 34, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainerfSalma, -1
+	object_event  3, 20, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainerfBonita, -1
+	object_event  6,  8, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoElanandida1, -1
+	object_event  7,  8, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoElanandida2, -1
 
-BlueScript_0x9aa26:
+ViridianGymBlueScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_EARTHBADGE
@@ -44,7 +50,7 @@ BlueScript_0x9aa26:
 	checkevent EVENT_GOT_TM71_STONE_EDGE
 	iftrue_jumpopenedtext LeaderBlueEpilogueText
 	writetext LeaderBlueAfterText
-	buttonsound
+	promptbutton
 	verbosegivetmhm TM_STONE_EDGE
 	setevent EVENT_GOT_TM71_STONE_EDGE
 	jumpopenedtext BlueOutroText
@@ -54,8 +60,61 @@ ViridianGymGuyScript:
 	iftrue_jumptextfaceplayer ViridianGymGuyWinText
 	jumptextfaceplayer ViridianGymGuyText
 
+GenericTrainerAceDuoAraandbela1:
+	generictrainer ACE_DUO, ARAANDBELA1, EVENT_BEAT_ACE_DUO_ARA_AND_BELA, AceDuoAraandbela1SeenText, AceDuoAraandbela1BeatenText
+
+	text "Ara: Me, I should"
+	line "be a pretty good"
+	cont "practice partner…"
+	done
+
+GenericTrainerAceDuoAraandbela2:
+	generictrainer ACE_DUO, ARAANDBELA2, EVENT_BEAT_ACE_DUO_ARA_AND_BELA, AceDuoAraandbela2SeenText, AceDuoAraandbela2BeatenText
+
+	text "Bela: Our practice"
+	line "battles didn't pre-"
+	cont "pare us for this."
+	done
+
+GenericTrainerCooltrainerfSalma:
+	generictrainer COOLTRAINERF, SALMA, EVENT_BEAT_COOLTRAINERF_SALMA, CooltrainerfSalmaSeenText, CooltrainerfSalmaBeatenText
+
+	text "There are many"
+	line "Gyms in the world,"
+
+	para "but I really like"
+	line "this one!"
+	done
+
+GenericTrainerCooltrainerfBonita:
+	generictrainer COOLTRAINERF, BONITA, EVENT_BEAT_COOLTRAINERF_BONITA, CooltrainerfBonitaSeenText, CooltrainerfBonitaBeatenText
+
+	text "Looks like you've"
+	line "still got some"
+	cont "energy left."
+	done
+
+GenericTrainerAceDuoElanandida1:
+	generictrainer ACE_DUO, ELANANDIDA1, EVENT_BEAT_ACE_DUO_ELAN_AND_IDA, AceDuoElanandida1SeenText, AceDuoElanandida1BeatenText
+
+	text "Elan: You're"
+	line "stronger than we"
+	cont "anticipated!"
+	done
+
+GenericTrainerAceDuoElanandida2:
+	generictrainer ACE_DUO, ELANANDIDA2, EVENT_BEAT_ACE_DUO_ELAN_AND_IDA, AceDuoElanandida2SeenText, AceDuoElanandida2BeatenText
+
+	text "Ida: If all you"
+	line "have is strength,"
+	cont "you won't do well."
+
+	para "Strategy is also"
+	line "important!"
+	done
+
 ViridianGymStatue:
-	trainertotext BLUE, 1, $1
+	gettrainername BLUE, 1, $1
 	checkflag ENGINE_EARTHBADGE
 	iftrue .Beaten
 	jumpstd gymstatue1
@@ -201,3 +260,75 @@ ViridianGymGuyWinText:
 	para "battle. It brought"
 	line "tears to my eyes."
 	done
+
+AceDuoAraandbela1SeenText:
+	text "Ara: Come on,"
+	line "fight us and see"
+	cont "how good we are!"
+	done
+
+AceDuoAraandbela1BeatenText:
+	text "Ara: We were"
+	line "deceived!"
+	done
+
+AceDuoAraandbela2SeenText:
+	text "Bela: Come on,"
+	line "fight us and see"
+	cont "how good we are!"
+	done
+
+AceDuoAraandbela2BeatenText:
+	text "Bela: We were"
+	line "deceived!"
+	done
+
+CooltrainerfSalmaSeenText:
+	text "What do you think?"
+
+	para "You've never seen"
+	line "such a wonderful"
+	cont "Gym, have you?"
+	done
+
+CooltrainerfSalmaBeatenText:
+	text "Whatever!"
+	done
+
+CooltrainerfBonitaSeenText:
+	text "Looking around the"
+	line "room, doesn't it"
+	cont "make you dizzy?"
+	done
+
+CooltrainerfBonitaBeatenText:
+	text "All of my #mon…"
+
+	para "All dizzy and"
+	line "fainting…"
+	done
+
+AceDuoElanandida1SeenText:
+	text "Elan: All right,"
+	line "let's get this"
+	cont "fight started!"
+	done
+
+AceDuoElanandida1BeatenText:
+	text "Elan: Well, this"
+	line "is surprising."
+	done
+
+AceDuoElanandida2SeenText:
+	text "Ida: I'm Ida! Next"
+	line "to me is Elan!"
+
+	para "Together, we're an"
+	line "Ace Duo!"
+	done
+
+AceDuoElanandida2BeatenText:
+	text "Ida: Wow. You're"
+	line "really something."
+	done
+

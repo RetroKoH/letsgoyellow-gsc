@@ -1,5 +1,0 @@
-INCLUDE "contents/rom0.link"
-INCLUDE "contents/romx.link"
-INCLUDE "contents/wram.link"
-INCLUDE "contents/sram.link"
-INCLUDE "contents/vram.link"

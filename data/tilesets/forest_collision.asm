@@ -1,4 +1,4 @@
-	tilecoll WALL, WALL, WALL, WALL ; 00
+	tilecoll VOID, VOID, VOID, VOID ; 00
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 01
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 02
 	tilecoll TALL_GRASS, TALL_GRASS, TALL_GRASS, TALL_GRASS ; 03
@@ -161,3 +161,6 @@
 	tilecoll WALL, WALL, WALL, WALL ; a0
 	tilecoll WALL, WALL, WALL, WALL ; a1
 	tilecoll BUOY, BUOY, WATER, WATER ; a2
+	tilecoll TOP_WALL, WALL, HEADBUTT_TREE, WALL ; a3
+	tilecoll WALL, HEADBUTT_TREE, WALL, WALL ; a4
+	tilecoll HEADBUTT_TREE, WALL, WALL, WALL ; a5

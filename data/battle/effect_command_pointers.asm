@@ -1,25 +1,21 @@
-command: macro
-	enum \1_command
-\1 equs "db \1_command"
+command: MACRO
+	const \1_command
+\1 EQUS "db \1_command"
 	dw BattleCommand_\1
-endm
+ENDM
 
-commandx: macro
-	enum \1_command
-\1_macro: macro
-	db \1
-	db \2
-endm
-\1 equs "\1_macro \1_command,"
+commandx: MACRO
+	const \1_command
+\1 EQUS "db \1_command,"
 	dw BattleCommand_\1
-endm
+ENDM
 
-commandonly: macro
-	enum \1_command
-\1 equs "db \1_command"
-endm
+commandonly: MACRO
+	const \1_command
+\1 EQUS "db \1_command"
+ENDM
 
-	enum_start 1
+	const_def 1
 
 BattleCommandPointers:
 	command checkturn
@@ -32,16 +28,16 @@ BattleCommandPointers:
 	command damagevariation
 	command checkhit
 	command lowersub
-	command hittargetnosub
+	command moveanimnosub
 	command raisesub
 	command failuretext
-	command checkfaint
+	command applydamage
 	command criticaltext
 	command supereffectivetext
 	command postfainteffects
 	command posthiteffects
 	command poisontarget
-	command sleeptarget
+	command sleep
 	command draintarget
 	command eatdream
 	command burntarget
@@ -51,7 +47,7 @@ BattleCommandPointers:
 	command payday
 	command conversion
 	command resetstats
-	command forceswitch
+	command roar
 	command endloop
 	command flinchtarget
 	command recoil
@@ -71,14 +67,14 @@ BattleCommandPointers:
 	command disable
 	command cleartext
 	command charge
-	command checkcharge
 	command traptarget
 	command growth
 	command rampage
-	command checkrampage
 	command constantdamage
 	command counter
 	command encore
+	command painsplit
+	command sketch
 	command sleeptalk
 	command destinybond
 	command falseswipe
@@ -89,14 +85,14 @@ BattleCommandPointers:
 	command thief
 	command arenatrap
 	command defrost
-	command taunt
+	command curse
 	command protect
 	command spikes
 	command foresight
+	command perishsong
 	command startsandstorm
 	command starthail
 	command endure
-	command checkcurl
 	command rolloutpower
 	command conditionalboost
 	command attract
@@ -109,10 +105,11 @@ BattleCommandPointers:
 	command pursuit
 	command clearhazards
 	command healweather
-	command weatherball
+	command hiddenpower
 	command startrain
 	command startsun
 	command effectchance
+	command selfeffectchance
 	command switchturn
 	command bellydrum
 	command rage
@@ -121,27 +118,26 @@ BattleCommandPointers:
 	command checkfuturesight
 	command futuresight
 	command doubleminimizedamage
-	command skipsuncharge
 	command thunderaccuracy
 	command teleport
 	command switchout
-	command furycutter
 	command resettypematchup
-	command allstatsup
 	command raisesubnoanim
 	command lowersubnoanim
 	command clearmissdamage
 	command movedelay
-	command hittarget
+	command moveanim
 	command tristatuschance
 	command startloop
 	command curl
+	command minimize
 	command burn
 	command bounceback
 	command suckerpunch
-	command ohko
+	command toxicspikes
 	command roost
-	command mimic
+	command skillswap
+	command trick
 	command knockoff
 	command bugbite
 	command toxic
@@ -172,9 +168,11 @@ BattleCommandPointers:
 	commandx raiseoppstathit
 	commandx loweroppstathit
 
+NUM_EFFECT_COMMANDS EQU const_value - 1
+
 FIRST_MOVEARG_COMMAND EQU raisestat_command
 LAST_MOVEARG_COMMAND EQU loweroppstathit_command
 
-	enum_start -1, -1
+	const_def $ff, -1
 	commandonly endmove
 	commandonly endturn

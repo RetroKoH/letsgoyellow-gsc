@@ -1,25 +1,25 @@
 BillsHouse_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, CERULEAN_CAPE, 1
 	warp_event  3,  7, CERULEAN_CAPE, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 3 ; bg events
-	bg_event  6,  1, SIGNPOST_READ, PokemonJournalBillScript
-	bg_event  7,  1, SIGNPOST_READ, PokemonJournalBillScript
-	bg_event  5,  1, SIGNPOST_JUMPTEXT, BillsHousePCText
+	def_bg_events
+	bg_event  6,  1, BGEVENT_READ, PokemonJournalBillScript
+	bg_event  7,  1, BGEVENT_READ, PokemonJournalBillScript
+	bg_event  5,  1, BGEVENT_JUMPTEXT, BillsHousePCText
 
-	db 1 ; object events
-	object_event  2,  3, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, BillsHouseBillScript, EVENT_NEVER_MET_BILL
+	def_object_events
+	object_event  2,  3, SPRITE_BILL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BillsHouseBillScript, EVENT_NEVER_MET_BILL
 
 PokemonJournalBillScript:
 	setflag ENGINE_READ_BILL_JOURNAL
-	thistext
+	jumpthistext
 
 	text "#mon Journal"
 
@@ -58,12 +58,12 @@ BillsHouseBillScript:
 	writetext .SeenText
 	waitbutton
 	closetext
-;	winlosstext .BeatenText, 0
-;	loadtrainer BILL_T, 1
-;	startbattle
-;	reloadmapafterbattle
+	winlosstext .BeatenText, 0
+	loadtrainer BILL_T, 1
+	startbattle
+	reloadmapafterbattle
 	setevent EVENT_BEAT_POKEMANIAC_BILL
-	thistext
+	jumpthistext
 
 .AfterText:
 	text "That was one rad"

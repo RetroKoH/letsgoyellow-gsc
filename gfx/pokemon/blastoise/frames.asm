@@ -19,4 +19,3 @@
 .frame4
 	db $03 ; bitmask
 	db $5e
-; 0xd43dd

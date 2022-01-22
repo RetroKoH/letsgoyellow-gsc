@@ -1,11 +1,12 @@
-	const_def
-	const GROTTODATA_WARP
-	const GROTTODATA_ITEM
-	const GROTTODATA_MON1
-	const GROTTODATA_MON2
-	const GROTTODATA_MON3
-	const GROTTODATA_MON4
-	const GROTTODATA_MONLEVEL
+rsreset
+GROTTODATA_WARP     rb
+GROTTODATA_ITEM     rb
+GROTTODATA_MON1     rb
+GROTTODATA_MON2     rb
+GROTTODATA_MON3     rb
+GROTTODATA_MON4     rb
+GROTTODATA_MONLEVEL rb
+GROTTODATA_LENGTH EQU _RS
 
 InitializeHiddenGrotto::
 ; store backup warp number
@@ -80,7 +81,7 @@ InitializeHiddenGrotto::
 	ld a, d
 .Done:
 ; return content type
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	ret
 
 INCLUDE "data/events/hidden_grottoes/probabilities.asm"
@@ -97,7 +98,7 @@ GetHiddenGrottoTableEntry:
 .ok
 	ld a, [hli]
 	cp -1
-	ld a, $0 ; not xor a; preserve carry flag
+	ld a, 0
 	ret z
 	ld a, [hl]
 	ret
@@ -109,7 +110,7 @@ TryResetHiddenGrottoes:
 	xor a
 	ld hl, wHiddenGrottoContents
 	ld bc, NUM_HIDDEN_GROTTOES * 2
-	call ByteFill
+	rst ByteFill
 	ld hl, wDailyFlags4
 	set 5, [hl] ; ENGINE_ALL_HIDDEN_GROTTOES
 	ret
@@ -120,7 +121,7 @@ EmptiedHiddenGrotto:
 	ret
 
 GetHiddenGrottoDataMember:
-	ld bc, HiddenGrotto2 - HiddenGrotto1
+	ld bc, GROTTODATA_LENGTH
 	jr AddCurHiddenGrottoTimes
 
 GetHiddenGrottoContentPointer:
@@ -136,7 +137,7 @@ GetHiddenGrottoContents::
 	call GetHiddenGrottoContentPointer
 	inc hl
 	ld a, [hl]
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	ret
 
 GetCurHiddenGrottoLevel::

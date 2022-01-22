@@ -32,4 +32,3 @@
 .frame8
 	db $07 ; bitmask
 	db $4b, $4c
-; 0xd55e9

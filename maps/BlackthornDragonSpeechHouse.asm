@@ -1,16 +1,36 @@
 BlackthornDragonSpeechHouse_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, BLACKTHORN_CITY, 2
 	warp_event  3,  7, BLACKTHORN_CITY, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
+	bg_event  7,  1, BGEVENT_JUMPSTD, difficultbookshelf
 
-	db 0 ; object events
+	def_object_events
+	object_event  2,  3, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, BlackthornDragonSpeechHouseGrannyText, -1
+	pokemon_event  5,  5, DRATINI, -1, -1, PAL_NPC_BLUE, BlackthornDragonSpeechHouseDratiniText, -1
 
-	const_def 1 ; object constants
+BlackthornDragonSpeechHouseGrannyText:
+	text "A clan of trainers"
+	line "who can freely"
+
+	para "command dragons"
+	line "live right here in"
+	cont "Blackthorn."
+
+	para "As a result, there"
+	line "are many legends"
+
+	para "about dragons in"
+	line "this town."
+	done
+
+BlackthornDragonSpeechHouseDratiniText:
+	text "Dratini: Draa!"
+	done

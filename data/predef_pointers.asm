@@ -1,12 +1,9 @@
 PredefPointers::
-; $4b Predef pointers
-; address, bank
 	add_predef LearnMove
 	add_predef FlagPredef
 	add_predef ComputeHPBarPixels
 	add_predef FillPP
 	add_predef TryAddMonToParty
-	add_predef SentGetPkmnIntoFromBox
 	add_predef AnimateHPBar
 	add_predef CalcPkmnStats
 	add_predef CalcPkmnStatC
@@ -30,8 +27,11 @@ PredefPointers::
 	add_predef GetFrontpic
 	add_predef GetBackpic
 	add_predef FrontpicPredef
-	add_predef DecompressPredef
 	add_predef LoadMonAnimation
 	add_predef AnimateFrontpic
 	add_predef HOF_AnimateFrontpic
 	add_predef DoKeyItemEffect
+	add_predef SubtractHPFromUser
+	add_predef GetUserItemAfterUnnerve
+	add_predef ChangeHappiness
+	add_predef RemoveMonFromParty

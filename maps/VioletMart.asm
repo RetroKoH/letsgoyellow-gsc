@@ -1,16 +1,43 @@
 VioletMart_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, VIOLET_CITY, 1
 	warp_event  3,  7, VIOLET_CITY, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; object events
+	def_object_events
+	mart_clerk_event  1,  3, MARTTYPE_STANDARD, MART_VIOLET
+	object_event  7,  6, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, VioletMartGrannyText, -1
+	object_event  5,  2, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, VioletMartCooltrainerMText, -1
 
-	const_def 1 ; object constants
+VioletMartGrannyText:
+	text "When you first"
+	line "catch a #mon,"
+	cont "it may be weak."
+
+	para "But it will even-"
+	line "tually grow to be"
+	cont "strong."
+
+	para "It's important to"
+	line "treat #mon with"
+	cont "love."
+	done
+
+VioletMartCooltrainerMText:
+	text "#mon can hold"
+	line "items like Potion"
+	cont "and Antidote."
+
+	para "But they don't"
+	line "appear to know how"
+
+	para "to use man-made"
+	line "items."
+	done

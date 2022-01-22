@@ -1,32 +1,37 @@
+; TypeNames indexes (see data/types/names.asm)
+; also used in:
+; - PokedexTypeSearchConversionTable (see data/types/search_types.asm)
+; - PokedexTypeSearchStrings (see data/types/search_strings.asm)
+; - TypeMatchups (see data/types/type_matchups.asm)
+; - InverseTypeMatchups (see data/types/type_matchups.asm)
 	const_def
-MOVE_TYPES EQU const_value
-	; Type order matters for Hidden Power
-	const NORMAL    ; 0
-	const FIGHTING  ; 1
-	const FLYING    ; 2
-	const POISON    ; 3
-	const GROUND    ; 4
-	const ROCK      ; 5
-	const BUG       ; 6
-	const GHOST     ; 7
-	const STEEL     ; 8
-	const FIRE      ; 9
-	const WATER     ; 10
-	const GRASS     ; 11
-	const ELECTRIC  ; 12
-	const PSYCHIC   ; 13
-	const ICE       ; 14
-	const DRAGON    ; 15
-	const DARK      ; 16
-	const FAIRY     ; 17
-	const UNKNOWN_T ; 18
+	; Type order matters for Hidden Power and non-PSS category
+	const NORMAL    ; 00
+	const FIGHTING  ; 01
+	const FLYING    ; 02
+	const POISON    ; 03
+	const GROUND    ; 04
+	const ROCK      ; 05
+	const BUG       ; 06
+	const GHOST     ; 07
+	const STEEL     ; 08
+SPECIAL_TYPES EQU const_value
+	const FIRE      ; 09
+	const WATER     ; 0a
+	const GRASS     ; 0b
+	const ELECTRIC  ; 0c
+	const PSYCHIC   ; 0d
+	const ICE       ; 0e
+	const DRAGON    ; 0f
+	const DARK      ; 10
+	const FAIRY     ; 11
+	const UNKNOWN_T ; 12
+NUM_TYPES EQU const_value
 
-TYPES_END EQU const_value
-
+; categories
 	const_def
-MOVE_CATEGORIES EQU const_value
 	const PHYSICAL
 	const SPECIAL
 	const STATUS
 
-CATEGORIES_END EQU const_value
+POKEDEX_TYPE_STRING_LENGTH EQU 9

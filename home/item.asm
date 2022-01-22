@@ -1,44 +1,21 @@
-TossItem:: ; 2f53
+DoItemEffect::
+	farjp _DoItemEffect
+
+TossItem::
 	push hl
 	push de
 	push bc
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_TossItem)
-	rst Bankswitch
+	farcall _TossItem
+	jmp PopBCDEHL
 
-	call _TossItem
-
-	pop bc
-	ld a, b
-	rst Bankswitch
-	pop bc
-	pop de
-	pop hl
-	ret
-; 2f66
-
-ReceiveItem:: ; 2f66
-	push bc
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_ReceiveItem)
-	rst Bankswitch
+ReceiveItem::
 	push hl
 	push de
+	push bc
+	farcall _ReceiveItem
+	jmp PopBCDEHL
 
-	call _ReceiveItem
-
-	pop de
-	pop hl
-	pop bc
-	ld a, b
-	rst Bankswitch
-	pop bc
-	ret
-; 2f79
-
-ReceiveTMHM:: ; d3c4
+ReceiveTMHM::
 	ld a, [wCurTMHM]
 	ld e, a
 	ld d, 0
@@ -48,27 +25,14 @@ ReceiveTMHM:: ; d3c4
 	scf
 	ret
 
-CheckItem:: ; 2f79
+CheckItem::
 	push hl
 	push de
 	push bc
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_CheckItem)
-	rst Bankswitch
+	farcall _CheckItem
+	jmp PopBCDEHL
 
-	call _CheckItem
-
-	pop bc
-	ld a, b
-	rst Bankswitch
-	pop bc
-	pop de
-	pop hl
-	ret
-; 2f8c
-
-CheckTMHM:: ; d3fb
+CheckTMHM::
 	ld a, [wCurTMHM]
 	ld e, a
 	ld d, 0
@@ -81,26 +45,14 @@ CheckTMHM:: ; d3fb
 
 CountItem::
 	push bc
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(_CountItem)
-	rst Bankswitch
 	push hl
 	push de
-
-	call _CountItem
+	farcall _CountItem
 	ld a, b
 	ld [wBuffer1], a
 	ld a, c
 	ld [wBuffer2], a
-
-	pop de
-	pop hl
-	pop bc
-	ld a, b
-	rst Bankswitch
-	pop bc
-	ret
+	jmp PopBCDEHL
 
 ReceiveKeyItem::
 	ld a, [wCurKeyItem]
@@ -134,7 +86,7 @@ CheckKeyItem::
 	ret
 
 CheckUniqueItemPocket::
-	ld a, [wCurrPocket]
+	ld a, [wCurPocket]
 	cp TM_HM - 1
 	ret z
 	cp KEY_ITEM - 1

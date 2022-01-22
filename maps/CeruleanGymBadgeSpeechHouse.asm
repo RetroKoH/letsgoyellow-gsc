@@ -1,18 +1,18 @@
 CeruleanGymBadgeSpeechHouse_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, CERULEAN_CITY, 1
 	warp_event  3,  7, CERULEAN_CITY, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 1 ; object events
-	object_event  2,  3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, CeruleanGymBadgeSpeechHouseGentlemanScript, -1
+	def_object_events
+	object_event  2,  3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CeruleanGymBadgeSpeechHouseGentlemanScript, -1
 
 CeruleanGymBadgeSpeechHouseGentlemanScript:
 	checkevent EVENT_INTRODUCED_TO_CERULEAN_MAN
@@ -22,7 +22,7 @@ CeruleanGymBadgeSpeechHouseGentlemanScript:
 	writetext .Text1
 	waitbutton
 	setevent EVENT_INTRODUCED_TO_CERULEAN_MAN
-	thisopenedtext
+	jumpthisopenedtext
 
 .Text2:
 	text "You're collecting"
@@ -35,7 +35,7 @@ CeruleanGymBadgeSpeechHouseGentlemanScript:
 	line "burglaries a few"
 
 	para "years back, so now"
-	line "everyone's super-"
+	line "everyone's super"
 	cont "cautious."
 
 	para "Who are you?"

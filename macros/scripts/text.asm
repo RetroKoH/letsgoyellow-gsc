@@ -1,109 +1,52 @@
-text   EQUS "db \"<START>\"," ; Start writing text.
-next   EQUS "db \"<NL>\","    ; Move a line down.
-next1  EQUS "db \"<LNBRK>\"," ; Move a line down (without line spacing)
+text_start EQUS "db \"<START>\"" ; Enter text writing mode.
+text   EQUS "db "             ; Start writing text.
+next1  EQUS "db \"<LNBRK>\"," ; Move one screen row down.
+next   EQUS "db \"<NEXT>\","  ; Move one line down (two rows).
 line   EQUS "db \"<LINE>\","  ; Start writing at the bottom line.
-page   EQUS "db \"@\","       ; Start a new Pokedex page.
-para   EQUS "db \"<PARA>\","  ; Start a new paragraph.
 cont   EQUS "db \"<CONT>\","  ; Scroll to the next line.
+para   EQUS "db \"<PARA>\","  ; Start a new paragraph.
 done   EQUS "db \"<DONE>\""   ; End a text box.
 prompt EQUS "db \"<PROMPT>\"" ; Prompt the player to end a text box (initiating some other event).
+page   EQUS "db \"@\","       ; Start a new Pokedex page.
 
-text_from_ram: macro
+text_ram: MACRO
 	db "<RAM>"
 	dw \1
-endm
-
-text_bcd: macro
-	db "<BCD>"
-	dw \1
-	db \2
-endm
-
-text_move: macro
-	db "<MOVE>"
-	dw \1
-endm
-
-text_box: macro
-	db "<BOX>"
-	dw \1
-	db \2, \3
 ENDM
 
-text_low: macro
-	db "<LOW>"
-endm
-
-text_waitbutton: macro
+text_promptbutton: MACRO
 	db "<WAIT>"
-endm
+ENDM
 
-text_scroll: macro
-	db "<SCROLL>"
-endm
-
-start_asm: macro
+text_asm: MACRO
 	db "<ASM>"
-endm
+ENDM
 
-deciram: macro
+text_decimal: MACRO
 	db "<NUM>"
 	dw \1 ; address
 	dn \2, \3 ; bytes, digits
-endm
+ENDM
 
-interpret_data: macro
-	db "<EXIT>"
-endm
+text_pause: MACRO
+	db "<PAUSE>"
+ENDM
 
-sound_dex_fanfare_50_79: macro
-	db "<DEX2>"
-endm
+text_sound: MACRO
+	db "<SOUND>"
+	db \1 ; sfx
+ENDM
 
-limited_interpret_data: macro
-	db "<DOTS>"
-	db \1
-endm
-
-link_wait_button: macro
-	db "<LINK>"
-endm
-
-sound_dex_fanfare_20_49: macro
-	db "<DEX1>"
-endm
-
-sound_item: macro
-	db "<ITEM>"
-endm
-
-sound_caught_mon: macro
-	db "<CAUGHT>"
-endm
-
-sound_dex_fanfare_80_109: macro
-	db "<DEX3>"
-endm
-
-sound_fanfare: macro
-	db "<BEEP>"
-endm
-
-sound_slot_machine_start: macro
-	db "<SLOTS>"
-endm
-
-text_buffer: macro
-	db "<BUFFER>"
-	db \1
-endm
-
-current_day: macro
+text_today: MACRO
 	db "<DAY>"
-endm
+ENDM
 
-text_jump: MACRO
+text_far: MACRO
 	db "<FAR>"
 	dw \1
 	db BANK(\1)
+ENDM
+
+text_end: MACRO
+	db "@"
 ENDM

@@ -1,7 +1,7 @@
 ; Pokémon OR/AS - Battle! Wally
 ; Demixed by Mmmmmm
 ; https://pastebin.com/7vneX9pj
-; https://hax.iimarck.us/topic/6777/4/
+; https://hax.iimarckus.org/topic/6777/4/
 
 Music_WallyBattleORAS:
 	musicheader 4, 1, Music_WallyBattleORAS_Ch1
@@ -289,7 +289,6 @@ Music_WallyBattleORAS_Ch2_loop_1:
 	note F#, 5
 	dutycycle 0
 	loopchannel 0, Music_WallyBattleORAS_Ch2
-
 
 Music_WallyBattleORAS_Ch2_branch_1:
 	notetype $c, $b7

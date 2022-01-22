@@ -3,11 +3,18 @@ CheckFaint:
 
 HandleBetweenTurnEffects:
 ; Things handled at endturn. Things commented out are currently not in Polished.
+	ld hl, wTotalBattleTurns
+	inc [hl]
+	jr nz, .done_turn_increment
+	dec [hl]
+
+.done_turn_increment
 	call CheckFaint
 	ret c
 	call HandleWeather
 	call CheckFaint
 	ret c
+	; Self-curing status from high Affection
 	call HandleFutureSight
 	call CheckFaint
 	ret c
@@ -15,6 +22,8 @@ HandleBetweenTurnEffects:
 	call HandleEndturnBlockA
 	call CheckFaint
 	ret c
+	; aqua ring
+	; ingrain
 	call HandleLeechSeed
 	call CheckFaint
 	ret c
@@ -24,32 +33,52 @@ HandleBetweenTurnEffects:
 	call HandleBurn
 	call CheckFaint
 	ret c
+	; nightmare
 	call HandleCurse
 	call CheckFaint
 	ret c
 	call HandleWrap
 	call CheckFaint
 	ret c
-	call HandleTaunt
+	; taunt
 	call HandleEncore
 	call HandleDisable
+	; magnet rise
+	; telekinesis
+	; heal block
+	; embargo
 	; yawn
-	; Perish Song Removed
-	; Things below are yet to be updated to be handled in correct order
+	call HandlePerishSong
+	call CheckFaint
+	ret c
+	call HandleRoost
+	call HandleReflect
+	call HandleLightScreen
+	call HandleSafeguard
+	call HandleMist
+	; tailwind
+	; lucky chant
+	; rainbow dissipating (water+fire pledge)
+	; sea of fire dissipating (grass+fire pledge)
+	; swamp dissipating (water+grass pledge)
 	call HandleTrickRoom
+	; water sport
+	; mud sport
+	; wonder room
+	; magic room
+	; gravity
+	; terrain (dissipating, grass terrain recovery is elsewhere)
+	call HandleEndturnBlockB
+	; Things below do not exist in 7gen -- it's here to avoid some quirks
 	call HandleLeppaBerry
-	call HandleScreens
 	call HandleHealingItems
-	farcall HandleAbilities
 
 	; these run even if the user switched at endturn
-	ld hl, wPlayerSubStatus3
+	ld hl, wPlayerSubStatus4
 	res SUBSTATUS_FLINCHED, [hl]
-	ld hl, wEnemySubStatus3
+	ld hl, wEnemySubStatus4
 	res SUBSTATUS_FLINCHED, [hl]
 
-	call HandleStatusOrbs
-	call HandleRoost
 	call UpdateBattleMonInParty
 	call UpdateEnemyMonInParty
 
@@ -114,7 +143,7 @@ HandleBetweenTurnEffects:
 	and a
 	jr nz, .player_set_mode
 	ld a, [wInBattleTowerBattle]
-	bit 0, a
+	and a
 	jr nz, .player_set_mode
 
 	; Obviously, if we're playing in Set mode, assume Set mode...
@@ -137,13 +166,7 @@ HandleBetweenTurnEffects:
 	and a
 	jr z, .player_only
 
-	call SetPlayerTurn
-	ld a, [wLinkMode]
-	and a
-	jr z, .got_first_switchin
-	ld a, [hSerialConnectionStatus]
-	cp USING_INTERNAL_CLOCK
-	call z, SetEnemyTurn
+	call SetFastestTurn
 .got_first_switchin
 	farcall SendInUserPkmn
 	call SwitchTurn
@@ -165,16 +188,16 @@ HandleBetweenTurnEffects:
 	cp 3
 	jr nz, .not_both2
 
-	farcall HandleFirstAirBalloon
+	farcall SpikesDamageBoth
 	farcall RunBothActivationAbilities
-	jp .endturn_loop
+	jmp .endturn_loop
 .not_both2
 	call SetEnemyTurn
 	dec e
 	call z, SetPlayerTurn
 	farcall SpikesDamage
 	farcall RunActivationAbilities
-	jp .endturn_loop
+	jmp .endturn_loop
 
 HandleEndturnBlockA:
 	call SetFastestTurn
@@ -187,40 +210,37 @@ HandleEndturnBlockA:
 	call HasUserFainted
 	ret z
 	farcall EndturnAbilitiesA
-	jp HandleLeftovers
+	jmp HandleLeftovers
 	; healer
 
+HandleEndturnBlockB:
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
+
+.do_it
+	; uproar
+	farcall EndturnAbilitiesB ; and pickup/harvest (no need to move below orbs)
+	call SwitchTurn
+	call HandleStatusOrbs
+	jmp SwitchTurn
+
 HandleWeather:
-	ld a, [wWeather]
+	ld a, [wBattleWeather]
 	and a ; cp WEATHER_NONE
 	ret z
 
+	; Freeze the timer at 255 for permaweather (overworld weather)
 	ld hl, wWeatherCount
+	inc [hl]
+	jr z, .infinite_weather
 	dec [hl]
-	jp z, .ended
+.infinite_weather
+	dec [hl]
+	jr nz, .ongoing
 
-	; the above needs actual [wWeather] to be
-	; able to time it out, but otherwise check
-	; Cloud Nine
-	call GetWeatherAfterCloudNine
-	and a ; cp WEATHER_NONE
-	ret z
-
-	ld hl, .WeatherMessages
-	call .PrintWeatherMessage
-	call SetPlayerTurn
-	call .ShowWeatherAnimation
-	jp HandleWeatherEffects
-
-.ended
 	ld hl, .WeatherEndedMessages
-	call .PrintWeatherMessage
-	xor a
-	ld [wWeather], a
-	ret
-
-.PrintWeatherMessage:
-	ld a, [wWeather]
+	ld a, [wBattleWeather]
 	dec a
 	add a
 	ld c, a
@@ -229,45 +249,28 @@ HandleWeather:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp StdBattleTextBox
-
-.ShowWeatherAnimation:
-	farcall CheckBattleEffects
-	ret c
-	ld hl, .WeatherAnimations
-	ld a, [wWeather]
-	dec a
-	ld b, 0
-	ld c, a
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld d, [hl]
-	ld e, a
+	call StdBattleTextbox
 	xor a
-	ld [wNumHits], a
-	inc a
-	ld [wKickCounter], a
-	farjp Call_PlayBattleAnim
+	ld [wBattleWeather], a
+	ret
 
-.WeatherMessages:
-	dw BattleText_RainContinuesToFall
-	dw BattleText_TheSunlightIsStrong
-	dw BattleText_TheSandstormRages
-	dw BattleText_TheHailContinuesToFall
-.WeatherEndedMessages:
-	dw BattleText_TheRainStopped
-	dw BattleText_TheSunlightFaded
-	dw BattleText_TheSandstormSubsided
-	dw BattleText_TheHailStopped
-.WeatherAnimations:
-	dw RAIN_DANCE
-	dw SUNNY_DAY
-	dw ANIM_IN_SANDSTORM
-	dw ANIM_IN_HAIL
+.WeatherEndedMessages: ; these are all used with StdBattleTextbox
+	dw BattleText_TheRainStopped ; far-ok
+	dw BattleText_TheSunlightFaded ; far-ok
+	dw BattleText_TheSandstormSubsided ; far-ok
+	dw BattleText_TheHailStopped ; far-ok
 
-HandleWeatherEffects:
+.ongoing
+	; the above needs actual [wBattleWeather] to be
+	; able to time it out, but otherwise check
+	; Cloud Nine
+	call GetWeatherAfterCloudNine
+	and a ; cp WEATHER_NONE
+	ret z
+
 ; sandstorm/hail damage, abilities like rain dish, etc.
+	xor a
+	ld [wAlreadySawWeather], a
 	call SetFastestTurn
 	call .do_it
 	call SwitchTurn
@@ -275,14 +278,14 @@ HandleWeatherEffects:
 .do_it
 	call HasUserFainted
 	ret z
-	farcall GetUserItemAfterUnnerve
+	predef GetUserItemAfterUnnerve
 	ld a, b
 	cp HELD_SAFETY_GOGGLES
 	jr z, .run_weather_abilities
-	call GetWeatherAfterCloudNine
+	call GetWeatherAfterUserUmbrella
 	cp WEATHER_HAIL
 	call z, .HandleHail
-	call GetWeatherAfterCloudNine
+	call GetWeatherAfterUserUmbrella
 	cp WEATHER_SANDSTORM
 	call z, .HandleSandstorm
 .run_weather_abilities
@@ -312,10 +315,22 @@ HandleWeatherEffects:
 	call CheckIfUserIsSteelType
 	ret z
 
+	ld a, [wAlreadySawWeather]
+	and a
+	jr nz, .saw_sandstorm
+	ld de, ANIM_IN_SANDSTORM
+	xor a
+	ld [wNumHits], a
+	inc a
+	ld [wKickCounter], a
+	ld [wAlreadySawWeather], a
+	farcall Call_PlayBattleAnim
+.saw_sandstorm
+
 	ld hl, SandstormHitsText
-	call StdBattleTextBox
+	call StdBattleTextbox
 	call GetSixteenthMaxHP
-	farjp SubtractHPFromUser
+	predef_jump SubtractHPFromUser
 
 .HandleHail
 	ld a, BATTLE_VARS_SUBSTATUS3
@@ -331,14 +346,30 @@ HandleWeatherEffects:
 	ret z
 	cp ICE_BODY
 	ret z
+if !DEF(FAITHFUL) ; Slush Rush is an exception in vanilla for some reason
+	cp SLUSH_RUSH
+	ret z
+endc
 
 	call CheckIfUserIsIceType
 	ret z
 
+	ld a, [wAlreadySawWeather]
+	and a
+	jr nz, .saw_hail
+	ld de, ANIM_IN_HAIL
+	xor a
+	ld [wNumHits], a
+	inc a
+	ld [wKickCounter], a
+	ld [wAlreadySawWeather], a
+	farcall Call_PlayBattleAnim
+.saw_hail
+
 	ld hl, HailHitsText
-	call StdBattleTextBox
+	call StdBattleTextbox
 	call GetSixteenthMaxHP
-	farjp SubtractHPFromUser
+	predef_jump SubtractHPFromUser
 
 HandleFutureSight:
 	call SetFastestTurn
@@ -346,41 +377,42 @@ HandleFutureSight:
 	call SwitchTurn
 
 .do_it
-	ld hl, wPlayerFutureSightCount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
-	jr z, .okay
+	ld hl, wPlayerFutureSightCount
+	jr z, .got_future
 	ld hl, wEnemyFutureSightCount
-
-.okay
+.got_future
 	ld a, [hl]
 	and a
 	ret z
-	dec a
-	ld [hl], a
-	cp $1
+	dec [hl]
+	ld a, [hl]
+	and $f
 	ret nz
 
-	call HasUserFainted
+	push hl
+	call HasOpponentFainted
+	pop hl
 	jr nz, .do_future_sight
 
 	; Future Sight misses automatically
 	xor a
 	ld [hl], a
 	ld hl, BattleText_UsersFutureSightMissed
-	jp StdBattleTextBox
+	jmp StdBattleTextbox
 
 .do_future_sight
+	push hl
 	ld hl, BattleText_TargetWasHitByFutureSight
-	call StdBattleTextBox
+	call StdBattleTextbox
 
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
 	push af
-	ld a, PSYCHIC_M ; Temporary until we remove this
-	ld [hl], a
-
+	ld [hl], FUTURE_SIGHT
 	farcall UpdateMoveData
+
 	xor a
 	ld [wAttackMissed], a
 	ld [wAlreadyDisobeyed], a
@@ -395,9 +427,11 @@ HandleFutureSight:
 	call GetBattleVarAddr
 	pop af
 	ld [hl], a
-
+	farcall UpdateMoveData
+	pop hl
+	ld [hl], 0
 	call UpdateBattleMonInParty
-	jp UpdateEnemyMonInParty
+	jmp UpdateEnemyMonInParty
 
 HandleLeftovers:
 	call HasUserFainted
@@ -414,7 +448,7 @@ HandleLeftovers:
 
 	; damage instead
 	call GetEighthMaxHP
-	farcall SubtractHPFromUser
+	predef SubtractHPFromUser
 	ld hl, BattleText_UserHurtByItem
 	jr .print
 .leftovers
@@ -424,7 +458,7 @@ HandleLeftovers:
 	farcall RestoreHP
 	ld hl, BattleText_UserRecoveredWithItem
 .print
-	jp StdBattleTextBox
+	jmp StdBattleTextbox
 
 PreventEndturnDamage:
 ; returns z if residual damage at endturn is prevented
@@ -460,24 +494,28 @@ HandleLeechSeed:
 
 	call GetEighthMaxHP
 	push bc
-	farcall SubtractHPFromUser
+	predef SubtractHPFromUser
+	ld hl, LeechSeedSapsText
+	call StdBattleTextbox
 	pop bc
 	call SwitchTurn
 	farcall GetHPAbsorption
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call GetOpponentAbility
 	cp LIQUID_OOZE
 	jr z, .hurt
 	farcall RestoreHP
-	jr .sap_text
+	jr .done
 .hurt
+	farcall DisableAnimations
 	farcall ShowEnemyAbilityActivation
-	farcall SubtractHPFromUser
-.sap_text
-	call SwitchTurn
-	ld hl, LeechSeedSapsText
-	jp StdBattleTextBox
+	predef SubtractHPFromUser
+	ld hl, SuckedUpOozeText
+	call StdBattleTextbox
+	farcall EnableAnimations
+.done
+	jmp SwitchTurn
 
 HandlePoison:
 	call SetFastestTurn
@@ -491,7 +529,18 @@ HandlePoison:
 	ld hl, HurtByPoisonText
 	ld de, ANIM_PSN
 	ret z
-	jr DoPoisonBurnDamage
+	call GetTrueUserAbility
+	cp POISON_HEAL
+	jr nz, DoPoisonBurnDamage
+	; check if we are at full HP
+	farcall CheckFullHP
+	ret z
+	farcall DisableAnimations
+	farcall ShowAbilityActivation
+	ld hl, RegainedHealthText
+	call DoPoisonBurnDamageAnim
+	farcall RestoreHP
+	farjp EnableAnimations
 
 HandleBurn:
 	call SetFastestTurn
@@ -513,37 +562,14 @@ DoPoisonBurnDamage:
 	pop hl
 	ret z
 
-	call GetTrueUserAbility
-	cp POISON_HEAL
-	jr nz, .got_anim
-	; check if we are at full HP
-	farcall CheckFullHP
-	ret z
-	ld hl, PoisonHealText
-	call .do_anim
-	farjp RestoreHP
-
-.do_anim
-	push de
-	call StdBattleTextBox
-	pop de
-	xor a
-	ld [wNumHits], a
-	farcall Call_PlayBattleAnim_OnlyIfVisible
-	jp GetEighthMaxHP
-
-.got_anim
-	call .do_anim
-
+	call DoPoisonBurnDamageAnim
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
 	and 1 << BRN | 1 << TOX
-	jr z, .got_damage_amount
 	; Burn and Toxic does (or starts at) 1/16 damage as of Gen VII
-	call GetSixteenthMaxHP
+	call nz, GetSixteenthMaxHP
 
-.got_damage_amount
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPlayerToxicCount
 	jr z, .got_toxic_count
@@ -563,7 +589,16 @@ DoPoisonBurnDamage:
 	ld b, h
 	ld c, l
 .did_toxic
-	farjp SubtractHPFromUser
+	predef_jump SubtractHPFromUser
+
+DoPoisonBurnDamageAnim:
+	push de
+	call StdBattleTextbox
+	pop de
+	xor a
+	ld [wNumHits], a
+	farcall Call_PlayBattleAnim_OnlyIfVisible
+	jmp GetEighthMaxHP
 
 HandleCurse:
 	call SetFastestTurn
@@ -582,9 +617,9 @@ HandleCurse:
 	ld de, ANIM_UNDER_CURSE
 	farcall Call_PlayBattleAnim_OnlyIfVisible
 	call GetQuarterMaxHP
-	farcall SubtractHPFromUser
+	predef SubtractHPFromUser
 	ld hl, HurtByCurseText
-	jp StdBattleTextBox
+	jmp StdBattleTextbox
 
 HandleWrap:
 	call SetFastestTurn
@@ -597,7 +632,7 @@ HandleWrap:
 
 	ld hl, wPlayerWrapCount
 	ld de, wPlayerTrappingMove
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_addrs
 	ld hl, wEnemyWrapCount
@@ -641,46 +676,15 @@ HandleWrap:
 .no_binding_band
 	call GetEighthMaxHP
 .subtract_hp
-	farcall SubtractHPFromUser
+	predef SubtractHPFromUser
 	ld hl, BattleText_UsersHurtByStringBuffer1
 
 .print_text
 	pop de
 	ld a, [de]
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetMoveName
-	jp StdBattleTextBox
-
-HandleTaunt:
-	call SetFastestTurn
-	call .do_it
-	call SwitchTurn
-
-.do_it
-	call HasUserFainted
-	ret z
-
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVarAddr
-	bit SUBSTATUS_TAUNTED, [hl]
-	ret z
-
-	ld a, [hBattleTurn]
-	and a
-	ld hl, wPlayerTauntCount
-	jr z, .got_taunt_count
-	ld hl, wEnemyTauntCount
-.got_taunt_count
-	dec [hl]
-	jr z, .end_taunt
-	ret
-
-.end_taunt
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVarAddr
-	res SUBSTATUS_TAUNTED, [hl]
-	ld hl, BattleText_UserTauntEnded
-	jp StdBattleTextBox
+	jmp StdBattleTextbox
 
 HandleEncore:
 	call SetFastestTurn
@@ -691,7 +695,7 @@ HandleEncore:
 	call HasUserFainted
 	ret z
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPlayerEncoreCount
 	jr z, .got_encore_count
@@ -743,12 +747,11 @@ EndturnEncoreDisable:
 	ld a, [hl]
 	and $f
 	ret nz
-
 EndturnEncoreDisable_End:
 	ld [hl], 0
 	ld h, d
 	ld l, e
-	jp StdBattleTextBox
+	jmp StdBattleTextbox
 
 HandleDisable:
 	call SetFastestTurn
@@ -760,12 +763,43 @@ HandleDisable:
 	ret z
 	ld de, DisabledNoMoreText
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPlayerDisableCount
 	jr z, EndturnEncoreDisable
 	ld hl, wEnemyDisableCount
 	jr EndturnEncoreDisable
+
+HandlePerishSong:
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
+
+.do_it
+	call HasUserFainted
+	ret z
+
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPlayerPerishCount
+	jr z, .got_count
+	ld hl, wEnemyPerishCount
+
+.got_count
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ld a, [hl]
+	ld [wTextDecimalByte], a
+	push af
+	ld hl, PerishCountText
+	call StdBattleTextbox
+	pop af
+	ret nz
+
+	call GetMaxHP
+	predef_jump SubtractHPFromUser
 
 HandleTrickRoom:
 	ld hl, wTrickRoom
@@ -775,7 +809,7 @@ HandleTrickRoom:
 	dec [hl]
 	ret nz
 	ld hl, TrickRoomEndedText
-	jp StdBattleTextBox
+	jmp StdBattleTextbox
 
 HandleLeppaBerry:
 	call SetFastestTurn
@@ -785,7 +819,7 @@ HandleLeppaBerry:
 .do_it
 	call HasUserFainted
 	ret z
-	farcall GetUserItemAfterUnnerve
+	predef GetUserItemAfterUnnerve
 	ld a, b
 	cp HELD_RESTORE_PP
 	ret nz
@@ -797,87 +831,100 @@ HandleLeppaBerry:
 	pop bc
 	farjp LeppaRestorePP
 
-HandleScreens:
-	call CheckSpeed
-	jr nz, .enemy_first
+HandleReflect:
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
 
-	call .CheckPlayer
-	jr .CheckEnemy
-
-.enemy_first
-	call .CheckEnemy
-.CheckPlayer:
-	call SetPlayerTurn
-	ld de, .Your
-	call .Copy
+.do_it
+	call GetTurnAndPlacePrefix
 	ld hl, wPlayerScreens
-	ld de, wPlayerAuroraVeilCount
-	jr .TickScreens
-
-.CheckEnemy:
-	call SetEnemyTurn
-	ld de, .Enemy
-	call .Copy
+	jr z, .got_screens
 	ld hl, wEnemyScreens
-	ld de, wEnemyAuroraVeilCount
+.got_screens
+	ld de, BattleText_ReflectFaded
+	jr DecrementLowNibble
 
-.TickScreens:
-	bit SCREENS_AURORA_VEIL, [hl]
-	call nz, .AuroraVeilTick
-	inc de
-	bit SCREENS_LIGHT_SCREEN, [hl]
-	call nz, .LightScreenTick
-	inc de
-	bit SCREENS_REFLECT, [hl]
-	call nz, .ReflectTick
-	ret
+HandleSafeguard:
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
 
-.Copy:
+.do_it
+	call GetTurnAndPlacePrefix
+	ld hl, wPlayerGuards
+	jr z, .got_guards
+	ld hl, wEnemyGuards
+.got_guards
+	ld de, BattleText_SafeguardFaded
+
+DecrementLowNibble:
+; Decrements lower nibble in hl. If it reaches 0, print message in de.
+	ld a, [hl]
+	and $f
+	ret z
+	dec [hl]
+	dec a
+	ret nz
+	jr PrintTextAfterNibbleTick
+
+HandleLightScreen:
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
+
+.do_it
+	call GetTurnAndPlacePrefix
+	ld hl, wPlayerScreens
+	jr z, .got_screens
+	ld hl, wEnemyScreens
+.got_screens
+	ld de, BattleText_LightScreenFell
+	jr DecrementHighNibble
+
+HandleMist:
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
+
+.do_it
+	call GetTurnAndPlacePrefix
+	ld hl, wPlayerGuards
+	jr z, .got_guards
+	ld hl, wEnemyGuards
+.got_guards
+	ld de, BattleText_MistFaded
+
+DecrementHighNibble:
+; Decrements higher nibble in hl. If it reaches 0, print message in de.
+	ld a, [hl]
+	sub $10
+	ret c
+	ld [hl], a
+	sub $10
+	ret nc
+PrintTextAfterNibbleTick:
+	ld h, d
+	ld l, e
+	jmp StdBattleTextbox
+
+GetTurnAndPlacePrefix:
+; Preserves a, returns zero flag for a
+	ldh a, [hBattleTurn]
+	and a
+	push af
+	ld de, .Your
+	jr z, .got_prefix
+	ld de, .Foe
+.got_prefix
 	ld hl, wStringBuffer1
-	jp CopyName2
-
+	call CopyName2
+	pop af
+	ret
 .Your:
 	db "Your@"
-.Enemy:
+.Foe:
 	db "Foe@"
-
-
-.AuroraVeilTick:
-	ld a, [de] ; a = wAuroraVeilCount
-	dec a
-	ld [de], a
-	ret nz
-	res SCREENS_AURORA_VEIL, [hl]
-	push hl
-	push de
-	ld hl, BattleText_PkmnAuroraFaded
-	call StdBattleTextBox
-	pop de
-	pop hl
-	ret
-
-.LightScreenTick:
-	ld a, [de] ; a = wLightScreenCount
-	dec a
-	ld [de], a
-	ret nz
-	res SCREENS_LIGHT_SCREEN, [hl]
-	push hl
-	push de
-	ld hl, BattleText_PkmnLightScreenFell
-	call StdBattleTextBox
-	pop de
-	pop hl
-	ret
-
-.ReflectTick:
-	ld a, [de] ; a = wReflectCount
-	dec a
-	ld [de], a
-	ret nz
-	res SCREENS_REFLECT, [hl]
-	ld hl, BattleText_PkmnReflectFaded
-	jp StdBattleTextBox
 
 HandleHealingItems:
 	call SetFastestTurn
@@ -893,14 +940,8 @@ HandleHealingItems:
 	farjp UseConfusionHealingItem
 
 HandleStatusOrbs:
-	call SetFastestTurn
 	; Done for target to simplify checks so invert
 	; turn
-	call SwitchTurn
-	call .do_it
-	call SwitchTurn
-
-.do_it
 	call HasOpponentFainted
 	ret z
 
@@ -915,11 +956,9 @@ HandleStatusOrbs:
 	jr z, .burn
 	cp HELD_SELF_PSN
 	ld b, 1 << PSN | 1 << TOX
-	jr z, .poison
-	ret
-.poison
+	ret nz
 	push bc
-	ld b, 0
+	ld b, 2
 	farcall CanPoisonTarget
 	pop bc
 	ret nz
@@ -928,7 +967,7 @@ HandleStatusOrbs:
 	jr .do_status
 .burn
 	push bc
-	ld b, 0
+	ld b, 2
 	farcall CanBurnTarget
 	pop bc
 	ret nz
@@ -945,7 +984,7 @@ HandleStatusOrbs:
 	farcall PlayOpponentBattleAnim
 	call RefreshBattleHuds
 	pop hl
-	jp StdBattleTextBox
+	jmp StdBattleTextbox
 
 HandleRoost:
 	call SetFastestTurn
@@ -962,7 +1001,7 @@ HandleRoost:
 	res SUBSTATUS_ROOST, [hl]
 	ret z
 
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wBattleMonType1
 	jr z, .got_types

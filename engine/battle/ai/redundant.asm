@@ -1,21 +1,19 @@
-AI_Redundant: ; 2c41a
+AI_Redundant:
 ; Check if move effect c will fail because it's already been used.
 ; Return z if the move is a good choice.
 ; Return nz if the move is a bad choice.
 	ld a, c
-	ld de, 3
 	ld hl, .Moves
+	ld de, 3
 	call IsInArray
-	jp nc, .NotRedundant
+	jmp nc, .NotRedundant
 	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	jmp IndirectHL
 
-.Moves: ; 2c42c ADD TOXIC to this list
+.Moves:
 	dbw EFFECT_DREAM_EATER,   .DreamEater
 	dbw EFFECT_HEAL,          .Heal
+	dbw EFFECT_ROAR,          .Roar
 	dbw EFFECT_LIGHT_SCREEN,  .LightScreen
 	dbw EFFECT_FOCUS_ENERGY,  .FocusEnergy
 	dbw EFFECT_CONFUSE,       .Confuse
@@ -25,25 +23,35 @@ AI_Redundant: ; 2c41a
 	dbw EFFECT_LEECH_SEED,    .LeechSeed
 	dbw EFFECT_DISABLE,       .Disable
 	dbw EFFECT_ENCORE,        .Encore
-	dbw EFFECT_FAKE_OUT,      .FakeOut
+	dbw EFFECT_SLEEP_TALK,    .SleepTalk
+	dbw EFFECT_MEAN_LOOK,     .MeanLook
+	dbw EFFECT_CURSE,         .Curse
 	dbw EFFECT_SPIKES,        .Spikes
+	dbw EFFECT_TOXIC_SPIKES,  .ToxicSpikes
+	dbw EFFECT_FORESIGHT,     .Foresight
+	dbw EFFECT_PERISH_SONG,   .PerishSong
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
-	dbw EFFECT_AURORA_VEIL,   .AuroraVeil
+	dbw EFFECT_ATTRACT,       .Attract
+	dbw EFFECT_SAFEGUARD,     .Safeguard
 	dbw EFFECT_RAIN_DANCE,    .RainDance
 	dbw EFFECT_SUNNY_DAY,     .SunnyDay
 	dbw EFFECT_TELEPORT,      .Teleport
-	dbw EFFECT_SYNTHESIS,     .Synthesis
+	dbw EFFECT_HEALING_LIGHT, .HealingLight
 	dbw EFFECT_SWAGGER,       .Swagger
-	dbw EFFECT_FUTURE_SIGHT,  .FutureSight ; USE FOR WISH
+	dbw EFFECT_FUTURE_SIGHT,  .FutureSight
 	dbw EFFECT_BATON_PASS,    .BatonPass
 	dbw EFFECT_ROOST,         .Roost
+	dbw EFFECT_TRICK_ROOM,    .TrickRoom
 	db -1
 
 .Confuse:
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_CONFUSED, a
-	ret ; nz if already confused
+	ret nz
+	ld a, [wPlayerGuards]
+	and GUARD_SAFEGUARD
+	ret
 
 .Disable:
 	ld a, [wPlayerDisableCount]
@@ -75,24 +83,41 @@ AI_Redundant: ; 2c41a
 	bit SUBSTATUS_LEECH_SEED, a
 	ret
 
-.FakeOut:
-	ld a, [wEnemyTurnsTaken]
-	and a ; before the first turn is counted, so if usable, this should be 0
-	ret
-
 .LightScreen:
 	ld a, [wEnemyScreens]
-	bit SCREENS_LIGHT_SCREEN, a
+	and SCREENS_LIGHT_SCREEN
+	ret
+
+.MeanLook:
+	ld a, [wEnemySubStatus2]
+	bit SUBSTATUS_CANT_RUN, a
+	ret
+
+.PerishSong:
+	ld a, [wPlayerPerishCount]
+	and a
 	ret
 
 .Reflect:
 	ld a, [wEnemyScreens]
-	bit SCREENS_REFLECT, a
+	and SCREENS_REFLECT
 	ret
 
-.AuroraVeil:
-	ld a, [wEnemyScreens]
-	bit SCREENS_AURORA_VEIL, a
+.BatonPass:
+	call CallOpponentTurn
+.Roar:
+	push hl
+	push de
+	push bc
+	farcall CheckAnyOtherAliveOpponentMons
+	pop bc
+	pop de
+	pop hl
+	jr .InvertZero
+
+.Safeguard:
+	ld a, [wEnemyGuards]
+	and GUARD_SAFEGUARD
 	ret
 
 .Substitute:
@@ -110,47 +135,78 @@ AI_Redundant: ; 2c41a
 	bit SUBSTATUS_TRANSFORMED, a
 	ret
 
+.SleepTalk:
+	ld a, [wEnemyMonStatus]
+	and SLP
+	jr .InvertZero
+
 .Spikes:
-	ld a, [wPlayerScreens]
-	and SCREENS_SPIKES
-	cp SCREENS_SPIKES
+	ld a, [wPlayerHazards]
+	and HAZARDS_SPIKES
+	cp HAZARDS_SPIKES
+	jr .InvertZero
+
+.ToxicSpikes:
+	ld a, [wPlayerHazards]
+	and HAZARDS_TOXIC_SPIKES
+	cp (HAZARDS_TOXIC_SPIKES / 3) * 2
 	jr .InvertZero
 
 .Sandstorm:
-	ld a, [wWeather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SANDSTORM
 	jr .InvertZero
 
 .Hail:
-	ld a, [wWeather]
+	ld a, [wBattleWeather]
 	cp WEATHER_HAIL
 	jr .InvertZero
 
+.Attract:
+	farcall CheckOppositeGender
+	jr c, .Redundant
+	jr z, .Redundant
+	ld a, [wPlayerSubStatus1]
+	bit SUBSTATUS_IN_LOVE, a
+	ret
+
+.Curse:
+	call CheckIfUserIsGhostType
+	jr nz, .NotRedundant
+	ld a, [wPlayerSubStatus1]
+	bit SUBSTATUS_CURSE, a
+	ret
+
 .RainDance:
-	ld a, [wWeather]
+	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
 	jr .InvertZero
 
 .SunnyDay:
-	ld a, [wWeather]
+	ld a, [wBattleWeather]
 	cp WEATHER_SUN
 	jr .InvertZero
 
 .DreamEater:
 	ld a, [wBattleMonStatus]
 	and SLP
-	jr .InvertZero
-
-.BatonPass:
-	farcall CheckAnyOtherAliveMons
+	; fallthrough
 .InvertZero:
 	jr z, .Redundant
 .NotRedundant:
 	xor a
 	ret
 
+.TrickRoom:
+	; normally this kind of logic is relegated to smart AI, but since this move
+	; never fails, we need to avoid the AI spamming it because it doesn't
+	; understand how it works...
+	farcall AICompareSpeed
+	jr c, .Redundant
+	jr .NotRedundant
+
 .Heal:
-.Synthesis:
+.HealingLight:
 .Roost:
 	farcall AICheckEnemyMaxHP
 	jr nc, .NotRedundant

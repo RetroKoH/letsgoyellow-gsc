@@ -1,114 +1,109 @@
-FindItemInBallScript:: ; 0x122ce
+FindItemInBallScript::
 	callasm .TryReceiveItem
 	iffalse .no_room
 	disappear LAST_TALKED
 	opentext
-	writetext .text_found
+	farwritetext _FoundItemText
+	callasm .ShowItemIcon
 	specialsound
 	itemnotify
 	closetext
 	end
-; 0x122e3
 
-.no_room ; 0x122e3
+.no_room
 	opentext
-	writetext .text_found
+	farwritetext _FoundItemText
 	waitbutton
 	pocketisfull
 	closetext
 	end
-; 0x122ee
 
-.text_found ; 0x122ee
-	; found @ !
-	text_jump UnknownText_0x1c0a1c
-	db "@"
-; 0x122f3
-
-.TryReceiveItem: ; 122f8
+.TryReceiveItem:
 	xor a
-	ld [wScriptVar], a
-	ld a, [wCurItemBallContents]
-	ld [wNamedObjectIndexBuffer], a
+	ldh [hScriptVar], a
+	ld a, [wItemBallItemID]
+	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld hl, wStringBuffer3
 	call CopyName2
-	ld a, [wCurItemBallContents]
+	ld a, [wItemBallItemID]
 	ld [wCurItem], a
-	ld a, [wCurItemBallQuantity]
+	ld a, [wItemBallQuantity]
 	ld [wItemQuantityChangeBuffer], a
 	ld hl, wNumItems
 	call ReceiveItem
 	ret nc
 	ld a, $1
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	ret
-; 12324
+
+.ShowItemIcon:
+	ld a, [wItemBallItemID]
+	call LoadItemIconForOverworld
+	farcall LoadItemIconPalette
+	jmp PrintOverworldItemIcon
 
 FindKeyItemInBallScript::
 	callasm .ReceiveKeyItem
 	disappear LAST_TALKED
 	opentext
-	writetext .text_found
+	farwritetext _FoundItemText
+	callasm .ShowKeyItemIcon
 	specialsound
-	waitsfx
 	keyitemnotify
 	closetext
 	end
 
-.text_found
-	; found @ !
-	text_jump UnknownText_0x1c0a1c
-	db "@"
-
 .ReceiveKeyItem:
 	xor a
-	ld [wScriptVar], a
-	ld a, [wCurItemBallContents]
+	ldh [hScriptVar], a
+	ld a, [wItemBallItemID]
 	inc a
-	ld [wNamedObjectIndexBuffer], a
+	ld [wNamedObjectIndex], a
 	call GetKeyItemName
 	ld hl, wStringBuffer3
 	call CopyName2
-	ld a, [wCurItemBallContents]
+	ld a, [wItemBallItemID]
 	ld [wCurKeyItem], a
 	call ReceiveKeyItem
 	ld a, $1
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	ret
+
+.ShowKeyItemIcon:
+	ld a, [wItemBallItemID]
+	call LoadKeyItemIconForOverworld
+	farcall LoadKeyItemIconPaletteForOverworld
+	jmp PrintOverworldItemIcon
 
 FindTMHMInBallScript::
 	callasm .ReceiveTMHM
 	disappear LAST_TALKED
 	opentext
-	writetext .text_found
+	farwritetext _FoundItemText
+	callasm .ShowTMHMIcon
 	playsound SFX_GET_TM
 	waitsfx
 	tmhmnotify
 	closetext
 	end
 
-.text_found
-	; found @ !
-	text_jump UnknownText_0x1c0a1c
-	db "@"
-
 .ReceiveTMHM:
 	xor a
-	ld [wScriptVar], a
-	ld a, [wCurItemBallContents]
-	ld [wNamedObjectIndexBuffer], a
+	ldh [hScriptVar], a
+	ld a, [wItemBallItemID]
+	ld [wNamedObjectIndex], a
 	call GetTMHMName
 	ld hl, wStringBuffer3
 	call CopyName2
 
 	; off by one error?
-	ld a, [wd265]
+	ld a, [wNamedObjectIndex]
 	inc a
-	ld [wd265], a
+	ld [wTempTMHM], a
 
 	predef GetTMHMMove
-	ld a, [wd265]
+	ld a, [wTempTMHM]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
 
@@ -117,9 +112,15 @@ FindTMHMInBallScript::
 	ld [hli], a
 	call CopyName2
 
-	ld a, [wCurItemBallContents]
+	ld a, [wItemBallItemID]
 	ld [wCurTMHM], a
 	call ReceiveTMHM
 	ld a, $1
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	ret
+
+.ShowTMHMIcon:
+	ld a, [wItemBallItemID]
+	call LoadTMHMIconForOverworld
+	farcall LoadTMHMIconPalette
+	jmp PrintOverworldItemIcon

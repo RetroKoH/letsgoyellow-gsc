@@ -1,7 +1,7 @@
 ; Pokémon B/W - Battle! Elite Four
 ; Demixed by Mmmmmm
 ; https://pastebin.com/SQ00sPwE
-; https://hax.iimarck.us/topic/6777/9/
+; https://hax.iimarckus.org/topic/6777/9/
 
 Music_EliteFourBattleBW:
 	musicheader 4, 1, Music_EliteFourBattleBW_Ch1
@@ -793,7 +793,6 @@ Music_EliteFourBattleBW_Ch2_loop_1:
 	note F#, 3
 	note F_, 5
 	loopchannel 0, Music_EliteFourBattleBW_Ch2_loop_main
-
 
 Music_EliteFourBattleBW_Ch2_branch_1:
 	intensity $91

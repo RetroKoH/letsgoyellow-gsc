@@ -1,114 +1,23 @@
 _CheckContactMove::
 ; Check if user's move made contact. Returns nc if it is
-	farcall GetUserItemAfterUnnerve
+	predef GetUserItemAfterUnnerve
 	ld a, b
 	cp HELD_PROTECTIVE_PADS
 	jr z, .protective_pads
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
-	cp STRUGGLE
-	ret z
-	ld hl, .ContactMoves
-	ld de, 1
-	call IsInArray
+	ld hl, ContactMoves
+	call IsInByteArray
 .protective_pads
 	ccf
 	ret
-.ContactMoves::
-	db AERIAL_ACE
-	db AQUA_TAIL
-	db BITE
-	db BODY_SLAM
-	db BUG_BITE
-	db BULLET_PUNCH
-	db CLOSE_COMBAT
-	db COUNTER
-	db CRABHAMMER
-	db CROSS_CHOP
-	db CROSS_POISON
-	db CRUNCH
-	db CUT
-	db DIG
-	db DIZZY_PUNCH
-	db DOUBLE_KICK
-	db DOUBLE_EDGE
-	db DRILL_PECK
-	db DRILL_RUN
-	db DUOIRONBASH
-	db DYNAMICPUNCH
-	db EXTREMESPEED
-	db FAKE_OUT
-	db FELL_STINGER
-	db FIRE_PUNCH
-	db FLAIL
-	db FLAME_WHEEL
-	db FLARE_BLITZ
-	db FLY
-	db FOUL_PLAY
-	db FURY_ATTACK
-	db GYRO_BALL
-	db GRASS_KNOT
-	db HEADBUTT
-	db HEAVY_SLAM
-	db HI_JUMP_KICK
-	db HORN_ATTACK
-	db HYPER_FANG
-	db ICE_PUNCH
-	db IRON_HEAD
-	db IRON_TAIL
-	db KARATE_CHOP
-	db KNOCK_OFF
-	db LEAF_BLADE
-	db LEECH_LIFE
-	db LICK
-	db LIQUIDATION
-	db LOW_KICK
-	db MACH_PUNCH
-	db MEGAHORN
-	db MEGA_PUNCH
-	db MEGA_KICK
-	db METAL_CLAW
-	db METEOR_MASH
-	db NIGHT_SLASH
-	db OUTRAGE
-	db PECK
-	db PETAL_DANCE
-	db PLAY_ROUGH
-	db POISON_JAB
-	db POWER_WHIP
-	db PURSUIT
-	db QUICK_ATTACK
-	db RAPID_SPIN
-	db RETURN
-	db ROCK_SMASH
-	db ROLLOUT
-	db SCRATCH
-	db SEISMIC_TOSS
-	db SLASH
-	db STOMP
-	db SUPER_FANG
-	db SUPERPOWER
-	db TACKLE
-	db TAKE_DOWN
-	db THRASH
-	db THUNDERPUNCH
-	db TRIPLE_KICK
-	db U_TURN
-	db VINE_WHIP
-	db VOLT_TACKLE
-	db WATERFALL
-	db WILD_CHARGE
-	db WING_ATTACK
-	db WRAP
-	db X_SCISSOR
-	db ZEN_HEADBUTT
-	db -1
 
+INCLUDE "data/moves/contact_moves.asm"
 
-_DisappearUser:: ; fbd54
+_DisappearUser::
 	xor a
-	ld [hBGMapMode], a
-	ld a, [hBattleTurn]
+	ldh [hBGMapMode], a
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 	call GetEnemyFrontpicCoords
@@ -119,17 +28,17 @@ _DisappearUser:: ; fbd54
 	call ClearBox
 	jr FinishAppearDisappearUser
 
-_AppearUserRaiseSub: ; fbd69 (3e:7d69)
+_AppearUserRaiseSub:
 	farcall BattleCommand_raisesubnoanim
 	jr AppearUser
 
-_AppearUserLowerSub: ; fbd71 (3e:7d71)
+_AppearUserLowerSub:
 	farcall BattleCommand_lowersubnoanim
 
-AppearUser: ; fbd77 (3e:7d77)
+AppearUser:
 	xor a
-	ld [hBGMapMode], a
-	ld a, [hBattleTurn]
+	ldh [hBGMapMode], a
+	ldh a, [hBattleTurn]
 	and a
 	jr z, .player
 	call GetEnemyFrontpicCoords
@@ -139,28 +48,27 @@ AppearUser: ; fbd77 (3e:7d77)
 	call GetPlayerBackpicCoords
 	ld a, $31
 .okay
-	ld [hGraphicStartTile], a
+	ldh [hGraphicStartTile], a
 	predef PlaceGraphic
-FinishAppearDisappearUser: ; fbd91 (3e:7d91)
+FinishAppearDisappearUser:
 	ld a, $1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ret
 
-GetEnemyFrontpicCoords: ; fbd96 (3e:7d96)
+GetEnemyFrontpicCoords:
 	hlcoord 12, 0
 	lb bc, 7, 7
 	ret
 
-GetPlayerBackpicCoords: ; fbd9d (3e:7d9d)
+GetPlayerBackpicCoords:
 	hlcoord 2, 6
 	lb bc, 6, 6
 	ret
 
-
-DoWeatherModifiers: ; fbda4
+DoWeatherModifiers:
 ; checks attacking move type in b with current weather for a x1.5 boost or x0.5 penalty to
 ; apply for wTypeMatchup for later damage calc adjustment (alongside STAB and type matchup)
-	call GetWeatherAfterCloudNine
+	call GetWeatherAfterOpponentUmbrella
 	cp WEATHER_SUN
 	jr z, .sun
 	cp WEATHER_RAIN

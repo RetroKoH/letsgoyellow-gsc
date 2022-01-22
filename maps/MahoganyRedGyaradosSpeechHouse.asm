@@ -1,16 +1,46 @@
 MahoganyRedGyaradosSpeechHouse_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, MAHOGANY_TOWN, 2
 	warp_event  3,  7, MAHOGANY_TOWN, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; object events
+	def_object_events
+	object_event  2,  3, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, MahoganyRedGyaradosSpeechHouseBlackBeltText, -1
+	object_event  6,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, MahoganyRedGyaradosSpeechHouseTeacherScript, -1
 
-	const_def 1 ; object constants
+MahoganyRedGyaradosSpeechHouseTeacherScript:
+	checkflag ENGINE_ROCKETS_IN_RADIO_TOWER
+	iftrue_jumptextfaceplayer MahoganyRedGyaradosSpeechHouseTeacherText_RocketsInRadioTower
+	jumpthistextfaceplayer
+
+	text "My favorite radio"
+	line "program? I'd say"
+	cont "#mon Music."
+	done
+
+MahoganyRedGyaradosSpeechHouseBlackBeltText:
+	text "I heard that a red"
+	line "Gyarados appeared"
+	cont "at the lake."
+
+	para "That's odd, since"
+	line "even ordinary"
+
+	para "Gyarados are rare"
+	line "in that lake…"
+	done
+
+MahoganyRedGyaradosSpeechHouseTeacherText_RocketsInRadioTower:
+	text "I've been hearing"
+	line "laughter on the"
+
+	para "radio…"
+	line "It's creepy."
+	done

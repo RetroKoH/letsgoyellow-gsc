@@ -11,4 +11,3 @@
 .frame3
 	db $02 ; bitmask
 	db $2a, $2b, $2e, $2f
-; 0xd5a6c

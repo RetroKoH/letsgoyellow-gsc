@@ -1,7 +1,7 @@
 ; Pokémon R/S/E - Mount Pyre / Shoal Cave
 ; Demixed by Mmmmmm
 ; https://pastebin.com/3iAgGV4u
-; https://hax.iimarck.us/topic/6777/
+; https://hax.iimarckus.org/topic/6777/
 
 Music_MountPyreRSE:
 	musicheader 4, 1, Music_MountPyreRSE_Ch1
@@ -96,7 +96,6 @@ Music_MountPyreRSE_Ch1_loop_3:
 	note __, 16
 	note __, 15
 	loopchannel 0, Music_MountPyreRSE_Ch1_loop_main
-
 
 Music_MountPyreRSE_Ch2:
 	dutycycle 2
@@ -310,8 +309,6 @@ Music_MountPyreRSE_Ch2_branch_2:
 	intensity $63
 	note B_, 2
 	endchannel
-
-
 
 Music_MountPyreRSE_Ch3:
 	notetype $6, $24

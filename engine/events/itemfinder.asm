@@ -1,4 +1,4 @@
-ItemFinder: ; 12580
+ItemFinder:
 	farcall CheckForHiddenItems
 	jr c, .found_something
 	ld hl, .Script_FoundNothingNearby
@@ -15,9 +15,8 @@ ItemFinder: ; 12580
 	ld a, $1
 	ld [wItemEffectSucceeded], a
 	ret
-; 12599
 
-.ItemfinderEffect: ; 12599
+.ItemfinderEffect:
 	ld a, [wBuffer1]
 	and $f ; taxicab distance, 0-15
 	inc a ; 1-16
@@ -26,10 +25,9 @@ ItemFinder: ; 12580
 	ld a, 9 ; cap, 1-9
 .dist_ok
 	srl a ; 0-4
+	cpl
+	add 5 + 1 ; 5-1
 	ld c, a
-	ld a, 5
-	sub c ; 5-1
-	ld c, a ; c = number of times to loop playing the sfx
 .sfx_loop
 	push bc
 	ld de, SFX_SECOND_PART_OF_ITEMFINDER
@@ -42,20 +40,19 @@ ItemFinder: ; 12580
 	ld d, PLAYER
 	ld a, [wBuffer1]
 	and $f
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	ld a, [wBuffer1]
 	rrca
 	rrca
 	ld e, a
 	farjp ApplyPersonFacing
-; 125ad
 
-.Script_FoundSomething: ; 0x125ad
+.Script_FoundSomething:
 	reloadmappart
 	special UpdateTimePals
 	callasm .ItemfinderEffect
 	iffalse_jumpopenedtext .UnderfootText
-	thisopenedtext
+	jumpthisopenedtext
 
 	text "Yes! Itemfinder"
 	line "is responding!"
@@ -69,7 +66,7 @@ ItemFinder: ; 12580
 .Script_FoundNothingNearby:
 	reloadmappart
 	special UpdateTimePals
-	thisopenedtext
+	jumpthisopenedtext
 
 	text "…Nope! Itemfinder"
 	line "isn't responding."
@@ -78,7 +75,7 @@ ItemFinder: ; 12580
 .Script_FoundNothingAtAll:
 	reloadmappart
 	special UpdateTimePals
-	thisopenedtext
+	jumpthisopenedtext
 
 	text "Nope! There's no-"
 	line "thing hidden here."

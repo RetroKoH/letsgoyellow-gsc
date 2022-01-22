@@ -1,10 +1,10 @@
 CeladonCity_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_NEWMAP, CeladonCityFlyPoint
 
-	db 16 ; warp events
+	def_warp_events
 	warp_event  8,  9, CELADON_DEPT_STORE_1F, 1
 	warp_event 20,  9, CELADON_MANSION_1F, 1
 	warp_event 20,  3, CELADON_MANSION_1F, 3
@@ -14,48 +14,50 @@ CeladonCity_MapScriptHeader:
 	warp_event 27, 19, CELADON_GAME_CORNER_PRIZE_ROOM, 1
 	warp_event 14, 29, CELADON_GYM, 1
 	warp_event 25, 29, CELADON_CAFE, 1
-	warp_event 33, 29, CELADON_CHIEF_HOUSE, 1
-	warp_event 37, 29, CELADON_HOTEL_1F, 1
+	warp_event 29, 29, CELADON_CHIEF_HOUSE, 1
+	warp_event 35, 29, CELADON_HOTEL_1F, 1
 	warp_event 13,  9, CELADON_HOME_DECOR_STORE_1F, 1
 	warp_event  4, 29, CELADON_UNIVERSITY_1F, 1
 	warp_event 29,  9, EUSINES_HOUSE, 1
 	warp_event 33, 19, CELADON_OLD_MAN_SPEECH_HOUSE, 1
 	warp_event 37, 19, CELADON_DEVELOPMENT_SPEECH_HOUSE, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 11 ; bg events
-	bg_event  9, 18, SIGNPOST_JUMPTEXT, CeladonCitySignText
-	bg_event 15, 31, SIGNPOST_JUMPTEXT, CeladonGymSignText
-	bg_event  3, 31, SIGNPOST_JUMPTEXT, CeladonUniversitySignText
-	bg_event 10,  9, SIGNPOST_JUMPTEXT, CeladonCityDeptStoreSignText
-	bg_event 14,  9, SIGNPOST_JUMPTEXT, CeladonCityHomeDecorStoreSignText
-	bg_event 17,  9, SIGNPOST_JUMPTEXT, CeladonCityMansionSignText
-	bg_event 21, 21, SIGNPOST_JUMPTEXT, CeladonCityGameCornerSignText
-	bg_event 27, 21, SIGNPOST_JUMPTEXT, CeladonCityPrizeExchangeSignText
-	bg_event 33, 21, SIGNPOST_JUMPTEXT, CeladonCityTrainerTips1Text
-	bg_event 21, 15, SIGNPOST_JUMPTEXT, CeladonCityTrainerTips2Text
-	bg_event 41, 21, SIGNPOST_ITEM + PP_UP, EVENT_CELADON_CITY_HIDDEN_PP_UP
+	def_bg_events
+	bg_event  9, 18, BGEVENT_JUMPTEXT, CeladonCitySignText
+	bg_event 15, 31, BGEVENT_JUMPTEXT, CeladonGymSignText
+	bg_event  3, 31, BGEVENT_JUMPTEXT, CeladonUniversitySignText
+	bg_event 10,  9, BGEVENT_JUMPTEXT, CeladonCityDeptStoreSignText
+	bg_event 14,  9, BGEVENT_JUMPTEXT, CeladonCityHomeDecorStoreSignText
+	bg_event 17,  9, BGEVENT_JUMPTEXT, CeladonCityMansionSignText
+	bg_event 21, 21, BGEVENT_JUMPTEXT, CeladonCityGameCornerSignText
+	bg_event 27, 21, BGEVENT_JUMPTEXT, CeladonCityPrizeExchangeSignText
+	bg_event 23, 29, BGEVENT_JUMPTEXT, CeladonCityCafeSignText
+	bg_event 33, 29, BGEVENT_JUMPTEXT, CeladonCityHotelSignText
+	bg_event 33, 21, BGEVENT_JUMPTEXT, CeladonCityTrainerTips1Text
+	bg_event 21, 15, BGEVENT_JUMPTEXT, CeladonCityTrainerTips2Text
+	bg_event 41, 21, BGEVENT_ITEM + PP_UP, EVENT_CELADON_CITY_HIDDEN_PP_UP
 
-	db 14 ; object events
-	object_event  4, 17, SPRITE_RICH_BOY, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_SCRIPT, 0, CeladonCityScript, -1
-	object_event 30, 11, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1a9f7d, -1
-	object_event 31, 11, SPRITE_POLIWRATH, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_POKEMON, POLIWRATH, CeladonCityPoliwrathText, -1
-	object_event 24, 24, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1a9fde, -1
-	object_event 17, 16, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1aa043, -1
-	object_event 12, 31, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1aa0dc, -1
-	object_event 22, 13, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1aa115, -1
-	object_event 27, 33, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1aa155, -1
-	object_event 12, 13, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1aa1bd, -1
-	object_event 10, 22, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_RED, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1aa25b, -1
-	object_event 45, 10, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_8_SNORLAX
-	object_event 35, 23, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BROWN, PERSONTYPE_COMMAND, jumptextfaceplayer, CeladonCityLassText, -1
+	def_object_events
+	object_event  4, 17, SPRITE_RICH_BOY, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCityScript, -1
+	object_event 30, 11, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityFisherText, -1
+	pokemon_event 31, 11, POLIWRATH, -1, -1, PAL_NPC_BLUE, CeladonCityPoliwrathText, -1
+	object_event 24, 24, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityTeacher1Text, -1
+	object_event 17, 16, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityGramps1Text, -1
+	object_event 12, 31, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityGramps2Text, -1
+	object_event 22, 13, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityYoungster1Text, -1
+	object_event 27, 32, SPRITE_CAMPER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityYoungster2Text, -1
+	object_event 12, 13, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityTeacher2Text, -1
+	object_event 10, 22, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityLassText_PCC, -1
+	object_event 45, 10, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_8_SNORLAX
+	object_event 35, 23, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityLassText, -1
 	itemball_event 39,  7, MAX_ETHER, 1, EVENT_CELADON_CITY_MAX_ETHER
 	cuttree_event 32, 34, EVENT_CELADON_CITY_CUT_TREE
 
 CeladonCityFlyPoint:
 	setflag ENGINE_FLYPOINT_CELADON
-	return
+	endcallback
 
 CeladonCityScript:
 	faceplayer
@@ -73,8 +75,8 @@ CeladonCityTutorSwaggerScript:
 	writetext Text_CeladonCityTutorQuestion
 	yesorno
 	iffalse .TutorRefused
-	writebyte SWAGGER
-	writetext Text_CeladonCityTutorClear
+	setval SWAGGER
+	writetext ClearText
 	special Special_MoveTutor
 	ifequal $0, .TeachMove
 .TutorRefused
@@ -127,17 +129,13 @@ Text_CeladonCityTutorRefused:
 	text "Then goodbye!"
 	done
 
-Text_CeladonCityTutorClear:
-	text ""
-	done
-
 Text_CeladonCityTutorTaught:
 	text "Behold! Your #-"
 	line "mon has learned"
 	cont "to Swagger!"
 	done
 
-UnknownText_0x1a9f7d:
+CeladonCityFisherText:
 	text "This Poliwrath is"
 	line "my partner."
 
@@ -150,7 +148,7 @@ CeladonCityPoliwrathText:
 	text "Poliwrath: Croak!"
 	done
 
-UnknownText_0x1a9fde:
+CeladonCityTeacher1Text:
 	text "I lost at the slot"
 	line "machines again…"
 
@@ -161,7 +159,7 @@ UnknownText_0x1a9fde:
 	line "them out too."
 	done
 
-UnknownText_0x1aa043:
+CeladonCityGramps1Text:
 	text "Grimer have been"
 	line "appearing lately."
 
@@ -176,7 +174,7 @@ UnknownText_0x1aa043:
 	cont "a serious problem…"
 	done
 
-UnknownText_0x1aa0dc:
+CeladonCityGramps2Text:
 	text "Nihihi! This Gym"
 	line "is great! Only"
 
@@ -184,7 +182,7 @@ UnknownText_0x1aa0dc:
 	line "here!"
 	done
 
-UnknownText_0x1aa115:
+CeladonCityYoungster1Text:
 	text "Want to know a"
 	line "secret?"
 
@@ -193,7 +191,7 @@ UnknownText_0x1aa115:
 	cont "door."
 	done
 
-UnknownText_0x1aa155:
+CeladonCityYoungster2Text:
 	text "The restaurant"
 	line "there is having an"
 	cont "eating contest."
@@ -209,7 +207,7 @@ UnknownText_0x1aa155:
 	cont "feel bloated…"
 	done
 
-UnknownText_0x1aa1bd:
+CeladonCityTeacher2Text:
 	text "Celadon Dept.Store"
 	line "has the biggest"
 
@@ -226,7 +224,7 @@ UnknownText_0x1aa1bd:
 	line "a sales clerk."
 	done
 
-UnknownText_0x1aa25b:
+CeladonCityLassText_PCC:
 	text "I love being"
 	line "surrounded by tall"
 	cont "buildings!"
@@ -298,6 +296,20 @@ CeladonCityPrizeExchangeSignText:
 	text "Coins exchanged"
 	line "for prizes!"
 	cont "Prize Exchange"
+	done
+
+CeladonCityCafeSignText:
+	text "Celadon Diner"
+
+	para "Eatathon Contest"
+	line "all day today!"
+	done
+
+CeladonCityHotelSignText:
+	text "Celadon Hotel"
+
+	para "Relax in our"
+	line "swimming pool!"
 	done
 
 CeladonCityTrainerTips1Text:

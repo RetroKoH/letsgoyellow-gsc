@@ -1,12 +1,13 @@
-; sprites
+; sprite ids
+; OverworldSprites indexes (see data/sprites/sprites.asm)
 	const_def
 	const SPRITE_NONE ; 00
-	const SPRITE_RED ; 01
-	const SPRITE_RED_BIKE ; 02
-	const SPRITE_RED_SURF ; 03
-	const SPRITE_GREEN ; 04
-	const SPRITE_GREEN_BIKE ; 05
-	const SPRITE_GREEN_SURF ; 06
+	const SPRITE_CHRIS ; 01
+	const SPRITE_CHRIS_BIKE ; 02
+	const SPRITE_CHRIS_SURF ; 03
+	const SPRITE_KRIS ; 04
+	const SPRITE_KRIS_BIKE ; 05
+	const SPRITE_KRIS_SURF ; 06
 	const SPRITE_MOM ; 07
 	const SPRITE_DAD ; 08
 	const SPRITE_LYRA ; 09
@@ -32,8 +33,8 @@
 	const SPRITE_SABRINA ; 1d
 	const SPRITE_BLAINE ; 1e
 	const SPRITE_BLUE ; 1f
-	const SPRITE_RED_OLD ; 20
-	const SPRITE_LEAF_OLD ; 21
+	const SPRITE_RED ; 20
+	const SPRITE_LEAF ; 21
 	const SPRITE_YELLOW ; 22
 	const SPRITE_OAK ; 23
 	const SPRITE_ELM ; 24
@@ -175,88 +176,46 @@
 	const SPRITE_BIG_LAPRAS ; ac
 	const SPRITE_BIG_ONIX ; ad
 	const SPRITE_BIG_GYARADOS ; ae
-	const SPRITE_RATTATA_BACK ; af
-	const SPRITE_SLOWPOKETAIL ; b0
-	const SPRITE_WEIRD_TREE ; b1
-	const SPRITE_BALL_CUT_FRUIT ; b2
-	const SPRITE_BOULDER_ROCK_FOSSIL ; b3
-	const SPRITE_BOOK_PAPER_POKEDEX ; b4
-	const SPRITE_SNES ; b5
-	const SPRITE_N64 ; b6
-	const SPRITE_GAMECUBE ; b7
-	const SPRITE_WII ; b8
-	const SPRITE_SILVER_TROPHY ; b9
-	const SPRITE_GOLD_TROPHY ; ba
-	const SPRITE_ELECTRIC_FENCE_LEFT ; bb
-	const SPRITE_ELECTRIC_FENCE_RIGHT ; bc
-	const SPRITE_SAILBOAT ; bd
-	const SPRITE_MISC_OVERHEAD ; be
+	const SPRITE_PIDGEOTTO_SIDE ; af (blank side frame)
+	const SPRITE_RATTATA_BACK ; b0 (blank side frame)
+	const SPRITE_SLOWPOKETAIL ; b1
+	const SPRITE_WEIRD_TREE ; b2
+	const SPRITE_BALL_CUT_FRUIT ; b3
+	const SPRITE_BOULDER_ROCK_FOSSIL ; b4
+	const SPRITE_BOOK_PAPER_POKEDEX ; b5
+	const SPRITE_SNES ; b6
+	const SPRITE_N64 ; b7
+	const SPRITE_GAMECUBE ; b8
+	const SPRITE_WII ; b9
+	const SPRITE_SILVER_TROPHY ; ba
+	const SPRITE_GOLD_TROPHY ; bb
+	const SPRITE_ELECTRIC_FENCE_LEFT ; bc
+	const SPRITE_ELECTRIC_FENCE_RIGHT ; bd
+	const SPRITE_SAILBOAT ; be
+	const SPRITE_ICE_BOULDER ; bf
+NUM_OVERWORLD_SPRITES EQU const_value - 1
 
+	; c0-ef = 48 unused
+
+; special GetMonSprite values (see engine/overworld/overworld.asm)
+	const_next $f0
 SPRITE_POKEMON EQU const_value
-	const SPRITE_BULBASAUR ; bf
-	const SPRITE_CHARMANDER ; c0
-	const SPRITE_SQUIRTLE ; c1
-	const SPRITE_PIDGEY ; c2
-	const SPRITE_PIDGEOTTO ; c3
-	const SPRITE_RATTATA ; c4
-	const SPRITE_PIKACHU ; c5
-	const SPRITE_NIDORAN_F ; c6
-	const SPRITE_NIDORAN_M ; c7
-	const SPRITE_NIDORINO ; c8
-	const SPRITE_JIGGLYPUFF ; c9
-	const SPRITE_ODDISH ; ca
-	const SPRITE_VILEPLUME ; cb
-	const SPRITE_DIGLETT ; cc
-	const SPRITE_MEOWTH ; cd
-	const SPRITE_PERSIAN ; ce
-	const SPRITE_PSYDUCK ; cf
-	const SPRITE_POLIWRATH ; d0
-	const SPRITE_ABRA ; d1
-	const SPRITE_MACHOKE ; d2
-	const SPRITE_SLOWPOKE ; d3
-	const SPRITE_SLOWBRO ; d4
-	const SPRITE_DODRIO ; d5
-	const SPRITE_GENGAR ; d6
-	const SPRITE_ELECTRODE ; d7
-	const SPRITE_RHYDON ; d8
-	const SPRITE_CHANSEY ; d9
-	const SPRITE_MAGIKARP ; da
-	const SPRITE_ARTICUNO ; db
-	const SPRITE_ZAPDOS ; dc
-	const SPRITE_MOLTRES ; dd
-	const SPRITE_DRATINI ; de
-	const SPRITE_MEWTWO ; df
-	const SPRITE_FURRET ; e0
-	const SPRITE_HOOTHOOT ; e1
-	const SPRITE_AMPHAROS ; e2
-	const SPRITE_SPEAROW ; e3
-	const SPRITE_MURKROW ; e4
-	const SPRITE_SLOWKING ; e5
-	const SPRITE_HERACROSS ; e6
-	const SPRITE_URSARING ; e7
-	const SPRITE_SKARMORY ; e8
-	const SPRITE_MILTANK ; ea
-	const SPRITE_BLISSEY ; eb
-	const SPRITE_RAIKOU ; ec
-	const SPRITE_ENTEI ; ed
-	const SPRITE_SUICUNE ; ee
-	const SPRITE_LUGIA ; ef
-	const SPRITE_HO_OH ; f0
-	const SPRITE_EGG ; f1
+	const SPRITE_MON_ICON ; f0
+	const SPRITE_MON_DOLL_1 ; f1
+	const SPRITE_MON_DOLL_2 ; f2
+	const SPRITE_DAYCARE_MON_1 ; f3
+	const SPRITE_DAYCARE_MON_2 ; f4
+	const SPRITE_GROTTO_MON ; f5
 
-	const SPRITE_MON_DOLL_1 ; f2
-	const SPRITE_MON_DOLL_2 ; f3
-	const SPRITE_DAYCARE_MON_1 ; f4
-	const SPRITE_DAYCARE_MON_2 ; f5
-	const SPRITE_GROTTO_MON ; f6
-
+; wVariableSprites indexes (see ram/wramx.asm)
 SPRITE_VARS EQU const_value
-	const SPRITE_CONSOLE ; f7
-	const SPRITE_DOLL_1 ; f8
-	const SPRITE_DOLL_2 ; f9
-	const SPRITE_BIG_DOLL ; fa
-	const SPRITE_FUCHSIA_GYM_1 ; fb
-	const SPRITE_FUCHSIA_GYM_2 ; fc
-	const SPRITE_FUCHSIA_GYM_3 ; fd
-	const SPRITE_FUCHSIA_GYM_4 ; fe
-	const SPRITE_COPYCAT ; ff
+	const SPRITE_CONSOLE ; f6
+	const SPRITE_DOLL_1 ; f7
+	const SPRITE_DOLL_2 ; f8
+	const SPRITE_BIG_DOLL ; f9
+	const SPRITE_FUCHSIA_GYM_1 ; fa
+	const SPRITE_FUCHSIA_GYM_2 ; fb
+	const SPRITE_FUCHSIA_GYM_3 ; fc
+	const SPRITE_FUCHSIA_GYM_4 ; fd
+	const SPRITE_COPYCAT ; fe
+	const SPRITE_JANINE_IMPERSONATOR ; ff

@@ -1,4 +1,5 @@
 Music:
+	table_width 3, Music
 	dba Music_Nothing
 	dba Music_CrystalOpening
 	dba Music_TitleScreen
@@ -35,8 +36,8 @@ Music:
 	dba Music_RocketBattle
 	dba Music_Route36
 	dba Music_LookRival
-	dba Music_KantoTrainerBattle ; Rival Battle Music
-	dba Music_FarewellRival
+	dba Music_RivalBattle
+	dba Music_AfterTheRivalFight
 	dba Music_Evolution
 	dba Music_GoldenrodCity
 	dba Music_PokeComCenter
@@ -48,7 +49,7 @@ Music:
 	dba Music_BuenasPassword
 	dba Music_GameCorner
 	dba Music_Bicycle
-	dba Music_MeetFemaleTrainer
+	dba Music_LookLass
 	dba Music_NationalPark
 	dba Music_BugCatchingContest
 	dba Music_ContestResults
@@ -94,7 +95,8 @@ Music:
 	dba Music_PokemonTowerRBY
 	dba Music_LavenderTown
 	dba Music_KantoWildBattle
-	dba Music_CeruleanCity
+	dba Music_KantoWildBattleNight
+	dba Music_CeruleanCityHGSS
 	dba Music_BicycleRB
 	dba Music_NuggetBridgeHGSS
 	dba Music_MagnetTrain
@@ -112,7 +114,7 @@ Music:
 	dba Music_WildBattleGo
 	dba Music_DiglettsCaveRBY
 	dba Music_ViridianForest
-	dba Music_MeetMaleTrainer
+	dba Music_LookHiker
 	dba Music_ViridianCity
 	dba Music_Route3
 	dba Music_LookOfficer
@@ -132,6 +134,7 @@ Music:
 	dba Music_MountPyreRSE
 	dba Music_BattleTowerTheme
 	dba Music_BattleTowerLobby
+	dba Music_BattleFactoryRSE
 	dba Music_TrainerBattleBW
 	dba Music_FrontierBrainBattleRSE
 	dba Music_ZinniaEncounterORAS
@@ -188,3 +191,5 @@ Music:
 	dba Music_TrainerBattlePrism
 	dba Music_GymLeaderBattlePrism
 	dba Music_PaletteBattlePrism
+	dba Music_Megalovania
+	assert_table_length NUM_MUSIC_SONGS

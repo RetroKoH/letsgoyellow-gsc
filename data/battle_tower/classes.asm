@@ -1,76 +1,77 @@
 BattleTowerTrainers:
+	table_width (NAME_LENGTH - 1) + 1, BattleTowerTrainers
 	rawchar "Yayoi@@@@@", ARTIST
 	rawchar "Sawyer@@@@", POKEMANIAC
 	rawchar "Santiago@@", FISHER
-	rawchar "Mordecai@@", SCIENTIST
+	rawchar "Mordecai@@", PI
 	rawchar "Newman@@@@", SAILOR
-	rawchar "Hamilton@@", COOLTRAINERF
+	rawchar "Hamilton@@", VETERANF
 	rawchar "Angelica@@", BEAUTY
-	rawchar "Hare@@@@@@", GENTLEMAN
+	rawchar "Hare@@@@@@", RUIN_MANIAC
 	rawchar "Murray@@@@", SAILOR
-	rawchar "Suh@@@@@@@", MEDIUM
+	rawchar "Suh@@@@@@@", ELDER
 	rawchar "Siegfried@", TAMER
 	rawchar "Scipio@@@@", BURGLAR
-	rawchar "Walter@@@@", MEDIUM
+	rawchar "Walter@@@@", ELDER
 	rawchar "Eleni@@@@@", BATTLE_GIRL
-	rawchar "Ichigo@@@@", SAILOR
+	rawchar "Ichigo@@@@", BAKER
 	rawchar "Estée@@@@@", AROMA_LADY
 	rawchar "Wayne@@@@@", SCHOOLBOY
 	rawchar "McManus@@@", CAMPER
 	rawchar "Daryl@@@@@", SWIMMERM
-	rawchar "Kim@@@@@@@", JUGGLER
-	rawchar "Wilder@@@@", LASS
+	rawchar "Kim@@@@@@@", FIREBREATHER
+	rawchar "Wilder@@@@", COWGIRL
 	rawchar "Dennett@@@", GENTLEMAN
-	rawchar "Vi@@@@@@@@", BATTLE_GIRL
-	rawchar "Hiroto@@@@", GENTLEMAN
-	rawchar "Satoshi@@@", BUG_CATCHER
+	rawchar "Vi@@@@@@@@", OFFICERF
+	rawchar "Hiroto@@@@", WAITER
+	rawchar "Satoshi@@@", BUG_MANIAC
 	rawchar "Adam@@@@@@", YOUNGSTER
-	rawchar "Oakley@@@@", LASS
-	rawchar "Annie@@@@@", BATTLE_GIRL
+	rawchar "Oakley@@@@", COWGIRL
+	rawchar "Annie@@@@@", OFFICERF
 	rawchar "Park@@@@@@", ENGINEER
-	rawchar "Patricia@@", POKEMANIAC
+	rawchar "Patricia@@", COSPLAYER
 	rawchar "Rajan@@@@@", PICNICKER
 	rawchar "Diaz@@@@@@", PICNICKER
-	rawchar "Mozi@@@@@@", MEDIUM
-	rawchar "Adrián@@@@", GENTLEMAN
-	rawchar "Tomoyo@@@@", POKEMANIAC
+	rawchar "Mozi@@@@@@", SAGE
+	rawchar "Adrián@@@@", WAITER
+	rawchar "Tomoyo@@@@", COSPLAYER
 	rawchar "Ebony@@@@@", COOLTRAINERF
-	rawchar "Pirsig@@@@", MEDIUM
-	rawchar "Corey@@@@@", BLACKBELT_T
-	rawchar "Syd@@@@@@@", ENGINEER
+	rawchar "Pirsig@@@@", SAGE
+	rawchar "Corey@@@@@", OFFICERM
+	rawchar "Syd@@@@@@@", GUITARISTM
 	rawchar "Ethel@@@@@", MEDIUM
 	rawchar "Sagan@@@@@", SCIENTIST
 	rawchar "Lenie@@@@@", SWIMMERF
 	rawchar "Frost@@@@@", COOLTRAINERM
 	rawchar "Sophia@@@@", AROMA_LADY
-	rawchar "Joanna@@@@", LADY
+	rawchar "Joanna@@@@", WAITRESS
 	rawchar "Newton@@@@", SCIENTIST
 	rawchar "Chelsea@@@", MEDIUM
-	rawchar "Kuroki@@@@", SUPER_NERD
+	rawchar "Kuroki@@@@", HEX_MANIAC
 	rawchar "Hitesh@@@@", POKEMANIAC
 	rawchar "Abdul@@@@@", ENGINEER
 	rawchar "Emily@@@@@", LASS
-	rawchar "Hopper@@@@", COOLTRAINERF
+	rawchar "Hopper@@@@", VETERANF
 	rawchar "Marc@@@@@@", HIKER
 	rawchar "Laura@@@@@", BATTLE_GIRL
-	rawchar "Swartz@@@@", COOLTRAINERM
+	rawchar "Swartz@@@@", VETERANM
 	rawchar "Cobb@@@@@@", SCHOOLBOY
 	rawchar "Yufune@@@@", BLACKBELT_T
-	rawchar "Mónica@@@@", LADY
+	rawchar "Mónica@@@@", WAITRESS
 	rawchar "Daniel@@@@", TAMER
 	rawchar "Toshi@@@@@", BLACKBELT_T
 	rawchar "Charlie@@@", JUGGLER
 	rawchar "Fagin@@@@@", BURGLAR
 	rawchar "Buckley@@@", RICH_BOY
-	rawchar "Mateo@@@@@", COOLTRAINERM
-	rawchar "Newandyke@", BLACKBELT_T
-	rawchar "Rebecca@@@", LASS
+	rawchar "Mateo@@@@@", VETERANM
+	rawchar "Newandyke@", OFFICERM
+	rawchar "Rebecca@@@", SKIER
 	rawchar "Santiago@@", PSYCHIC_T
 	rawchar "Blake@@@@@", YOUNGSTER
-	rawchar "James@@@@@", YOUNGSTER
-	rawchar "Kubrick@@@", SUPER_NERD
+	rawchar "James@@@@@", BOARDER
+	rawchar "Kubrick@@@", HEX_MANIAC
 	rawchar "Alisha@@@@", LASS
-	rawchar "Sunni@@@@@", BEAUTY
+	rawchar "Sunni@@@@@", KIMONO_GIRL_1
 	rawchar "Andre@@@@@", ROUGHNECK
 	rawchar "Hill@@@@@@", COOLTRAINERM
 	rawchar "Tara@@@@@@", SWIMMERF
@@ -78,54 +79,56 @@ BattleTowerTrainers:
 	rawchar "Phelps@@@@", SWIMMERM
 	rawchar "Zeke@@@@@@", DRAGON_TAMER
 	rawchar "Bisom@@@@@", TEACHER
-	rawchar "Nadia@@@@@", TAMER
+	rawchar "Nadia@@@@@", BREEDER
 	rawchar "Hatcher@@@", GENTLEMAN
 	rawchar "Frida@@@@@", ARTIST
 	rawchar "Nimue@@@@@", LADY
-	rawchar "Alice@@@@@", BEAUTY
+	rawchar "Alice@@@@@", SIGHTSEERF
 	rawchar "Valentine@", BEAUTY
 	rawchar "Uri@@@@@@@", PSYCHIC_T
-	rawchar "Wong@@@@@@", JUGGLER
-	rawchar "Chiyo@@@@@", BEAUTY
+	rawchar "Wong@@@@@@", FIREBREATHER
+	rawchar "Chiyo@@@@@", KIMONO_GIRL_1
 	rawchar "Sidney@@@@", BIKER
 	rawchar "Nerai@@@@@", HIKER
 	rawchar "Gwen@@@@@@", LADY
 	rawchar "Axl@@@@@@@", SUPER_NERD
-	rawchar "Gerald@@@@", SCHOOLBOY
+	rawchar "Gerald@@@@", SIGHTSEERM
 	rawchar "Kafuka@@@@", SCHOOLGIRL
 	rawchar "Hong@@@@@@", TEACHER
-	rawchar "Pov@@@@@@@", YOUNGSTER
-	rawchar "Collins@@@", SUPER_NERD
+	rawchar "Pov@@@@@@@", BOARDER
+	rawchar "Collins@@@", POKEFANM
 	rawchar "Darwin@@@@", BUG_CATCHER
-	rawchar "Tatiana@@@", TEACHER
-	rawchar "Pitt@@@@@@", GENTLEMAN
+	rawchar "Tatiana@@@", NURSE
+	rawchar "Pitt@@@@@@", RUIN_MANIAC
 	rawchar "Tajiri@@@@", BUG_CATCHER
 	rawchar "Heinlen@@@", CAMPER
 	rawchar "Hughes@@@@", FISHER
-	rawchar "Kirby@@@@@", BUG_CATCHER
+	rawchar "Kirby@@@@@", BUG_MANIAC
 	rawchar "Ricky@@@@@", BIRD_KEEPER
-	rawchar "Joan@@@@@@", PICNICKER
-	rawchar "Abed@@@@@@", SUPER_NERD
-	rawchar "Amelia@@@@", BEAUTY
-	rawchar "Deedee@@@@", PICNICKER
+	rawchar "Joan@@@@@@", GUITARISTF
+	rawchar "Abed@@@@@@", POKEFANM
+	rawchar "Amelia@@@@", SIGHTSEERF
+	rawchar "Deedee@@@@", GUITARISTF
 	rawchar "Garrett@@@", JUGGLER
-	rawchar "Molly@@@@@", SAILOR
+	rawchar "Molly@@@@@", BAKER
 	rawchar "Salim@@@@@", ROUGHNECK
-	rawchar "Dijkstra@@", COOLTRAINERM
+	rawchar "Dijkstra@@", VETERANM
 	rawchar "Raine@@@@@", COOLTRAINERF
-	rawchar "Dorothy@@@", LASS
-	rawchar "Shirley@@@", SCHOOLGIRL
-	rawchar "Douglas@@@", SCHOOLBOY
+	rawchar "Dorothy@@@", SKIER
+	rawchar "Shirley@@@", POKEFANF
+	rawchar "Douglas@@@", SIGHTSEERM
 	rawchar "Armstrong@", BIKER
-	rawchar "Remy@@@@@@", COOLTRAINERF
+	rawchar "Remy@@@@@@", VETERANF
 	rawchar "Drake@@@@@", RICH_BOY
-	rawchar "Mori@@@@@@", SCHOOLGIRL
+	rawchar "Mori@@@@@@", POKEFANF
 	rawchar "Jorge@@@@@", DRAGON_TAMER
 	rawchar "Lavigne@@@", SCHOOLGIRL
-	rawchar "Paul@@@@@@", ENGINEER
-	rawchar "Holmes@@@@", SCIENTIST
-	rawchar "Cramer@@@@", DRAGON_TAMER
-	rawchar "Mako@@@@@@", TAMER
+	rawchar "Paul@@@@@@", GUITARISTM
+	rawchar "Holmes@@@@", PI
+	rawchar "Cramer@@@@", NURSE
+	rawchar "Mako@@@@@@", BREEDER
 	rawchar "Argo@@@@@@", BIRD_KEEPER
+	assert_table_length BATTLETOWER_NUM_TRAINERS
 ;BattleTowerTycoon:
 	rawchar "Palmer@@@@", TOWERTYCOON
+	rawchar "Thorton@@@", TOWERTYCOON ; should be factory head

@@ -60,6 +60,9 @@ INCLUDE "maps/BattleTowerBattleRoom.asm"
 INCLUDE "maps/BattleTowerElevator.asm"
 INCLUDE "maps/BattleTowerHallway.asm"
 INCLUDE "maps/BattleTowerOutside.asm"
+INCLUDE "maps/BattleFactory1F.asm"
+INCLUDE "maps/BattleFactoryHallway.asm"
+INCLUDE "maps/BattleFactoryBattleRoom.asm"
 
 
 SECTION "New Bark Scripts", ROMX
@@ -67,13 +70,13 @@ SECTION "New Bark Scripts", ROMX
 INCLUDE "maps/NewBarkTown.asm"
 INCLUDE "maps/ElmsHouse.asm"
 INCLUDE "maps/ElmsLab.asm"
-INCLUDE "maps/KrissNeighborsHouse.asm"
+INCLUDE "maps/PlayersNeighborsHouse.asm"
 
 
 SECTION "New Bark Scripts 2", ROMX
 
-INCLUDE "maps/KrissHouse1F.asm"
-INCLUDE "maps/KrissHouse2F.asm"
+INCLUDE "maps/PlayersHouse1F.asm"
+INCLUDE "maps/PlayersHouse2F.asm"
 INCLUDE "maps/LyrasHouse1F.asm"
 INCLUDE "maps/LyrasHouse2F.asm"
 
@@ -125,7 +128,27 @@ INCLUDE "maps/VioletOutskirts.asm"
 
 SECTION "Ruins of Alph Scripts", ROMX
 
-INCLUDE "maps/RuinsOfAlph.asm"
+INCLUDE "maps/RuinsOfAlphOutside.asm"
+
+
+SECTION "Ruins of Alph Scripts 2", ROMX
+
+INCLUDE "maps/RuinsOfAlphResearchCenter.asm"; shares text with RuinsOfAlphKabutoChamber.asm
+INCLUDE "maps/RuinsOfAlphEntranceChamber.asm"
+INCLUDE "maps/RuinsOfAlphInnerChamber.asm"
+INCLUDE "maps/RuinsOfAlphSinjohChamber.asm"
+INCLUDE "maps/RuinsOfAlphAerodactylChamber.asm"
+INCLUDE "maps/RuinsOfAlphHoOhChamber.asm"
+INCLUDE "maps/RuinsOfAlphKabutoChamber.asm"
+INCLUDE "maps/RuinsOfAlphOmanyteChamber.asm"
+INCLUDE "maps/RuinsOfAlphAerodactylItemRoom.asm"
+INCLUDE "maps/RuinsOfAlphHoOhItemRoom.asm"
+INCLUDE "maps/RuinsOfAlphKabutoItemRoom.asm"
+INCLUDE "maps/RuinsOfAlphOmanyteItemRoom.asm"
+INCLUDE "maps/RuinsOfAlphAerodactylWordRoom.asm"
+INCLUDE "maps/RuinsOfAlphHoOhWordRoom.asm"
+INCLUDE "maps/RuinsOfAlphKabutoWordRoom.asm"
+INCLUDE "maps/RuinsOfAlphOmanyteWordRoom.asm"
 
 
 SECTION "Sinjoh Ruins Scripts", ROMX
@@ -154,6 +177,7 @@ INCLUDE "maps/KurtsHouse.asm"
 
 SECTION "Slowpoke Well Scripts", ROMX
 
+INCLUDE "maps/SlowpokeWellEntrance.asm"
 INCLUDE "maps/SlowpokeWellB1F.asm"
 INCLUDE "maps/SlowpokeWellB2F.asm"
 
@@ -177,7 +201,7 @@ SECTION "Goldenrod Scripts", ROMX
 INCLUDE "maps/GoldenrodCity.asm"
 INCLUDE "maps/GoldenrodGym.asm"
 INCLUDE "maps/GoldenrodGameCorner.asm"
-INCLUDE "maps/Daycare.asm"
+INCLUDE "maps/DayCare.asm"
 
 
 SECTION "Goldenrod Scripts 2", ROMX
@@ -327,7 +351,7 @@ INCLUDE "maps/CianwoodCityPhotoStudio.asm"
 INCLUDE "maps/CianwoodLugiaSpeechHouse.asm"
 INCLUDE "maps/CianwoodPharmacy.asm"
 INCLUDE "maps/ManiasHouse.asm"
-INCLUDE "maps/StatsJudgesHouse.asm"
+INCLUDE "maps/MoveManiacsHouse.asm"
 
 
 SECTION "Yellow Forest Scripts", ROMX
@@ -531,7 +555,6 @@ INCLUDE "maps/VermilionHouseFishingSpeechHouse.asm"
 INCLUDE "maps/VermilionMagnetTrainSpeechHouse.asm"
 INCLUDE "maps/VermilionPollutionSpeechHouse.asm"
 INCLUDE "maps/VermilionPort.asm"
-INCLUDE "maps/VermilionPortPassage.asm"
 INCLUDE "maps/VermilionSSAnneSpeechHouse.asm"
 INCLUDE "maps/PokemonFanClub.asm"
 
@@ -741,8 +764,9 @@ INCLUDE "maps/SafariZoneFuchsiaGate.asm"
 
 SECTION "Uraga Channel Scripts", ROMX
 
-INCLUDE "maps/UragaChannel.asm"
-INCLUDE "maps/Route18West.asm" ; shares text with UragaChannel.asm
+INCLUDE "maps/UragaChannelEast.asm"
+INCLUDE "maps/UragaChannelWest.asm"
+INCLUDE "maps/Route18West.asm" ; shares text with UragaChannelEast.asm
 
 
 SECTION "Scary Cave Scripts", ROMX

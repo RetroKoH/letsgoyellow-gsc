@@ -11,4 +11,3 @@
 .frame3
 	db $02 ; bitmask
 	db $27, $36, $2a, $35
-; 0xd5148

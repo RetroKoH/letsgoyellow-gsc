@@ -1,9 +1,12 @@
 VermilionCity_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
+	scene_script LawrenceIntroScript
 
-	db 0 ; callbacks
+	def_callbacks
+	callback MAPCALLBACK_OBJECTS, VermilionCitySetupLawrenceCallback
+	callback MAPCALLBACK_BLOCKS, VermilionCitySetupBattleFactoryCallback
 
-	db 14 ; warp events
+	def_warp_events
 	warp_event  5,  5, VERMILION_HOUSE_FISHING_SPEECH_HOUSE, 1
 	warp_event  9,  5, VERMILION_POKECENTER_1F, 1
 	warp_event  7, 17, POKEMON_FAN_CLUB, 1
@@ -11,89 +14,122 @@ VermilionCity_MapScriptHeader:
 	warp_event 21, 17, VERMILION_MART, 2
 	warp_event 21, 21, VERMILION_HOUSE_DIGLETTS_CAVE_SPEECH_HOUSE, 1
 	warp_event 10, 23, VERMILION_GYM, 1
-	warp_event 17, 35, VERMILION_PORT_PASSAGE, 1
-	warp_event 18, 35, VERMILION_PORT_PASSAGE, 2
+	warp_event 18, 35, VERMILION_PORT, 1
+	warp_event 19, 35, VERMILION_PORT, 3
 	warp_event 36, 17, DIGLETTS_CAVE, 1
+	warp_event 28, 35, SEAGALLOP_FERRY_VERMILION_GATE, 1
 	warp_event 29, 35, SEAGALLOP_FERRY_VERMILION_GATE, 1
-	warp_event 30, 35, SEAGALLOP_FERRY_VERMILION_GATE, 1
 	warp_event 13,  5, VERMILION_POLLUTION_SPEECH_HOUSE, 1
 	warp_event 19,  5, VERMILION_S_S_ANNE_SPEECH_HOUSE, 1
+	warp_event 29,  9, BATTLE_FACTORY_1F, 1
+	warp_event 30,  9, BATTLE_FACTORY_1F, 2
 
-	db 2 ; coord events
-	coord_event 18, 32, 0, LawrenceLeftIntroScript
-	coord_event 19, 32, 0, LawrenceRightIntroScript
+	def_coord_events
 
-	db 8 ; bg events
-	bg_event 25,  5, SIGNPOST_JUMPTEXT, VermilionCitySignText
-	bg_event  5, 23, SIGNPOST_JUMPTEXT, VermilionGymSignText
-	bg_event  5, 17, SIGNPOST_JUMPTEXT, PokemonFanClubSignText
-	bg_event 33, 17, SIGNPOST_JUMPTEXT, VermilionCityDiglettsCaveSignText
-	bg_event 27, 19, SIGNPOST_JUMPTEXT, VermilionCityPortSignText
-	bg_event 28, 13, SIGNPOST_JUMPTEXT, VermilionCityTruckText
-	bg_event 29, 13, SIGNPOST_JUMPTEXT, VermilionCityTruckText
-	bg_event 12, 23, SIGNPOST_ITEM + FULL_HEAL, EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL
+	def_bg_events
+	bg_event 19,  9, BGEVENT_JUMPTEXT, VermilionCitySignText
+	bg_event  5, 23, BGEVENT_JUMPTEXT, VermilionGymSignText
+	bg_event  5, 17, BGEVENT_JUMPTEXT, PokemonFanClubSignText
+	bg_event 33, 17, BGEVENT_JUMPTEXT, VermilionCityDiglettsCaveSignText
+	bg_event 27, 19, BGEVENT_JUMPTEXT, VermilionCityPortSignText
+	bg_event 23, 13, BGEVENT_JUMPTEXT, VermilionCityBattleFactorySignText
+	bg_event 11, 27, BGEVENT_JUMPTEXT, VermilionCityAdvancedTipsSignText
+	bg_event 12, 23, BGEVENT_ITEM + FULL_HEAL, EVENT_VERMILION_CITY_HIDDEN_FULL_HEAL
 
-	db 14 ; object events
-	object_event 35, 18, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
-	object_event 19, 28, SPRITE_LAWRENCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, ObjectEvent, EVENT_LAWRENCE_VERMILION_CITY
-	object_event 18, 13, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1aaa15, -1
-	object_event 23, 10, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, VermilionMachokeOwnerText, -1
-	object_event 26, 11, SPRITE_MACHOKE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_SCRIPT, 0, VermilionMachoke, -1
-	object_event 14, 20, SPRITE_ROCKER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, PERSONTYPE_COMMAND, jumptextfaceplayer, UnknownText_0x1aab1a, -1
-	object_event 25, 16, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, PERSONTYPE_COMMAND, jumptextfaceplayer, VermilionCitySuperNerdText, -1
-	object_event 10,  9, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, PERSONTYPE_COMMAND, jumptextfaceplayer, VermilionCitySailorText, -1
-	object_event 31, 16, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, PERSONTYPE_SCRIPT, 0, VermilionGymBadgeGuy, -1
+	def_object_events
+	object_event 35, 18, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionSnorlax, EVENT_VERMILION_CITY_SNORLAX
+	object_event 18, 31, SPRITE_LAWRENCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LAWRENCE_VERMILION_CITY
+	object_event 18, 13, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, VermilionCityTeacherText, -1
+	object_event 27, 13, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionMachokeOwnerScript, -1
+	pokemon_event 28, 13, MACHOKE, -1, -1, PAL_NPC_BLUE, VermilionMachokeText, -1
+	object_event 16, 20, SPRITE_ROCKER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, VermilionCitySuperNerdText, -1
+	object_event 32, 12, SPRITE_POKEMANIAC, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, VermilionCitySuperNerd2Script, -1
+	object_event 11,  9, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 3, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, VermilionCitySailorText, -1
+	object_event 31, 16, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, VermilionGymBadgeGuy, -1
+	object_event 29, 10, SPRITE_OFFICER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, VermilionCityOfficerFText, EVENT_RESTORED_POWER_TO_KANTO
+	object_event 30, 10, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, VermilionCityOfficerText, EVENT_RESTORED_POWER_TO_KANTO
 	cuttree_event 13, 23, EVENT_VERMILION_CITY_CUT_TREE
-	smashrock_event 26, 14
-	smashrock_event 23, 12
-	smashrock_event 28, 7
-	smashrock_event 29, 9
 
-	const_def 1 ; object constants
+	object_const_def
 	const VERMILIONCITY_BIG_SNORLAX
 	const VERMILIONCITY_LAWRENCE
 
-LawrenceLeftIntroScript:
-	turnobject PLAYER, UP
-	showemote EMOTE_SHOCK, PLAYER, 15
-	special Special_FadeOutMusic
-	pause 15
-	showtext LawrenceOverheardText
-	applymovement VERMILIONCITY_LAWRENCE, LawrenceApproachLeftMovementData
-	playsound SFX_TACKLE
-	applymovement VERMILIONCITY_LAWRENCE, LawrenceBumpLeftMovementData
-	showemote EMOTE_SHOCK, VERMILIONCITY_LAWRENCE, 15
-	pause 15
-	applymovement VERMILIONCITY_LAWRENCE, LawrenceWalkAroundLeftMovementData
-	turnobject PLAYER, RIGHT
-	playmusic MUSIC_ZINNIA_ENCOUNTER_ORAS
-	showtext LawrenceIntroText
-	turnobject PLAYER, DOWN
-	applymovement VERMILIONCITY_LAWRENCE, LawrenceDepartLeftMovementData
-	playsound SFX_EXIT_BUILDING
+VermilionCitySetupLawrenceCallback:
+	checkscene
+	iftrue .done
+	readvar VAR_XCOORD
+	ifequal 18, .done
 	disappear VERMILIONCITY_LAWRENCE
-	setscene $1
-	setflag ENGINE_FLYPOINT_VERMILION
-	special RestartMapMusic
-	end
+	moveobject VERMILIONCITY_LAWRENCE, 19, 31
+	appear VERMILIONCITY_LAWRENCE
+.done
+	endcallback
 
-LawrenceRightIntroScript:
+VermilionCitySetupBattleFactoryCallback:
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iftrue .done
+	callasm .DarkenPowerPlantDoors
+.done
+	endcallback
+
+.DarkenPowerPlantDoors:
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wDecompressedAttributes)
+	ldh [rSVBK], a
+	xor a ; PAL_BG_GRAY
+	ld hl, wDecompressedAttributes + 16 * $34 + 8
+	call .FillQuadrant
+	ld hl, wDecompressedAttributes + 16 * $92 + 10
+	call .FillQuadrant
+	ld a, PAL_BG_BROWN
+	ld [wDecompressedAttributes + 16 * $68 + 1], a
+	ld [wDecompressedAttributes + 16 * $68 + 10], a
+	ld [wDecompressedAttributes + 16 * $69 + 1], a
+	ld [wDecompressedAttributes + 16 * $69 + 8], a
+	ld [wDecompressedAttributes + 16 * $69 + 10], a
+	ld [wDecompressedAttributes + 16 * $7f + 1], a
+	ld [wDecompressedAttributes + 16 * $7f + 3], a
+	ld [wDecompressedAttributes + 16 * $7f + 8], a
+	ld [wDecompressedAttributes + 16 * $7f + 11], a
+	pop af
+	ldh [rSVBK], a
+	ret
+
+.FillQuadrant:
+	ld [hli], a
+	ld [hli], a
+	inc hl
+	inc hl
+	ld [hli], a
+	ld [hl], a
+	ret
+
+LawrenceIntroScript:
 	turnobject PLAYER, UP
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special Special_FadeOutMusic
 	pause 15
 	showtext LawrenceOverheardText
-	applymovement VERMILIONCITY_LAWRENCE, LawrenceApproachRightMovementData
+	applymovement VERMILIONCITY_LAWRENCE, LawrenceApproachMovementData
 	playsound SFX_TACKLE
-	applymovement VERMILIONCITY_LAWRENCE, LawrenceBumpRightMovementData
+	applymovement VERMILIONCITY_LAWRENCE, LawrenceBumpMovementData
 	showemote EMOTE_SHOCK, VERMILIONCITY_LAWRENCE, 15
 	pause 15
+	readvar VAR_XCOORD
+	ifequal 18, .left
 	applymovement VERMILIONCITY_LAWRENCE, LawrenceWalkAroundRightMovementData
 	turnobject PLAYER, LEFT
+	sjump .continue
+
+.left
+	applymovement VERMILIONCITY_LAWRENCE, LawrenceWalkAroundLeftMovementData
+	turnobject PLAYER, RIGHT
+.continue
 	playmusic MUSIC_ZINNIA_ENCOUNTER_ORAS
 	showtext LawrenceIntroText
-	turnobject PLAYER, DOWN
-	applymovement VERMILIONCITY_LAWRENCE, LawrenceDepartRightMovementData
+	applyonemovement VERMILIONCITY_LAWRENCE, turn_head_down
+	pause 15
 	playsound SFX_EXIT_BUILDING
 	disappear VERMILIONCITY_LAWRENCE
 	setscene $1
@@ -101,16 +137,13 @@ LawrenceRightIntroScript:
 	special RestartMapMusic
 	end
 
-LawrenceApproachLeftMovementData:
-	step_left
-LawrenceApproachRightMovementData:
+LawrenceApproachMovementData:
 	step_down
 	step_down
 	step_down
 	step_end
 
-LawrenceBumpLeftMovementData:
-LawrenceBumpRightMovementData:
+LawrenceBumpMovementData:
 	fix_facing
 	run_step_up
 	remove_fixed_facing
@@ -132,36 +165,18 @@ LawrenceWalkAroundRightMovementData:
 	turn_head_right
 	step_end
 
-LawrenceDepartLeftMovementData:
-	step_down
-	step_down
-	step_left
-	step_down
-	step_end
-
-LawrenceDepartRightMovementData:
-	step_down
-	step_down
-	step_down
-	step_end
-
-VermilionMachoke:
-	showcrytext VermilionMachokeText1, MACHOKE
-	earthquake 30
-	jumptext VermilionMachokeText2
-
 VermilionSnorlax:
 	opentext
 	special SpecialSnorlaxAwake
-	iftrue UnknownScript_0x1aa9ab
-	jumpopenedtext UnknownText_0x1aab64
+	iftrue .Awake
+	jumpopenedtext VermilionCitySnorlaxSleepingText
 
-UnknownScript_0x1aa9ab:
-	writetext UnknownText_0x1aab84
+.Awake:
+	writetext VermilionCityRadioNearSnorlaxText
 	pause 15
 	cry SNORLAX
 	closetext
-	writecode VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
+	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
 	loadwildmon SNORLAX, 60
 	startbattle
 	disappear VERMILIONCITY_BIG_SNORLAX
@@ -171,30 +186,64 @@ UnknownScript_0x1aa9ab:
 
 VermilionGymBadgeGuy:
 	checkevent EVENT_GOT_BOTTLE_CAP_FROM_VERMILION_GUY
-	iftrue_jumptextfaceplayer UnknownText_0x1aad4a
-	checkcode VAR_BADGES
+	iftrue_jumptextfaceplayer VermilionCityBadgeGuyBattleEdgeText
+	readvar VAR_BADGES
 	ifequal 16, .AllBadges
 	ifgreater 13, .MostBadges
 	ifgreater 9, .SomeBadges
-	jumptextfaceplayer UnknownText_0x1aabc8
+	jumptextfaceplayer VermilionCityBadgeGuyTrainerText
 
 .SomeBadges:
-	jumptextfaceplayer UnknownText_0x1aac2b
+	jumptextfaceplayer VermilionCityBadgeGuySomeBadgesText
 
 .MostBadges:
-	jumptextfaceplayer UnknownText_0x1aac88
+	jumptextfaceplayer VermilionCityBadgeGuyMostBadgesText
 
 .AllBadges:
 	faceplayer
 	opentext
-	writetext UnknownText_0x1aacf3
-	buttonsound
+	writetext VermilionCityBadgeGuyAllBadgesText
+	promptbutton
 	verbosegiveitem BOTTLE_CAP
 	iffalse_endtext
 	setevent EVENT_GOT_BOTTLE_CAP_FROM_VERMILION_GUY
-	thisopenedtext
+	writetext VermilionCityBadgeGuyBattleEdgeText
+	waitendtext
 
-UnknownText_0x1aad4a:
+VermilionMachokeOwnerScript:
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iftrue_jumptextfaceplayer VermilionMachokeOwnerText
+	jumpthistextfaceplayer
+
+	text "My #mon"
+	line "prepared the land"
+
+	para "to construct that"
+	line "huge building!"
+
+	para "It's quite a shame"
+	line "that the public"
+	cont "can't enter yet…"
+	done
+
+VermilionCitySuperNerd2Script:
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
+	iftrue_jumptextfaceplayer VermilionCitySuperNerd2Text
+	jumpthistextfaceplayer
+
+	text "The Battle Factory"
+	line "is brand-new!"
+
+	para "But it draws a"
+	line "huge amount of"
+	cont "power…"
+
+	para "With the Power"
+	line "Plant offline,"
+	cont "it's useless!"
+	done
+
+VermilionCityBadgeGuyBattleEdgeText:
 	text "Having a variety"
 	line "of #mon types"
 
@@ -257,7 +306,7 @@ LawrenceIntroText:
 	cont "Farewell!"
 	done
 
-UnknownText_0x1aaa15:
+VermilionCityTeacherText:
 	text "Vermilion Port is"
 	line "Kanto's seaside"
 	cont "gateway."
@@ -268,32 +317,25 @@ UnknownText_0x1aaa15:
 	done
 
 VermilionMachokeOwnerText:
-	text "My #mon has"
-	line "been preparing the"
+	text "My #mon"
+	line "prepared the land"
 
-	para "land for construc-"
-	line "tion for so long,"
-	cont "it evolved!"
+	para "to construct that"
+	line "huge building!"
 
-	para "But I have no"
-	line "money to start the"
-	cont "project…"
+	para "It was a Machop"
+	line "three years ago,"
+
+	para "but the effort"
+	line "made it evolve!"
 	done
 
-VermilionMachokeText1:
+VermilionMachokeText:
 	text "Machoke: Guooh"
 	line "gogogoh!"
 	done
 
-VermilionMachokeText2:
-	text "A Machoke is"
-	line "growling while"
-
-	para "stomping the"
-	line "ground flat."
-	done
-
-UnknownText_0x1aab1a:
+VermilionCitySuperNerdText:
 	text "There are eight"
 	line "Gyms in Kanto."
 
@@ -302,14 +344,34 @@ UnknownText_0x1aab1a:
 	cont "#mon Gym."
 	done
 
-VermilionCitySuperNerdText:
-	text "The man over there"
-	line "said his building"
+VermilionCitySuperNerd2Text:
+	text "The Battle Factory"
+	line "is brand-new, but"
 
-	para "would be finished"
-	line "by now."
+	para "trainers are al-"
+	line "ready arriving"
 
-	para "What's the hold-up?"
+	para "from distant"
+	line "regions to take"
+	cont "its challenge!"
+	done
+
+VermilionCityOfficerFText:
+	text "The Power Plant's"
+	line "generator is shut"
+	cont "down, so it's not"
+
+	para "safe to open the"
+	line "Battle Factory."
+	done
+
+VermilionCityOfficerText:
+	text "Sorry, the Battle"
+	line "Factory is closed"
+
+	para "until the Power"
+	line "Plant is up and"
+	cont "running again."
 	done
 
 VermilionCitySailorText:
@@ -317,12 +379,12 @@ VermilionCitySailorText:
 	line "good sea air!"
 	done
 
-UnknownText_0x1aab64:
+VermilionCitySnorlaxSleepingText:
 	text "Snorlax is snoring"
 	line "peacefully…"
 	done
 
-UnknownText_0x1aab84:
+VermilionCityRadioNearSnorlaxText:
 	text "The #gear was"
 	line "placed near the"
 	cont "sleeping Snorlax…"
@@ -332,7 +394,7 @@ UnknownText_0x1aab84:
 	para "Snorlax woke up!"
 	done
 
-UnknownText_0x1aabc8:
+VermilionCityBadgeGuyTrainerText:
 	text "Skilled trainers"
 	line "gather in Kanto."
 
@@ -343,7 +405,7 @@ UnknownText_0x1aabc8:
 	line "to defeat."
 	done
 
-UnknownText_0x1aac2b:
+VermilionCityBadgeGuySomeBadgesText:
 	text "You've started to"
 	line "collect Kanto Gym"
 	cont "Badges?"
@@ -353,7 +415,7 @@ UnknownText_0x1aac2b:
 	cont "here are tough?"
 	done
 
-UnknownText_0x1aac88:
+VermilionCityBadgeGuyMostBadgesText:
 	text "I guess you'll be"
 	line "finished with your"
 
@@ -365,7 +427,7 @@ UnknownText_0x1aac88:
 	cont "Badges."
 	done
 
-UnknownText_0x1aacf3:
+VermilionCityBadgeGuyAllBadgesText:
 	text "Congratulations!"
 
 	para "You got all the"
@@ -407,12 +469,17 @@ VermilionCityPortSignText:
 	line "Entrance"
 	done
 
-VermilionCityTruckText:
-	text "It's a truck full"
-	line "of building supp-"
-	cont "lies."
+VermilionCityAdvancedTipsSignText:
+	text "Advanced Tips!"
 
-	para "Underneath it"
-	line "there's…"
-	cont "nothing!"
+	para "Your Trainer Card"
+	line "has room to show"
+	cont "sixteen Badges!"
+	done
+
+VermilionCityBattleFactorySignText:
+	text "Battle Factory"
+
+	para "Win it All with"
+	line "Rental #mon!"
 	done

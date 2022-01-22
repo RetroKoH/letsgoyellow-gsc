@@ -19,4 +19,3 @@
 .frame5
 	db $04 ; bitmask
 	db $26, $27, $29
-; 0xd435a

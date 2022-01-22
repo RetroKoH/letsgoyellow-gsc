@@ -6,7 +6,7 @@
 ; 	FadeMusic
 ; 	PlayStereoSFX
 
-_MapSetup_Sound_Off:: ; e8000
+_InitSound::
 ; restart sound operation
 ; clear all relevant hardware registers & wram
 	push hl
@@ -50,44 +50,32 @@ _MapSetup_Sound_Off:: ; e8000
 	ld a, $77 ; max
 	ld [wVolume], a
 	call MusicOn
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
+	jmp PopAFBCDEHL
 
-; e803d
-
-MusicFadeRestart: ; e803d
+MusicFadeRestart:
 ; restart but keep the music id to fade in to
 	ld a, [wMusicFadeIDHi]
 	push af
 	ld a, [wMusicFadeIDLo]
 	push af
-	call _MapSetup_Sound_Off
+	call _InitSound
 	pop af
 	ld [wMusicFadeIDLo], a
 	pop af
 	ld [wMusicFadeIDHi], a
 	ret
 
-; e8051
-
-MusicOn: ; e8051
+MusicOn:
 	ld a, 1
 	ld [wMusicPlaying], a
 	ret
 
-; e8057
-
-MusicOff: ; e8057
+MusicOff:
 	xor a
 	ld [wMusicPlaying], a
 	ret
 
-; e805c
-
-_UpdateSound:: ; e805c
+_UpdateSound::
 ; called once per frame
 	; no use updating audio if it's not playing
 	ld a, [wMusicPlaying]
@@ -103,7 +91,7 @@ _UpdateSound:: ; e805c
 	ld hl, wChannel1Flags - wChannel1
 	add hl, bc
 	bit SOUND_CHANNEL_ON, [hl]
-	jp z, .nextchannel
+	jmp z, .nextchannel
 	; check time left in the current note
 	ld hl, wChannel1NoteDuration - wChannel1
 	add hl, bc
@@ -124,7 +112,7 @@ _UpdateSound:: ; e805c
 	; turn vibrato off for now
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	res SOUND_PITCH_WHEEL, [hl]
+	res SOUND_PITCH_SLIDE, [hl]
 	; get next note
 	call ParseMusic
 .continue_sound_update
@@ -203,59 +191,54 @@ _UpdateSound:: ; e805c
 	inc a
 	ld [wCurChannel], a
 	cp $8 ; are we done?
-	jp nz, .loop ; do it all again
+	jmp nz, .loop ; do it all again
 
 	call PlayDanger
 	; fade music in/out
 	call FadeMusic
 	; write volume to hardware register
 	ld a, [wVolume]
-	ld [rNR50], a
+	ldh [rNR50], a
 	; write SO on/off to hardware register
 	ld a, [wSoundOutput]
-	ld [rNR51], a
+	ldh [rNR51], a
 	ret
 
-; e8125
-
-UpdateChannels: ; e8125
-	ld hl, .ChannelFnPtrs
+UpdateChannels:
 	ld a, [wCurChannel]
 	and $7
-	add a
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	call StackJumpTable
 
-.ChannelFnPtrs:
-	dw .wChannel1
-	dw .wChannel2
-	dw .wChannel3
-	dw .wChannel4
-; sfx ch ptrs are identical to music chs
-; ..except 5
-	dw .wChannel5
-	dw .wChannel6
-	dw .wChannel7
-	dw .wChannel8
+.Jumptable:
+	table_width 2, UpdateChannels.Jumptable
+; music channels
+	dw .Channel1
+	dw .Channel2
+	dw .Channel3
+	dw .Channel4
+	assert_table_length NUM_MUSIC_CHANS
+; sfx channels
+; identical to music channels, except .Channel5 is not disabled by the low-HP danger sound
+; (instead, PlayDanger does not play the danger sound if sfx is playing)
+	dw .Channel5
+	dw .Channel6
+	dw .Channel7
+	dw .Channel8
+	assert_table_length NUM_CHANNELS
 
-.wChannel1:
+.Channel1:
 	ld a, [wLowHealthAlarm]
 	cp 255
-	jr z, .wChannel5
+	jr z, .Channel5
 	bit 7, a
 	ret nz
-.wChannel5:
+.Channel5:
 	ld hl, wChannel1NoteFlags - wChannel1
 	add hl, bc
-	bit NOTE_UNKN_3, [hl]
+	bit NOTE_PITCH_SWEEP, [hl]
 	jr z, .asm_e8159
 	ld a, [wSoundInput]
-	ld [rNR10], a
+	ldh [rNR10], a
 .asm_e8159
 	bit NOTE_REST, [hl] ; rest
 	jr nz, .ch1rest
@@ -269,54 +252,54 @@ UpdateChannels: ; e8125
 
 .frequency_override
 	ld a, [wCurTrackFrequency]
-	ld [rNR13], a
+	ldh [rNR13], a
 	ld a, [wCurTrackFrequency + 1]
-	ld [rNR14], a
+	ldh [rNR14], a
 .check_duty_override
 	bit NOTE_DUTY_OVERRIDE, [hl]
 	ret z
 	ld a, [wCurTrackDuty]
 	ld d, a
-	ld a, [rNR11]
+	ldh a, [rNR11]
 	and $3f ; sound length
 	or d
-	ld [rNR11], a
+	ldh [rNR11], a
 	ret
 
 .asm_e8184
 	ld a, [wCurTrackDuty]
 	ld d, a
-	ld a, [rNR11]
+	ldh a, [rNR11]
 	and $3f ; sound length
 	or d
-	ld [rNR11], a
+	ldh [rNR11], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR13], a
+	ldh [rNR13], a
 	ret
 
 .ch1rest
-	ld a, [rNR52]
+	ldh a, [rNR52]
 	and %10001110 ; ch1 off
-	ld [rNR52], a
+	ldh [rNR52], a
 	ld hl, rNR10
-	jp ClearChannel
+	jmp ClearChannel
 
 .asm_e81a2
 	ld hl, wCurTrackDuty
 	ld a, $3f ; sound length
 	or [hl]
-	ld [rNR11], a
+	ldh [rNR11], a
 	ld a, [wCurTrackIntensity]
-	ld [rNR12], a
+	ldh [rNR12], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR13], a
+	ldh [rNR13], a
 	ld a, [wCurTrackFrequency + 1]
 	or $80
-	ld [rNR14], a
+	ldh [rNR14], a
 	ret
 
-.wChannel2:
-.wChannel6:
+.Channel2:
+.Channel6:
 	ld hl, wChannel1NoteFlags - wChannel1
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
@@ -329,46 +312,46 @@ UpdateChannels: ; e8125
 	ret z
 	ld a, [wCurTrackDuty]
 	ld d, a
-	ld a, [rNR21]
+	ldh a, [rNR21]
 	and $3f ; sound length
 	or d
-	ld [rNR21], a
+	ldh [rNR21], a
 	ret
 
 .asm_e81e6
 	ld a, [wCurTrackDuty]
 	ld d, a
-	ld a, [rNR21]
+	ldh a, [rNR21]
 	and $3f ; sound length
 	or d
-	ld [rNR21], a
+	ldh [rNR21], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR23], a
+	ldh [rNR23], a
 	ret
 
 .ch2rest
-	ld a, [rNR52]
+	ldh a, [rNR52]
 	and %10001101 ; ch2 off
-	ld [rNR52], a
+	ldh [rNR52], a
 	ld hl, rNR20
-	jp ClearChannel
+	jmp ClearChannel
 
 .asm_e8204
 	ld hl, wCurTrackDuty
 	ld a, $3f ; sound length
 	or [hl]
-	ld [rNR21], a
+	ldh [rNR21], a
 	ld a, [wCurTrackIntensity]
-	ld [rNR22], a
+	ldh [rNR22], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR23], a
+	ldh [rNR23], a
 	ld a, [wCurTrackFrequency + 1]
 	or $80 ; initial (restart)
-	ld [rNR24], a
+	ldh [rNR24], a
 	ret
 
-.wChannel3:
-.wChannel7:
+.Channel3:
+.Channel7:
 	ld hl, wChannel1NoteFlags - wChannel1
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
@@ -376,34 +359,32 @@ UpdateChannels: ; e8125
 	bit NOTE_NOISE_SAMPLING, [hl]
 	jr nz, .asm_e824d
 	bit NOTE_VIBRATO_OVERRIDE, [hl]
-	jr nz, .asm_e823a
-	ret
+	ret z
 
-.asm_e823a
 	ld a, [wCurTrackFrequency]
-	ld [rNR33], a
+	ldh [rNR33], a
 	ret
 
 .ch3rest
-	ld a, [rNR52]
+	ldh a, [rNR52]
 	and %10001011 ; ch3 off
-	ld [rNR52], a
+	ldh [rNR52], a
 	ld hl, rNR30
-	jp ClearChannel
+	jmp ClearChannel
 
 .asm_e824d
 	ld a, $3f
-	ld [rNR31], a
+	ldh [rNR31], a
 	xor a
-	ld [rNR30], a
+	ldh [rNR30], a
 	call .asm_e8268
 	ld a, $80
-	ld [rNR30], a
+	ldh [rNR30], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR33], a
+	ldh [rNR33], a
 	ld a, [wCurTrackFrequency + 1]
 	or $80
-	ld [rNR34], a
+	ldh [rNR34], a
 	ret
 
 .asm_e8268
@@ -413,11 +394,11 @@ UpdateChannels: ; e8125
 	ld a, [wCurTrackIntensity]
 	and $f0
 	sla a
-	ld [rNR32], a
+	ldh [rNR32], a
 	ret
 
-.wChannel4:
-.wChannel8:
+.Channel4:
+.Channel8:
 	ld hl, wChannel1NoteFlags - wChannel1
 	add hl, bc
 	bit NOTE_REST, [hl] ; rest
@@ -427,26 +408,24 @@ UpdateChannels: ; e8125
 	ret
 
 .ch4rest
-	ld a, [rNR52]
+	ldh a, [rNR52]
 	and %10000111 ; ch4 off
-	ld [rNR52], a
+	ldh [rNR52], a
 	ld hl, rNR40
-	jp ClearChannel
+	jmp ClearChannel
 
 .asm_e82d4
 	ld a, $3f ; sound length
-	ld [rNR41], a
+	ldh [rNR41], a
 	ld a, [wCurTrackIntensity]
-	ld [rNR42], a
+	ldh [rNR42], a
 	ld a, [wCurTrackFrequency]
-	ld [rNR43], a
+	ldh [rNR43], a
 	ld a, $80
-	ld [rNR44], a
+	ldh [rNR44], a
 	ret
 
-; e82e7
-
-_CheckSFX: ; e82e7
+_CheckSFX:
 ; return carry if any sfx channels are active
 	ld hl, wChannel5Flags
 	bit SOUND_CHANNEL_ON, [hl]
@@ -467,9 +446,7 @@ _CheckSFX: ; e82e7
 	scf
 	ret
 
-; e8307
-
-PlayDanger: ; e8307
+PlayDanger:
 	ld a, [wLowHealthAlarm]
 	bit 7, a
 	ret z
@@ -490,15 +467,15 @@ PlayDanger: ; e8307
 	ld hl, Tablee8350
 .updatehw
 	xor a
-	ld [rNR10], a ; sweep off
+	ldh [rNR10], a ; sweep off
 	ld a, [hli]
-	ld [rNR11], a ; sound length / duty cycle
+	ldh [rNR11], a ; sound length / duty cycle
 	ld a, [hli]
-	ld [rNR12], a ; ch1 volume envelope
+	ldh [rNR12], a ; ch1 volume envelope
 	ld a, [hli]
-	ld [rNR13], a ; ch1 frequency lo
+	ldh [rNR13], a ; ch1 frequency lo
 	ld a, [hli]
-	ld [rNR14], a ; ch1 frequency hi
+	ldh [rNR14], a ; ch1 frequency hi
 .asm_e8335
 	ld a, d
 	and $e0
@@ -525,23 +502,19 @@ PlayDanger: ; e8307
 	ld [wSoundOutput], a
 	ret
 
-; e8350
-
-Tablee8350: ; e8350
+Tablee8350:
 	db $80 ; duty 50%
 	db $e2 ; volume 14, envelope decrease sweep 2
 	db $50 ; frequency: $750
 	db $87 ; restart sound
-; e8354
 
-Tablee8354: ; e8354
+Tablee8354:
 	db $80 ; duty 50%
 	db $e2 ; volume 14, envelope decrease sweep 2
 	db $ee ; frequency: $6ee
 	db $86 ; restart sound
-; e8358
 
-FadeMusic: ; e8358
+FadeMusic:
 ; fade music if applicable
 ; usage:
 ;	write to wMusicFade
@@ -581,7 +554,6 @@ FadeMusic: ; e8358
 	jr z, .novolume
 	dec a
 	jr .updatevolume
-
 
 .novolume
 	; make sure volume is off
@@ -654,13 +626,11 @@ FadeMusic: ; e8358
 	ld [wVolume], a
 	ret
 
-; e83d1
-
-LoadNote: ; e83d1
+LoadNote:
 	; wait for pitch wheel to finish
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	bit SOUND_PITCH_WHEEL, [hl]
+	bit SOUND_PITCH_SLIDE, [hl]
 	ret z
 	; get note duration
 	ld hl, wChannel1NoteDuration - wChannel1
@@ -690,8 +660,8 @@ LoadNote: ; e83d1
 	ld a, e
 	sub [hl]
 	ld e, a
-	ld a, d
-	sbc a, 0
+	sbc a
+	add d
 	ld d, a
 	ld hl, wChannel1PitchWheelTarget + 1 - wChannel1
 	add hl, bc
@@ -699,7 +669,7 @@ LoadNote: ; e83d1
 	jr nc, .greater_than
 	ld hl, wChannel1Flags3 - wChannel1
 	add hl, bc
-	set SOUND_PITCH_WHEEL_DIR, [hl]
+	set SOUND_PITCH_SLIDE_DIR, [hl]
 	; get frequency
 	ld hl, wChannel1Frequency - wChannel1
 	add hl, bc
@@ -712,8 +682,8 @@ LoadNote: ; e83d1
 	ld a, [hl]
 	sub e
 	ld e, a
-	ld a, d
-	sbc a, 0
+	sbc a
+	add d
 	ld d, a
 	ld hl, wChannel1PitchWheelTarget + 1 - wChannel1
 	add hl, bc
@@ -725,7 +695,7 @@ LoadNote: ; e83d1
 .greater_than
 	ld hl, wChannel1Flags3 - wChannel1
 	add hl, bc
-	res SOUND_PITCH_WHEEL_DIR, [hl]
+	res SOUND_PITCH_SLIDE_DIR, [hl]
 	; get frequency
 	ld hl, wChannel1Frequency - wChannel1
 	add hl, bc
@@ -738,8 +708,8 @@ LoadNote: ; e83d1
 	ld a, e
 	sub [hl]
 	ld e, a
-	ld a, d
-	sbc a, 0
+	sbc a
+	add d
 	ld d, a
 	; ????
 	ld hl, wChannel1PitchWheelTarget + 1 - wChannel1
@@ -782,13 +752,11 @@ LoadNote: ; e83d1
 	ld [hl], a
 	ret
 
-; e8466
-
-HandleTrackVibrato: ; e8466
+HandleTrackVibrato:
 ; handle duty, cry pitch, and vibrato
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	bit SOUND_DUTY, [hl] ; duty
+	bit SOUND_DUTY_LOOP, [hl] ; duty
 	jr z, .next
 	ld hl, wChannel1SFXDutyLoop - wChannel1
 	add hl, bc
@@ -804,7 +772,7 @@ HandleTrackVibrato: ; e8466
 .next
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	bit SOUND_CRY_PITCH, [hl]
+	bit SOUND_PITCH_OFFSET, [hl]
 	jr z, .vibrato
 	ld hl, wChannel1CryPitch - wChannel1
 	add hl, bc
@@ -900,13 +868,11 @@ HandleTrackVibrato: ; e8466
 	set NOTE_VIBRATO_OVERRIDE, [hl]
 	ret
 
-; e84f9
-
-ApplyPitchWheel: ; e84f9
+ApplyPitchWheel:
 	; quit if pitch wheel inactive
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	bit SOUND_PITCH_WHEEL, [hl]
+	bit SOUND_PITCH_SLIDE, [hl]
 	ret z
 	; de = Frequency
 	ld hl, wChannel1Frequency - wChannel1
@@ -917,7 +883,7 @@ ApplyPitchWheel: ; e84f9
 	; check whether pitch wheel is going up or down
 	ld hl, wChannel1Flags3 - wChannel1
 	add hl, bc
-	bit SOUND_PITCH_WHEEL_DIR, [hl]
+	bit SOUND_PITCH_SLIDE_DIR, [hl]
 	jr z, .decreasing
 	; frequency += [Channel*PitchWheelAmount]
 	ld hl, wChannel1PitchWheelAmount - wChannel1
@@ -936,12 +902,9 @@ ApplyPitchWheel: ; e84f9
 	add hl, bc
 	add [hl]
 	ld [hl], a
-	ld a, 0 ; not xor a; preserve carry flag?
-	adc e
-	ld e, a
-	ld a, 0 ; not xor a; preserve carry flag?
-	adc d
-	ld d, a
+	jr nc, .no_increment
+	inc de
+.no_increment
 	; Compare the dw at [Channel*PitchWheelTarget] to de.
 	; If frequency is greater, we're finished.
 	; Otherwise, load the frequency and set two flags.
@@ -949,13 +912,13 @@ ApplyPitchWheel: ; e84f9
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jp c, .finished_pitch_wheel
+	jr c, .finished_pitch_wheel
 	jr nz, .continue_pitch_wheel
 	ld hl, wChannel1PitchWheelTarget - wChannel1
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jp c, .finished_pitch_wheel
+	jr c, .finished_pitch_wheel
 	jr .continue_pitch_wheel
 
 .decreasing
@@ -966,8 +929,8 @@ ApplyPitchWheel: ; e84f9
 	ld e, [hl]
 	sub e
 	ld e, a
-	ld a, d
-	sbc a, 0
+	sbc a
+	add d
 	ld d, a
 	; [Channel*Field0x25] *= 2
 	; if rollover: Frequency -= 1
@@ -976,12 +939,9 @@ ApplyPitchWheel: ; e84f9
 	ld a, [hl]
 	add a
 	ld [hl], a
-	ld a, e
-	sbc a, 0
-	ld e, a
-	ld a, d
-	sbc a, 0
-	ld d, a
+	jr nc, .no_decrement
+	dec de
+.no_decrement
 	; Compare the dw at [Channel*PitchWheelTarget] to de.
 	; If frequency is lower, we're finished.
 	; Otherwise, load the frequency and set two flags.
@@ -999,10 +959,10 @@ ApplyPitchWheel: ; e84f9
 .finished_pitch_wheel
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	res SOUND_PITCH_WHEEL, [hl]
+	res SOUND_PITCH_SLIDE, [hl]
 	ld hl, wChannel1Flags3 - wChannel1
 	add hl, bc
-	res SOUND_PITCH_WHEEL_DIR, [hl]
+	res SOUND_PITCH_SLIDE_DIR, [hl]
 	ret
 
 .continue_pitch_wheel
@@ -1017,9 +977,7 @@ ApplyPitchWheel: ; e84f9
 	set NOTE_DUTY_OVERRIDE, [hl]
 	ret
 
-; e858c
-
-HandleNoise: ; e858c
+HandleNoise:
 	; is noise sampling on?
 	ld hl, wChannel1Flags - wChannel1
 	add hl, bc
@@ -1044,9 +1002,7 @@ HandleNoise: ; e858c
 	ld [wNoiseSampleDelay], a
 	ret
 
-; e85af
-
-ReadNoiseSample: ; e85af
+ReadNoiseSample:
 ; sample struct:
 ;	[wx] [yy] [zz]
 ;	w: ? either 2 or 3
@@ -1092,9 +1048,8 @@ ReadNoiseSample: ; e85af
 	add hl, bc
 	set NOTE_NOISE_SAMPLING, [hl]
 	ret
-; e85e1
 
-ParseMusic: ; e85e1
+ParseMusic:
 ; parses until a note is read or the song is ended
 	call GetMusicByte ; store next byte in a
 	cp $ff ; is the song over?
@@ -1121,11 +1076,11 @@ ParseMusic: ; e85e1
 	ld hl, wChannel1Flags - wChannel1
 	add hl, bc
 	bit SOUND_SFX, [hl]
-	jp nz, ParseSFXOrRest
+	jmp nz, ParseSFXOrRest
 	bit SOUND_REST, [hl] ; rest
-	jp nz, ParseSFXOrRest
+	jmp nz, ParseSFXOrRest
 	bit SOUND_NOISE, [hl] ; noise sample
-	jp nz, GetNoiseSample
+	jmp nz, GetNoiseSample
 ; normal note
 	; set note duration (bottom nybble)
 	ld a, [wCurMusicByte]
@@ -1172,9 +1127,7 @@ ParseMusic: ; e85e1
 	ld hl, wChannel1NoteFlags - wChannel1
 	add hl, bc
 	set NOTE_NOISE_SAMPLING, [hl]
-	jp LoadNote
-
-
+	jmp LoadNote
 
 .rest
 ; note = rest
@@ -1209,7 +1162,7 @@ ParseMusic: ; e85e1
 	jr nz, .ok
 	; ????
 	xor a
-	ld [rNR10], a ; sweep = 0
+	ldh [rNR10], a ; sweep = 0
 .ok
 ; stop playing
 	; turn channel off
@@ -1229,9 +1182,7 @@ ParseMusic: ; e85e1
 	ld [hli], a ; bank
 	ret
 
-; e8679
-
-RestoreVolume: ; e8679
+RestoreVolume:
 	; ch5 only
 	ld a, [wCurChannel]
 	cp $4
@@ -1250,9 +1201,7 @@ RestoreVolume: ; e8679
 	ld [wSFXPriority], a
 	ret
 
-; e8698
-
-ParseSFXOrRest: ; e8698
+ParseSFXOrRest:
 	; turn noise sampling on
 	ld hl, wChannel1NoteFlags - wChannel1
 	add hl, bc
@@ -1282,9 +1231,7 @@ ParseSFXOrRest: ; e8698
 	ld [hl], a
 	ret
 
-; e86c5
-
-GetNoiseSample: ; e86c5
+GetNoiseSample:
 ; load ptr to sample header in wNoiseSampleAddress
 	; are we on the last channel?
 	ld a, [wCurChannel]
@@ -1341,30 +1288,17 @@ GetNoiseSample: ; e86c5
 	ld [wNoiseSampleDelay], a
 	ret
 
-; e870f
-
-ParseMusicCommand: ; e870f
+ParseMusicCommand:
 	; reload command
 	ld a, [wCurMusicByte]
 	; get command #
-	sub a, $d0 ; first command
-	ld e, a
-	ld d, 0
-	; seek command pointer
-	ld hl, MusicCommands
-	add hl, de
-	add hl, de
-	; jump to the new pointer
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	sub $d0 ; first command
+	; jump to the new command pointer
+	call StackJumpTable
 
-; e8720
-
-MusicCommands: ; e8720
-; pointer to each command in order
-	; octaves
+MusicCommands:
+; entries correspond to audio constants (see macros/scripts/audio.asm)
+	table_width 2, MusicCommands
 	dw Music_Octave8 ; octave 8
 	dw Music_Octave7 ; octave 7
 	dw Music_Octave6 ; octave 6
@@ -1406,33 +1340,31 @@ MusicCommands: ; e8720
 	dw MusicF6 ; nothing
 	dw MusicF7 ; nothing
 	dw MusicF8 ; nothing
-	dw MusicF9 ; nothing
+	dw Music_ChangeNoiseSampleSet ; noisesampleset
 	dw Music_SetCondition ; setcondition
 	dw Music_JumpIf ; jumpif
 	dw Music_JumpChannel ; jump
 	dw Music_LoopChannel ; loop
 	dw Music_CallChannel ; call
 	dw Music_EndChannel ; return
-; e8780
+	assert_table_length $100 - FIRST_MUSIC_CMD
 
-MusicE2: ; e8873
-MusicE7: ; e88f7
-MusicE8: ; e891e
-MusicEE: ; e883e
-MusicF1: ; e8780
-MusicF2: ; e8780
-MusicF3: ; e8780
-MusicF4: ; e8780
-MusicF5: ; e8780
-MusicF6: ; e8780
-MusicF7: ; e8780
-MusicF8: ; e8780
-MusicF9: ; e886d
-	ret
+MusicE2:
+MusicE7:
+MusicE8:
+MusicEE:
+MusicF1:
+MusicF2:
+MusicF3:
+MusicF4:
+MusicF5:
+MusicF6:
+MusicF7:
+MusicF8:
+MusicF9:
+	ret ; no-optimize stub function
 
-; e8781
-
-Music_EndChannel: ; e8781
+Music_EndChannel:
 ; called when $ff is encountered w/ subroutine flag set
 ; end music stream
 ; return to caller of the subroutine
@@ -1453,9 +1385,7 @@ Music_EndChannel: ; e8781
 	ld [hl], d
 	ret
 
-; e8796
-
-Music_CallChannel: ; e8796
+Music_CallChannel:
 ; call music stream (subroutine)
 ; parameters: ll hh ; pointer to subroutine
 	; get pointer from next 2 bytes
@@ -1488,9 +1418,7 @@ Music_CallChannel: ; e8796
 	set SOUND_SUBROUTINE, [hl]
 	ret
 
-; e87bc
-
-Music_JumpChannel: ; e87bc
+Music_JumpChannel:
 ; jump
 ; parameters: ll hh ; pointer
 	; get pointer from next 2 bytes
@@ -1505,9 +1433,7 @@ Music_JumpChannel: ; e87bc
 	ld [hl], d
 	ret
 
-; e87cc
-
-Music_LoopChannel: ; e87cc
+Music_LoopChannel:
 ; loops xx - 1 times
 ; 	00: infinite
 ; params: 3
@@ -1568,9 +1494,7 @@ Music_LoopChannel: ; e87cc
 	ld [hl], e
 	ret
 
-; e880e
-
-Music_SetCondition: ; e880e
+Music_SetCondition:
 ; set condition for a jump
 ; used with FB
 ; params: 1
@@ -1583,9 +1507,7 @@ Music_SetCondition: ; e880e
 	ld [hl], a
 	ret
 
-; e8817
-
-Music_JumpIf: ; e8817
+Music_JumpIf:
 ; conditional jump
 ; used with FA
 ; params: 3
@@ -1631,9 +1553,7 @@ Music_JumpIf: ; e8817
 	ld [hl], d
 	ret
 
-; e883e
-
-Music_Vibrato: ; e8882
+Music_Vibrato:
 ; vibrato
 ; params: 2
 ;	1: [xx]
@@ -1672,7 +1592,7 @@ Music_Vibrato: ; e8882
 	swap a
 	srl a ; halve
 	ld e, a
-	adc a, 0; round up
+	adc 0 ; round up
 	swap a
 	or e
 	ld [hl], a
@@ -1688,9 +1608,7 @@ Music_Vibrato: ; e8882
 	ld [hl], a
 	ret
 
-; e88bd
-
-Music_SlidePitchTo: ; e88bd
+Music_SlidePitchTo:
 ; set the target for pitch wheel
 ; params: 2
 ; note duration
@@ -1718,17 +1636,15 @@ Music_SlidePitchTo: ; e88bd
 	ld [hl], d
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	set SOUND_PITCH_WHEEL, [hl]
+	set SOUND_PITCH_SLIDE, [hl]
 	ret
 
-; e88e4
-
-Music_Tone: ; e88e4
+Music_Tone:
 ; tone
 ; params: 1 (dw)
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	set SOUND_CRY_PITCH, [hl]
+	set SOUND_PITCH_OFFSET, [hl]
 	ld hl, wChannel1CryPitch + 1 - wChannel1
 	add hl, bc
 	call GetMusicByte
@@ -1737,14 +1653,12 @@ Music_Tone: ; e88e4
 	ld [hl], a
 	ret
 
-; e88f7
-
-Music_SoundDuty: ; e8906
+Music_SoundDuty:
 ; sequence of 4 duty cycles to be looped
 ; params: 1 (4 2-bit duty cycle arguments)
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	set SOUND_DUTY, [hl] ; duty cycle
+	set SOUND_DUTY_LOOP, [hl] ; duty cycle
 	; sound duty sequence
 	call GetMusicByte
 	rrca
@@ -1759,9 +1673,7 @@ Music_SoundDuty: ; e8906
 	ld [hl], a
 	ret
 
-; e891e
-
-Music_ToggleSFX: ; e892d
+Music_ToggleSFX:
 ; toggle something
 ; params: none
 	ld hl, wChannel1Flags - wChannel1
@@ -1775,9 +1687,7 @@ Music_ToggleSFX: ; e892d
 	set SOUND_SFX, [hl]
 	ret
 
-; e893b
-
-Music_ToggleNoise: ; e893b
+Music_ToggleNoise:
 ; toggle music noise sampling
 ; can't be used as a straight toggle since the param is not read from on->off
 ; params:
@@ -1795,13 +1705,12 @@ Music_ToggleNoise: ; e893b
 .on
 	; turn noise sampling on
 	set SOUND_NOISE, [hl]
+Music_ChangeNoiseSampleSet:
 	call GetMusicByte
 	ld [wMusicNoiseSampleSet], a
 	ret
 
-; e894f
-
-Music_SFXToggleNoise: ; e894f
+Music_SFXToggleNoise:
 ; toggle sfx noise sampling
 ; params:
 ;	on: 1
@@ -1822,9 +1731,7 @@ Music_SFXToggleNoise: ; e894f
 	ld [wSFXNoiseSampleSet], a
 	ret
 
-; e8963
-
-Music_NoteType: ; e8963
+Music_NoteType:
 ; note length
 ;	# frames per 16th note
 ; intensity: see Music_Intensity
@@ -1838,24 +1745,30 @@ Music_NoteType: ; e8963
 	and $3
 	cp CHAN4 ; CHAN8 & $3
 	ret z
-	; intensity
-	jp Music_Intensity
+	; fallthough
 
-; e8977
+Music_Intensity:
+; intensity
+; params: 1
+;   hi: pressure
+;   lo: velocity
+	call GetMusicByte
+	ld hl, wChannel1Intensity - wChannel1
+	add hl, bc
+	ld [hl], a
+	ret
 
-Music_SoundStatus: ; e8977
+Music_SoundStatus:
 ; update sound status
 ; params: 1
 	call GetMusicByte
 	ld [wSoundInput], a
 	ld hl, wChannel1NoteFlags - wChannel1
 	add hl, bc
-	set NOTE_UNKN_3, [hl]
+	set NOTE_PITCH_SWEEP, [hl]
 	ret
 
-; e8984
-
-Music_DutyCycle: ; e8984
+Music_DutyCycle:
 ; duty cycle
 ; params: 1
 	call GetMusicByte
@@ -1867,22 +1780,7 @@ Music_DutyCycle: ; e8984
 	ld [hl], a
 	ret
 
-; e8991
-
-Music_Intensity: ; e8991
-; intensity
-; params: 1
-;	hi: pressure
-;   lo: velocity
-	call GetMusicByte
-	ld hl, wChannel1Intensity - wChannel1
-	add hl, bc
-	ld [hl], a
-	ret
-
-; e899a
-
-Music_Tempo: ; e899a
+Music_Tempo:
 ; global tempo
 ; params: 2
 ;	de: tempo
@@ -1892,33 +1790,29 @@ Music_Tempo: ; e899a
 	ld e, a
 	ld a, [wCurChannel]
 	cp CHAN5
-	jp nc, SetGlobalTempo
+	jmp nc, SetGlobalTempo
 	push hl
 	ld a, [wTempoAdjustment]
 	ld l, a
 	bit 7, a
-	jr nz, .negative
 	ld h, 0
-	jr .ok
-.negative
-	ld h, $ff
+	jr z, .ok
+	dec h ; negative
 .ok
 	add hl, de
 	push hl
 	pop de
 	pop hl
-	jp SetGlobalTempo
+	jmp SetGlobalTempo
 
-; e89a6
-
-Music_Octave8: ; e89a6
-Music_Octave7: ; e89a6
-Music_Octave6: ; e89a6
-Music_Octave5: ; e89a6
-Music_Octave4: ; e89a6
-Music_Octave3: ; e89a6
-Music_Octave2: ; e89a6
-Music_Octave1: ; e89a6
+Music_Octave8:
+Music_Octave7:
+Music_Octave6:
+Music_Octave5:
+Music_Octave4:
+Music_Octave3:
+Music_Octave2:
+Music_Octave1:
 ; set octave based on lo nybble of the command
 	ld hl, wChannel1Octave - wChannel1
 	add hl, bc
@@ -1927,9 +1821,7 @@ Music_Octave1: ; e89a6
 	ld [hl], a
 	ret
 
-; e89b1
-
-Music_ForceOctave: ; e89b1
+Music_ForceOctave:
 ; set starting octave
 ; this forces all notes up by the starting octave
 ; params: 1
@@ -1939,20 +1831,17 @@ Music_ForceOctave: ; e89b1
 	ld [hl], a
 	ret
 
-; e89ba
-
-Music_StereoPanning: ; e89ba
+Music_StereoPanning:
 ; stereo panning
 ; params: 1
 	; stereo on?
 	ld a, [wOptions1]
 	bit STEREO, a
 	; skip param
-	jp z, GetMusicByte
+	jr z, GetMusicByte
 	; fallthrough
-; e89c5
 
-Music_Panning: ; e89c5
+Music_Panning:
 ; force panning
 ; params: 1
 	call SetLRTracks
@@ -1963,9 +1852,7 @@ Music_Panning: ; e89c5
 	ld [hl], a
 	ret
 
-; e89d2
-
-Music_Volume: ; e89d2
+Music_Volume:
 ; set volume
 ; params: 1
 ;	see wVolume
@@ -1981,23 +1868,17 @@ Music_Volume: ; e89d2
 	ld [wVolume], a
 	ret
 
-; e89e1
-
-Music_TempoRelative: ; e89e1
+Music_TempoRelative:
 ; set global tempo to current channel tempo +- param
 ; params: 1 signed
 	call GetMusicByte
 	ld e, a
 	; check sign
 	cp $80
-	jr nc, .negative
-;positive
-	ld d, 0
-	jr .ok
-
-.negative
-	ld d, -1
-.ok
+	; d = carry ? 0 (positive) : -1 (negative)
+	ccf
+	sbc a
+	ld d, a
 	ld hl, wChannel1Tempo - wChannel1
 	add hl, bc
 	ld a, [hli]
@@ -2006,29 +1887,23 @@ Music_TempoRelative: ; e89e1
 	add hl, de
 	ld e, l
 	ld d, h
-	jp SetGlobalTempo
+	jmp SetGlobalTempo
 
-; e89fd
-
-Music_SFXPriorityOn: ; e89fd
+Music_SFXPriorityOn:
 ; turn sfx priority on
 ; params: none
 	ld a, 1
 	ld [wSFXPriority], a
 	ret
 
-; e8a03
-
-Music_SFXPriorityOff: ; e8a03
+Music_SFXPriorityOff:
 ; turn sfx priority off
 ; params: none
 	xor a
 	ld [wSFXPriority], a
 	ret
 
-; e8a08
-
-Music_RestartChannel: ; e8a08
+Music_RestartChannel:
 ; restart current channel from channel header (same bank)
 ; params: 2 (5)
 ; ll hh: pointer to new channel header
@@ -2062,9 +1937,7 @@ Music_RestartChannel: ; e8a08
 	pop bc ; restore current channel
 	ret
 
-; e8a30
-
-Music_NewSong: ; e8a30
+Music_NewSong:
 ; new song
 ; params: 2
 ;	de: song id
@@ -2077,9 +1950,7 @@ Music_NewSong: ; e8a30
 	pop bc
 	ret
 
-; e8a3e
-
-GetMusicByte: ; e8a3e
+GetMusicByte:
 ; returns byte from current address in a
 ; advances to next byte in music data
 ; input: bc = start of current channel
@@ -2111,9 +1982,7 @@ GetMusicByte: ; e8a3e
 	ld a, [wCurMusicByte]
 	ret
 
-; e8a5d
-
-GetFrequency: ; e8a5d
+GetFrequency:
 ; generate frequency
 ; input:
 ; 	d: octave
@@ -2189,9 +2058,7 @@ GetFrequency: ; e8a5d
 	ld d, a
 	ret
 
-; e8a8d
-
-SetNoteDuration: ; e8a8d
+SetNoteDuration:
 ; input: a = note duration in 16ths
 	; store delay units in de
 	inc a
@@ -2202,9 +2069,9 @@ SetNoteDuration: ; e8a8d
 	add hl, bc
 	ld a, [hl]
 	; multiply NoteLength by delay units
-	ld l, 0; just multiply
+	ld l, 0 ; just multiply
 	call .Multiply
-	ld a, l ; % $100
+	ld a, l
 	; store Tempo in de
 	ld hl, wChannel1Tempo - wChannel1
 	add hl, bc
@@ -2230,9 +2097,7 @@ SetNoteDuration: ; e8a8d
 	ld [hl], d
 	ret
 
-; e8ab8
-
-.Multiply: ; e8ab8
+.Multiply:
 ; multiplies a and de
 ; adds the result to l
 ; stores the result in hl
@@ -2253,9 +2118,7 @@ SetNoteDuration: ; e8a8d
 	jr nz, .loop
 	ret
 
-; e8ac7
-
-SetGlobalTempo: ; e8ac7
+SetGlobalTempo:
 	push bc ; save current channel
 	; are we dealing with music or sfx?
 	ld a, [wCurChannel]
@@ -2284,9 +2147,7 @@ SetGlobalTempo: ; e8ac7
 	pop bc ; restore current channel
 	ret
 
-; e8b03
-
-Tempo: ; e8b03
+Tempo:
 ; input:
 ; 	de: note length
 	; update Tempo
@@ -2302,18 +2163,14 @@ Tempo: ; e8b03
 	ld [hl], a
 	ret
 
-; e8b11
-
-StartChannel: ; e8b11
+StartChannel:
 	call SetLRTracks
 	ld hl, wChannel1Flags - wChannel1
 	add hl, bc
 	set SOUND_CHANNEL_ON, [hl] ; turn channel on
 	ret
 
-; e8b1b
-
-SetLRTracks: ; e8b1b
+SetLRTracks:
 ; set tracks for a the current channel to default
 ; seems to be redundant since this is overwritten by stereo data later
 	push de
@@ -2333,9 +2190,7 @@ SetLRTracks: ; e8b1b
 	pop de
 	ret
 
-; e8b30
-
-_PlayMusic:: ; e8b30
+_PlayMusic::
 ; load music
 	call MusicOff
 	ld hl, wMusicID
@@ -2373,11 +2228,9 @@ _PlayMusic:: ; e8b30
 	ld [wNoiseSampleAddressHi], a
 	ld [wNoiseSampleDelay], a
 	ld [wMusicNoiseSampleSet], a
-	jp MusicOn
+	jmp MusicOn
 
-; e8b79
-
-_PlayCryHeader:: ; e8b79
+_PlayCryHeader::
 ; Play cry de using parameters:
 ;	wCryPitch
 ;	wCryLength
@@ -2422,7 +2275,7 @@ _PlayCryHeader:: ; e8b79
 
 	ld hl, wChannel1Flags2 - wChannel1
 	add hl, bc
-	set SOUND_CRY_PITCH, [hl]
+	set SOUND_PITCH_OFFSET, [hl]
 
 	ld hl, wChannel1CryPitch - wChannel1
 	add hl, bc
@@ -2472,7 +2325,6 @@ _PlayCryHeader:: ; e8b79
 	dec a
 	jr nz, .loop
 
-
 ; Cries play at max volume, so we save the current volume for later.
 	ld a, [wLastVolume]
 	and a
@@ -2486,11 +2338,9 @@ _PlayCryHeader:: ; e8b79
 .end
 	ld a, 1 ; stop playing music
 	ld [wSFXPriority], a
-	jp MusicOn
+	jmp MusicOn
 
-; e8c04
-
-_PlaySFX:: ; e8c04
+_PlaySFX::
 ; clear channels if they aren't already
 	call MusicOff
 	ld hl, wChannel5Flags
@@ -2498,56 +2348,56 @@ _PlaySFX:: ; e8c04
 	jr z, .ch6
 	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
-	ld [rNR11], a ; length/wavepattern = 0
+	ldh [rNR11], a ; length/wavepattern = 0
 	ld a, $8
-	ld [rNR12], a ; envelope = 0
+	ldh [rNR12], a ; envelope = 0
 	xor a
-	ld [rNR13], a ; frequency lo = 0
+	ldh [rNR13], a ; frequency lo = 0
 	ld a, $80
-	ld [rNR14], a ; restart sound (freq hi = 0)
+	ldh [rNR14], a ; restart sound (freq hi = 0)
 	xor a
 	ld [wSoundInput], a ; global sound off
-	ld [rNR10], a ; sweep = 0
+	ldh [rNR10], a ; sweep = 0
 .ch6
 	ld hl, wChannel6Flags
 	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .ch7
 	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
-	ld [rNR21], a ; length/wavepattern = 0
+	ldh [rNR21], a ; length/wavepattern = 0
 	ld a, $8
-	ld [rNR22], a ; envelope = 0
+	ldh [rNR22], a ; envelope = 0
 	xor a
-	ld [rNR23], a ; frequency lo = 0
+	ldh [rNR23], a ; frequency lo = 0
 	ld a, $80
-	ld [rNR24], a ; restart sound (freq hi = 0)
+	ldh [rNR24], a ; restart sound (freq hi = 0)
 .ch7
 	ld hl, wChannel7Flags
 	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .ch8
 	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
-	ld [rNR30], a ; sound mode #3 off
-	ld [rNR31], a ; length/wavepattern = 0
+	ldh [rNR30], a ; sound mode #3 off
+	ldh [rNR31], a ; length/wavepattern = 0
 	ld a, $8
-	ld [rNR32], a ; envelope = 0
+	ldh [rNR32], a ; envelope = 0
 	xor a
-	ld [rNR33], a ; frequency lo = 0
+	ldh [rNR33], a ; frequency lo = 0
 	ld a, $80
-	ld [rNR34], a ; restart sound (freq hi = 0)
+	ldh [rNR34], a ; restart sound (freq hi = 0)
 .ch8
 	ld hl, wChannel8Flags
 	bit SOUND_CHANNEL_ON, [hl]
 	jr z, .chscleared
 	res SOUND_CHANNEL_ON, [hl] ; turn it off
 	xor a
-	ld [rNR41], a ; length/wavepattern = 0
+	ldh [rNR41], a ; length/wavepattern = 0
 	ld a, $8
-	ld [rNR42], a ; envelope = 0
+	ldh [rNR42], a ; envelope = 0
 	xor a
-	ld [rNR43], a ; frequency lo = 0
+	ldh [rNR43], a ; frequency lo = 0
 	ld a, $80
-	ld [rNR44], a ; restart sound (freq hi = 0)
+	ldh [rNR44], a ; restart sound (freq hi = 0)
 	xor a
 	ld [wNoiseSampleAddressLo], a
 	ld [wNoiseSampleAddressHi], a
@@ -2589,10 +2439,7 @@ _PlaySFX:: ; e8c04
 	ld [wSFXPriority], a
 	ret
 
-; e8ca6
-
-
-PlayStereoSFX:: ; e8ca6
+PlayStereoSFX::
 ; play sfx de
 
 	call MusicOff
@@ -2600,7 +2447,7 @@ PlayStereoSFX:: ; e8ca6
 ; standard procedure if stereo's off
 	ld a, [wOptions1]
 	bit STEREO, a
-	jp z, _PlaySFX
+	jmp z, _PlaySFX
 
 ; else, let's go ahead with this
 	ld hl, wMusicID
@@ -2690,12 +2537,9 @@ PlayStereoSFX:: ; e8ca6
 	jr nz, .loop
 
 ; we're done
-	jp MusicOn
+	jmp MusicOn
 
-; e8d1b
-
-
-LoadChannel: ; e8d1b
+LoadChannel:
 ; prep channel for use
 ; input:
 ; 	de:
@@ -2739,9 +2583,7 @@ LoadChannel: ; e8d1b
 	ld [hl], a
 	ret
 
-; e8d5b
-
-ChannelInit: ; e8d5b
+ChannelInit:
 ; make sure channel is cleared
 ; set default tempo and note length in case nothing is loaded
 ; input:
@@ -2771,9 +2613,7 @@ ChannelInit: ; e8d5b
 	pop de
 	ret
 
-; e8d76
-
-LoadMusicByte:: ; e8d76
+LoadMusicByte::
 ; input:
 ;   de = current music address
 ; output:
@@ -2783,57 +2623,51 @@ LoadMusicByte:: ; e8d76
 	ld a, [wCurMusicByte]
 	ret
 
-; e8d80
-
 ReloadWaveform::
     ; called from the music player
 	ld a, [wCurTrackIntensity]
 	and $f ; only NUM_WAVEFORMS are valid
+	; each wavepattern is $f bytes long, so seeking is done in $10s
+	swap a ; a << 4
+	add LOW(WaveSamples)
 	ld l, a
-	ld h, 0
-	; hl << 4
-	; each wavepattern is $f bytes long
-	; so seeking is done in $10s
-rept 4
-	add hl, hl
-endr
-	ld de, WaveSamples
-	add hl, de
+	adc HIGH(WaveSamples)
+	sub l
+	ld h, a
 	; load wavepattern into rWave_0-rWave_f
 	ld a, [hli]
-	ld [rWave_0], a
+	ldh [rWave_0], a
 	ld a, [hli]
-	ld [rWave_1], a
+	ldh [rWave_1], a
 	ld a, [hli]
-	ld [rWave_2], a
+	ldh [rWave_2], a
 	ld a, [hli]
-	ld [rWave_3], a
+	ldh [rWave_3], a
 	ld a, [hli]
-	ld [rWave_4], a
+	ldh [rWave_4], a
 	ld a, [hli]
-	ld [rWave_5], a
+	ldh [rWave_5], a
 	ld a, [hli]
-	ld [rWave_6], a
+	ldh [rWave_6], a
 	ld a, [hli]
-	ld [rWave_7], a
+	ldh [rWave_7], a
 	ld a, [hli]
-	ld [rWave_8], a
+	ldh [rWave_8], a
 	ld a, [hli]
-	ld [rWave_9], a
+	ldh [rWave_9], a
 	ld a, [hli]
-	ld [rWave_a], a
+	ldh [rWave_a], a
 	ld a, [hli]
-	ld [rWave_b], a
+	ldh [rWave_b], a
 	ld a, [hli]
-	ld [rWave_c], a
+	ldh [rWave_c], a
 	ld a, [hli]
-	ld [rWave_d], a
+	ldh [rWave_d], a
 	ld a, [hli]
-	ld [rWave_e], a
+	ldh [rWave_e], a
 	ld a, [hli]
-	ld [rWave_f], a
+	ldh [rWave_f], a
 	ret
-
 
 INCLUDE "audio/notes.asm"
 
@@ -2841,28 +2675,28 @@ INCLUDE "audio/wave_samples.asm"
 
 INCLUDE "audio/drumkits.asm"
 
-
-MonoOrStereoTracks: ; e8fd5
+MonoOrStereoTracks:
 ; bit corresponds to track #
 ; hi: left channel
 ; lo: right channel
 	db $11, $22, $44, $88
-; e8fd5
 
-ChannelPointers: ; e8fd9
+ChannelPointers:
+	table_width 2, ChannelPointers
 ; music channels
 	dw wChannel1
 	dw wChannel2
 	dw wChannel3
 	dw wChannel4
+	assert_table_length NUM_MUSIC_CHANS
 ; sfx channels
 	dw wChannel5
 	dw wChannel6
 	dw wChannel7
 	dw wChannel8
-; e8fe9
+	assert_table_length NUM_CHANNELS
 
-ClearChannel: ; e8ffe
+ClearChannel:
 ; input: hl = beginning hw sound register (rNR10, rNR20, rNR30, rNR40)
 ; output: 00 00 80 00 80
 
@@ -2878,9 +2712,8 @@ ClearChannel: ; e8ffe
 	ld a, $80
 	ld [hli], a ; rNR14, rNR24, rNR34, rNR44 ; restart sound (freq hi = 0)
 	ret
-; e900a
 
-PlayTrainerEncounterMusic:: ; e900a
+PlayTrainerEncounterMusic::
 ; input: e = trainer type
 	call SaveMusic
 	; no encounter music for null trainers
@@ -2902,5 +2735,4 @@ PlayTrainerEncounterMusic:: ; e900a
 	ld hl, TrainerEncounterMusic
 	add hl, de
 	ld e, [hl]
-	jp PlayMusic
-; e9027
+	jmp PlayMusic

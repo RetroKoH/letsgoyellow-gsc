@@ -1,105 +1,101 @@
-RefreshScreen:: ; 2dba
+Script_refreshscreen::
+RefreshScreen::
 	call ClearWindowData
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
-	ld a, BANK(ReanchorBGMap_NoOAMUpdate) ; BANK(LoadFonts_NoOAMUpdate)
+	ld a, BANK(ReanchorBGMap_NoOAMUpdate) ; aka BANK(LoadFonts_NoOAMUpdate)
 	rst Bankswitch
 
-	call ReanchorBGMap_NoOAMUpdate
+	call ReanchorBGMap_NoOAMUpdate ; far-ok
 	call BGMapAnchorTopLeft
-	call LoadFonts_NoOAMUpdate
+	call LoadFonts_NoOAMUpdate ; far-ok
 
 	pop af
 	rst Bankswitch
 	ret
-; 2dcf
 
 RefreshScreenFast::
 	; Don't use for bridge updates, just call GenericFinishBridge
 	call GetMovementPermissions
 	farjp ReanchorBGMap_NoOAMUpdate_NoDelay
 
-CloseText:: ; 2dcf
-	ld a, [hOAMUpdate]
+CloseText::
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 
 	call .CloseText
 
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ld hl, wVramState
 	res 6, [hl]
 	ret
-; 2de2
 
-.CloseText: ; 2de2
+.CloseText:
 	call ClearWindowData
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call LoadMapPart
 	call BGMapAnchorTopLeft
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	call SafeUpdateSprites
-	farcall ReloadVisibleSprites
+	farcall RefreshSprites
 	ld a, $90
-	ld [hWY], a
-	call ReplaceKrisSprite
+	ldh [hWY], a
+	call UpdatePlayerSprite
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 
-	farjp ReturnFromMapSetupScript
-; 2e08
+	farjp InitMapNameSign
 
-OpenText:: ; 2e08
+Script_opentext::
+OpenText::
 	call ClearWindowData
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
-	ld a, BANK(ReanchorBGMap_NoOAMUpdate) ; and BANK(LoadFonts_NoOAMUpdate)
+	ld a, BANK(ReanchorBGMap_NoOAMUpdate) ; aka BANK(LoadFonts_NoOAMUpdate)
 	rst Bankswitch
 
-	call ReanchorBGMap_NoOAMUpdate
-	call SpeechTextBox
+	call ReanchorBGMap_NoOAMUpdate ; far-ok
+	call SpeechTextbox
 	call BGMapAnchorTopLeft
-	call LoadFonts_NoOAMUpdate
+	call LoadFonts_NoOAMUpdate ; far-ok
 	pop af
 	rst Bankswitch
 
 	ret
-; 2e20
 
 BGMapAnchorTopLeft::
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	push af
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 
 	ld b, 0
 	call SafeCopyTilemapAtOnce
 
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
-; 2e31
 
-SafeUpdateSprites:: ; 2e31
-	ld a, [hOAMUpdate]
+SafeUpdateSprites::
+	ldh a, [hOAMUpdate]
 	push af
-	ld a, [hBGMapMode]
+	ldh a, [hBGMapMode]
 	push af
 	xor a
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, $1
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call UpdateSprites
 	xor a
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	call DelayFrame
 	pop af
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	pop af
-	ld [hOAMUpdate], a
+	ldh [hOAMUpdate], a
 	ret
-; 2e4e

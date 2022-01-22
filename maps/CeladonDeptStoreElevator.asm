@@ -1,37 +1,36 @@
 CeladonDeptStoreElevator_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  1,  3, CELADON_DEPT_STORE_1F, -1
 	warp_event  2,  3, CELADON_DEPT_STORE_1F, -1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 1 ; bg events
-	bg_event  3,  0, SIGNPOST_READ, CeladonDeptStoreElevatorButton
+	def_bg_events
+	bg_event  3,  0, BGEVENT_READ, CeladonDeptStoreElevatorButton
 
-	db 0 ; object events
+	def_object_events
 
 CeladonDeptStoreElevatorButton:
 	opentext
 	elevator .Floors
 	closetext
-	iffalse .Done
+	iffalse DoNothingScript
 	pause 5
 	playsound SFX_ELEVATOR
 	earthquake 60
 	waitsfx
-.Done:
 	end
 
 .Floors:
 	db 6 ; floors
-	elevfloor _1F, 4, CELADON_DEPT_STORE_1F
-	elevfloor _2F, 3, CELADON_DEPT_STORE_2F
-	elevfloor _3F, 3, CELADON_DEPT_STORE_3F
-	elevfloor _4F, 3, CELADON_DEPT_STORE_4F
-	elevfloor _5F, 3, CELADON_DEPT_STORE_5F
-	elevfloor _6F, 2, CELADON_DEPT_STORE_6F
+	elevfloor FLOOR_1F, 4, CELADON_DEPT_STORE_1F
+	elevfloor FLOOR_2F, 3, CELADON_DEPT_STORE_2F
+	elevfloor FLOOR_3F, 3, CELADON_DEPT_STORE_3F
+	elevfloor FLOOR_4F, 3, CELADON_DEPT_STORE_4F
+	elevfloor FLOOR_5F, 3, CELADON_DEPT_STORE_5F
+	elevfloor FLOOR_6F, 2, CELADON_DEPT_STORE_6F
 	db -1 ; end

@@ -1,4 +1,5 @@
 Cries:
+	table_width 3, Cries
 	dba Cry_Nidoran_M
 	dba Cry_Nidoran_F
 	dba Cry_Slowpoke
@@ -15,7 +16,7 @@ Cries:
 	dba Cry_Drowzee
 	dba Cry_Pidgey
 	dba Cry_Bulbasaur
-	dba Cry_Spearow
+	dba Cry_Farfetch_d
 	dba Cry_Rhydon
 	dba Cry_Golem
 	dba Cry_Blastoise
@@ -23,7 +24,7 @@ Cries:
 	dba Cry_Weedle
 	dba Cry_Caterpie
 	dba Cry_Ekans
-	dba Cry_Fearow
+	dba Cry_Shellder
 	dba Cry_Clefairy
 	dba Cry_Venonat
 	dba Cry_Lapras
@@ -48,10 +49,10 @@ Cries:
 	dba Cry_Sentret
 	dba Cry_Slowking
 	dba Cry_Cyndaquil
-	dba Cry_Igglybuff
+	dba Cry_Chikorita
 	dba Cry_Totodile
 	dba Cry_Gligar
-	dba Cry_Bellossom ; CLEFFA
+	dba Cry_Bellossom
 	dba Cry_Slugma
 	dba Cry_Ledyba
 	dba Cry_Entei
@@ -67,3 +68,4 @@ Cries:
 	dba Cry_Tyrogue
 	dba Cry_Dunsparce
 	dba Cry_Donphan
+	assert_table_length NUM_CRIES

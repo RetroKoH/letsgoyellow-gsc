@@ -1,6 +1,12 @@
-QueueBattleAnimation: ; cc9a1 (33:49a1)
+DeinitBattleAnimation:
+	ld hl, BATTLEANIMSTRUCT_INDEX
+	add hl, bc
+	ld [hl], $0
+	ret
+
+QueueBattleAnimation:
 	ld hl, wActiveAnimObjects
-	ld e, 10
+	ld e, NUM_ANIM_OBJECTS
 .loop
 	ld a, [hl]
 	and a
@@ -15,19 +21,11 @@ QueueBattleAnimation: ; cc9a1 (33:49a1)
 .done
 	ld c, l
 	ld b, h
-	ld hl, wNumActiveBattleAnims
+	ld hl, wLastAnimObjectIndex
 	inc [hl]
-	jp InitBattleAnimation
+	; fallthrough
 
-DeinitBattleAnimation: ; cc9bd
-	ld hl, BATTLEANIMSTRUCT_INDEX
-	add hl, bc
-	ld [hl], $0
-	ret
-
-; cc9c4
-
-InitBattleAnimation: ; cc9c4 (33:49c4)
+InitBattleAnimation:
 	ld a, [wBattleAnimTemp0]
 	ld e, a
 	ld d, 0
@@ -39,7 +37,7 @@ endr
 	ld d, h
 	ld hl, BATTLEANIMSTRUCT_INDEX
 	add hl, bc
-	ld a, [wNumActiveBattleAnims]
+	ld a, [wLastAnimObjectIndex]
 	ld [hli], a ; Index
 	ld a, [de]
 	inc de
@@ -78,13 +76,13 @@ endr
 	ld [hl], a  ; 10
 	ret
 
-BattleAnimOAMUpdate: ; cca09
+BattleAnimOAMUpdate:
 	call InitBattleAnimBuffer
 	call GetBattleAnimFrame
 	cp -3
-	jp z, .done
+	jmp z, .done
 	cp -4
-	jp z, .delete
+	jmp z, .delete
 	push af
 	ld hl, wBattleAnimTempOAMFlags
 	ld a, [wBattleAnimTemp7]
@@ -105,7 +103,7 @@ BattleAnimOAMUpdate: ; cca09
 	ld l, a
 	ld a, [wBattleAnimOAMPointerLo]
 	ld e, a
-	ld d, wSprites / $100
+	ld d, HIGH(wVirtualOAM)
 .loop
 	ld a, [wBattleAnimTempYCoord]
 	ld b, a
@@ -148,7 +146,7 @@ BattleAnimOAMUpdate: ; cca09
 	inc hl
 	inc de
 	ld a, [wBattleAnimTempTileID]
-	add $31
+	add BATTLEANIM_BASE_TILE
 	add [hl]
 	ld [de], a
 	inc hl
@@ -190,10 +188,8 @@ BattleAnimOAMUpdate: ; cca09
 	scf
 	ret
 
-; ccaaa
-
-InitBattleAnimBuffer: ; ccaaa
-	ld hl, BATTLEANIMSTRUCT_01
+InitBattleAnimBuffer:
+	ld hl, BATTLEANIMSTRUCT_OAMFLAGS
 	add hl, bc
 	ld a, [hl]
 	and %10000000
@@ -204,7 +200,7 @@ InitBattleAnimBuffer: ; ccaaa
 	add hl, bc
 	ld a, [hl]
 	ld [wBattleAnimTempPalette], a
-	ld hl, BATTLEANIMSTRUCT_02
+	ld hl, BATTLEANIMSTRUCT_FIX_Y
 	add hl, bc
 	ld a, [hl]
 	ld [wBattleAnimTemp1], a
@@ -220,10 +216,10 @@ InitBattleAnimBuffer: ; ccaaa
 	ld [wBattleAnimTempXOffset], a
 	ld a, [hli]
 	ld [wBattleAnimTempYOffset], a
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ret z
-	ld hl, BATTLEANIMSTRUCT_01
+	ld hl, BATTLEANIMSTRUCT_OAMFLAGS
 	add hl, bc
 	ld a, [hl]
 	ld [wBattleAnimTempOAMFlags], a
@@ -232,27 +228,28 @@ InitBattleAnimBuffer: ; ccaaa
 	ld hl, BATTLEANIMSTRUCT_XCOORD
 	add hl, bc
 	ld a, [hli]
-	ld d, a
-	ld a, (-10 * 8) + 4
-	sub d
+	cpl
+	add (-10 * 8) + 4 + 1 ; a = (-10 * 8) + 4 - a
 	ld [wBattleAnimTempXCoord], a
 	ld a, [hli]
 	ld d, a
 	ld a, [wBattleAnimTemp1]
 	cp $ff
-	jr nz, .check_psystrike
+	jr nz, .check_psystrike_freshsnack
 	ld a, 5 * 8
 	add d
 	jr .done
 
-.check_psystrike
+.check_psystrike_freshsnack
 	sub d
 	push af
 	ld a, [wFXAnimIDHi]
 	or a
 	jr nz, .no_sub
 	ld a, [wFXAnimIDLo]
-	cp FRUSTRATION ; Maybe can remove this later
+	cp PSYSTRIKE
+	jr z, .sub_8
+	cp FRESH_SNACK
 	jr nz, .no_sub
 .sub_8
 	pop af
@@ -268,9 +265,7 @@ InitBattleAnimBuffer: ; ccaaa
 	ld [wBattleAnimTempXOffset], a
 	ret
 
-; ccb31
-
-GetBattleAnimTileOffset: ; ccb31 (33:4b31)
+GetBattleAnimTileOffset:
 	push hl
 	push bc
 	ld hl, wBattleAnimTileDict
@@ -293,12 +288,9 @@ GetBattleAnimTileOffset: ; ccb31 (33:4b31)
 	pop hl
 	ret
 
-_ExecuteBGEffects: ; ccb48
+_ExecuteBGEffects:
 	farjp ExecuteBGEffects
 
-; ccb4f
-
-_QueueBGEffect: ; ccb4f (33:4b4f)
+_QueueBGEffect:
 	farjp QueueBGEffect
 
-; ccb56 (33:4b56)

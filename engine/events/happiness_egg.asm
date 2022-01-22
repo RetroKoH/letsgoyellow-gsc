@@ -2,6 +2,7 @@ GetFirstPokemonHappiness:
 ; returns first non-Egg party mon's happiness
 	ld hl, wPartyMon1Species
 .loop
+	ld a, [hl]
 	push hl
 	ld bc, wPartyMon1IsEgg - wPartyMon1Species
 	add hl, bc
@@ -15,15 +16,15 @@ GetFirstPokemonHappiness:
 .done
 	ld bc, wPartyMon1Happiness - wPartyMon1Species
 	add hl, bc
-	ld [wd265], a
+	ld [wNamedObjectIndex], a
 	ld a, [hl]
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	call GetPokemonName
-	jp CopyPokemonName_Buffer1_Buffer3
+	jmp CopyPokemonName_Buffer1_Buffer3
 
-CheckFirstMonIsEgg: ; 71ac
+CheckFirstMonIsEgg:
 	ld a, [wPartyMon1Species]
-	ld [wd265], a
+	ld [wNamedObjectIndex], a
 	ld a, [wPartyMon1IsEgg]
 	bit MON_IS_EGG_F, a
 	ld a, $1
@@ -31,11 +32,11 @@ CheckFirstMonIsEgg: ; 71ac
 	xor a
 
 .egg
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	call GetPokemonName
-	jp CopyPokemonName_Buffer1_Buffer3
+	jmp CopyPokemonName_Buffer1_Buffer3
 
-ChangeHappiness: ; 71c2
+ChangeHappiness:
 ; Perform happiness action c on wCurPartyMon
 
 	ld a, [wCurPartyMon]
@@ -54,11 +55,11 @@ ChangeHappiness: ; 71c2
 
 	push de
 	ld a, [de]
-	cp 100
+	cp HAPPINESS_THRESHOLD_1
 	ld e, 0
 	jr c, .ok
 	inc e
-	cp 200
+	cp HAPPINESS_THRESHOLD_2
 	jr c, .ok
 	inc e
 
@@ -71,7 +72,7 @@ ChangeHappiness: ; 71c2
 	ld d, 0
 	add hl, de
 	ld a, [hl]
-	cp 100
+	cp $64 ; why not $80?
 	pop de
 
 	ld a, [de]
@@ -134,7 +135,7 @@ GetExtraHappiness:
 	ld hl, wPartyMon1CaughtBall
 	call GetPartyLocation
 	ld a, [hl]
-	and CAUGHTBALL_MASK
+	and CAUGHT_BALL_MASK
 	cp LUXURY_BALL
 	jr nz, .no_luxury_ball
 
@@ -146,44 +147,22 @@ GetExtraHappiness:
 	ld a, b
 	ret
 
-StepHappiness:: ; 725a
+StepHappiness::
 ; Raise the party's happiness by 1 point every other step cycle.
-
-	ld hl, wHappinessStepCount
-	ld a, [hl]
-	inc a
-	and 1
-	ld [hl], a
-	ret nz
-
-	ld de, wPartyCount
-	ld a, [de]
+	ld a, [wPartyCount]
+.loop
 	and a
 	ret z
+	dec a
+	ld [wCurPartyMon], a
+	ld c, HAPPINESS_STEP
+	predef ChangeHappiness
+	ld a, [wCurPartyMon]
+	jr .loop
 
-	ld c, a
-	ld hl, wPartyMon1Happiness
-.loop
-	push hl
-	ld de, wPartyMon1IsEgg - wPartyMon1Happiness
-	add hl, de
-	bit MON_IS_EGG_F, [hl]
-	pop hl
-	jr nz, .next
-	inc [hl]
-	jr nz, .next
-	dec [hl]
+DayCareStep::
 
-.next
-	ld de, PARTYMON_STRUCT_LENGTH
-	add hl, de
-	dec c
-	jr nz, .loop
-	ret
-
-DaycareStep:: ; 7282
-
-	ld a, [wDaycareMan]
+	ld a, [wDayCareMan]
 	bit 0, a
 	jr z, .daycare_lady
 
@@ -192,7 +171,7 @@ DaycareStep:: ; 7282
 	call .daycare_exp
 
 .daycare_lady
-	ld a, [wDaycareLady]
+	ld a, [wDayCareLady]
 	bit 0, a
 	jr z, .check_egg
 
@@ -201,7 +180,7 @@ DaycareStep:: ; 7282
 	call .daycare_exp
 
 .check_egg
-	ld hl, wDaycareMan
+	ld hl, wDayCareMan
 	bit 5, [hl] ; egg
 	ret z
 	ld hl, wStepsToEgg
@@ -209,7 +188,7 @@ DaycareStep:: ; 7282
 	ret nz
 
 	farcall CheckBreedmonCompatibility
-	ld a, [wd265]
+	ld a, [wBreedingCompatibility]
 	; Egg initialization shouldn't happen if incompatible, but just in case
 	and a
 	ret z
@@ -235,14 +214,14 @@ DaycareStep:: ; 7282
 	call RandomRange
 	cp b
 	ret nc
-	ld hl, wDaycareMan
+	ld hl, wDayCareMan
 	res 5, [hl]
 	set 6, [hl]
 	ret
 
 .daycare_exp
 	ld a, [de]
-	cp 100
+	cp MAX_LEVEL
 	ret nc
 
 	inc [hl]
@@ -252,7 +231,7 @@ DaycareStep:: ; 7282
 	ret nz
 	dec hl
 	ld a, [hl]
-	cp 5242800 / $10000
+	cp (MAX_DAY_CARE_EXP / $10000) - 1
 	ret nc
 	inc [hl]
 	ret

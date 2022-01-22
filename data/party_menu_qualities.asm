@@ -8,9 +8,18 @@
 	const PLACE_PARTYMON_EVO
 	const PLACE_PARTYMON_GENDER
 	const PLACE_PARTYMON_RELEARNER
+	const PLACE_PARTYMON_BATTLETOWER
 
-PartyMenuQualityPointers: ; 503b2
+partymenuqualities: MACRO
+for i, 1, _NARG + 1
+	db PLACE_PARTYMON_\<i>
+endr
+	db -1 ; end
+ENDM
+
+PartyMenuQualityPointers:
 ; entries correspond to PARTYMENUACTION_* constants
+	table_width 2, PartyMenuQualityPointers
 	dw .Default
 	dw .Default
 	dw .Default
@@ -21,19 +30,12 @@ PartyMenuQualityPointers: ; 503b2
 	dw .Gender
 	dw .Default
 	dw .Reminder
-; 503c6
-
-placepartymon: macro
-rept _NARG
-	db PLACE_PARTYMON_\1
-shift
-endr
-	db -1
-endm
+	dw .BTLTower
+	assert_table_length NUM_PARTYMENUACTIONS
 
 .Default:
-.Gender:   placepartymon NICKNAMES, HP_BAR, HP_DIGITS, LEVEL, GENDER, STATUS
-.TMHM:     placepartymon NICKNAMES, TMHM,              LEVEL, GENDER, STATUS
-.EvoStone: placepartymon NICKNAMES, EVO,               LEVEL, GENDER, STATUS
-.Reminder: placepartymon NICKNAMES, RELEARNER,         LEVEL, GENDER, STATUS
-; 503e0
+.Gender:   partymenuqualities NICKNAMES, HP_BAR, HP_DIGITS, LEVEL, GENDER, STATUS
+.TMHM:     partymenuqualities NICKNAMES, TMHM,              LEVEL, GENDER, STATUS
+.EvoStone: partymenuqualities NICKNAMES, EVO,               LEVEL, GENDER, STATUS
+.Reminder: partymenuqualities NICKNAMES, RELEARNER,         LEVEL, GENDER, STATUS
+.BTLTower: partymenuqualities NICKNAMES, BATTLETOWER,       LEVEL, GENDER, STATUS

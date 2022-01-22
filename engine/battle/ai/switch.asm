@@ -47,11 +47,10 @@ GetSwitchScores:
 
 	; This makes GetAbility "restore" to the current species when done
 	ld [wCurSpecies], a
-	ld bc, wPartyMon1Ability - wPartyMon1
+	ld bc, wPartyMon1Personality - wPartyMon1
 	add hl, bc
 	ld c, a
-	ld b, [hl]
-	farcall GetAbility
+	call GetAbility
 	ld a, b
 	ld [wEnemyAbility], a
 
@@ -106,7 +105,6 @@ GetSwitchScores:
 	ld [wEnemyMonItem], a
 	ret
 
-
 CheckPlayerMoveTypeMatchups:
 	ld hl, wEnemyMonMoves
 	ld bc, wEnemyMonType
@@ -116,13 +114,21 @@ AICheckMatchupForEnemyMon:
 ; Scoring is +1 for SE, -1 for NVE, -2 for ineffective for enemy vs player, and vice versa.
 ; Lack of offensive moves count as neutral.
 ; Input is hl (enemy mon moves), bc (enemy mon types). Assumes wEnemyAbility is set
-	; Save old move data/turn
+
+	; Save whose turn it is
+	ldh a, [hBattleTurn]
+	push af
+
+	; Save move data
 	ld a, [wCurPlayerMove]
 	ld d, a
 	ld a, [wCurEnemyMove]
 	ld e, a
-	ld a, [hBattleTurn]
-	push af
+	push de
+	ld a, [wCurMoveNum]
+	ld d, a
+	ld a, [wCurEnemyMoveNum]
+	ld e, a
 	push de
 
 	; Player moves vs enemy
@@ -142,7 +148,7 @@ AICheckMatchupForEnemyMon:
 	; Done by setting up an arbitrary generic move and manually
 	; modifying its type
 	res 2, e
-	ld a, MEGA_PUNCH ; Arbitrary
+	ld a, STRENGTH ; Arbitrary
 	ld [wCurPlayerMove], a
 	push de
 	call UpdateMoveData
@@ -165,7 +171,7 @@ AICheckMatchupForEnemyMon:
 .unknown_moves_done
 	pop hl
 	call .score_result
-	add 10 ; use 10 rather than 0 as baseline
+	add BASE_AI_SWITCH_SCORE
 	push af
 
 	; Now do enemy moves vs player
@@ -181,9 +187,15 @@ AICheckMatchupForEnemyMon:
 	; Reset move data
 	pop de
 	ld a, d
+	ld [wCurMoveNum], a
+	ld a, e
+	ld [wCurEnemyMoveNum], a
+	pop de
+	ld a, d
 	ld [wCurPlayerMove], a
 	ld a, e
 	ld [wCurEnemyMove], a
+
 	push bc
 	call SetPlayerTurn
 	call UpdateMoveData
@@ -193,15 +205,14 @@ AICheckMatchupForEnemyMon:
 
 	; Reset whose turn it is
 	pop af
-	ld [hBattleTurn], a
+	ldh [hBattleTurn], a
 
 	ld a, b
 	ret
 
 .check_matchups
-	ld d, NUM_MOVES
 	; e is %0000ABCD, A = has 0.5x, B = no offensive moves, C = has 1x, D = has 2x
-	ld e, %00000100
+	lb de, NUM_MOVES, %00000100
 .loop
 	ld a, [hli]
 	and a
@@ -238,7 +249,7 @@ AICheckMatchupForEnemyMon:
 	and a
 	ret z ; no effect
 	set 3, e
-	cp $10
+	cp EFFECTIVE
 	ret c ; not very effective
 	set 1, e
 	ret z ; neutral
@@ -271,6 +282,18 @@ AIWantsSwitchCheck:
 	and a
 	ret z ; We can't switch
 
+	ld a, [wEnemyPerishCount]
+	cp 1
+	ld a, [wEnemyAISwitchScore]
+	jr nz, .no_perish
+
+	; Perish count is 1
+	cp 8
+	ret c ; Bad or no choices, sacrifice active mon instead...
+	ld b, $30
+	jr .set_switch_score
+
+.no_perish
 	; Figure out the difference between active and best choice
 	sub e
 	add 7 ; Make the number easier to work with (changes worst from -6 to +1)
@@ -287,10 +310,8 @@ AIWantsSwitchCheck:
 	; little improvement
 	ld b, $10
 	cp 9
-	jr nc, .set_switch_score
 	; No reason to switch
-	ret
-
+	ret c
 .set_switch_score
 	ld a, [wEnemySwitchMonParam]
 	add b

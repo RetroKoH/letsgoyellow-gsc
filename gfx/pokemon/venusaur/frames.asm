@@ -29,4 +29,3 @@
 .frame7
 	db $05 ; bitmask
 	db $60, $61
-; 0xd4289

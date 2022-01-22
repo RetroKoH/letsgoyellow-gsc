@@ -1,4 +1,5 @@
 ItemDescriptions:
+	table_width 2, ItemDescriptions
 	dw PokeBallDesc
 	dw GreatBallDesc
 	dw UltraBallDesc
@@ -11,7 +12,7 @@ ItemDescriptions:
 	dw FastBallDesc
 	dw HeavyBallDesc
 	dw LoveBallDesc
-	dw ParkBallDesc
+	dw AbilityPatchDesc
 	dw RepeatBallDesc
 	dw TimerBallDesc
 	dw NestBallDesc
@@ -242,7 +243,7 @@ ItemDescriptions:
 	dw OldAmberDesc
 	dw MulchDesc
 	dw SweetHoneyDesc
-	dw MintDesc
+	dw MintLeafDesc
 	dw FlowerMailDesc
 	dw SurfMailDesc
 	dw LiteBlueMailDesc
@@ -253,6 +254,7 @@ ItemDescriptions:
 	dw BlueSkyMailDesc
 	dw MusicMailDesc
 	dw MirageMailDesc
+	assert_table_length NUM_ITEMS
 
 KeyItemDescriptions:
 	dw BicycleDesc
@@ -262,7 +264,7 @@ KeyItemDescriptions:
 	dw CoinCaseDesc
 	dw ItemfinderDesc
 	dw MysteryEggDesc
-	dw OaksParcelDesc
+	dw SquirtBottleDesc
 	dw SecretPotionDesc
 	dw RedScaleDesc
 	dw CardKeyDesc
@@ -284,7 +286,7 @@ KeyItemDescriptions:
 	dw CatchCharmDesc
 	dw SilphScope2Desc
 	dw ApricornBoxDesc
-
+	dw TypeChartDesc
 
 PokeBallDesc:
 	db   "An item for catch-"
@@ -334,9 +336,9 @@ LoveBallDesc:
 	db   "A Ball for the"
 	next "opposite gender.@"
 
-ParkBallDesc:
-	db   "The Bug-Catching"
-	next "Contest Ball.@"
+AbilityPatchDesc:
+	db   "Switches to a"
+	next "rare ability.@"
 
 RepeatBallDesc:
 	db   "A Ball for #mon"
@@ -647,7 +649,7 @@ SitrusBerryDesc:
 
 FigyBerryDesc:
 	db   "Self-restore item."
-	next "(1/2 max HP, Hold)@"
+	next "(1/3 max HP, Hold)@"
 
 PomegBerryDesc:
 	db   "Raises friendship"
@@ -896,7 +898,7 @@ DestinyKnotDesc:
 	next "back. (Hold)@"
 
 ExpertBeltDesc:
-	db   "Ups super-effect-"
+	db   "Ups super effect-"
 	next "ive moves. (Hold)@"
 
 FocusSashDesc:
@@ -944,7 +946,7 @@ SootheBellDesc:
 	next "friendship. (Hold)@"
 
 WeakPolicyDesc:
-	db   "Super-effective"
+	db   "Super effective"
 	next "hit ups offenses.@"
 
 WideLensDesc:
@@ -1037,7 +1039,7 @@ PowerAnkletDesc:
 
 MulchDesc:
 	db   "Plant fertilizer"
-	next "for Berry soil.@"
+	next "for Berry trees.@"
 
 SweetHoneyDesc:
 	db   "The aroma attracts"
@@ -1256,10 +1258,9 @@ UtilUmbrellaDesc:
 	db   "Protects from"
 	next "weather effects.@"
 
-MintDesc:
+MintLeafDesc:
 	db   "A fragrant sprig"
 	next "of mint.@"
-
 
 BicycleDesc:
 	db   "A collapsible bike"
@@ -1289,17 +1290,17 @@ MysteryEggDesc:
 	db   "An Egg obtained"
 	next "from Mr.#mon.@"
 
-OaksParcelDesc:
-	db   "A parcel belonging"
-	next "to PROF. OAK.@"
+SquirtBottleDesc:
+	db   "A bottle used for"
+	next "watering plants.@"
 
 SecretPotionDesc:
 	db   "Fully heals any"
-	next "#MON.@"
+	next "#mon.@"
 
 RedScaleDesc:
 	db   "A scale from the"
-	next "red GYARADOS.@"
+	next "red Gyarados.@"
 
 CardKeyDesc:
 	db   "Opens shutters in"
@@ -1372,3 +1373,7 @@ SilphScope2Desc:
 ApricornBoxDesc:
 	db   "Holds up to 99 of"
 	next "each Apricorn.@"
+
+TypeChartDesc:
+	db   "Summarizes all"
+	next "type advantages.@"

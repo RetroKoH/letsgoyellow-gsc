@@ -1,4 +1,4 @@
-	tilecoll WALL, WALL, WALL, WALL ; 00
+	tilecoll VOID, VOID, VOID, VOID ; 00
 	tilecoll WALL, WALL, WALL, WALL ; 01
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 02
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; 03
@@ -240,3 +240,9 @@
 	tilecoll WATER, WATER, WATER, WATER ; ef
 	tilecoll WALL, WALL, WALL, WALL ; f0
 	tilecoll TOP_WALL, WALL, FLOOR, FLOOR ; f1
+	tilecoll FLOOR, BOTTOM_WALL, WALL, CAVE ; f2
+	tilecoll WALL, WALL, WALL, WALL ; f3
+	tilecoll WALL, WALL, WALL, WALL ; f4
+	tilecoll WALL, WALL, WALL, WALL ; f5
+	tilecoll WALL, WALL, WALL, CAVE ; f6
+	tilecoll WALL, WALL, WALL, WALL ; f7

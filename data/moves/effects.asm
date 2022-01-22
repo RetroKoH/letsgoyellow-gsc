@@ -1,7 +1,10 @@
-MoveEffects:
+INCLUDE "data/moves/effects_pointers.asm"
+
+MoveEffects: ; used only for BANK(MoveEffects)
 
 NormalHit:
 AerialAce:
+Aeroblast:
 AquaJet:
 AquaTail:
 AuraSphere:
@@ -22,11 +25,9 @@ IceShard:
 KarateChop:
 MachPunch:
 Megahorn:
-MegaPunch:
 MegaKick:
 NightSlash:
 Peck:
-Pound:
 PowerGem:
 PowerWhip:
 Psystrike:
@@ -38,10 +39,10 @@ SeedBomb:
 ShadowClaw:
 Slash:
 StoneEdge:
+Strength:
 Surf:
 Swift:
 Tackle:
-ViceGrip:
 VineWhip:
 WaterGun:
 WingAttack:
@@ -50,34 +51,17 @@ XScissor:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
-	postfainteffects
-	posthiteffects
-	endmove
-
-OHKOHit:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	stab
-	ohko
-	hittarget
-	failuretext
-	checkfaint
-	criticaltext
-	supereffectivetext
-	checkfaint
 	postfainteffects
 	posthiteffects
 	endmove
@@ -88,15 +72,15 @@ SuckerPunch:
 	doturn
 	hastarget
 	suckerpunch
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -107,21 +91,22 @@ LeechHit:
 Absorb:
 MegaDrain:
 LeechLife:
+GigaDrain:
 DrainKiss:
 DrainPunch:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	draintarget
@@ -130,20 +115,21 @@ DrainPunch:
 	endmove
 
 UTurn:
+VoltSwitch:
 SwitchHit:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -155,6 +141,7 @@ MultiHit:
 Bonemerang:
 CometPunch:
 DoubleKick:
+DoubleSlap:
 PinMissile:
 IcicleSpear:
 RockBlast:
@@ -172,9 +159,9 @@ FuryStrikes:
 	stab
 	damagevariation
 	clearmissdamage
-	hittargetnosub
+	moveanimnosub
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	cleartext
 	postfainteffects
@@ -194,15 +181,15 @@ BraveBird:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	recoil
@@ -212,6 +199,7 @@ BraveBird:
 
 FlinchHit:
 AirSlash:
+Astonish:
 Bite:
 DarkPulse:
 Extrasensory:
@@ -226,16 +214,16 @@ ZenHeadbutt:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -252,16 +240,16 @@ GunkShot:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -278,16 +266,16 @@ FireBlast:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -307,16 +295,16 @@ ZapCannon:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -329,6 +317,7 @@ BodySlam:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
@@ -336,10 +325,9 @@ BodySlam:
 	stab
 	damagevariation
 	doubleminimizedamage
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -352,21 +340,21 @@ SleepHit:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	sleeptarget
+	sleep
 	endmove
 
 FreezeHit:
@@ -377,16 +365,16 @@ Blizzard:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -405,16 +393,16 @@ Hurricane:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -428,21 +416,21 @@ MetalClaw:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
-	effectchance
+	selfeffectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	raisestathit ATTACK
 	postfainteffects
 	posthiteffects
-	raisestathit ATTACK
 	endmove
 
 DefenseUpHit:
@@ -451,21 +439,44 @@ SteelWing:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
-	effectchance
+	selfeffectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	raisestathit DEFENSE
 	postfainteffects
 	posthiteffects
-	raisestathit DEFENSE
+	endmove
+
+SpeedUpHit:
+FlameCharge:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	critical
+	selfeffectchance
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	raisestathit SPEED
+	postfainteffects
+	posthiteffects
 	endmove
 
 AllUpHit:
@@ -474,25 +485,25 @@ Ancientpower:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
-	effectchance
+	selfeffectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
-	postfainteffects
-	posthiteffects
 	raisestathit ATTACK
 	raisestathit DEFENSE
 	raisestathit SPEED
 	raisestathit SP_ATTACK
 	raisestathit SP_DEFENSE
+	postfainteffects
+	posthiteffects
 	endmove
 
 AttackDownHit:
@@ -501,21 +512,21 @@ AuroraBeam:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	loweroppstathit ATTACK
 	postfainteffects
 	posthiteffects
-	loweroppstathit ATTACK
 	endmove
 
 DefenseDownHit:
@@ -525,21 +536,21 @@ IronTail:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	loweroppstathit DEFENSE
 	postfainteffects
 	posthiteffects
-	loweroppstathit DEFENSE
 	endmove
 
 BrickBreak:
@@ -547,18 +558,17 @@ BrickBreak:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
-	effectchance
 	resettypematchup
 	brickbreak
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -573,21 +583,21 @@ Bulldoze:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	loweroppstathit SPEED
 	postfainteffects
 	posthiteffects
-	loweroppstathit SPEED
 	endmove
 
 SpecialAttackDownHit:
@@ -596,21 +606,21 @@ Moonblast:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	loweroppstathit SP_ATTACK
 	postfainteffects
 	posthiteffects
-	loweroppstathit SP_ATTACK
 	endmove
 
 SpecialDefenseDownHit:
@@ -626,43 +636,45 @@ ShadowBall:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	loweroppstathit SP_DEFENSE
 	postfainteffects
 	posthiteffects
-	loweroppstathit SP_DEFENSE
 	endmove
 
 AccuracyDownHit:
+MudSlap:
+Octazooka:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	loweroppstathit ACCURACY
 	postfainteffects
 	posthiteffects
-	loweroppstathit ACCURACY
 	endmove
 
 EvasionDownHit:
@@ -670,21 +682,21 @@ EvasionDownHit:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	loweroppstathit EVASION
 	postfainteffects
 	posthiteffects
-	loweroppstathit EVASION
 	endmove
 
 CloseCombat:
@@ -692,16 +704,15 @@ CloseCombat:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
-	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	lowerstat DEFENSE
@@ -720,12 +731,12 @@ SuperFang:
 	usedmovetext
 	doturn
 	hastarget
-	constantdamage
 	checkhit
+	constantdamage
 	resettypematchup
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	postfainteffects
 	posthiteffects
 	endmove
@@ -736,10 +747,9 @@ Poisonpowder:
 	usedmovetext
 	doturn
 	hastarget
-	checkpowder
 	checkhit
+	checkpowder
 	bounceback
-	stab
 	checksafeguard
 	poison
 	endmove
@@ -750,8 +760,8 @@ Toxic:
 	doturn
 	hastarget
 	checkhit
+	checkpowder
 	bounceback
-	stab
 	checksafeguard
 	toxic
 	endmove
@@ -763,6 +773,7 @@ WillOWisp:
 	doturn
 	hastarget
 	checkhit
+	resettypematchup
 	bounceback
 	stab
 	checksafeguard
@@ -777,8 +788,8 @@ Glare:
 	usedmovetext
 	doturn
 	hastarget
-	checkpowder
 	checkhit
+	checkpowder
 	bounceback
 	checksafeguard
 	paralyze
@@ -793,11 +804,11 @@ Spore:
 	usedmovetext
 	doturn
 	hastarget
-	checkpowder
 	checkhit
+	checkpowder
 	bounceback
 	checksafeguard
-	sleeptarget
+	sleep
 	endmove
 
 DoFreeze:
@@ -931,7 +942,6 @@ AccuracyUp2:
 	endmove
 
 EvasionUp2:
-Minimize:
 	checkobedience
 	usedmovetext
 	doturn
@@ -969,22 +979,28 @@ DragonDance:
 	forceraisestat SPEED
 	endmove
 
-QuiverDance:
-	checkobedience
-	usedmovetext
-	doturn
-	forceraisestat SP_ATTACK
-	forceraisestat SP_DEFENSE
-	forceraisestat SPEED
-	endmove
-
-Coil:
+HoneClaws:
 	checkobedience
 	usedmovetext
 	doturn
 	forceraisestat ATTACK
-	forceraisestat DEFENSE
 	forceraisestat ACCURACY
+	endmove
+
+DefenseCurl:
+	checkobedience
+	usedmovetext
+	doturn
+	forceraisestat DEFENSE
+	curl
+	endmove
+
+Minimize:
+	checkobedience
+	usedmovetext
+	doturn
+	forceraisestat $10 | EVASION
+	minimize
 	endmove
 
 ShellSmash:
@@ -993,9 +1009,9 @@ ShellSmash:
 	doturn
 	forcelowerstat DEFENSE
 	forcelowerstat SP_DEFENSE
-	forceraisestat ATTACK
-	forceraisestat SPEED
-	forceraisestat SP_ATTACK
+	forceraisestat $10 | ATTACK
+	forceraisestat $10 | SP_ATTACK
+	forceraisestat $10 | SPEED
 	endmove
 
 AttackDown:
@@ -1154,9 +1170,15 @@ Haze:
 	resetstats
 	endmove
 
+Safeguard:
+	checkobedience
+	usedmovetext
+	doturn
+	safeguard
+	endmove
+
 Screen:
 Reflect:
-AuroraVeil:
 LightScreen:
 	checkobedience
 	usedmovetext
@@ -1184,20 +1206,19 @@ Roost:
 	checkobedience
 	usedmovetext
 	doturn
-	heal
 	roost
+	heal
 	endmove
 
 Rampage:
 Thrash:
 PetalDance:
 Outrage:
-	checkrampage
 	checkobedience
+	usedmovetext
 	doturn
 	hastarget
 	rampage
-	usedmovetext
 	checkhit
 	critical
 	damagestats
@@ -1205,9 +1226,9 @@ Outrage:
 	stab
 	damagevariation
 	clearmissdamage
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1230,9 +1251,9 @@ Whirlpool:
 	stab
 	damagevariation
 	clearmissdamage
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1245,16 +1266,16 @@ Explosion:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
 	selfdestruct
-	hittargetnosub
+	moveanimnosub
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1266,15 +1287,15 @@ DreamEater:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	eatdream
@@ -1289,15 +1310,24 @@ Roar:
 	hastarget
 	checkhit
 	bounceback
-	forceswitch
+	roar
 	endmove
 
-Mimic:
+SkillSwap:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
-	mimic
+	skillswap
+	endmove
+
+Trick:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	trick
 	endmove
 
 Conversion:
@@ -1312,15 +1342,15 @@ PayDay:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	payday
@@ -1333,16 +1363,16 @@ KnockOff:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
 	conditionalboost
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	knockoff
@@ -1355,17 +1385,16 @@ BugBite:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	conditionalboost
-	hittarget
+	moveanim
 	failuretext
-	bugbite ; before checkfaint to steal HP berries before they take effect
-	checkfaint
+	bugbite ; before applydamage to steal HP berries before they take effect
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1377,15 +1406,15 @@ TriAttack:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1414,15 +1443,15 @@ GigaImpact:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	rechargenextturn
@@ -1435,16 +1464,16 @@ Rage:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
 	rage
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1482,6 +1511,7 @@ Disable:
 	hastarget
 	checkhit
 	bounceback
+	failuretext
 	disable
 	endmove
 
@@ -1489,10 +1519,12 @@ Counter:
 	checkobedience
 	usedmovetext
 	doturn
+	hastarget
+	checkhit ; needed for Parental Bond, it can't miss
 	counter
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	postfainteffects
 	posthiteffects
 	endmove
@@ -1504,28 +1536,25 @@ Encore:
 	hastarget
 	checkhit
 	bounceback
+	failuretext
 	encore
 	endmove
 
-FuryCutter:
+PainSplit:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
-	critical
-	damagestats
-	damagecalc
-	stab
 	checkhit
-	furycutter
-	damagevariation
-	hittarget
-	failuretext
-	checkfaint
-	criticaltext
-	supereffectivetext
-	postfainteffects
-	posthiteffects
+	painsplit
+	endmove
+
+Sketch:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	sketch
 	endmove
 
 SleepTalk:
@@ -1543,41 +1572,41 @@ DestinyBond:
 	destinybond
 	endmove
 
-Flail:
+Reversal:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	constantdamage
 	stab
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	supereffectivetext
 	postfainteffects
 	posthiteffects
 	endmove
 
-FakeOut:
+FalseSwipe:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	falseswipe
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	flinchtarget
 	endmove
 
 HealBell:
@@ -1587,39 +1616,12 @@ HealBell:
 	healbell
 	endmove
 
-TripleKick:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	startloop
-	lowersub
-	checkhit
-	critical
-	damagestats
-	damagecalc
-	triplekick
-	stab
-	damagevariation
-	clearmissdamage
-	hittargetnosub
-	failuretext
-	checkfaint
-	criticaltext
-	cleartext
-	postfainteffects
-	posthiteffects
-	supereffectivetext
-	kickcounter
-	endloop
-	raisesub
-	endmove
-
 Thief:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	; Yes, thief is 100% but this makes Sheer Force and Substitute be handled correctly
 	effectchance
@@ -1627,15 +1629,14 @@ Thief:
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	thief
 	postfainteffects
 	posthiteffects
-	thief
 	endmove
 
 MeanLook:
@@ -1647,37 +1648,11 @@ MeanLook:
 	arenatrap
 	endmove
 
-FlameWheel:
+Curse:
 	checkobedience
 	usedmovetext
 	doturn
-	hastarget
-	critical
-	effectchance
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	checkhit
-	hittarget
-	failuretext
-	checkfaint
-	criticaltext
-	supereffectivetext
-	defrost
-	postfainteffects
-	posthiteffects
-	burntarget
-	endmove
-
-Taunt:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	checkhit
-	bounceback
-	taunt
+	curse
 	endmove
 
 Protect:
@@ -1696,6 +1671,15 @@ Spikes:
 	spikes
 	endmove
 
+ToxicSpikes:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	bounceback
+	toxicspikes
+	endmove
+
 Foresight:
 	checkobedience
 	usedmovetext
@@ -1704,6 +1688,13 @@ Foresight:
 	checkhit
 	bounceback
 	foresight
+	endmove
+
+PerishSong:
+	checkobedience
+	usedmovetext
+	doturn
+	perishsong
 	endmove
 
 Sandstorm:
@@ -1728,21 +1719,20 @@ Endure:
 	endmove
 
 Rollout:
-	checkcurl
 	checkobedience
+	usedmovetext
 	doturn
 	hastarget
-	usedmovetext
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
-	checkhit
 	rolloutpower
 	damagevariation
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1760,24 +1750,26 @@ Swagger:
 	confusetarget
 	endmove
 
+Acrobatics:
 Avalanche:
 Facade:
 Hex:
+Venoshock:
 ConditionalBoostHit:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
-	checkhit
 	conditionalboost
 	damagevariation
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1799,16 +1791,16 @@ Return:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	happinesspower
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1820,16 +1812,16 @@ SacredFire:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	defrost
@@ -1843,17 +1835,17 @@ Magnitude:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	getmagnitude
 	damagecalc
 	stab
 	damagevariation
-	checkhit
 	doubleundergrounddamage
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1865,16 +1857,16 @@ GyroBall:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	gyroball
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1886,16 +1878,16 @@ LowKick:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	lowkick
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1911,19 +1903,20 @@ BatonPass:
 
 Pursuit:
 	checkobedience
+	pursuit
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	pursuit
-	checkhit
-	hittarget
+	conditionalboost
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -1935,44 +1928,45 @@ RapidSpin:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
+	selfeffectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
+	raisestathit SPEED
 	clearhazards
 	postfainteffects
 	posthiteffects
-	raisestathit SPEED
 	endmove
 
-Synthesis:
+HealingLight:
 	checkobedience
 	usedmovetext
 	doturn
 	healweather
 	endmove
 
-WeatherBall:
+HiddenPower:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
-	weatherball
+	hiddenpower
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -2004,10 +1998,12 @@ MirrorCoat:
 	checkobedience
 	usedmovetext
 	doturn
+	hastarget
+	checkhit
 	counter
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	postfainteffects
 	posthiteffects
 	endmove
@@ -2017,17 +2013,16 @@ Earthquake:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
-	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
 	doubleundergrounddamage
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -2040,14 +2035,18 @@ FutureSight:
 	usedmovetext
 	doturn
 	hastarget
+	futuresight
+	checkhit
+	critical
 	damagestats
 	damagecalc
-	futuresight
-	damagevariation ; skip here if last turn
-	checkhit
-	hittargetnosub
+	stab
+	damagevariation
+	moveanimnosub
 	failuretext
-	checkfaint
+	applydamage
+	criticaltext
+	supereffectivetext
 	postfainteffects
 	posthiteffects
 	endmove
@@ -2057,16 +2056,16 @@ Gust:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
 	doubleflyingdamage
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -2078,6 +2077,7 @@ Stomp:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
@@ -2085,10 +2085,9 @@ Stomp:
 	stab
 	damagevariation
 	doubleminimizedamage
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -2097,22 +2096,20 @@ Stomp:
 	endmove
 
 SolarBeam:
-	checkcharge
 	checkobedience
+	usedmovetext
 	doturn
 	hastarget
-	skipsuncharge
 	charge
-	usedmovetext
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -2124,6 +2121,7 @@ Thunder:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
@@ -2131,10 +2129,9 @@ Thunder:
 	stab
 	damagevariation
 	thunderaccuracy
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
@@ -2151,34 +2148,25 @@ Teleport:
 
 Fly:
 Dig:
-	checkcharge
 	checkobedience
+	usedmovetext
 	doturn
 	hastarget
 	charge
-	usedmovetext
+	checkhit
 	critical
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittargetnosub
+	moveanimnosub
 	raisesub
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	endmove
-
-DefenseCurl:
-	checkobedience
-	usedmovetext
-	doturn
-	forceraisestat DEFENSE
-	curl
 	endmove
 
 FlareBlitz:
@@ -2186,16 +2174,16 @@ FlareBlitz:
 	usedmovetext
 	doturn
 	hastarget
+	checkhit
 	critical
 	effectchance
 	damagestats
 	damagecalc
 	stab
 	damagevariation
-	checkhit
-	hittarget
+	moveanim
 	failuretext
-	checkfaint
+	applydamage
 	criticaltext
 	supereffectivetext
 	recoil

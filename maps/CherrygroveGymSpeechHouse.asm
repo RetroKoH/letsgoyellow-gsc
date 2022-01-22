@@ -1,16 +1,42 @@
 CherrygroveGymSpeechHouse_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, CHERRYGROVE_CITY, 3
 	warp_event  3,  7, CHERRYGROVE_CITY, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 0 ; object events
+	def_object_events
+	object_event  2,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, CherrygroveGymSpeechHousePokefanMText, -1
+	object_event  5,  5, SPRITE_CHILD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CherrygroveGymSpeechHouseBugCatcherText, -1
 
-	const_def 1 ; object constants
+CherrygroveGymSpeechHousePokefanMText:
+	text "You're trying to"
+	line "see how good you"
+
+	para "are as a #mon"
+	line "trainer?"
+
+	para "You better visit"
+	line "the #mon Gyms"
+
+	para "all over Johto and"
+	line "collect Badges."
+	done
+
+CherrygroveGymSpeechHouseBugCatcherText:
+	text "When I get older,"
+	line "I'm going to be a"
+	cont "Gym Leader!"
+
+	para "I make my #mon"
+	line "battle with my"
+
+	para "friend's to make"
+	line "them tougher!"
+	done

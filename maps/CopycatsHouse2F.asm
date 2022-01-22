@@ -1,40 +1,41 @@
 CopycatsHouse2F_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 1 ; callbacks
+	def_callbacks
 	callback MAPCALLBACK_OBJECTS, CopycatsHouse2FCallback
 
-	db 1 ; warp events
+	def_warp_events
 	warp_event  3,  0, COPYCATS_HOUSE_1F, 3
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 0 ; bg events
+	def_bg_events
 
-	db 6 ; object events
-	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, PERSONTYPE_SCRIPT, 0, Copycat1Script, EVENT_COPYCAT_1
-	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, PERSONTYPE_SCRIPT, 0, Copycat2Script, EVENT_COPYCAT_2
-	object_event  6,  4, SPRITE_DODRIO, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BROWN, PERSONTYPE_SCRIPT, 0, CopycatsDodrioScript, -1
-	object_event  6,  1, SPRITE_CLEFAIRY, SPRITEMOVEDATA_DOLL, 0, 0, -1, -1, 0, PERSONTYPE_COMMAND, jumptext, CopycatsHouse2FDollText, EVENT_COPYCATS_HOUSE_2F_DOLL
-	object_event  2,  1, SPRITE_GENGAR, SPRITEMOVEDATA_DOLL, 0, 0, -1, -1, PAL_NPC_PURPLE, PERSONTYPE_COMMAND, jumptext, CopycatsHouse2FDollText, -1
-	object_event  7,  1, SPRITE_MURKROW, SPRITEMOVEDATA_DOLL, 0, 0, -1, -1, PAL_NPC_BLUE, PERSONTYPE_COMMAND, jumptext, CopycatsHouse2FDollText, -1
+	def_object_events
+	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Copycat1Script, EVENT_COPYCAT_1
+	object_event  4,  3, SPRITE_COPYCAT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Copycat2Script, EVENT_COPYCAT_2
+	object_event  6,  4, SPRITE_MON_ICON, SPRITEMOVEDATA_POKEMON, 0, DODRIO, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CopycatsDodrioScript, -1
+	object_event  6,  1, SPRITE_MON_ICON, SPRITEMOVEDATA_STILL, 0, CLEFAIRY, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptext, CopycatsHouse2FDollText, EVENT_COPYCATS_HOUSE_2F_DOLL
+	object_event  2,  1, SPRITE_MON_ICON, SPRITEMOVEDATA_STILL, 0, GENGAR, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_COMMAND, jumptext, CopycatsHouse2FDollText, -1
+	object_event  7,  1, SPRITE_MON_ICON, SPRITEMOVEDATA_STILL, 0, MURKROW, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptext, CopycatsHouse2FDollText, -1
+	pokemon_event  0,  4, DITTO, -1, -1, PAL_NPC_PURPLE, CopycatsHouse2FDittoText, -1
 
-	const_def 1 ; object constants
+	object_const_def
 	const COPYCATSHOUSE2F_COPYCAT1
 	const COPYCATSHOUSE2F_COPYCAT2
 
 CopycatsHouse2FCallback:
-	variablesprite SPRITE_COPYCAT, SPRITE_CUTE_GIRL
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	checkflag ENGINE_PLAYER_IS_FEMALE
 	iftrue .Part1
 	disappear COPYCATSHOUSE2F_COPYCAT2
 	appear COPYCATSHOUSE2F_COPYCAT1
-	jump .Done
+	sjump .Done
 .Part1:
 	disappear COPYCATSHOUSE2F_COPYCAT1
 	appear COPYCATSHOUSE2F_COPYCAT2
 .Done:
-	return
+	endcallback
 
 Copycat1Script:
 	faceplayer
@@ -46,31 +47,31 @@ Copycat1Script:
 	iftrue CopycatFoundLostItemScript
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinMovement
 	faceplayer
-	writebyte (PAL_NPC_RED) << 4
+	setval (PAL_NPC_RED) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_RED
+	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	special MapCallbackSprites_LoadUsedSpritesGFX
-	checkevent EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .ReturnedMachinePart
 	showtext .Greeting1Text
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinMovement
-	jump CopycatRetortScript
+	sjump CopycatRetortScript
 
 .ReturnedMachinePart:
 	showtext .LostDoll1Text
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinMovement
-	jump CopycatWorriedScript
+	sjump CopycatWorriedScript
 
 .GotPass:
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinMovement
 	faceplayer
-	writebyte (PAL_NPC_RED) << 4
+	setval (PAL_NPC_RED) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_RED
+	variablesprite SPRITE_COPYCAT, SPRITE_CHRIS
 	special MapCallbackSprites_LoadUsedSpritesGFX
 	showtext .Thanks1Text
 	applymovement COPYCATSHOUSE2F_COPYCAT1, CopycatSpinMovement
-	jump CopycatFinalScript
+	sjump CopycatFinalScript
 
 .Greeting1Text:
 	text "<PLAYER>: Hi! Do"
@@ -124,31 +125,31 @@ Copycat2Script:
 	iftrue CopycatFoundLostItemScript
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinMovement
 	faceplayer
-	writebyte (PAL_NPC_BLUE) << 4
+	setval (PAL_NPC_BLUE) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_GREEN
+	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 	special MapCallbackSprites_LoadUsedSpritesGFX
-	checkevent EVENT_RETURNED_MACHINE_PART
+	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .ReturnedMachinePart
 	showtext .Greeting2Text
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinMovement
-	jump CopycatRetortScript
+	sjump CopycatRetortScript
 
 .ReturnedMachinePart:
 	showtext .LostDoll2Text
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinMovement
-	jump CopycatWorriedScript
+	sjump CopycatWorriedScript
 
 .GotPass:
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinMovement
 	faceplayer
-	writebyte (PAL_NPC_BLUE) << 4
+	setval (PAL_NPC_BLUE) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_GREEN
+	variablesprite SPRITE_COPYCAT, SPRITE_KRIS
 	special MapCallbackSprites_LoadUsedSpritesGFX
 	showtext .Thanks2Text
 	applymovement COPYCATSHOUSE2F_COPYCAT2, CopycatSpinMovement
-	jump CopycatFinalScript
+	sjump CopycatFinalScript
 
 .Greeting2Text:
 	text "<PLAYER>: Hi. You"
@@ -194,11 +195,11 @@ Copycat2Script:
 	done
 CopycatRetortScript:
 	faceplayer
-	writebyte (PAL_NPC_PURPLE) << 4
+	setval (PAL_NPC_GREEN) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_CUTE_GIRL
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special MapCallbackSprites_LoadUsedSpritesGFX
-	thistext
+	jumpthistext
 
 	text "Copycat: Hmm?"
 	line "Quit mimicking?"
@@ -209,12 +210,12 @@ CopycatRetortScript:
 
 CopycatWorriedScript:
 	faceplayer
-	writebyte (PAL_NPC_PURPLE) << 4
+	setval (PAL_NPC_GREEN) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_CUTE_GIRL
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special MapCallbackSprites_LoadUsedSpritesGFX
 	setevent EVENT_MET_COPYCAT_FOUND_OUT_ABOUT_LOST_ITEM
-	thistext
+	jumpthistext
 
 	text "Copycat: Pardon?"
 
@@ -230,11 +231,11 @@ CopycatWorriedScript:
 CopycatFoundLostItemScript:
 	opentext
 	writetext .FoundDollText
-	buttonsound
+	promptbutton
 	takekeyitem LOST_ITEM
 	setevent EVENT_RETURNED_LOST_ITEM_TO_COPYCAT
 	clearevent EVENT_COPYCATS_HOUSE_2F_DOLL
-	jump CopycatGivePassScript
+	sjump CopycatGivePassScript
 
 .FoundDollText:
 	text "Copycat: Yay!"
@@ -252,11 +253,11 @@ CopycatReturnedLostItemScript:
 	opentext
 CopycatGivePassScript:
 	writetext .GivePassText
-	buttonsound
+	promptbutton
 	verbosegivekeyitem PASS
 	iffalse_endtext
 	setevent EVENT_GOT_PASS_FROM_COPYCAT
-	thisopenedtext
+	jumpthisopenedtext
 
 	text "Copycat: That's"
 	line "the pass for the"
@@ -278,11 +279,11 @@ CopycatGivePassScript:
 
 CopycatFinalScript:
 	faceplayer
-	writebyte (PAL_NPC_PURPLE) << 4
+	setval (PAL_NPC_GREEN) << 4
 	special Special_SetCopycatPalette
-	variablesprite SPRITE_COPYCAT, SPRITE_CUTE_GIRL
+	variablesprite SPRITE_COPYCAT, SPRITE_LASS
 	special MapCallbackSprites_LoadUsedSpritesGFX
-	thistext
+	jumpthistext
 
 	text "Copycat: You bet!"
 	line "It's a scream!"
@@ -302,8 +303,8 @@ CopycatsDodrioScript:
 	opentext
 	writetext .Text1
 	cry DODRIO
-	buttonsound
-	thisopenedtext
+	promptbutton
+	jumpthisopenedtext
 
 	text "Mirror, mirror on"
 	line "the wall, who's"
@@ -321,4 +322,8 @@ CopycatsHouse2FDollText:
 	line "#mon! Huh?"
 
 	para "It's only a doll…"
+	done
+
+CopycatsHouse2FDittoText:
+	text "Ditto: Dii…"
 	done

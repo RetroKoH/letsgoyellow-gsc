@@ -1,27 +1,27 @@
 BluesHouse1F_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 3 ; warp events
+	def_warp_events
 	warp_event  2,  7, PALLET_TOWN, 2
 	warp_event  3,  7, PALLET_TOWN, 2
 	warp_event  7,  0, BLUES_HOUSE_2F, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 1 ; bg events
-	bg_event  5,  1, SIGNPOST_UP, RedsHouse1FTVScript
+	def_bg_events
+	bg_event  5,  1, BGEVENT_UP, RedsHouse1FTVScript
 
-	db 1 ; object events
-	object_event  2,  3, SPRITE_DAISY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, DaisyScript, -1
+	def_object_events
+	object_event  2,  3, SPRITE_DAISY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DaisyScript, -1
 
 DaisyScript:
-	checkcode VAR_HOUR
+	readvar VAR_HOUR
 	ifequal 15, .Massage
 	checkflag ENGINE_TEA_IN_BLUES_HOUSE
 	iftrue .After
-	thistextfaceplayer
+	jumpthistextfaceplayer
 
 	text "Daisy: Hi! My kid"
 	line "brother is the Gym"
@@ -61,8 +61,8 @@ DaisyScript:
 	opentext
 	writetext .LooksContentText
 	special PlayCurMonCry
-	buttonsound
-	thisopenedtext
+	promptbutton
+	jumpthisopenedtext
 
 	text "Daisy: There you"
 	line "go! All done."
@@ -90,7 +90,7 @@ DaisyScript:
 	done
 
 .After:
-	thistextfaceplayer
+	jumpthistextfaceplayer
 
 	text "Daisy: I always"
 	line "have tea around"
@@ -100,7 +100,7 @@ DaisyScript:
 	done
 
 .NoMassage:
-	thistext
+	jumpthistext
 
 	text "Daisy: You don't"
 	line "want to have one"
@@ -121,13 +121,13 @@ DaisyScript:
 	done
 
 .LooksContentText:
-	text_from_ram wStringBuffer3
+	text_ram wStringBuffer3
 	text " looks"
 	line "content."
 	done
 
 .EggMassage:
-	thistext
+	jumpthistext
 
 	text "Daisy: Oh, sorry."
 	line "I honestly can't"

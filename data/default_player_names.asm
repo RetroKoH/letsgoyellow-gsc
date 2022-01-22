@@ -1,5 +1,7 @@
 DefaultMalePlayerName:
-	db "RED@@@@@@@@"
+	rawchar "Chris@@@"
+	db 0, 0, 0
 
 DefaultFemalePlayerName:
-	db "GREEN@@@@@@"
+	rawchar "Kris@@@@"
+	db 0, 0, 0

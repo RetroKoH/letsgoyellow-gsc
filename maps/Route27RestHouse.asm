@@ -1,19 +1,19 @@
 Route27RestHouse_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event  2,  7, ROUTE_27, 1
 	warp_event  3,  7, ROUTE_27, 1
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 1 ; bg events
-	bg_event  7,  1, SIGNPOST_JUMPSTD, difficultbookshelf
+	def_bg_events
+	bg_event  7,  1, BGEVENT_JUMPSTD, difficultbookshelf
 
-	db 1 ; object events
-	object_event  2,  4, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, PERSONTYPE_SCRIPT, 0, Route27RestHouseGranny, -1
+	def_object_events
+	object_event  2,  4, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route27RestHouseGranny, -1
 
 Route27RestHouseGranny:
 	faceplayer
@@ -22,14 +22,14 @@ Route27RestHouseGranny:
 	iftrue .HeardIntro
 	writetext .IntroText
 	setevent EVENT_LISTENED_TO_SKILL_SWAP_INTRO
-	jump .Continue
+	sjump .Continue
 .HeardIntro
 	writetext .HeardIntroText
 .Continue
-	buttonsound
+	promptbutton
 	special GetFirstPokemonHappiness
 	ifgreater $95, .Loyal
-	thisopenedtext
+	jumpthisopenedtext
 
 	text "If it doesn't come"
 	line "to trust you some"
@@ -48,8 +48,8 @@ Route27RestHouseGranny:
 	iffalse .NoSilverLeaf
 	yesorno
 	iffalse .TutorRefused
-	writebyte MIMIC
-	writetext .ClearText
+	setval SKILL_SWAP
+	writetext ClearText
 	special Special_MoveTutor
 	ifequal $0, .TeachMove
 .TutorRefused
@@ -57,7 +57,7 @@ Route27RestHouseGranny:
 
 .NoSilverLeaf
 	waitbutton
-	thisopenedtext
+	jumpthisopenedtext
 
 	text "You've not found"
 	line "any Silver Leaves…"
@@ -65,7 +65,7 @@ Route27RestHouseGranny:
 
 .TeachMove
 	takeitem SILVER_LEAF
-	thisopenedtext
+	jumpthisopenedtext
 
 	text "Skill Swap is a"
 	line "move that swaps"
@@ -118,8 +118,4 @@ Route27RestHouseGranny:
 .RefusedText:
 	text "Good luck on your"
 	line "journey."
-	done
-
-.ClearText:
-	text ""
 	done

@@ -1,7 +1,7 @@
 ; Pokémon D/P/Pt - Mount Coronet
 ; Demixed by Mmmmmm
 ; https://pastebin.com/NeuV0aPD
-; https://hax.iimarck.us/topic/6777/
+; https://hax.iimarckus.org/topic/6777/
 
 Music_MountCoronetDPPt:
 	dbw $80, Music_MountCoronetDPPt_Ch1
@@ -392,7 +392,6 @@ Music_MountCoronetDPPt_Ch1_branch_2:
 ;	note A#, 8
 ;	intensity $87
 ;	note A#, 6
-
 
 Music_MountCoronetDPPt_Ch2:
 	tone $0001
@@ -796,7 +795,6 @@ Music_MountCoronetDPPt_Ch2_branch_2:
 ;	note C#, 9
 ;	intensity $67
 ;	note C#, 6
-
 
 	;note __, 4
 	;octave 4

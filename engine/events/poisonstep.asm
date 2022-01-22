@@ -1,32 +1,32 @@
-DoPoisonStep:: ; 505da
+DoPoisonStep::
 	ld a, [wPartyCount]
 	and a
 	jr z, .no_recovery
 
 	xor a
-	ld c, 7
-	ld hl, wEngineBuffer1
-.loop_clearEngineBuffer1
+	ld c, wPoisonStepDataEnd - wPoisonStepData
+	ld hl, wPoisonStepFlagSum
+.loop_clearPoisonStepData
 	ld [hli], a
 	dec c
-	jr nz, .loop_clearEngineBuffer1
+	jr nz, .loop_clearPoisonStepData
 
 	xor a
 	ld [wCurPartyMon], a
 .loop_check_poison
 	call .DamageMonIfPoisoned
 	jr nc, .not_poisoned
-; the output flag is stored in c, copy it to the ([wCurPartyMon] + 2)nd EngineBuffer
-; and set the corresponding flag in wEngineBuffer1
+; the output flag is stored in c, copy it to [wPoisonStepPartyFlags + [wCurPartyMon]]
+; and set the corresponding flag in wPoisonStepFlagSum
 	ld a, [wCurPartyMon]
 	ld e, a
 	ld d, 0
-	ld hl, wEngineBuffer2
+	ld hl, wPoisonStepPartyFlags
 	add hl, de
 	ld [hl], c
-	ld a, [wEngineBuffer1]
+	ld a, [wPoisonStepFlagSum]
 	or c
-	ld [wEngineBuffer1], a
+	ld [wPoisonStepFlagSum], a
 
 .not_poisoned
 	ld a, [wPartyCount]
@@ -35,10 +35,10 @@ DoPoisonStep:: ; 505da
 	cp [hl]
 	jr nz, .loop_check_poison
 
-	ld a, [wEngineBuffer1]
+	ld a, [wPoisonStepFlagSum]
 	and %10
 	jr nz, .someone_has_recovered
-	ld a, [wEngineBuffer1]
+	ld a, [wPoisonStepFlagSum]
 	and %01
 	jr z, .no_recovery
 	call .PlayPoisonSFX
@@ -55,9 +55,8 @@ DoPoisonStep:: ; 505da
 .no_recovery
 	xor a
 	ret
-; 5062e
 
-.DamageMonIfPoisoned: ; 5062e
+.DamageMonIfPoisoned:
 ; check if mon is poisoned, return if not
 	ld a, MON_STATUS
 	call GetPartyParamLocation
@@ -74,20 +73,21 @@ DoPoisonStep:: ; 505da
 	or c
 	ret z
 
-; check for immunity or poison heal
+; check for immunity, pastel veil, or poison heal
 	push hl
 	push bc
-	ld a, MON_ABILITY
-	call GetPartyParamLocation
-	ld b, [hl]
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld c, [hl]
+	ld a, MON_ABILITY
+	call GetPartyParamLocation
 	call GetAbility
 	ld a, b
 	pop bc
 	pop hl
 	cp IMMUNITY
+	jr z, .heal_poison
+	cp PASTEL_VEIL
 	jr z, .heal_poison
 	cp POISON_HEAL
 	ret z ; keep poison, but don't deal damage for it
@@ -122,41 +122,37 @@ DoPoisonStep:: ; 505da
 	ld c, %01
 	scf
 	ret
-; 50658
 
-.PlayPoisonSFX: ; 50658
+.PlayPoisonSFX:
 	ld de, SFX_POISON
 	call PlaySFX
 	ld b, $2
 	call LoadPoisonBGPals
-	jp DelayFrame
-; 50669
+	jmp DelayFrame
 
-.Script_MonRecoveredFromPoison: ; 50669
+.Script_MonRecoveredFromPoison:
 	callasm .PlayPoisonSFX
 	opentext
 	callasm .CheckWhitedOut
 	iffalse .whiteout
 	closetext
 	end
-; 50677
 
-.whiteout ; 50677
-	farjump Script_OverworldWhiteout
-; 5067b
+.whiteout
+	farsjump Script_OverworldWhiteout
 
-.CheckWhitedOut: ; 5067b
+.CheckWhitedOut:
 	xor a
 	ld [wCurPartyMon], a
-	ld de, wEngineBuffer2
+	ld de, wPoisonStepPartyFlags
 .party_loop
 	push de
 	ld a, [de]
 	and %10
 	jr z, .mon_not_fainted
 	ld c, HAPPINESS_POISONFAINT
-	farcall ChangeHappiness
-	farcall GetPartyNick
+	predef ChangeHappiness
+	farcall GetPartyNickname
 	ld hl, .PoisonRecoveryText
 	call PrintText
 
@@ -170,46 +166,44 @@ DoPoisonStep:: ; 505da
 	jr nz, .party_loop
 	farcall CheckPlayerPartyForFitPkmn
 	ld a, d
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	ret
-; 506b2
 
-.PoisonRecoveryText: ; 506b2
-	text_jump UnknownText_0x1c0acc
-	db "@"
-; 506b7
+.PoisonRecoveryText:
+	text_far _PoisonFaintText
+	text_end
 
-LoadPoisonBGPals: ; cbcdd
-	ld a, [rSVBK]
+LoadPoisonBGPals:
+	ldh a, [rSVBK]
 	push af
 	ld a, $5
-	ld [rSVBK], a
-	ld hl, wBGPals
+	ldh [rSVBK], a
+	ld hl, wBGPals2
 	ld c, 8 * 4
 .loop
 if DEF(NOIR)
-	ld a, (palred 24 + palgreen 24 + palblue 24) % $100
+	ld a, LOW(palred 24 + palgreen 24 + palblue 24)
 	ld [hli], a
-	ld a, (palred 24 + palgreen 24 + palblue 24) / $100
+	ld a, HIGH(palred 24 + palgreen 24 + palblue 24)
 	ld [hli], a
 elif !DEF(MONOCHROME)
 ; RGB 28, 21, 31
-	ld a, (palred 28 + palgreen 21 + palblue 31) % $100
+	ld a, LOW(palred 28 + palgreen 21 + palblue 31)
 	ld [hli], a
-	ld a, (palred 28 + palgreen 21 + palblue 31) / $100
+	ld a, HIGH(palred 28 + palgreen 21 + palblue 31)
 	ld [hli], a
 else
-	ld a, PAL_MONOCHROME_WHITE % $100
+	ld a, LOW(PAL_MONOCHROME_WHITE)
 	ld [hli], a
-	ld a, PAL_MONOCHROME_WHITE / $100
+	ld a, HIGH(PAL_MONOCHROME_WHITE)
 	ld [hli], a
 endc
 	dec c
 	jr nz, .loop
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	ld a, $1
-	ld [hCGBPalUpdate], a
+	ldh [hCGBPalUpdate], a
 	ld c, 4
 	call DelayFrames
 	farjp _UpdateTimePals

@@ -12,4 +12,3 @@
 .frame3
 	db $02 ; bitmask
 	db $4c
-; 0xd4541

@@ -1,13 +1,12 @@
-PlayStereoCry:: ; 37b6
+PlayStereoCry::
 	push af
 	ld a, 1
 	ld [wStereoPanningMask], a
 	pop af
 	call _PlayCry
-	jp WaitSFX
-; 37c4
+	jmp WaitSFX
 
-PlayStereoCry2:: ; 37c4
+PlayStereoCry2::
 ; Don't wait for the cry to end.
 ; Used during pic animations.
 	push af
@@ -15,14 +14,12 @@ PlayStereoCry2:: ; 37c4
 	ld [wStereoPanningMask], a
 	pop af
 	jr _PlayCry
-; 37ce
 
-PlayCry:: ; 37ce
+PlayCry::
 	call PlayCry2
-	jp WaitSFX
-; 37d5
+	jmp WaitSFX
 
-PlayCry2:: ; 37d5
+PlayCry2::
 ; Don't wait for the cry to end.
 	push af
 	xor a
@@ -31,7 +28,7 @@ PlayCry2:: ; 37d5
 	pop af
 	; fallthrough
 
-_PlayCry:: ; 37e2
+_PlayCry::
 	push hl
 	push de
 	push bc
@@ -44,24 +41,18 @@ _PlayCry:: ; 37e2
 	call PlayCryHeader
 
 .done
-	pop bc
-	pop de
-	pop hl
-	ret
-; 37f3
+	jmp PopBCDEHL
 
-LoadCryHeader:: ; 37f3
+LoadCryHeader::
 ; Load cry header bc.
 
 	call GetCryIndex
 	ret c
 
-	ld a, [hROMBank]
-	push af
-	ld a, BANK(CryHeaders)
-	rst Bankswitch
+	anonbankpush PokemonCries
 
-	ld hl, CryHeaders
+.Function:
+	ld hl, PokemonCries
 rept 6
 	add hl, bc
 endr
@@ -80,25 +71,24 @@ endr
 	ld a, [hl]
 	ld [wCryLength + 1], a
 
-	pop af
-	rst Bankswitch
 	and a
 	ret
-; 381e
 
-GetCryIndex:: ; 381e
+GetCryIndex::
 	and a
 	jr z, .no
 	cp NUM_POKEMON + 1
 	jr nc, .no
 
-	dec a
 	ld c, a
-	ld b, 0
+	ld a, [wCurForm]
+	ld b, a
+	call GetExtendedSpeciesIndex
+	dec bc
+	ld a, c
 	and a
 	ret
 
 .no
 	scf
 	ret
-; 382d

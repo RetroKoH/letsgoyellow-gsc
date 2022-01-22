@@ -1,18 +1,37 @@
 Route12North_MapScriptHeader:
-	db 0 ; scene scripts
+	def_scene_scripts
 
-	db 0 ; callbacks
+	def_callbacks
 
-	db 2 ; warp events
+	def_warp_events
 	warp_event 10, 15, ROUTE_12_GATE, 1
 	warp_event 11, 15, ROUTE_12_GATE, 2
 
-	db 0 ; coord events
+	def_coord_events
 
-	db 1 ; bg events
-	bg_event 13, 13, SIGNPOST_JUMPTEXT, FishingSpotSignText
+	def_bg_events
+	bg_event 13, 13, BGEVENT_JUMPTEXT, FishingSpotSignText
 
-	db 0 ; object events
+	def_object_events
+	object_event  6, 11, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerFisherKyle, -1
+
+GenericTrainerFisherKyle:
+	generictrainer FISHER, KYLE, EVENT_BEAT_FISHER_KYLE, FisherKyleSeenText, FisherKyleBeatenText
+
+	text "The tug you feel"
+	line "on the Rod when"
+
+	para "you hook a #-"
+	line "mon…"
+	done
+
+FisherKyleSeenText:
+	text "Do you remember?"
+	done
+
+FisherKyleBeatenText:
+	text "You do remember?"
+	done
 
 FishingSpotSignText:
 	text "Fishing Spot"

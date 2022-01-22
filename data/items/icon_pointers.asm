@@ -1,4 +1,5 @@
 ItemIconPointers:
+	table_width 3, ItemIconPointers
 	dba NoItemIcon
 	dba PokeBallIcon
 	dba GreatBallIcon
@@ -12,7 +13,7 @@ ItemIconPointers:
 	dba FastBallIcon
 	dba HeavyBallIcon
 	dba LoveBallIcon
-	dba ParkBallIcon
+	dba AbilityPatchIcon
 	dba RepeatBallIcon
 	dba TimerBallIcon
 	dba NestBallIcon
@@ -243,7 +244,7 @@ ItemIconPointers:
 	dba OldAmberIcon
 	dba MulchIcon
 	dba SweetHoneyIcon
-	dba MintIcon
+	dba MintLeafIcon
 	dba FlowerMailIcon
 	dba SurfMailIcon
 	dba LiteBlueMailIcon
@@ -254,6 +255,7 @@ ItemIconPointers:
 	dba BlueSkyMailIcon
 	dba MusicMailIcon
 	dba MirageMailIcon
+	assert_table_length NUM_ITEMS + 1
 
 KeyItemIconPointers:
 	dba BicycleIcon
@@ -263,7 +265,7 @@ KeyItemIconPointers:
 	dba CoinCaseIcon
 	dba ItemfinderIcon
 	dba MysteryEggIcon
-	dba OaksParcelIcon
+	dba SquirtBottleIcon
 	dba SecretPotionIcon
 	dba RedScaleIcon
 	dba CardKeyIcon
@@ -285,3 +287,4 @@ KeyItemIconPointers:
 	dba CatchCharmIcon
 	dba SilphScope2Icon
 	dba ApricornBoxIcon
+	dba TypeChartIcon

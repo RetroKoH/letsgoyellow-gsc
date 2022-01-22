@@ -1,25 +1,23 @@
 
-ProfOaksPC: ; 0x265d3
+ProfOaksPC:
 	ld hl, OakPCText1
-	call MenuTextBox
+	call MenuTextbox
 	call YesNoBox
-	jr c, .shutdown
-	call ProfOaksPCBoot ; player chose "yes"?
-.shutdown
+	call nc, ProfOaksPCBoot ; player chose "yes"?
 	ld hl, OakPCText4
 	call PrintText
 	call JoyWaitAorB
-	jp ExitMenu
+	jmp ExitMenu
 
-ProfOaksPCBoot ; 0x265ee
+ProfOaksPCBoot:
 	ld hl, OakPCText2
 	call PrintText
 	call Rate
 	call PlaySFX ; sfx loaded by previous Rate function call
 	call JoyWaitAorB
-	jp WaitSFX
+	jmp WaitSFX
 
-ProfOaksPCRating: ; 0x26601
+ProfOaksPCRating:
 	call Rate
 	push de
 	ld de, MUSIC_NONE
@@ -27,25 +25,25 @@ ProfOaksPCRating: ; 0x26601
 	pop de
 	call PlaySFX
 	call JoyWaitAorB
-	jp WaitSFX
+	jmp WaitSFX
 
-Rate: ; 0x26616
+Rate:
 ; calculate Seen/Owned
 	ld hl, wPokedexSeen
 	ld b, wEndPokedexSeen - wPokedexSeen
 	call CountSetBits
-	ld [wd002], a
+	ld [wTempPokedexSeenCount], a
 	ld hl, wPokedexCaught
 	ld b, wEndPokedexCaught - wPokedexCaught
 	call CountSetBits
-	ld [wd003], a
+	ld [wTempPokedexCaughtCount], a
 
 ; print appropriate rating
 	call .UpdateRatingBuffers
 	ld hl, OakPCText3
 	call PrintText
 	call JoyWaitAorB
-	ld a, [wd003]
+	ld a, [wTempPokedexCaughtCount]
 	ld hl, OakRatings
 	call FindOakRating
 	push de
@@ -53,24 +51,24 @@ Rate: ; 0x26616
 	pop de
 	ret
 
-.UpdateRatingBuffers: ; 0x26647
+.UpdateRatingBuffers:
 	ld hl, wStringBuffer3
-	ld de, wd002
+	ld de, wTempPokedexSeenCount
 	call .UpdateRatingBuffer
 	ld hl, wStringBuffer4
-	ld de, wd003
+	ld de, wTempPokedexCaughtCount
 	; fallthrough
 
-.UpdateRatingBuffer: ; 0x2665a
+.UpdateRatingBuffer:
 	push hl
 	ld a, "@"
 	ld bc, ITEM_NAME_LENGTH
-	call ByteFill
+	rst ByteFill
 	pop hl
 	lb bc, PRINTNUM_LEFTALIGN | 1, 3
-	jp PrintNum
+	jmp PrintNum
 
-FindOakRating: ; 0x2666b
+FindOakRating:
 ; return sound effect in de
 ; return text pointer in hl
 	ld c, a
@@ -93,11 +91,11 @@ endr
 	ld l, a
 	ret
 
-OakRatings: ; 0x2667f
+OakRatings:
 oakrating: MACRO
 	db \1
 	dw \2, \3
-endm
+ENDM
 
 ; if you caught at most this many, play this sound, load this text
 	oakrating   9, SFX_DEX_FANFARE_LESS_THAN_20, OakRating01
@@ -120,94 +118,94 @@ endm
 	oakrating 249, SFX_DEX_FANFARE_230_PLUS,     OakRating18
 	oakrating 255, SFX_DEX_FANFARE_230_PLUS,     OakRating19
 
-OakPCText1: ; 0x266de
-	text_jump _OakPCText1
-	db "@"
+OakPCText1:
+	text_far _OakPCText1
+	text_end
 
-OakPCText2: ; 0x266e3
-	text_jump _OakPCText2
-	db "@"
+OakPCText2:
+	text_far _OakPCText2
+	text_end
 
-OakPCText3: ; 0x266e8
-	text_jump _OakPCText3
-	db "@"
+OakPCText3:
+	text_far _OakPCText3
+	text_end
 
 OakRating01:
-	text_jump _OakRating01
-	db "@"
+	text_far _OakRating01
+	text_end
 
 OakRating02:
-	text_jump _OakRating02
-	db "@"
+	text_far _OakRating02
+	text_end
 
 OakRating03:
-	text_jump _OakRating03
-	db "@"
+	text_far _OakRating03
+	text_end
 
 OakRating04:
-	text_jump _OakRating04
-	db "@"
+	text_far _OakRating04
+	text_end
 
 OakRating05:
-	text_jump _OakRating05
-	db "@"
+	text_far _OakRating05
+	text_end
 
 OakRating06:
-	text_jump _OakRating06
-	db "@"
+	text_far _OakRating06
+	text_end
 
 OakRating07:
-	text_jump _OakRating07
-	db "@"
+	text_far _OakRating07
+	text_end
 
 OakRating08:
-	text_jump _OakRating08
-	db "@"
+	text_far _OakRating08
+	text_end
 
 OakRating09:
-	text_jump _OakRating09
-	db "@"
+	text_far _OakRating09
+	text_end
 
 OakRating10:
-	text_jump _OakRating10
-	db "@"
+	text_far _OakRating10
+	text_end
 
 OakRating11:
-	text_jump _OakRating11
-	db "@"
+	text_far _OakRating11
+	text_end
 
 OakRating12:
-	text_jump _OakRating12
-	db "@"
+	text_far _OakRating12
+	text_end
 
 OakRating13:
-	text_jump _OakRating13
-	db "@"
+	text_far _OakRating13
+	text_end
 
 OakRating14:
-	text_jump _OakRating14
-	db "@"
+	text_far _OakRating14
+	text_end
 
 OakRating15:
-	text_jump _OakRating15
-	db "@"
+	text_far _OakRating15
+	text_end
 
 OakRating16:
-	text_jump _OakRating16
-	db "@"
+	text_far _OakRating16
+	text_end
 
 OakRating17:
-	text_jump _OakRating17
-	db "@"
+	text_far _OakRating17
+	text_end
 
 OakRating18:
-	text_jump _OakRating18
-	db "@"
+	text_far _OakRating18
+	text_end
 
 OakRating19:
-	text_jump _OakRating19
-	db "@"
+	text_far _OakRating19
+	text_end
 
-OakPCText4: ; 0x2674c
-	text_jump _OakPCText4
-	db "@"
+OakPCText4:
+	text_far _OakPCText4
+	text_end

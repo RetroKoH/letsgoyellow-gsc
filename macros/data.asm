@@ -15,44 +15,23 @@ dbw: MACRO
 	dw \2
 ENDM
 
-dbbw: MACRO
-	db \1, \2
-	dw \3
-ENDM
-
-dbbbw: MACRO
-	db \1, \2, \3
-	dw \4
-ENDM
-
-dbww: MACRO
-	db \1
-	dw \2, \3
-ENDM
-
-dbbww: MACRO
-	db \1, \2
-	dw \3, \4
-ENDM
-
-dbbwww: MACRO
-	db \1, \2
-	dw \3, \4, \5
-ENDM
-
-dn: MACRO
+dn: MACRO ; "nybbles"
 	rept _NARG / 2
-	db (\1) << 4 + (\2)
-	shift
-	shift
+		db (\1) << 4 + (\2)
+		shift 2
 	endr
 ENDM
 
-dx: MACRO
-x = 8 * ((\1) - 1)
-	rept \1
-	db ((\2) >> x) & $ff
-x = x + -8
+dc: MACRO ; "crumbs"
+rept _NARG / 4
+	db ((\1) << 6) | ((\2) << 4) | ((\3) << 2) | (\4)
+	shift 4
+endr
+ENDM
+
+dx: MACRO ; x-byte (big-endian)
+	for x, 8 * ((\1) - 1), -1, -8
+		db LOW((\2) >> x)
 	endr
 ENDM
 
@@ -69,72 +48,52 @@ bigdw: MACRO ; big-endian word
 ENDM
 
 dba: MACRO ; dbw bank, address
-	rept _NARG
-	dbw BANK(\1), \1
-	shift
+	for i, 1, _NARG + 1
+		dbw BANK(\<i>), \<i>
 	endr
 ENDM
 
 dab: MACRO ; dwb address, bank
-	rept _NARG
-	dwb \1, BANK(\1)
-	shift
+	for i, 1, _NARG + 1
+		dwb \<i>, BANK(\<i>)
 	endr
-ENDM
-
-dbba: MACRO
-	db \1
-	dba \2
-ENDM
-
-dbbba: MACRO
-	db \1, \2
-	dba \3
 ENDM
 
 dbpixel: MACRO
-if _NARG >= 4
-	db \1 * 8 + \3, \2 * 8 + \4
-else
-	db \1 * 8, \2 * 8
-endc
-endm
+	if _NARG >= 4
+		db \1 * 8 + \3, \2 * 8 + \4
+	else
+		db \1 * 8, \2 * 8
+	endc
+ENDM
 
 dsprite: MACRO
-	db (\1 * 8) % $100 + \2, (\3 * 8) % $100 + \4, \5, \6
-endm
+	db LOW(\1 * 8) + \2, LOW(\3 * 8) + \4, \5, \6
+ENDM
 
 bcd: MACRO
-	rept _NARG
-	dn ((\1) % 100) / 10, (\1) % 10
-	shift
+	for i, 1, _NARG + 1
+		dn ((\<i>) % 100) / 10, (\<i>) % 10
 	endr
 ENDM
 
-
-sine_wave: MACRO
-; \1: amplitude
-x = 0
-	rept $20
-	; Round up.
-	dw (sin(x) + (sin(x) & $ff)) >> 8
-x = x + (\1) * $40000
-	endr
+dp: MACRO ; db species, extspecies | form
+	if _NARG == 2
+		db LOW(\1), HIGH(\1) << MON_EXTSPECIES_F | \2
+	else
+		db LOW(\1), HIGH(\1) << MON_EXTSPECIES_F
+	endc
 ENDM
-
 
 genders: MACRO
-; eight arguments, all MALE ($00) or FEMALE ($80)
-; TODO: get bitfield genders to work
-;x = 0
-;rept 8
-;x = x << 1
-;x = x + (\1 >> 7)
-;	shift
-;endr
-;	db x
-rept 8
-	db \1
-	shift
-endr
+; eight arguments, all MALE or FEMALE
+	def x = 0
+	def y = 1
+	for i, 1, _NARG + 1
+		if !STRCMP("\<i>", "FEMALE")
+			def x |= y
+		endc
+		def y <<= 1
+	endr
+	db x
 ENDM

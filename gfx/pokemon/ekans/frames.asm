@@ -20,4 +20,3 @@
 .frame5
 	db $02 ; bitmask
 	db $2e, $2d
-; 0xd465c

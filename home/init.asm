@@ -1,13 +1,13 @@
-SoftReset:: ; 150
+SoftReset::
 	di
-	call MapSetup_Sound_Off
+	call InitSound
 	xor a
-	ld [hMapAnims], a
+	ldh [hMapAnims], a
 	call ClearPalettes
 	xor a
-	ld [rIF], a
-	ld a, 1 ; VBlank int
-	ld [rIE], a
+	ldh [rIF], a
+	ld a, 1 << VBLANK
+	ldh [rIE], a
 	ei
 
 	ld hl, wInputFlags
@@ -17,10 +17,19 @@ SoftReset:: ; 150
 	call DelayFrames
 
 	jr Init
-; 16e
 
 
-_Start:: ; 16e
+Rst0Crash:
+	xor a ; ld a, ERR_RST_0
+Crash::
+	ld b, b ; no-optimize nops (BGB breakpoint)
+
+	ldh [hCrashCode], a
+	xor a
+	ldh [hCGB], a
+	jr Init
+
+_Start::
 	cp $11
 	jr z, .cgb
 	xor a
@@ -30,44 +39,48 @@ _Start:: ; 16e
 	ld a, $1
 
 .load
-	ld [hCGB], a
+	ldh [hCGB], a
+	xor a ; ld a, ERR_RST_0
+	ldh [hCrashCode], a
 	; fallthrough
 
-Init:: ; 17d
+Init::
 
 	di
 
 	xor a
-	ld [rIF], a
-	ld [rIE], a
-	ld [rRP], a
-	ld [rSCX], a
-	ld [rSCY], a
-	ld [rSB], a
-	ld [rSC], a
-	ld [rWX], a
-	ld [rWY], a
-	ld [rBGP], a
-	ld [rOBP0], a
-	ld [rOBP1], a
-	ld [rTMA], a
-	ld [rTAC], a
+	ldh [rIF], a
+	ldh [rIE], a
+	ldh [rRP], a
+	ldh [rSCX], a
+	ldh [rSCY], a
+	ldh [rSB], a
+	ldh [rSC], a
+	ldh [rWX], a
+	ldh [rWY], a
+	ldh [rBGP], a
+	ldh [rOBP0], a
+	ldh [rOBP1], a
+	ldh [rTMA], a
+	ldh [rTAC], a
 	ld [wRAM1Start], a
 
 .wait
-	ld a, [rLY]
+	ldh a, [rLY]
 	cp 145
 	jr nz, .wait
 
 	xor a
-	ld [rLCDC], a
+	ldh [rLCDC], a
 
 ; Clear WRAM bank 0
+; Can't use rst ByteFill since we haven't initialized sp yet,
+; and wStack is part of WRAM0.
 	ld hl, wRAM0Start
 	ld bc, wRAM0End - wRAM0Start
 .ByteFill:
-	ld [hl], 0
-	inc hl
+	xor a
+	ld [hli], a
 	dec bc
 	ld a, b
 	or c
@@ -76,21 +89,37 @@ Init:: ; 17d
 	ld sp, wStack
 
 ; Clear HRAM
-	ld a, [hCGB]
+	ldh a, [hCrashCode]
+	push af
+	ldh a, [hCGB]
 	push af
 	xor a
 	ld hl, HRAM_START
 	ld bc, HRAM_END - HRAM_START
-	call ByteFill
+	rst ByteFill
 	pop af
-	ld [hCGB], a
+	ldh [hCGB], a
+	pop af
+	ldh [hCrashCode], a
 
 	call ClearWRAM
 	ld a, 1
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	call ClearVRAM
 	call ClearSprites
 	call ClearsScratch
+
+	; Write game version to WRAM.
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wGameVersion)
+	ldh [rSVBK], a
+	ld a, HIGH(SAVE_VERSION)
+	ld [wGameVersion], a
+	ld a, LOW(SAVE_VERSION)
+	ld [wGameVersion + 1], a
+	pop af
+	ldh [rSVBK], a
 
 ; Initialize the RNG state. It can be initialized to anything but zero; this is just a simple way of doing it.
 	ld hl, wRNGState
@@ -102,27 +131,31 @@ Init:: ; 17d
 	ld [hli], a
 	ld [hl], "!"
 
-	ld a, BANK(LoadPushOAM)
+	ld a, BANK(GameInit) ; aka BANK(WriteOAMDMACodeToHRAM)
 	rst Bankswitch
 
-	call LoadPushOAM
+	call WriteOAMDMACodeToHRAM ; far-ok
 
 	xor a
-	ld [hMapAnims], a
-	ld [hSCX], a
-	ld [hSCY], a
-	ld [rJOYP], a
+	ldh [hMapAnims], a
+	ldh [hSCX], a
+	ldh [hSCY], a
+	ldh [rJOYP], a
 
 	ld a, $8 ; HBlank int enable
-	ld [rSTAT], a
+	ldh [rSTAT], a
 
 	ld a, $90
-	ld [hWY], a
-	ld [rWY], a
+	ldh [hWY], a
+	ldh [rWY], a
 
 	ld a, 7
-	ld [hWX], a
-	ld [rWX], a
+	ldh [hWX], a
+	ldh [rWX], a
+
+	farcall InitCGBPals
+
+	farcall InitSGBBorder
 
 	ld a, %11100011
 	; LCD on
@@ -133,19 +166,27 @@ Init:: ; 17d
 	; OBJ 8x8
 	; OBJ on
 	; BG on
-	ld [rLCDC], a
+	ldh [rLCDC], a
 
 	ld a, CONNECTION_NOT_ESTABLISHED
-	ld [hSerialConnectionStatus], a
+	ldh [hSerialConnectionStatus], a
 
-	farcall InitSGBBorder
+	ld a, $cb ; prefix
+	ldh [hBitwisePrefix], a
+	ld a, $c9 ; ret
+	ldh [hBitwiseRet], a
+	ldh [hSingleRet], a
+	ld a, $c3 ; jp
+	ldh [hFunctionJump], a
+	ld a, LOW(LCDGeneric)
+	ldh [hFunctionTargetLo], a
+	ld a, HIGH(LCDGeneric)
+	ldh [hFunctionTargetHi], a
 
-	farcall InitCGBPals
-
-	ld a, VBGMap1 / $100
-	ld [hBGMapAddress + 1], a
-	xor a ; VBGMap1 % $100
-	ld [hBGMapAddress], a
+	ld a, HIGH(vBGMap1)
+	ldh [hBGMapAddress + 1], a
+	xor a ; LOW(vBGMap1)
+	ldh [hBGMapAddress], a
 
 	farcall StartClock
 
@@ -153,65 +194,61 @@ Init:: ; 17d
 	ld [MBC3LatchClock], a
 	ld [MBC3SRamEnable], a
 
-	ld a, [hCGB]
+	ldh a, [hCGB]
 	and a
 	call nz, DoubleSpeed
 
 	xor a
-	ld [rIF], a
+	ldh [rIF], a
 	ld a, 1 << VBLANK | 1 << SERIAL
-	ld [rIE], a
+	ldh [rIE], a
 	ei
 
 	call DelayFrame
 
-	call MapSetup_Sound_Off
+	call InitSound
 	xor a
 	ld [wMapMusic], a
-	jp GameInit
-; 245
+	jmp GameInit ; far-ok
 
-
-ClearVRAM:: ; 245
+ClearVRAM::
 ; Wipe VRAM banks 0 and 1
 
 	ld a, 1
-	ld [rVBK], a
+	ldh [rVBK], a
 	call .clear
 
 	xor a
-	ld [rVBK], a
+	ldh [rVBK], a
 .clear
-	ld hl, VTiles0
+	ld hl, vTiles0
 	ld bc, $2000
 	xor a
-	jp ByteFill
-; 25a
+	rst ByteFill
+	ret
 
-ClearWRAM:: ; 25a
+ClearWRAM::
 ; Wipe swappable WRAM banks (1-7)
 
 	ld a, 1
 .bank_loop
 	push af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	xor a
 	ld hl, wRAM1Start
 	ld bc, $1000
-	call ByteFill
+	rst ByteFill
 	pop af
 	inc a
 	cp 8
 	jr c, .bank_loop
 	ret
-; 270
 
-ClearsScratch:: ; 270
+ClearsScratch::
 	xor a
 	call GetSRAMBank
 	ld hl, sScratch
 	ld bc, $20
 	xor a
-	call ByteFill
-	jp CloseSRAM
-; 283
+	rst ByteFill
+	jmp CloseSRAM

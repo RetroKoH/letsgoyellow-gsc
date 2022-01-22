@@ -1,10 +1,12 @@
 MoveEffectsPointers:
+; entries correspond to EFFECT_* constants
+	table_width 2, MoveEffectsPointers
 	dw NormalHit
-	dw NormalHit ; PRIORITY
-	dw NormalHit ; ALWAYS
+	dw NormalHit
+	dw NormalHit
 	dw LeechHit
-	dw MultiHit ; DOUBLE
-	dw MultiHit ; MULTI
+	dw MultiHit
+	dw MultiHit
 	dw RecoilHit
 	dw FlinchHit
 	dw PoisonHit
@@ -15,6 +17,7 @@ MoveEffectsPointers:
 	dw ConfuseHit
 	dw AttackUpHit
 	dw DefenseUpHit
+	dw SpeedUpHit
 	dw AllUpHit
 	dw AttackDownHit
 	dw DefenseDownHit
@@ -51,7 +54,10 @@ MoveEffectsPointers:
 	dw CalmMind
 	dw Growth
 	dw DragonDance
-	dw Coil
+	dw HoneClaws
+	dw DefenseCurl
+	dw Minimize
+	dw ShellSmash
 	dw AttackDown
 	dw DefenseDown
 	dw StringShot
@@ -67,7 +73,7 @@ MoveEffectsPointers:
 	dw AccuracyDown2
 	dw EvasionDown2
 	dw ResetStats
-	dw AuroraVeil
+	dw Safeguard
 	dw Reflect
 	dw LightScreen
 	dw Heal
@@ -83,29 +89,27 @@ MoveEffectsPointers:
 	dw Transform
 	dw Substitute
 	dw HyperBeam
-	dw Rage         ; UNUSED
+	dw Rage
 	dw Metronome
 	dw LeechSeed
 	dw Splash
 	dw Disable
 	dw Counter
 	dw Encore
-	dw ShellSmash
-	dw FuryCutter
-	dw SleepTalk    ; UNUSED
-	dw DestinyBond  ; UNUSED
-	dw Flail
-	dw FakeOut
+	dw PainSplit
+	dw Sketch
+	dw SleepTalk
+	dw DestinyBond
+	dw Reversal
+	dw FalseSwipe
 	dw HealBell
-	dw TripleKick
-	dw Thief       ; UNUSED
-	dw MeanLook    ; UNUSED
-	dw FlameWheel
-	dw Taunt
+	dw Thief
+	dw MeanLook
+	dw Curse
 	dw Protect
 	dw Spikes
 	dw Foresight
-	dw Sing ; Was PerishSong, UNUSED
+	dw PerishSong
 	dw Sandstorm
 	dw Hail
 	dw Endure
@@ -119,8 +123,8 @@ MoveEffectsPointers:
 	dw BatonPass
 	dw Pursuit
 	dw RapidSpin
-	dw Synthesis
-	dw WeatherBall
+	dw HealingLight
+	dw HiddenPower
 	dw RainDance
 	dw SunnyDay
 	dw BellyDrum
@@ -133,17 +137,16 @@ MoveEffectsPointers:
 	dw Thunder
 	dw Teleport
 	dw Fly
-	dw DefenseCurl
 	dw FlareBlitz
 	dw NormalHit
 	dw NormalHit
 	dw SwitchHit
 	dw SuckerPunch
-	dw OHKOHit
+	dw ToxicSpikes
 	dw Roost
 	dw CloseCombat
-	dw Mimic
-	dw Mimic ; (TRICK) UNUSED
+	dw SkillSwap
+	dw Trick
 	dw KnockOff
 	dw FuryStrikes
 	dw BugBite
@@ -152,3 +155,4 @@ MoveEffectsPointers:
 	dw LowKick
 	dw BrickBreak
 	dw TrickRoom
+	assert_table_length NUM_MOVE_EFECTS

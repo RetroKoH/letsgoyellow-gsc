@@ -1,30 +1,21 @@
-_Squirtbottle: ; 50730
+_Squirtbottle:
 	ld hl, .SquirtbottleScript
 	call QueueScript
 	ld a, $1
 	ld [wItemEffectSucceeded], a
 	ret
-; 5073c
 
-.SquirtbottleScript: ; 0x5073c
+.SquirtbottleScript:
 	reloadmappart
 	special UpdateTimePals
 	callasm .CheckCanUseSquirtbottle
 	iffalse .NothingHappenedScript
-	end ; farjump WateredWeirdTreeScript
-; 0x5074b
+	farsjump WateredWeirdTreeScript
 
-.NothingHappenedScript: ; 0x5074b
-	jumptext .NothingHappenedText
-; 0x5074e
+.NothingHappenedScript:
+	farjumptext _SquirtbottleNothingText
 
-.NothingHappenedText: ; 0x5074e
-	; sprinkled water. But nothing happened…
-	text_jump UnknownText_0x1c0b3b
-	db "@"
-; 0x50753
-
-.CheckCanUseSquirtbottle: ; 50753
+.CheckCanUseSquirtbottle:
 	ld a, [wMapGroup]
 	cp GROUP_ROUTE_36
 	jr nz, .nope
@@ -41,11 +32,10 @@ _Squirtbottle: ; 50730
 	jr nz, .nope
 
 	ld a, $1
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	ret
 
 .nope
 	xor a
-	ld [wScriptVar], a
+	ldh [hScriptVar], a
 	ret
-; 50779

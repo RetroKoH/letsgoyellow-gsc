@@ -8,4 +8,3 @@
 .frame2
 	db $01 ; bitmask
 	db $4b, $4c
-; 0xd4447

@@ -1,8 +1,47 @@
+GetPartyParamLocation::
+; Get the location of parameter a from wCurPartyMon in hl
+	push bc
+	ld hl, wPartyMons
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [wCurPartyMon]
+	call GetPartyLocation
+	pop bc
+	ld a, [hl]
+	ret
+
+GetPartyLocation::
+; Add the length of a PartyMon struct to hl a times.
+	push bc
+	ld bc, PARTYMON_STRUCT_LENGTH
+	rst AddNTimes
+	pop bc
+	ret
+
 ; *PartyAttr returns address to attribute in hl, content
 ; in a. Always returns nz (used to return z for wildmon).
+TrueUserPartyAttr::
+	push bc
+	ld c, a
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPartyMons
+	jr z, .got_partymons
+	ld hl, wOTPartyMons
+.got_partymons
+	ld b, 0
+	add hl, bc
+	farcall GetFutureSightUser
+	call GetPartyLocation
+	or 1
+	ld a, [hl]
+	pop bc
+	ret
+
 UserPartyAttr::
 	push af
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, OTPartyAttrPre
 BattlePartyAttrPre:
@@ -23,7 +62,7 @@ DoBattlePartyAttr:
 
 OpponentPartyAttr::
 	push af
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, BattlePartyAttrPre
 OTPartyAttrPre:
@@ -41,18 +80,30 @@ ResetDamage::
 	ld [wCurDamage + 1], a
 	ret
 
+CallOpponentTurn::
+	ldh [hFarCallSavedA], a
+	ld a, h
+	ldh [hFarCallSavedH], a
+	ld a, l
+	ldh [hFarCallSavedL], a
+	pop hl
+	call SwitchTurn
+	call RetrieveAHLAndCallFunction
+	; fallthrough
+
 BattleCommand_switchturn::
 SwitchTurn::
-	ld a, [hBattleTurn]
+; Preserves all registers.
 	push af
+	ldh a, [hBattleTurn]
 	xor 1
-	ld [hBattleTurn], a
+	ldh [hBattleTurn], a
 	pop af
 	ret
 
 SetPlayerTurn::
 	ld a, 0
-	ld [hBattleTurn], a
+	ldh [hBattleTurn], a
 	ret
 
 SetFastestTurn::
@@ -60,7 +111,7 @@ SetFastestTurn::
 	jr z, SetPlayerTurn
 SetEnemyTurn::
 	ld a, 1
-	ld [hBattleTurn], a
+	ldh [hBattleTurn], a
 	ret
 
 GetThirdMaxHP::
@@ -101,17 +152,19 @@ GetQuarterMaxHP::
 GetHalfMaxHP::
 	call GetMaxHP
 HalfHP::
-	jp HalveBC
+	jmp HalveBC
 
 GetMaxHP::
 ; output: bc, wBuffer1-2
-
+	farcall GetFutureSightUser
+	jr z, .not_external
+	ld a, MON_MAXHP
+	call TrueUserPartyAttr
+	jr .got_maxhp
+.not_external
 	ld hl, wBattleMonMaxHP
-	ld a, [hBattleTurn]
-	and a
-	jr z, .ok
-	ld hl, wEnemyMonMaxHP
-.ok
+	call GetUserMonAttr
+.got_maxhp
 	ld a, [hli]
 	ld [wBuffer2], a
 	ld b, a
@@ -124,7 +177,7 @@ GetMaxHP::
 GetOpponentMonAttr::
 	call CallOpponentTurn
 GetUserMonAttr::
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ret z
 	push bc
@@ -148,7 +201,7 @@ GetUserMonAttr_de::
 UpdateOpponentInParty::
 	call CallOpponentTurn
 UpdateUserInParty::
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr nz, UpdateEnemyMonInParty
 	; fallthrough
@@ -168,7 +221,6 @@ UpdateBattleMon::
 	ret
 
 UpdateEnemyMonInParty::
-; No wildmons.
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Level
 	call GetPartyLocation
@@ -180,13 +232,12 @@ UpdateEnemyMonInParty::
 	rst CopyBytes
 	ret
 
-RefreshBattleHuds:: ; 39c9
+RefreshBattleHuds::
 	call UpdateBattleHuds
 	call Delay2
-	jp ApplyTilemapInVBlank
-; 39d4
+	jmp ApplyTilemapInVBlank
 
-UpdateBattleHuds:: ; 39d4
+UpdateBattleHuds::
 	farcall UpdatePlayerHUD
 	farjp UpdateEnemyHUD
 
@@ -203,7 +254,7 @@ GetBackupItemAddr::
 
 SetBackupItem::
 	; If backup is empty, replace with b if our turn (even in trainer battles)
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ret nz
 
@@ -266,46 +317,25 @@ UserCanLoseItem::
 	farcall GetUserItem
 	ld a, [hl]
 	and a
-	jr z, .pop_and_ret_z
+	jr z, .cannot_lose
+	cp ARMOR_SUIT
+	jr z, .cannot_lose
 	ld d, a
 	call ItemIsMail
-	jr c, .pop_and_ret_z
-	ld de, 2
-	ld hl, .StuckItems
-	call IsInArray
-	jr nc, .pop_and_ret_nz
-	inc hl
-	ld a, [hBattleTurn]
-	and a
-	ld de, wBattleMonSpecies
-	jr z, .got_species
-	ld de, wEnemyMonSpecies
-.got_species
-	ld a, [de]
-	cp [hl]
-	jr nz, .pop_and_ret_z
-.pop_and_ret_nz
-	pop bc
-	pop de
-	pop hl
+	jr c, .cannot_lose
 	or 1
-	ret
-.pop_and_ret_z
-	pop bc
-	pop de
-	pop hl
-	xor a
-	ret
+	jr .done
 
-.StuckItems
-	db ARMOR_SUIT, MEWTWO
-	db -1
+.cannot_lose
+	xor a
+.done
+	jmp PopBCDEHL
 
 GetOpponentUsedItemAddr::
 	call CallOpponentTurn
 GetUsedItemAddr::
 ; Returns addr for user's POV's UsedItem
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPartyUsedItems
 	ld a, [wCurBattleMon]
@@ -343,6 +373,10 @@ BattleJumptable::
 	pop bc
 	ret
 
+GetCurMoveProperty::
+	ld a, [wCurMove]
+GetMoveProperty::
+	dec a
 GetMoveAttr::
 ; Assuming hl = Moves + x, return attribute x of move a.
 	push bc
@@ -353,6 +387,72 @@ GetMoveAttr::
 	pop bc
 	ret
 
+GetFixedMoveStruct::
+; a = move + 1
+; de = destination
+	dec a
+	ld hl, Moves
+	ld bc, MOVE_LENGTH
+	rst AddNTimes
+	ld a, BANK(Moves)
+	push de
+	call FarCopyBytes
+	pop hl
+	call GetFixedCategory
+	ld bc, MOVE_CATEGORY
+	add hl, bc
+	ld [hl], a
+	ret
+
+GetCurMoveFixedCategory::
+	ld a, [wCurMove]
+GetMoveFixedCategory::
+	dec a
+	ld hl, Moves
+	ld bc, MOVE_LENGTH
+	rst AddNTimes
+GetFixedCategory::
+; return category in a without modifying hl
+; if category is STATUS, return it
+	push hl
+	ld bc, MOVE_CATEGORY
+	add hl, bc
+	ld a, BANK(Moves)
+	call GetFarByte
+	pop hl
+	cp STATUS
+	ret z
+; if PSS_OPT is on, return the category
+	ld b, a
+	ld a, [wInitialOptions]
+	bit PSS_OPT, a
+	ld a, b
+	ret nz
+; return PHYSICAL or SPECIAL depending on the type
+	push hl
+	ld bc, MOVE_TYPE
+	add hl, bc
+	ld a, BANK(Moves)
+	call GetFarByte
+	pop hl
+	cp SPECIAL_TYPES
+	ld a, PHYSICAL
+	ret c
+	inc a ; SPECIAL
+	ret
+
+DisappearUser::
+	farjp _DisappearUser
+
+ApplyPhysicalDefenseDamageMod::
+	push bc
+	ld c, a
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PSYSTRIKE
+	ld a, c
+	pop bc
+	jr z, ApplySpecialAttackDamageMod
 ; Damage modifiers. a contains $xy where damage is multiplied by x, then divided by y
 ApplyPhysicalAttackDamageMod::
 	push bc
@@ -369,18 +469,7 @@ ApplyAttackDamageMod::
 	ld a, c
 	pop bc
 	ret nz
-	jr ApplyDamageMod
-
-ApplyPhysicalDefenseDamageMod::
-	push bc
-	ld c, a
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVar
-	cp EFFECT_PSYSTRIKE ; Keeping this in case we use Psyshock
-	ld a, c
-	pop bc
-	jr z, ApplySpecialAttackDamageMod
-	jr ApplyPhysicalAttackDamageMod
+	jmp MultiplyAndDivide
 
 ApplySpecialDefenseDamageMod::
 	push bc
@@ -392,29 +481,6 @@ ApplySpecialDefenseDamageMod::
 	pop bc
 	ret z
 	jr ApplySpecialAttackDamageMod
-
-ApplyDamageMod::
-; a = $xy: multiply multiplicands by x, then divide by y
-; Used by things other than damage
-	push bc
-	push hl
-	ld b, a
-	swap a
-	and $f
-	ld hl, hMultiplier
-	ld [hl], a
-	push bc
-	call Multiply
-	pop bc
-	ld a, b
-	and $f
-	ld [hl], a
-	ld b, 4
-	call Divide
-	pop hl
-	pop bc
-	ret
-
 
 GetOpponentAbility::
 	ld a, BATTLE_VARS_ABILITY_OPP
@@ -437,71 +503,10 @@ GetTrueUserAbility::
 ; A "true" user might be external, if Future Sight is active.
 	farjp _GetTrueUserAbility
 
-GetOpponentAbilityAfterMoldBreaker:: ; 39e1
+GetOpponentAbilityAfterMoldBreaker::
 ; Returns an opponent's ability unless Mold Breaker
 ; will suppress it. Preserves bc/de/hl.
 	farjp _GetOpponentAbilityAfterMoldBreaker
-
-LegendaryMons::
-	db ARTICUNO
-	db ZAPDOS
-	db MOLTRES
-UberMons::
-; banned from Battle Tower
-	db MEWTWO
-	db MEW
-	db -1
-
-PowderMoves::
-	db POISONPOWDER
-	db SLEEP_POWDER
-	db SPORE
-	db STUN_SPORE
-	db -1
-
-SoundMoves::
-	db BUG_BUZZ
-	db DISARM_VOICE
-	db GROWL
-	db HYPER_VOICE
-	db ROAR
-	db SCREECH
-	db SING
-	db SUPERSONIC
-	db -1
-
-BombBallMoves::
-	db ENERGY_BALL
-	db FOCUS_BLAST
-	db GYRO_BALL
-	db ROCK_BLAST
-	db SEED_BOMB
-	db SHADOW_BALL
-	db SLUDGE_BOMB
-	db WEATHER_BALL
-
-SubstituteBypassMoves::
-; used by Magic Bounce so it can check Substitute unconditionally as long as it isn't here
-; (Sound moves aren't included)
-	db DISABLE
-	db ENCORE
-	db SPIKES
-	db -1
-
-DynamicPowerMoves::
-; used by Forewarn and for move power listing
-	db COUNTER
-	db FLAIL
-	db GRASS_KNOT
-	db GYRO_BALL
-;	db HEAVY_SLAM
-    db LOW_KICK
-	db MIRROR_COAT
-	db NIGHT_SHADE
-	db RETURN
-	db SEISMIC_TOSS
-	db SUPER_FANG
-	db -1
 
 ; These routines return z if the user is of the given type
 CheckIfTargetIsGrassType::
@@ -535,7 +540,7 @@ CheckIfTargetIsGhostType::
 	ld a, GHOST
 CheckIfTargetIsSomeType::
 	ld b, a
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	jr CheckIfSomeoneIsSomeType
 CheckIfUserIsFlyingType::
 	ld a, FLYING
@@ -559,9 +564,9 @@ CheckIfUserIsIceType::
 	ld a, ICE
 CheckIfUserIsSomeType::
 	ld b, a
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	xor 1
-CheckIfSomeoneIsSomeType
+CheckIfSomeoneIsSomeType:
 	ld c, a
 	ld de, wEnemyMonType1
 	ld a, c
@@ -583,20 +588,21 @@ CheckPinch::
 	call GetThirdMaxHP
 	call CompareHP
 	pop hl
-	jr c, .ok
-	ret
-.ok
+	ret nc
 	xor a
 	ret
 
 CompareHP::
 ; return c if HP<bc, z if HP=bc, nc+nz if HP>bc
 	push hl
+	farcall GetFutureSightUser
+	jr z, .not_external
+	ld a, MON_HP
+	call TrueUserPartyAttr
+	jr .got_hp
+.not_external
 	ld hl, wBattleMonHP
-	ld a, [hBattleTurn]
-	and a
-	jr z, .got_hp
-	ld hl, wEnemyMonHP
+	call GetUserMonAttr
 .got_hp
 	ld a, [hli]
 	sub b
@@ -614,7 +620,7 @@ CheckContactMove::
 	farjp _CheckContactMove
 
 HasUserFainted::
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, HasPlayerFainted
 HasEnemyFainted::
@@ -622,7 +628,7 @@ HasEnemyFainted::
 	jr CheckIfHPIsZero
 
 HasOpponentFainted::
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	jr z, HasEnemyFainted
 HasPlayerFainted::
@@ -632,9 +638,27 @@ CheckIfHPIsZero::
 	or [hl]
 	ret
 
+GetWeatherAfterOpponentUmbrella::
+	call CallOpponentTurn
+GetWeatherAfterUserUmbrella::
+	call GetWeatherAfterCloudNine
+	cp WEATHER_HAIL
+	ret z
+	cp WEATHER_SANDSTORM
+	ret z
+	and a ; WEATHER_NONE?
+	ret z
+	push bc
+	push hl
+	predef GetUserItemAfterUnnerve
+	ld a, b
+	xor HELD_UTILITY_UMBRELLA
+	pop hl
+	pop bc
+	ret z
 GetWeatherAfterCloudNine::
 ; Returns 0 if a cloud nine user is on the field,
-; [wWeather] otherwise.
+; [wBattleWeather] otherwise.
 	call CheckNeutralizingGas
 	jr z, .weather
 	ld a, [wPlayerAbility]
@@ -644,7 +668,7 @@ GetWeatherAfterCloudNine::
 	xor CLOUD_NINE
 	ret z
 .weather
-	ld a, [wWeather]
+	ld a, [wBattleWeather]
 	ret
 
 CheckNeutralizingGas::
@@ -655,37 +679,72 @@ CheckNeutralizingGas::
 	cp NEUTRALIZING_GAS
 	ret
 
-CheckSpeedWithQuickClaw::
+CheckMoveSpeed::
+; Does speed checks, but includes Quick Claw and Lagging Tail, which are only
+; taken into account for moves.
 	; Quick Claw has a chance to override speed
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	ld e, a
 	ld d, 0
 	push de
-	call SetPlayerTurn
-	call CheckSpeed
-	call nz, SetEnemyTurn
+	call SetFastestTurn
 	pop de
 	call .do_it
 	call SwitchTurn
 	call .do_it
 	ld a, e
-	ld [hBattleTurn], a
-	ld a, d ; +1: player, -1: enemy, 0: both/neither
+	ldh [hBattleTurn], a
+	ld a, d ; +1/+2: player, -1/-2: enemy, 0: both/neither
 	and a
 	jr z, CheckSpeed
 	dec a
+	ret z
+	dec a
 	ret
+
 .do_it
+	; Increases d if player is given priority, decreases if enemy is given it.
+	; d can be +2 or -2 if one is holding Quick Claw and the other Lagging Tail.
 	push de
-	farcall GetUserItemAfterUnnerve
-	pop de
+
+	; Quick Draw works like Quick Claw except 30% of the time
+	call GetTrueUserAbility
+	cp QUICK_DRAW
+	jr nz, .quick_draw_done
+	ld b, a
+	farcall BufferAbility
+	ld a, 100
+	call RandomRange
+	cp 30
+	jr nc, .quick_draw_done
+
+	farcall DisableAnimations
+	farcall ShowAbilityActivation
+	ld hl, BattleText_UserItemLetItMoveFirst
+	call StdBattleTextbox
+	farcall EnableAnimations
+	jr .set_priority
+
+.quick_draw_done
+	predef GetUserItemAfterUnnerve
 	ld a, b
 	cp HELD_QUICK_CLAW
 	jr z, .quick_claw
 	cp HELD_CUSTAP_BERRY
+	jr z, .custap_berry
+	cp HELD_LAGGING_TAIL
+	pop de
 	ret nz
 
-	push de
+	; Lagging tail gives the foe priority
+	ldh a, [hBattleTurn]
+	and a
+	ret nz
+	dec d
+	dec d
+	ret
+
+.custap_berry
 	farcall QuarterPinchOrGluttony
 	pop de
 	ret nz
@@ -699,17 +758,19 @@ CheckSpeedWithQuickClaw::
 	ld a, 100
 	call BattleRandomRange
 	cp c
+	pop de
 	ret nc
-	push de
 .activate_item
+	push de
 	farcall ItemRecoveryAnim
-	farcall GetUserItemAfterUnnerve
+	predef GetUserItemAfterUnnerve
 	call GetCurItemName
 	ld hl, BattleText_UserItemLetItMoveFirst
-	call StdBattleTextBox
+	call StdBattleTextbox
+.set_priority
 	pop de
 	inc d
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ret z
 	dec d
@@ -720,27 +781,6 @@ CheckSpeed::
 ; Compares speed stat, applying items (usually, see above) and
 ; stat changes. and see who ends up on top. Returns z if the player
 ; outspeeds, otherwise nz, randomly on tie (which also sets carry)
-	farcall GetPlayerItem
-	ld c, 0
-	ld a, b
-	cp HELD_LAGGING_TAIL
-	jr nz, .no_player_lagging_tail
-	dec c
-.no_player_lagging_tail
-	push bc
-	farcall GetEnemyItem
-	ld a, b
-	pop bc
-	cp HELD_LAGGING_TAIL
-	jr nz, .no_enemy_lagging_tail
-	inc c
-.no_enemy_lagging_tail
-	; c=0: both/none holds, 255: player holds, 1: enemy holds
-	dec c
-	ret z
-	inc c
-	ret nz
-
 	ld a, [wTrickRoom]
 	and a
 	jr z, _CheckSpeed
@@ -752,7 +792,7 @@ CheckSpeed::
 _CheckSpeed::
 	; save battle turn so this can be used without screwing it up
 	; (needed for AI)
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	ld e, a
 	call SetPlayerTurn
 	farcall GetSpeed
@@ -761,9 +801,11 @@ _CheckSpeed::
 	farcall GetSpeed
 	; restore turn
 	ld a, e
-	ld [hBattleTurn], a
+	ldh [hBattleTurn], a
 	pop de
 	; bc is enemy speed, de player
+	; The CheckSpeed wrapper assumes this returns 1 if nz, 0 for z to a.
+	; Changing this will break Trick Room handling.
 	ld a, b
 	cp d
 	jr c, .player_first
@@ -773,16 +815,15 @@ _CheckSpeed::
 	jr c, .player_first
 	jr nz, .enemy_first
 	; Speed is equal, so randomize. Account for linking.
-	ld a, [hSerialConnectionStatus]
+	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
 	ld b, 0
 	jr z, .secondary_player
-	ld b, 1
+	inc b
 .secondary_player
 	call BattleRandom
 	and $1
 	xor b
-	and a
 	scf
 	ret
 .player_first
@@ -792,161 +833,25 @@ _CheckSpeed::
 	or 1
 	ret
 
-GetBattleVar:: ; 39e1
-; Preserves bc, de, hl.
-	push hl
-	call GetBattleVarAddr
-	pop hl
-	ret
-; 39e7
+INCLUDE "home/battle_vars.asm"
 
-GetBattleVarAddr:: ; 39e7
-; Get variable from pair a, depending on whose turn it is.
-; There are 22 variable pairs.
-; Preserves bc, de.
-	push bc
+BattleCommand_cleartext::
+EmptyBattleTextbox::
+	ld hl, EmptyString
+	jr BattleTextbox
 
-	ld hl, .battlevarpairs
-	ld c, a
-	ld b, 0
-	add hl, bc
-	add hl, bc
+StdBattleTextbox::
+; Open a textbox and print battle text at 20:hl.
+	anonbankpush BattleText
 
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-; Enemy turn uses the second byte instead.
-; This lets battle variable calls be side-neutral.
-	ld a, [hBattleTurn]
-	and a
-	jr z, .getvar
-	inc hl
-
-.getvar
-; var id
-	ld a, [hl]
-	ld c, a
-	ld b, 0
-
-	ld hl, .vars
-	add hl, bc
-	add hl, bc
-
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	ld a, [hl]
-
-	pop bc
-	ret
-
-.battlevarpairs
-	dw .substatus1, .substatus2, .substatus3, .substatus4
-	dw .substatus1opp, .substatus2opp, .substatus3opp, .substatus4opp
-	dw .ability, .abilityopp, .status, .statusopp, .animation, .effect
-	dw .power, .accuracy, .type, .category, .curmove, .curmoveopp
-	dw .lastcounter, .lastcounteropp, .lastmove, .lastmoveopp
-
-;                       player                     enemy
-.substatus1     db PLAYER_SUBSTATUS_1,    ENEMY_SUBSTATUS_1
-.substatus1opp  db ENEMY_SUBSTATUS_1,     PLAYER_SUBSTATUS_1
-.substatus2     db PLAYER_SUBSTATUS_2,    ENEMY_SUBSTATUS_2
-.substatus2opp  db ENEMY_SUBSTATUS_2,     PLAYER_SUBSTATUS_2
-.substatus3     db PLAYER_SUBSTATUS_3,    ENEMY_SUBSTATUS_3
-.substatus3opp  db ENEMY_SUBSTATUS_3,     PLAYER_SUBSTATUS_3
-.substatus4     db PLAYER_SUBSTATUS_4,    ENEMY_SUBSTATUS_4
-.substatus4opp  db ENEMY_SUBSTATUS_4,     PLAYER_SUBSTATUS_4
-.ability        db PLAYER_ABILITY,        ENEMY_ABILITY
-.abilityopp     db ENEMY_ABILITY,         PLAYER_ABILITY
-.status         db PLAYER_STATUS,         ENEMY_STATUS
-.statusopp      db ENEMY_STATUS,          PLAYER_STATUS
-.animation      db PLAYER_MOVE_ANIMATION, ENEMY_MOVE_ANIMATION
-.effect         db PLAYER_MOVE_EFFECT,    ENEMY_MOVE_EFFECT
-.power          db PLAYER_MOVE_POWER,     ENEMY_MOVE_POWER
-.accuracy       db PLAYER_MOVE_ACCURACY,  ENEMY_MOVE_ACCURACY
-.type           db PLAYER_MOVE_TYPE,      ENEMY_MOVE_TYPE
-.category       db PLAYER_MOVE_CATEGORY,  ENEMY_MOVE_CATEGORY
-.curmove        db PLAYER_CUR_MOVE,       ENEMY_CUR_MOVE
-.curmoveopp     db ENEMY_CUR_MOVE,        PLAYER_CUR_MOVE
-.lastcounter    db PLAYER_COUNTER_MOVE,   ENEMY_COUNTER_MOVE
-.lastcounteropp db ENEMY_COUNTER_MOVE,    PLAYER_COUNTER_MOVE
-.lastmove       db PLAYER_LAST_MOVE,      ENEMY_LAST_MOVE
-.lastmoveopp    db ENEMY_LAST_MOVE,       PLAYER_LAST_MOVE
-
-.vars
-	dw wPlayerSubStatus1,             wEnemySubStatus1
-	dw wPlayerSubStatus2,             wEnemySubStatus2
-	dw wPlayerSubStatus3,             wEnemySubStatus3
-	dw wPlayerSubStatus4,             wEnemySubStatus4
-	dw wPlayerAbility,                wEnemyAbility
-	dw wBattleMonStatus,              wEnemyMonStatus
-	dw wPlayerMoveStructAnimation,    wEnemyMoveStructAnimation
-	dw wPlayerMoveStructEffect,       wEnemyMoveStructEffect
-	dw wPlayerMoveStructPower,        wEnemyMoveStructPower
-	dw wPlayerMoveStructAccuracy,     wEnemyMoveStructAccuracy
-	dw wPlayerMoveStructType,         wEnemyMoveStructType
-	dw wPlayerMoveStructCategory,     wEnemyMoveStructCategory
-	dw wCurPlayerMove,                wCurEnemyMove
-	dw wLastPlayerCounterMove,        wLastEnemyCounterMove
-	dw wLastPlayerMove,               wLastEnemyMove
-; 3a90
-
-
-FarCopyRadioText:: ; 3a90
-	inc hl
-	ld a, [hROMBank]
-	push af
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld a, [hli]
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	ld a, e
-	ld l, a
-	ld a, d
-	ld h, a
-	ld de, wRadioText
-	ld bc, 2 * SCREEN_WIDTH
-	rst CopyBytes
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	ret
-; 3ab2
-
-
-BattleTextBox:: ; 3ac3
+BattleTextbox::
 ; Open a textbox and print text at hl.
 	push hl
-	call SpeechTextBox
+	call SpeechTextbox
 	call UpdateSprites
 	call ApplyTilemap
 	pop hl
-	jp PrintTextBoxText
-; 3ad5
-
-
-StdBattleTextBox:: ; 3ad5
-; Open a textbox and print battle text at 20:hl.
-
-GLOBAL BattleText
-
-	ld a, [hROMBank]
-	push af
-
-	ld a, BANK(BattleText)
-	rst Bankswitch
-
-	call BattleTextBox
-
-	pop af
-	rst Bankswitch
-	ret
-; 3ae1
+	jmp PrintTextboxText
 
 GetBattleAnimPointer::
 	anonbankpush BattleAnimations
@@ -958,7 +863,7 @@ GetBattleAnimPointer::
 	ld [wBattleAnimAddress + 1], a
 	ret
 
-GetBattleAnimByte:: ; 3af0
+GetBattleAnimByte::
 	anonbankpush BattleAnimations
 
 .Function:
@@ -983,4 +888,32 @@ GetBattleAnimByte:: ; 3af0
 
 	ld a, [wBattleAnimByte]
 	ret
-; 3b0c
+
+HalveBC::
+	srl b
+	rr c
+FloorBC::
+	ld a, c
+	or b
+	ret nz
+	inc c
+	ret
+
+PushLYOverrides::
+	ldh a, [hLCDCPointer]
+	and a
+	ret z
+
+	ld a, LOW(wLYOverridesBackup)
+	ldh [hRequestedVTileSource], a
+	ld a, HIGH(wLYOverridesBackup)
+	ldh [hRequestedVTileSource + 1], a
+
+	ld a, LOW(wLYOverrides)
+	ldh [hRequestedVTileDest], a
+	ld a, HIGH(wLYOverrides)
+	ldh [hRequestedVTileDest + 1], a
+
+	ld a, (wLYOverridesEnd - wLYOverrides) / 16
+	ldh [hLYOverrideStackCopyAmount], a
+	ret

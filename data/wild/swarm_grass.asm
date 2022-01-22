@@ -4,56 +4,56 @@
 	map_id DARK_CAVE_VIOLET_ENTRANCE
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
-	db 3, GEODUDE
-	db 3, DIGLETT
-	db 2, ZUBAT
-	db 2, GEODUDE
-	db 2, DIGLETT
-	db 4, DIGLETT
-	db 4, DIGLETT
+	wildmon 3, GEODUDE
+	wildmon 3, DUNSPARCE
+	wildmon 2, ZUBAT
+	wildmon 2, GEODUDE
+	wildmon 2, DUNSPARCE
+	wildmon 4, DUNSPARCE
+	wildmon 4, DUNSPARCE
 	; day
-	db 3, GEODUDE
-	db 3, DIGLETT
-	db 2, ZUBAT
-	db 2, GEODUDE
-	db 2, DIGLETT
-	db 4, DIGLETT
-	db 4, DIGLETT
+	wildmon 3, GEODUDE
+	wildmon 3, DUNSPARCE
+	wildmon 2, ZUBAT
+	wildmon 2, GEODUDE
+	wildmon 2, DUNSPARCE
+	wildmon 4, DUNSPARCE
+	wildmon 4, DUNSPARCE
 	; nite
-	db 3, GEODUDE
-	db 3, DIGLETT
-	db 2, ZUBAT
-	db 2, GEODUDE
-	db 2, DIGLETT
-	db 4, DIGLETT
-	db 4, DIGLETT
+	wildmon 3, GEODUDE
+	wildmon 3, DUNSPARCE
+	wildmon 2, ZUBAT
+	wildmon 2, GEODUDE
+	wildmon 2, DUNSPARCE
+	wildmon 4, DUNSPARCE
+	wildmon 4, DUNSPARCE
 
 ; Yanma swarm
 	map_id ROUTE_35
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	db 12, NIDORAN_M
-	db 12, NIDORAN_F
-	db 12, VENONAT
-	db 14, VENONAT
-	db 14, PIDGEY
-	db 10, DITTO
-	db 10, DITTO
+	wildmon 12, NIDORAN_M
+	wildmon 12, NIDORAN_F
+	wildmon 12, YANMA
+	wildmon 14, YANMA
+	wildmon 14, PIDGEY
+	wildmon 10, DITTO
+	wildmon 10, DITTO
 	; day
-	db 12, NIDORAN_M
-	db 12, NIDORAN_F
-	db 12, VENONAT
-	db 14, VENONAT
-	db 14, PIDGEY
-	db 10, DITTO
-	db 10, DITTO
+	wildmon 12, NIDORAN_M
+	wildmon 12, NIDORAN_F
+	wildmon 12, YANMA
+	wildmon 14, YANMA
+	wildmon 14, PIDGEY
+	wildmon 10, DITTO
+	wildmon 10, DITTO
 	; nite
-	db 12, NIDORAN_M
-	db 12, NIDORAN_F
-	db 12, VENONAT
-	db 14, VENONAT
-	db 14, PIDGEY
-	db 10, DITTO
-	db 10, DITTO
+	wildmon 12, NIDORAN_M
+	wildmon 12, NIDORAN_F
+	wildmon 12, YANMA
+	wildmon 14, YANMA
+	wildmon 14, HOOTHOOT
+	wildmon 10, DITTO
+	wildmon 10, DITTO
 
 	db -1 ; end

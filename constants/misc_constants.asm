@@ -2,68 +2,59 @@
 FALSE EQU 0
 TRUE  EQU 1
 
-; flag manipulation
-RESET_FLAG EQU 0
-SET_FLAG   EQU 1
-CHECK_FLAG EQU 2
+; FlagAction arguments (see home/flag.asm)
+	const_def
+	const RESET_FLAG
+	const SET_FLAG
+	const CHECK_FLAG
 
-SAVE_CHECK_VALUE_1 EQU 99
-SAVE_CHECK_VALUE_2 EQU 127
+; save file corruption check values
+SAVE_CHECK_VALUE_1     EQU 97
+SAVE_CHECK_VALUE_2     EQU 127
+SAVE_CHECK_VALUE_1_OLD EQU 99 ; check digit before save version 7
 
-HMENURETURN_SCRIPT EQU %10000000
-HMENURETURN_ASM    EQU %11111111
+; save file version
+SAVE_VERSION EQU 7
 
-MORN_HOUR EQU 4
-DAY_HOUR EQU 10
-NITE_HOUR EQU 20
+; time of day boundaries
+MORN_HOUR EQU  5 ; 5 AM - 9 AM (4 hours)
+DAY_HOUR  EQU  9 ; 9 AM - 5 PM (8 hours)
+EVE_HOUR  EQU 17 ; 5 PM - 9 PM (4 hours)
+NITE_HOUR EQU 21 ; 9 PM - 5 AM (8 hours)
+MAX_HOUR  EQU 24 ; 12 AM - 12 AM (24 hours)
 
 if DEF(NO_RTC)
 NO_RTC_SPEEDUP EQU 6
 endc
 
-; mail
-MAIL_STRUCT_LENGTH EQU $2f
-MAILBOX_CAPACITY   EQU 10
-MAIL_MSG_LENGTH    EQU $20
+; significant money values
+START_MONEY EQU 3000
+MOM_MONEY   EQU 2300
+MAX_MONEY   EQU 9999999
+MAX_COINS   EQU 99999
 
-SHINY_NUMERATOR         EQU 16 ; 16/65536 = 1/4096
-CHARMED_SHINY_NUMERATOR EQU 48 ; 48/65536 = 3/4096
+; link record
+MAX_LINK_RECORD EQU 9999
 
-; movement
+; day-care
+MAX_DAY_CARE_EXP EQU $500000
+
+; hall of fame
+HOF_MASTER_COUNT EQU 200
+
+; Kirk ID
+KIRK_SHUCKIE_ID EQU 00518
+
+; crash error codes
 	const_def
-	const STEP_SLOW
-	const STEP_WALK
-	const STEP_BIKE
-	const STEP_RUN
-	const STEP_LEDGE
-	const STEP_ICE
-	const STEP_TURN
-	const STEP_BACK_LEDGE
-	const STEP_WALK_IN_PLACE
-	const STEP_SPIN
-	const STEP_FAST ; same as STEP_RUN but without doubling animation speed
-	const STEP_STAIRS
-
-	const_def
-	const HAPPINESS_GAINLEVEL         ; 00
-	const HAPPINESS_USEDITEM          ; 01
-	const HAPPINESS_USEDXITEM         ; 02
-	const HAPPINESS_USEDEVBERRY       ; 03
-	const HAPPINESS_GYMBATTLE         ; 04
-	const HAPPINESS_LEARNMOVE         ; 05
-	const HAPPINESS_FAINTED           ; 06
-	const HAPPINESS_POISONFAINT       ; 07
-	const HAPPINESS_BEATENBYSTRONGFOE ; 08
-	const HAPPINESS_YOUNGCUT1         ; 09
-	const HAPPINESS_YOUNGCUT2         ; 0a
-	const HAPPINESS_YOUNGCUT3         ; 0b
-	const HAPPINESS_OLDERCUT1         ; 0c
-	const HAPPINESS_OLDERCUT2         ; 0d
-	const HAPPINESS_OLDERCUT3         ; 0e
-	const HAPPINESS_BITTERPOWDER      ; 0f
-	const HAPPINESS_ENERGYROOT        ; 10
-	const HAPPINESS_REVIVALHERB       ; 11
-	const HAPPINESS_MASSAGE           ; 12
-	const HAPPINESS_GAINLEVELATHOME   ; 13
-	const HAPPINESS_PHOTOGRAPH        ; 14
-	const HAPPINESS_BLESSING          ; 15
+	const ERR_RST_0
+	const ERR_DIV_ZERO
+	const ERR_EGG_SPECIES
+	const ERR_EXECUTING_RAM
+	const ERR_STACK_OVERFLOW
+	const ERR_STACK_UNDERFLOW
+	const ERR_BT_STATE
+	const ERR_VERSION_MISMATCH
+	const ERR_OLDBOX
+	const ERR_NEWBOX
+	const ERR_WINSTACK_OVERFLOW

@@ -5,8 +5,7 @@ ClearBGPalettes::
 ApplyAttrmapInVBlank::
 ; Tell VBlank to update Attr Map
 	ld a, 2
-	ld [hBGMapMode], a
-	jr Delay2
+	jr _ApplyAttrOrTilemapInVBlank
 
 ApplyAttrAndTilemapInVBlank::
 	call ApplyAttrmapInVBlank
@@ -14,7 +13,8 @@ ApplyAttrAndTilemapInVBlank::
 ApplyTilemapInVBlank::
 ; Tell VBlank to update BG Map
 	ld a, 1
-	ld [hBGMapMode], a
+_ApplyAttrOrTilemapInVBlank:
+	ldh [hBGMapMode], a
 
 SFXDelay2::
 Delay2::
@@ -31,15 +31,15 @@ DelayFrames::
 SFXDelayFrame::
 DelayFrame::
 ; Wait for one frame
-	ld a, [rLY]
-	ld [hDelayFrameLY], a
-	ld a, 1
-	ld [wVBlankOccurred], a
+	ldh a, [rLY]
+	ldh [hDelayFrameLY], a
+	ld a, TRUE
+	ldh [hVBlankOccurred], a
 
 ; Wait for the next VBlank, halting to conserve battery
 .halt
 	halt ; rgbasm adds a nop after this instruction by default
-	ld a, [wVBlankOccurred]
+	ldh a, [hVBlankOccurred]
 	and a
 	jr nz, .halt
 	ret

@@ -1,4 +1,6 @@
 ItemNameOrder:
+	table_width 1, ItemNameOrder
+
 	db NAM_NO_ITEM
 
 	db NAM_POKE_BALL
@@ -16,7 +18,7 @@ ItemNameOrder:
 	db NAM_HEAVY_BALL
 	db NAM_LOVE_BALL
 
-	db NAM_PARK_BALL
+	db NAM_ABILITYPATCH
 
 	db NAM_REPEAT_BALL
 	db NAM_TIMER_BALL
@@ -277,7 +279,7 @@ ItemNameOrder:
 
 	db NAM_MULCH
 	db NAM_SWEET_HONEY
-	db NAM_MINT
+	db NAM_MINT_LEAF
 
 	db NAM_FLOWER_MAIL
 	db NAM_SURF_MAIL
@@ -290,8 +292,5 @@ ItemNameOrder:
 	db NAM_MUSIC_MAIL
 	db NAM_MIRAGE_MAIL
 
-	; +1 due to NO_ITEM
-	assert (@ - ItemNameOrder) <= NUM_ITEMS+1, "ItemNameOrder: Too many items"
-	assert (@ - ItemNameOrder) >= NUM_ITEMS+1, "ItemNameOrder: Too few items"
-
+	assert_table_length NUM_ITEMS + 1
 	db -1 ; end

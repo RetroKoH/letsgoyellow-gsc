@@ -1,75 +1,101 @@
 ; Audio interfaces.
 
-MapSetup_Sound_Off:: ; 3b4e
+InitSound::
 
 	push hl
 	push de
 	push bc
 	push af
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
-	ld a, BANK(_MapSetup_Sound_Off)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	ld a, BANK(_InitSound)
+	rst Bankswitch
 
-	call _MapSetup_Sound_Off
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	call _InitSound ; far-ok
 
 	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3b6a
+	rst Bankswitch
 
+	jmp PopAFBCDEHL
 
-UpdateSound:: ; 3b6a
+UpdateSound::
 
 	push hl
 	push de
 	push bc
 	push af
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_UpdateSound)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
-	call _UpdateSound
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	call _UpdateSound ; far-ok
 
 	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3b86
+	rst Bankswitch
 
+	jmp PopAFBCDEHL
 
-_LoadMusicByte:: ; 3b86
+_LoadMusicByte::
 ; wCurMusicByte = [a:de]
-GLOBAL LoadMusicByte
-
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-
+	rst Bankswitch
 	ld a, [de]
 	ld [wCurMusicByte], a
 	ld a, BANK(LoadMusicByte)
-
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 	ret
-; 3b97
 
+CheckSpecialMapMusic:
+; Returns z if the current map has a special music handler.
+	ld hl, SpecialMusicMaps
+	ld a, [wMapGroup]
+	ld b, a
+	ld a, [wMapNumber]
+	ld c, a
+.loop:
+	ld a, [hli]
+	and a
+	jr z, .ret_nz
+	cp b
+	jr nz, .wrong_group
+	ld a, [hli]
+	cp c
+	jr nz, .wrong_map
+	ret
+
+.ret_nz
+	or 1
+	ret
+
+.wrong_group:
+	inc hl
+.wrong_map:
+	inc hl
+	inc hl
+	jr .loop
+
+PlayBikeMusic:
+; Play bike music unless we're in a map with special music handling.
+	call CheckSpecialMapMusic
+	ret z
+	call .get_bike_music
+	ld a, e
+	ld [wMapMusic], a
+	jr PlayMusic
+
+.get_bike_music
+	call RegionCheck
+	ld a, e
+	ld de, MUSIC_BICYCLE_RB
+	cp KANTO_REGION
+	ret z
+	ld de, MUSIC_BICYCLE_RSE
+	cp ORANGE_REGION
+	ret z
+	ld de, MUSIC_BICYCLE
+	ret
 
 PlayMusicAfterDelay::
 	push de
@@ -79,7 +105,7 @@ PlayMusicAfterDelay::
 	pop de
 	ld a, e
 	ld [wMapMusic], a
-PlayMusic:: ; 3b97
+PlayMusic::
 ; Play music de.
 
 	push hl
@@ -87,35 +113,28 @@ PlayMusic:: ; 3b97
 	push bc
 	push af
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
-	ld a, BANK(_PlayMusic) ; and BANK(_MapSetup_Sound_Off)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	ld a, BANK(_PlayMusic) ; and BANK(_InitSound)
+	rst Bankswitch
 
 	ld a, e
 	and a
 	jr z, .nomusic
 
-	call _PlayMusic
+	call _PlayMusic ; far-ok
 	jr .end
 
 .nomusic
-	call _MapSetup_Sound_Off
+	call _InitSound ; far-ok
 
 .end
 	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3bbc
+	rst Bankswitch
 
+	jmp PopAFBCDEHL
 
-PlayMusic2:: ; 3bbc
+PlayMusic2::
 ; Stop playing music, then play music de.
 
 	push hl
@@ -123,33 +142,24 @@ PlayMusic2:: ; 3bbc
 	push bc
 	push af
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_PlayMusic)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	push de
 	ld de, MUSIC_NONE
-	call _PlayMusic
+	call _PlayMusic ; far-ok
 	call DelayFrame
 	pop de
-	call _PlayMusic
+	call _PlayMusic ; far-ok
 
 	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
+	jmp PopAFBCDEHL
 
-; 3be3
-
-
-PlayCryHeader:: ; 3be3
+PlayCryHeader::
 ; Play cry header de.
 
 	push hl
@@ -157,15 +167,14 @@ PlayCryHeader:: ; 3be3
 	push bc
 	push af
 
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 
 	; Cry headers are stuck in one bank.
-	ld a, BANK(CryHeaders)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	ld a, BANK(PokemonCries)
+	rst Bankswitch
 
-	ld hl, CryHeaders
+	ld hl, PokemonCries
 rept 6
 	add hl, de
 endr
@@ -185,26 +194,19 @@ endr
 	ld [wCryLength + 1], a
 
 	ld a, BANK(_PlayCryHeader)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
-	call _PlayCryHeader
-
-	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	call _PlayCryHeader ; far-ok
 
 	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3c23
+	rst Bankswitch
+
+	jmp PopAFBCDEHL
 
 WaitPlaySFX::
 	call WaitSFX
 	; fallthrough
-PlaySFX:: ; 3c23
+PlaySFX::
 ; Play sound effect de.
 ; Sound effects are ordered by priority (highest to lowest)
 
@@ -223,30 +225,26 @@ PlaySFX:: ; 3c23
 	jr c, .done
 
 .play
-	ld a, [hROMBank]
+	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_PlaySFX)
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	ld a, e
 	ld [wCurSFX], a
-	call _PlaySFX
+	call _PlaySFX ; far-ok
 
 	pop af
-	ld [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 .done
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3c4e
+	jmp PopAFBCDEHL
 
-
-WaitSFX:: ; 3c55
+PlayWaitSFX:
+	call PlaySFX
+	; fallthrough
+Script_waitsfx::
+WaitSFX::
 ; infinite loop until sfx is done playing
 
 	push hl
@@ -269,9 +267,8 @@ WaitSFX:: ; 3c55
 
 	pop hl
 	ret
-; 3c74
 
-IsSFXPlaying:: ; 3c74
+IsSFXPlaying::
 ; Return carry if no sound effect is playing.
 ; The inverse of CheckSFX.
 	push hl
@@ -297,40 +294,35 @@ IsSFXPlaying:: ; 3c74
 	pop hl
 	and a
 	ret
-; 3c97
 
-MaxVolume:: ; 3c97
+MaxVolume::
 	ld a, $77 ; max
 	ld [wVolume], a
 	ret
-; 3c9d
 
-LowVolume:: ; 3c9d
+LowVolume::
 	ld a, $33 ; 40%
 	ld [wVolume], a
 	ret
-; 3ca3
 
-VolumeOff:: ; 3ca3
+MinVolume::
 	xor a
 	ld [wVolume], a
 	ret
-; 3ca8
 
-FadeInMusic:: ; 3cae
+FadeInToMusic::
 	ld a, 4 | 1 << 7
 	ld [wMusicFade], a
 	ret
-; 3cb4
 
 SkipMusic::
 ; Skip a frames of music.
-	ld [hBuffer], a
+	ldh [hBuffer], a
 	ld a, [wMusicPlaying]
 	push af
 	xor a
 	ld [wMusicPlaying], a
-	ld a, [hBuffer]
+	ldh a, [hBuffer]
 .loop
 	call UpdateSound
 	dec a
@@ -339,13 +331,13 @@ SkipMusic::
 	ld [wMusicPlaying], a
 	ret
 
-FadeToMapMusic:: ; 3cbc
+FadeToMapMusic::
 	push hl
 	push de
 	push bc
 	push af
 
-	call GetMapMusic
+	call GetMapMusic_MaybeSpecial
 	ld a, [wMapMusic]
 	cp e
 	jr z, .done
@@ -360,32 +352,23 @@ FadeToMapMusic:: ; 3cbc
 	ld [wMapMusic], a
 
 .done
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3cdf
+	jmp PopAFBCDEHL
 
-PlayMapMusic:: ; 3cdf
+Script_playmapmusic::
+PlayMapMusic::
 	push hl
 	push de
 	push bc
 	push af
 
-	call GetMapMusic
+	call GetMapMusic_MaybeSpecial
 	ld a, [wMapMusic]
 	cp e
 	call nz, PlayMusicAfterDelay
 
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3d03
+	jmp PopAFBCDEHL
 
-EnterMapMusic:: ; 3d03
+PlayMapMusicBike::
 	push hl
 	push de
 	push bc
@@ -393,20 +376,15 @@ EnterMapMusic:: ; 3d03
 
 	xor a
 	ld [wDontPlayMapMusicOnReload], a
-	call GetMapMusic
+	call GetMapMusic_MaybeSpecial
 	call PlayMusicAfterDelay
 
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3d2f
+	jmp PopAFBCDEHL
 
-TryRestartMapMusic:: ; 3d2f
+TryRestartMapMusic::
 	ld a, [wDontPlayMapMusicOnReload]
 	and a
-	jp z, RestoreMusic
+	jmp z, RestoreMusic
 	xor a
 	ld [wMapMusic], a
 	ld de, MUSIC_NONE
@@ -415,9 +393,8 @@ TryRestartMapMusic:: ; 3d2f
 	xor a
 	ld [wDontPlayMapMusicOnReload], a
 	ret
-; 3d47
 
-RestartMapMusic:: ; 3d47
+RestartMapMusic::
 	push hl
 	push de
 	push bc
@@ -429,39 +406,12 @@ RestartMapMusic:: ; 3d47
 	ld e, a
 	ld d, 0
 	call PlayMusic
-	pop af
-	pop bc
-	pop de
-	pop hl
-	ret
-; 3d62
+	jmp PopAFBCDEHL
 
-GetMapMusic::
-	ld hl, SpecialMusicMaps
-	ld a, [wMapGroup]
-	ld b, a
-	ld a, [wMapNumber]
-	ld c, a
-.loop:
-	ld a, [hli]
-	and a
-	jr z, GetPlayerStateMusic
-	cp b
-	jr nz, .wrong_group
-	ld a, [hli]
-	cp c
-	jr nz, .wrong_map
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
-
-.wrong_group:
-	inc hl
-.wrong_map:
-	inc hl
-	inc hl
-	jr .loop
+GetMapMusic_MaybeSpecial::
+	call CheckSpecialMapMusic
+	jmp z, IndirectHL
+	jr GetPlayerStateMusic
 
 GetCyclingRoadMusic:
 	ld de, MUSIC_BICYCLE_XY
@@ -479,25 +429,11 @@ GetBugCatchingContestMusic:
 
 GetPlayerStateMusic:
 	ld a, [wPlayerState]
-	cp PLAYER_BIKE
-	jr z, .bike
 	cp PLAYER_SURF
 	jr z, .surf
 	cp PLAYER_SURF_PIKA
 	jr z, .surf_pikachu
-	jp GetMapHeaderMusic
-
-.bike:
-	call RegionCheck
-	ld a, e
-	ld de, MUSIC_BICYCLE_RB
-	cp KANTO_REGION
-	ret z
-	ld de, MUSIC_BICYCLE_RSE
-	cp ORANGE_REGION
-	ret z
-	ld de, MUSIC_BICYCLE
-	ret
+	jmp GetMapMusic
 
 .surf:
 	call RegionCheck
@@ -515,28 +451,7 @@ GetPlayerStateMusic:
 	ld de, MUSIC_SURFING_PIKACHU
 	ret
 
-SpecialMusicMaps:
-music_map: MACRO
-	map_id \1
-	dw \2
-ENDM
-	music_map ROUTE_23, GetMapHeaderMusic
-	music_map INDIGO_PLATEAU, GetMapHeaderMusic
-	music_map QUIET_CAVE_1F, GetMapHeaderMusic
-	music_map QUIET_CAVE_B1F, GetMapHeaderMusic
-	music_map QUIET_CAVE_B2F, GetMapHeaderMusic
-	music_map QUIET_CAVE_B3F, GetMapHeaderMusic
-	music_map SCARY_CAVE_SHIPWRECK, GetMapHeaderMusic
-	music_map WHIRL_ISLAND_LUGIA_CHAMBER, GetMapHeaderMusic
-	music_map TIN_TOWER_ROOF, GetMapHeaderMusic
-	music_map ROUTE_16_SOUTH, GetCyclingRoadMusic
-	music_map ROUTE_17, GetCyclingRoadMusic
-	music_map ROUTE_18_WEST, GetCyclingRoadMusic
-	music_map ROUTE_35_NATIONAL_PARK_GATE, GetBugCatchingContestMusic
-	music_map ROUTE_36_NATIONAL_PARK_GATE, GetBugCatchingContestMusic
-	db 0 ; end
-
-CheckSFX:: ; 3dde
+CheckSFX::
 ; Return carry if any SFX channels are active.
 	ld a, [wChannel5Flags]
 	bit 0, a
@@ -555,22 +470,19 @@ CheckSFX:: ; 3dde
 .playing
 	scf
 	ret
-; 3dfe
 
-TerminateExpBarSound:: ; 3dfe
+TerminateExpBarSound::
 	xor a
 	ld [wChannel5Flags], a
 	ld [wSoundInput], a
-	ld [rNR10], a
-	ld [rNR11], a
-	ld [rNR12], a
-	ld [rNR13], a
-	ld [rNR14], a
+	ldh [rNR10], a
+	ldh [rNR11], a
+	ldh [rNR12], a
+	ldh [rNR13], a
+	ldh [rNR14], a
 	ret
-; 3e10
 
-
-ChannelsOff:: ; 3e10
+ChannelsOff::
 ; Quickly turn off music channels
 	xor a
 	ld [wChannel1Flags], a
@@ -579,9 +491,8 @@ ChannelsOff:: ; 3e10
 	ld [wChannel4Flags], a
 	ld [wSoundInput], a
 	ret
-; 3e21
 
-SFXChannelsOff:: ; 3e21
+SFXChannelsOff::
 ; Quickly turn off sound effect channels
 	xor a
 	ld [wChannel5Flags], a
@@ -590,4 +501,3 @@ SFXChannelsOff:: ; 3e21
 	ld [wChannel8Flags], a
 	ld [wSoundInput], a
 	ret
-; 3e32

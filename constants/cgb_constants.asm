@@ -1,4 +1,6 @@
+; GetCGBLayout arguments (see engine/gfx/cgb_layouts.asm)
 	const_def
+	const CGB_RAM
 	const CGB_BATTLE_GRAYSCALE
 	const CGB_BATTLE_COLORS
 	const CGB_POKEGEAR_PALS
@@ -25,6 +27,6 @@
 	const CGB_INTRO_PALS
 	const CGB_PLAYER_OR_MON_FRONTPIC_PALS
 	const CGB_TRAINER_OR_MON_FRONTPIC_PALS
-
-CGB_PARTY_MENU_HP_PALS  EQU -4
-CGB_RAM EQU -1
+	const CGB_JUDGE_SYSTEM
+	const CGB_PARTY_MENU_HP_PALS
+NUM_CGB_LAYOUTS EQU const_value

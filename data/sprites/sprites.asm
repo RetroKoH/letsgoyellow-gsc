@@ -5,12 +5,14 @@ overworld_sprite: MACRO
 ENDM
 
 SpriteHeaders:
-	overworld_sprite RedSpriteGFX, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite RedBikeSpriteGFX, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite RedSurfSpriteGFX, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite GreenSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
-	overworld_sprite GreenBikeSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
-	overworld_sprite GreenSurfSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
+; entries correspond to SPRITE_* constants
+	table_width NUM_SPRITEDATA_FIELDS, SpriteHeaders
+	overworld_sprite ChrisSpriteGFX, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite ChrisBikeSpriteGFX, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite ChrisSurfSpriteGFX, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite KrisSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite KrisBikeSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite KrisSurfSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite MomSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite DadSpriteGFX, STANDING_SPRITE, PAL_OW_BROWN
 	overworld_sprite LyraSpriteGFX, WALKING_SPRITE, PAL_OW_RED
@@ -36,8 +38,8 @@ SpriteHeaders:
 	overworld_sprite SabrinaSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite BlaineSpriteGFX, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite BlueSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
-	overworld_sprite RedSpriteGFX2, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite GreenSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
+	overworld_sprite RedSpriteGFX, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite LeafSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
 	overworld_sprite YellowSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite OakSpriteGFX, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite ElmSpriteGFX, WALKING_SPRITE, PAL_OW_BROWN
@@ -72,7 +74,7 @@ SpriteHeaders:
 	overworld_sprite FlannerySpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite MayleneSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite SkylaSpriteGFX, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite ValerieSpriteGFX, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite ValerieSpriteGFX, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite KukuiSpriteGFX, STANDING_SPRITE, PAL_OW_GREEN
 	overworld_sprite CaitlinSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite DarachSpriteGFX, WALKING_SPRITE, PAL_OW_PURPLE
@@ -179,14 +181,15 @@ SpriteHeaders:
 	overworld_sprite BigLaprasSpriteGFX, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BigOnixSpriteGFX, STANDING_SPRITE, PAL_OW_BROWN
 	overworld_sprite BigGyaradosSpriteGFX, BIG_GYARADOS_SPRITE, PAL_OW_RED
+	overworld_sprite PidgeottoSideSpriteGFX, STANDING_SPRITE, PAL_OW_BROWN
 	overworld_sprite RattataBackSpriteGFX, STANDING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite SlowpoketailSpriteGFX, STANDING_SPRITE, PAL_OW_RED
 	overworld_sprite WeirdTreeSpriteGFX, STANDING_SPRITE, PAL_OW_GREEN
 	overworld_sprite BallCutFruitSpriteGFX, STANDING_SPRITE, PAL_OW_TREE
 	overworld_sprite BoulderRockFossilSpriteGFX, STANDING_SPRITE, PAL_OW_ROCK
 	overworld_sprite BookPaperPokedexSpriteGFX, STANDING_SPRITE, PAL_OW_BROWN
-	overworld_sprite SnesSpriteGFX, STANDING_SPRITE, PAL_OW_RED
-	overworld_sprite N64SpriteGFX, STANDING_SPRITE, PAL_OW_BROWN
+	overworld_sprite SnesSpriteGFX, STANDING_SPRITE, PAL_OW_BROWN
+	overworld_sprite N64SpriteGFX, STANDING_SPRITE, PAL_OW_SILVER
 	overworld_sprite GameCubeSpriteGFX, STANDING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite WiiSpriteGFX, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite SilverTrophySpriteGFX, STANDING_SPRITE, PAL_OW_SILVER
@@ -194,4 +197,5 @@ SpriteHeaders:
 	overworld_sprite ElectricFenceLeftSpriteGFX, STANDING_SPRITE, PAL_OW_TREE
 	overworld_sprite ElectricFenceRightSpriteGFX, STANDING_SPRITE, PAL_OW_TREE
 	overworld_sprite SailboatSpriteGFX, STANDING_SPRITE, PAL_OW_PURPLE
-	overworld_sprite MiscOverheadSpriteGFX, STANDING_SPRITE, PAL_OW_ROCK
+	overworld_sprite IceBoulderSpriteGFX, STANDING_SPRITE, PAL_OW_ROCK
+	assert_table_length NUM_OVERWORLD_SPRITES

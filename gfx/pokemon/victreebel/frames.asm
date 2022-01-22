@@ -20,4 +20,3 @@
 .frame5
 	db $04 ; bitmask
 	db $4f, $50
-; 0xd50f7

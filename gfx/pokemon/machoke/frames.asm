@@ -24,4 +24,3 @@
 .frame6
 	db $03 ; bitmask
 	db $3a
-; 0xd4fdf

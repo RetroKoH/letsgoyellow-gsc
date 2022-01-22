@@ -8,9 +8,18 @@ FarChangeStat:
 	jr nz, .move_script_byte_ok
 	farcall ReadMoveScriptByte
 .move_script_byte_ok
-	ld [wLoweredStat], a
+	ld [wChangedStat], a
 	pop af
 	ld b, a
+	bit STAT_TARGET_F, b
+	jr z, .player
+	call HasOpponentFainted
+	ret z
+	jr z, .not_fainted
+.player
+	call HasUserFainted
+	ret z
+.not_fainted
 
 	; check attack missing
 	bit STAT_MISS_F, b
@@ -41,11 +50,11 @@ FarChangeStat:
 	jr nz, .is_target
 	call GetTrueUserAbility
 	cp CONTRARY
-	jp nz, .ability_done
+	jmp nz, .ability_done
 	ld a, b
 	xor STAT_LOWER
 	ld b, a
-	jp .ability_done
+	jmp .ability_done
 
 .is_target
 	call GetOpponentAbilityAfterMoldBreaker
@@ -70,10 +79,14 @@ FarChangeStat:
 
 .check_lowering
 	bit STAT_LOWER_F, b
-	jr nz, .ability_done
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_MIST, a
+	jr z, .ability_done
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyGuards]
+	jr z, .got_guard
+	ld a, [wPlayerGuards]
+.got_guard
+	and GUARD_MIST
 	jr z, .check_ability
 	bit STAT_SILENT_F, b
 	ret nz
@@ -82,11 +95,13 @@ FarChangeStat:
 	farcall ShowPotentialAbilityActivation
 	farcall AnimateFailedMove
 	ld hl, ProtectedByMistText
-	jp StdBattleTextBox
+	jmp StdBattleTextbox
 
 .check_ability
 	call GetOpponentAbilityAfterMoldBreaker
 	cp CLEAR_BODY
+	jr z, .ability_immune
+	cp WHITE_SMOKE
 	jr z, .ability_immune
 	cp HYPER_CUTTER
 	ld c, ATTACK
@@ -98,7 +113,7 @@ FarChangeStat:
 	ld c, ACCURACY
 	jr nz, .ability_done
 .ability_check
-	ld a, [wLoweredStat]
+	ld a, [wChangedStat]
 	and $f
 	cp c
 	jr nz, .ability_done
@@ -108,10 +123,12 @@ FarChangeStat:
 	farcall CheckAlreadyExecuted
 	ret nz
 	farcall ShowPotentialAbilityActivation
-	farcall AnimateFailedMove
+	farcall DisableAnimations
 	farcall ShowEnemyAbilityActivation
+	farcall AnimateFailedMove
 	ld hl, DoesntAffectText
-	jp StdBattleTextBox
+	call StdBattleTextbox
+	farjp EnableAnimations
 
 .ability_done
 	bit STAT_TARGET_F, b
@@ -124,7 +141,7 @@ FarChangeStat:
 .lower
 	call DoLowerStat
 .stat_done
-	ld a, [wLoweredStat]
+	ld a, [wChangedStat]
 	and $f
 	ld b, a
 	inc b
@@ -139,13 +156,13 @@ FarChangeStat:
 	ret nz
 	push bc
 	farcall ShowPotentialAbilityActivation
-	ld c, 30
-	call DelayFrames ; Delay before stating that stats won't rise/lower
+	ld c, 60
+	call DelayFrames
 	pop bc
 	ld hl, WontRiseAnymoreText
 	ld de, WontDropAnymoreText
 	or 1
-	jp DoPrintStatChange
+	jr DoPrintStatChange
 
 .check_anim
 	bit STAT_SKIPTEXT_F, b
@@ -154,7 +171,6 @@ FarChangeStat:
 	push bc
 	jr nz, .anim_done
 	farcall StatUpDownAnim
-
 .anim_done
 	farcall ShowPotentialAbilityActivation
 	pop bc
@@ -172,7 +188,7 @@ DoPrintStatChange:
 	call SwitchTurn
 	pop af
 	call .do_print
-	jp SwitchTurn
+	jmp SwitchTurn
 
 .do_print
 	bit STAT_LOWER_F, b
@@ -181,7 +197,7 @@ DoPrintStatChange:
 	ld l, e
 	push af
 	push bc
-	call StdBattleTextBox
+	call StdBattleTextbox
 	pop bc
 	pop af
 	bit STAT_TARGET_F, b
@@ -198,10 +214,10 @@ DoPrintStatChange:
 	ret
 
 .printmsg
-	jp StdBattleTextBox
+	jmp StdBattleTextbox
 
 GetStatRaiseMessage:
-	ld a, [wLoweredStat]
+	ld a, [wChangedStat]
 	and $f0
 	swap a
 	and a
@@ -220,7 +236,7 @@ GetStatRaiseMessage:
 UseStatItemText:
 ; doesn't consume the item in case of multiple stats
 	push bc
-	ld a, [wLoweredStat]
+	ld a, [wChangedStat]
 	and $f
 	ld b, a
 	inc b
@@ -230,7 +246,7 @@ UseStatItemText:
 	farcall ItemRecoveryAnim
 .item_anim_done
 	call GetCurItemName
-	ld a, [wLoweredStat]
+	ld a, [wChangedStat]
 	and $f0
 	swap a
 	and a
@@ -250,7 +266,7 @@ UseStatItemText:
 	ret
 
 GetStatName:
-	ld hl, .names
+	ld hl, StatNames
 	ld c, "@"
 .CheckName:
 	dec b
@@ -267,16 +283,7 @@ GetStatName:
 	rst CopyBytes
 	ret
 
-.names
-	db "Attack@"
-	db "Defense@"
-	db "Speed@"
-	db "Spcl.Atk@"
-	db "Spcl.Def@"
-	db "Accuracy@"
-	db "Evasion@"
-	db "stats@" ; used by Curse
-
+INCLUDE "data/battle/stat_names.asm"
 
 DoLowerStat:
 	or 1
@@ -287,20 +294,20 @@ DoChangeStat:
 	push af
 	xor a
 	ld [wFailedMessage], a
-	ld a, [hBattleTurn]
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPlayerStatLevels
 	jr z, .got_stat_levels
 	ld hl, wEnemyStatLevels
 .got_stat_levels
-	ld a, [wLoweredStat]
+	ld a, [wChangedStat]
 	and $f
 	ld c, a
 	ld b, 0
 	add hl, bc
 
 	; Perform the stat change
-	ld a, [wLoweredStat]
+	ld a, [wChangedStat]
 	and $f0
 	swap a
 	inc a
@@ -334,10 +341,10 @@ DoChangeStat:
 	jr z, .stat_change_failed
 	dec b
 	swap b
-	ld a, [wLoweredStat]
+	ld a, [wChangedStat]
 	and $f
 	or b
-	ld [wLoweredStat], a
+	ld [wChangedStat], a
 	ret
 
 .stat_change_failed
@@ -346,14 +353,14 @@ DoChangeStat:
 	ret
 
 PlayStatChangeAnim:
-	farcall CheckBattleEffects ; Only play if animations are on.
+	farcall CheckBattleEffects
 	ret c
 	bit STAT_TARGET_F, b
 	jr z, .do_it
 
 	call SwitchTurn
 	call .do_it
-	jp SwitchTurn
+	jmp SwitchTurn
 
 .do_it
 	push hl
@@ -361,8 +368,8 @@ PlayStatChangeAnim:
 	push bc
 if !DEF(MONOCHROME)
 	ld hl, StatPals
-	ld de, wUnknOBPals palette PAL_BATTLE_OB_GRAY + 2
-	ld a, [wLoweredStat]
+	ld de, wOBPals1 palette PAL_BATTLE_OB_GRAY + 2
+	ld a, [wChangedStat]
 	and $f
 	add a
 	add a
@@ -370,8 +377,7 @@ if !DEF(MONOCHROME)
 	ld b, 0
 	add hl, bc
 	ld bc, 4
-	ld a, BANK(wUnknOBPals)
-	call FarCopyWRAM
+	call FarCopyColorWRAM
 	ld b, 2
 	call SafeCopyTilemapAtOnce
 endc
@@ -389,13 +395,10 @@ endc
 	farcall FarPlayBattleAnimation
 	pop af
 	ld [wNumHits], a
-	ld b, CGB_BATTLE_COLORS
+	ld a, CGB_BATTLE_COLORS
 	call GetCGBLayout
 	call SetPalettes
-	pop bc
-	pop de
-	pop hl
-	ret
+	jmp PopBCDEHL
 
 StatPals: ; similar to X items
 ; attack - red

@@ -18,8 +18,7 @@
 	db $4c, $4d, $4e
 .frame5
 	db $03 ; bitmask
-	db $4f, $50, $51
+	db $4f, $50
 .frame6
-	db $04 ; bitmask
-	db $52, $53
-; 0xd4698
+	db $03 ; bitmask
+	db $51, $52

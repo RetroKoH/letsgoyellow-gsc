@@ -1,4 +1,5 @@
-ValidPokemonLevels:
+ValidPokemonLevels: ; for Wonder Trade
+	table_width 2, ValidPokemonLevels
 	;  min, max
 	db 255, 255 ; ?????
 	db   1,  15 ; Bulbasaur
@@ -21,11 +22,10 @@ ValidPokemonLevels:
 	db  36, 100 ; Pidgeot
 	db   1,  19 ; Rattata
 	db  20, 100 ; Raticate
-	db   1,  19 ; Spearow
-	db  20, 100 ; Fearow
+	db   1,  17 ; Marill
+	db  18, 100 ; Azumarill
 	db   1,  21 ; Ekans
 	db  22, 100 ; Arbok
-	db   1,  19 ; Pichu
 	db   1,  19 ; Pikachu
 	db  20, 100 ; Raichu
 	db   1,  21 ; Sandshrew
@@ -36,12 +36,10 @@ ValidPokemonLevels:
 	db   1,  15 ; Nidoran♂
 	db  16,  35 ; Nidorino
 	db  36, 100 ; Nidoking
-	db   1,  19 ; Cleffa
 	db   5,  19 ; Clefairy
 	db  20, 100 ; Clefable
 	db   1,  19 ; Vulpix
 	db  20, 100 ; Ninetales
-	db   1,  19 ; Igglybuff
 	db   5,  19 ; Jigglypuff
 	db  20, 100 ; Wigglytuff
 	db   1,  21 ; Zubat
@@ -111,8 +109,6 @@ ValidPokemonLevels:
 	db  28, 100 ; Marowak
 	db  20, 100 ; Hitmonlee
 	db  20, 100 ; Hitmonchan
-	db   1, 100 ; Lickitung
-	db   1, 100 ; Lickilicky
 	db   1,  34 ; Koffing
 	db  35, 100 ; Weezing
 	db   1,  41 ; Rhyhorn
@@ -122,8 +118,9 @@ ValidPokemonLevels:
 	db  20, 100 ; Kangaskhan
 	db   1,  31 ; Horsea
 	db  32,  54 ; Seadra
-	db   1,  17 ; Goldeen
-	db  18, 100 ; Seaking
+	db   1,  19 ; Togepi
+	db  20,  39 ; Togetic
+	db  40, 100 ; Togekiss
 	db   1,  32 ; Staryu
 	db  33, 100 ; Starmie
 	db  20, 100 ; Mr. Mime
@@ -169,16 +166,17 @@ ValidPokemonLevels:
 	db  15, 100 ; Furret
 	db   1,  19 ; Hoothoot
 	db  20, 100 ; Noctowl
-	db   1,  19 ; Togepi
-	db  20,  39 ; Togetic
-	db  40, 100 ; Togekiss
+	db   1,  17 ; Ledyba
+	db  18, 100 ; Ledian
 	db   1,  21 ; Spinarak
 	db  22, 100 ; Ariados
 	db  32, 100 ; Crobat
 	db   1,  26 ; Chinchou
 	db  27, 100 ; Lanturn
+	db   1,  19 ; Pichu
 	db   1,  19 ; Munchlax
 	db  50, 100 ; Magnezone
+	db  55, 100 ; Rhyperior
 	db  39, 100 ; Tangrowth
 	db   1,  24 ; Natu
 	db  25, 100 ; Xatu
@@ -186,7 +184,6 @@ ValidPokemonLevels:
 	db  15,  29 ; Flaaffy
 	db  30, 100 ; Ampharos
 	db  32, 100 ; Bellossom
-	db  55, 100 ; Rhyperior
 	db  10, 100 ; Sudowoodo
 	db  36, 100 ; Politoed
 	db   1,  31 ; Sunkern
@@ -229,6 +226,7 @@ ValidPokemonLevels:
 	db   1, 100 ; Corsola
 	db   1,  24 ; Remoraid
 	db  25, 100 ; Octillery
+	db   1, 100 ; Mantine
 	db  10, 100 ; Skarmory
 	db   1,  23 ; Houndour
 	db  24, 100 ; Houndoom
@@ -237,6 +235,7 @@ ValidPokemonLevels:
 	db  25, 100 ; Donphan
 	db  20,  39 ; Porygon2
 	db  40, 100 ; Porygon-Z
+	db   1, 100 ; Smeargle
 	db   1,  19 ; Tyrogue
 	db  20, 100 ; Hitmontop
 	db   1,  19 ; Elekid
@@ -251,7 +250,12 @@ ValidPokemonLevels:
 	db   1,  29 ; Larvitar
 	db  30,  54 ; Pupitar
 	db  55, 100 ; Tyranitar
+	db 255, 255 ; Lugia
+	db 255, 255 ; Ho-Oh
+	db 255, 255 ; Celebi
 	db  20, 100 ; Leafeon
 	db  20, 100 ; Glaceon
 	db  20, 100 ; Sylveon
+	assert_table_length NUM_POKEMON + 1
 	db 255, 255 ; Egg
+	assert_table_length NUM_SPECIES + 1

@@ -1,6 +1,6 @@
 ; All other cases are neutral (1x).
 
-TypeMatchup:
+TypeMatchups:
 	;  attacker, defender,   *=
 	db NORMAL,    ROCK,      NOT_VERY_EFFECTIVE
 	db NORMAL,    STEEL,     NOT_VERY_EFFECTIVE
@@ -121,5 +121,11 @@ TypeMatchup:
 	db FAIRY,     DARK,      SUPER_EFFECTIVE
 	db FAIRY,     STEEL,     NOT_VERY_EFFECTIVE
 
-	db $fe ; no foresight
+; Foresight removes Ghost's immunities.
+
+	db $fe
+
+	db NORMAL,    GHOST,     NO_EFFECT
+	db FIGHTING,  GHOST,     NO_EFFECT
+
 	db $ff ; end

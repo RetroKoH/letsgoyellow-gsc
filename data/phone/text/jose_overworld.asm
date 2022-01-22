@@ -1,7 +1,6 @@
 JoseAskNumber1Text:
-	text "If my @"
-	text_from_ram wStringBuffer4
-	text ""
+	text "If my "
+	text_ram wStringBuffer4
 	line "sees anything"
 
 	para "pretty, it goes"

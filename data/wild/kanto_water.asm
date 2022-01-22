@@ -1,231 +1,269 @@
 ; Kanto Pokémon in water
 
-	map_id TOHJO_FALLS
+	def_water_wildmons TOHJO_FALLS
 	db 4 percent ; encounter rate
-	db 20, POLIWAG
-	db 20, SLOWPOKE
-	db 20, POLIWHIRL
+	wildmon 20, POLIWAG
+	wildmon 20, SLOWPOKE
+	wildmon 20, POLIWHIRL
+	end_water_wildmons
 
-	map_id VERMILION_PORT
+	def_water_wildmons VERMILION_PORT
 	db 2 percent ; encounter rate
-	db 45, TENTACOOL
-	db 40, TENTACOOL
-	db 45, TENTACRUEL
+	wildmon 45, TENTACOOL
+	wildmon 40, TENTACOOL
+	wildmon 45, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_4
+	def_water_wildmons ROUTE_4
 	db 4 percent ; encounter rate
-	db 55, MAGIKARP
-	db 60, POLIWAG
-	db 55, POLIWHIRL
+	wildmon 55, MAGIKARP
+	wildmon 60, POLIWAG
+	wildmon 55, POLIWHIRL
+	end_water_wildmons
 
-	map_id ROUTE_6
+	def_water_wildmons ROUTE_6
 	db 2 percent ; encounter rate
-	db 45, PSYDUCK
-	db 50, PSYDUCK
-	db 45, GOLDUCK
+	wildmon 45, PSYDUCK
+	wildmon 50, PSYDUCK
+	wildmon 45, GOLDUCK
+	end_water_wildmons
 
-	map_id ROUTE_9
+	def_water_wildmons ROUTE_9
 	db 4 percent ; encounter rate
-	db 47, MAGIKARP
-	db 42, POLIWAG
-	db 47, POLIWHIRL
+	wildmon 47, MAGIKARP
+	wildmon 42, POLIWAG
+	wildmon 47, POLIWHIRL
+	end_water_wildmons
 
-	map_id ROUTE_10_NORTH
+	def_water_wildmons ROUTE_10_NORTH
 	db 4 percent ; encounter rate
-	db 47, MAGIKARP
-	db 47, PSYDUCK
-	db 52, GOLDUCK
+	wildmon 47, MAGIKARP
+	wildmon 47, PSYDUCK
+	wildmon 52, GOLDUCK
+	end_water_wildmons
 
-	map_id ROUTE_12_NORTH
+	def_water_wildmons ROUTE_12_NORTH
 	db 6 percent ; encounter rate
-	db 48, TENTACOOL
-	db 52, QUAGSIRE
-	db 54, TENTACRUEL
+	wildmon 48, TENTACOOL
+	wildmon 52, QUAGSIRE
+	wildmon 54, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_12_SOUTH
+	def_water_wildmons ROUTE_12_SOUTH
 	db 6 percent ; encounter rate
-	db 48, TENTACOOL
-	db 52, QUAGSIRE
-	db 54, TENTACRUEL
+	wildmon 48, TENTACOOL
+	wildmon 52, QUAGSIRE
+	wildmon 54, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_13_EAST
+	def_water_wildmons ROUTE_13_EAST
 	db 6 percent ; encounter rate
-	db 49, TENTACOOL
-	db 53, QUAGSIRE
-	db 55, TENTACRUEL
+	wildmon 49, TENTACOOL
+	wildmon 53, QUAGSIRE
+	wildmon 55, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_14
+	def_water_wildmons ROUTE_14
 	db 6 percent ; encounter rate
-	db 49, TENTACOOL
-	db 53, QUAGSIRE
-	db 55, TENTACRUEL
+	wildmon 49, TENTACOOL
+	wildmon 53, QUAGSIRE
+	wildmon 55, TENTACRUEL
+	end_water_wildmons
 
-	map_id LUCKY_ISLAND
+	def_water_wildmons LUCKY_ISLAND
 	db 6 percent ; encounter rate
-	db 49, TENTACOOL
-	db 53, QUAGSIRE
-	db 55, TENTACRUEL
+	wildmon 49, TENTACOOL
+	wildmon 53, QUAGSIRE
+	wildmon 55, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_18_WEST
+	def_water_wildmons ROUTE_18_WEST
 	db 6 percent ; encounter rate
-	db 54, TENTACOOL
-	db 56, TENTACOOL
-	db 58, TENTACRUEL
+	wildmon 54, TENTACOOL
+	wildmon 56, TENTACOOL
+	wildmon 58, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_19
+	def_water_wildmons ROUTE_19
 	db 6 percent ; encounter rate
-	db 54, TENTACOOL
-	db 56, TENTACOOL
-	db 58, TENTACRUEL
+	wildmon 54, TENTACOOL
+	wildmon 56, TENTACOOL
+	wildmon 58, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_20
+	def_water_wildmons ROUTE_20
 	db 6 percent ; encounter rate
-	db 54, TENTACOOL
-	db 56, TENTACOOL
-	db 58, TENTACRUEL
+	wildmon 54, TENTACOOL
+	wildmon 56, TENTACOOL
+	wildmon 58, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_21
+	def_water_wildmons ROUTE_21
 	db 6 percent ; encounter rate
-	db 54, TENTACOOL
-	db 56, TENTACOOL
-	db 58, TENTACRUEL
+	wildmon 54, TENTACOOL
+	wildmon 56, TENTACOOL
+	wildmon 58, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_22
+	def_water_wildmons ROUTE_22
 	db 2 percent ; encounter rate
-	db 54, MAGIKARP
-	db 56, POLIWAG
-	db 58, POLIWHIRL
+	wildmon 54, MAGIKARP
+	wildmon 56, POLIWAG
+	wildmon 58, POLIWHIRL
+	end_water_wildmons
 
-	map_id ROUTE_23
+	def_water_wildmons ROUTE_23
 	db 6 percent ; encounter rate
-	db 35, TENTACOOL
-	db 35, KINGLER
-	db 35, TENTACRUEL
+	wildmon 35, TENTACOOL
+	wildmon 35, KINGLER
+	wildmon 35, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_24
+	def_water_wildmons ROUTE_24
 	db 4 percent ; encounter rate
-	db 48, MAGIKARP
-	db 50, POLIWAG
-	db 52, POLIWHIRL
+	wildmon 48, MAGIKARP
+	wildmon 50, POLIWAG
+	wildmon 52, POLIWHIRL
+	end_water_wildmons
 
-	map_id ROUTE_25
+	def_water_wildmons ROUTE_25
 	db 4 percent ; encounter rate
-	db 48, MAGIKARP
-	db 50, POLIWAG
-	db 52, POLIWHIRL
+	wildmon 48, MAGIKARP
+	wildmon 50, POLIWAG
+	wildmon 52, POLIWHIRL
+	end_water_wildmons
 
-	map_id ROUTE_26
+	def_water_wildmons ROUTE_26
 	db 6 percent ; encounter rate
-	db 35, TENTACOOL
-	db 30, TENTACOOL
-	db 35, TENTACRUEL
+	wildmon 35, TENTACOOL
+	wildmon 30, TENTACOOL
+	wildmon 35, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_27
+	def_water_wildmons ROUTE_27
 	db 6 percent ; encounter rate
-	db 20, TENTACOOL
-	db 15, TENTACOOL
-	db 20, TENTACRUEL
+	wildmon 20, TENTACOOL
+	wildmon 15, TENTACOOL
+	wildmon 20, TENTACRUEL
+	end_water_wildmons
 
-	map_id ROUTE_28
+	def_water_wildmons ROUTE_28
 	db 2 percent ; encounter rate
-	db 60, POLIWHIRL
-	db 65, POLIWHIRL
-	db 65, POLIWRATH
+	wildmon 60, POLIWHIRL
+	wildmon 65, POLIWHIRL
+	wildmon 65, POLIWRATH
+	end_water_wildmons
 
-	map_id PALLET_TOWN
+	def_water_wildmons PALLET_TOWN
 	db 6 percent ; encounter rate
-	db 55, TENTACOOL
-	db 50, TENTACOOL
-	db 55, TENTACRUEL
+	wildmon 55, TENTACOOL
+	wildmon 50, TENTACOOL
+	wildmon 55, TENTACRUEL
+	end_water_wildmons
 
-	map_id VIRIDIAN_CITY
+	def_water_wildmons VIRIDIAN_CITY
 	db 2 percent ; encounter rate
-	db 55, POLIWAG
-	db 50, POLIWAG
-	db 55, POLIWHIRL
+	wildmon 55, POLIWAG
+	wildmon 50, POLIWAG
+	wildmon 55, POLIWHIRL
+	end_water_wildmons
 
-	map_id CERULEAN_CITY
+	def_water_wildmons CERULEAN_CITY
 	db 4 percent ; encounter rate
-	db 55, MAGIKARP
-	db 50, POLIWAG
-	db 55, POLIWHIRL
+	wildmon 55, MAGIKARP
+	wildmon 50, POLIWAG
+	wildmon 55, POLIWHIRL
+	end_water_wildmons
 
-	map_id VERMILION_CITY
+	def_water_wildmons VERMILION_CITY
 	db 6 percent ; encounter rate
-	db 45, TENTACOOL
-	db 40, TENTACOOL
-	db 45, TENTACRUEL
+	wildmon 45, TENTACOOL
+	wildmon 40, TENTACOOL
+	wildmon 45, TENTACRUEL
+	end_water_wildmons
 
-	map_id CELADON_CITY
+	def_water_wildmons CELADON_CITY
 	db 2 percent ; encounter rate
-	db 55, GRIMER
-	db 50, GRIMER
-	db 55, MUK
+	wildmon 55, GRIMER
+	wildmon 50, GRIMER
+	wildmon 55, MUK
+	end_water_wildmons
 
-	map_id FUCHSIA_CITY
+	def_water_wildmons FUCHSIA_CITY
 	db 2 percent ; encounter rate
-	db 55, MAGIKARP
-	db 50, MAGIKARP
-	db 55, MAGIKARP
+	wildmon 55, MAGIKARP
+	wildmon 50, MAGIKARP
+	wildmon 55, MAGIKARP
+	end_water_wildmons
 
-	map_id CINNABAR_ISLAND
+	def_water_wildmons CINNABAR_ISLAND
 	db 6 percent ; encounter rate
-	db 55, TENTACOOL
-	db 50, TENTACOOL
-	db 55, TENTACRUEL
+	wildmon 55, TENTACOOL
+	wildmon 50, TENTACOOL
+	wildmon 55, TENTACRUEL
+	end_water_wildmons
 
-	map_id CERULEAN_CAPE
+	def_water_wildmons CERULEAN_CAPE
 	db 4 percent ; encounter rate
-	db 48, MAGIKARP
-	db 52, POLIWHIRL
-	db 54, KINGLER
+	wildmon 48, MAGIKARP
+	wildmon 52, POLIWHIRL
+	wildmon 54, KINGLER
+	end_water_wildmons
 
-	map_id URAGA_CHANNEL_EAST
+	def_water_wildmons URAGA_CHANNEL_EAST
 	db 6 percent ; encounter rate
-	db 54, TENTACOOL
-	db 56, TENTACOOL
-	db 58, TENTACRUEL
+	wildmon 54, TENTACOOL
+	wildmon 56, TENTACOOL
+	wildmon 58, TENTACRUEL
+	end_water_wildmons
 
-	map_id URAGA_CHANNEL_WEST
+	def_water_wildmons URAGA_CHANNEL_WEST
 	db 6 percent ; encounter rate
-	db 54, TENTACOOL
-	db 56, TENTACOOL
-	db 58, TENTACRUEL
+	wildmon 54, TENTACOOL
+	wildmon 56, TENTACOOL
+	wildmon 58, TENTACRUEL
+	end_water_wildmons
 
-	map_id CERULEAN_CAVE_1F
+	def_water_wildmons CERULEAN_CAVE_1F
 	db 6 percent ; encounter rate
-	db 60, SLOWBRO
-	db 63, GOLDUCK
-	db 66, GYARADOS
+	wildmon 60, SLOWBRO
+	wildmon 63, GOLDUCK
+	wildmon 66, GYARADOS
+	end_water_wildmons
 
-	map_id CERULEAN_CAVE_B1F
+	def_water_wildmons CERULEAN_CAVE_B1F
 	db 6 percent ; encounter rate
-	db 60, SLOWKING
-	db 63, GOLDUCK
-	db 66, GYARADOS
+	wildmon 60, SLOWKING
+	wildmon 63, GOLDUCK
+	wildmon 66, GYARADOS
+	end_water_wildmons
 
-	map_id SAFARI_ZONE_HUB
+	def_water_wildmons SAFARI_ZONE_HUB
 	db 6 percent ; encounter rate
-	db 55, SLOWBRO
-	db 55, GOLDUCK
-	db 55, KINGLER
+	wildmon 55, SLOWBRO
+	wildmon 55, GOLDUCK
+	wildmon 55, KINGLER
+	end_water_wildmons
 
-	map_id SAFARI_ZONE_EAST
+	def_water_wildmons SAFARI_ZONE_EAST
 	db 6 percent ; encounter rate
-	db 55, SLOWBRO
-	db 55, GOLDUCK
-	db 55, KINGLER
+	wildmon 55, SLOWBRO
+	wildmon 55, GOLDUCK
+	wildmon 55, KINGLER
+	end_water_wildmons
 
-	map_id SAFARI_ZONE_NORTH
+	def_water_wildmons SAFARI_ZONE_NORTH
 	db 6 percent ; encounter rate
-	db 55, SLOWBRO
-	db 55, GOLDUCK
-	db 40, DRAGONAIR
+	wildmon 55, SLOWBRO
+	wildmon 55, GOLDUCK
+	wildmon 40, DRAGONAIR
+	end_water_wildmons
 
-	map_id SEAFOAM_ISLANDS_B4F
+	def_water_wildmons SEAFOAM_ISLANDS_B4F
 	db 6 percent ; encounter rate
-	db 55, SEEL
-	db 55, HORSEA
-	db 60, SLOWBRO
+	wildmon 55, SEEL
+	wildmon 55, HORSEA
+	wildmon 60, SLOWBRO
+	end_water_wildmons
 
 	db -1 ; end

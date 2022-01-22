@@ -939,7 +939,7 @@ wPalFadeMode::
 
 wCurForm:: ds 1
 
-wJustGotGSBall:: ds 1
+;wJustGotGSBall:: ds 1
 
 wWindowStackPointer:: ds 2
 wMenuJoypad:: ds 1

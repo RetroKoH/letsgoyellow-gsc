@@ -1,9 +1,9 @@
-NAME := polishedcrystal
-VERSION := 3.0.0-beta
+NAME := letsgoyellow
+VERSION := 1.0.0-beta
 
-TITLE := PKPCRYSTAL
-MCODE := PKPC
-ROMVERSION := 0x30
+TITLE := LGYELLOW
+MCODE := PLGY
+ROMVERSION := 0x10
 
 FILLER = 0xff
 
@@ -36,7 +36,7 @@ ifeq ($(filter debug,$(MAKECMDGOALS)),debug)
 RGBASM_FLAGS += -DDEBUG
 endif
 
-crystal_obj := \
+lgyellow_obj := \
 main.o \
 home.o \
 ram.o \
@@ -58,21 +58,21 @@ gfx/misc.o
 
 
 .SUFFIXES:
-.PHONY: clean tidy crystal faithful nortc debug monochrome freespace tools bsp
+.PHONY: clean tidy lgyellow faithful nortc debug monochrome freespace tools bsp
 .SECONDEXPANSION:
 .PRECIOUS: %.2bpp %.1bpp
 .SECONDARY:
-.DEFAULT_GOAL: crystal
+.DEFAULT_GOAL: lgyellow
 
-crystal: ROM_NAME = $(NAME)-$(VERSION)
-crystal: $(NAME)-$(VERSION).gbc
+lgyellow: ROM_NAME = $(NAME)-$(VERSION)
+lgyellow: $(NAME)-$(VERSION).gbc
 
-faithful: crystal
-nortc: crystal
-monochrome: crystal
-noir: crystal
-hgss: crystal
-debug: crystal
+faithful: lgyellow
+nortc: lgyellow
+monochrome: lgyellow
+noir: lgyellow
+hgss: lgyellow
+debug: lgyellow
 
 tools:
 	$(MAKE) -C tools/
@@ -85,10 +85,10 @@ clean: tidy
 	$(MAKE) clean -C tools/
 
 tidy:
-	rm -f $(crystal_obj) $(wildcard $(NAME)-*.gbc) $(wildcard $(NAME)-*.map) $(wildcard $(NAME)-*.sym) $(wildcard $(NAME)-*.bsp) rgbdscheck.o
+	rm -f $(lgyellow_obj) $(wildcard $(NAME)-*.gbc) $(wildcard $(NAME)-*.map) $(wildcard $(NAME)-*.sym) $(wildcard $(NAME)-*.bsp) rgbdscheck.o
 
 freespace: ROM_NAME = $(NAME)-$(VERSION)
-freespace: crystal tools/bankends
+freespace: lgyellow tools/bankends
 	tools/bankends $(ROM_NAME).map > bank_ends.txt
 
 bsp: $(NAME)-$(VERSION).bsp
@@ -104,12 +104,12 @@ endef
 
 ifeq (,$(filter clean tidy tools,$(MAKECMDGOALS)))
 $(info $(shell $(MAKE) -C tools))
-$(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
+$(foreach obj, $(lgyellow_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
 endif
 
 
 .gbc: tools/bankends
-%.gbc: $(crystal_obj)
+%.gbc: $(lgyellow_obj)
 	$(RGBDS_DIR)rgblink $(RGBLINK_FLAGS) -o $@ $^
 	$(RGBDS_DIR)rgbfix $(RGBFIX_FLAGS) $@
 	tools/bankends -q $(ROM_NAME).map

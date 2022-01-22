@@ -3251,7 +3251,7 @@ SECTION "_InitialOptionsText", ROMX
 _InitialOptionsText::
 	text "Please choose how"
 	line "you want to play"
-	cont "Polished Crystal."
+	cont "Let's Go Yellow."
 	prompt
 
 SECTION "_ElmText1", ROMX

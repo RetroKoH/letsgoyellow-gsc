@@ -24,13 +24,6 @@ InitIntroGradient::
 INCBIN "gfx/new_game/intro_gradient.2bpp"
 
 _MainMenu:
-	ld de, MUSIC_NONE
-	call PlayMusic
-	call DelayFrame
-	ld de, MUSIC_MAIN_MENU
-	ld a, e
-	ld [wMapMusic], a
-	call PlayMusic
 	farcall MainMenu
 	jmp StartTitleScreen
 
@@ -58,7 +51,7 @@ _NewGame_FinishSetup:
 	call NewGame_ClearTileMapEtc
 	call WarnVBA
 	call SetInitialOptions
-	call ProfElmSpeech
+	call ProfOakSpeech
 	call InitializeWorld
 	ld a, 1
 	ld [wPrevLandmark], a
@@ -552,7 +545,14 @@ Continue_DisplayGameTime:
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jmp PrintNum
 
-ProfElmSpeech:
+ProfOakSpeech:
+	ld a, POTION
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantityChangeBuffer], a
+	ld hl, wNumPCItems
+	call ReceiveItem
+
 	farcall InitClock
 	ld c, 31
 	call FadeToBlack
@@ -566,7 +566,7 @@ ProfElmSpeech:
 
 	xor a
 	ld [wCurPartySpecies], a
-	ld a, PROF_ELM
+	ld a, PROF_OAK
 	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
@@ -575,14 +575,14 @@ ProfElmSpeech:
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText1
+	ld hl, OakText1
 	call PrintText
-if !DEF(DEBUG)
+
 	ld c, 15
 	call FadeToWhite
 	call ClearTileMap
 
-	ld a, SYLVEON
+	ld a, NIDORINO
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 	call GetBaseData ; [wCurForm] doesn't matter for Sylveon
@@ -600,9 +600,9 @@ if !DEF(DEBUG)
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText2
+	ld hl, OakText2
 	call PrintText
-	ld hl, ElmText4
+	ld hl, OakText4
 	call PrintText
 	ld c, 15
 	call FadeToWhite
@@ -610,7 +610,7 @@ if !DEF(DEBUG)
 
 	xor a
 	ld [wCurPartySpecies], a
-	ld a, PROF_ELM
+	ld a, PROF_OAK
 	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
@@ -619,16 +619,15 @@ if !DEF(DEBUG)
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText5
+	ld hl, OakText5
 	call PrintText
-endc
 
 	call InitGender
 
 	ld c, 10
 	call DelayFrames
 
-	ld hl, ElmText6
+	ld hl, OakText6
 	call PrintText
 
 	call NamePlayer
@@ -643,44 +642,109 @@ endc
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText7
+	ld hl, OakText7
+	call PrintText
+;	ld c, 15
+;	call FadeToWhite
+	ld hl, WhitePal
+	ld de, wBGPals1 palette 0
+	ld bc, 1 palettes
+	ld a, 5
+	call FarCopyColorWRAM
+	ld c, 15
+	call FadePalettes
+
+	call ClearTileMap
+	call DrawIntroRivalPic
+
+	ld a, CGB_INTRO_PALS
+	call GetCGBLayout
+	call InitIntroGradient
+	call Intro_RotatePalettesLeftFrontpic
+	ld hl, OakText8
+	call PrintText
+	
+	call NameRival
+
+	call ClearTileMap
+	call LoadFontsExtra
+	call ApplyTilemapInVBlank
+	call DrawIntroRivalPic
+
+	ld a, CGB_INTRO_PALS
+	call GetCGBLayout
+	call InitIntroGradient
+	call Intro_RotatePalettesLeftFrontpic
+
+	ld hl, OakText9
+	call PrintText
+;	ld c, 15
+;	call FadeToWhite
+	ld hl, WhitePal
+	ld de, wBGPals1 palette 0
+	ld bc, 1 palettes
+	ld a, 5
+	call FarCopyColorWRAM
+	ld c, 15
+	call FadePalettes
+
+	call ClearTileMap
+	call DrawIntroPlayerPic
+
+	ld a, CGB_INTRO_PALS
+	call GetCGBLayout
+	call InitIntroGradient
+	call Intro_RotatePalettesLeftFrontpic
+	ld hl, OakText10
 	jmp PrintText
 
-ElmText1:
-	text_far _ElmText1
+OakText1:
+	text_far _OakText1
 	text_end
 
-ElmText2:
-	text_far _ElmText2
+OakText2:
+	text_far _OakText2
 	text_asm
-	ld a, SYLVEON
+	ld a, NIDORINO
 	call PlayCry
 	call WaitSFX
-	ld hl, ElmText3
+	ld hl, OakText3
 	ret
 
-ElmText3:
+OakText3:
 	text_far Text_Waitbutton_2
 	text_end
 
-ElmText4:
-	text_far _ElmText4
+OakText4:
+	text_far _OakText4
 	text_end
 
-ElmText5:
-	text_far _ElmText5
+OakText5:
+	text_far _OakText5
 	text_end
 
-ElmText6:
-	text_far _ElmText6
+OakText6:
+	text_far _OakText6
 	text_end
 
-ElmText7:
-	text_far _ElmText7
+OakText7:
+	text_far _OakText7
+	text_end
+
+OakText8:
+	text_far _OakText8
+	text_end
+
+OakText9:
+	text_far _OakText9
+	text_end
+
+OakText10:
+	text_far _OakText10
 	text_end
 
 InitGender:
-	ld hl, .WhitePal
+	ld hl, WhitePal
 	ld de, wBGPals1 palette 0
 	ld bc, 1 palettes
 	call FarCopyColorWRAM
@@ -728,19 +792,6 @@ InitGender:
 	jr c, InitGender
 	ret
 
-.WhitePal:
-if !DEF(MONOCHROME)
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-else
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-endc
-
 .MenuDataHeader:
 	db $40 ; flags
 	db 7, 13 ; start coords
@@ -753,6 +804,19 @@ endc
 	db 2 ; items
 	db "Boy@"
 	db "Girl@"
+
+WhitePal:
+if !DEF(MONOCHROME)
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+else
+	RGB_MONOCHROME_WHITE
+	RGB_MONOCHROME_WHITE
+	RGB_MONOCHROME_WHITE
+	RGB_MONOCHROME_WHITE
+endc
 
 AreYouABoyOrAreYouAGirlText:
 	; Are you a boy? Or are you a girl?
@@ -783,6 +847,18 @@ NamePlayer:
 	jmp InitName
 
 INCLUDE "data/default_player_names.asm"
+
+NameRival:
+	ld b, $2 ; rival
+	ld de, wRivalName
+	farcall NamingScreen
+	; default to "Trace"
+	ld hl, wRivalName
+	ld de, .DefaultRivalName
+	jp InitName
+
+.DefaultRivalName:
+	db "Trace@"
 
 ShrinkPlayer:
 	ld a, 0 << 7 | 32 ; fade out
@@ -846,6 +922,13 @@ IntroFadePalettes:
 	db %11110100
 	db %11100100
 IntroFadePalettesEnd:
+
+DrawIntroRivalPic:
+	xor a
+	ld [wCurPartySpecies], a
+	ld a, RIVAL0
+	ld [wTrainerClass], a
+	jp Intro_PrepTrainerPic
 
 DrawIntroPlayerPic:
 	xor a
@@ -1174,7 +1257,6 @@ TitleScreenMain:
 	jr .done
 
 TitleScreenEnd:
-
 ; Wait until the music is done fading.
 
 	ld hl, wTitleScreenTimer

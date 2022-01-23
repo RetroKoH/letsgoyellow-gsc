@@ -1111,9 +1111,9 @@ wUndergroundPathSwitchRoomEntrancesSceneID:: db
 wVermilionCitySceneID:: db
 wVermilionPortSceneID:: db
 wVictoryRoad2FSceneID:: db
-wVioletGymSceneID:: db
+wViridianCitySceneID:: db
+wViridianMartSceneID:: db
 wWillsRoomSceneID:: db
-wWiseTriosRoomSceneID:: db
 wYellowForestSceneID:: db
 
 ; fight counts

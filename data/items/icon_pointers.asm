@@ -265,7 +265,7 @@ KeyItemIconPointers:
 	dba CoinCaseIcon
 	dba ItemfinderIcon
 	dba MysteryEggIcon
-	dba SquirtBottleIcon
+	dba OaksParcelIcon
 	dba SecretPotionIcon
 	dba RedScaleIcon
 	dba CardKeyIcon

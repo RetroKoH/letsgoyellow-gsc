@@ -4,8 +4,8 @@ ViridianSchoolHouse_MapScriptHeader:
 	def_callbacks
 
 	def_warp_events
-	warp_event  2,  9, VIRIDIAN_CITY, 8
-	warp_event  3,  9, VIRIDIAN_CITY, 8
+	warp_event  2,  9, VIRIDIAN_CITY, 6
+	warp_event  3,  9, VIRIDIAN_CITY, 6
 
 	def_coord_events
 

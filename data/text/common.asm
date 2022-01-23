@@ -4325,6 +4325,13 @@ _ItemOakWarningText::
 	cont "time to use that!"
 	prompt
 
+SECTION "_ItemNotMyParcelText", ROMX
+_ItemNotMyParcelText::
+	text "Best not to open"
+	line "this. Let's bring"
+	cont "it to Prof. Oak!"
+	prompt
+
 SECTION "_ItemWontHaveEffectText", ROMX
 _ItemWontHaveEffectText::
 	text "It won't have any"

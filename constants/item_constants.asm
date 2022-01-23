@@ -38,6 +38,7 @@
 	const DREAM_BALL   ; 17
 	const PREMIER_BALL ; 18
 	const CHERISH_BALL ; 19
+	; Add Snag Ball here
 
 	const POTION       ; 1a
 	const SUPER_POTION ; 1b
@@ -592,7 +593,7 @@ NUM_APRICORNS EQU const_value - 1
 	const COIN_CASE    ; 04
 	const ITEMFINDER   ; 05
 	const MYSTERY_EGG  ; 06
-	const SQUIRTBOTTLE ; 07
+	const OAKS_PARCEL  ; 07
 	const SECRETPOTION ; 08
 	const RED_SCALE    ; 09
 	const CARD_KEY     ; 0a

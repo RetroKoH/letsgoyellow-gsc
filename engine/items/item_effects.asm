@@ -282,36 +282,36 @@ DoKeyItemEffect::
 KeyItemEffects:
 ; entries correspond to key item ids (see constants/item_constants.asm)
 	table_width 2, KeyItemEffects
-	dw BikeFunction       ; BICYCLE
-	dw OldRod             ; OLD_ROD
-	dw GoodRod            ; GOOD_ROD
-	dw SuperRod           ; SUPER_ROD
-	dw CoinCase           ; COIN_CASE
-	dw Itemfinder         ; ITEMFINDER
-	dw IsntTheTimeMessage ; MYSTERY_EGG
-	dw SquirtBottle       ; SQUIRTBOTTLE
-	dw IsntTheTimeMessage ; SECRETPOTION
-	dw IsntTheTimeMessage ; RED_SCALE
-	dw CardKey            ; CARD_KEY
-	dw BasementKey        ; BASEMENT_KEY
-	dw IsntTheTimeMessage ; S_S_TICKET
-	dw IsntTheTimeMessage ; PASS
-	dw IsntTheTimeMessage ; MACHINE_PART
-	dw IsntTheTimeMessage ; LOST_ITEM
-	dw IsntTheTimeMessage ; RAINBOW_WING
-	dw IsntTheTimeMessage ; SILVER_WING
-	dw IsntTheTimeMessage ; CLEAR_BELL
-	dw IsntTheTimeMessage ; GS_BALL
-	dw BlueCard           ; BLUE_CARD
-	dw IsntTheTimeMessage ; ORANGETICKET
-	dw IsntTheTimeMessage ; MYSTICTICKET
-	dw IsntTheTimeMessage ; OLD_SEA_MAP
-	dw IsntTheTimeMessage ; SHINY_CHARM
-	dw IsntTheTimeMessage ; OVAL_CHARM
-	dw IsntTheTimeMessage ; CATCH_CHARM
-	dw IsntTheTimeMessage ; SILPHSCOPE2
-	dw ApricornBox        ; APRICORN_BOX
-	dw TypeChart          ; TYPE_CHART
+	dw BikeFunction        ; BICYCLE
+	dw OldRod              ; OLD_ROD
+	dw GoodRod             ; GOOD_ROD
+	dw SuperRod            ; SUPER_ROD
+	dw CoinCase            ; COIN_CASE
+	dw Itemfinder          ; ITEMFINDER
+	dw IsntTheTimeMessage  ; MYSTERY_EGG
+	dw IsntMyParcelMessage ; OAKS_PARCEL
+	dw IsntTheTimeMessage  ; SECRETPOTION
+	dw IsntTheTimeMessage  ; RED_SCALE
+	dw CardKey             ; CARD_KEY
+	dw BasementKey         ; BASEMENT_KEY
+	dw IsntTheTimeMessage  ; S_S_TICKET
+	dw IsntTheTimeMessage  ; PASS
+	dw IsntTheTimeMessage  ; MACHINE_PART
+	dw IsntTheTimeMessage  ; LOST_ITEM
+	dw IsntTheTimeMessage  ; RAINBOW_WING
+	dw IsntTheTimeMessage  ; SILVER_WING
+	dw IsntTheTimeMessage  ; CLEAR_BELL
+	dw IsntTheTimeMessage  ; GS_BALL
+	dw BlueCard            ; BLUE_CARD
+	dw IsntTheTimeMessage  ; ORANGETICKET
+	dw IsntTheTimeMessage  ; MYSTICTICKET
+	dw IsntTheTimeMessage  ; OLD_SEA_MAP
+	dw IsntTheTimeMessage  ; SHINY_CHARM
+	dw IsntTheTimeMessage  ; OVAL_CHARM
+	dw IsntTheTimeMessage  ; CATCH_CHARM
+	dw IsntTheTimeMessage  ; SILPHSCOPE2
+	dw ApricornBox         ; APRICORN_BOX
+	dw TypeChart           ; TYPE_CHART
 	assert_table_length NUM_KEY_ITEMS
 
 PokeBallEffect:
@@ -2343,6 +2343,10 @@ IsntTheTimeMessage:
 	ld hl, IsntTheTimeText
 	jr CantUseItemMessage
 
+IsntMyParcelMessage:
+	ld hl, IsntMyParcelText
+	jr CantUseItemMessage
+
 WontHaveAnyEffectMessage:
 	ld hl, WontHaveAnyEffectText
 	; fallthrough
@@ -2373,6 +2377,11 @@ AlreadyInThatBallText:
 IsntTheTimeText:
 	; OAK:  ! This isn't the time to use that!
 	text_far _ItemOakWarningText
+	text_end
+
+IsntMyParcelText:
+	; Best not to open this...
+	text_far _ItemNotMyParcelText
 	text_end
 
 WontHaveAnyEffectText:

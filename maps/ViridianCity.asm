@@ -13,6 +13,8 @@ ViridianCity_MapScriptHeader:
 	warp_event 21,  9, VIRIDIAN_SCHOOL_HOUSE, 1
 
 	def_coord_events
+	coord_event 19,  9, 0, ViridianCityLyingOldManTrigger
+	coord_event 32,  8, 1, ViridianCityGymDoorLockTrigger
 
 	def_bg_events
 	bg_event 17, 17, BGEVENT_JUMPTEXT, ViridianCitySignText
@@ -22,10 +24,11 @@ ViridianCity_MapScriptHeader:
 	bg_event 21, 15, BGEVENT_JUMPTEXT, TrainerHouseSignText
 
 	def_object_events
-	object_event 18,  5, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianCityCoffeeGramps, -1
-	object_event 32,  8, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianCityGrampsNearGym, EVENT_BLUE_IN_CINNABAR
+	object_event 18,  9, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_COMMAND, jumptext, ViridianCityText_GrumpyOldMan, EVENT_GOT_POKEDEX_FROM_OAK
+	object_event 17,  5, SPRITE_GRAMPS, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ViridianCityCatchTutorialScript, EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
+	object_event 17,  9, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityGirlScript, -1
+;	object_event 30,  8, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianCityGrampsNearGym, EVENT_BLUE_IN_CINNABAR
 	object_event 30,  8, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianCityGrampsNearGym, EVENT_VIRIDIAN_GYM_BLUE
-	object_event  6, 23, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ViridianCityDreamEaterFisher, -1
 	object_event 17, 21, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 3, 3, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianCityYoungsterText, -1
 	object_event 31, 23, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianCityYoungster2Text, -1
 	cuttree_event 14,  4, EVENT_VIRIDIAN_CITY_CUT_TREE_1
@@ -35,86 +38,108 @@ ViridianCityFlyPoint:
 	setflag ENGINE_FLYPOINT_VIRIDIAN
 	endcallback
 
-ViridianCityCoffeeGramps:
+ViridianCityLyingOldManTrigger:
+	showtext ViridianCityText_GrumpyOldMan
+	applyonemovement PLAYER, step_down
+	end
+
+ViridianCityGymDoorLockTrigger:
+	readvar VAR_BADGES
+	ifgreater 6, .AllOtherBadges
+	turnobject PLAYER, UP
+	showtext ViridianCityText14
+	applyonemovement PLAYER, jump_step_down
+.AllOtherBadges
+	end
+
+ViridianCityCatchTutorialScript:
 	faceplayer
 	opentext
-	writetext ViridianCityCoffeeGrampsQuestionText
+	writetext ViridianCityText_1920a
 	yesorno
-	iffalse_jumpopenedtext ViridianCityCoffeeGrampsDoubtedText
-	jumpopenedtext ViridianCityCoffeeGrampsBelievedText
+	iftrue_jumpopenedtext ViridianCityText_19214
+	writetext ViridianCityText_1920f
+	waitbutton
+	closetext
+	loadwildmon WEEDLE, 5
+	catchtutorial BATTLETYPE_TUTORIAL
+	opentext
+	writetext ViridianCityText_19219
+	waitbutton
+	closetext
+	end
+
+ViridianCityGirlScript:
+	faceplayer
+	opentext
+	checkevent EVENT_GOT_POKEDEX_FROM_OAK
+	iftrue_jumpopenedtext ViridianCityText_ShoppingGirlText
+	jumpthisopenedtext
+	text "Oh Grandpa! Don't"
+	line "be so mean!"
+	cont "He hasn't had his"
+	cont "coffee yet."
+	done
 
 ViridianCityGrampsNearGym:
 	checkevent EVENT_BLUE_IN_CINNABAR
 	iftrue_jumptextfaceplayer ViridianCityGrampsNearGymBlueReturnedText
 	jumptextfaceplayer ViridianCityGrampsNearGymText
 
-ViridianCityDreamEaterFisher:
-	faceplayer
-	opentext
-	checkevent EVENT_LISTENED_TO_DREAM_EATER_INTRO
-	iftrue ViridianCityTutorDreamEaterScript
-	writetext ViridianCityDreamEaterFisherText
-	waitbutton
-	setevent EVENT_LISTENED_TO_DREAM_EATER_INTRO
-ViridianCityTutorDreamEaterScript:
-	writetext Text_ViridianCityTutorDreamEater
-	waitbutton
-	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
-	writetext Text_ViridianCityTutorQuestion
-	yesorno
-	iffalse .TutorRefused
-	setval DREAM_EATER
-	writetext ClearText
-	special Special_MoveTutor
-	ifequal $0, .TeachMove
-.TutorRefused
-	jumpopenedtext Text_ViridianCityTutorRefused
-
-.NoSilverLeaf
-	jumpopenedtext Text_ViridianCityTutorNoSilverLeaf
-
-.TeachMove
-	takeitem SILVER_LEAF
-	jumpopenedtext Text_ViridianCityTutorTaught
-
-ViridianCityCoffeeGrampsQuestionText:
-	text "Hey, kid! I just"
-	line "had a double shot"
-
-	para "of espresso, and"
-	line "I am wired!"
-
-	para "I need to talk to"
-	line "someone, so you'll"
-	cont "have to do!"
-
-	para "I might not look"
-	line "like much now, but"
-
-	para "I was an expert at"
-	line "catching #mon."
-
-	para "Do you believe me?"
+ViridianCityText_ShoppingGirlText:
+	text "When I go shop in"
+	line "Pewter City, I"
+	cont "have to take the"
+	cont "winding trail in"
+	cont "Viridian Forest."
 	done
 
-ViridianCityCoffeeGrampsBelievedText:
-	text "Good, good. Yes, I"
-	line "was something out"
+ViridianCityText_GrumpyOldMan:
+	text "You can't go"
+	line "through here!"
 
-	para "of the ordinary,"
-	line "let me tell you!"
+	para "This is private"
+	line "property!"
 	done
 
-ViridianCityCoffeeGrampsDoubtedText:
-	text "What? You little"
-	line "whelp!"
+ViridianCityText_1920a:
+	text "Ahh, I've had my"
+	line "coffee now and I"
+	cont "feel great!"
 
-	para "If I were just a"
-	line "bit younger, I'd"
+	para "Sure you can go"
+	line "through!"
 
-	para "show you a thing"
-	line "or two. Humph!"
+	para "Are you in a"
+	line "hurry?"
+	done
+
+ViridianCityText_1920f:
+	text "I see you're using"
+	line "a #dex."
+
+	para "When you catch a"
+	line "#mon, #dex"
+	cont "is automatically"
+	cont "updated."
+
+	para "What? Don't you"
+	line "know how to catch"
+	cont "#mon?"
+
+	para "I'll show you"
+	line "how to then."
+	done
+
+ViridianCityText_19214:
+	text "Time is money…"
+	line "Go along then."
+	done
+
+ViridianCityText_19219:
+	text "First, you need"
+	line "to weaken the"
+	cont "target #mon."
 	done
 
 ViridianCityGrampsNearGymText:
@@ -135,59 +160,6 @@ ViridianCityGrampsNearGymBlueReturnedText:
 
 	para "Good luck to you."
 	line "You'll need it."
-	done
-
-ViridianCityDreamEaterFisherText:
-	text "Yawn!"
-
-	para "I must have dozed"
-	line "off in the sun."
-
-	para "…I had this dream"
-	line "about a Drowzee"
-
-	para "eating my dream."
-	line "And…"
-
-	para "I learned how to"
-	line "eat dreams…"
-
-	para "Ooh, this is too"
-	line "spooky!"
-	cont "But now…"
-	done
-
-Text_ViridianCityTutorDreamEater:
-	text "I can teach your"
-	line "#mon to eat"
-	cont "dreams."
-
-	para "I just want a"
-	line "Silver Leaf in"
-	cont "exchange."
-	done
-
-Text_ViridianCityTutorNoSilverLeaf:
-	text "You don't have any"
-	line "Silver Leaves…"
-	done
-
-Text_ViridianCityTutorQuestion:
-	text "Should I teach"
-	line "your #mon"
-	cont "Dream Eater?"
-	done
-
-Text_ViridianCityTutorRefused:
-	text "OK…"
-	done
-
-Text_ViridianCityTutorTaught:
-	text "Now your #mon"
-	line "knows how to use"
-	cont "Dream Eater…"
-
-	para "…Zzzzz…"
 	done
 
 ViridianCityYoungsterText:
@@ -252,6 +224,11 @@ ViridianCityTrainerTips2Text:
 
 	para "You'll find new and"
 	line "exciting things!"
+	done
+
+ViridianCityText14:
+	text "The Gym's doors"
+	line "are locked…"
 	done
 
 TrainerHouseSignText:

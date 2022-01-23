@@ -48,9 +48,10 @@ PalletTown_ProfOakStopsYouScene1:
 	closetext
 	turnobject PALLETTOWN_OAK, RIGHT
 
-; Catch Pikachu
-;	loadwildmon PIKACHU, 5
-;	catchtutorial BATTLETYPE_TUTORIAL
+	loadwildmon PIKACHU, 5
+	catchtutorial BATTLETYPE_TUTORIAL
+	special DeleteSavedMusic
+	playmusic MUSIC_PROF_OAK
 
 	opentext
 	writetext Text_OakAfterCatchingPikachu
@@ -92,7 +93,10 @@ PalletTown_ProfOakStopsYouScene2:
 	closetext
 	turnobject PALLETTOWN_OAK, LEFT
 
-; Catch Pikachu
+	loadwildmon PIKACHU, 5
+	catchtutorial BATTLETYPE_TUTORIAL
+	special DeleteSavedMusic
+	playmusic MUSIC_PROF_OAK
 
 	opentext
 	writetext Text_OakAfterCatchingPikachu

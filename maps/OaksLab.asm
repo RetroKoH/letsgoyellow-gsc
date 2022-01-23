@@ -343,7 +343,7 @@ OaksLabOakScript:
 	playsound SFX_KEY_ITEM
 	waitsfx
 	promptbutton
-	takekeyitem SHINY_CHARM;OAKS_PARCEL
+	takekeyitem OAKS_PARCEL
 	writetext OaksLabDeliverParcelText2
 	closetext
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -380,7 +380,7 @@ OaksLabOakScript:
 	waitsfx
 	promptbutton
 	writetext OaksLabDreamText
-	verbosegiveitem MASTER_BALL, 255
+	verbosegiveitem MASTER_BALL, 99
 	faceobject OAKSLAB_TRACE, PLAYER
 	writetext OaksLabLeaveItToMeText
 	closetext
@@ -600,9 +600,9 @@ OaksLabDeliverParcelText1:
 	done
 
 OaksLabDeliverParcelText2:
-	text "Ah! These are the"
-	line "custom # Balls"
-	cont "I ordered!"
+	text "Ah! This is the"
+	line "part I needed for"
+	cont "a special device!"
 	cont "Thanks, <PLAYER>!"
 
 	para "By the way, I must"

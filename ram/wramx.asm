@@ -1071,8 +1071,8 @@ wMountMoon1FSceneID:: db
 wMrPokemonsHouseSceneID:: db
 wMystriStageSceneID:: db
 wNewBarkTownSceneID:: db
-wOlivineCitySceneID:: db
-wOlivinePortSceneID:: db
+wOaksLabSceneID:: db
+wPalletTownSceneID:: db
 wPokecenter2FSceneID:: db
 wPokemonLeagueGateSceneID:: db
 wPowerPlantSceneID:: db

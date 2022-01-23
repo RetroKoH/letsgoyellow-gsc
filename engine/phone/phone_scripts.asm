@@ -5,15 +5,7 @@ UnusedPhoneScript:
 ; Mom
 
 MomPhoneScript:
-	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	iftrue .bcec5
-	checkevent EVENT_LEARNED_TO_CATCH_POKEMON
-	iftrue MomPhoneLectureScript
-	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
-	iftrue MomPhoneNoGymQuestScript
-	checkevent EVENT_GOT_A_POKEMON_FROM_ELM
-	iftrue MomPhoneNoPokedexScript
-	sjump MomPhoneNoPokemonScript
+	sjump MomPhoneLectureScript
 
 .bcec5
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_8
@@ -377,20 +369,7 @@ LyraPhoneScript2:
 .lyrasegg
 	farwritetext LyraPhoneLyrasEggIntroText
 	promptbutton
-	checkevent EVENT_GOT_TOTODILE_FROM_ELM
-	iftrue .lyrasegg_totodile
-	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
-	iftrue .lyrasegg_chikorita
-	farwritetext LyraPhoneLyrasEggChikoritaText
-	sjump .lyrasegg_end
-
-.lyrasegg_totodile
-	farwritetext LyraPhoneLyrasEggCyndaquilText
-	sjump .lyrasegg_end
-
-.lyrasegg_chikorita:
 	farwritetext LyraPhoneLyrasEggTotodileText
-.lyrasegg_end
 	promptbutton
 	farwritetext LyraPhoneLyrasEggEndText
 	setevent EVENT_LYRA_GAVE_AWAY_EGG

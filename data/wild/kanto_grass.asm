@@ -311,85 +311,85 @@
 	def_grass_wildmons ROUTE_1
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	wildmon 56, PIDGEOTTO
-	wildmon 56, RATICATE
-	wildmon 57, FURRET
-	wildmon 57, PIDGEOTTO
-	wildmon 59, FURRET
-	wildmon 60, PIDGEOT
-	wildmon 60, PIDGEOT
+	wildmon 3, PIDGEY
+	wildmon 3, RATTATA
+	wildmon 3, RATTATA
+	wildmon 2, RATTATA
+	wildmon 2, PIDGEY
+	wildmon 4, PIDGEY
+	wildmon 6, PIDGEY
 	; day
-	wildmon 56, PIDGEOTTO
-	wildmon 56, RATICATE
-	wildmon 57, FURRET
-	wildmon 57, PIDGEOTTO
-	wildmon 59, FURRET
-	wildmon 60, PIDGEOT
-	wildmon 60, PIDGEOT
+	wildmon 3, PIDGEY
+	wildmon 3, RATTATA
+	wildmon 3, RATTATA
+	wildmon 2, RATTATA
+	wildmon 2, PIDGEY
+	wildmon 4, PIDGEY
+	wildmon 4, BELLSPROUT
 	; nite
-	wildmon 56, NOCTOWL
-	wildmon 56, RATICATE
-	wildmon 57, RATICATE
-	wildmon 57, NOCTOWL
-	wildmon 59, RATICATE
-	wildmon 60, NOCTOWL
-	wildmon 60, NOCTOWL
+	wildmon 3, HOOTHOOT
+	wildmon 3, RATTATA
+	wildmon 3, RATTATA
+	wildmon 2, RATTATA
+	wildmon 2, HOOTHOOT
+	wildmon 4, HOOTHOOT
+	wildmon 4, ODDISH
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_2_NORTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	wildmon 55, BUTTERFREE
-	wildmon 54, LEDIAN
-	wildmon 57, PIDGEOTTO
-	wildmon 57, BUTTERFREE
-	wildmon 56, LEDIAN
-	wildmon 58, PIDGEOTTO
-	wildmon 59, PIKACHU
+	wildmon 4, RATTATA
+	wildmon 4, PIDGEY
+	wildmon 6, NIDORAN_M
+	wildmon 6, NIDORAN_F
+	wildmon 5, RATTATA
+	wildmon 5, PIDGEY
+	wildmon 6, PIDGEY
 	; day
-	wildmon 55, BUTTERFREE
-	wildmon 54, PIDGEOTTO
-	wildmon 57, PIDGEOTTO
-	wildmon 57, BUTTERFREE
-	wildmon 56, PIDGEOTTO
-	wildmon 58, PIDGEOTTO
-	wildmon 59, PIKACHU
+	wildmon 4, RATTATA
+	wildmon 4, PIDGEY
+	wildmon 6, NIDORAN_M
+	wildmon 6, NIDORAN_F
+	wildmon 5, RATTATA
+	wildmon 5, PIDGEY
+	wildmon 5, BELLSPROUT
 	; nite
-	wildmon 55, NOCTOWL
-	wildmon 54, ARIADOS
-	wildmon 57, NOCTOWL
-	wildmon 57, NOCTOWL
-	wildmon 56, ARIADOS
-	wildmon 58, NOCTOWL
-	wildmon 59, NOCTOWL
+	wildmon 4, RATTATA
+	wildmon 4, PIDGEY
+	wildmon 6, NIDORAN_M
+	wildmon 6, NIDORAN_F
+	wildmon 5, RATTATA
+	wildmon 5, PIDGEY
+	wildmon 5, ODDISH
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_2_SOUTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	wildmon 55, BUTTERFREE
-	wildmon 54, LEDIAN
-	wildmon 57, PIDGEOTTO
-	wildmon 57, BUTTERFREE
-	wildmon 56, LEDIAN
-	wildmon 58, PIDGEOTTO
-	wildmon 59, PIKACHU
+	wildmon 4, RATTATA
+	wildmon 4, PIDGEY
+	wildmon 6, NIDORAN_M
+	wildmon 6, NIDORAN_F
+	wildmon 5, RATTATA
+	wildmon 5, PIDGEY
+	wildmon 6, PIDGEY
 	; day
-	wildmon 55, BUTTERFREE
-	wildmon 54, PIDGEOTTO
-	wildmon 57, PIDGEOTTO
-	wildmon 57, BUTTERFREE
-	wildmon 56, PIDGEOTTO
-	wildmon 58, PIDGEOTTO
-	wildmon 59, PIKACHU
+	wildmon 4, RATTATA
+	wildmon 4, PIDGEY
+	wildmon 6, NIDORAN_M
+	wildmon 6, NIDORAN_F
+	wildmon 5, RATTATA
+	wildmon 5, PIDGEY
+	wildmon 5, BELLSPROUT
 	; nite
-	wildmon 55, NOCTOWL
-	wildmon 54, ARIADOS
-	wildmon 57, NOCTOWL
-	wildmon 57, NOCTOWL
-	wildmon 56, ARIADOS
-	wildmon 58, NOCTOWL
-	wildmon 59, NOCTOWL
+	wildmon 4, RATTATA
+	wildmon 4, PIDGEY
+	wildmon 6, NIDORAN_M
+	wildmon 6, NIDORAN_F
+	wildmon 5, RATTATA
+	wildmon 5, PIDGEY
+	wildmon 5, ODDISH
 	end_grass_wildmons
 
 	def_grass_wildmons VIRIDIAN_FOREST

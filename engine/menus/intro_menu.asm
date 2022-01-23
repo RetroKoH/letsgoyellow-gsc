@@ -1062,7 +1062,6 @@ RunTitleScreen:
 	bit 7, a
 	jr nz, .done_title
 	call TitleScreenScene
-	farcall SuicuneFrameIterator
 	call DelayFrame
 	and a
 	ret
@@ -1093,7 +1092,7 @@ TitleScreenEntrance:
 ; Lay out a base (all lines scrolling together).
 	ld e, a
 	ld hl, wLYOverrides
-	ld bc, 8 * 10 ; logo height
+	ld bc, 8 * 11 ; logo height
 	rst ByteFill
 
 ; Reversed signage for every other line's position.
@@ -1102,7 +1101,7 @@ TitleScreenEntrance:
 	cpl
 	inc a
 
-	ld b, 8 * 10 / 2 ; logo height / 2
+	ld b, 8 * 11 / 2 ; logo height / 2
 	ld hl, wLYOverrides + 1
 .loop
 	ld [hli], a
@@ -1110,7 +1109,8 @@ TitleScreenEntrance:
 	dec b
 	jr nz, .loop
 
-	farjp AnimateTitleCrystal
+	;farjp AnimateTitleLGY
+	ret
 
 .done
 ; Next scene

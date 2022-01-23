@@ -22,9 +22,19 @@ _TitleScreen:
 	ld a, 1
 	ldh [rVBK], a
 
-; Decompress running Suicune gfx
-	ld hl, TitleSuicuneGFX
+; Decompress Pikachu/Eevee gfx
+	ld hl, TitlePikachuGFX
 	ld de, vTiles1
+	call Decompress
+
+; Decompress LGY logo
+	ld hl, TitleLetsGoGFX
+	ld de, vTiles1+$400
+	call Decompress
+
+; Decompress LGY logo
+	ld hl, TitleLGYGFX
+	ld de, vTiles1+$500
 	call Decompress
 
 ; Clear screen palettes
@@ -47,43 +57,53 @@ _TitleScreen:
 
 ; Apply logo gradient:
 
-; lines 3-4
-	hlbgcoord 0, 3
+; lines 1-2
+	hlbgcoord 0, 1
 	ld bc, 2 * BG_MAP_WIDTH
 	ld a, 2
+	rst ByteFill
+; line 3
+	hlbgcoord 0, 3
+	ld bc, BG_MAP_WIDTH
+	ld a, 3
+	rst ByteFill
+; line 4
+	hlbgcoord 0, 4
+	ld bc, BG_MAP_WIDTH
+	ld a, 4
 	rst ByteFill
 ; line 5
 	hlbgcoord 0, 5
 	ld bc, BG_MAP_WIDTH
-	ld a, 3
-	rst ByteFill
-; line 6
-	hlbgcoord 0, 6
-	ld bc, BG_MAP_WIDTH
-	ld a, 4
-	rst ByteFill
-; line 7
-	hlbgcoord 0, 7
-	ld bc, BG_MAP_WIDTH
 	ld a, 5
 	rst ByteFill
-; lines 8-9
-	hlbgcoord 0, 8
+; lines 6-7
+	hlbgcoord 0, 6
 	ld bc, 2 * BG_MAP_WIDTH
 	ld a, 6
 	rst ByteFill
 
-; 'CRYSTAL VERSION'
-	hlbgcoord 5, 9
-	ld bc, NAME_LENGTH ; length of version text
-	ld a, 1
-	rst ByteFill
-
-; Suicune gfx
-	hlbgcoord 0, 12
-	ld bc, 6 * BG_MAP_WIDTH ; the rest of the screen
+; 'Let's Go
+	hlbgcoord 6, 7
+	ld bc, 8 ; start the gfx
 	ld a, 8
 	rst ByteFill
+
+; Pikachu/Eevee gfx
+	hlbgcoord 0, 8
+	ld bc, 6 * BG_MAP_WIDTH ; start the gfx
+	ld a, 8
+	rst ByteFill
+
+	hlbgcoord 0, 14
+	ld bc, BG_MAP_WIDTH ; Give Pikachu red cheeks
+	ld a, 9
+	call ByteFill
+
+	hlbgcoord 0, 15
+	ld bc, 3 * BG_MAP_WIDTH ; the rest of the screen
+	ld a, 8
+	call ByteFill
 
 ; Back to VRAM bank 0
 	xor a
@@ -94,11 +114,6 @@ _TitleScreen:
 	ld de, vTiles1
 	call Decompress
 
-; Decompress background crystal
-	ld hl, TitleCrystalGFX
-	ld de, vTiles0
-	call Decompress
-
 ; Clear screen tiles
 	hlbgcoord 0, 0
 	ld bc, 64 * BG_MAP_WIDTH
@@ -106,30 +121,37 @@ _TitleScreen:
 	rst ByteFill
 
 ; Draw Pokemon logo
-	hlcoord 0, 3
+	hlcoord 0, 1
 	lb bc, 7, SCREEN_WIDTH
 	lb de, $80, SCREEN_WIDTH
 	call DrawTitleGraphic
 
+; Draw Pikachu / Eevee
+	hlcoord 5, 12
+	lb bc, 6, 10
+	lb de, $80, 10
+	call DrawTitleGraphic
+
+; Draw YELLOW text
+	hlcoord 4, 8
+	lb bc, 4, 13
+	lb de, $D0, 13
+	call DrawTitleGraphic
+
+; Draw Let's Go
+	hlcoord 6, 7
+	lb bc, 2, 8
+	lb de, $C0, 8
+	call DrawTitleGraphic
+
 ; Draw copyright text
-	hlbgcoord 4, 0, vBGMap1
-	lb bc, 1, 13
+	hlbgcoord 3, 0, vBGMap1
+	lb bc, 1, 14
 	lb de, $0c, 0
 	call DrawTitleGraphic
 
-IF DEF(FAITHFUL)
-	hlbgcoord 17, 0, vBGMap1
-	lb bc, 1, 1
-	lb de, $19, 0
-	call DrawTitleGraphic
-endc
-
-; Initialize running Suicune?
-	ld d, $0
-	call LoadSuicuneFrame
-
-; Initialize background crystal
-	call InitializeBackground
+; Initialize LG Yellow Title
+;	call InitializeBackground
 
 ; Save WRAM bank
 	ldh a, [rSVBK]
@@ -203,56 +225,56 @@ endc
 	ld de, SFX_TITLE_SCREEN_ENTRANCE
 	jmp PlaySFX
 
-SuicuneFrameIterator:
-	ld hl, wBGPals1 palette 0 + 2
-	ld a, [hl]
-	ld c, a
-	inc [hl]
+;SuicuneFrameIterator:
+;	ld hl, wBGPals1 palette 0 + 2
+;	ld a, [hl]
+;	ld c, a
+;	inc [hl]
 
 ; Only do this once every eight frames
-	and (1 << 3) - 1
-	ret nz
+;	and (1 << 3) - 1
+;	ret nz
 
-	ld a, c
-	and 3 << 3
-	sla a
-	swap a
-	ld e, a
-	ld d, $0
-	ld hl, .Frames
-	add hl, de
-	ld d, [hl]
-	xor a
-	ldh [hBGMapMode], a
-	call LoadSuicuneFrame
-	ld a, $1
-	ldh [hBGMapMode], a
-	ldh [hBGMapHalf], a
-	ret
+;	ld a, c
+;	and 3 << 3
+;	sla a
+;	swap a
+;	ld e, a
+;	ld d, $0
+;	ld hl, .Frames
+;	add hl, de
+;	ld d, [hl]
+;	xor a
+;	ld [hBGMapMode], a
+;	call LoadSuicuneFrame
+;	ld a, $1
+;	ld [hBGMapMode], a
+;	ld [hBGMapHalf], a
+;	ret
 
-.Frames:
-	db $80 ; vTiles4 tile $00
-	db $88 ; vTiles4 tile $08
-	db $00 ; vTiles5 tile $00
-	db $08 ; vTiles5 tile $08
+;.Frames:
+;	db $80 ; vTiles4 tile $00
+;	db $88 ; vTiles4 tile $08
+;	db $00 ; vTiles5 tile $00
+;	db $08 ; vTiles5 tile $08
 
-LoadSuicuneFrame:
-	hlcoord 6, 12
-	ld b, 6
-.bgrows
-	ld c, 8
-.col
-	ld a, d
-	ld [hli], a
-	inc d
-	dec c
-	jr nz, .col
+;LoadSuicuneFrame:
+;	hlcoord 6, 12
+;	ld b, 6
+;.bgrows
+;	ld c, 8
+;.col
+;	ld a, d
+;	ld [hli], a
+;	inc d
+;	dec c
+;	jr nz, .col
 ; "add hl, SCREEN_WIDTH - 8"
 ; 6 bytes, 12 cycles
-	push de
-	ld de, SCREEN_WIDTH - 8
-	add hl, de
-	pop de
+;	push de
+;	ld de, SCREEN_WIDTH - 8
+;	add hl, de
+;	pop de
 ;; 8 bytes, 8 cycles
 ;	ld a, SCREEN_WIDTH - 8
 ;	add l
@@ -260,12 +282,12 @@ LoadSuicuneFrame:
 ;	ld a, 0
 ;	adc h
 ;	ld h, a
-	ld a, 8
-	add d
-	ld d, a
-	dec b
-	jr nz, .bgrows
-	ret
+;	ld a, 8
+;	add d
+;	ld d, a
+;	dec b
+;	jr nz, .bgrows
+;	ret
 
 DrawTitleGraphic:
 ; input:
@@ -299,7 +321,7 @@ DrawTitleGraphic:
 InitializeBackground:
 	ld hl, wVirtualOAM
 	lb de, -$22, $0
-	ld c, 5
+	ld c, 12
 .loop
 	push bc
 	call .InitColumn
@@ -312,7 +334,7 @@ InitializeBackground:
 	ret
 
 .InitColumn:
-	lb bc, $40, $6
+	lb bc, $40, $4
 .loop2
 	ld a, d
 	ld [hli], a
@@ -330,7 +352,7 @@ InitializeBackground:
 	jr nz, .loop2
 	ret
 
-AnimateTitleCrystal:
+AnimateTitleLGY:
 ; Move the title screen crystal downward until it's fully visible
 
 ; Stop at y=6
@@ -354,69 +376,75 @@ AnimateTitleCrystal:
 
 	ret
 
-TitleSuicuneGFX:
-INCBIN "gfx/title/suicune.2bpp.lz"
+TitlePikachuGFX:
+INCBIN "gfx/title/pikaeeveesilhouette.2bpp.lz"
 
 TitleLogoGFX:
-INCBIN "gfx/title/logo_version.2bpp.lz"
+INCBIN "gfx/title/logo.2bpp.lz"
 
-TitleCrystalGFX:
-INCBIN "gfx/title/crystal.2bpp.lz"
+TitleLetsGoGFX:
+INCBIN "gfx/title/letsgo.2bpp.lz"
+
+TitleLGYGFX:
+INCBIN "gfx/title/lgyellow.2bpp.lz"
 
 TitleScreenPalettes:
 ; BG
 if !DEF(MONOCHROME)
-	RGB 00, 00, 00
-	RGB 19, 00, 00
-	RGB 15, 08, 31
-	RGB 15, 08, 31
-
-	RGB 00, 00, 00
+; 0. Background/Pikachu/Eevee text
 	RGB 31, 31, 31
-	RGB 15, 16, 31
-	RGB 31, 01, 13
-
-	RGB 00, 00, 00
-	RGB 07, 07, 07
+	RGB 29, 26, 05
+	RGB 17, 10, 08
+	RGB 02, 02, 02
+; 1. Pikachu/Eevee (w/ Pika cheeks)
+	RGB 31, 31, 31
+	RGB 29, 26, 05
+	RGB 17, 10, 08
+	RGB 26, 06, 00
+; 2. POKEMON LOGO Gradient (Top layer)
+	RGB 31, 31, 31
+	RGB 02, 02, 02
 	RGB 31, 31, 31
 	RGB 02, 03, 30
-
-	RGB 00, 00, 00
-	RGB 13, 13, 13
+; 3. POKEMON LOGO Gradient (Second layer)
+	RGB 31, 31, 31
+	RGB 02, 02, 02
 	RGB 31, 31, 18
 	RGB 02, 03, 30
-
-	RGB 00, 00, 00
-	RGB 19, 19, 19
+; 4. POKEMON LOGO Gradient (Third layer)
+	RGB 31, 31, 31
+	RGB 02, 02, 02
 	RGB 29, 28, 12
 	RGB 02, 03, 30
-
-	RGB 00, 00, 00
-	RGB 25, 25, 25
+; 5. POKEMON LOGO Gradient (Fourth layer)
+	RGB 31, 31, 31
+	RGB 02, 02, 02
 	RGB 28, 25, 06
 	RGB 02, 03, 30
-
-	RGB 00, 00, 00
+; 6. POKEMON LOGO Gradient (Fifth layer)
 	RGB 31, 31, 31
+	RGB 02, 02, 02
 	RGB 26, 21, 00
 	RGB 02, 03, 30
-
-	RGB 00, 00, 00
-	RGB 11, 11, 19
+; 7. Copyright Text
 	RGB 31, 31, 31
+	RGB 07, 07, 07
+	RGB 02, 03, 03
 	RGB 00, 00, 00
-
-; OBJ
-	RGB 00, 00, 00
-	RGB 10, 00, 15
-	RGB 17, 05, 22
-	RGB 19, 09, 31
-
+; -----------------------------------------------------------------------
+; OBJ - LET'S GO YELLOW logo
 	RGB 31, 31, 31
-	RGB 00, 00, 00
-	RGB 00, 00, 00
+	RGB 29, 26, 05
+	RGB 17, 10, 08
+	RGB 02, 02, 02
+
+; PAL_REDBAR for Sprite pokeball
+	RGB 31, 31, 31
+	RGB 29, 25, 15
+	RGB 26, 10, 06
 	RGB 00, 00, 00
 
+; Unused Palettes
 	RGB 31, 31, 31
 	RGB 00, 00, 00
 	RGB 00, 00, 00

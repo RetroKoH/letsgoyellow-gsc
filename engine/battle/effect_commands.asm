@@ -3379,10 +3379,10 @@ UnevolvedEviolite:
 	; bc = index
 	call GetSpeciesAndFormIndex
 	dec bc
-	ld hl, EvosAttacksPointers
+	ld hl, EvolutionPointers
 	add hl, bc
 	add hl, bc
-	ld a, BANK(EvosAttacksPointers)
+	ld a, BANK(EvolutionPointers)
 	call GetFarWord
 	ld a, BANK(EvosAttacks)
 	call GetFarByte

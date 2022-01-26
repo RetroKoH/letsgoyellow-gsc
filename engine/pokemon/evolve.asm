@@ -716,7 +716,7 @@ GetPreEvolution:
 
 	ld c, 0
 .loop ; For each Pokemon...
-	ld hl, EvosAttacksPointers
+	ld hl, EvolutionPointers
 	; this does not need to use the extended GetSpeciesAndFormIndex
 	ld b, 0
 	add hl, bc
@@ -775,7 +775,7 @@ GetEvosAttacksPointer:
 	; bc = index
 	call GetSpeciesAndFormIndex
 	dec bc
-	ld hl, EvosAttacksPointers
+	ld hl, LearnsetPointers
 	add hl, bc
 	add hl, bc
 	ld a, [hli]

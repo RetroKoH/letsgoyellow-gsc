@@ -219,11 +219,11 @@
 	const MISDREAVUS ; c4
 	const MISMAGIUS  ; c5
 	const UNOWN      ; c6
-	const SIRFETCH_D ; c7 WOBBUFFET
-	const MR__RIME   ; c8 GIRAFARIG
+	const SIRFETCH_D ; c7
+	const MR__RIME   ; c8
 	const PINECO     ; c9
 	const FORRETRESS ; ca
-	const PERRSERKER ; cb DUNSPARCE
+	const PERRSERKER ; cb
 	const GLIGAR     ; cc
 	const GLISCOR    ; cd
 	const STEELIX    ; ce

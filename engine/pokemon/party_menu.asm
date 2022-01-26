@@ -882,7 +882,7 @@ PlacePartyMonEvoStoneCompatibility:
 	; bc = index
 	call GetSpeciesAndFormIndex
 	dec bc
-	ld hl, EvosAttacksPointers
+	ld hl, EvolutionPointers
 	add hl, bc
 	add hl, bc
 	call .DetermineCompatibility
@@ -901,7 +901,7 @@ PlacePartyMonEvoStoneCompatibility:
 
 .DetermineCompatibility:
 	ld de, wStringBuffer1
-	ld a, BANK(EvosAttacksPointers)
+	ld a, BANK(EvolutionPointers)
 	ld bc, 2
 	call FarCopyBytes
 	ld hl, wStringBuffer1

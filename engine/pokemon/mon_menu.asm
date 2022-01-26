@@ -1321,10 +1321,10 @@ GetForgottenMoves::
 	; bc = index
 	call GetSpeciesAndFormIndex
 	dec bc
-	ld hl, EvosAttacksPointers
+	ld hl, LearnsetPointers
 	add hl, bc
 	add hl, bc
-	ld a, BANK(EvosAttacksPointers)
+	ld a, BANK(LearnsetPointers)
 	call GetFarWord
 .skip_evos
 	ld a, BANK(EvosAttacks)

@@ -20,8 +20,8 @@ BackPicPointers::
 	dba PidgeotBackpic
 	dba RattataPlainBackpic
 	dba RaticatePlainBackpic
-	dba MarillBackpic
-	dba AzumarillBackpic
+	dba SpearowBackpic
+	dba FearowBackpic
 	dba EkansBackpic
 	dba ArbokJohtoBackpic
 	dba PikachuPlainBackpic
@@ -164,8 +164,8 @@ BackPicPointers::
 	dba FurretBackpic
 	dba HoothootBackpic
 	dba NoctowlBackpic
-	dba LedybaBackpic
-	dba LedianBackpic
+	dba GoldeenBackpic
+	dba SeakingBackpic
 	dba SpinarakBackpic
 	dba AriadosBackpic
 	dba CrobatBackpic
@@ -182,7 +182,7 @@ BackPicPointers::
 	dba FlaaffyBackpic
 	dba AmpharosBackpic
 	dba BellossomBackpic
-	dba SudowoodoBackpic
+	dba LickilickyBackpic
 	dba PolitoedBackpic
 	dba SunkernBackpic
 	dba SunfloraBackpic
@@ -198,11 +198,11 @@ BackPicPointers::
 	dba MisdreavusBackpic
 	dba MismagiusBackpic
 	dba UnownABackpic
-	dba WobbuffetBackpic
-	dba GirafarigBackpic
+	dba SirfetchDBackpic
+	dba MrRimeBackpic
 	dba PinecoBackpic
 	dba ForretressBackpic
-	dba DunsparceBackpic
+	dba PerrserkerBackpic
 	dba GligarBackpic
 	dba GliscorBackpic
 	dba SteelixBackpic
@@ -221,11 +221,11 @@ BackPicPointers::
 	dba SwinubBackpic
 	dba PiloswineBackpic
 	dba MamoswineBackpic
-	dba CorsolaBackpic
-	dba RemoraidBackpic
-	dba OctilleryBackpic
-	dba MantineBackpic
-	dba SkarmoryBackpic
+	dba HappinyBackpic
+	dba SmoochumBackpic
+	dba MimeJrBackpic
+	dba LickitungBackpic
+	dba IgglybuffBackpic
 	dba HoundourBackpic
 	dba HoundoomBackpic
 	dba KingdraBackpic
@@ -233,7 +233,7 @@ BackPicPointers::
 	dba DonphanBackpic
 	dba Porygon2Backpic
 	dba PorygonZBackpic
-	dba SmeargleBackpic
+	dba CleffaBackpic
 	dba TyrogueBackpic
 	dba HitmontopBackpic
 	dba ElekidBackpic

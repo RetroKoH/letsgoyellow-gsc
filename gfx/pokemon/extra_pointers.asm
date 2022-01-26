@@ -20,8 +20,8 @@ AnimationExtraPointers:
 	dw PidgeotAnimationExtra
 	dw RattataPlainAnimationExtra
 	dw RaticatePlainAnimationExtra
-	dw MarillAnimationExtra
-	dw AzumarillAnimationExtra
+	dw SpearowAnimationExtra
+	dw FearowAnimationExtra
 	dw EkansAnimationExtra
 	dw ArbokJohtoAnimationExtra
 	dw PikachuPlainAnimationExtra
@@ -164,8 +164,8 @@ AnimationExtraPointers:
 	dw FurretAnimationExtra
 	dw HoothootAnimationExtra
 	dw NoctowlAnimationExtra
-	dw LedybaAnimationExtra
-	dw LedianAnimationExtra
+	dw GoldeenAnimationExtra
+	dw SeakingAnimationExtra
 	dw SpinarakAnimationExtra
 	dw AriadosAnimationExtra
 	dw CrobatAnimationExtra
@@ -182,7 +182,7 @@ AnimationExtraPointers:
 	dw FlaaffyAnimationExtra
 	dw AmpharosAnimationExtra
 	dw BellossomAnimationExtra
-	dw SudowoodoAnimationExtra
+	dw LickilickyAnimationExtra
 	dw PolitoedAnimationExtra
 	dw SunkernAnimationExtra
 	dw SunfloraAnimationExtra
@@ -198,11 +198,11 @@ AnimationExtraPointers:
 	dw MisdreavusAnimationExtra
 	dw MismagiusAnimationExtra
 	dw UnownAAnimationExtra
-	dw WobbuffetAnimationExtra
-	dw GirafarigAnimationExtra
+	dw SirfetchDAnimationExtra
+	dw MrRimeAnimationExtra
 	dw PinecoAnimationExtra
 	dw ForretressAnimationExtra
-	dw DunsparceAnimationExtra
+	dw PerrserkerAnimationExtra
 	dw GligarAnimationExtra
 	dw GliscorAnimationExtra
 	dw SteelixAnimationExtra
@@ -221,11 +221,11 @@ AnimationExtraPointers:
 	dw SwinubAnimationExtra
 	dw PiloswineAnimationExtra
 	dw MamoswineAnimationExtra
-	dw CorsolaAnimationExtra
-	dw RemoraidAnimationExtra
-	dw OctilleryAnimationExtra
-	dw MantineAnimationExtra
-	dw SkarmoryAnimationExtra
+	dw HappinyAnimationExtra
+	dw SmoochumAnimationExtra
+	dw MimeJrAnimationExtra
+	dw LickitungAnimationExtra
+	dw IgglybuffAnimationExtra
 	dw HoundourAnimationExtra
 	dw HoundoomAnimationExtra
 	dw KingdraAnimationExtra
@@ -233,7 +233,7 @@ AnimationExtraPointers:
 	dw DonphanAnimationExtra
 	dw Porygon2AnimationExtra
 	dw PorygonZAnimationExtra
-	dw SmeargleAnimationExtra
+	dw CleffaAnimationExtra
 	dw TyrogueAnimationExtra
 	dw HitmontopAnimationExtra
 	dw ElekidAnimationExtra

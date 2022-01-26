@@ -20,8 +20,8 @@ EvolutionMoves::
 	db NO_MOVE      ; PIDGEOT
 	db NO_MOVE      ; RATTATA
 	db SCARY_FACE   ; RATICATE
-	db NO_MOVE      ; MARILL
-	db NO_MOVE      ; AZUMARILL
+	db NO_MOVE      ; SPEAROW
+	db NO_MOVE      ; FEAROW
 	db NO_MOVE      ; EKANS
 	db CRUNCH       ; ARBOK
 	db NO_MOVE      ; PIKACHU
@@ -164,8 +164,8 @@ EvolutionMoves::
 	db AGILITY      ; FURRET
 	db NO_MOVE      ; HOOTHOOT
 	db NO_MOVE      ; NOCTOWL
-	db NO_MOVE      ; LEDYBA
-	db SWORDS_DANCE ; LEDIAN
+	db NO_MOVE      ; GOLDEEN
+	db SWORDS_DANCE ; SEAKING
 	db NO_MOVE      ; SPINARAK
 	db BUG_BITE     ; ARIADOS
 	db X_SCISSOR    ; CROBAT
@@ -182,14 +182,10 @@ EvolutionMoves::
 	db NO_MOVE      ; FLAAFFY
 	db THUNDERPUNCH ; AMPHAROS
 	db PETAL_DANCE  ; BELLOSSOM
-	db NO_MOVE      ; SUDOWOODO
+	db NO_MOVE      ; LICKILICKY
 	db GIGA_DRAIN   ; POLITOED
 	db NO_MOVE      ; SUNKERN
-if DEF(FAITHFUL)
 	db NO_MOVE      ; SUNFLORA
-else
-	db EMBER        ; SUNFLORA
-endc
 	db NO_MOVE      ; YANMA
 	db DRAGONBREATH ; YANMEGA
 	db NO_MOVE      ; WOOPER
@@ -202,11 +198,11 @@ endc
 	db NO_MOVE      ; MISDREAVUS
 	db DAZZLINGLEAM ; MISMAGIUS
 	db NO_MOVE      ; UNOWN
-	db NO_MOVE      ; WOBBUFFET
-	db NO_MOVE      ; GIRAFARIG
+	db NO_MOVE      ; SIRFETCH_D
+	db NO_MOVE      ; MR__RIME
 	db NO_MOVE      ; PINECO
 	db FLASH_CANNON ; FORRETRESS
-	db NO_MOVE      ; DUNSPARCE
+	db NO_MOVE      ; PERRSERKER
 	db NO_MOVE      ; GLIGAR
 	db NO_MOVE      ; GLISCOR
 	db IRON_TAIL    ; STEELIX
@@ -225,11 +221,11 @@ endc
 	db NO_MOVE      ; SWINUB
 	db FURY_STRIKES ; PILOSWINE
 	db NO_MOVE      ; MAMOSWINE
-	db NO_MOVE      ; CORSOLA
-	db NO_MOVE      ; REMORAID
-	db OCTAZOOKA    ; OCTILLERY
-	db NO_MOVE      ; MANTINE
-	db NO_MOVE      ; SKARMORY
+	db NO_MOVE      ; HAPPINY
+	db NO_MOVE      ; SMOOCHUM
+	db OCTAZOOKA    ; MIME_JR_
+	db NO_MOVE      ; LICKITUNG
+	db NO_MOVE      ; IGGLYBUFF
 	db NO_MOVE      ; HOUNDOUR
 	db NO_MOVE      ; HOUNDOOM
 	db DRAGONBREATH ; KINGDRA
@@ -237,7 +233,7 @@ endc
 	db FURY_STRIKES ; DONPHAN
 	db NO_MOVE      ; PORYGON2
 	db NASTY_PLOT   ; PORYGON_Z
-	db NO_MOVE      ; SMEARGLE
+	db NO_MOVE      ; CLEFFA
 	db NO_MOVE      ; TYROGUE
 	db LOW_KICK     ; HITMONTOP
 	db NO_MOVE      ; ELEKID

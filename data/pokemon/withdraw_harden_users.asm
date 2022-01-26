@@ -31,7 +31,6 @@ HardenUsers:
 	db GLISCOR
 	db SLUGMA
 	db MAGCARGO
-	db CORSOLA
 	db PUPITAR
 	db TYRANITAR
 	db -1

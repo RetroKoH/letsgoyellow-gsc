@@ -188,7 +188,7 @@ endc
 	ld bc, wColorVaryDVs
 
 	ld a, [wColorVarySpecies]
-	cp SMEARGLE
+	cp DITTO ; Will remove later.
 	jr z, .Smeargle
 
 ;;; LiteRed ~ HPDV, aka, rrrrr ~ hhhh

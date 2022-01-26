@@ -101,7 +101,7 @@ ENDM
 	deco  DIPLOMA
 	deco  PIKACHU_POSTER
 	deco  CLEFAIRY_POSTER
-	deco  MARILL_POSTER
+	deco  EEVEE_POSTER
 ; FindOwnedConsoles.consoles values (see engine/overworld/decorations.asm)
 	const CONSOLES
 	deco  SNES
@@ -132,14 +132,13 @@ ENDM
 	deco  MAGIKARP_DOLL
 	deco  ODDISH_DOLL
 	deco  GENGAR_DOLL
-	deco  OCTILLERY_DOLL
+	deco  DEWGONG_DOLL
 	deco  DITTO_DOLL
 	deco  VOLTORB_DOLL
 	deco  ABRA_DOLL
 	deco  UNOWN_DOLL
 	deco  GEODUDE_DOLL
 	deco  PINECO_DOLL
-	deco  MARILL_DOLL
 	deco  TEDDIURSA_DOLL
 	deco  MEOWTH_DOLL
 	deco  VULPIX_DOLL

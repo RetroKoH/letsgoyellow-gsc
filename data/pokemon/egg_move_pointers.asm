@@ -20,7 +20,7 @@ EggMovePointers::
 	dw NoEggMoves
 	dw RattataPlainEggMoves
 	dw NoEggMoves
-	dw MarillEggMoves
+	dw SpearowEggMoves
 	dw NoEggMoves
 	dw EkansEggMoves
 	dw NoEggMoves
@@ -164,7 +164,7 @@ EggMovePointers::
 	dw NoEggMoves
 	dw HoothootEggMoves
 	dw NoEggMoves
-	dw LedybaEggMoves
+	dw GoldeenEggMoves
 	dw NoEggMoves
 	dw SpinarakEggMoves
 	dw NoEggMoves
@@ -182,7 +182,7 @@ EggMovePointers::
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw SudowoodoEggMoves
+	dw NoEggMoves
 	dw NoEggMoves
 	dw SunkernEggMoves
 	dw NoEggMoves
@@ -198,11 +198,11 @@ EggMovePointers::
 	dw MisdreavusEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw WobbuffetEggMoves
-	dw GirafarigEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
 	dw PinecoEggMoves
 	dw NoEggMoves
-	dw DunsparceEggMoves
+	dw NoEggMoves
 	dw GligarEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
@@ -221,11 +221,11 @@ EggMovePointers::
 	dw SwinubEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw CorsolaEggMoves
-	dw RemoraidEggMoves
 	dw NoEggMoves
-	dw MantineEggMoves
-	dw SkarmoryEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw LickitungEggMoves
+	dw NoEggMoves
 	dw HoundourEggMoves
 	dw NoEggMoves
 	dw NoEggMoves

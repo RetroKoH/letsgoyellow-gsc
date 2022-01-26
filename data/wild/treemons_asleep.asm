@@ -10,7 +10,7 @@ AsleepTreeMonsNite:
 	db PIDGEY
 	db EKANS
 	db EXEGGCUTE
-	db LEDYBA
+	db SPEAROW
 	db -1 ; end
 
 AsleepTreeMonsDay:

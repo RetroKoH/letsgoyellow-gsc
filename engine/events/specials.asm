@@ -354,12 +354,6 @@ RespawnOneOffs:
 	eventflagreset EVENT_BEAT_CYNTHIA
 .SkipCynthia
 
-	ld a, SUDOWOODO - 1
-	call CheckCaughtMon
-	jr nz, .CaughtSudowoodo
-	eventflagreset EVENT_ROUTE_36_SUDOWOODO
-.CaughtSudowoodo
-
 	ld a, ARTICUNO - 1
 	call CheckCaughtMon
 	jr nz, .CaughtArticuno

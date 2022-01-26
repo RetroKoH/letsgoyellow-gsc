@@ -230,7 +230,7 @@ PokefanfBeverly1Script:
 	iftrue UnknownScript_0x5c177
 	checkcellnum PHONE_POKEFAN_BEVERLY
 	iftrue UnknownScript_0x5c19b
-	checkpoke MARILL
+	checkpoke JIGGLYPUFF
 	iffalse UnknownScript_0x5c189
 	checkevent EVENT_BEVERLY_ASKED_FOR_PHONE_NUMBER
 	iftrue UnknownScript_0x5c160
@@ -261,7 +261,7 @@ UnknownScript_0x5c186:
 	sjump UnknownScript_0x5c1ab
 
 UnknownScript_0x5c189:
-	jumpopenedtext PokefanFBeverlyMarillFriendText
+	jumpopenedtext PokefanFBeverlyJigglypuffFriendText
 
 UnknownScript_0x5c18f:
 	jumpstd asknumber1f
@@ -446,15 +446,15 @@ PokefanmWilliamBeatenText:
 	text "M-my #mon!"
 	done
 
-PokefanFBeverlyMarillFriendText:
+PokefanFBeverlyJigglypuffFriendText:
 	text "My friend keeps a"
-	line "Marill!"
+	line "Jigglypuff!"
 
 	para "I find them very"
 	line "endearing."
 
 	para "Oh, I wish for a"
-	line "Marill of my own…"
+	line "Jigglypuff…"
 	done
 
 LassKriseSeenText:

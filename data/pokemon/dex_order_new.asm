@@ -29,8 +29,8 @@ NewPokedexOrder:
 	db WEEDLE
 	db KAKUNA
 	db BEEDRILL
-	db LEDYBA
-	db LEDIAN
+	db GOLDEEN
+	db SEAKING
 	db SPINARAK
 	db ARIADOS
 	db GEODUDE
@@ -50,7 +50,7 @@ NewPokedexOrder:
 	db SANDSLASH
 	db EKANS
 	db ARBOK
-	db DUNSPARCE
+	db PERRSERKER
 	db MAREEP
 	db FLAAFFY
 	db AMPHAROS
@@ -60,7 +60,7 @@ NewPokedexOrder:
 	db HAUNTER
 	db GENGAR
 	db UNOWN
-	db WOBBUFFET
+	db SIRFETCH_D
 	db ONIX
 	db STEELIX
 	db BELLSPROUT
@@ -101,7 +101,7 @@ NewPokedexOrder:
 	db SUNFLORA
 	db EXEGGCUTE
 	db EXEGGUTOR
-	db SUDOWOODO
+	db LICKILICKY
 	db VENONAT
 	db VENOMOTH
 	db SCYTHER
@@ -123,8 +123,8 @@ NewPokedexOrder:
 	db NINETALES
 	db GROWLITHE
 	db ARCANINE
-	db MARILL
-	db AZUMARILL
+	db SPEAROW
+	db FEAROW
 	db DIGLETT
 	db DUGTRIO
 	db MANKEY
@@ -140,7 +140,7 @@ NewPokedexOrder:
 	db HITMONLEE
 	db HITMONCHAN
 	db HITMONTOP
-	db GIRAFARIG
+	db MR__RIME
 	db TAUROS
 	db MILTANK
 	db MAGBY
@@ -151,7 +151,7 @@ NewPokedexOrder:
 	db ELECTIVIRE
 	db JYNX
 	db MR__MIME
-	db SMEARGLE
+	db CLEFFA
 	db FARFETCH_D
 	db NATU
 	db XATU
@@ -165,9 +165,9 @@ NewPokedexOrder:
 	db STARMIE
 	db SHELLDER
 	db CLOYSTER
-	db CORSOLA
-	db REMORAID
-	db OCTILLERY
+	db HAPPINY
+	db SMOOCHUM
+	db MIME_JR_
 	db CHINCHOU
 	db LANTURN
 	db SEEL
@@ -195,8 +195,8 @@ NewPokedexOrder:
 	db URSARING
 	db PHANPY
 	db DONPHAN
-	db MANTINE
-	db SKARMORY
+	db LICKITUNG
+	db IGGLYBUFF
 	db DODUO
 	db DODRIO
 	db PONYTA

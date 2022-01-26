@@ -20,8 +20,8 @@ FrontPicPointers::
 	dba PidgeotFrontpic
 	dba RattataPlainFrontpic
 	dba RaticatePlainFrontpic
-	dba MarillFrontpic
-	dba AzumarillFrontpic
+	dba SpearowFrontpic
+	dba FearowFrontpic
 	dba EkansFrontpic
 	dba ArbokJohtoFrontpic
 	dba PikachuPlainFrontpic
@@ -164,8 +164,8 @@ FrontPicPointers::
 	dba FurretFrontpic
 	dba HoothootFrontpic
 	dba NoctowlFrontpic
-	dba LedybaFrontpic
-	dba LedianFrontpic
+	dba GoldeenFrontpic
+	dba SeakingFrontpic
 	dba SpinarakFrontpic
 	dba AriadosFrontpic
 	dba CrobatFrontpic
@@ -182,7 +182,7 @@ FrontPicPointers::
 	dba FlaaffyFrontpic
 	dba AmpharosFrontpic
 	dba BellossomFrontpic
-	dba SudowoodoFrontpic
+	dba LickilickyFrontpic
 	dba PolitoedFrontpic
 	dba SunkernFrontpic
 	dba SunfloraFrontpic
@@ -198,11 +198,11 @@ FrontPicPointers::
 	dba MisdreavusFrontpic
 	dba MismagiusFrontpic
 	dba UnownAFrontpic
-	dba WobbuffetFrontpic
-	dba GirafarigFrontpic
+	dba SirfetchDFrontpic
+	dba MrRimeFrontpic
 	dba PinecoFrontpic
 	dba ForretressFrontpic
-	dba DunsparceFrontpic
+	dba PerrserkerFrontpic
 	dba GligarFrontpic
 	dba GliscorFrontpic
 	dba SteelixFrontpic
@@ -221,11 +221,11 @@ FrontPicPointers::
 	dba SwinubFrontpic
 	dba PiloswineFrontpic
 	dba MamoswineFrontpic
-	dba CorsolaFrontpic
-	dba RemoraidFrontpic
-	dba OctilleryFrontpic
-	dba MantineFrontpic
-	dba SkarmoryFrontpic
+	dba HappinyFrontpic
+	dba SmoochumFrontpic
+	dba MimeJrFrontpic
+	dba LickitungFrontpic
+	dba IgglybuffFrontpic
 	dba HoundourFrontpic
 	dba HoundoomFrontpic
 	dba KingdraFrontpic
@@ -233,7 +233,7 @@ FrontPicPointers::
 	dba DonphanFrontpic
 	dba Porygon2Frontpic
 	dba PorygonZFrontpic
-	dba SmeargleFrontpic
+	dba CleffaFrontpic
 	dba TyrogueFrontpic
 	dba HitmontopFrontpic
 	dba ElekidFrontpic

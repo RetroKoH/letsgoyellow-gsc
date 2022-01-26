@@ -22,8 +22,8 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  36, 100 ; Pidgeot
 	db   1,  19 ; Rattata
 	db  20, 100 ; Raticate
-	db   1,  17 ; Marill
-	db  18, 100 ; Azumarill
+	db   1,  19 ; Spearow
+	db  20, 100 ; Fearow
 	db   1,  21 ; Ekans
 	db  22, 100 ; Arbok
 	db   1,  19 ; Pikachu
@@ -166,8 +166,8 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  15, 100 ; Furret
 	db   1,  19 ; Hoothoot
 	db  20, 100 ; Noctowl
-	db   1,  17 ; Ledyba
-	db  18, 100 ; Ledian
+	db   1,  32 ; Goldeen
+	db  33, 100 ; Seaking
 	db   1,  21 ; Spinarak
 	db  22, 100 ; Ariados
 	db  32, 100 ; Crobat
@@ -184,7 +184,7 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  15,  29 ; Flaaffy
 	db  30, 100 ; Ampharos
 	db  32, 100 ; Bellossom
-	db  10, 100 ; Sudowoodo
+	db  30, 100 ; Lickilicky
 	db  36, 100 ; Politoed
 	db   1,  31 ; Sunkern
 	db  32, 100 ; Sunflora
@@ -200,11 +200,11 @@ ValidPokemonLevels: ; for Wonder Trade
 	db   1,  39 ; Misdreavus
 	db  40, 100 ; Mismagius
 	db 255, 255 ; Unown
-	db   1, 100 ; Wobbuffet
-	db   1, 100 ; Girafarig
+	db  30, 100 ; Sirfetch'd
+	db  30, 100 ; Mr. Rime
 	db   1,  30 ; Pineco
 	db  31, 100 ; Forretress
-	db   1, 100 ; Dunsparce
+	db  30, 100 ; Perrserker
 	db   1,  19 ; Gligar
 	db  20, 100 ; Gliscor
 	db  20, 100 ; Steelix
@@ -223,11 +223,11 @@ ValidPokemonLevels: ; for Wonder Trade
 	db   1,  32 ; Swinub
 	db  33,  44 ; Piloswine
 	db  45, 100 ; Mamoswine
-	db   1, 100 ; Corsola
-	db   1,  24 ; Remoraid
-	db  25, 100 ; Octillery
-	db   1, 100 ; Mantine
-	db  10, 100 ; Skarmory
+	db   1,  19 ; Happiny
+	db   1,  19 ; Smoochum
+	db   1,  19 ; Mime Jr
+	db   1, 100 ; Lickitung
+	db   1,  19 ; Igglybuff
 	db   1,  23 ; Houndour
 	db  24, 100 ; Houndoom
 	db  55, 100 ; Kingdra
@@ -235,7 +235,7 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  25, 100 ; Donphan
 	db  20,  39 ; Porygon2
 	db  40, 100 ; Porygon-Z
-	db   1, 100 ; Smeargle
+	db   1,  19 ; Cleffa
 	db   1,  19 ; Tyrogue
 	db  20, 100 ; Hitmontop
 	db   1,  19 ; Elekid

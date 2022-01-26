@@ -904,10 +904,10 @@ Cry_Bulbasaur:
 	musicheader 1, 6, Cry_Bulbasaur_Ch6
 	musicheader 1, 8, Cry_Bulbasaur_Ch8
 
-Cry_Farfetch_d:
-	musicheader 3, 5, Cry_Farfetch_d_Ch5
-	musicheader 1, 6, Cry_Farfetch_d_Ch6
-	musicheader 1, 8, Cry_Farfetch_d_Ch8
+Cry_Spearow:
+	musicheader 3, 5, Cry_Spearow_Ch5
+	musicheader 1, 6, Cry_Spearow_Ch6
+	musicheader 1, 8, Cry_Spearow_Ch8
 
 Cry_Rhydon:
 	musicheader 3, 5, Cry_Rhydon_Ch5
@@ -1219,7 +1219,7 @@ Cry_Bulbasaur_Ch8:
 	noise __, 16, $c2, $5d
 	endchannel
 
-Cry_Farfetch_d_Ch5:
+Cry_Spearow_Ch5:
 	sound_duty 1, 2, 0, 3
 	sound __,  9, $f7, $0680
 	sound __,  3, $f7, $0660
@@ -1231,7 +1231,7 @@ Cry_Farfetch_d_Ch5:
 	sound __, 16, $91, $0720
 	endchannel
 
-Cry_Farfetch_d_Ch6:
+Cry_Spearow_Ch6:
 	sound_duty 1, 2, 3, 1
 	sound __, 11, $e7, $0682
 	sound __,  3, $e7, $0662
@@ -1243,7 +1243,7 @@ Cry_Farfetch_d_Ch6:
 	sound __, 16, $81, $0722
 	endchannel
 
-Cry_Farfetch_d_Ch8:
+Cry_Spearow_Ch8:
 	noise __,  5, $74, $21
 	noise __,  5, $74, $10
 	noise __,  5, $71, $20

@@ -20,8 +20,8 @@ FramesPointers:
 	dw PidgeotFrames
 	dw RattataPlainFrames
 	dw RaticatePlainFrames
-	dw MarillFrames
-	dw AzumarillFrames
+	dw SpearowFrames
+	dw FearowFrames
 	dw EkansFrames
 	dw ArbokJohtoFrames
 	dw PikachuPlainFrames
@@ -164,8 +164,8 @@ FramesPointers:
 	dw FurretFrames
 	dw HoothootFrames
 	dw NoctowlFrames
-	dw LedybaFrames
-	dw LedianFrames
+	dw GoldeenFrames
+	dw SeakingFrames
 	dw SpinarakFrames
 	dw AriadosFrames
 	dw CrobatFrames
@@ -182,7 +182,7 @@ FramesPointers:
 	dw FlaaffyFrames
 	dw AmpharosFrames
 	dw BellossomFrames
-	dw SudowoodoFrames
+	dw LickilickyFrames
 	dw PolitoedFrames
 	dw SunkernFrames
 	dw SunfloraFrames
@@ -198,11 +198,11 @@ FramesPointers:
 	dw MisdreavusFrames
 	dw MismagiusFrames
 	dw UnownAFrames
-	dw WobbuffetFrames
-	dw GirafarigFrames
+	dw SirfetchDFrames
+	dw MrRimeFrames
 	dw PinecoFrames
 	dw ForretressFrames
-	dw DunsparceFrames
+	dw PerrserkerFrames
 	dw GligarFrames
 	dw GliscorFrames
 	dw SteelixFrames
@@ -221,11 +221,11 @@ FramesPointers:
 	dw SwinubFrames
 	dw PiloswineFrames
 	dw MamoswineFrames
-	dw CorsolaFrames
-	dw RemoraidFrames
-	dw OctilleryFrames
-	dw MantineFrames
-	dw SkarmoryFrames
+	dw HappinyFrames
+	dw SmoochumFrames
+	dw MimeJrFrames
+	dw LickitungFrames
+	dw IgglybuffFrames
 	dw HoundourFrames
 	dw HoundoomFrames
 	dw KingdraFrames
@@ -233,7 +233,7 @@ FramesPointers:
 	dw DonphanFrames
 	dw Porygon2Frames
 	dw PorygonZFrames
-	dw SmeargleFrames
+	dw CleffaFrames
 	dw TyrogueFrames
 	dw HitmontopFrames
 	dw ElekidFrames

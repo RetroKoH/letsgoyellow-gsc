@@ -257,7 +257,7 @@ FindOwnedPosters:
 	db DECO_DIPLOMA ; 11
 	db DECO_PIKACHU_POSTER ; 12
 	db DECO_CLEFAIRY_POSTER ; 13
-	db DECO_MARILL_POSTER ; 14
+	db DECO_EEVEE_POSTER ; 14
 	db -1
 
 DecoConsoleMenu:
@@ -307,14 +307,13 @@ FindOwnedOrnaments:
 	db DECO_MAGIKARP_DOLL ; 2c
 	db DECO_ODDISH_DOLL ; 2d
 	db DECO_GENGAR_DOLL ; 2e
-	db DECO_OCTILLERY_DOLL ; 2f
+	db DECO_DEWGONG_DOLL ; 2f
 	db DECO_DITTO_DOLL ; 30
 	db DECO_VOLTORB_DOLL ; 31
 	db DECO_ABRA_DOLL ; 32
 	db DECO_UNOWN_DOLL ; 33
 	db DECO_GEODUDE_DOLL ; 34
 	db DECO_PINECO_DOLL ; 35
-	db DECO_MARILL_DOLL ; 36
 	db DECO_TEDDIURSA_DOLL ; 37
 	db DECO_MEOWTH_DOLL ; 38
 	db DECO_VULPIX_DOLL ; 39
@@ -976,7 +975,7 @@ DecorationDesc_PosterPointers:
 	dbw DECO_DIPLOMA, DecorationDesc_Diploma
 	dbw DECO_PIKACHU_POSTER, DecorationDesc_PikachuPoster
 	dbw DECO_CLEFAIRY_POSTER, DecorationDesc_ClefairyPoster
-	dbw DECO_MARILL_POSTER, DecorationDesc_MarillPoster
+	dbw DECO_EEVEE_POSTER, DecorationDesc_EeveePoster
 	db -1
 
 DecorationDesc_TownMapPoster:
@@ -1001,7 +1000,7 @@ DecorationDesc_PikachuPoster:
 DecorationDesc_ClefairyPoster:
 	farjumptext _LookClefairyPosterText
 
-DecorationDesc_MarillPoster:
+DecorationDesc_EeveePoster:
 	farjumptext _LookJigglypuffPosterText
 
 DecorationDesc_NullPoster:

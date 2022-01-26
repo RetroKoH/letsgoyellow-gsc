@@ -21,8 +21,8 @@ IconPointers:
 	dba PidgeotIcon
 	dba RattataIcon
 	dba RaticateIcon
-	dba MarillIcon
-	dba AzumarillIcon
+	dba SpearowIcon
+	dba FearowIcon
 	dba EkansIcon
 	dba ArbokIcon
 	dba PikachuIcon
@@ -165,8 +165,8 @@ IconPointers:
 	dba FurretIcon
 	dba HoothootIcon
 	dba NoctowlIcon
-	dba LedybaIcon
-	dba LedianIcon
+	dba GoldeenIcon
+	dba SeakingIcon
 	dba SpinarakIcon
 	dba AriadosIcon
 	dba CrobatIcon
@@ -183,7 +183,7 @@ IconPointers:
 	dba FlaaffyIcon
 	dba AmpharosIcon
 	dba BellossomIcon
-	dba SudowoodoIcon
+	dba LickilickyIcon
 	dba PolitoedIcon
 	dba SunkernIcon
 	dba SunfloraIcon
@@ -199,11 +199,11 @@ IconPointers:
 	dba MisdreavusIcon
 	dba MismagiusIcon
 	dba UnownAIcon
-	dba WobbuffetIcon
-	dba GirafarigIcon
+	dba SirfetchDIcon
+	dba MrRimeIcon
 	dba PinecoIcon
 	dba ForretressIcon
-	dba DunsparceIcon
+	dba PerrserkerIcon
 	dba GligarIcon
 	dba GliscorIcon
 	dba SteelixIcon
@@ -222,11 +222,11 @@ IconPointers:
 	dba SwinubIcon
 	dba PiloswineIcon
 	dba MamoswineIcon
-	dba CorsolaIcon
-	dba RemoraidIcon
-	dba OctilleryIcon
-	dba MantineIcon
-	dba SkarmoryIcon
+	dba HappinyIcon
+	dba SmoochumIcon
+	dba MimeJrIcon
+	dba LickitungIcon
+	dba IgglybuffIcon
 	dba HoundourIcon
 	dba HoundoomIcon
 	dba KingdraIcon
@@ -234,7 +234,7 @@ IconPointers:
 	dba DonphanIcon
 	dba Porygon2Icon
 	dba PorygonZIcon
-	dba SmeargleIcon
+	dba CleffaIcon
 	dba TyrogueIcon
 	dba HitmontopIcon
 	dba ElekidIcon

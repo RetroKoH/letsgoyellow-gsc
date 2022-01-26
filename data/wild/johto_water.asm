@@ -59,21 +59,21 @@
 	def_water_wildmons MOUNT_MORTAR_1F_OUTSIDE
 	db 4 percent ; encounter rate
 	wildmon 20, PSYDUCK
-	wildmon 20, MARILL
+	wildmon 20, MAGIKARP
 	wildmon 20, GOLDUCK
 	end_water_wildmons
 
 	def_water_wildmons MOUNT_MORTAR_2F_INSIDE
 	db 2 percent ; encounter rate
 	wildmon 20, PSYDUCK
-	wildmon 25, MARILL
+	wildmon 25, MAGIKARP
 	wildmon 25, GOLDUCK
 	end_water_wildmons
 
 	def_water_wildmons MOUNT_MORTAR_B1F
 	db 2 percent ; encounter rate
 	wildmon 15, PSYDUCK
-	wildmon 20, MARILL
+	wildmon 20, MAGIKARP
 	wildmon 20, GOLDUCK
 	end_water_wildmons
 
@@ -81,21 +81,21 @@
 	db 4 percent ; encounter rate
 	wildmon 20, HORSEA
 	wildmon 25, TENTACOOL
-	wildmon 30, OCTILLERY
+	wildmon 30, GYARADOS
 	end_water_wildmons
 
 	def_water_wildmons WHIRL_ISLAND_B2F
 	db 4 percent ; encounter rate
 	wildmon 20, HORSEA
 	wildmon 25, TENTACRUEL
-	wildmon 30, OCTILLERY
+	wildmon 30, GYARADOS
 	end_water_wildmons
 
 	def_water_wildmons WHIRL_ISLAND_LUGIA_CHAMBER
 	db 4 percent ; encounter rate
 	wildmon 25, HORSEA
 	wildmon 30, SEADRA
-	wildmon 30, OCTILLERY
+	wildmon 30, GYARADOS
 	end_water_wildmons
 
 	def_water_wildmons SILVER_CAVE_ROOM_2
@@ -185,8 +185,8 @@
 	def_water_wildmons ROUTE_41
 	db 3 percent ; encounter rate
 	wildmon 20, TENTACOOL
-	wildmon 20, MANTINE
-	wildmon 20, REMORAID
+	wildmon 20, GOLDEEN
+	wildmon 20, GYARADOS
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_42
@@ -255,8 +255,8 @@
 	def_water_wildmons CIANWOOD_CITY
 	db 6 percent ; encounter rate
 	wildmon 20, TENTACOOL
-	wildmon 20, MANTINE
-	wildmon 20, REMORAID
+	wildmon 20, GOLDEEN
+	wildmon 20, GYARADOS
 	end_water_wildmons
 
 	def_water_wildmons GOLDENROD_CITY
@@ -312,14 +312,14 @@
 	db 6 percent ; encounter rate
 	wildmon 20, TENTACOOL
 	wildmon 15, TENTACOOL
-	wildmon 20, CORSOLA
+	wildmon 20, GOLDEEN
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_32_COAST
 	db 3 percent ; encounter rate
 	wildmon 20, TENTACOOL
 	wildmon 15, TENTACOOL
-	wildmon 20, CORSOLA
+	wildmon 20, GOLDEEN
 	end_water_wildmons
 
 	def_water_wildmons ROUTE_34_COAST
@@ -340,12 +340,12 @@
 	db 3 percent ; encounter rate
 	wildmon 20, TENTACOOL
 	wildmon 20, TENTACRUEL
-	wildmon 20, CORSOLA
+	wildmon 20, GOLDEEN
 	end_water_wildmons
 
 	def_water_wildmons YELLOW_FOREST
 	db 6 percent ; encounter rate
-	wildmon 20, MARILL
+	wildmon 20, MAGIKARP
 	wildmon 20, PIKACHU
 	wildmon 20, PSYDUCK
 	end_water_wildmons

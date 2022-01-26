@@ -328,7 +328,7 @@ _LookClefairyPosterText::
 SECTION "_LookJigglypuffPosterText", ROMX
 _LookJigglypuffPosterText::
 	text "It's a poster of a"
-	line "cute Marill."
+	line "cute Jigglypuff."
 	done
 
 SECTION "_LookAdorableDecoText", ROMX

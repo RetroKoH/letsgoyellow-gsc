@@ -927,29 +927,53 @@
 	def_grass_wildmons ROUTE_22
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	wildmon 56, RATICATE
-	wildmon 56, PIDGEOTTO
-	wildmon 58, NIDORINO
-	wildmon 58, NIDORINA
-	wildmon 59, PONYTA
-	wildmon 59, PONYTA
-	wildmon 60, PONYTA
+;	wildmon 03, SPEAROW
+;	wildmon 03, NIDORAN_M
+;	wildmon 04, NIDORAN_F
+;	wildmon 04, RATTATA
+;	wildmon 04, SPEAROW
+;	wildmon 04, MANKEY
+;	wildmon 06, MANKEY
 	; day
-	wildmon 56, RATICATE
-	wildmon 56, PIDGEOTTO
-	wildmon 58, NIDORINO
-	wildmon 58, NIDORINA
-	wildmon 59, PONYTA
-	wildmon 59, PONYTA
-	wildmon 60, PONYTA
+;	wildmon 03, SPEAROW
+;	wildmon 03, NIDORAN_M
+;	wildmon 04, NIDORAN_F
+;	wildmon 04, RATTATA
+;	wildmon 04, SPEAROW
+;	wildmon 04, MANKEY
+;	wildmon 06, MANKEY
 	; nite
-	wildmon 56, RATICATE
-	wildmon 56, POLIWHIRL
-	wildmon 58, NIDORINO
-	wildmon 58, NIDORINA
-	wildmon 59, RATICATE
-	wildmon 59, RATICATE
-	wildmon 60, POLIWHIRL
+;	wildmon 03, SPEAROW
+;	wildmon 03, NIDORAN_M
+;	wildmon 04, NIDORAN_F
+;	wildmon 04, RATTATA
+;	wildmon 04, SPEAROW
+;	wildmon 04, MANKEY
+;	wildmon 06, MANKEY
+	; morn
+	wildmon 03, PERRSERKER
+	wildmon 03, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 06, PERRSERKER
+	; day
+	wildmon 03, PERRSERKER
+	wildmon 03, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 06, PERRSERKER
+	; nite
+	wildmon 03, PERRSERKER
+	wildmon 03, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 04, PERRSERKER
+	wildmon 06, PERRSERKER
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_23
@@ -1100,7 +1124,7 @@
 	wildmon 67, ARBOK ; randomly Kanto or Johto form
 	wildmon 70, RAPIDASH
 	wildmon 68, DODRIO
-	wildmon 71, SKARMORY
+	wildmon 71, FEAROW
 	wildmon 71, URSARING
 	; day
 	wildmon 66, TANGELA
@@ -1108,7 +1132,7 @@
 	wildmon 67, ARBOK ; randomly Kanto or Johto form
 	wildmon 70, RAPIDASH
 	wildmon 68, DODRIO
-	wildmon 71, SKARMORY
+	wildmon 71, FEAROW
 	wildmon 71, URSARING
 	; nite
 	wildmon 66, TANGELA

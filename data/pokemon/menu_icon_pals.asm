@@ -24,8 +24,8 @@ MenuMonIconColors::
 	iconpal BROWN, RED ; PIDGEOT
 	iconpal PURPLE, GRAY ; RATTATA
 	iconpal BROWN, RED ; RATICATE
-	iconpal BLUE, GREEN ; MARILL
-	iconpal BLUE, BROWN ; AZUMARILL
+	iconpal BROWN, PINK ; SPEAROW
+	iconpal BROWN, PINK ; FEAROW
 	iconpal PURPLE, BROWN ; EKANS
 	iconpal PURPLE, BROWN ; ARBOK
 	iconpal RED, BLUE ; PIKACHU
@@ -168,8 +168,8 @@ MenuMonIconColors::
 	iconpal BROWN, RED ; FURRET
 	iconpal BROWN, RED ; HOOTHOOT
 	iconpal BROWN, GREEN ; NOCTOWL
-	iconpal RED, PINK ; LEDYBA
-	iconpal RED, PINK ; LEDIAN
+	iconpal RED, BROWN ; GOLDEEN
+	iconpal RED, BROWN ; SEAKING
 	iconpal GREEN, PURPLE ; SPINARAK
 	iconpal PURPLE, BLUE ; ARIADOS
 	iconpal PURPLE, RED ; CROBAT
@@ -186,7 +186,7 @@ MenuMonIconColors::
 	iconpal PINK, RED ; FLAAFFY
 	iconpal BROWN, RED ; AMPHAROS
 	iconpal GREEN, RED ; BELLOSSOM
-	iconpal GREEN, RED ; SUDOWOODO
+	iconpal PINK, BROWN ; LICKILICKY
 	iconpal GREEN, TEAL ; POLITOED
 	iconpal GREEN, BROWN ; SUNKERN
 	iconpal GREEN, BROWN ; SUNFLORA
@@ -202,11 +202,11 @@ MenuMonIconColors::
 	iconpal PURPLE, BROWN ; MISDREAVUS
 	iconpal PURPLE, BROWN ; MISMAGIUS
 	iconpal GRAY, BLUE ; UNOWN
-	iconpal BLUE, PURPLE ; WOBBUFFET
-	iconpal BROWN, BLUE ; GIRAFARIG
+	iconpal BROWN, RED ; SIRFETCH_D
+	iconpal BLUE, GRAY ; MR__RIME
 	iconpal GRAY, RED ; PINECO
 	iconpal PURPLE, BROWN ; FORRETRESS
-	iconpal BLUE, RED ; DUNSPARCE
+	iconpal GRAY, BROWN ; PERRSERKER
 	iconpal PURPLE, GRAY ; GLIGAR
 	iconpal PURPLE, GRAY ; GLISCOR
 	iconpal GRAY, BROWN ; STEELIX
@@ -225,11 +225,11 @@ MenuMonIconColors::
 	iconpal BROWN, BLUE ; SWINUB
 	iconpal BROWN, GREEN ; PILOSWINE
 	iconpal BROWN, GREEN ; MAMOSWINE
-	iconpal PINK, BLUE ; CORSOLA
-	iconpal BLUE, GRAY ; REMORAID
-	iconpal RED, TEAL ; OCTILLERY
-	iconpal BLUE, BLUE ; MANTINE
-	iconpal GRAY, GREEN ; SKARMORY
+	iconpal RED, PINK ; HAPPINY
+	iconpal PURPLE, PINK ; SMOOCHUM
+	iconpal BLUE, GREEN ; MIME_JR_
+	iconpal PINK, BROWN ; LICKITUNG
+	iconpal RED, PINK ; IGGLYBUFF
 	iconpal RED, GRAY ; HOUNDOUR
 	iconpal RED, GRAY ; HOUNDOOM
 	iconpal BLUE, PURPLE ; KINGDRA
@@ -237,7 +237,7 @@ MenuMonIconColors::
 	iconpal GRAY, RED ; DONPHAN
 	iconpal BLUE, PURPLE ; PORYGON2
 	iconpal BLUE, PURPLE ; PORYGON_Z
-	iconpal BROWN, GREEN ; SMEARGLE
+	iconpal RED, PINK ; CLEFFA
 	iconpal BROWN, BLUE ; TYROGUE
 	iconpal BROWN, BLUE ; HITMONTOP
 	iconpal BROWN, RED ; ELEKID

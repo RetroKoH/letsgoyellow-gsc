@@ -26,7 +26,7 @@ NPCTrades:
 	dw 15616
 	rawchar "Chris@@@", $00
 ; NPC_TRADE_KIM in Route 14
-	rawchar 3, WOBBUFFET,  CHANSEY,    "Chance@@@@@"
+	rawchar 3, HYPNO,  CHANSEY,    "Chance@@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SDEF_UP_ATK_DOWN,  FEMALE, HEAL_BALL,    LUCKY_EGG
 	dw 26491
 	rawchar "Kim@@@@@", $00

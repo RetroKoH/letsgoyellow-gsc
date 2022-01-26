@@ -1079,7 +1079,7 @@ AnthonyTriesDunsparceSwarm:
 	checkflag ENGINE_DUNSPARCE_SWARM
 	iftrue UnknownScript_0xbd6bd
 	setflag ENGINE_DUNSPARCE_SWARM
-	getmonname DUNSPARCE, $1
+	getmonname ARBOK, $1
 	swarm SWARM_DUNSPARCE, DARK_CAVE_VIOLET_ENTRANCE
 	getlandmarkname DARK_CAVE, $2
 	farsjump AnthonySwarmScript

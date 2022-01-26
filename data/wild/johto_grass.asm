@@ -369,7 +369,7 @@
 	; morn
 	wildmon 12, NIDORAN_M
 	wildmon 13, NIDORAN_F
-	wildmon 14, LEDYBA
+	wildmon 14, WEEDLE
 	wildmon 15, PIDGEY
 	wildmon 10, CATERPIE
 	wildmon 12, WEEDLE
@@ -399,17 +399,17 @@
 	wildmon 22, NATU
 	wildmon 18, NATU
 	wildmon 24, NATU
-	wildmon 20, SMEARGLE
-	wildmon 22, SMEARGLE
-	wildmon 22, SMEARGLE
+	wildmon 20, CLEFAIRY
+	wildmon 22, CLEFAIRY
+	wildmon 22, CLEFAIRY
 	; day
 	wildmon 20, NATU
 	wildmon 22, NATU
 	wildmon 18, NATU
 	wildmon 24, NATU
-	wildmon 20, SMEARGLE
-	wildmon 22, SMEARGLE
-	wildmon 22, SMEARGLE
+	wildmon 20, CLEFAIRY
+	wildmon 22, CLEFAIRY
+	wildmon 22, CLEFAIRY
 	; nite
 	wildmon 22, NATU
 	wildmon 24, NATU
@@ -720,7 +720,7 @@
 	wildmon 24, RATTATA
 	; nite
 	wildmon 21, ZUBAT
-	wildmon 22, MARILL
+	wildmon 22, JIGGLYPUFF
 	wildmon 21, GOLBAT
 	wildmon 22, GEODUDE
 	wildmon 20, CUBONE
@@ -748,7 +748,7 @@
 	wildmon 25, GOLBAT
 	; nite
 	wildmon 21, GEODUDE
-	wildmon 23, MARILL
+	wildmon 23, JIGGLYPUFF
 	wildmon 22, ZUBAT
 	wildmon 23, RATICATE
 	wildmon 20, CUBONE
@@ -778,7 +778,7 @@
 	wildmon 34, GRAVELER
 	wildmon 35, GOLBAT
 	wildmon 34, GEODUDE
-	wildmon 31, MARILL
+	wildmon 31, JIGGLYPUFF
 	wildmon 33, MAROWAK
 	wildmon 35, GOLBAT
 	wildmon 35, GOLBAT
@@ -806,7 +806,7 @@
 	wildmon 15, ZUBAT
 	wildmon 16, GEODUDE
 	wildmon 17, GOLBAT
-	wildmon 16, MARILL
+	wildmon 16, JIGGLYPUFF
 	wildmon 17, CUBONE
 	wildmon 18, RATICATE
 	wildmon 18, RATICATE
@@ -1297,7 +1297,7 @@
 	wildmon 4, GEODUDE
 	wildmon 2, TEDDIURSA
 	wildmon 4, ZUBAT
-	wildmon 4, DUNSPARCE
+	wildmon 4, RATTATA
 	; day
 	wildmon 3, GEODUDE
 	wildmon 2, ZUBAT
@@ -1305,7 +1305,7 @@
 	wildmon 4, GEODUDE
 	wildmon 2, ZUBAT
 	wildmon 4, ZUBAT
-	wildmon 4, DUNSPARCE
+	wildmon 4, RATTATA
 	; nite
 	wildmon 3, GEODUDE
 	wildmon 2, ZUBAT
@@ -1313,7 +1313,7 @@
 	wildmon 4, GEODUDE
 	wildmon 2, ZUBAT
 	wildmon 4, ZUBAT
-	wildmon 4, DUNSPARCE
+	wildmon 4, RATTATA
 	end_grass_wildmons
 
 	def_grass_wildmons DARK_CAVE_BLACKTHORN_ENTRANCE
@@ -1325,7 +1325,7 @@
 	wildmon 25, URSARING
 	wildmon 20, TEDDIURSA
 	wildmon 23, GOLBAT
-	wildmon 23, DUNSPARCE
+	wildmon 23, RATTATA
 	; day
 	wildmon 23, GEODUDE
 	wildmon 23, ZUBAT
@@ -1333,15 +1333,15 @@
 	wildmon 25, URSARING
 	wildmon 25, GOLBAT
 	wildmon 23, GOLBAT
-	wildmon 23, DUNSPARCE
+	wildmon 23, RATTATA
 	; nite
 	wildmon 23, GEODUDE
 	wildmon 23, ZUBAT
 	wildmon 25, GRAVELER
-	wildmon 20, WOBBUFFET
-	wildmon 25, WOBBUFFET
+	wildmon 20, KADABRA
+	wildmon 25, KADABRA
 	wildmon 23, GOLBAT
-	wildmon 23, DUNSPARCE
+	wildmon 23, RATTATA
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_29
@@ -1375,7 +1375,7 @@
 	def_grass_wildmons ROUTE_30
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	wildmon 3, LEDYBA
+	wildmon 3, WEEDLE
 	wildmon 3, CATERPIE
 	wildmon 4, CATERPIE
 	wildmon 4, PIDGEY
@@ -1403,7 +1403,7 @@
 	def_grass_wildmons ROUTE_31
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	wildmon 4, LEDYBA
+	wildmon 4, WEEDLE
 	wildmon 4, CATERPIE
 	wildmon 5, BELLSPROUT
 	wildmon 5, PIDGEY
@@ -1543,7 +1543,7 @@
 	def_grass_wildmons ROUTE_36
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	wildmon 4, LEDYBA
+	wildmon 4, WEEDLE
 	wildmon 4, PIDGEY
 	wildmon 5, BELLSPROUT
 	wildmon 5, GROWLITHE
@@ -1571,19 +1571,19 @@
 	def_grass_wildmons ROUTE_37
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	wildmon 13, LEDYBA
+	wildmon 13, WEEDLE
 	wildmon 14, PIDGEY
 	wildmon 15, PIDGEOTTO
 	wildmon 16, GROWLITHE
-	wildmon 14, SMEARGLE
-	wildmon 15, LEDIAN
+	wildmon 14, CLEFAIRY
+	wildmon 15, VENOMOTH
 	wildmon 16, PIDGEOTTO
 	; day
 	wildmon 14, PIDGEY
 	wildmon 14, GROWLITHE
 	wildmon 15, PIDGEOTTO
 	wildmon 16, GROWLITHE
-	wildmon 14, SMEARGLE
+	wildmon 14, CLEFAIRY
 	wildmon 15, PIDGEY
 	wildmon 16, PIDGEOTTO
 	; nite
@@ -1675,7 +1675,7 @@
 	wildmon 22, ZUBAT
 	wildmon 22, RATICATE
 	wildmon 23, GOLBAT
-	wildmon 21, MARILL
+	wildmon 21, JIGGLYPUFF
 	wildmon 24, GLIGAR
 	wildmon 24, GLIGAR
 	end_grass_wildmons
@@ -1684,7 +1684,7 @@
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon 25, PIDGEOTTO
-	wildmon 23, GIRAFARIG
+	wildmon 23, KADABRA
 	wildmon 23, FLAAFFY
 	wildmon 24, FARFETCH_D
 	wildmon 23, MAREEP
@@ -1692,7 +1692,7 @@
 	wildmon 23, MAREEP
 	; day
 	wildmon 25, PIDGEOTTO
-	wildmon 23, GIRAFARIG
+	wildmon 23, KADABRA
 	wildmon 23, FLAAFFY
 	wildmon 24, FARFETCH_D
 	wildmon 23, MAREEP
@@ -1700,7 +1700,7 @@
 	wildmon 23, MAREEP
 	; nite
 	wildmon 25, VENONAT
-	wildmon 23, GIRAFARIG
+	wildmon 23, KADABRA
 	wildmon 23, FLAAFFY
 	wildmon 24, NOCTOWL
 	wildmon 23, VENOMOTH
@@ -1744,16 +1744,16 @@
 	wildmon 33, DONPHAN
 	wildmon 33, URSARING
 	wildmon 33, DONPHAN
-	wildmon 35, SKARMORY
-	wildmon 36, SKARMORY
+	wildmon 35, FEAROW
+	wildmon 36, FEAROW
 	; day
 	wildmon 32, GEODUDE
 	wildmon 34, GRAVELER
 	wildmon 33, URSARING
 	wildmon 33, DONPHAN
 	wildmon 33, URSARING
-	wildmon 35, SKARMORY
-	wildmon 36, SKARMORY
+	wildmon 35, FEAROW
+	wildmon 36, FEAROW
 	; nite
 	wildmon 32, GEODUDE
 	wildmon 34, GRAVELER
@@ -1828,24 +1828,24 @@
 	wildmon 22, SUNFLORA
 	wildmon 22, GROWLITHE
 	wildmon 21, FARFETCH_D
-	wildmon 20, GIRAFARIG
-	wildmon 20, GIRAFARIG
+	wildmon 20, KADABRA
+	wildmon 20, KADABRA
 	; day
 	wildmon 25, FARFETCH_D
 	wildmon 24, TAUROS
 	wildmon 22, GLOOM
 	wildmon 22, HOUNDOUR
 	wildmon 21, FARFETCH_D
-	wildmon 20, GIRAFARIG
-	wildmon 20, GIRAFARIG
+	wildmon 20, KADABRA
+	wildmon 20, KADABRA
 	; nite
 	wildmon 25, HOUNDOUR
 	wildmon 24, TAUROS
 	wildmon 22, GLOOM
 	wildmon 22, VULPIX
 	wildmon 21, NOCTOWL
-	wildmon 20, GIRAFARIG
-	wildmon 20, GIRAFARIG
+	wildmon 20, KADABRA
+	wildmon 20, KADABRA
 	end_grass_wildmons
 
 	def_grass_wildmons CLIFF_CAVE
@@ -1884,7 +1884,7 @@
 	wildmon 71, ARBOK ; randomly Kanto or Johto form
 	wildmon 74, RAPIDASH
 	wildmon 73, DODRIO
-	wildmon 75, SKARMORY
+	wildmon 75, FEAROW
 	wildmon 75, URSARING
 	; day
 	wildmon 69, TANGELA
@@ -1892,7 +1892,7 @@
 	wildmon 71, ARBOK ; randomly Kanto or Johto form
 	wildmon 74, RAPIDASH
 	wildmon 73, DODRIO
-	wildmon 75, SKARMORY
+	wildmon 75, FEAROW
 	wildmon 75, URSARING
 	; nite
 	wildmon 69, TANGELA
@@ -1910,17 +1910,17 @@
 	wildmon 22, SENTRET
 	wildmon 24, SNUBBULL
 	wildmon 20, PIKACHU
-	wildmon 22, LEDYBA
-	wildmon 20, MARILL
-	wildmon 21, MARILL
+	wildmon 22, WEEDLE
+	wildmon 20, JIGGLYPUFF
+	wildmon 21, JIGGLYPUFF
 	wildmon 10, PICHU
 	; day
 	wildmon 22, SENTRET
 	wildmon 24, SNUBBULL
 	wildmon 20, PIKACHU
 	wildmon 22, PARAS
-	wildmon 20, MARILL
-	wildmon 21, MARILL
+	wildmon 20, JIGGLYPUFF
+	wildmon 21, JIGGLYPUFF
 	wildmon 10, PICHU
 	; nite
 	wildmon 23, HOOTHOOT

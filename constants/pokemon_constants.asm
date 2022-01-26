@@ -41,8 +41,8 @@
 	const PIDGEOT    ; 12
 	const RATTATA    ; 13
 	const RATICATE   ; 14
-	const MARILL     ; 15
-	const AZUMARILL  ; 16
+	const SPEAROW    ; 15
+	const FEAROW     ; 16
 	const EKANS      ; 17
 	const ARBOK      ; 18
 	const PIKACHU    ; 19
@@ -185,8 +185,8 @@
 	const FURRET     ; a2
 	const HOOTHOOT   ; a3
 	const NOCTOWL    ; a4
-	const LEDYBA     ; a5
-	const LEDIAN     ; a6
+	const GOLDEEN    ; a5
+	const SEAKING    ; a6
 	const SPINARAK   ; a7
 	const ARIADOS    ; a8
 	const CROBAT     ; a9
@@ -203,7 +203,7 @@
 	const FLAAFFY    ; b4
 	const AMPHAROS   ; b5
 	const BELLOSSOM  ; b6
-	const SUDOWOODO  ; b7
+	const LICKILICKY ; b7
 	const POLITOED   ; b8
 	const SUNKERN    ; b9
 	const SUNFLORA   ; ba
@@ -219,11 +219,11 @@
 	const MISDREAVUS ; c4
 	const MISMAGIUS  ; c5
 	const UNOWN      ; c6
-	const WOBBUFFET  ; c7
-	const GIRAFARIG  ; c8
+	const SIRFETCH_D ; c7 WOBBUFFET
+	const MR__RIME   ; c8 GIRAFARIG
 	const PINECO     ; c9
 	const FORRETRESS ; ca
-	const DUNSPARCE  ; cb
+	const PERRSERKER ; cb DUNSPARCE
 	const GLIGAR     ; cc
 	const GLISCOR    ; cd
 	const STEELIX    ; ce
@@ -242,11 +242,11 @@
 	const SWINUB     ; db
 	const PILOSWINE  ; dc
 	const MAMOSWINE  ; dd
-	const CORSOLA    ; de
-	const REMORAID   ; df
-	const OCTILLERY  ; e0
-	const MANTINE    ; e1
-	const SKARMORY   ; e2
+	const HAPPINY    ; de
+	const SMOOCHUM   ; df
+	const MIME_JR_   ; e0
+	const LICKITUNG  ; e1
+	const IGGLYBUFF  ; e2
 	const HOUNDOUR   ; e3
 	const HOUNDOOM   ; e4
 	const KINGDRA    ; e5
@@ -254,7 +254,7 @@
 	const DONPHAN    ; e7
 	const PORYGON2   ; e8
 	const PORYGON_Z  ; e9
-	const SMEARGLE   ; ea
+	const CLEFFA     ; ea
 	const TYROGUE    ; eb
 	const HITMONTOP  ; ec
 	const ELEKID     ; ed

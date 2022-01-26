@@ -55,7 +55,7 @@ RattataAlolanEggMoves:
 	db COUNTER
 	db $ff
 
-MarillEggMoves:
+SpearowEggMoves:
 	db BELLY_DRUM
 	db FORESIGHT
 	db FUTURE_SIGHT
@@ -617,7 +617,7 @@ HoothootEggMoves:
 	db HURRICANE
 	db $ff
 
-LedybaEggMoves:
+GoldeenEggMoves:
 	db DIZZY_PUNCH
 	db ENCORE ; requires Shuckle
 	db PSYBEAM
@@ -685,11 +685,6 @@ MareepEggMoves:
 	db SAFEGUARD
 	db $ff
 
-SudowoodoEggMoves:
-	db DEFENSE_CURL
-	db EXPLOSION
-	db $ff
-
 SunkernEggMoves:
 	db $ff
 
@@ -726,37 +721,11 @@ MisdreavusEggMoves:
 	db SCREECH
 	db $ff
 
-WobbuffetEggMoves:
-	db CHARM
-	db ENCORE
-	db $ff
-
-GirafarigEggMoves:
-	db DOUBLE_KICK
-	db FORESIGHT
-	db FUTURE_SIGHT
-	db MEAN_LOOK
-	db MIRROR_COAT
-	db TAKE_DOWN
-	db AMNESIA
-	db CALM_MIND
-	db $ff
-
 PinecoEggMoves:
 	db PIN_MISSILE
 	db SWIFT
 	db REFLECT
 	db TOXIC_SPIKES
-	db $ff
-
-DunsparceEggMoves:
-	db AGILITY
-	db ASTONISH
-	db BITE
-	db RAGE
-	db ANCIENTPOWER
-	db ROCK_SLIDE
-	db HEX
 	db $ff
 
 GligarEggMoves:
@@ -842,43 +811,12 @@ SwinubEggMoves:
 	db ICICLE_SPEAR
 	db $ff
 
-CorsolaEggMoves:
-	db BARRIER
-	db CONFUSE_RAY
-	db HAZE
-	db AMNESIA
-	db SCREECH
-	db ROCK_SLIDE
-	db SAFEGUARD
-	db CALM_MIND
-	db WATER_PULSE
-	db ICICLE_SPEAR
-	db $ff
-
-RemoraidEggMoves:
-	db SPLASH
-	db HAZE
-	db OCTAZOOKA
-	db ROCK_BLAST
-	db SCREECH
-	db SUPERSONIC
-	db AURORA_BEAM
-	db GUNK_SHOT
-	db WATER_PULSE
-	db $ff
-
-MantineEggMoves:
+LickitungEggMoves:
 	db HAZE
 	db MIRROR_COAT
 	db SPLASH
 	db HYDRO_PUMP
 	db GUNK_SHOT
-	db $ff
-
-SkarmoryEggMoves:
-	db DRILL_PECK
-	db PURSUIT
-	db BRAVE_BIRD
 	db $ff
 
 HoundourEggMoves:

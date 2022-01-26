@@ -1,32 +1,32 @@
 ; swarms in grass
 
-; Dunsparce swarm
+; EKANS swarm
 	map_id DARK_CAVE_VIOLET_ENTRANCE
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon 3, GEODUDE
-	wildmon 3, DUNSPARCE
+	wildmon 3, EKANS
 	wildmon 2, ZUBAT
 	wildmon 2, GEODUDE
-	wildmon 2, DUNSPARCE
-	wildmon 4, DUNSPARCE
-	wildmon 4, DUNSPARCE
+	wildmon 2, EKANS
+	wildmon 4, EKANS
+	wildmon 4, EKANS
 	; day
 	wildmon 3, GEODUDE
-	wildmon 3, DUNSPARCE
+	wildmon 3, EKANS
 	wildmon 2, ZUBAT
 	wildmon 2, GEODUDE
-	wildmon 2, DUNSPARCE
-	wildmon 4, DUNSPARCE
-	wildmon 4, DUNSPARCE
+	wildmon 2, EKANS
+	wildmon 4, EKANS
+	wildmon 4, EKANS
 	; nite
 	wildmon 3, GEODUDE
-	wildmon 3, DUNSPARCE
+	wildmon 3, EKANS
 	wildmon 2, ZUBAT
 	wildmon 2, GEODUDE
-	wildmon 2, DUNSPARCE
-	wildmon 4, DUNSPARCE
-	wildmon 4, DUNSPARCE
+	wildmon 2, EKANS
+	wildmon 4, EKANS
+	wildmon 4, EKANS
 
 ; Yanma swarm
 	map_id ROUTE_35

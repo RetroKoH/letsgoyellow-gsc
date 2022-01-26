@@ -26,11 +26,10 @@ EvolveAfterBattle_MasterLoop:
 
 	inc hl
 	ld a, [hl]
-	cp $ff
+	cp $ff ; have we reached the end of the party?
 	jmp z, .ReturnToMap
 
 	ld [wEvolutionOldSpecies], a
-
 	push hl
 	ld a, [wCurPartyMon]
 	ld c, a
@@ -42,7 +41,26 @@ EvolveAfterBattle_MasterLoop:
 	jr z, EvolveAfterBattle_MasterLoop
 
 	ld a, [wEvolutionOldSpecies]
-	call GetPartyEvosAttacksPointer
+	push af
+	; b = form
+	ld a, [wCurPartyMon]
+	ld hl, wPartyMon1Form
+	ld bc, PARTYMON_STRUCT_LENGTH
+	rst AddNTimes
+	ld a, [hl]
+	and SPECIESFORM_MASK
+	ld b, a
+	; c = species
+	pop af
+	ld c, a
+	call GetSpeciesAndFormIndex
+	dec bc
+	ld hl, EvolutionPointers
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 
 	push hl
 	xor a
@@ -507,25 +525,37 @@ LearnEvolutionMove:
 	; bc = index
 	call GetSpeciesAndFormIndex
 	dec bc
-	ld hl, EvolutionMoves
+	ld hl, LearnsetPointers
 	add hl, bc
-	ld a, [hl]
-	and a
-	ret z
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 
-	ld d, a
+.find_move	; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
+	ld a, [hli]
+	and a		; have we reached the end of the learn set?
+	ret z		; if we've reached the end of the learn set, jump (If no moves present in set)
+
+	ld b, a		; check value of the level the move is learnt at
+	cp $ff		; is the move an evo move? (Level = $FF)
+	ret nz		; assuming that the moves are in sequential order, stop here.
+
+	ld a, [hli]	; a = move ID
+	push hl
+	ld d, a		; ID of move to learn
 	ld hl, wPartyMon1Moves
 	ld a, [wCurPartyMon]
 	ld bc, PARTYMON_STRUCT_LENGTH
 	rst AddNTimes
 
 	ld b, NUM_MOVES
-.check_move
+.check_move ; check if the move to learn is already known
 	ld a, [hli]
 	cp d
-	ret z
+	jr z, .has_move		; if already known, jump
 	dec b
-	jr nz, .check_move
+	jr nz, .check_move	; if not, loop and check others
 
 	ld a, d
 	ld [wPutativeTMHMMove], a
@@ -538,24 +568,40 @@ LearnEvolutionMove:
 	pop af
 	ld [wCurPartySpecies], a
 	ld [wTempSpecies], a
-	ret
+
+.has_move
+	pop hl
+	jr .find_move
 
 LearnLevelMoves:
 	ld a, [wTempSpecies]
 	ld [wCurPartySpecies], a
-	call GetPartyEvosAttacksPointer
-
-.skip_evos
-	ld a, [hli]
-	and a
-	jr nz, .skip_evos
-
-.find_move
-	ld a, [hli]
-	and a
-	ret z
-
+	ld c, a
+	; b = form
+	ld a, [wCurForm]
 	ld b, a
+	; bc = index
+	call GetSpeciesAndFormIndex
+	dec bc
+	ld hl, LearnsetPointers
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jr .find_move
+
+.nextMove
+	inc hl
+
+.find_move ; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
+	ld a, [hli]
+	and a		; have we reached the end of the learn set?
+	ret z		; if we've reached the end of the learn set, jump (If no moves present in set)
+
+	cp $FF
+	jr z, .nextMove			; skip evolution moves
+	ld b, a					; level the move is learnt at
 	ld a, [wCurPartyLevel]
 	cp b
 	ld a, [hli]
@@ -575,7 +621,12 @@ LearnLevelMoves:
 	jr z, .has_move
 	dec b
 	jr nz, .check_move
+	jr .learn
+.has_move
+	pop hl
+	jr .find_move
 
+.learn
 	ld a, d
 	ld [wPutativeTMHMMove], a
 	ld [wNamedObjectIndex], a
@@ -587,7 +638,6 @@ LearnLevelMoves:
 	pop af
 	ld [wCurPartySpecies], a
 	ld [wTempSpecies], a
-.has_move
 	pop hl
 	jr .find_move
 
@@ -597,11 +647,14 @@ FillMoves:
 	push hl
 	push de
 	push bc
-	call GetEvosAttacksPointer
-.GoToAttacks:
+	call GetSpeciesAndFormIndex
+	dec bc
+	ld hl, LearnsetPointers
+	add hl, bc
+	add hl, bc
 	ld a, [hli]
-	and a
-	jr nz, .GoToAttacks
+	ld h, [hl]
+	ld l, a
 	jr .GetLevel
 
 .NextMove:
@@ -610,6 +663,8 @@ FillMoves:
 	inc hl
 .GetLevel:
 	ld a, [hli]
+	cp $FF
+	jr z, .GetMove	; skip evolution moves
 	and a
 	jr z, .done
 	ld b, a
@@ -755,30 +810,4 @@ GetPreEvolution:
 	ld a, c
 	ld [wCurPartySpecies], a
 	scf
-	ret
-
-GetPartyEvosAttacksPointer:
-	push af
-	; b = form
-	ld a, [wCurPartyMon]
-	ld hl, wPartyMon1Form
-	ld bc, PARTYMON_STRUCT_LENGTH
-	rst AddNTimes
-	ld a, [hl]
-	and SPECIESFORM_MASK
-	ld b, a
-	; c = species
-	pop af
-	ld c, a
-GetEvosAttacksPointer:
-; input: b = form, c = species
-	; bc = index
-	call GetSpeciesAndFormIndex
-	dec bc
-	ld hl, LearnsetPointers
-	add hl, bc
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
 	ret

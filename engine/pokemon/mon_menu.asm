@@ -102,18 +102,20 @@ PokemonActionSubmenu:
 	ret
 
 .Actions:
-	dbw MONMENUITEM_CUT,        MonMenu_Cut
-	dbw MONMENUITEM_FLY,        MonMenu_Fly
-	dbw MONMENUITEM_SURF,       MonMenu_Surf
-	dbw MONMENUITEM_STRENGTH,   MonMenu_Strength
-	dbw MONMENUITEM_FLASH,      MonMenu_Flash
-	dbw MONMENUITEM_WHIRLPOOL,  MonMenu_Whirlpool
-	dbw MONMENUITEM_DIG,        MonMenu_Dig
-	dbw MONMENUITEM_TELEPORT,   MonMenu_Teleport
-	dbw MONMENUITEM_FRESHSNACK, MonMenu_FreshSnack
-	dbw MONMENUITEM_HEADBUTT,   MonMenu_Headbutt
-	dbw MONMENUITEM_WATERFALL,  MonMenu_Waterfall
-	dbw MONMENUITEM_ROCKSMASH,  MonMenu_RockSmash
+	dbw MONMENUITEM_CHOP,    MonMenu_Cut
+	dbw MONMENUITEM_SOAR,    MonMenu_Fly
+	dbw MONMENUITEM_SWIM,    MonMenu_Surf
+	dbw MONMENUITEM_PUSH,    MonMenu_Strength
+	dbw MONMENUITEM_GLOW,    MonMenu_Flash
+	dbw MONMENUITEM_WARP,    MonMenu_Teleport
+	dbw MONMENUITEM_LURE,    MonMenu_SweetLure
+	dbw MONMENUITEM_LULL,    MonMenu_SoftLull
+	dbw MONMENUITEM_HEAL,    MonMenu_Recover
+;	dbw MONMENU_WHIRLPOOL,  MonMenu_Whirlpool ; Whirlpool
+;	dbw MONMENU_DIG,        MonMenu_Dig ; Dig
+;	dbw MONMENU_WATERFALL,  MonMenu_Waterfall ; Waterfall
+;	dbw MONMENU_HEADBUTT,   MonMenu_Headbutt ; Headbutt
+;	dbw MONMENU_ROCKSMASH,  MonMenu_RockSmash ; RockSmash
 	dbw MONMENUITEM_STATS,      OpenPartyStats
 	dbw MONMENUITEM_SWITCH,     SwitchPartyMons
 	dbw MONMENUITEM_ITEM,       GiveTakePartyMonItem
@@ -763,6 +765,18 @@ MonMenu_Dig:
 	farcall DigFunction
 	jr _MonMenu_StandardCheck
 
+MonMenu_SweetLure:
+	farcall SweetLureFunction
+	ld b, $4
+	ld a, $2
+	ret
+
+MonMenu_SoftLull:
+	farcall SoftLullFunction
+	ld b, $4
+	ld a, $2
+	ret
+
 MonMenu_Headbutt:
 	farcall HeadbuttFunction
 	jr _MonMenu_StandardCheck
@@ -771,7 +785,7 @@ MonMenu_RockSmash:
 	farcall RockSmashFunction
 	jr _MonMenu_StandardCheck
 
-MonMenu_FreshSnack:
+MonMenu_Recover:
 	call .CheckMonHasEnoughHP
 	jr nc, .NotEnoughHP
 	farcall FreshSnackFunction

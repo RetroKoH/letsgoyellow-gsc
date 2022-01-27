@@ -251,10 +251,12 @@ INCLUDE "engine/battle/sliding_intro.asm"
 INCLUDE "engine/movie/bsod.asm"
 INCLUDE "engine/events/judge_machine.asm"
 INCLUDE "engine/events/poisonstep.asm"
-INCLUDE "engine/events/squirtbottle.asm"
+INCLUDE "engine/events/sweet_lure.asm"
+INCLUDE "engine/events/squirtbottle.asm" ; DELETE
 INCLUDE "engine/events/card_key.asm"
 INCLUDE "engine/events/basement_key.asm"
-INCLUDE "engine/events/sacred_ash.asm"
+INCLUDE "engine/events/sacred_ash.asm" ; DELETE
+INCLUDE "engine/events/soft_lull.asm"
 
 
 SECTION "bank14", ROMX

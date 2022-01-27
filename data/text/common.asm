@@ -2355,6 +2355,32 @@ ForfeitToTrainerText::
 	line "out!"
 	done
 
+SECTION "_UseSweetScentText", ROMX
+_UseSweetScentText::
+	text_ram wStringBuffer3
+	text " used"
+	line "Sweet Lure!"
+	done
+
+SECTION "_SweetScentNothingText", ROMX
+_SweetScentNothingText::
+	text "Looks like there's"
+	line "nothing here…"
+	done
+
+SECTION "_UseSoftLullText", ROMX
+_UseSoftLullText::
+	text_ram wStringBuffer3
+	text " used"
+	line "Soft Lull!"
+	done
+
+SECTION "_SoftLullNothingText", ROMX
+_SoftLullNothingText::
+	text "That's quite a"
+	line "nice melody…"
+	done
+
 SECTION "_PoisonFaintText", ROMX
 _PoisonFaintText::
 	text_ram wStringBuffer3

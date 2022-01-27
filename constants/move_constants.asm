@@ -307,3 +307,16 @@ NUM_BATTLE_ANIMS EQU const_value - 1
 	const BATTLEANIM_WOBBLE
 	const BATTLEANIM_SHAKE
 	const BATTLEANIM_HIT_CONFUSION
+
+; Field techniques
+	const_def 1
+	const CHOP
+	const SOAR
+	const SWIM
+	const PUSH_T
+	const GLOW
+	const WARP
+	const LURE
+	const LULL
+	const HEAL
+NUM_FIELDTECHVALUES EQU const_value - 1

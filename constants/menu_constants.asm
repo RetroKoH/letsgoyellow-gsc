@@ -41,26 +41,23 @@
 ; used by PokemonActionSubmenu (see engine/pokemon/mon_menu.asm)
 	const_def 1
 	; moves
-	const MONMENUITEM_CUT        ; 1
-	const MONMENUITEM_FLY        ; 2
-	const MONMENUITEM_SURF       ; 3
-	const MONMENUITEM_STRENGTH   ; 4
-	const MONMENUITEM_WATERFALL  ; 5
-	const MONMENUITEM_FLASH      ; 6
-	const MONMENUITEM_WHIRLPOOL  ; 7
-	const MONMENUITEM_DIG        ; 8
-	const MONMENUITEM_TELEPORT   ; 9
-	const MONMENUITEM_FRESHSNACK ; 10
-	const MONMENUITEM_HEADBUTT   ; 11
-	const MONMENUITEM_ROCKSMASH  ; 12
+	const MONMENUITEM_CHOP   ; 1
+	const MONMENUITEM_SOAR   ; 2
+	const MONMENUITEM_SWIM   ; 3
+	const MONMENUITEM_PUSH   ; 4
+	const MONMENUITEM_GLOW   ; 5
+	const MONMENUITEM_WARP   ; 6
+	const MONMENUITEM_LURE   ; 7
+	const MONMENUITEM_LULL   ; 8
+	const MONMENUITEM_HEAL   ; 9
 	; options
-	const MONMENUITEM_STATS      ; 13
-	const MONMENUITEM_SWITCH     ; 14
-	const MONMENUITEM_ITEM       ; 15
-	const MONMENUITEM_CANCEL     ; 16
-	const MONMENUITEM_MOVE       ; 17
-	const MONMENUITEM_MAIL       ; 18
-	const MONMENUITEM_ERROR      ; 19
+	const MONMENUITEM_STATS      ; 10
+	const MONMENUITEM_SWITCH     ; 11
+	const MONMENUITEM_ITEM       ; 12
+	const MONMENUITEM_CANCEL     ; 13
+	const MONMENUITEM_MOVE       ; 14
+	const MONMENUITEM_MAIL       ; 15
+	const MONMENUITEM_ERROR      ; 16
 NUM_MONMENUITEMS EQU const_value - 1
 
 ; MonMenuOptions categories

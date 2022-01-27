@@ -62,66 +62,7 @@ CheckBadge:
 	text_far _BadgeRequiredText
 	text_end
 
-CheckPartyMove:
-; Check if a monster in your party has move d.
-
-	ld e, 0
-	xor a
-	ld [wCurPartyMon], a
-.loop
-	ld c, e
-	ld b, 0
-	ld hl, wPartySpecies
-	add hl, bc
-	ld a, [hl]
-	call IsAPokemon
-	jr c, .no
-
-	ld bc, PARTYMON_STRUCT_LENGTH
-	ld hl, wPartyMon1Form
-	ld a, e
-	rst AddNTimes
-	bit MON_IS_EGG_F, [hl]
-	jr nz, .next
-	ld bc, MON_MOVES - MON_FORM
-	add hl, bc
-	ld b, NUM_MOVES
-.check
-	ld a, [hli]
-	cp d
-	jr z, .yes
-	dec b
-	jr nz, .check
-
-.next
-	inc e
-	jr .loop
-
-.yes
-	ld a, e
-	ld [wCurPartyMon], a ; which mon has the move
-	xor a
-	ret
-.no
-	scf
-	ret
-
-CheckForSurfingPikachu:
-	ld d, SURF
-	call CheckPartyMove
-	jr c, .no
-	ld a, [wCurPartyMon]
-	ld e, a
-	ld d, 0
-	ld hl, wPartySpecies
-	add hl, de
-	ld a, [hl]
-	cp PIKACHU
-	jr nz, .no
-	ld a, TRUE
-	ldh [hScriptVar], a
-	ret
-
+CheckForSurfingPikachu: ; Called by Rte 19 Beach House
 .no:
 	xor a ; FALSE
 	ldh [hScriptVar], a
@@ -163,9 +104,9 @@ CutFunction:
 	dw .FailCut
 
 .CheckAble:
-	ld de, ENGINE_HIVEBADGE
-	call CheckBadge
-	jr c, .nohivebadge
+;	ld de, ENGINE_HIVEBADGE
+;	call CheckBadge
+;	jr c, .nohivebadge
 	call CheckMapForSomethingToCut
 	jr c, .nothingtocut
 	ld a, $1
@@ -349,8 +290,8 @@ TryFlashOW::
 	ld a, [wTimeOfDayPalset]
 	cp DARKNESS_PALSET
 	jr nz, .quit
-	ld d, FLASH
-	call CheckPartyMove
+	ld d, GLOW
+	farcall CheckPartyTechnique
 	jr c, .quit
 	call GetPartyNickname
 	ld a, BANK(AskFlashScript)
@@ -436,9 +377,9 @@ SurfFunction:
 	dw .AlreadySurfing
 
 .TrySurf:
-	ld de, ENGINE_FOGBADGE
-	call CheckBadge
-	jr c, .asm_c956
+;	ld de, ENGINE_FOGBADGE
+;	call CheckBadge
+;	jr c, .asm_c956
 	ld hl, wOWState
 	bit OWSTATE_BIKING_FORCED, [hl]
 	jr nz, .cannotsurf
@@ -588,12 +529,12 @@ TrySurfOW::
 	call CheckDirection
 	jr c, .quit
 
-	ld de, ENGINE_FOGBADGE
-	call CheckEngineFlag
-	jr c, .quit
+;	ld de, ENGINE_FOGBADGE
+;	call CheckEngineFlag
+;	jr c, .quit
 
-	ld d, SURF
-	call CheckPartyMove
+	ld d, SWIM
+	farcall CheckPartyTechnique
 	jr c, .quit
 
 	ld hl, wOWState
@@ -672,9 +613,9 @@ FlyFunction:
 
 .TryFly:
 ; Fly
-	ld de, ENGINE_STORMBADGE
-	call CheckBadge
-	jr c, .nostormbadge
+;	ld de, ENGINE_STORMBADGE
+;	call CheckBadge
+;	jr c, .nostormbadge
 	call CheckFlyAllowedOnMap
 	jr nz, .indoors
 
@@ -761,10 +702,10 @@ WaterfallFunction:
 
 .TryWaterfall:
 ; Waterfall
-	ld de, ENGINE_RISINGBADGE
-	call CheckBadge
-	ld a, $80
-	ret c
+;	ld de, ENGINE_RISINGBADGE
+;	call CheckBadge
+;	ld a, $80
+;	ret c
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld hl, Script_WaterfallFromMenu
@@ -829,12 +770,12 @@ Script_AutoWaterfall:
 	step_end
 
 TryWaterfallOW::
-	ld d, WATERFALL
-	call CheckPartyMove
+	ld d, SWIM
+	farcall CheckPartyTechnique
 	jr c, .failed
-	ld de, ENGINE_RISINGBADGE
-	call CheckEngineFlag
-	jr c, .failed
+;	ld de, ENGINE_RISINGBADGE
+;	call CheckEngineFlag
+;	jr c, .failed
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld a, BANK(Script_AskWaterfall)
@@ -1067,13 +1008,13 @@ StrengthFunction:
 
 .TryStrength:
 ; Strength
-	ld de, ENGINE_PLAINBADGE
-	call CheckBadge
-	jr nc, .UseStrength
+;	ld de, ENGINE_PLAINBADGE
+;	call CheckBadge
+;	jr nc, .UseStrength
 
-.Failed:
-	ld a, $80
-	ret
+;.Failed:
+;	ld a, $80
+;	ret
 
 .UseStrength:
 	ld hl, Script_StrengthFromMenu
@@ -1128,13 +1069,13 @@ AskStrengthScript:
 	endtext
 
 TryStrengthOW:
-	ld d, STRENGTH
-	call CheckPartyMove
+	ld d, PUSH_T
+	farcall CheckPartyTechnique
 	jr c, .nope
 
-	ld de, ENGINE_PLAINBADGE
-	call CheckEngineFlag
-	jr c, .nope
+;	ld de, ENGINE_PLAINBADGE
+;	call CheckEngineFlag
+;	jr c, .nope
 
 	ld hl, wOWState
 	bit OWSTATE_STRENGTH, [hl]
@@ -1171,9 +1112,9 @@ Jumptable_cdae:
 	dw .FailWhirlpool
 
 .TryWhirlpool:
-	ld de, ENGINE_GLACIERBADGE
-	call CheckBadge
-	jr c, .noglacierbadge
+;	ld de, ENGINE_GLACIERBADGE
+;	call CheckBadge
+;	jr c, .noglacierbadge
 	call TryWhirlpoolMenu
 	jr c, .failed
 	ld a, $1
@@ -1278,12 +1219,12 @@ Script_AutoWhirlpool:
 	step_end
 
 TryWhirlpoolOW::
-	ld d, WHIRLPOOL
-	call CheckPartyMove
+	ld d, SWIM
+	farcall CheckPartyTechnique
 	jr c, .failed
-	ld de, ENGINE_GLACIERBADGE
-	call CheckEngineFlag
-	jr c, .failed
+;	ld de, ENGINE_GLACIERBADGE
+;	call CheckEngineFlag
+;	jr c, .failed
 	call TryWhirlpoolMenu
 	jr c, .failed
 	ld a, BANK(Script_AskWhirlpoolOW)
@@ -1366,8 +1307,8 @@ AutoHeadbuttScript:
 	farjumptext _HeadbuttNothingText
 
 TryHeadbuttOW::
-	ld d, HEADBUTT
-	call CheckPartyMove
+	ld d, PUSH_T
+	farcall CheckPartyTechnique
 	jr c, .no
 
 	ld a, BANK(AskHeadbuttScript)
@@ -1488,8 +1429,8 @@ AskRockSmashScript:
 	farjumptext _MaySmashText
 
 HasRockSmash:
-	ld d, ROCK_SMASH
-	call CheckPartyMove
+	ld d, PUSH_T
+	farcall CheckPartyTechnique
 	; a = carry ? 1 : 0
 	sbc a
 	and 1
@@ -1845,13 +1786,13 @@ Script_CantGetOffBike:
 	waitendtext
 
 HasCutAvailable::
-	ld d, CUT
-	call CheckPartyMove
+	ld d, CHOP
+	farcall CheckPartyTechnique
 	jr c, .no
 
-	ld de, ENGINE_HIVEBADGE
-	call CheckEngineFlag
-	jr c, .no
+;	ld de, ENGINE_HIVEBADGE
+;	call CheckEngineFlag
+;	jr c, .no
 
 .yes
 	xor a

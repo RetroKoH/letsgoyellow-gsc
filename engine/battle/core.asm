@@ -5700,6 +5700,17 @@ endc
 	; a = carry ? TREEMON_SLEEP_TURNS : 0
 	sbc a
 	and TREEMON_SLEEP_TURNS
+	jr c, .UpdateStatus
+
+	; Otherwise check for Soft Lull in effect; monsters will enter battle asleep
+.notTree
+	ld a, [wMapMusic]
+	cp MUSIC_POKEMON_LULLABY
+	jr z, .UpdateStatus
+	; Otherwise, no status
+	xor a
+
+.UpdateStatus:
 	ld hl, wOTPartyMon1Status
 	ld [hli], a
 

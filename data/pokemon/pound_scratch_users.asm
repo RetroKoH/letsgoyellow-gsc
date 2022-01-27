@@ -1,0 +1,67 @@
+; MOVE VARIATIONS: Tackle
+; these tables must be together
+
+PoundUsers:
+; Tackle += Pound
+	db CLEFFA
+	db CLEAFIRY
+	db CLEFABLE
+	db IGGLYBUFF
+	db JIGGLYPUFF
+	db WIGGLYTUFF
+	db POLIWAG
+	db POLIWHIRL
+	db POLIWRATH
+	db POLITOED
+	db GRIMER
+	db MUK
+	db DROWZEE
+	db HYPNO
+	db HAPPINY
+	db CHANSEY
+	db BLISSEY
+	db KANGASKHAN
+	db MIME_JR_
+	db MR__MIME
+	db MR__RIME
+	db SMOOCHUM
+	db JYNX
+	db MEW
+	db TOGEPI
+	db TOGETIC
+	db TOGEKISS
+	db SUNFLORA
+	db -1
+
+ScratchUsers:
+; Tackle += Scratch
+	db CHARMANDER
+	db CHARMELEON
+	db CHARIZARD
+	db SANDSHREW
+	db SANDSLASH
+	db NIDORAN_F
+	db NIDORINA
+	db NIDOQUEEN
+	db PARAS
+	db PARASECT
+	db DIGLETT
+	db DUGTRIO
+	db MEOWTH
+	db PERSIAN
+	db PERRSERKER
+	db PSYDUCK
+	db GOLDUCK
+	db MANKEY
+	db PRIMEAPE
+	db KABUTO
+	db KABUTOPS
+	db SENTRET
+	db FURRET
+	db AIPOM
+	db AMBIPOM
+	db SNEASEL
+	db WEAVILE
+	db TEDDIURSA
+	db URSARING
+	db -1

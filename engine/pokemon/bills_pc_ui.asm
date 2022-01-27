@@ -21,10 +21,10 @@ NUM_PC_MODES EQU const_value
 	const BOXMENU_SWITCH
 	const BOXMENU_MOVES
 	const BOXMENU_ITEM
-	const BOXMENU_RELEASE
+	const BOXMENU_TRANSFER
 	const BOXMENU_RENAME
 	const BOXMENU_THEME
-	const BOXMENU_RELEASEALL
+	const BOXMENU_TRANSFERALL
 	const BOXMENU_TAKEMAIL
 	const BOXMENU_READMAIL
 	const BOXMENU_MOVEITEM
@@ -1490,7 +1490,7 @@ ManageBoxes:
 
 .BoxMenu:
 	db $40 ; flags
-	db 08, 10 ; start coords
+	db 08, 09 ; start coords
 	db 17, 19 ; end coords
 	dw .BoxMenuData2
 	db 1 ; default option
@@ -1509,7 +1509,7 @@ ManageBoxes:
 	db BOXMENU_SWITCH
 	db BOXMENU_MOVES
 	db BOXMENU_ITEM
-	db BOXMENU_RELEASE
+	db BOXMENU_TRANSFER
 	db BOXMENU_CANCEL
 	db -1
 
@@ -1520,7 +1520,7 @@ ManageBoxes:
 	db BOXMENU_SWITCH
 	db BOXMENU_MOVES
 	db BOXMENU_ITEM
-	db BOXMENU_RELEASE
+	db BOXMENU_TRANSFER
 	db BOXMENU_CANCEL
 	db -1
 
@@ -1528,7 +1528,7 @@ ManageBoxes:
 	db 4
 	db BOXMENU_RENAME
 	db BOXMENU_THEME
-	db BOXMENU_RELEASEALL
+	db BOXMENU_TRANSFERALL
 	db BOXMENU_CANCEL
 	db -1
 
@@ -1541,11 +1541,11 @@ BillsPC_MenuStrings:
 	db "Switch@"
 	db "Moves@"
 	db "Item@"
-	db "Release@"
+	db "Transfer@"
 	; box options
 	db "Rename@"
 	db "Theme@"
-	db "Release@"
+	db "Transfer@"
 	; holding a mail
 	db "Take@"
 	db "Read@"
@@ -1563,10 +1563,10 @@ BillsPC_MenuJumptable:
 	dw BillsPC_Switch
 	dw BillsPC_Moves
 	dw BillsPC_Item
-	dw BillsPC_Release
+	dw BillsPC_Transfer
 	dw BillsPC_Rename
 	dw BillsPC_Theme
-	dw BillsPC_ReleaseAll
+	dw BillsPC_TransferAll
 	dw BillsPC_TakeMail
 	dw BillsPC_ReadMail
 	dw BillsPC_MoveItem
@@ -2659,13 +2659,13 @@ BillsPC_EggsCantHoldItemsText:
 	line "items."
 	prompt
 
-BillsPC_CanReleaseMon:
-; Verifies if the given mon in box b, slot c, can be released. Sets wTempMon.
+BillsPC_CanTransferMon:
+; Verifies if the given mon in box b, slot c, can be Transferred. Sets wTempMon.
 ; Returns the following in a:
-; 0: Can release
-; 1: Can't release last healthy mon
-; 2: Can't release Egg
-; 3: Can't release mon knowing HMs
+; 0: Can Transfer
+; 1: Can't Transfer last healthy mon
+; 2: Can't Transfer Egg
+; 3: Can't Transfer mon knowing HMs
 ; 4: Empty slot
 	; Is there even anything there?
 	call GetStorageBoxMon
@@ -2690,7 +2690,7 @@ BillsPC_CanReleaseMon:
 	jr c, .done
 	; fallthrough
 .not_last_healthy
-	; Can't release Eggs.
+	; Can't Transfer Eggs.
 	ld a, [wTempMonIsEgg]
 	bit MON_IS_EGG_F, a
 	ld a, 2
@@ -2776,34 +2776,34 @@ RemoveStorageBoxMon_MaybeRespawn:
 	pop hl
 	jmp RemoveStorageBoxMon
 
-BillsPC_ReleaseAll:
+BillsPC_TransferAll:
 	call BillsPC_HideModeIcon
 
 	; Double confirmation.
-	ld hl, .ReallyReleaseBox
+	ld hl, .ReallyTransferBox
 	call MenuTextbox
 	call NoYesBox
 	jr c, .done
 
-	ld hl, .CantRecallReleasedMons
+	ld hl, .CantRecallTransferredMons
 	call PrintText
 	call NoYesBox
 	jr c, .done
 
 	; We want to give 3 possible messages:
-	; * Nothing was released. You can't release Eggs or PKMN knowing HMs.
+	; * Nothing was transferred. You can't transfer Eggs or PKMN knowing HMs.
 	; * There's nothing there!
-	; * X PKMN released.
-	lb de, 0, 0 ; Successful and failed releases.
+	; * X PKMN transferred.
+	lb de, 0, 0 ; Successful and failed transfers.
 	call BillsPC_GetCursorSlot
 .loop
 	ld a, c
 	inc c
 	cp MONS_PER_BOX
-	jr z, .releases_done
+	jr z, .transfers_done
 
-	call BillsPC_CanReleaseMon
-	jr nz, .failed_release
+	call BillsPC_CanTransferMon
+	jr nz, .failed_transfer
 	inc d
 	push de
 	call RemoveStorageBoxMon_MaybeRespawn
@@ -2813,22 +2813,22 @@ BillsPC_ReleaseAll:
 	pop bc
 	pop de
 	jr .loop
-.failed_release
+.failed_transfer
 	; Check if there was something there.
 	cp 4
 	jr z, .loop
 	inc e
 	jr .loop
-.releases_done
+.transfers_done
 	ld a, d
 	ld [wTextDecimalByte], a
 	or e
 	ld hl, .NothingThere
 	jr z, .print
 	and d
-	ld hl, .NothingReleased
+	ld hl, .NothingTransferred
 	jr z, .print2
-	ld hl, .ReleasedXMon
+	ld hl, .TransferredXMon
 .print
 	push de
 	call PrintText
@@ -2843,14 +2843,14 @@ BillsPC_ReleaseAll:
 	call BillsPC_UpdateCursorLocation
 	jmp CloseWindow
 
-.ReallyReleaseBox:
-	text "Really release the"
-	line "entire box?"
+.ReallyTransferBox:
+	text "Really transfer"
+	line "the entire box?"
 	done
 
-.CantRecallReleasedMons:
+.CantRecallTransferredMons:
 	text "You can't recall"
-	line "released #mon."
+	line "these #mon."
 	cont "Are you sure?"
 	done
 
@@ -2858,14 +2858,14 @@ BillsPC_ReleaseAll:
 	text "This box is empty."
 	prompt
 
-.NothingReleased:
-	text "You can't release"
+.NothingTransferred:
+	text "You can't transfer"
 	line "Eggs or #mon"
 	cont "with HM moves."
 	prompt
 
-.ReleasedXMon:
-	text "Released "
+.TransferredXMon:
+	text "Transferred "
 	text_decimal wTextDecimalByte, 1, 2
 	text ""
 	line "#mon."
@@ -2876,23 +2876,23 @@ BillsPC_ReleaseAll:
 	line "or know HM moves."
 	prompt
 
-BillsPC_Release:
+BillsPC_Transfer:
 	call BillsPC_GetCursorSlot
-	call BillsPC_CanReleaseMon
+	call BillsPC_CanTransferMon
 	ld hl, BillsPC_LastPartyMon
 	dec a
 	jr z, .print
-	ld hl, .CantReleaseEgg
+	ld hl, .CantTransferEgg
 	dec a
 	jr z, .print
-	ld hl, .CantReleaseHMMons
+	ld hl, .CantTransferHMMons
 	dec a
 	jr z, .print
 
 	; We don't need to check for error 4 (empty slot) since we can't get to this
 	; menu in that case.
 	call BillsPC_HideCursorAndMode
-	ld hl, .ReallyReleaseMon
+	ld hl, .ReallyTransferMon
 	call MenuTextbox
 	call NoYesBox
 	jr c, .done
@@ -2904,13 +2904,13 @@ BillsPC_Release:
 	ld bc, MON_NAME_LENGTH
 	rst CopyBytes
 
-	; Then release the mon.
+	; Then transfer the mon.
 	call BillsPC_GetCursorSlot
 	push bc
 	call RemoveStorageBoxMon_MaybeRespawn
 
 	; Print message and reload current cursor mon.
-	ld hl, .WasReleasedOutside
+	ld hl, .WasTransferredOutside
 	call PrintText
 
 	call .done
@@ -2927,28 +2927,28 @@ BillsPC_Release:
 .print
 	jmp BillsPC_PrintText
 
-.CantReleaseEgg:
-	text "You can't release"
+.CantTransferEgg:
+	text "You can't transfer"
 	line "an Egg!"
 	prompt
 
-.CantReleaseHMMons:
-	text "You can't release"
+.CantTransferHMMons:
+	text "You can't transfer"
 	line "<PK><MN> with HM moves!"
 	prompt
 
-.ReallyReleaseMon:
-	text "Really release"
+.ReallyTransferMon:
+	text "Really transfer"
 	line ""
 	text_ram wTempMonNickname
 	text "?"
 	done
 
-.WasReleasedOutside:
+.WasTransferredOutside:
 	text ""
 	text_ram wStringBuffer1
 	text " was"
-	line "released outside."
+	line "transferred away."
 	cont "Bye, "
 	text_ram wStringBuffer1
 	text "!"

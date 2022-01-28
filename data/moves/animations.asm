@@ -215,7 +215,7 @@ BattleAnimations::
 	dw BattleAnim_SteelWing
 	dw BattleAnim_MeanLook
 	dw BattleAnim_Attract
-	dw BattleAnim_SleepTalk
+	dw BattleAnim_Coil
 	dw BattleAnim_HealBell
 	dw BattleAnim_Return
 	dw BattleAnim_Psystrike
@@ -1936,6 +1936,22 @@ BattleAnim_BulletPunch:
 	anim_wait 8
 	anim_bgeffect ANIM_BG_SHOW_MON, $0, $1, $0
 	anim_wait 8
+	anim_ret
+
+BattleAnim_Coil:
+	anim_1gfx ANIM_GFX_ROPE
+	anim_sound 0, 0, SFX_BIND
+	anim_obj ANIM_OBJ_BIND1, 5, 4, 11, 0, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_BIND1, 5, 4, 10, 0, $0
+	anim_wait 8
+	anim_obj ANIM_OBJ_BIND1, 5, 4,  9, 0, $0
+	anim_wait 64
+	anim_sound 0, 0, SFX_BIND
+	anim_incobj 1
+	anim_incobj 2
+	anim_incobj 3
+	anim_wait 96
 	anim_ret
 
 BattleAnim_Wrap:

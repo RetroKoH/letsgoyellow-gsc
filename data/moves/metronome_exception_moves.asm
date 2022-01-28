@@ -8,8 +8,6 @@ MetronomeExcepts:
 	db METRONOME
 	db MIRROR_COAT
 	db PROTECT
-	db SKETCH
-	db SLEEP_TALK
 	db THIEF
 	db TRANSFORM
 	db STRUGGLE ; -1

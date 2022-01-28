@@ -107,7 +107,7 @@ TMHMMoves:
 	db SEED_BOMB    ; MT21 (Yellow Forest)
 	db SEISMIC_TOSS ; MT22 (Pewter City)
 	db SKILL_SWAP   ; MT23 (Route 27)
-	db SLEEP_TALK   ; MT24 (Route 31)
+	db MEGA_PUNCH   ; MT24 (Route 31)
 	db SUCKER_PUNCH ; MT25 (Scary Cave)
 	db SWAGGER      ; MT26 (Celadon City)
 	db THUNDERPUNCH ; MT27 (Goldenrod City)

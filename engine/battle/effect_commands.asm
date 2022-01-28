@@ -55,7 +55,6 @@ INCLUDE "engine/battle/move_effects/roost.asm"
 INCLUDE "engine/battle/move_effects/safeguard.asm"
 INCLUDE "engine/battle/move_effects/sketch.asm"
 INCLUDE "engine/battle/move_effects/skill_swap.asm"
-INCLUDE "engine/battle/move_effects/sleep_talk.asm"
 INCLUDE "engine/battle/move_effects/spikes.asm"
 INCLUDE "engine/battle/move_effects/splash.asm"
 INCLUDE "engine/battle/move_effects/substitute.asm"
@@ -295,12 +294,6 @@ BattleCommand_checkturn:
 .fast_asleep
 	ld hl, FastAsleepText
 	call StdBattleTextbox
-
-	; Sleep Talk bypasses sleep.
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	cp SLEEP_TALK
-	jr z, .not_asleep
 
 	call CantMove
 	jmp EndTurn
@@ -923,13 +916,6 @@ BattleCommand_checkobedience:
 	jmp EndMoveEffect
 
 IgnoreSleepOnly:
-
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-
-	xor SLEEP_TALK
-	ret nz
-
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
 	and SLP

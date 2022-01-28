@@ -225,7 +225,7 @@ Moves::
 	move STEEL_WING,   EFFECT_DEFENSE_UP_HIT,     70, STEEL,      90, 25,  10, PHYSICAL
 	move MEAN_LOOK,    EFFECT_MEAN_LOOK,           0, NORMAL,    100,  5,   0, STATUS
 	move ATTRACT,      EFFECT_ATTRACT,             0, NORMAL,    100, 15,   0, STATUS
-	move SLEEP_TALK,   EFFECT_SLEEP_TALK,          0, NORMAL,    100, 10,   0, STATUS
+	move COIL,         EFFECT_COIL,                0, POISON,    100, 20,   0, STATUS
 	move HEAL_BELL,    EFFECT_HEAL_BELL,           0, NORMAL,    100,  5,   0, STATUS
 	move RETURN,       EFFECT_RETURN,              1, NORMAL,    100, 20,   0, PHYSICAL
 	move PSYSTRIKE,    EFFECT_PSYSTRIKE,         100, PSYCHIC,   100, 10,   0, SPECIAL

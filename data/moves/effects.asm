@@ -1006,6 +1006,15 @@ HoneClaws:
 	forceraisestat ACCURACY
 	endmove
 
+Coil:
+	checkobedience
+	usedmovetext
+	doturn
+	forceraisestat ATTACK
+	forceraisestat DEFENSE
+	forceraisestat ACCURACY
+	endmove
+
 DefenseCurl:
 	checkobedience
 	usedmovetext
@@ -1574,13 +1583,6 @@ Sketch:
 	doturn
 	hastarget
 	sketch
-	endmove
-
-SleepTalk:
-	checkobedience
-	usedmovetext
-	doturn
-	sleeptalk
 	endmove
 
 DestinyBond:

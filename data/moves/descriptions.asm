@@ -214,7 +214,7 @@ MoveDescriptions::
 	dw SteelWingDescription
 	dw MeanLookDescription
 	dw AttractDescription
-	dw SleepTalkDescription
+	dw CoilDescription
 	dw HealBellDescription
 	dw ReturnDescription
 	dw PsystrikeDescription
@@ -992,9 +992,9 @@ AttractDescription:
 	db   "Makes the opposite"
 	next "gender infatuated.@"
 
-SleepTalkDescription:
-	db   "Randomly attacks"
-	next "while asleep.@"
+CoilDescription:
+	db   "Raises Atk, Def,"
+	next "and Accuracy.@"
 
 HealBellDescription:
 	db   "Eliminates all"

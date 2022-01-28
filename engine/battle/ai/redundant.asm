@@ -23,7 +23,6 @@ AI_Redundant:
 	dbw EFFECT_LEECH_SEED,    .LeechSeed
 	dbw EFFECT_DISABLE,       .Disable
 	dbw EFFECT_ENCORE,        .Encore
-	dbw EFFECT_SLEEP_TALK,    .SleepTalk
 	dbw EFFECT_MEAN_LOOK,     .MeanLook
 	dbw EFFECT_CURSE,         .Curse
 	dbw EFFECT_SPIKES,        .Spikes
@@ -133,11 +132,6 @@ AI_Redundant:
 	ld a, [wEnemySubStatus2]
 	bit SUBSTATUS_TRANSFORMED, a
 	ret
-
-.SleepTalk:
-	ld a, [wEnemyMonStatus]
-	and SLP
-	jr .InvertZero
 
 .Spikes:
 	ld a, [wPlayerHazards]

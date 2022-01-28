@@ -98,7 +98,7 @@ MoveEffectsPointers:
 	dw Encore
 	dw PainSplit
 	dw Sketch
-	dw SleepTalk
+	dw Coil
 	dw DestinyBond
 	dw Reversal
 	dw FuryCutter

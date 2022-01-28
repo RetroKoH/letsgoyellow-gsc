@@ -145,7 +145,7 @@ ENDM
 	add_mt SEED_BOMB    ; $65
 	add_mt SEISMIC_TOSS ; $66
 	add_mt SKILL_SWAP   ; $67
-	add_mt SLEEP_TALK   ; $68
+	add_mt MEGA_PUNCH   ; $68
 	add_mt SUCKER_PUNCH ; $69
 	add_mt SWAGGER      ; $6a
 	add_mt THUNDERPUNCH ; $6b

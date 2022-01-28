@@ -214,7 +214,7 @@ MoveNames::
 	li "Steel Wing"
 	li "Mean Look"
 	li "Attract"
-	li "Sleep Talk"
+	li "Coil"
 	li "Heal Bell"
 	li "Return"
 	li "Psystrike"

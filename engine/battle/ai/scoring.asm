@@ -355,7 +355,6 @@ AI_Smart:
 	dbw EFFECT_COUNTER,           AI_Smart_Counter
 	dbw EFFECT_ENCORE,            AI_Smart_Encore
 	dbw EFFECT_PAIN_SPLIT,        AI_Smart_PainSplit
-	dbw EFFECT_SLEEP_TALK,        AI_Smart_SleepTalk
 	dbw EFFECT_DESTINY_BOND,      AI_Smart_DestinyBond
 	dbw EFFECT_HEAL_BELL,         AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
@@ -1216,28 +1215,6 @@ AI_Smart_PainSplit:
 	pop hl
 	ret nc
 	inc [hl]
-	ret
-
-AI_Smart_SleepTalk:
-; Greatly encourage this move if enemy is fast asleep.
-; Greatly discourage this move otherwise.
-; TODO: sleep talk is typically used with rest, but we shouldn't
-; know how long we sleep for if it's randomly 1-3 turns...
-	call GetTrueUserAbility
-	cp EARLY_BIRD
-	ld b, 3
-	jr z, .got_wakeup_time
-	dec b
-.got_wakeup_time
-	ld a, [wEnemyMonStatus]
-	and $7
-	cp b
-	jmp c, AIDiscourageMove
-
-	; encourage it a ton to override everything else
-	ld a, [hl]
-	sub 10
-	ld [hl], a
 	ret
 
 AI_Smart_DestinyBond:

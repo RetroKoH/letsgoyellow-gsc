@@ -180,7 +180,7 @@ MoveDescriptions::
 	dw AeroblastDescription
 	dw SeedBombDescription
 	dw ReversalDescription
-	dw AstonishDescription
+	dw FakeOutDescription
 	dw IceShardDescription
 	dw ProtectDescription
 	dw MachPunchDescription
@@ -335,7 +335,6 @@ IronHeadDescription:
 ZenHeadbuttDescription:
 ExtrasensoryDescription:
 DarkPulseDescription:
-AstonishDescription:
 IcicleCrashDescription:
 	db   "An attack that may"
 	next "cause flinching.@"
@@ -649,6 +648,10 @@ EndureDescription:
 FalseSwipeDescription:
 	db   "Leaves the foe"
 	next "with at least 1HP.@"
+
+FakeOutDescription:
+	db   "Causes flinching,"
+	next "on the 1st turn.@"
 
 SolarBeamDescription:
 	db   "1st turn: Prepare"

@@ -181,7 +181,7 @@ BattleAnimations::
 	dw BattleAnim_Aeroblast
 	dw BattleAnim_SeedBomb
 	dw BattleAnim_Reversal
-	dw BattleAnim_Astonish
+	dw BattleAnim_FakeOut ; Need New Animation
 	dw BattleAnim_IceShard
 	dw BattleAnim_Protect
 	dw BattleAnim_MachPunch
@@ -2750,7 +2750,7 @@ BattleAnim_Flash:
 	anim_ret
 
 ; Astonish animation from Pokémon Prism
-BattleAnim_Astonish:
+BattleAnim_FakeOut:
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnim_FollowEnemyFeet_0
 	anim_bgeffect ANIM_BG_TACKLE, $0, $1, $0

@@ -3,7 +3,6 @@ ContactMoves:
 	db AERIAL_ACE
 	db AQUA_JET
 	db AQUA_TAIL
-	db ASTONISH
 	db AVALANCHE
 	db BITE
 	db BODY_SLAM
@@ -27,6 +26,7 @@ ContactMoves:
 	db DYNAMICPUNCH
 	db EXTREMESPEED
 	db FACADE
+	db FAKE_OUT
 	db FALSE_SWIPE
 	db FEINT_ATTACK
 	db FIRE_PUNCH

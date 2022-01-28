@@ -1606,7 +1606,7 @@ Reversal:
 	posthiteffects
 	endmove
 
-FalseSwipe:
+FakeOut:
 	checkobedience
 	usedmovetext
 	doturn
@@ -1617,7 +1617,6 @@ FalseSwipe:
 	damagecalc
 	stab
 	damagevariation
-	falseswipe
 	moveanim
 	failuretext
 	applydamage
@@ -1625,6 +1624,7 @@ FalseSwipe:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
+	flinchtarget
 	endmove
 
 HealBell:

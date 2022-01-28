@@ -593,7 +593,7 @@ ClefableLearnset:
 VulpixPlainLearnset:
 	db 1, EMBER
 	db 4, GROWL ; Tail Whip → new move
-	db 7, ASTONISH ; Roar → new move
+	db 7, ROAR
 	db 9, CHARM ; Baby-Doll Eyes → similar move
 	db 10, QUICK_ATTACK
 	db 12, CONFUSE_RAY
@@ -673,7 +673,7 @@ CrobatLearnset:
 	db 1, ABSORB
 	db 1, CRUNCH ; Let's Go move
 	db 5, SUPERSONIC
-	db 7, ASTONISH
+	db 7, FAKE_OUT
 	db 11, BITE
 	db 13, GUST ; Wing Attack → egg move
 	db 17, CONFUSE_RAY
@@ -751,7 +751,7 @@ DugtrioAlolanLearnset:
 	db 1, METAL_CLAW
 	db 1, CHARM ; XD move
 	db 4, GROWL
-	db 7, ASTONISH
+	db 7, FAKE_OUT
 	db 10, AGILITY ; Mud-Slap → Let's Go move
 	db 18, BULLDOZE
 	db 22, SUCKER_PUNCH
@@ -769,7 +769,7 @@ MeowthGalarianLearnset:
 	db 1, SCRATCH
 	db 1, GROWL
 	db 6, BITE
-	db 9, ASTONISH ; Fake Out → new move
+	db 9, FAKE_OUT ; Fake Out → new move
 	db 14, FURY_STRIKES ; Fury Swipes → similar move
 	db 17, SCREECH
 	db 22, FEINT_ATTACK
@@ -792,7 +792,7 @@ PerrserkerLearnset:
 	db 1, SCRATCH
 	db 1, GROWL
 	db 6, BITE
-	db 9, ASTONISH ; Fake Out → new move
+	db 9, FAKE_OUT ; Fake Out → new move
 	db 14, FURY_STRIKES ; Fury Swipes → similar move
 	db 17, SCREECH
 	db 22, FEINT_ATTACK
@@ -1272,7 +1272,7 @@ MarowakAlolanLearnset:
 	db 1, SWORDS_DANCE ; evolution move
 	db 1, GROWL
 	db 3, TACKLE ; Tail Whip → new move
-	db 7, ASTONISH ; Bone Club → new move
+	db 7, FAKE_OUT ; Bone Club → new move
 	db 11, FLAME_CHARGE ; Flame Wheel → TM move
 	db 13, LEER
 	db 17, HEX
@@ -2195,7 +2195,7 @@ QuagsireLearnset:
 MurkrowLearnset:
 HonchkrowLearnset:
 	db 1, SUCKER_PUNCH
-	db 1, ASTONISH
+	db 1, FAKE_OUT
 	db 1, PURSUIT
 	db 1, HAZE
 	db 1, WING_ATTACK
@@ -2217,7 +2217,7 @@ MismagiusLearnset:
 	db 1, TELEPORT ; Psywave → new move
 	db 1, DISARM_VOICE ; new move
 	db 1, CONFUSION ; Spite → new move
-	db 1, ASTONISH
+	db 1, FAKE_OUT
 	db 0 ; no more level-up moves
 
 UnownLearnset:

@@ -185,7 +185,7 @@
 	const AEROBLAST    ; $b1
 	const SEED_BOMB    ; $b2
 	const REVERSAL     ; $b3
-	const ASTONISH     ; $b4
+	const FAKE_OUT     ; $b4
 	const ICE_SHARD    ; $b5
 	const PROTECT      ; $b6
 	const MACH_PUNCH   ; $b7

@@ -23,7 +23,7 @@ INCLUDE "engine/battle/move_effects/dream_eater.asm"
 INCLUDE "engine/battle/move_effects/encore_disable.asm"
 INCLUDE "engine/battle/move_effects/endure.asm"
 INCLUDE "engine/battle/move_effects/explosion.asm"
-INCLUDE "engine/battle/move_effects/false_swipe.asm"
+INCLUDE "engine/battle/move_effects/false_swipe.asm" ; code needed for Sturdy
 INCLUDE "engine/battle/move_effects/focus_energy.asm"
 INCLUDE "engine/battle/move_effects/foresight.asm"
 INCLUDE "engine/battle/move_effects/future_sight.asm"
@@ -1701,6 +1701,16 @@ BattleCommand_checkhit:
 	ld a, ATKFAIL_PROTECT
 	jmp nz, .Miss_skipset
 
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FAKE_OUT
+	jp nz, .not_fakeout
+
+	call .FakeOut
+	ld a, ATKFAIL_GENERIC
+	jp nz, .Miss_skipset	
+
+.not_fakeout
 	call .Substitute
 	ld a, ATKFAIL_GENERIC
 	jmp nz, .Miss_skipset
@@ -1894,6 +1904,22 @@ BattleCommand_checkhit:
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_PROTECT, a
+	ret
+
+.FakeOut
+; Return nz if not the user's first turn
+	ld a, [hBattleTurn]
+	and a
+	jr nz, .enemy
+
+; player
+	ld a, [wPlayerTurnsTaken]
+	cp a, 1 ; on the first turn, doturn will increment to 1 before this code is reached
+	ret
+
+.enemy
+	ld a, [wEnemyTurnsTaken]
+	cp a, 1 ; on the first turn, doturn will increment to 1 before this code is reached
 	ret
 
 .Substitute:

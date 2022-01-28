@@ -77,7 +77,6 @@ BattleCommandPointers:
 	command sketch
 	command sleeptalk
 	command destinybond
-	command falseswipe
 	command healbell
 	command hastarget
 	command triplekick

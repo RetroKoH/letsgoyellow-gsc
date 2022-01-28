@@ -101,6 +101,7 @@ MoveEffectsPointers:
 	dw SleepTalk
 	dw DestinyBond
 	dw Reversal
+	dw FuryCutter
 	dw FakeOut
 	dw HealBell
 	dw Thief

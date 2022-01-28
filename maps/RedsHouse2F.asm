@@ -247,7 +247,7 @@ endr
 	; post-e4
 	setflag ENGINE_CREDITS_SKIP
 	; test party
-	givepoke CROBAT, PLAIN_FORM, 7
+	givepoke SCIZOR, PLAIN_FORM, 7
 	givepoke CHARIZARD, PLAIN_FORM, 100
 	; fill pokedex
 ;	callasm FillPokedex

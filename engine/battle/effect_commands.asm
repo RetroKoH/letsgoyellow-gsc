@@ -26,6 +26,7 @@ INCLUDE "engine/battle/move_effects/explosion.asm"
 INCLUDE "engine/battle/move_effects/false_swipe.asm" ; code needed for Sturdy
 INCLUDE "engine/battle/move_effects/focus_energy.asm"
 INCLUDE "engine/battle/move_effects/foresight.asm"
+INCLUDE "engine/battle/move_effects/fury_cutter.asm"
 INCLUDE "engine/battle/move_effects/future_sight.asm"
 INCLUDE "engine/battle/move_effects/growth.asm"
 INCLUDE "engine/battle/move_effects/gyro_ball.asm"
@@ -472,7 +473,8 @@ CantMove:
 	ld a, ~(1 << SUBSTATUS_RAMPAGE | 1 << SUBSTATUS_CHARGED | 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND | 1 << SUBSTATUS_ROLLOUT)
 	and [hl]
 	ld [hl], a
-	ret
+	jp ResetFuryCutterCount
+;	ret
 
 IncreaseMetronomeCount:
 	; Don't arbitrarily boost usage counter twice on a turn

@@ -54,7 +54,7 @@ TMHMMoves:
 	db ROOST        ; TM51 (Falkner)
 	db FOCUS_BLAST  ; TM52 (Quiet Cave)
 	db ENERGY_BALL  ; TM53 (Olivine Lighthouse)
-	db FALSE_SWIPE  ; TM54 (Ilex Forest Gate)
+	db FURY_CUTTER  ; TM54 (Ilex Forest Gate)
 	db SCALD        ; TM55 (Route 19)
 	db X_SCISSOR    ; TM56 (Underground Warehouse)
 	db WILD_CHARGE  ; TM57 (Lt. Surge)

@@ -80,7 +80,6 @@ OHKOHit:
 	applydamage
 	criticaltext
 	supereffectivetext
-;	checkfaint
 	postfainteffects
 	posthiteffects
 	endmove
@@ -1625,6 +1624,27 @@ FakeOut:
 	postfainteffects
 	posthiteffects
 	flinchtarget
+	endmove
+
+FuryCutter:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	furycutter
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	postfainteffects
+	posthiteffects
 	endmove
 
 HealBell:

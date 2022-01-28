@@ -319,7 +319,7 @@ CharizardLearnset:
 	db 1, GROWL
 	db 7, EMBER
 	db 10, SMOKESCREEN
-	db 17, METAL_CLAW ; Dragon Rage → TM move
+	db 17, METAL_CLAW
 	db 28, SCARY_FACE ; Fire Fang → Scary Face
 	db 32, FLAME_CHARGE ; Flame Burst → TM move
 	db 41, SLASH
@@ -373,7 +373,6 @@ ButterfreeLearnset:
 	db 25, SAFEGUARD
 	db 29, HYPNOSIS ; Whirlwind → new move
 	db 31, BUG_BUZZ
-	db 35, REFLECT ; Rage Powder → RBY TM move
 	db 37, AGILITY ; Captivate → new move
 	db 41, HEALINGLIGHT ; Tailwind → new move
 	db 43, AIR_SLASH
@@ -391,7 +390,7 @@ BeedrillLearnset:
 	db 1, STRING_SHOT ; Weedle move
 	db 1, FURY_STRIKES ; Fury Attack → similar move
 	db 1, U_TURN ; evolution move
-	db 14, RAGE
+	db 14, FURY_CUTTER
 	db 17, PURSUIT
 	db 20, FOCUS_ENERGY
 	db 23, VENOSHOCK
@@ -410,7 +409,7 @@ PidgeotLearnset:
 	db 5, MUD_SLAP ; Sand Attack → similar move
 	db 9, GUST
 	db 13, QUICK_ATTACK
-	db 17, RAGE ; Whirlwind → RBY TM move
+	db 17, FURY_CUTTER
 	db 22, CHARM ; Twister → egg move
 	db 27, SWIFT ; Feather Dance → TM move
 	db 32, AGILITY
@@ -716,7 +715,6 @@ ParasectLearnset:
 	db 37, GROWTH
 	db 44, GIGA_DRAIN
 	db 51, LEECH_LIFE ; Aromatherapy → TM move
-	db 59, HEALINGLIGHT ; Rage Powder → new move
 	db 66, X_SCISSOR
 	db 0 ; no more level-up moves
 
@@ -827,7 +825,7 @@ GolduckLearnset:
 
 MankeyLearnset:
 PrimeapeLearnset:
-	db 1, RAGE
+	db 1, FURY_CUTTER
 	db 1, SCRATCH
 	db 1, LOW_KICK
 	db 1, LEER
@@ -904,7 +902,7 @@ MachampLearnset:
 	db 3, FOCUS_ENERGY
 	db 7, LOW_SWEEP
 	db 9, FORESIGHT
-	db 13, RAGE ; Low Sweep → RBY TM move
+	db 13, FURY_CUTTER ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
 	db 19, REVERSAL ; Revenge → Sw/Sh TM move
 	db 21, KNOCK_OFF
@@ -1062,7 +1060,7 @@ SirfetchDLearnset:
 	db 33, NIGHT_SLASH
 	db 37, ACROBATICS
 	db 43, HI_JUMP_KICK ; Feint → new move
-	db 45, FALSE_SWIPE
+	db 45, FURY_CUTTER
 	db 49, AIR_SLASH
 	db 55, BRAVE_BIRD
 	db 0 ; no more level-up moves
@@ -1073,7 +1071,7 @@ DodrioLearnset:
 	db 1, PECK
 	db 1, GROWL
 	db 5, QUICK_ATTACK
-	db 9, RAGE
+	db 9, FURY_CUTTER
 	db 12, FURY_STRIKES ; Fury Attack → similar move
 	db 15, PURSUIT
 	db 19, BATON_PASS ; Pluck → XD move
@@ -1177,7 +1175,7 @@ SteelixLearnset:
 	db 1, WRAP ; Bind → similar move
 	db 4, CURSE
 	db 7, ROCK_THROW
-	db 10, RAGE
+	db 10, FURY_CUTTER
 	db 13, ROCK_BLAST ; Rock Tomb → egg move
 	db 16, BODY_SLAM ; Stealth Rock → TM move
 	db 19, SANDSTORM ; Rock Polish → Sandstorm
@@ -1339,7 +1337,7 @@ WeezingGalarianLearnset:
 	db 12, ENDURE ; Assurance → TM move
 	db 15, WILL_O_WISP ; Clear Smog → TM move
 	db 18, VENOSHOCK ; Sludge → tutor move
-	db 23, RAGE ; Self-Destruct → RBY TM move
+	db 23, FURY_CUTTER ; Self-Destruct → RBY TM move
 	db 26, HAZE
 	db 29, GYRO_BALL
 	db 34, SLUDGE_BOMB
@@ -1423,7 +1421,7 @@ KangaskhanLearnset:
 	db 10, BITE ; Tail Whip → Bite
 	db 13, HEADBUTT ; Bite → tutor move
 	db 19, DOUBLE_KICK ; Double Hit → new move
-	db 22, RAGE
+	db 22, FURY_CUTTER
 	db 25, TAKE_DOWN ; Mega Punch → RBY TM move
 	db 31, STOMP ; Chip Away → egg move
 	db 34, MACH_PUNCH ; Dizzy Punch → new move
@@ -1503,7 +1501,7 @@ ScizorLearnset:
 	db 1, LEER
 	db 5, FOCUS_ENERGY
 	db 9, PURSUIT
-	db 13, FALSE_SWIPE
+	db 13, FURY_CUTTER
 	db 17, AGILITY
 	db 21, WING_ATTACK
 	db 25, BUG_BITE ; Fury Cutter → similar move
@@ -1583,7 +1581,7 @@ PinsirLearnset:
 	db 4, WRAP ; Bind → similar move
 	db 8, SEISMIC_TOSS
 	db 12, HARDEN
-	db 16, RAGE ; Revenge → RBY TM move
+	db 16, FURY_CUTTER ; Revenge → RBY TM move
 	db 20, ROCK_THROW ; Brick Break → event move
 	db 26, ROCK_SMASH ; Vital Throw → TM move
 	db 29, X_SCISSOR
@@ -1598,7 +1596,7 @@ PinsirLearnset:
 TaurosLearnset:
 	db 1, TACKLE
 	db 3, LEER ; Tail Whip → similar move
-	db 5, RAGE
+	db 5, FURY_CUTTER
 	db 8, HORN_ATTACK
 	db 11, SCARY_FACE
 	db 15, PURSUIT
@@ -1629,7 +1627,7 @@ GyaradosLearnset:
 	db 24, GUST ; Twister → new move
 	db 30, AQUA_TAIL
 	db 33, SCARY_FACE
-	db 36, DRAGONBREATH ; Dragon Rage → GSC TM move
+	db 36, DRAGONBREATH
 	db 39, CRUNCH
 	db 42, HYDRO_PUMP
 	db 45, DRAGON_DANCE
@@ -1775,7 +1773,7 @@ SnorlaxLearnset:
 	db 4, DEFENSE_CURL
 	db 9, AMNESIA
 	db 12, LICK
-	db 17, RAGE ; Chip Away → RBY TM move
+	db 17, FURY_CUTTER
 	db 20, TAKE_DOWN ; Yawn → RBY TM move
 	db 25, BODY_SLAM
 	db 28, REST
@@ -1966,7 +1964,7 @@ FeraligatrLearnset:
 	db 1, SCRATCH
 	db 1, LEER
 	db 6, WATER_GUN
-	db 8, RAGE
+	db 8, FURY_CUTTER
 	db 13, BITE
 	db 15, SCARY_FACE
 	db 21, METAL_CLAW ; Ice Fang → egg move
@@ -2275,7 +2273,7 @@ GranbullLearnset:
 	db 13, LICK
 	db 19, HEADBUTT
 	db 27, ROAR
-	db 35, RAGE
+	db 35, FURY_CUTTER
 	db 43, PLAY_ROUGH
 	db 51, DOUBLE_EDGE ; Payback → event move
 	db 59, CRUNCH
@@ -2565,7 +2563,7 @@ TyranitarLearnset:
 	db 1, LEER
 	db 5, SANDSTORM
 	db 10, SCREECH
-	db 14, RAGE ; Chip Away → event move
+	db 14, FURY_CUTTER
 	db 19, ROCK_SLIDE
 	db 23, SCARY_FACE
 	db 28, THRASH

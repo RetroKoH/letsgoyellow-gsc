@@ -207,7 +207,7 @@ BattleAnimations::
 	dw BattleAnim_Endure
 	dw BattleAnim_Charm
 	dw BattleAnim_Rollout
-	dw BattleAnim_FalseSwipe
+	dw BattleAnim_FuryCutter
 	dw BattleAnim_Swagger
 	dw BattleAnim_ShellSmash
 	dw BattleAnim_Spark
@@ -4248,6 +4248,21 @@ BattleAnim_FalseSwipe:
 	anim_wait 32
 	anim_ret
 
+BattleAnim_FuryCutter:
+	anim_1gfx ANIM_GFX_CUT
+.loop
+	anim_sound 0, 1, SFX_CUT
+	anim_jumpand $1, .obj1
+	anim_obj ANIM_OBJ_CUT_LONG_DOWN_LEFT, -13, 0,   5, 0, $0
+	anim_jump .okay
+
+.obj1
+	anim_obj ANIM_OBJ_CUT_LONG_DOWN_RIGHT,  14, 0,   5, 0, $0
+.okay
+	anim_wait 16
+	anim_jumpuntil .loop
+	anim_ret
+
 BattleAnim_Swagger:
 	anim_2gfx ANIM_GFX_MISC, ANIM_GFX_WIND
 .loop
@@ -6374,21 +6389,6 @@ BattleAnim_StatDown:
 ;	anim_sound 0, 1, SFX_EMBER
 ;	anim_wait 24
 ;	anim_loop 4, .loop
-;	anim_ret
-
-;BattleAnim_FuryCutter: ; removed
-;	anim_1gfx ANIM_GFX_CUT
-;.loop
-;	anim_sound 0, 1, SFX_CUT
-;	anim_jumpand $1, .obj1
-;	anim_obj ANIM_OBJ_CUT_LONG_DOWN_LEFT, -13, 0,   5, 0, $0
-;	anim_jump .okay
-;
-;.obj1
-;	anim_obj ANIM_OBJ_CUT_LONG_DOWN_RIGHT,  14, 0,   5, 0, $0
-;.okay
-;	anim_wait 16
-;	anim_jumpuntil .loop
 ;	anim_ret
 
 ;BattleAnim_Sludge: ; removed

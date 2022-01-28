@@ -217,7 +217,7 @@ Moves::
 	move ENDURE,       EFFECT_ENDURE,              0, NORMAL,    100, 10,   0, STATUS
 	move CHARM,        EFFECT_ATTACK_DOWN_2,       0, FAIRY,     100, 20,   0, STATUS
 	move ROLLOUT,      EFFECT_ROLLOUT,            30, ROCK,       90, 20,   0, PHYSICAL
-	move FALSE_SWIPE,  EFFECT_FAKE_OUT,           40, NORMAL,    100, 40,   0, PHYSICAL
+	move FURY_CUTTER,  EFFECT_FURY_CUTTER,        10, BUG,        95, 20,   0, PHYSICAL
 	move SWAGGER,      EFFECT_SWAGGER,             0, NORMAL,     85, 15, 100, STATUS
 	move SHELL_SMASH,  EFFECT_SHELL_SMASH,         0, NORMAL,    100, 15,   0, STATUS
 	move SPARK,        EFFECT_PARALYZE_HIT,       65, ELECTRIC,  100, 20,  30, PHYSICAL

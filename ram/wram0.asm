@@ -446,7 +446,7 @@ wPlayerDisableCount:: db
 wPlayerEncoreCount:: db ; also for choice-locking
 wPlayerPerishCount:: db
 wPlayerProtectCount:: db
-	ds 1
+wPlayerFuryCutterCount:: db
 
 wEnemyAbility:: db
 wEnemyRolloutCount:: db
@@ -456,7 +456,7 @@ wEnemyDisableCount:: db
 wEnemyEncoreCount:: db
 wEnemyPerishCount:: db
 wEnemyProtectCount:: db
-	ds 1
+wEnemyFuryCutterCount:: db
 wBattleSubStatusWRAMEnd::
 
 wDamageTaken::

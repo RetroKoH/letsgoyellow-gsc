@@ -206,7 +206,7 @@ MoveNames::
 	li "Endure"
 	li "Charm"
 	li "Rollout"
-	li "False Swipe"
+	li "Fury Cutter"
 	li "Swagger"
 	li "Shell Smash"
 	li "Spark"

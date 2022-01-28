@@ -110,6 +110,7 @@ BattleCommandPointers:
 	command selfeffectchance
 	command switchturn
 	command bellydrum
+	command furycutter
 	command rage
 	command doubleflyingdamage
 	command doubleundergrounddamage

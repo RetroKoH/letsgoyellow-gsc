@@ -211,7 +211,7 @@
 	const ENDURE       ; $cb
 	const CHARM        ; $cc
 	const ROLLOUT      ; $cd
-	const FALSE_SWIPE  ; $ce
+	const FURY_CUTTER  ; $ce
 	const SWAGGER      ; $cf
 	const SHELL_SMASH  ; $d0
 	const SPARK        ; $d1

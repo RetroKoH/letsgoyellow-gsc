@@ -206,7 +206,7 @@ MoveDescriptions::
 	dw EndureDescription
 	dw CharmDescription
 	dw RolloutDescription
-	dw FalseSwipeDescription
+	dw FuryCutterDescription
 	dw SwaggerDescription
 	dw ShellSmashDescription
 	dw SparkDescription
@@ -645,9 +645,9 @@ EndureDescription:
 	db   "Endures any hit"
 	next "with at least 1HP.@"
 
-FalseSwipeDescription:
-	db   "Leaves the foe"
-	next "with at least 1HP.@"
+FuryCutterDescription:
+	db   "Successive hits"
+	next "raise power.@"
 
 FakeOutDescription:
 	db   "Causes flinching,"

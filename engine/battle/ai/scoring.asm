@@ -368,6 +368,8 @@ AI_Smart:
 	dbw EFFECT_PERISH_SONG,       AI_Smart_PerishSong
 	dbw EFFECT_ENDURE,            AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
+	dbw EFFECT_FURY_CUTTER,       AI_Smart_FuryCutter
+	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
 	dbw EFFECT_SWAGGER,           AI_Smart_Swagger
 	dbw EFFECT_ATTRACT,           AI_Smart_Attract
 	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
@@ -1659,7 +1661,27 @@ AI_Smart_Endure:
 	inc [hl]
 	ret
 
+AI_Smart_FuryCutter:
+; Encourage this move based on Fury Cutter's count.
+	ld a, [wEnemyFuryCutterCount]
+	and a
+	jr z, AI_Smart_Rollout
+	dec [hl]
+
+	cp 2
+	jr c, AI_Smart_Rollout
+	dec [hl]
+	dec [hl]
+
+	cp 3
+	jr c, AI_Smart_Rollout
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	; fallthrough
+
 AI_Smart_Rollout:
+; Rollout, Fury Cutter
 ; 80% chance to discourage this move if the enemy is in love, confused, or paralyzed.
 	ld a, [wEnemySubStatus1]
 	bit SUBSTATUS_IN_LOVE, a
@@ -1700,6 +1722,7 @@ AI_Smart_Rollout:
 	ret
 
 AI_Smart_Swagger:
+AI_Smart_FakeOut:
 AI_Smart_Attract:
 ; 80% chance to encourage this move during the first turn of player's Pokemon.
 ; 80% chance to discourage this move otherwise.

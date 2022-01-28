@@ -435,7 +435,7 @@ KoffingEggMoves:
 
 RhyhornEggMoves:
 	db CRUNCH
-	db MAGNITUDE
+	db DRILL_RUN
 	db PURSUIT
 	db REVERSAL
 	db THRASH

@@ -100,7 +100,6 @@ BattleCommandPointers:
 	command damagecalc
 	command safeguard
 	command checksafeguard
-	command getmagnitude
 	command batonpass
 	command pursuit
 	command clearhazards

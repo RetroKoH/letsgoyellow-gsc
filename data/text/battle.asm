@@ -1342,12 +1342,6 @@ SafeguardProtectText:
 	cont "Safeguard!"
 	prompt
 
-MagnitudeText:
-	text "Magnitude "
-	text_decimal wTextDecimalByte, 1, 2
-	text "!"
-	prompt
-
 ReleasedByText:
 	text "<USER>"
 	line "was released by"

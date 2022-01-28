@@ -1839,28 +1839,6 @@ SacredFire:
 	burntarget
 	endmove
 
-Magnitude:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	checkhit
-	critical
-	damagestats
-	getmagnitude
-	damagecalc
-	stab
-	damagevariation
-	doubleundergrounddamage
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	postfainteffects
-	posthiteffects
-	endmove
-
 GyroBall:
 	checkobedience
 	usedmovetext

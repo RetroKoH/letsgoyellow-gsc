@@ -136,22 +136,13 @@ JackTwisterTriviaText:
 	done
 
 JackEarthquakeTriviaText:
-	text "Did you know…?"
-
-	para "If your opponent"
-	line "uses Dig, your"
-
-	para "Earthquake becomes"
-	line "more powerful."
-	done
-
 JackMagnitudeTriviaText:
 	text "Did you know…?"
 
 	para "If your opponent"
 	line "uses Dig, your"
 
-	para "Magnitude becomes"
+	para "Earthquake becomes"
 	line "more powerful."
 	done
 

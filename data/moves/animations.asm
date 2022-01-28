@@ -223,7 +223,7 @@ BattleAnimations::
 	dw BattleAnim_Safeguard
 	dw BattleAnim_PainSplit
 	dw BattleAnim_SacredFire
-	dw BattleAnim_Magnitude
+	dw BattleAnim_DrillRun ; DRILL_RUN - Need new animation
 	dw BattleAnim_Dynamicpunch
 	dw BattleAnim_Megahorn
 	dw BattleAnim_Dragonbreath
@@ -4585,7 +4585,7 @@ BattleAnim_FlareBlitz:
 	anim_wait 8
 	anim_ret
 
-BattleAnim_Magnitude:
+BattleAnim_DrillRun:
 	anim_1gfx ANIM_GFX_ROCKS
 .loop
 	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $e, $4, $0

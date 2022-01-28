@@ -119,7 +119,6 @@ MoveEffectsPointers:
 	dw Attract
 	dw Return
 	dw SacredFire
-	dw Magnitude
 	dw BatonPass
 	dw Pursuit
 	dw RapidSpin

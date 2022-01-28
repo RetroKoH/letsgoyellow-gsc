@@ -247,7 +247,7 @@ endr
 	; post-e4
 	setflag ENGINE_CREDITS_SKIP
 	; test party
-	givepoke PRIMEAPE, PLAIN_FORM, 20
+	givepoke FEAROW, PLAIN_FORM, 20
 	givepoke CHARIZARD, PLAIN_FORM, 100
 	; fill pokedex
 ;	callasm FillPokedex

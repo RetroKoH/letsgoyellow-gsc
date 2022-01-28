@@ -443,14 +443,13 @@ RaticateAlolanLearnset:
 
 SpearowLearnset:
 FearowLearnset:
-	db 1, BULLDOZE ; Drill Run → similar move
 	db 1, PECK
 	db 1, GROWL
 	db 4, LEER
 	db 8, PURSUIT
 	db 11, FURY_STRIKES ; Fury Attack → similar move
 	db 15, AERIAL_ACE
-	db 18, SONIC_BOOM ; Mirror Move → event move
+	db 18, DRILL_RUN ; Mirror Move → event move
 	db 23, FEINT_ATTACK ; Assurance → egg move
 	db 27, AGILITY
 	db 32, FOCUS_ENERGY
@@ -499,7 +498,6 @@ SandshrewPlainLearnset:
 	db 7, ROLLOUT
 	db 9, RAPID_SPIN
 	db 11, PIN_MISSILE ; Fury Cutter → new move
-	db 14, MAGNITUDE
 	db 17, SWIFT
 	db 20, FURY_STRIKES ; Fury Swipes → similar move
 	db 23, METAL_CLAW ; Sand Tomb → HGSS tutor move
@@ -540,7 +538,6 @@ SandslashPlainLearnset:
 	db 7, ROLLOUT
 	db 9, RAPID_SPIN
 	db 11, PIN_MISSILE ; Fury Cutter → new move
-	db 14, MAGNITUDE
 	db 17, SWIFT
 	db 20, FURY_STRIKES ; Fury Swipes → similar move
 	db 24, SUPER_FANG ; Sand Tomb → HGSS tutor move
@@ -756,7 +753,6 @@ DugtrioAlolanLearnset:
 	db 4, GROWL
 	db 7, ASTONISH
 	db 10, AGILITY ; Mud-Slap → Let's Go move
-	db 14, MAGNITUDE
 	db 18, BULLDOZE
 	db 22, SUCKER_PUNCH
 	db 25, ANCIENTPOWER ; Mud Bomb → egg move
@@ -964,7 +960,6 @@ GolemAlolanLearnset:
 	db 4, MUD_SLAP ; Mud Sport → TM move
 	db 6, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
-	db 12, MAGNITUDE
 	db 16, ROCK_THROW
 	db 18, ANCIENTPOWER ; Smack Down → HGSS tutor move
 	db 22, BULLDOZE
@@ -1364,7 +1359,6 @@ RhyperiorLearnset:
 	db 3, HORN_ATTACK
 	db 6, FURY_STRIKES ; Fury Attack → similar move
 	db 9, SCARY_FACE
-	db 13, MAGNITUDE ; Smack Down → egg move
 	db 17, STOMP
 	db 21, BULLDOZE
 	db 25, ANCIENTPOWER ; Chip Away → HGSS tutor move
@@ -2418,7 +2412,6 @@ MamoswineLearnset:
 	db 8, ICE_SHARD ; Powder Snow → Ice Shard
 	db 11, MUD_SLAP
 	db 14, ENDURE
-	db 18, MAGNITUDE ; Mud Bomb → new move
 	db 21, HAIL
 	db 24, AVALANCHE ; Ice Fang → egg move
 	db 28, TAKE_DOWN
@@ -2483,7 +2476,6 @@ DonphanLearnset:
 	db 15, IRON_TAIL ; Assurance → TM move
 	db 19, KNOCK_OFF
 	db 24, ANCIENTPOWER ; Slam → HGSS tutor move
-	db 30, MAGNITUDE
 	db 37, SCARY_FACE
 	db 43, EARTHQUAKE
 	db 50, GIGA_IMPACT

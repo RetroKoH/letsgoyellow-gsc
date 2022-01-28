@@ -222,7 +222,7 @@ MoveDescriptions::
 	dw SafeguardDescription
 	dw PainSplitDescription
 	dw SacredFireDescription
-	dw MagnitudeDescription
+	dw DrillRunDescription
 	dw DynamicpunchDescription
 	dw MegahornDescription
 	dw DragonbreathDescription
@@ -271,6 +271,7 @@ CrossChopDescription:
 NightSlashDescription:
 ShadowClawDescription:
 StoneEdgeDescription:
+DrillRunDescription:
 	db   "Has a high criti-"
 	next "cal hit ratio.@"
 
@@ -1007,10 +1008,6 @@ PsystrikeDescription:
 PainSplitDescription:
 	db   "Adds user & foe's"
 	next "HPs. Shares total.@"
-
-MagnitudeDescription:
-	db   "A Ground attack"
-	next "with random power.@"
 
 MegahornDescription:
 	db   "A powerful charge"

@@ -371,7 +371,6 @@ AI_Smart:
 	dbw EFFECT_SWAGGER,           AI_Smart_Swagger
 	dbw EFFECT_ATTRACT,           AI_Smart_Attract
 	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
-	dbw EFFECT_MAGNITUDE,         AI_Smart_Magnitude
 	dbw EFFECT_BATON_PASS,        AI_Smart_BatonPass
 	dbw EFFECT_PURSUIT,           AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,        AI_Smart_RapidSpin
@@ -1731,9 +1730,8 @@ AI_Smart_Safeguard:
 	inc [hl]
 	ret
 
-AI_Smart_Magnitude:
-AI_Smart_Earthquake:
 
+AI_Smart_Earthquake:
 ; Greatly encourage this move if the player is underground and the enemy is faster.
 	ld a, [wPlayerSelectedMove]
 	cp DIG
@@ -2481,8 +2479,6 @@ AIDamageCalc:
 	jr z, .hidden_power
 	cp EFFECT_LOW_KICK
 	jr z, .low_kick
-	cp EFFECT_MAGNITUDE
-	jr z, .magnitude
 	cp EFFECT_RETURN
 	jr z, .return
 	cp EFFECT_REVERSAL
@@ -2531,11 +2527,6 @@ AIDamageCalc:
 .reversal
 	farcall BattleCommand_constantdamage
 	jr .stab
-.magnitude
-	; Pretend that the base power is 70
-	ld a, 70
-	ld [wEnemyMoveStruct + MOVE_POWER], a
-	; fallthrough
 .regular_damage
 	farcall BattleCommand_damagestats
 .damagecalc

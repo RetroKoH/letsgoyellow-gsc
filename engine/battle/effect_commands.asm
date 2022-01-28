@@ -36,7 +36,6 @@ INCLUDE "engine/battle/move_effects/knock_off.asm"
 INCLUDE "engine/battle/move_effects/leech_seed.asm"
 INCLUDE "engine/battle/move_effects/low_kick.asm"
 INCLUDE "engine/battle/move_effects/magic_bounce.asm"
-INCLUDE "engine/battle/move_effects/magnitude.asm"
 INCLUDE "engine/battle/move_effects/mean_look.asm"
 INCLUDE "engine/battle/move_effects/metronome.asm"
 INCLUDE "engine/battle/move_effects/minimize.asm"
@@ -1918,8 +1917,7 @@ BattleCommand_checkhit:
 	ret
 
 .LockOn:
-; Return nz if we are locked-on and aren't trying to use Earthquake
-; or Magnitude on a monster that is flying.
+; Return nz if we are locked-on and aren't trying to use Earthquake on a monster that is flying.
 	ld a, BATTLE_VARS_SUBSTATUS2_OPP
 	call GetBattleVarAddr
 	bit SUBSTATUS_LOCK_ON, [hl]
@@ -1935,8 +1933,6 @@ BattleCommand_checkhit:
 	call GetBattleVar
 
 	cp EARTHQUAKE
-	ret z
-	cp MAGNITUDE
 	ret z
 
 .LockedOn:
@@ -1997,8 +1993,6 @@ BattleCommand_checkhit:
 
 	cp EARTHQUAKE
 	ret z
-	cp MAGNITUDE
-	ret
 
 .WeatherAccCheck:
 ; Returns z if the move used always hits in the current weather

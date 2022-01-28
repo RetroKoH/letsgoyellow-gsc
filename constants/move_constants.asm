@@ -227,7 +227,7 @@
 	const SAFEGUARD    ; $db
 	const PAIN_SPLIT   ; $dc
 	const SACRED_FIRE  ; $dd
-	const MAGNITUDE    ; $de
+	const DRILL_RUN    ; $de
 	const DYNAMICPUNCH ; $df
 	const MEGAHORN     ; $e0
 	const DRAGONBREATH ; $e1

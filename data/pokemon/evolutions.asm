@@ -96,7 +96,7 @@ EvolutionPointers::
 	dw NoEvolutions
 	dw MagnemiteEvolutions
 	dw MagnetonEvolutions
-	dw FarfetchDEvolutions
+	dw NoEvolutions ; FarfetchD
 	dw DoduoEvolutions
 	dw NoEvolutions
 	dw SeelEvolutions
@@ -135,7 +135,7 @@ EvolutionPointers::
 	dw NoEvolutions ; Togekiss
 	dw StaryuEvolutions
 	dw NoEvolutions
-	dw MrMimeEvolutions
+	dw NoEvolutions ; Mr Mime
 	dw ScytherEvolutions
 	dw NoEvolutions ; Jynx
 	dw ElectabuzzEvolutions
@@ -292,12 +292,15 @@ EvolutionPointers::
 	dw NoEvolutions ; RaichuAlolanEvolutions
 	dw NoEvolutions ; ExeggutorAlolanEvolutions
 	dw NoEvolutions ; MarowakAlolanEvolutions
+	dw MeowthGalarianEvolutions
 	dw PonytaGalarianEvolutions
 	dw NoEvolutions ; RapidashGalarianEvolutions
 	dw SlowpokeGalarianEvolutions
 	dw NoEvolutions ; SlowbroGalarianEvolutions
 	dw NoEvolutions ; SlowkingGalarianEvolutions
+	dw FarfetchDGalarianEvolutions
 	dw NoEvolutions ; WeezingGalarianEvolutions
+	dw MrMimeGalarianEvolutions
 	dw NoEvolutions ; ArticunoGalarianEvolutions
 	dw NoEvolutions ; ZapdosGalarianEvolutions
 	dw NoEvolutions ; MoltresGalarianEvolutions
@@ -535,8 +538,8 @@ MagnetonEvolutions:
 	evo_data EVOLVE_LOCATION, ROCK_TUNNEL, MAGNEZONE
 	db 0 ; no more evolutions
 
-FarfetchDEvolutions: ; Add proper for Galarian later
-	evo_data EVOLVE_LEVEL, 33, SIRFETCH_D
+FarfetchDGalarianEvolutions:
+	evo_data EVOLVE_CRIT, TR_ANYTIME, SIRFETCH_D, PLAIN_FORM
 	db 0 ; no more evolutions
 
 DoduoEvolutions:
@@ -631,9 +634,8 @@ StaryuEvolutions:
 	evo_data EVOLVE_ITEM, WATER_STONE, STARMIE
 	db 0 ; no more evolutions
 
-MrMimeEvolutions:
-	evo_data EVOLVE_LEVEL, 35, MR__RIME
-	db 0 ; no more evolutions
+MrMimeGalarianEvolutions:
+	evo_data EVOLVE_LEVEL, 42, MR__RIME
 
 ScytherEvolutions:
 	evo_data EVOLVE_HOLDING, METAL_COAT, TR_ANYTIME, SCIZOR

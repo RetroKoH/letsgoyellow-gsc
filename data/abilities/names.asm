@@ -146,6 +146,8 @@ AbilityNames:
 	dw NeutralizingGas
 	dw PastelVeil
 	dw QuickDraw
+	dw SteelySpirit
+	dw ScreenCleaner
 	assert_table_length NUM_ABILITIES
 
 NoAbility:       rawchar "---@"
@@ -294,3 +296,5 @@ GorillaTactics:  rawchar "Gorilla Tactics@"
 NeutralizingGas: rawchar "Neutralizing Gas@"
 PastelVeil:      rawchar "Pastel Veil@"
 QuickDraw:       rawchar "Quick Draw@"
+SteelySpirit:    rawchar "Steely Spirit@"
+ScreenCleaner:   rawchar "Screen Cleaner@"

@@ -88,6 +88,8 @@ EvolveAfterBattle_MasterLoop:
 	jmp nz, .dont_evolve_2
 
 	ld a, b
+	cp EVOLVE_CRIT
+	jmp z, .crit
 	cp EVOLVE_HOLDING
 	jmp z, .holding
 	cp EVOLVE_LOCATION
@@ -155,6 +157,7 @@ EvolveAfterBattle_MasterLoop:
 	jr z, .happiness_daylight
 
 ; TR_EVENITE
+.happiness_nighttime
 	ld a, [wTimeOfDay]
 	cp NITE
 	jmp c, .dont_evolve_3
@@ -180,7 +183,7 @@ EvolveAfterBattle_MasterLoop:
 	and a
 	jmp nz, .dont_evolve_3
 	call ChangeFormOnItemEvolution
-	jr .proceed
+	jmp .proceed
 
 .holding
 	ld a, [hli]
@@ -188,6 +191,13 @@ EvolveAfterBattle_MasterLoop:
 	ld a, [wTempMonItem]
 	cp b
 	jmp nz, .dont_evolve_3
+	ld a, [hli]
+	cp TR_ANYTIME
+	jr z, .ok
+	cp TR_MORNDAY
+	jr z, .happiness_daylight
+	jr .happiness_nighttime
+.ok
 	xor a
 	ld [wTempMonItem], a
 	jr .proceed
@@ -238,6 +248,22 @@ endr
 	pop bc
 	pop hl
 	cp EVS_TO_EVOLVE
+	jmp c, .dont_evolve_3
+	jr .proceed
+
+.crit
+	inc hl
+	push hl
+	push bc
+	ld hl, wCriticalCount
+	ld a, [wCurPartyMon]
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]
+	cp 3
+	pop bc
+	pop hl
 	jmp c, .dont_evolve_3
 	jr .proceed
 
@@ -394,6 +420,7 @@ endr
 .dont_evolve_2
 	inc hl
 .dont_evolve_3
+	inc hl
 	inc hl
 	jmp .loop
 
@@ -784,10 +811,12 @@ GetPreEvolution:
 	and a
 	jr z, .no_evolve ; If we jump, this Pokemon does not evolve into wCurPartySpecies.
 	cp EVOLVE_STAT ; This evolution type has the extra parameter of stat comparison.
-	jr nz, .not_tyrogue
+	jr nz, .not_inc
+	cp EVOLVE_HOLDING
+	jr nz, .not_inc
 	inc hl
 
-.not_tyrogue
+.not_inc
 	inc hl
 	ld a, [wCurPartySpecies]
 	cp [hl]

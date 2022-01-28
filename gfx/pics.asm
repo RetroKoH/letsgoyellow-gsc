@@ -171,8 +171,6 @@ MagnemiteFrontpic:        INCBIN "gfx/pokemon/magnemite/front.animated.2bpp.lz"
 MagnemiteBackpic:         INCBIN "gfx/pokemon/magnemite/back.2bpp.lz"
 MagnetonFrontpic:         INCBIN "gfx/pokemon/magneton/front.animated.2bpp.lz"
 MagnetonBackpic:          INCBIN "gfx/pokemon/magneton/back.2bpp.lz"
-FarfetchDFrontpic:        INCBIN "gfx/pokemon/farfetch_d/front.animated.2bpp.lz"
-FarfetchDBackpic:         INCBIN "gfx/pokemon/farfetch_d/back.2bpp.lz"
 DoduoFrontpic:            INCBIN "gfx/pokemon/doduo/front.animated.2bpp.lz"
 DoduoBackpic:             INCBIN "gfx/pokemon/doduo/back.2bpp.lz"
 
@@ -259,8 +257,6 @@ StarmieBackpic:           INCBIN "gfx/pokemon/starmie/back.2bpp.lz"
 
 SECTION "Pokemon Pics 13", ROMX
 
-MrMimeFrontpic:           INCBIN "gfx/pokemon/mr__mime/front.animated.2bpp.lz"
-MrMimeBackpic:            INCBIN "gfx/pokemon/mr__mime/back.2bpp.lz"
 ScytherFrontpic:          INCBIN "gfx/pokemon/scyther/front.animated.2bpp.lz"
 ScytherBackpic:           INCBIN "gfx/pokemon/scyther/back.2bpp.lz"
 JynxFrontpic:             INCBIN "gfx/pokemon/jynx/front.animated.2bpp.lz"
@@ -794,6 +790,8 @@ MeowthAlolanFrontpic:     INCBIN "gfx/pokemon/meowth_alolan/front.animated.2bpp.
 MeowthAlolanBackpic:      INCBIN "gfx/pokemon/meowth_alolan/back.2bpp.lz"
 PersianAlolanFrontpic:    INCBIN "gfx/pokemon/persian_alolan/front.animated.2bpp.lz"
 PersianAlolanBackpic:     INCBIN "gfx/pokemon/persian_alolan/back.2bpp.lz"
+MeowthGalarianFrontpic:   INCBIN "gfx/pokemon/meowth_galarian/front.animated.2bpp.lz"
+MeowthGalarianBackpic:    INCBIN "gfx/pokemon/meowth_galarian/back.2bpp.lz"
 
 
 SECTION "Geodude/Graveler/Golem Pics", ROMX
@@ -840,12 +838,16 @@ ExeggutorAlolanFrontpic:  INCBIN "gfx/pokemon/exeggutor_alolan/front.animated.2b
 ExeggutorAlolanBackpic:   INCBIN "gfx/pokemon/exeggutor_alolan/back.2bpp.lz"
 
 
-SECTION "Marowak Pics", ROMX
+SECTION "Farfetch'd/Marowak Pics", ROMX
 
-MarowakPlainFrontpic:     INCBIN "gfx/pokemon/marowak_plain/front.animated.2bpp.lz"
-MarowakPlainBackpic:      INCBIN "gfx/pokemon/marowak_plain/back.2bpp.lz"
-MarowakAlolanFrontpic:    INCBIN "gfx/pokemon/marowak_alolan/front.animated.2bpp.lz"
-MarowakAlolanBackpic:     INCBIN "gfx/pokemon/marowak_alolan/back.2bpp.lz"
+FarfetchDPlainFrontpic:      INCBIN "gfx/pokemon/farfetch_d_plain/front.animated.2bpp.lz"
+FarfetchDPlainBackpic:       INCBIN "gfx/pokemon/farfetch_d_plain/back.2bpp.lz"
+FarfetchDGalarianFrontpic:   INCBIN "gfx/pokemon/farfetch_d_plain/front.animated.2bpp.lz"
+FarfetchDGalarianBackpic:    INCBIN "gfx/pokemon/farfetch_d_plain/back.2bpp.lz"
+MarowakPlainFrontpic:        INCBIN "gfx/pokemon/marowak_plain/front.animated.2bpp.lz"
+MarowakPlainBackpic:         INCBIN "gfx/pokemon/marowak_plain/back.2bpp.lz"
+MarowakAlolanFrontpic:       INCBIN "gfx/pokemon/marowak_alolan/front.animated.2bpp.lz"
+MarowakAlolanBackpic:        INCBIN "gfx/pokemon/marowak_alolan/back.2bpp.lz"
 
 
 SECTION "Ponyta/Rapidash Pics", ROMX
@@ -876,12 +878,16 @@ SlowkingGalarianFrontpic: INCBIN "gfx/pokemon/slowking_galarian/front.animated.2
 SlowkingGalarianBackpic:  INCBIN "gfx/pokemon/slowking_galarian/back.2bpp.lz"
 
 
-SECTION "Weezing Pics", ROMX
+SECTION "Weezing/MrMime Pics", ROMX
 
 WeezingPlainFrontpic:     INCBIN "gfx/pokemon/weezing_plain/front.animated.2bpp.lz"
 WeezingPlainBackpic:      INCBIN "gfx/pokemon/weezing_plain/back.2bpp.lz"
 WeezingGalarianFrontpic:  INCBIN "gfx/pokemon/weezing_galarian/front.animated.2bpp.lz"
 WeezingGalarianBackpic:   INCBIN "gfx/pokemon/weezing_galarian/back.2bpp.lz"
+MrMimePlainFrontpic:      INCBIN "gfx/pokemon/mr__mime_plain/front.animated.2bpp.lz"
+MrMimePlainBackpic:       INCBIN "gfx/pokemon/mr__mime_plain/back.2bpp.lz"
+MrMimeGalarianFrontpic:   INCBIN "gfx/pokemon/mr__mime_galarian/front.animated.2bpp.lz"
+MrMimeGalarianBackpic:    INCBIN "gfx/pokemon/mr__mime_galarian/back.2bpp.lz"
 
 
 SECTION "Articuno/Zapdos/Moltres Pics", ROMX

@@ -82,7 +82,7 @@ FramesPointers:
 	dw SlowbroPlainFrames
 	dw MagnemiteFrames
 	dw MagnetonFrames
-	dw FarfetchDFrames
+	dw FarfetchDPlainFrames
 	dw DoduoFrames
 	dw DodrioFrames
 	dw SeelFrames
@@ -121,7 +121,7 @@ FramesPointers:
 	dw TogekissFrames
 	dw StaryuFrames
 	dw StarmieFrames
-	dw MrMimeFrames
+	dw MrMimePlainFrames
 	dw ScytherFrames
 	dw JynxFrames
 	dw ElectabuzzFrames
@@ -335,12 +335,15 @@ FramesPointers:
 	dw RaichuAlolanFrames
 	dw ExeggutorAlolanFrames
 	dw MarowakAlolanFrames
+	dw MeowthGalarianFrames
 	dw PonytaGalarianFrames
 	dw RapidashGalarianFrames
 	dw SlowpokeGalarianFrames
 	dw SlowbroGalarianFrames
 	dw SlowkingGalarianFrames
+	dw FarfetchDGalarianFrames
 	dw WeezingGalarianFrames
+	dw MrMimeGalarianFrames
 	dw ArticunoGalarianFrames
 	dw ZapdosGalarianFrames
 	dw MoltresGalarianFrames

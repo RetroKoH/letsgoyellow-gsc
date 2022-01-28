@@ -412,15 +412,18 @@ ALOLAN_FORM EQU 2
 
 ; galarian forms
 GALARIAN_FORM EQU 2
-	const_skip ; 148 ponyta
-	const_skip ; 149 rapidash
-	const_skip ; 14a slowpoke
-	const_skip ; 14b slowbro
-	const_skip ; 14c slowking
-	const_skip ; 14d weezing
-	const_skip ; 14e articuno
-	const_skip ; 14f zapdos
-	const_skip ; 150 moltres
+	const_skip ; 148 meowth
+	const_skip ; 149 ponyta
+	const_skip ; 14a rapidash
+	const_skip ; 14b slowpoke
+	const_skip ; 14c slowbro
+	const_skip ; 14d slowking
+	const_skip ; 14e farfetchd
+	const_skip ; 14f weezing
+	const_skip ; 150 mr mime
+	const_skip ; 151 articuno
+	const_skip ; 152 zapdos
+	const_skip ; 153 moltres
 
 NUM_VARIANT_FORMS EQU const_value - FIRST_VARIANT_FORM_MON ; 1d
 

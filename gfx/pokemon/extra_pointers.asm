@@ -82,7 +82,7 @@ AnimationExtraPointers:
 	dw SlowbroPlainAnimationExtra
 	dw MagnemiteAnimationExtra
 	dw MagnetonAnimationExtra
-	dw FarfetchDAnimationExtra
+	dw FarfetchDPlainAnimationExtra
 	dw DoduoAnimationExtra
 	dw DodrioAnimationExtra
 	dw SeelAnimationExtra
@@ -121,7 +121,7 @@ AnimationExtraPointers:
 	dw TogekissAnimationExtra
 	dw StaryuAnimationExtra
 	dw StarmieAnimationExtra
-	dw MrMimeAnimationExtra
+	dw MrMimePlainAnimationExtra
 	dw ScytherAnimationExtra
 	dw JynxAnimationExtra
 	dw ElectabuzzAnimationExtra
@@ -335,12 +335,15 @@ AnimationExtraPointers:
 	dw RaichuAlolanAnimationExtra
 	dw ExeggutorAlolanAnimationExtra
 	dw MarowakAlolanAnimationExtra
+	dw MeowthGalarianAnimationExtra
 	dw PonytaGalarianAnimationExtra
 	dw RapidashGalarianAnimationExtra
 	dw SlowpokeGalarianAnimationExtra
 	dw SlowbroGalarianAnimationExtra
 	dw SlowkingGalarianAnimationExtra
+	dw FarfetchDGalarianAnimationExtra
 	dw WeezingGalarianAnimationExtra
+	dw MrMimeGalarianAnimationExtra
 	dw ArticunoGalarianAnimationExtra
 	dw ZapdosGalarianAnimationExtra
 	dw MoltresGalarianAnimationExtra

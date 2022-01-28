@@ -278,9 +278,12 @@ EggMovePointers::
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+	dw MeowthAlolanEggMoves
 	dw PonytaGalarianEggMoves
 	dw NoEggMoves
 	dw SlowpokeGalarianEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves

@@ -324,12 +324,15 @@ endr
 	dba RaichuIcon ; TODO
 	dba ExeggutorAlolanIcon
 	dba MarowakIcon ; TODO
+	dba MeowthIcon
 	dba PonytaIcon ; TODO
 	dba RapidashIcon ; TODO
 	dba SlowpokeIcon ; TODO
 	dba SlowbroIcon ; TODO
 	dba SlowkingIcon ; TODO
+	dba FarfetchdIcon
 	dba WeezingIcon ; TODO
+	dba MrMimeIcon
 	dba ArticunoIcon ; TODO
 	dba ZapdosIcon ; TODO
 	dba MoltresIcon ; TODO

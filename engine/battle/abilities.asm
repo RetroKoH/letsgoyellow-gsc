@@ -39,6 +39,7 @@ BattleEntryAbilities:
 	dbw PRESSURE, PressureAbility
 	dbw MOLD_BREAKER, MoldBreakerAbility
 	dbw NEUTRALIZING_GAS, NeutralizingGasAbility
+	dbw SCREEN_CLEANER, ScreenCleanerAbility
 	; fallthrough
 StatusHealAbilities:
 ; Status immunity abilities that autoproc if the user gets the status or the ability
@@ -493,6 +494,48 @@ FriskAbility:
 	ld hl, FriskedItemText
 	call StdBattleTextbox
 	jmp EnableAnimations
+
+ScreenCleanerAbility:
+	; Text order is fastest team's screens fade first, then slowest.
+	; Preserves current battle turn (i.e. when mon is switched in via U-turn)
+	ld a, [wPlayerScreens]
+	and a
+	jr nz, .screens_up
+	ld a, [wEnemyScreens]
+	and a
+	ret z
+.screens_up
+	call DisableAnimations
+	call ShowAbilityActivation
+	ldh a, [hBattleTurn]
+	push af
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
+	call .do_it
+	pop af
+	ldh [hBattleTurn], a
+	jmp EnableAnimations
+
+.do_it
+	farcall GetTurnAndPlacePrefix
+	ld hl, wPlayerScreens
+	jr z, .got_screens
+	ld hl, wEnemyScreens
+.got_screens
+	ld a, [hl]
+	ld [hl], 0
+	push af
+	and SCREENS_REFLECT
+	jr z, .no_reflect
+	ld hl, BattleText_ReflectFaded
+	call StdBattleTextbox
+.no_reflect
+	pop af
+	and SCREENS_LIGHT_SCREEN
+	ret z
+	ld hl, BattleText_LightScreenFell
+	jmp StdBattleTextbox
 
 RunEnemyOwnTempoAbility:
 	call SwitchTurn
@@ -1505,6 +1548,7 @@ OffensiveDamageAbilities:
 	dbw PIXILATE, PixilateAbility
 	dbw GALVANIZE, GalvanizeAbility
 	dbw GORILLA_TACTICS, GorillaTacticsAbility
+	dbw STEELY_SPIRIT, SteelySpiritAbility
 	dbw -1, -1
 
 DefensiveDamageAbilities:
@@ -1547,11 +1591,19 @@ SwarmAbility:
 	ld b, BUG
 PinchAbility:
 ; 150% damage if the user is in a pinch (1/3HP or less) for given type
+	push bc
+	call CheckPinch
+	pop bc
+	jr z, TypeDependentAbility
+	ret
+
+SteelySpiritAbility: ; Not pinch ability. Type always boosted
+	ld b, STEEL
+TypeDependentAbility:
+; 150% damage if move type matches given type in b
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	cp b
-	ret nz
-	call CheckPinch
 	ret nz
 	ln a, 3, 2 ; x1.5
 	jmp MultiplyAndDivide

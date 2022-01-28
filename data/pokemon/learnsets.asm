@@ -82,7 +82,7 @@ LearnsetPointers::
 	dw SlowbroPlainLearnset
 	dw MagnemiteLearnset
 	dw MagnetonLearnset
-	dw FarfetchDLearnset
+	dw FarfetchDPlainLearnset
 	dw DoduoLearnset
 	dw DodrioLearnset
 	dw SeelLearnset
@@ -121,7 +121,7 @@ LearnsetPointers::
 	dw TogekissLearnset
 	dw StaryuLearnset
 	dw StarmieLearnset
-	dw MrMimeLearnset
+	dw MrMimePlainLearnset
 	dw ScytherLearnset
 	dw JynxLearnset
 	dw ElectabuzzLearnset
@@ -278,12 +278,15 @@ LearnsetPointers::
 	dw RaichuAlolanLearnset
 	dw ExeggutorAlolanLearnset
 	dw MarowakAlolanLearnset
+	dw MeowthGalarianLearnset
 	dw PonytaGalarianLearnset
 	dw RapidashGalarianLearnset
 	dw SlowpokeGalarianLearnset
 	dw SlowbroGalarianLearnset
 	dw SlowkingGalarianLearnset
+	dw FarfetchDGalarianLearnset
 	dw WeezingGalarianLearnset
+	dw MrMimeGalarianLearnset
 	dw ArticunoGalarianLearnset
 	dw ZapdosGalarianLearnset
 	dw MoltresGalarianLearnset
@@ -1041,7 +1044,7 @@ MagnezoneLearnset:
 	db 63, ZAP_CANNON
 	db 0 ; no more level-up moves
 
-FarfetchDLearnset:
+FarfetchDPlainLearnset:
 FarfetchDGalarianLearnset:
 SirfetchDLearnset:
 	db 1, POISON_JAB
@@ -1472,7 +1475,7 @@ StarmieLearnset:
 	db 0 ; no more level-up moves
 
 MimeJrLearnset:
-MrMimeLearnset:
+MrMimePlainLearnset:
 MrMimeGalarianLearnset:
 MrRimeLearnset:
 	db 1, BARRIER

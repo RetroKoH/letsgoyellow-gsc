@@ -146,6 +146,8 @@ AbilityDescriptions:
 	dw NeutralizingGasDescription
 	dw PastelVeilDescription
 	dw QuickDrawDescription
+	dw SteelySpiritDescription
+	dw ScreenCleanerDescription
 	assert_table_length NUM_ABILITIES
 
 NoAbilityDescription:
@@ -716,3 +718,11 @@ NeutralizingGasDescription:
 QuickDrawDescription:
 	db    "Moves first"
 	next1 "occasionally.@"
+
+SteelySpiritDescription:
+	db    "Boosts Steel-type"
+	next1 "moves.@"
+
+ScreenCleanerDescription:
+	db    "Removes screens"
+	next1 "when switched in.@"

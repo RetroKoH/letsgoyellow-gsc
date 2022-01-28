@@ -82,7 +82,7 @@ BackPicPointers::
 	dba SlowbroPlainBackpic
 	dba MagnemiteBackpic
 	dba MagnetonBackpic
-	dba FarfetchDBackpic
+	dba FarfetchDPlainBackpic
 	dba DoduoBackpic
 	dba DodrioBackpic
 	dba SeelBackpic
@@ -121,7 +121,7 @@ BackPicPointers::
 	dba TogekissBackpic
 	dba StaryuBackpic
 	dba StarmieBackpic
-	dba MrMimeBackpic
+	dba MrMimePlainBackpic
 	dba ScytherBackpic
 	dba JynxBackpic
 	dba ElectabuzzBackpic
@@ -335,12 +335,15 @@ BackPicPointers::
 	dba RaichuAlolanBackpic
 	dba ExeggutorAlolanBackpic
 	dba MarowakAlolanBackpic
+	dba MeowthGalarianBackpic
 	dba PonytaGalarianBackpic
 	dba RapidashGalarianBackpic
 	dba SlowpokeGalarianBackpic
 	dba SlowbroGalarianBackpic
 	dba SlowkingGalarianBackpic
+	dba FarfetchDGalarianBackpic
 	dba WeezingGalarianBackpic
+	dba MrMimeGalarianBackpic
 	dba ArticunoGalarianBackpic
 	dba ZapdosGalarianBackpic
 	dba MoltresGalarianBackpic

@@ -82,7 +82,7 @@ FrontPicPointers::
 	dba SlowbroPlainFrontpic
 	dba MagnemiteFrontpic
 	dba MagnetonFrontpic
-	dba FarfetchDFrontpic
+	dba FarfetchDPlainFrontpic
 	dba DoduoFrontpic
 	dba DodrioFrontpic
 	dba SeelFrontpic
@@ -121,7 +121,7 @@ FrontPicPointers::
 	dba TogekissFrontpic
 	dba StaryuFrontpic
 	dba StarmieFrontpic
-	dba MrMimeFrontpic
+	dba MrMimePlainFrontpic
 	dba ScytherFrontpic
 	dba JynxFrontpic
 	dba ElectabuzzFrontpic
@@ -335,12 +335,15 @@ FrontPicPointers::
 	dba RaichuAlolanFrontpic
 	dba ExeggutorAlolanFrontpic
 	dba MarowakAlolanFrontpic
+	dba MeowthGalarianFrontpic
 	dba PonytaGalarianFrontpic
 	dba RapidashGalarianFrontpic
 	dba SlowpokeGalarianFrontpic
 	dba SlowbroGalarianFrontpic
 	dba SlowkingGalarianFrontpic
+	dba FarfetchDGalarianFrontpic
 	dba WeezingGalarianFrontpic
+	dba MrMimeGalarianFrontpic
 	dba ArticunoGalarianFrontpic
 	dba ZapdosGalarianFrontpic
 	dba MoltresGalarianFrontpic

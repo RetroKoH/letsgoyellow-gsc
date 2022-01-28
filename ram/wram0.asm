@@ -348,8 +348,6 @@ wBattleMonNickname:: ds MON_NAME_LENGTH
 
 wBattleMon:: battle_struct wBattleMon
 
-	ds 2
-
 wWildMon:: db
 	ds 1
 wEnemyTrainerItem1:: db
@@ -457,13 +455,13 @@ wEnemyEncoreCount:: db
 wEnemyPerishCount:: db
 wEnemyProtectCount:: db
 wEnemyFuryCutterCount:: db
+
+wCriticalCount:: ds PARTY_LENGTH ; for g-Farfetch'd evolution
 wBattleSubStatusWRAMEnd::
 
 wDamageTaken::
 ; Format: $xy yy, x = total multihit hits, y = total damage
 	dw
-
-	ds 2 ; unused
 
 wBattleReward:: ds 3
 wBattleAnimParam::
@@ -550,8 +548,6 @@ wSafariMonEating:: db
 
 wAlreadyDisobeyed:: db
 
-	ds 1 ; unused
-
 wAlreadySawWeather:: db
 
 wWhichMonFaintedFirst:: db
@@ -559,8 +555,6 @@ wWhichMonFaintedFirst:: db
 ; exists so you can't counter on switch
 wLastPlayerCounterMove:: db
 wLastEnemyCounterMove:: db
-
-	ds 1 ; unused
 
 wAlreadyExecuted:: db
 

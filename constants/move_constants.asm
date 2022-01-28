@@ -242,7 +242,7 @@
 	const HEALINGLIGHT ; $ea
 	const HURRICANE    ; $eb
 	const KNOCK_OFF    ; $ec
-	const HIDDEN_POWER ; $ed
+	const WEATHER_BALL ; $ed
 	const CROSS_CHOP   ; $ee
 	const AQUA_JET     ; $ef
 	const RAIN_DANCE   ; $f0

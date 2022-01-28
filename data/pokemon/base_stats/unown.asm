@@ -16,5 +16,5 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm HIDDEN_POWER
+	tmhm
 	; end

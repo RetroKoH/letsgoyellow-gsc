@@ -124,7 +124,7 @@ MoveEffectsPointers:
 	dw Pursuit
 	dw RapidSpin
 	dw HealingLight
-	dw HiddenPower
+	dw WeatherBall
 	dw RainDance
 	dw SunnyDay
 	dw BellyDrum

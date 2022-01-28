@@ -1963,14 +1963,14 @@ HealingLight:
 	healweather
 	endmove
 
-HiddenPower:
+WeatherBall:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
 	checkhit
 	critical
-	hiddenpower
+	weatherball
 	damagecalc
 	stab
 	damagevariation

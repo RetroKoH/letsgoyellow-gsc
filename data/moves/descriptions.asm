@@ -237,7 +237,7 @@ MoveDescriptions::
 	dw HealingLightDescription
 	dw HurricaneDescription
 	dw KnockOffDescription
-	dw HiddenPowerDescription
+	dw WeatherBallDescription
 	dw CrossChopDescription
 	dw AquaJetDescription
 	dw RainDanceDescription
@@ -1048,9 +1048,9 @@ KnockOffDescription:
 	db   "Slaps down the"
 	next "foe's held item.@"
 
-HiddenPowerDescription:
+WeatherBallDescription:
 	db   "The type varies"
-	next "with the #mon.@"
+	next "with the weather.@"
 
 FutureSightDescription:
 	db   "An attack that"

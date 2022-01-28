@@ -1034,7 +1034,7 @@ MagnezoneLearnset:
 	db 29, THUNDERBOLT ; Electro Ball → TM move
 	db 33, FLASH_CANNON
 	db 39, EXPLOSION ; Screech → TM move
-	db 43, HIDDEN_POWER ; Discharge → TM move
+	db 43, WEATHER_BALL ; Discharge → TM move
 	db 49, AGILITY ; Lock-On → event move
 	db 53, GYRO_BALL ; Magnet Rise → Gyro Ball
 	db 59, THUNDER ; Gyro Ball → TM move
@@ -2219,7 +2219,7 @@ MismagiusLearnset:
 	db 0 ; no more level-up moves
 
 UnownLearnset:
-	db 1, HIDDEN_POWER
+	db 1, RETURN
 	db 0 ; no more level-up moves
 
 PinecoLearnset:
@@ -2511,7 +2511,7 @@ RaikouLearnset:
 	db 78, CALM_MIND
 	db 85, AURA_SPHERE ; Thunder → event move
 	db 92, THUNDER
-	db 99, HIDDEN_POWER ; TM move
+	db 99, WEATHER_BALL ; TM move
 	db 0 ; no more level-up moves
 
 EnteiLearnset:
@@ -2530,7 +2530,7 @@ EnteiLearnset:
 	db 78, CALM_MIND
 	db 85, FLARE_BLITZ ; Eruption → event move
 	db 92, SACRED_FIRE
-	db 99, HIDDEN_POWER ; TM move
+	db 99, WEATHER_BALL ; TM move
 	db 0 ; no more level-up moves
 
 SuicuneLearnset:
@@ -2549,7 +2549,7 @@ SuicuneLearnset:
 	db 78, CALM_MIND
 	db 85, HYPER_BEAM ; Blizzard → TM move
 	db 92, BLIZZARD
-	db 99, HIDDEN_POWER ; TM move
+	db 99, WEATHER_BALL ; TM move
 	db 0 ; no more level-up moves
 
 LarvitarLearnset:

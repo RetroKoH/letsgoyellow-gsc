@@ -237,7 +237,7 @@ MoveNames::
 	li "HealingLight"
 	li "Hurricane"
 	li "Knock Off"
-	li "Hidden Power"
+	li "Weather Ball"
 	li "Cross Chop"
 	li "Aqua Jet"
 	li "Rain Dance"

@@ -5,7 +5,7 @@ Special_BillsGrandfather:
 	ldh [hScriptVar], a
 	ld [wNamedObjectIndex], a
 	call GetPokemonName
-	jmp CopyPokemonName_Buffer1_Buffer3
+	jr CopyPokemonName_Buffer1_Buffer3
 
 .cancel
 	xor a

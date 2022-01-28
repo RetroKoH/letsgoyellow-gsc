@@ -238,7 +238,7 @@ BattleAnimations::
 	dw BattleAnim_HealingLight
 	dw BattleAnim_Hurricane
 	dw BattleAnim_KnockOff
-	dw BattleAnim_HiddenPower
+	dw BattleAnim_WeatherBall
 	dw BattleAnim_CrossChop
 	dw BattleAnim_AquaJet
 	dw BattleAnim_RainDance
@@ -4898,7 +4898,7 @@ BattleAnim_Crunch:
 	anim_bgp $e4
 	anim_ret
 
-BattleAnim_HiddenPower:
+BattleAnim_WeatherBall:
 	anim_1gfx ANIM_GFX_CHARGE
 	anim_call BattleAnim_FollowEnemyFeet_0
 	anim_bgeffect ANIM_BG_CYCLE_MON_LIGHT_DARK_REPEATING, $0, $1, $20

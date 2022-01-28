@@ -32,7 +32,6 @@ INCLUDE "engine/battle/move_effects/growth.asm"
 INCLUDE "engine/battle/move_effects/gyro_ball.asm"
 INCLUDE "engine/battle/move_effects/heal_bell.asm"
 INCLUDE "engine/battle/move_effects/healinglight.asm"
-INCLUDE "engine/battle/move_effects/hidden_power.asm"
 INCLUDE "engine/battle/move_effects/knock_off.asm"
 INCLUDE "engine/battle/move_effects/leech_seed.asm"
 INCLUDE "engine/battle/move_effects/low_kick.asm"
@@ -71,6 +70,7 @@ INCLUDE "engine/battle/move_effects/trick_room.asm"
 INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/toxic.asm"
 INCLUDE "engine/battle/move_effects/weather.asm"
+INCLUDE "engine/battle/move_effects/weather_ball.asm"
 
 
 DoTurn:

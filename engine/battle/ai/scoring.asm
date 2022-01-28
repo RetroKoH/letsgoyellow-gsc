@@ -2498,8 +2498,8 @@ AIDamageCalc:
 	jr z, .doublehit
 	cp EFFECT_GYRO_BALL
 	jr z, .gyro_ball
-	cp EFFECT_HIDDEN_POWER
-	jr z, .hidden_power
+	cp EFFECT_WEATHER_BALL
+	jr z, .weather_ball
 	cp EFFECT_LOW_KICK
 	jr z, .low_kick
 	cp EFFECT_RETURN
@@ -2536,8 +2536,8 @@ AIDamageCalc:
 	farcall BattleCommand_damagestats
 	farcall BattleCommand_gyroball
 	jr .damagecalc
-.hidden_power
-	farcall HiddenPowerDamageStats
+.weather_ball
+	farcall WeatherBallDamageStats
 	jr .damagecalc
 .low_kick
 	farcall BattleCommand_damagestats

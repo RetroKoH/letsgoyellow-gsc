@@ -20,7 +20,7 @@
 	const NIGHT_SLASH  ; $0c
 	const AIR_SLASH    ; $0d
 	const SWORDS_DANCE ; $0e
-	const CUT          ; $0f
+	const PSYCHO_CUT   ; $0f
 	const GUST         ; $10
 	const WING_ATTACK  ; $11
 	const SUCKER_PUNCH ; $12

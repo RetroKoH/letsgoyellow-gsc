@@ -16,7 +16,7 @@ BattleAnimations::
 	dw BattleAnim_NightSlash
 	dw BattleAnim_AirSlash
 	dw BattleAnim_SwordsDance
-	dw BattleAnim_Cut
+	dw BattleAnim_PsychoCut
 	dw BattleAnim_Gust
 	dw BattleAnim_WingAttack
 	dw BattleAnim_SuckerPunch
@@ -1673,7 +1673,7 @@ BattleAnim_FuryAttack: ; removed
 	anim_wait 8
 	anim_ret
 
-BattleAnim_Cut:
+BattleAnim_PsychoCut:
 	anim_1gfx ANIM_GFX_CUT
 	anim_sound 0, 1, SFX_CUT
 	anim_obj ANIM_OBJ_CUT_LONG_DOWN_LEFT, -13, 0,   5, 0, $0

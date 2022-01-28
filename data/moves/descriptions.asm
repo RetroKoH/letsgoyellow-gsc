@@ -15,7 +15,7 @@ MoveDescriptions::
 	dw NightSlashDescription
 	dw AirSlashDescription
 	dw SwordsDanceDescription
-	dw CutDescription
+	dw PsychoCutDescription
 	dw GustDescription
 	dw WingAttackDescription
 	dw SuckerPunchDescription
@@ -271,6 +271,7 @@ CrossChopDescription:
 NightSlashDescription:
 ShadowClawDescription:
 StoneEdgeDescription:
+PsychoCutDescription:
 DrillRunDescription:
 	db   "Has a high criti-"
 	next "cal hit ratio.@"
@@ -767,10 +768,6 @@ VineWhipDescription:
 DragonClawDescription:
 	db   "Slashes the foe"
 	next "with sharp claws.@"
-
-CutDescription:
-	db   "Cuts using claws,"
-	next "scythes, etc.@"
 
 XScissorDescription:
 	db   "Slashes foe with"

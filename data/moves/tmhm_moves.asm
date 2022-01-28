@@ -77,7 +77,7 @@ TMHMMoves:
 	db GYRO_BALL    ; TM74 (TODO: Magnet Tunnel)
 	db SWORDS_DANCE ; TM75 (Celadon Dept. Store)
 	assert_table_length NUM_TMS
-	db CUT          ; HM01 (Ilex Forest)
+	db SLASH        ; HM01 (Ilex Forest)
 	db FLY          ; HM02 (Cianwood City)
 	db SURF         ; HM03 (Ecruteak City)
 	db STRENGTH     ; HM04 (Cianwood City)

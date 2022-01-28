@@ -107,7 +107,7 @@ endc
 	add_tmnum \1
 ENDM
 
-	add_hm CUT          ; $4b
+	add_hm SLASH        ; $4b
 	add_hm FLY          ; $4c
 	add_hm SURF         ; $4d
 	add_hm STRENGTH     ; $4e

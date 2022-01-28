@@ -15,6 +15,7 @@ Cut:
 Dazzlingleam:
 DragonClaw:
 DrillPeck:
+DrillRun:
 Extremespeed:
 FeintAttack:
 HiJumpKick:
@@ -31,6 +32,7 @@ NightSlash:
 Peck:
 PowerGem:
 PowerWhip:
+PsychoCut:
 Psystrike:
 QuickAttack:
 RazorLeaf:

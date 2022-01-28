@@ -882,7 +882,7 @@ AlakazamLearnset:
 	db 21, PSYBEAM
 	db 23, NIGHT_SHADE ; Miracle Eye → Let's Go move
 	db 26, REFLECT
-	db 28, LIGHT_SCREEN ; Psycho Cut → egg move
+	db 28, PSYCHO_CUT
 	db 31, RECOVER
 	db 33, BARRIER ; Telekinesis → egg move
 	db 36, BATON_PASS ; Ally Switch → new move

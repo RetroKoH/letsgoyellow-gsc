@@ -14,7 +14,6 @@ ContactMoves:
 	db CRABHAMMER
 	db CROSS_CHOP
 	db CRUNCH
-	db CUT
 	db DIG
 	db DIZZY_PUNCH
 	db DOUBLE_KICK
@@ -60,6 +59,7 @@ ContactMoves:
 	db PLAY_ROUGH
 	db POISON_JAB
 	db POWER_WHIP
+	db PSYCHO_CUT
 	db PURSUIT
 	db QUICK_ATTACK
 	db RAGE

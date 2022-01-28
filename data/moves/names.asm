@@ -15,7 +15,7 @@ MoveNames::
 	li "Night Slash"
 	li "Air Slash"
 	li "Swords Dance"
-	li "Cut"
+	li "Psycho Cut"
 	li "Gust"
 	li "Wing Attack"
 	li "Sucker Punch"

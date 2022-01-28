@@ -82,7 +82,7 @@ MoveDescriptions::
 	dw SleepPowderDescription
 	dw PetalDanceDescription
 	dw StringShotDescription
-	dw DragonRageDescription
+	dw HardenDescription
 	dw FireSpinDescription
 	dw ThundershockDescription
 	dw ThunderboltDescription
@@ -503,6 +503,8 @@ SweetKissDescription:
 	next "confuse the foe.@"
 
 DefenseCurlDescription:
+HardenDescription:
+WithdrawDescription:
 	db   "Raises the user's"
 	next "Defense.@"
 

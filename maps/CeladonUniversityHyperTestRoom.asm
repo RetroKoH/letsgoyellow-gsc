@@ -133,7 +133,7 @@ CeladonUniversityHyperTestRoomWestwoodScript:
 	writetext .CongratulationsText
 	waitbutton
 
-	givepoke MAGIKARP, MAGIKARP_MASK_FORM, 10, EVIOLITE, ULTRA_BALL, DRAGON_RAGE
+	givepoke MAGIKARP, MAGIKARP_MASK_FORM, 10, EVIOLITE, ULTRA_BALL, DRAGONBREATH
 	iffalse_jumpopenedtext .PartyAndBoxFullText
 	setevent EVENT_GOT_DRAGON_RAGE_MAGIKARP
 	jumpopenedtext .TestOverText

@@ -465,7 +465,6 @@ KangaskhanEggMoves:
 HorseaEggMoves:
 	db AURORA_BEAM
 	db DISABLE
-	db DRAGON_RAGE
 	db DRAGONBREATH
 	db OCTAZOOKA
 	db SPLASH

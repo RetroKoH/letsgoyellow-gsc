@@ -82,7 +82,7 @@ MoveNames::
 	li "Sleep Powder"
 	li "Petal Dance"
 	li "String Shot"
-	li "Dragon Rage"
+	li "Harden"
 	li "Fire Spin"
 	li "ThunderShock"
 	li "Thunderbolt"

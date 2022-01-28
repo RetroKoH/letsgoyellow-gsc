@@ -1,7 +1,7 @@
-; these tables must be together
+; Pokemon that have HARDEN, but want to use WITHDRAW
 
 WithdrawUsers:
-; Defense Curl += Withdraw
+; Harden += Withdraw
 	db SQUIRTLE
 	db WARTORTLE
 	db BLASTOISE
@@ -10,27 +10,5 @@ WithdrawUsers:
 	db CLOYSTER
 	db OMANYTE
 	db OMASTAR
-	db -1
-
-HardenUsers:
-; Defense Curl += Harden
-	db METAPOD
-	db KAKUNA
-	db GRIMER
-	db MUK
-	db ONIX
-	db STEELIX
-	db KRABBY
-	db KINGLER
-	db STARYU
-	db STARMIE
-	db KABUTO
-	db KABUTOPS
-	db HERACROSS
-	db GLIGAR
-	db GLISCOR
-	db SLUGMA
-	db MAGCARGO
-	db PUPITAR
-	db TYRANITAR
+	db SHUCKLE
 	db -1

@@ -320,7 +320,6 @@ CharizardLearnset:
 	db 7, EMBER
 	db 10, SMOKESCREEN
 	db 17, METAL_CLAW ; Dragon Rage → TM move
-	db 21, DRAGON_RAGE ; Scary Face → Dragon Rage
 	db 28, SCARY_FACE ; Fire Fang → Scary Face
 	db 32, FLAME_CHARGE ; Flame Burst → TM move
 	db 41, SLASH
@@ -336,7 +335,7 @@ BlastoiseLearnset:
 	db 1, TACKLE
 	db 4, LEER ; Tail Whip → similar move
 	db 7, WATER_GUN
-	db 10, DEFENSE_CURL ; Withdraw → similar move
+	db 10, HARDEN ; WITHDRAW
 	db 13, AQUA_JET ; Bubble → egg move
 	db 16, BITE
 	db 20, RAPID_SPIN
@@ -358,7 +357,7 @@ CaterpieLearnset:
 
 MetapodLearnset:
 KakunaLearnset:
-	db 1, DEFENSE_CURL ; Harden → similar move
+	db 1, HARDEN
 	db 0 ; no more level-up moves
 
 ButterfreeLearnset:
@@ -1124,7 +1123,7 @@ MukAlolanLearnset:
 	db 1, MOONBLAST ; Let's Go move
 	db 1, TACKLE ; Pound → similar move
 	db 1, ACID ; Poison Gas → new move
-	db 4, DEFENSE_CURL ; Harden → similar move
+	db 4, HARDEN
 	db 7, BITE
 	db 12, DISABLE
 	db 15, VENOSHOCK ; Acid Spray → tutor move
@@ -1145,7 +1144,7 @@ CloysterLearnset:
 	db 1, SHELL_SMASH
 	db 1, FURY_STRIKES ; Spike Cannon → similar move
 	db 1, TRI_ATTACK ; RBY TM move
-	db 1, DEFENSE_CURL ; Withdraw → similar move
+	db 1, HARDEN ; WITHDRAW
 	db 1, SUPERSONIC
 	db 1, PROTECT
 	db 1, AURORA_BEAM
@@ -1179,7 +1178,7 @@ GengarLearnset:
 OnixLearnset:
 SteelixLearnset:
 	db 1, TACKLE
-	db 1, DEFENSE_CURL ; Harden → similar move
+	db 1, HARDEN
 	db 1, WRAP ; Bind → similar move
 	db 4, CURSE
 	db 7, ROCK_THROW
@@ -1226,7 +1225,7 @@ KinglerLearnset:
 	db 1, AQUA_JET ; Bubble → new move
 	db 5, SCRATCH ; Vice Grip → new move
 	db 9, LEER
-	db 11, DEFENSE_CURL ; Harden → similar move
+	db 11, HARDEN
 	db 15, BUBBLE_BEAM
 	db 19, DIG ; Mud Shot → egg move
 	db 21, METAL_CLAW
@@ -1267,7 +1266,6 @@ ExeggutorAlolanLearnset:
 	db 1, HYPNOSIS
 	db 1, CONFUSION
 	db 1, DRAGON_PULSE ; evolution move
-	db 17, DRAGON_RAGE ; Psyshock → new move
 	db 27, ZEN_HEADBUTT ; Egg Bomb → tutor move
 	db 37, POWER_WHIP ; Wood Hammer → new move
 	db 47, OUTRAGE ; Leaf Storm → S/M TM move
@@ -1590,7 +1588,7 @@ PinsirLearnset:
 	db 1, FOCUS_ENERGY
 	db 4, WRAP ; Bind → similar move
 	db 8, SEISMIC_TOSS
-	db 12, DEFENSE_CURL ; Harden → similar move
+	db 12, HARDEN
 	db 16, RAGE ; Revenge → RBY TM move
 	db 20, ROCK_THROW ; Brick Break → event move
 	db 26, ROCK_SMASH ; Vital Throw → TM move
@@ -1632,11 +1630,9 @@ GyaradosLearnset:
 	db 1, WATERFALL ; HM move
 	db 1, BITE ; evolution move
 	db 1, THRASH
-	db 1, DRAGON_RAGE
 	db 1, WRAP ; Bind → similar move
 	db 21, LEER
 	db 24, GUST ; Twister → new move
-	db 27, DRAGON_RAGE ; Ice Fang → Dragon Rage
 	db 30, AQUA_TAIL
 	db 33, SCARY_FACE
 	db 36, DRAGONBREATH ; Dragon Rage → GSC TM move
@@ -1651,7 +1647,6 @@ GyaradosLearnset:
 
 LaprasLearnset:
 	db 1, ANCIENTPOWER ; HGSS tutor move
-	db 1, DRAGON_RAGE ; RBY TM move
 	db 1, DRAGONBREATH ; GSC TM move
 	db 1, SING
 	db 1, GROWL
@@ -1724,7 +1719,7 @@ PorygonZLearnset:
 OmanyteLearnset:
 OmastarLearnset:
 	db 1, WRAP ; Constrict → similar move
-	db 1, DEFENSE_CURL ; Withdraw → similar move
+	db 1, HARDEN ; WITHDRAW
 	db 1, ICICLE_SPEAR ; Spike Cannon → new move ; evolution move
 	db 7, BITE
 	db 10, WATER_GUN
@@ -1746,7 +1741,7 @@ KabutopsLearnset:
 	db 1, SLASH ; evolution move
 	db 1, LOW_KICK ; HGSS tutor move
 	db 1, SCRATCH
-	db 1, DEFENSE_CURL ; Harden → similar move
+	db 1, HARDEN
 	db 6, ABSORB
 	db 11, MUD_SLAP ; Leer → GSC TM move
 	db 16, ROCK_THROW ; Mud Shot → Rock Throw (event move)
@@ -1762,7 +1757,6 @@ KabutopsLearnset:
 	db 0 ; no more level-up moves
 
 AerodactylLearnset:
-	db 1, DRAGON_RAGE ; RBY TM move
 	db 1, DRAGONBREATH ; GSC TM move
 	db 1, WING_ATTACK
 	db 1, SUPERSONIC
@@ -1877,7 +1871,6 @@ DragoniteLearnset:
 	db 1, WING_ATTACK ; evolution move
 	db 5, THUNDER_WAVE
 	db 11, AQUA_JET ; Twister → egg move
-	db 15, DRAGON_RAGE
 	db 21, HEADBUTT ; Slam → tutor move
 	db 25, AGILITY
 	db 33, DRAGONBREATH ; Dragon Tail → GSC TM move
@@ -2176,7 +2169,6 @@ YanmegaLearnset:
 	db 11, DOUBLE_TEAM
 	db 14, SONIC_BOOM
 	db 17, PROTECT ; Detect → similar move
-	db 22, DRAGON_RAGE ; Supersonic → new move
 	db 27, SUPERSONIC ; Uproar → Supersonic
 	db 30, PURSUIT
 	db 33, ANCIENTPOWER
@@ -2264,7 +2256,7 @@ GligarLearnset:
 GliscorLearnset:
 	db 1, POISON_JAB
 	db 4, MUD_SLAP ; Sand Attack → similar move
-	db 7, DEFENSE_CURL ; Harden → similar move
+	db 7, HARDEN
 	db 10, QUICK_ATTACK ; Knock Off → Quick Attack
 	db 13, WING_ATTACK ; Quick Attack → egg move
 	db 16, BUG_BITE ; Fury Cutter → similar move
@@ -2301,7 +2293,7 @@ QwilfishLearnset:
 	db 1, SPIKES
 	db 1, TACKLE
 	db 1, POISON_STING
-	db 5, DEFENSE_CURL ; Harden → TM move
+	db 5, HARDEN
 	db 9, MINIMIZE
 	db 13, BUBBLE_BEAM ; Bubble → similar move
 	db 17, ROLLOUT
@@ -2319,7 +2311,7 @@ QwilfishLearnset:
 
 ShuckleLearnset:
 	db 1, MUD_SLAP ; Constrict → GSC TM move
-	db 1, DEFENSE_CURL ; Withdraw → similar move
+	db 1, HARDEN ; WITHDRAW
 	db 1, ROLLOUT
 	db 5, ENCORE
 	db 9, WRAP
@@ -2402,7 +2394,7 @@ MagcargoLearnset:
 	db 1, MUD_SLAP ; Smog → TM move
 	db 6, EMBER
 	db 8, ROCK_THROW
-	db 13, DEFENSE_CURL ; Harden → similar move
+	db 13, HARDEN
 	db 15, FIRE_SPIN ; Incinerate → new move
 	db 20, SMOKESCREEN ; Clear Smog → egg move
 	db 22, ANCIENTPOWER

@@ -93,7 +93,7 @@ Moves::
 	move SLEEP_POWDER, EFFECT_SLEEP,               0, GRASS,      75, 15,   0, STATUS
 	move PETAL_DANCE,  EFFECT_RAMPAGE,           120, GRASS,     100, 10,   0, SPECIAL
 	move STRING_SHOT,  EFFECT_SPEED_DOWN_2,        0, BUG,        95, 40,   0, STATUS
-	move DRAGON_RAGE,  EFFECT_STATIC_DAMAGE,      40, DRAGON,    100, 10,   0, SPECIAL
+	move HARDEN,       EFFECT_DEFENSE_UP,          0, NORMAL,    100, 30,   0, STATUS ; Combine with Withdraw
 	move FIRE_SPIN,    EFFECT_TRAP,               35, FIRE,       85, 15,   0, SPECIAL
 	move THUNDERSHOCK, EFFECT_PARALYZE_HIT,       40, ELECTRIC,  100, 30,  10, SPECIAL
 	move THUNDERBOLT,  EFFECT_PARALYZE_HIT,       90, ELECTRIC,  100, 15,  10, SPECIAL

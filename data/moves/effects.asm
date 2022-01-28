@@ -67,6 +67,24 @@ XScissor:
 	posthiteffects
 	endmove
 
+HornDrill:
+OHKOHit:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	stab
+	ohko
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+;	checkfaint
+	postfainteffects
+	posthiteffects
+	endmove
+
 SuckerPunch:
 	checkobedience
 	usedmovetext
@@ -1669,15 +1687,6 @@ Spikes:
 	hastarget
 	bounceback
 	spikes
-	endmove
-
-ToxicSpikes:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	bounceback
-	toxicspikes
 	endmove
 
 Foresight:

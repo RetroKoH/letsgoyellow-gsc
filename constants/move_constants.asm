@@ -33,7 +33,7 @@
 	const FLARE_BLITZ  ; $19
 	const STONE_EDGE   ; $1a
 	const FOCUS_BLAST  ; $1b
-	const TOXIC_SPIKES ; $1c
+	const HORN_DRILL   ; $1c
 	const HEADBUTT     ; $1d
 	const HORN_ATTACK  ; $1e
 	const TRICK        ; $1f

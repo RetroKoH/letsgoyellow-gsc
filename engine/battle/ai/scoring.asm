@@ -2599,7 +2599,6 @@ AI_Cautious:
 	db STUN_SPORE
 	db SUBSTITUTE
 	db THUNDER_WAVE
-	db TOXIC_SPIKES
 	db TRANSFORM
 	db $ff
 

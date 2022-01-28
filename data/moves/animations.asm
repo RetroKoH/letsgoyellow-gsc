@@ -3887,29 +3887,25 @@ BattleAnim_Spikes:
 	anim_wait 64
 	anim_ret
 
-BattleAnim_ToxicSpikes:
-	anim_1gfx ANIM_GFX_MISC
-	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $20
+BattleAnim_HornDrill: ; Need to fix
+	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $40
+	anim_obj ANIM_OBJ_HORN,   9, 0,  10, 0, $3
 	anim_wait 8
-	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $30
-	anim_wait 8
-	anim_sound 6, 2, SFX_MENU
-	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $28
-	anim_wait 32
 .loop
-	anim_1gfx ANIM_GFX_POISON
-	anim_sound 0, 1, SFX_TOXIC
-	anim_obj ANIM_OBJ_SLUDGE, -16, 4,   9, 0, $0
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX,  -16, 4, 5, 0, $0
 	anim_wait 8
-	anim_sound 0, 1, SFX_TOXIC
-	anim_obj ANIM_OBJ_SLUDGE,  14, 4,   9, 0, $0
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 140, 48, $0
 	anim_wait 8
-	anim_sound 0, 1, SFX_TOXIC
-	anim_obj ANIM_OBJ_SLUDGE, -14, 4,   9, 0, $0
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 132, 56, $0
 	anim_wait 8
-	anim_loop 5, .loop
+	anim_sound 0, 1, SFX_HORN_ATTACK
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 124, 48, $0
+	anim_wait 8
+	anim_loop 3, .loop
 	anim_ret
 
 BattleAnim_ZapCannon:
@@ -5933,6 +5929,31 @@ BattleAnim_StatDown:
 ;	anim_wait 4
 ;	anim_obj ANIM_OBJ_STRING_SHOT,   8, 0,  10, 4, $0
 ;	anim_wait 64
+;	anim_ret
+
+;BattleAnim_ToxicSpikes:
+;	anim_1gfx ANIM_GFX_MISC
+;	anim_sound 6, 2, SFX_MENU
+;	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $20
+;	anim_wait 8
+;	anim_sound 6, 2, SFX_MENU
+;	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $30
+;	anim_wait 8
+;	anim_sound 6, 2, SFX_MENU
+;	anim_obj ANIM_OBJ_SPIKES,   6, 0,  11, 0, $28
+;	anim_wait 32
+;.loop
+;	anim_1gfx ANIM_GFX_POISON
+;	anim_sound 0, 1, SFX_TOXIC
+;	anim_obj ANIM_OBJ_SLUDGE, -16, 4,   9, 0, $0
+;	anim_wait 8
+;	anim_sound 0, 1, SFX_TOXIC
+;	anim_obj ANIM_OBJ_SLUDGE,  14, 4,   9, 0, $0
+;	anim_wait 8
+;	anim_sound 0, 1, SFX_TOXIC
+;	anim_obj ANIM_OBJ_SLUDGE, -14, 4,   9, 0, $0
+;	anim_wait 8
+;	anim_loop 5, .loop
 ;	anim_ret
 
 ;BattleAnim_CometPunch: ; removed

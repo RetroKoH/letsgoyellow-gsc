@@ -28,7 +28,7 @@ MoveDescriptions::
 	dw FlareBlitzDescription
 	dw StoneEdgeDescription
 	dw FocusBlastDescription
-	dw ToxicSpikesDescription
+	dw HornDrillDescription
 	dw HeadbuttDescription
 	dw HornAttackDescription
 	dw TrickDescription
@@ -631,6 +631,10 @@ TrickRoomDescription:
 	db   "Slow #mon move"
 	next "first for 5 turns.@"
 
+HornDrillDescription:
+	db   "A guaranteed one-"
+	next "hit KO attack.@"
+
 ExplosionDescription:
 	db   "Very powerful but"
 	next "makes user faint.@"
@@ -716,10 +720,6 @@ MirrorCoatDescription:
 
 SpikesDescription:
 	db   "Hurts foes when"
-	next "they switch in.@"
-
-ToxicSpikesDescription:
-	db   "Poisons foes when"
 	next "they switch in.@"
 
 QuickAttackDescription:

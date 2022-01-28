@@ -2,11 +2,11 @@ MoveEffectsPointers:
 ; entries correspond to EFFECT_* constants
 	table_width 2, MoveEffectsPointers
 	dw NormalHit
-	dw NormalHit
-	dw NormalHit
+	dw NormalHit ; PRIORITY
+	dw NormalHit ; ALWAYS
 	dw LeechHit
-	dw MultiHit
-	dw MultiHit
+	dw MultiHit ; DOUBLE
+	dw MultiHit ; MULTI
 	dw RecoilHit
 	dw FlinchHit
 	dw PoisonHit
@@ -142,7 +142,7 @@ MoveEffectsPointers:
 	dw NormalHit
 	dw SwitchHit
 	dw SuckerPunch
-	dw ToxicSpikes
+	dw OHKOHit
 	dw Roost
 	dw CloseCombat
 	dw SkillSwap

@@ -838,6 +838,10 @@ CriticalHitText:
 	text "A critical hit!"
 	prompt
 
+OneHitKOText:
+	text "It's a one-hit KO!"
+	prompt
+
 SuperEffectiveText:
 	text "It's super"
 	line "effective!"
@@ -1292,12 +1296,6 @@ ProtectingItselfText:
 SpikesText:
 	text "Spikes scattered"
 	line "all around"
-	cont "<TARGET>!"
-	prompt
-
-ToxicSpikesText:
-	text "Toxic spikes"
-	line "scattered around"
 	cont "<TARGET>!"
 	prompt
 

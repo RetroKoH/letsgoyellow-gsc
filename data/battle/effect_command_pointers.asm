@@ -134,7 +134,7 @@ BattleCommandPointers:
 	command burn
 	command bounceback
 	command suckerpunch
-	command toxicspikes
+	command ohko
 	command roost
 	command skillswap
 	command trick

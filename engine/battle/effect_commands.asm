@@ -40,6 +40,7 @@ INCLUDE "engine/battle/move_effects/magnitude.asm"
 INCLUDE "engine/battle/move_effects/mean_look.asm"
 INCLUDE "engine/battle/move_effects/metronome.asm"
 INCLUDE "engine/battle/move_effects/minimize.asm"
+INCLUDE "engine/battle/move_effects/ohko.asm"
 INCLUDE "engine/battle/move_effects/pain_split.asm"
 INCLUDE "engine/battle/move_effects/pay_day.asm"
 INCLUDE "engine/battle/move_effects/perish_song.asm"
@@ -2576,14 +2577,22 @@ FailText_CheckOpponentProtect:
 	farjp RunEnemyNullificationAbilities
 
 BattleCommand_criticaltext:
-; Prints the message for critical hits.
+; Prints the message for critical hits or one-hit KOs.
 
 ; If there is no message to be printed, wait 20 frames.
 	ld a, [wCriticalHit]
 	and a
 	jr z, .wait
 
-	ld hl, CriticalHitText
+	dec a
+	add a
+	ld hl, .texts
+	ld b, 0
+	ld c, a
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	call StdBattleTextbox
 
 	xor a
@@ -2604,6 +2613,10 @@ BattleCommand_criticaltext:
 .wait
 	ld c, 20
 	jmp DelayFrames
+
+.texts
+	dw CriticalHitText
+	dw OneHitKOText
 
 BattleCommand_startloop:
 	; mark that we're currently in a loop

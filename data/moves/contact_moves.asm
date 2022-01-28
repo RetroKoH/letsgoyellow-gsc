@@ -39,6 +39,7 @@ ContactMoves:
 	db HEADBUTT
 	db HI_JUMP_KICK
 	db HORN_ATTACK
+	db HORN_DRILL
 	db HYPER_FANG
 	db ICE_PUNCH
 	db IRON_HEAD

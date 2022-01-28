@@ -246,17 +246,8 @@ endr
 	setevent EVENT_RESTORED_POWER_TO_KANTO
 	; post-e4
 	setflag ENGINE_CREDITS_SKIP
-	; good party
-	givepoke VENUSAUR, PLAIN_FORM, 100
-	givepoke CHARIZARD, PLAIN_FORM, 100
-	givepoke BLASTOISE, PLAIN_FORM, 100
-	givepoke MEWTWO, PLAIN_FORM, 100, BRIGHTPOWDER
-	givepoke MEW, PLAIN_FORM, 100, LEFTOVERS
-	; variant form test
-	givepoke RAICHU, ALOLAN_FORM, 50
-	givepoke ARTICUNO, GALARIAN_FORM, 50
-	givepoke ZAPDOS, GALARIAN_FORM, 50
-	givepoke MOLTRES, GALARIAN_FORM, 50
+	; test party
+	givepoke RHYPERIOR, PLAIN_FORM, 100
 	; fill pokedex
 ;	callasm FillPokedex
 	; intro events

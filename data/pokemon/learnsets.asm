@@ -397,7 +397,6 @@ BeedrillLearnset:
 	db 20, FOCUS_ENERGY
 	db 23, VENOSHOCK
 	db 26, FEINT_ATTACK ; Assurance → similar move
-	db 29, TOXIC_SPIKES
 	db 32, PIN_MISSILE
 	db 35, POISON_JAB
 	db 38, AGILITY
@@ -942,7 +941,6 @@ TentacruelLearnset:
 	db 4, SUPERSONIC
 	db 7, WATER_GUN ; Constrict → new move
 	db 10, ACID
-	db 13, TOXIC_SPIKES
 	db 16, WATER_PULSE
 	db 19, WRAP
 	db 22, CONFUSE_RAY ; Acid Spray → event move
@@ -1145,7 +1143,6 @@ ShellderLearnset:
 CloysterLearnset:
 	db 1, HYDRO_PUMP
 	db 1, SHELL_SMASH
-	db 1, TOXIC_SPIKES
 	db 1, FURY_STRIKES ; Spike Cannon → similar move
 	db 1, TRI_ATTACK ; RBY TM move
 	db 1, DEFENSE_CURL ; Withdraw → similar move
@@ -1380,6 +1377,8 @@ RhyperiorLearnset:
 	db 48, EARTHQUAKE
 	db 55, CLOSE_COMBAT ; Megahorn → new move
 	db 62, MEGAHORN ; Horn Drill → Megahorn
+	db 72, MEGA_PUNCH
+	db 81, HORN_DRILL
 	db 0 ; no more level-up moves
 
 HappinyLearnset:
@@ -2243,7 +2242,6 @@ PinecoLearnset:
 ForretressLearnset:
 	db 1, FLASH_CANNON ; Mirror Shot → TM move ; evolution move
 	db 1, AGILITY ; Autotomize → similar move
-	db 1, TOXIC_SPIKES
 	db 1, TACKLE
 	db 1, PROTECT
 	db 6, FOCUS_ENERGY ; Self-Destruct → TCG move
@@ -2307,7 +2305,6 @@ QwilfishLearnset:
 	db 9, MINIMIZE
 	db 13, BUBBLE_BEAM ; Bubble → similar move
 	db 17, ROLLOUT
-	db 21, TOXIC_SPIKES
 	db 25, PAIN_SPLIT ; Stockpile + Spit Up → HGSS move tutor
 	db 29, REVERSAL ; Revenge → Sw/Sh move
 	db 33, WATER_PULSE ; Brine → TM move

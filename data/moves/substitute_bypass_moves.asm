@@ -6,5 +6,4 @@ SubstituteBypassMoves::
 	db ENCORE
 	db FORESIGHT
 	db SPIKES
-	db TOXIC_SPIKES
 	db -1

@@ -26,6 +26,7 @@ KarateChop:
 MachPunch:
 Megahorn:
 MegaKick:
+MegaPunch:
 NightSlash:
 Peck:
 PowerGem:
@@ -141,7 +142,6 @@ MultiHit:
 Bonemerang:
 CometPunch:
 DoubleKick:
-DoubleSlap:
 PinMissile:
 IcicleSpear:
 RockBlast:

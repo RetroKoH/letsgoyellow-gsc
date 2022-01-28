@@ -3,7 +3,7 @@ MoveDescriptions::
 	table_width 2, MoveDescriptions
 	dw AcrobaticsDescription
 	dw KarateChopDescription
-	dw DoubleSlapDescription
+	dw MegaPunchDescription
 	dw AerialAceDescription
 	dw DragonClawDescription
 	dw PayDayDescription
@@ -292,9 +292,9 @@ DrainPunchDescription:
 	db   "Steals 1/2 of the"
 	next "damage inflicted.@"
 
-DoubleSlapDescription:
-	db   "Repeatedly slaps"
-	next "2-5 times.@"
+MegaPunchDescription:
+	db   "A powerful punch"
+	next "thrown very hard.@"
 
 FuryStrikesDescription:
 	db   "Scratches or jabs"

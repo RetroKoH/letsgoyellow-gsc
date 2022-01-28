@@ -4,7 +4,7 @@ BattleAnimations::
 	dw BattleAnim_0
 	dw BattleAnim_Acrobatics
 	dw BattleAnim_KarateChop
-	dw BattleAnim_DoubleSlap
+	dw BattleAnim_MegaPunch
 	dw BattleAnim_AerialAce
 	dw BattleAnim_DragonClaw
 	dw BattleAnim_PayDay
@@ -29,7 +29,7 @@ BattleAnimations::
 	dw BattleAnim_FlareBlitz
 	dw BattleAnim_StoneEdge
 	dw BattleAnim_FocusBlast
-	dw BattleAnim_ToxicSpikes
+	dw BattleAnim_HornDrill
 	dw BattleAnim_Headbutt
 	dw BattleAnim_HornAttack
 	dw BattleAnim_Trick
@@ -747,22 +747,19 @@ BattleAnim_KarateChop:
 	anim_wait 16
 	anim_ret
 
-BattleAnim_DoubleSlap:
+BattleAnim_MegaPunch:
 	anim_1gfx ANIM_GFX_HIT
-	anim_jumpif $1, .alternate
-	anim_sound 0, 1, SFX_DOUBLE_SLAP
-	anim_obj ANIM_OBJ_PALM, -14, 0,   6, 0, $0
+	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $40, $2, $0
+	anim_wait 48
+	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
+.loop
+	anim_sound 0, 1, SFX_MEGA_PUNCH
+	anim_obj ANIM_OBJ_PUNCH, -15, 0,   7, 0, $0
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, -15, 0,   7, 0, $0
 	anim_wait 6
-	anim_obj ANIM_OBJ_HIT_YFIX, -14, 0,   6, 0, $0
-	anim_wait 8
-	anim_ret
-
-.alternate
-	anim_sound 0, 1, SFX_DOUBLE_SLAP
-	anim_obj ANIM_OBJ_PALM,  15, 0,   6, 0, $0
+	anim_obj ANIM_OBJ_PUNCH, -15, 0,   7, 0, $0
 	anim_wait 6
-	anim_obj ANIM_OBJ_HIT_YFIX,  15, 0,   6, 0, $0
-	anim_wait 8
+	anim_loop 3, .loop
 	anim_ret
 
 BattleAnim_Stomp:
@@ -6156,19 +6153,22 @@ BattleAnim_StatDown:
 ;	anim_wait 32
 ;	anim_ret
 
-;BattleAnim_MegaPunch: ; removed
+;BattleAnim_DoubleSlap:
 ;	anim_1gfx ANIM_GFX_HIT
-;	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $40, $2, $0
-;	anim_wait 48
-;	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-;.loop
-;	anim_sound 0, 1, SFX_MEGA_PUNCH
-;	anim_obj ANIM_OBJ_PUNCH, -15, 0,   7, 0, $0
-;	anim_obj ANIM_OBJ_HIT_BIG_YFIX, -15, 0,   7, 0, $0
+;	anim_jumpif $1, .alternate
+;	anim_sound 0, 1, SFX_DOUBLE_SLAP
+;	anim_obj ANIM_OBJ_PALM, -14, 0,   6, 0, $0
 ;	anim_wait 6
-;	anim_obj ANIM_OBJ_PUNCH, -15, 0,   7, 0, $0
+;	anim_obj ANIM_OBJ_HIT_YFIX, -14, 0,   6, 0, $0
+;	anim_wait 8
+;	anim_ret
+
+;.alternate
+;	anim_sound 0, 1, SFX_DOUBLE_SLAP
+;	anim_obj ANIM_OBJ_PALM,  15, 0,   6, 0, $0
 ;	anim_wait 6
-;	anim_loop 3, .loop
+;	anim_obj ANIM_OBJ_HIT_YFIX,  15, 0,   6, 0, $0
+;	anim_wait 8
 ;	anim_ret
 
 ;BattleAnim_Nightmare: ; removed

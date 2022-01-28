@@ -593,7 +593,6 @@ ClefableLearnset:
 	db 1, SING
 	db 1, MINIMIZE
 	db 1, METRONOME
-	db 1, DOUBLE_SLAP
 	db 0 ; no more level-up moves
 
 VulpixPlainLearnset:
@@ -670,7 +669,6 @@ WigglytuffLearnset:
 	db 1, SING
 	db 1, DEFENSE_CURL
 	db 1, DISABLE
-	db 1, DOUBLE_SLAP
 	db 0 ; no more level-up moves
 
 ZubatLearnset:
@@ -872,7 +870,6 @@ PoliwrathLearnset:
 PolitoedLearnset:
 	db 1, BUBBLE_BEAM
 	db 1, HYPNOSIS
-	db 1, DOUBLE_SLAP
 	db 1, CLOSE_COMBAT ; evolution move
 	db 32, DYNAMICPUNCH
 	db 43, EARTH_POWER ; Mind Reader → Poliwhirl move
@@ -1393,7 +1390,6 @@ BlisseyLearnset:
 	db 1, GROWL
 	db 5, LEER ; Tail Whip → similar move
 	db 9, SWEET_KISS ; Refresh → Happiny move
-	db 12, DOUBLE_SLAP
 	db 16, FRESH_SNACK ; Soft-Boiled → similar move
 	db 20, METRONOME ; Bestow → egg move
 	db 23, MINIMIZE
@@ -1495,7 +1491,6 @@ MrRimeLearnset:
 	db 1, CONFUSION
 	db 4, HYPNOSIS ; Copycat → egg move
 	db 8, CALM_MIND ; Meditate → TM move
-	db 11, DOUBLE_SLAP
 	db 13, PROTECT ; Mimic → event move
 	db 15, METRONOME ; Psywave → RBY TM move
 	db 18, ENCORE
@@ -1541,7 +1536,6 @@ JynxLearnset:
 	db 5, SING ; Lovely Kiss → Smoochum move
 	db 8, SCREECH ; Lovely Kiss → Let's Go move
 	db 11, ICY_WIND ; Powder Snow → TM move
-	db 15, DOUBLE_SLAP
 	db 18, ICE_PUNCH
 	db 21, METRONOME ; Heart Stamp → RBY TM move
 	db 25, MEAN_LOOK

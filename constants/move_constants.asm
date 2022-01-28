@@ -8,7 +8,7 @@
 	const NO_MOVE      ; $00
 	const ACROBATICS   ; $01
 	const KARATE_CHOP  ; $02
-	const DOUBLE_SLAP  ; $03
+	const MEGA_PUNCH   ; $03
 	const AERIAL_ACE   ; $04
 	const DRAGON_CLAW  ; $05
 	const PAY_DAY      ; $06

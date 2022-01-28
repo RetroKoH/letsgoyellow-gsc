@@ -20,7 +20,6 @@ ContactMoves:
 	db DIZZY_PUNCH
 	db DOUBLE_KICK
 	db DOUBLE_EDGE
-	db DOUBLE_SLAP
 	db DRAGON_CLAW
 	db DRAIN_KISS
 	db DRAIN_PUNCH
@@ -51,6 +50,7 @@ ContactMoves:
 	db LOW_KICK
 	db MACH_PUNCH
 	db MEGAHORN
+	db MEGA_PUNCH
 	db METAL_CLAW
 	db NIGHT_SLASH
 	db OUTRAGE

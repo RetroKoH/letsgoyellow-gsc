@@ -3,7 +3,7 @@ MoveNames::
 	li "?"
 	li "Acrobatics"
 	li "Karate Chop"
-	li "DoubleSlap"
+	li "Mega Punch"
 	li "Aerial Ace"
 	li "Dragon Claw"
 	li "Pay Day"

@@ -1,0 +1,14 @@
+# To-Do for 1.0 Release
+
+- Update movepool
+	- Certain moves will be amalgamated together, with unique animations retained
+
+- Add Galarian and Rocket Variants
+
+- Give Gym Leaders different teams based on badge count
+	- No randomization just yet. Just hardcoded teams
+
+- Finish all Kanto Wild encounters
+	- Based mostly on Yellow and HGSS
+
+- Finish all non-Rocket trainers on all routes

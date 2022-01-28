@@ -13,7 +13,7 @@ Moves::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	table_width MOVE_LENGTH, Moves
 	move ACROBATICS,   EFFECT_CONDITIONAL_BOOST,  55, FLYING,    100, 15,   0, PHYSICAL
-	move KARATE_CHOP,  EFFECT_NORMAL_HIT,         55, FIGHTING,   95, 25,   0, PHYSICAL
+	move LOW_SWEEP,    EFFECT_SPEED_DOWN_HIT,     65, FIGHTING,  100, 20,   0, PHYSICAL
 	move MEGA_PUNCH,   EFFECT_NORMAL_HIT,         80, NORMAL,     85, 20,   0, PHYSICAL
 	move AERIAL_ACE,   EFFECT_ALWAYS_HIT,         60, FLYING,    100, 20,   0, PHYSICAL
 	move DRAGON_CLAW,  EFFECT_NORMAL_HIT,         80, DRAGON,    100, 15,   0, PHYSICAL

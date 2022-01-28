@@ -2,7 +2,7 @@ MoveNames::
 	list_start MoveNames
 	li "?"
 	li "Acrobatics"
-	li "Karate Chop"
+	li "Low Sweep"
 	li "Mega Punch"
 	li "Aerial Ace"
 	li "Dragon Claw"

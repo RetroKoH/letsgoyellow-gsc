@@ -44,11 +44,11 @@ ContactMoves:
 	db ICE_PUNCH
 	db IRON_HEAD
 	db IRON_TAIL
-	db KARATE_CHOP
 	db KNOCK_OFF
 	db LEECH_LIFE
 	db LICK
 	db LOW_KICK
+	db LOW_SWEEP
 	db MACH_PUNCH
 	db MEGAHORN
 	db MEGA_PUNCH

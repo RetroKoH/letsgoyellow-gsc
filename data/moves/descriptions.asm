@@ -2,7 +2,7 @@ MoveDescriptions::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	table_width 2, MoveDescriptions
 	dw AcrobaticsDescription
-	dw KarateChopDescription
+	dw LowSweepDescription
 	dw MegaPunchDescription
 	dw AerialAceDescription
 	dw DragonClawDescription
@@ -263,7 +263,6 @@ MoveDescriptions::
 Move00Description:
 	db "?@"
 
-KarateChopDescription:
 RazorLeafDescription:
 CrabhammerDescription:
 SlashDescription:
@@ -420,6 +419,7 @@ IronTailDescription:
 	db   "An attack that may"
 	next "lower Defense.@"
 
+LowSweepDescription:
 BubbleBeamDescription:
 	db   "An attack that may"
 	next "lower Speed.@"

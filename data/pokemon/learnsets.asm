@@ -837,7 +837,7 @@ PrimeapeLearnset:
 	db 1, LEER
 	db 1, FOCUS_ENERGY
 	db 5, FURY_STRIKES ; Fury Swipes → similar move
-	db 8, KARATE_CHOP
+	db 8, LOW_SWEEP
 	db 12, PURSUIT
 	db 15, SEISMIC_TOSS
 	db 19, SWAGGER
@@ -906,7 +906,7 @@ MachampLearnset:
 	db 1, LOW_KICK
 	db 1, LEER
 	db 3, FOCUS_ENERGY
-	db 7, KARATE_CHOP
+	db 7, LOW_SWEEP
 	db 9, FORESIGHT
 	db 13, RAGE ; Low Sweep → RBY TM move
 	db 15, SEISMIC_TOSS
@@ -1061,7 +1061,7 @@ SirfetchDLearnset:
 	db 13, KNOCK_OFF
 	db 15, RAZOR_LEAF ; Let's Go move
 	db 19, SLASH
-	db 21, KARATE_CHOP ; Air Cutter → new move
+	db 21, LOW_SWEEP ; Air Cutter → new move
 	db 25, SWORDS_DANCE
 	db 31, AGILITY
 	db 33, NIGHT_SLASH
@@ -1555,7 +1555,7 @@ ElectivireLearnset:
 	db 12, SWIFT
 	db 15, BULK_UP ; Shock Wave → TM move
 	db 19, THUNDER_WAVE
-	db 22, KARATE_CHOP ; Electro Ball → egg move
+	db 22, LOW_SWEEP ; Electro Ball → egg move
 	db 26, LIGHT_SCREEN
 	db 29, THUNDERPUNCH
 	db 36, SCREECH ; Discharge → Screech

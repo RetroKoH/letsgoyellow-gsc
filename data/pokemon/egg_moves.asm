@@ -844,7 +844,7 @@ TyrogueEggMoves:
 ElekidEggMoves:
 	db BARRIER
 	db CROSS_CHOP
-	db KARATE_CHOP
+	db LOW_SWEEP
 	db BULK_UP
 	db $ff
 
@@ -854,7 +854,7 @@ MagbyEggMoves:
 	db CROSS_CHOP
 	db FLARE_BLITZ
 	db FOCUS_ENERGY
-	db KARATE_CHOP
+	db LOW_SWEEP
 	db MACH_PUNCH
 	db SCREECH
 	db $ff

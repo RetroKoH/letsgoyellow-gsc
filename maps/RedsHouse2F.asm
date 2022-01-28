@@ -247,9 +247,7 @@ endr
 	; post-e4
 	setflag ENGINE_CREDITS_SKIP
 	; test party
-	givepoke SQUIRTLE, PLAIN_FORM, 20
-	givepoke KINGLER, PLAIN_FORM, 21
-	givepoke SNORLAX, PLAIN_FORM, 17
+	givepoke PRIMEAPE, PLAIN_FORM, 20
 	givepoke CHARIZARD, PLAIN_FORM, 100
 	; fill pokedex
 ;	callasm FillPokedex

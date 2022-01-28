@@ -3,7 +3,7 @@ BattleAnimations::
 	table_width 2, BattleAnimations
 	dw BattleAnim_0
 	dw BattleAnim_Acrobatics
-	dw BattleAnim_KarateChop
+	dw BattleAnim_LowKick ; Modify Animation
 	dw BattleAnim_MegaPunch
 	dw BattleAnim_AerialAce
 	dw BattleAnim_DragonClaw

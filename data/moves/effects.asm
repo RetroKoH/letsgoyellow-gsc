@@ -1882,6 +1882,7 @@ GyroBall:
 	posthiteffects
 	endmove
 
+GrassKnot:
 LowKick:
 	checkobedience
 	usedmovetext

@@ -713,7 +713,7 @@ ParasectLearnset:
 	db 22, SPORE
 	db 29, SLASH
 	db 37, GROWTH
-	db 44, GIGA_DRAIN
+	db 44, GRASS_KNOT
 	db 51, LEECH_LIFE ; Aromatherapy → TM move
 	db 66, X_SCISSOR
 	db 0 ; no more level-up moves
@@ -1405,7 +1405,7 @@ TangrowthLearnset:
 	db 27, KNOCK_OFF
 	db 30, STUN_SPORE
 	db 33, HEALINGLIGHT ; Natural Gift → new move
-	db 36, GIGA_DRAIN
+	db 36, GRASS_KNOT
 	db 38, ANCIENTPOWER
 	db 41, BODY_SLAM ; Slam → similar move
 	db 44, PAIN_SPLIT ; Tickle → HGSS tutor move
@@ -2140,7 +2140,7 @@ SunfloraLearnset:
 	db 13, LEECH_SEED
 	db 16, RAZOR_LEAF
 	db 19, PROTECT ; Worry Seed → TM move
-	db 22, GIGA_DRAIN
+	db 22, GRASS_KNOT
 	db 25, AGILITY ; Endeavor → new move
 	db 28, HEALINGLIGHT ; Synthesis → similar move
 	db 31, EARTH_POWER ; Natural Gift → tutor move

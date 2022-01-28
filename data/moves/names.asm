@@ -202,7 +202,7 @@ MoveNames::
 	li "Power Whip"
 	li "Outrage"
 	li "Sandstorm"
-	li "Giga Drain"
+	li "Grass Knot"
 	li "Endure"
 	li "Charm"
 	li "Rollout"

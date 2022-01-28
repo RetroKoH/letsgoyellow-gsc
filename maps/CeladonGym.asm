@@ -65,7 +65,7 @@ CeladonGymErikaScript:
 	iftrue_jumpopenedtext ErikaAfterBattleText
 	writetext ErikaExplainTMText
 	promptbutton
-	verbosegivetmhm TM_GIGA_DRAIN
+	verbosegivetmhm TM_GRASS_KNOT
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
 	jumpopenedtext ErikaOutroText
 

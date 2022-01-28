@@ -78,12 +78,12 @@ Moves::
 	move PECK,         EFFECT_NORMAL_HIT,         35, FLYING,    100, 35,   0, PHYSICAL
 	move DRILL_PECK,   EFFECT_NORMAL_HIT,         80, FLYING,    100, 20,   0, PHYSICAL
 	move CLOSE_COMBAT, EFFECT_CLOSE_COMBAT,      120, FIGHTING,  100,  5,   0, PHYSICAL
-	move LOW_KICK,     EFFECT_LOW_KICK,            1, FIGHTING,  100, 20,  30, PHYSICAL
+	move LOW_KICK,     EFFECT_LOW_KICK,            1, FIGHTING,  100, 20,   0, PHYSICAL
 	move COUNTER,      EFFECT_COUNTER,             1, FIGHTING,  100, 20,   0, PHYSICAL
 	move SEISMIC_TOSS, EFFECT_LEVEL_DAMAGE,        1, FIGHTING,  100, 20,   0, PHYSICAL
 	move STRENGTH,     EFFECT_NORMAL_HIT,         80, NORMAL,    100, 15,   0, PHYSICAL
-	move ABSORB,       EFFECT_LEECH_HIT,          20, GRASS,     100, 25,   0, SPECIAL
-	move MEGA_DRAIN,   EFFECT_LEECH_HIT,          40, GRASS,     100, 15,   0, SPECIAL
+	move ABSORB,       EFFECT_LEECH_HIT,          40, GRASS,     100, 15,   0, SPECIAL
+	move MEGA_DRAIN,   EFFECT_LEECH_HIT,          75, GRASS,     100, 10,   0, SPECIAL
 	move LEECH_SEED,   EFFECT_LEECH_SEED,          0, GRASS,      90, 10,   0, STATUS
 	move GROWTH,       EFFECT_GROWTH,              0, NORMAL,    100, 20,   0, STATUS
 	move RAZOR_LEAF,   EFFECT_NORMAL_HIT,         55, GRASS,      95, 25,   0, PHYSICAL
@@ -191,7 +191,7 @@ Moves::
 	move AEROBLAST,    EFFECT_NORMAL_HIT,        100, FLYING,     95,  5,   0, SPECIAL
 	move SEED_BOMB,    EFFECT_NORMAL_HIT,         80, GRASS,     100, 15,   0, PHYSICAL
 	move REVERSAL,     EFFECT_REVERSAL,            1, FIGHTING,  100, 15,   0, PHYSICAL
-	move FAKE_OUT,     EFFECT_FAKE_OUT,         40, NORMAL,    100, 10, 100, PHYSICAL
+	move FAKE_OUT,     EFFECT_FAKE_OUT,           40, NORMAL,    100, 10, 100, PHYSICAL
 	move ICE_SHARD,    EFFECT_PRIORITY_HIT,       40, ICE,       100, 30,   0, PHYSICAL
 	move PROTECT,      EFFECT_PROTECT,             0, NORMAL,    100, 10,   0, STATUS
 	move MACH_PUNCH,   EFFECT_PRIORITY_HIT,       40, FIGHTING,  100, 30,   0, PHYSICAL
@@ -213,7 +213,7 @@ Moves::
 	move POWER_WHIP,   EFFECT_NORMAL_HIT,        120, GRASS,      85, 10,   0, PHYSICAL
 	move OUTRAGE,      EFFECT_RAMPAGE,           120, DRAGON,    100, 10,   0, PHYSICAL
 	move SANDSTORM,    EFFECT_SANDSTORM,           0, ROCK,      100, 10,   0, STATUS
-	move GIGA_DRAIN,   EFFECT_LEECH_HIT,          75, GRASS,     100, 10,   0, SPECIAL
+	move GRASS_KNOT,   EFFECT_LOW_KICK,            1, GRASS,     100, 20,   0, SPECIAL
 	move ENDURE,       EFFECT_ENDURE,              0, NORMAL,    100, 10,   0, STATUS
 	move CHARM,        EFFECT_ATTACK_DOWN_2,       0, FAIRY,     100, 20,   0, STATUS
 	move ROLLOUT,      EFFECT_ROLLOUT,            30, ROCK,       90, 20,   0, PHYSICAL

@@ -203,7 +203,7 @@ BattleAnimations::
 	dw BattleAnim_PowerWhip
 	dw BattleAnim_Outrage
 	dw BattleAnim_Sandstorm
-	dw BattleAnim_GigaDrain
+	dw BattleAnim_GrassKnot ; Need new animation
 	dw BattleAnim_Endure
 	dw BattleAnim_Charm
 	dw BattleAnim_Rollout
@@ -1201,6 +1201,7 @@ BattleAnim_Surf:
 	anim_ret
 
 BattleAnim_VineWhip:
+BattleAnim_GrassKnot:
 	anim_1gfx ANIM_GFX_WHIP
 	anim_sound 0, 1, SFX_VINE_WHIP
 	anim_obj ANIM_OBJ_VINE_WHIP2,  14, 4,   6, 4, $80

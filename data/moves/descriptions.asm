@@ -202,7 +202,7 @@ MoveDescriptions::
 	dw PowerWhipDescription
 	dw OutrageDescription
 	dw SandstormDescription
-	dw GigaDrainDescription
+	dw GrassKnotDescription
 	dw EndureDescription
 	dw CharmDescription
 	dw RolloutDescription
@@ -287,7 +287,6 @@ AuraSphereDescription:
 AbsorbDescription:
 MegaDrainDescription:
 LeechLifeDescription:
-GigaDrainDescription:
 DrainKissDescription:
 DrainPunchDescription:
 	db   "Steals 1/2 of the"
@@ -327,7 +326,6 @@ BraveBirdDescription:
 StompDescription:
 HeadbuttDescription:
 BiteDescription:
-LowKickDescription:
 WaterfallDescription:
 RockSlideDescription:
 HyperFangDescription:
@@ -339,6 +337,11 @@ DarkPulseDescription:
 IcicleCrashDescription:
 	db   "An attack that may"
 	next "cause flinching.@"
+
+LowKickDescription:
+GrassKnotDescription:
+	db   "Does more damage"
+	next "to heavy foes.@"
 
 PoisonStingDescription:
 SludgeBombDescription:

@@ -207,7 +207,7 @@
 	const POWER_WHIP   ; $c7
 	const OUTRAGE      ; $c8
 	const SANDSTORM    ; $c9
-	const GIGA_DRAIN   ; $ca
+	const GRASS_KNOT   ; $ca
 	const ENDURE       ; $cb
 	const CHARM        ; $cc
 	const ROLLOUT      ; $cd

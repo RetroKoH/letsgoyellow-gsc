@@ -951,29 +951,29 @@
 ;	wildmon 04, MANKEY
 ;	wildmon 06, MANKEY
 	; morn
-	wildmon 03, MEOWTH
-	wildmon 03, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 06, MEOWTH
+	wildmon 03, MEOWTH, GALARIAN_FORM
+	wildmon 03, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 06, MEOWTH, GALARIAN_FORM
 	; day
-	wildmon 03, MEOWTH
-	wildmon 03, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 06, MEOWTH
+	wildmon 03, MEOWTH, GALARIAN_FORM
+	wildmon 03, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 06, MEOWTH, GALARIAN_FORM
 	; nite
-	wildmon 03, MEOWTH
-	wildmon 03, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 04, MEOWTH
-	wildmon 06, MEOWTH
+	wildmon 03, MEOWTH, GALARIAN_FORM
+	wildmon 03, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 04, MEOWTH, GALARIAN_FORM
+	wildmon 06, MEOWTH, GALARIAN_FORM
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_23

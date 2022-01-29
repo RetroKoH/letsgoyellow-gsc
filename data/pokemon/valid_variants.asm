@@ -20,13 +20,5 @@ ValidVariantRanges: ; for Wonder Trade
 	db RAICHU,    2 ; ALOLAN
 	db EXEGGUTOR, 2 ; ALOLAN
 	db MAROWAK,   2 ; ALOLAN
-	db PONYTA,    2 ; GALARIAN
-	db RAPIDASH,  2 ; GALARIAN
-	db SLOWPOKE,  2 ; GALARIAN
-	db SLOWBRO,   2 ; GALARIAN
-	db SLOWKING,  2 ; GALARIAN
-	db WEEZING,   2 ; GALARIAN
-	db ARTICUNO,  2 ; GALARIAN
-	db ZAPDOS,    2 ; GALARIAN
-	db MOLTRES,   2 ; GALARIAN
+; Add Galarian to Wonder Trade later
 	db -1

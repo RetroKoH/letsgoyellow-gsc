@@ -411,7 +411,7 @@ ALOLAN_FORM EQU 2
 	const_skip ; 147 marowak
 
 ; galarian forms
-GALARIAN_FORM EQU 2
+GALARIAN_FORM EQU 3
 	const_skip ; 148 meowth
 	const_skip ; 149 ponyta
 	const_skip ; 14a rapidash

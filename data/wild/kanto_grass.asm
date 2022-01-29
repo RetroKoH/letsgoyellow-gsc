@@ -927,53 +927,29 @@
 	def_grass_wildmons ROUTE_22
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-;	wildmon 03, SPEAROW
-;	wildmon 03, NIDORAN_M
-;	wildmon 04, NIDORAN_F
-;	wildmon 04, RATTATA
-;	wildmon 04, SPEAROW
-;	wildmon 04, MANKEY
-;	wildmon 06, MANKEY
+	wildmon 03, SPEAROW
+	wildmon 03, NIDORAN_M
+	wildmon 04, NIDORAN_F
+	wildmon 04, RATTATA
+	wildmon 04, SPEAROW
+	wildmon 04, MANKEY
+	wildmon 06, MANKEY
 	; day
-;	wildmon 03, SPEAROW
-;	wildmon 03, NIDORAN_M
-;	wildmon 04, NIDORAN_F
-;	wildmon 04, RATTATA
-;	wildmon 04, SPEAROW
-;	wildmon 04, MANKEY
-;	wildmon 06, MANKEY
+	wildmon 03, SPEAROW
+	wildmon 03, NIDORAN_M
+	wildmon 04, NIDORAN_F
+	wildmon 04, RATTATA
+	wildmon 04, SPEAROW
+	wildmon 04, MANKEY
+	wildmon 06, MANKEY
 	; nite
-;	wildmon 03, SPEAROW
-;	wildmon 03, NIDORAN_M
-;	wildmon 04, NIDORAN_F
-;	wildmon 04, RATTATA
-;	wildmon 04, SPEAROW
-;	wildmon 04, MANKEY
-;	wildmon 06, MANKEY
-	; morn
-	wildmon 03, MEOWTH, GALARIAN_FORM
-	wildmon 03, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 06, MEOWTH, GALARIAN_FORM
-	; day
-	wildmon 03, MEOWTH, GALARIAN_FORM
-	wildmon 03, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 06, MEOWTH, GALARIAN_FORM
-	; nite
-	wildmon 03, MEOWTH, GALARIAN_FORM
-	wildmon 03, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 04, MEOWTH, GALARIAN_FORM
-	wildmon 06, MEOWTH, GALARIAN_FORM
+	wildmon 03, SPEAROW
+	wildmon 03, NIDORAN_M
+	wildmon 04, NIDORAN_F
+	wildmon 04, RATTATA
+	wildmon 04, SPEAROW
+	wildmon 04, MANKEY
+	wildmon 06, MANKEY
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_23

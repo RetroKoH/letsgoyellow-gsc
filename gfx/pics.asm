@@ -842,8 +842,8 @@ SECTION "Farfetch'd/Marowak Pics", ROMX
 
 FarfetchDPlainFrontpic:      INCBIN "gfx/pokemon/farfetch_d_plain/front.animated.2bpp.lz"
 FarfetchDPlainBackpic:       INCBIN "gfx/pokemon/farfetch_d_plain/back.2bpp.lz"
-FarfetchDGalarianFrontpic:   INCBIN "gfx/pokemon/farfetch_d_plain/front.animated.2bpp.lz"
-FarfetchDGalarianBackpic:    INCBIN "gfx/pokemon/farfetch_d_plain/back.2bpp.lz"
+FarfetchDGalarianFrontpic:   INCBIN "gfx/pokemon/farfetch_d_galarian/front.animated.2bpp.lz"
+FarfetchDGalarianBackpic:    INCBIN "gfx/pokemon/farfetch_d_galarian/back.2bpp.lz"
 MarowakPlainFrontpic:        INCBIN "gfx/pokemon/marowak_plain/front.animated.2bpp.lz"
 MarowakPlainBackpic:         INCBIN "gfx/pokemon/marowak_plain/back.2bpp.lz"
 MarowakAlolanFrontpic:       INCBIN "gfx/pokemon/marowak_alolan/front.animated.2bpp.lz"

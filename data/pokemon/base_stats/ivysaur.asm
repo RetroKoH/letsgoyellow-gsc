@@ -8,7 +8,7 @@
 	db NO_ITEM ; item 2
 	dn GENDER_F12_5, 3 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/ivysaur/front.dimensions"
-	abilities_for IVYSAUR, OVERGROW, CHLOROPHYLL, EFFECT_SPORE
+	abilities_for IVYSAUR, OVERGROW, OVERGROW, CHLOROPHYLL
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_PLANT ; egg groups
 

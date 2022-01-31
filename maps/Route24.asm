@@ -102,7 +102,7 @@ Route24RocketScript:
 	setmapscene CERULEAN_CAPE, $1
 	pause 25
 	special Special_FadeInQuickly
-	playmusic MUSIC_NUGGET_BRIDGE_HGSS
+	playmusic MUSIC_NUGGET_BRIDGE
 	end
 
 Route24RocketSeenText:

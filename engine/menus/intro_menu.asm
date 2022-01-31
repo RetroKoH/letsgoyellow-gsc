@@ -558,7 +558,7 @@ ProfOakSpeech:
 	call FadeToBlack
 	call ClearTileMap
 
-	ld de, MUSIC_ROUTE_30
+	ld de, MUSIC_NUGGET_BRIDGE
 	call PlayMusic
 
 	ld c, 31
@@ -1136,7 +1136,7 @@ TitleScreenEntrance:
 	ld hl, wStatusFlags
 	bit 6, [hl] ; hall of fame
 	jr z, .ok
-	ld de, MUSIC_TITLE_XY
+	ld de, MUSIC_TITLE
 .ok
 	call PlayMusic
 
@@ -1145,7 +1145,6 @@ TitleScreenEntrance:
 	ret
 
 TitleScreenTimer:
-
 ; Next scene
 	ld hl, wJumptableIndex
 	inc [hl]

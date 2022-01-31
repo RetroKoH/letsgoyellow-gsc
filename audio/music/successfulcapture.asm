@@ -4,19 +4,22 @@ Music_SuccessfulCapture:
 	musicheader 1, 3, Music_SuccessfulCapture_Ch3
 
 Music_SuccessfulCapture_Ch1:
-	tempo 126
-	volume $77
-	dutycycle $3
-	tone $0001
-	notetype $c, $a1
-	jumpchannel Music_SuccessfulCapture_branch_f4536
+	tempo 112
+	volume 119
+	dutycycle 3
+	vibrato 6, 52
+	notetype 12, 98
+	octave 3
+	jumpchannel Music_WildPokemonVictory_branch_23b8b
 
 Music_SuccessfulCapture_Ch2:
 	vibrato $12, $24
-	notetype $c, $c1
-	dutycycle $2
-	jumpchannel Music_SuccessfulCapture_branch_f4585
+	dutycycle 2
+	notetype 12, 130
+	octave 3
+	jumpchannel Music_WildPokemonVictory_branch_23bce
 
 Music_SuccessfulCapture_Ch3:
-	notetype $c, $25
-	jumpchannel Music_SuccessfulCapture_branch_f45cf
+	notetype 12, 32
+	octave 4
+	jumpchannel Music_WildPokemonVictory_branch_23c21

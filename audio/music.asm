@@ -246,6 +246,9 @@ INCLUDE "audio/music/lookhiker.asm"
 SECTION "Song - viridiancity", ROMX
 INCLUDE "audio/music/viridiancity.asm"
 
+SECTION "Song - ceruleancity", ROMX
+INCLUDE "audio/music/ceruleancity.asm"
+
 SECTION "Song - route3", ROMX
 INCLUDE "audio/music/route3.asm"
 
@@ -281,6 +284,12 @@ INCLUDE "audio/music/battletowerlobby.asm"
 
 SECTION "Song - battlefactory", ROMX
 INCLUDE "audio/music/rse/battlefactory.asm"
+
+SECTION "Song - nuggetbridge", ROMX
+INCLUDE "audio/music/nuggetbridge.asm"
+
+SECTION "Song - cinnabarisland", ROMX
+INCLUDE "audio/music/cinnabarisland.asm"
 
 SECTION "Song - credits", ROMX
 INCLUDE "audio/music/credits.asm"
@@ -399,14 +408,14 @@ INCLUDE "audio/music/dppt/sunyshorecity.asm"
 SECTION "Song - dppt/trainerbattle", ROMX
 INCLUDE "audio/music/dppt/trainerbattle.asm"
 
-SECTION "Song - hgss/ceruleancity", ROMX
-INCLUDE "audio/music/hgss/ceruleancity.asm"
+;SECTION "Song - hgss/ceruleancity", ROMX
+;INCLUDE "audio/music/hgss/ceruleancity.asm"
 
 SECTION "Song - hgss/cianwoodcity", ROMX
 INCLUDE "audio/music/hgss/cianwoodcity.asm"
 
-SECTION "Song - hgss/cinnabarisland", ROMX
-INCLUDE "audio/music/hgss/cinnabarisland.asm"
+;SECTION "Song - hgss/cinnabarisland", ROMX
+;INCLUDE "audio/music/hgss/cinnabarisland.asm"
 
 SECTION "Song - hgss/hoohbattle", ROMX
 INCLUDE "audio/music/hgss/hoohbattle.asm"
@@ -421,8 +430,8 @@ INCLUDE "audio/music/hgss/lyradeparture.asm"
 SECTION "Song - hgss/mart", ROMX
 INCLUDE "audio/music/hgss/mart.asm"
 
-SECTION "Song - hgss/nuggetbridge", ROMX
-INCLUDE "audio/music/hgss/nuggetbridge.asm"
+;SECTION "Song - hgss/nuggetbridge", ROMX
+;INCLUDE "audio/music/hgss/nuggetbridge.asm"
 
 SECTION "Song - hgss/route47", ROMX
 INCLUDE "audio/music/hgss/route47.asm"

@@ -1,27 +1,14 @@
-if DEF(FAITHFUL)
 	db  78,  84,  78, 100, 109,  85 ; 534 BST
 	;   hp  atk  def  spd  sat  sdf
-else
-	db  78,  94,  78, 100,  99,  85 ; 534 BST
-	;   hp  atk  def  spd  sat  sdf
-endc
 
-if DEF(FAITHFUL)
 	db FIRE, FLYING ; type
-else
-	db FIRE, DRAGON ; type
-endc
 	db 45 ; catch rate
 	db 209 ; base exp
 	db NO_ITEM ; item 1
 	db NO_ITEM ; item 2
 	dn GENDER_F12_5, 3 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/charizard/front.dimensions"
-if DEF(FAITHFUL)
-	abilities_for CHARIZARD, BLAZE, SOLAR_POWER, DROUGHT
-else
-	abilities_for CHARIZARD, BLAZE, SOLAR_POWER, TOUGH_CLAWS
-endc
+	abilities_for CHARIZARD, BLAZE, BLAZE, SOLAR_POWER
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_DRAGON ; egg groups
 

@@ -8,7 +8,7 @@
 	db NO_ITEM ; item 2
 	dn GENDER_F12_5, 3 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/squirtle/front.dimensions"
-	abilities_for SQUIRTLE, TORRENT, RAIN_DISH, SHELL_ARMOR
+	abilities_for SQUIRTLE, TORRENT, TORRENT, RAIN_DISH
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_WATER_1 ; egg groups
 

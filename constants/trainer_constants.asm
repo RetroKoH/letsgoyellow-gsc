@@ -129,6 +129,11 @@ KRIS EQU __trainer_class__
 	trainerclass BUG_CATCHER ; 20
 	const ROB ;  (Route 2 South)
 	const DOUG ;  (Route 2 South)
+	const DANE ;  (Viridian Forest)
+	const DION ;  (Viridian Forest)
+	const STACEY ;  (Viridian Forest)
+	const ELLIS ;  (Viridian Forest)
+	const ABNER ;  (Viridian Forest)
 	const KEN
 	const WAYNE
 	const OSCAR
@@ -452,11 +457,6 @@ KRIS EQU __trainer_class__
 	trainerclass BUG_MANIAC ; 33
 	const LOU
 	const ED
-	const DANE
-	const DION
-	const STACEY
-	const ELLIS
-	const ABNER
 	const KENTA
 	const ROBBY
 	const PIERRE

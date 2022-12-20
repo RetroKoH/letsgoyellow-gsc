@@ -33,7 +33,7 @@ ViridianForest_MapScriptHeader:
 	itemball_event  3, 33, MAX_POTION, 1, EVENT_ROUTE_2_MAX_POTION
 
 GenericTrainerBug_maniacDane:
-	generictrainer BUG_MANIAC, DANE, EVENT_BEAT_BUG_MANIAC_DANE, BugManiacDaneSeenText, BugManiacDaneBeatenText
+	generictrainer BUG_CATCHER, DANE, EVENT_BEAT_BUG_MANIAC_DANE, BugManiacDaneSeenText, BugManiacDaneBeatenText
 
 	text "Pretty impressive!"
 
@@ -43,7 +43,7 @@ GenericTrainerBug_maniacDane:
 	done
 
 GenericTrainerBug_maniacDion:
-	generictrainer BUG_MANIAC, DION, EVENT_BEAT_BUG_MANIAC_DION, BugManiacDionSeenText, BugManiacDionBeatenText
+	generictrainer BUG_CATCHER, DION, EVENT_BEAT_BUG_MANIAC_DION, BugManiacDionSeenText, BugManiacDionBeatenText
 
 	text "Bug-type #mon"
 	line "make all kinds of"
@@ -56,7 +56,7 @@ GenericTrainerBug_maniacDion:
 	done
 
 GenericTrainerBug_maniacStacey:
-	generictrainer BUG_MANIAC, STACEY, EVENT_BEAT_BUG_MANIAC_STACEY, BugManiacStaceySeenText, BugManiacStaceyBeatenText
+	generictrainer BUG_CATCHER, STACEY, EVENT_BEAT_BUG_MANIAC_STACEY, BugManiacStaceySeenText, BugManiacStaceyBeatenText
 
 	text "Has anyone ever"
 	line "told you that from"
@@ -65,7 +65,7 @@ GenericTrainerBug_maniacStacey:
 	done
 
 GenericTrainerBug_maniacEllis:
-	generictrainer BUG_MANIAC, ELLIS, EVENT_BEAT_BUG_MANIAC_ELLIS, BugManiacEllisSeenText, BugManiacEllisBeatenText
+	generictrainer BUG_CATCHER, ELLIS, EVENT_BEAT_BUG_MANIAC_ELLIS, BugManiacEllisSeenText, BugManiacEllisBeatenText
 
 	text "If this is it,"
 	line "then I don't mind"
@@ -73,7 +73,7 @@ GenericTrainerBug_maniacEllis:
 	done
 
 GenericTrainerBug_maniacAbner:
-	generictrainer BUG_MANIAC, ABNER, EVENT_BEAT_BUG_MANIAC_ABNER, BugManiacAbnerSeenText, BugManiacAbnerBeatenText
+	generictrainer BUG_CATCHER, ABNER, EVENT_BEAT_BUG_MANIAC_ABNER, BugManiacAbnerSeenText, BugManiacAbnerBeatenText
 
 	text "Doesn't matter what"
 	line "kind of #mon--"

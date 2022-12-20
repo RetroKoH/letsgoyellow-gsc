@@ -1388,6 +1388,58 @@ BugCatcherGroup:
 
 ; ================
 
+	; BUG_CATCHER (Viridian Forest)
+	db "Dane@"
+	db TRAINERTYPE_NORMAL
+	; party
+	db 6, WEEDLE
+	db 7, CATERPIE
+	db -1 ; end
+
+; ================
+
+	; BUG_CATCHER (Viridian Forest)
+	db "Dion@"
+	db TRAINERTYPE_NORMAL
+	; party
+	db 8, WEEDLE
+	db -1 ; end
+
+; ================
+
+	; BUG_CATCHER (Viridian Forest)
+	db "Stacey@"
+	db TRAINERTYPE_NORMAL
+	; party
+	db 7, CATERPIE
+	db 7, WEEDLE
+	db 7, METAPOD
+	db -1 ; end
+
+; ================
+
+	; BUG_CATCHER (Viridian Forest)
+	db "Ellis@"
+	db TRAINERTYPE_NORMAL
+	; party
+	db 7, WEEDLE
+	db 8, WEEDLE
+	db 9, KAKUNA
+	db -1 ; end
+
+; ================
+
+	; BUG_CATCHER (Viridian Forest)
+	db "Abner@"
+	db TRAINERTYPE_NORMAL
+	; party
+	db 9, CATERPIE
+	db 9, WEEDLE
+	db 9, KAKUNA
+	db -1 ; end
+
+; ================
+
 	; BUG_CATCHER
 	db "Ken@"
 	db TRAINERTYPE_NORMAL
@@ -4858,58 +4910,6 @@ BugManiacGroup:
 	db 61, YANMA
 	db 62, BEEDRILL
 	db 62, BUTTERFREE
-	db -1 ; end
-
-; ================
-
-	; BUG_MANIAC
-	db "Dane@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 59, BEEDRILL
-	db 61, BUTTERFREE
-	db -1 ; end
-
-; ================
-
-	; BUG_MANIAC
-	db "Dion@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 63, ARIADOS
-	db -1 ; end
-
-; ================
-
-	; BUG_MANIAC
-	db "Stacey@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 60, METAPOD
-	db 62, METAPOD
-	db 64, METAPOD
-	db -1 ; end
-
-; ================
-
-	; BUG_MANIAC
-	db "Ellis@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 58, WEEDLE
-	db 60, KAKUNA
-	db 62, BEEDRILL
-	db -1 ; end
-
-; ================
-
-	; BUG_MANIAC
-	db "Abner@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 59, BUTTERFREE
-	db 59, BEEDRILL
-	db 59, PIKACHU
 	db -1 ; end
 
 ; ================

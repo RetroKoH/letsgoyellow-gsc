@@ -1440,6 +1440,17 @@ BugCatcherGroup:
 
 ; ================
 
+	; BUG_CATCHER (Route 2 North)
+	db "Ed@"
+	db TRAINERTYPE_NORMAL
+	; party
+	db 9, KAKUNA
+	db 10, BEEDRILL
+	db 10, BUTTERFREE
+	db -1 ; end
+
+; ================
+
 	; BUG_CATCHER
 	db "Ken@"
 	db TRAINERTYPE_NORMAL
@@ -4899,17 +4910,6 @@ BugManiacGroup:
 	; party
 	db 19, YANMA
 		db BUG_BITE, QUICK_ATTACK, DOUBLE_TEAM, SONIC_BOOM
-	db -1 ; end
-
-; ================
-
-	; BUG_MANIAC
-	db "Ed@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 61, YANMA
-	db 62, BEEDRILL
-	db 62, BUTTERFREE
 	db -1 ; end
 
 ; ================

@@ -134,6 +134,7 @@ KRIS EQU __trainer_class__
 	const STACEY ;  (Viridian Forest)
 	const ELLIS ;  (Viridian Forest)
 	const ABNER ;  (Viridian Forest)
+	const ED ;  (Route 2 North)
 	const KEN
 	const WAYNE
 	const OSCAR
@@ -456,7 +457,6 @@ KRIS EQU __trainer_class__
 
 	trainerclass BUG_MANIAC ; 33
 	const LOU
-	const ED
 	const KENTA
 	const ROBBY
 	const PIERRE

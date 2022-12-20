@@ -25,7 +25,7 @@ Route2North_MapScriptHeader:
 	object_event 12, 10, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route2NorthCooltrainermText, EVENT_VERMILION_CITY_SNORLAX
 
 GenericTrainerBug_maniacEd:
-	generictrainer BUG_MANIAC, ED, EVENT_BEAT_BUG_MANIAC_ED, Bug_maniacEdSeenText, Bug_maniacEdBeatenText
+	generictrainer BUG_CATCHER, ED, EVENT_BEAT_BUG_MANIAC_ED, Bug_maniacEdSeenText, Bug_maniacEdBeatenText
 
 	text "They'll really"
 	line "sting when you"

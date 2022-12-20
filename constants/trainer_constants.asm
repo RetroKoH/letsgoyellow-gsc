@@ -118,7 +118,6 @@ KRIS EQU __trainer_class__
 	const REGIS
 	const WARREN
 	const JIMMY
-	const YOUNGSTER_JOSH
 	const OLIVER
 	const CHAZ
 	const OWEN
@@ -273,7 +272,6 @@ KRIS EQU __trainer_class__
 	const PETER
 	const PERRY
 	const BRET
-	const MICK
 	const POWELL
 	const BIRD_KEEPER_TONY
 	const JULIAN
@@ -471,10 +469,8 @@ KRIS EQU __trainer_class__
 	const SMILTE
 
 	trainerclass FIREBREATHER ; 35
-	const OTIS
 	const DICK
 	const NED
-	const BURT
 	const BILL
 	const WALT
 	const RAY
@@ -553,7 +549,6 @@ KRIS EQU __trainer_class__
 	const LUNA
 	const NATALIE
 	const VIVIAN
-	const ESTHER
 	const MATILDA
 	const BETHANY
 
@@ -795,8 +790,6 @@ KRIS EQU __trainer_class__
 	const LUNG
 	const WAI
 	const INIGO
-	const MANFORD
-	const ANDER
 	const TAKEO
 
 	trainerclass BATTLE_GIRL ; 55
@@ -925,7 +918,6 @@ KRIS EQU __trainer_class__
 	const ALLEN
 	const FRENCH
 	const HENRI
-	const CONNOR
 	const KIERAN
 	const FINCH
 	const PETRIE
@@ -967,8 +959,6 @@ KRIS EQU __trainer_class__
 	const ARAANDBELA2
 	const THOMANDKAE1
 	const THOMANDKAE2
-	const ZACANDJEN1
-	const ZACANDJEN2
 	const JAKEANDBRI1
 	const JAKEANDBRI2
 	const DANANDCARA1

@@ -1300,17 +1300,6 @@ YoungsterGroup:
 
 ; ================
 
-; YOUNGSTER - Mt. Moon B2F (FRLG Trainer, moved from 1F to B2F)
-	db "Josh@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 10, RATTATA
-	db 12, ZUBAT
-	db 10, RATTATA
-	db -1 ; end
-
-; ================
-
 	; YOUNGSTER - Route 4 (Extra)
 	db "Oliver@"
 	db TRAINERTYPE_NORMAL
@@ -2825,17 +2814,6 @@ BirdKeeperGroup:
 	; party
 	db 57, PIDGEOTTO
 	db 57, FARFETCH_D
-	db -1 ; end
-
-; ================
-
-	; BIRD_KEEPER
-	db "Mick@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 62, PIDGEOT
-	db 60, MURKROW
-	db 60, NOCTOWL
 	db -1 ; end
 
 ; ================
@@ -4423,9 +4401,9 @@ SuperNerdGroup:
 	db "Miguel@"
 	db TRAINERTYPE_PERSONALITY
 	; party
-	db 62, OMASTAR, ABILITY_1 | NAT_NEUTRAL, MALE
-	db 62, KABUTOPS, ABILITY_1 | NAT_NEUTRAL, MALE
-	db 64, UMBREON, SHINY_MASK | ABILITY_1 | NAT_NEUTRAL, MALE
+	db 9, OMANYTE, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 10, KABUTO, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 11, EEVEE, SHINY_MASK | ABILITY_1 | NAT_NEUTRAL, MALE
 	db -1 ; end
 
 ; ================
@@ -5826,16 +5804,6 @@ HexManiacGroup:
 	db 52, HAUNTER
 	db 54, HAUNTER
 	db 56, ALAKAZAM
-	db -1 ; end
-
-; ================
-
-	; HEX_MANIAC
-	db "Esther@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 62, MISMAGIUS
-	db 62, MISMAGIUS
 	db -1 ; end
 
 ; ================
@@ -9073,17 +9041,6 @@ CooltrainerMGroup:
 	db 35, CHARMELEON
 	db 35, WARTORTLE
 	db 35, IVYSAUR
-	db -1 ; end
-
-; ================
-
-	; COOLTRAINERM
-	db "Connor@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 63, SCYTHER
-	db 62, CROCONAW
-	db 62, WARTORTLE
 	db -1 ; end
 
 ; ================

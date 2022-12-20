@@ -389,8 +389,8 @@ KRIS EQU __trainer_class__
 	trainerclass SUPER_NERD ; 30
 	const STAN
 	const ERIC
-	const SAM
-	const TOM
+	const SAM	; Route 8
+	const TOM	; Route 8
 	const PAT
 	const SHAWN
 	const TERU
@@ -427,7 +427,7 @@ KRIS EQU __trainer_class__
 	const MIRIAM
 	const LAYLA
 	const ROSE
-	const MEADOW
+	const MEADOW	; LASS - Route 8
 	const JENNIFER
 	const GINA
 	const ALICE
@@ -600,8 +600,6 @@ KRIS EQU __trainer_class__
 	const DUFFANDEDA2
 	const FOXANDRAE1
 	const FOXANDRAE2
-	const MOEANDLULU1
-	const MOEANDLULU2
 	const VICANDTARA1
 	const VICANDTARA2
 	const TIMANDSUE1
@@ -614,7 +612,7 @@ KRIS EQU __trainer_class__
 	const EDWARD
 	const GREGORY
 	const ALFRED
-	const MILTON
+	const MILTON ; Route 8
 	const CAMUS
 	const GEOFFREY
 
@@ -836,9 +834,6 @@ KRIS EQU __trainer_class__
 	const JACLYN
 
 	trainerclass BIKER ; 5b
-	const DWAYNE
-	const HARRIS
-	const ZEKE
 	const CHARLES
 	const REILLY
 	const JOEL

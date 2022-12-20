@@ -32,7 +32,7 @@ Route7Snorlax:
 	cry SNORLAX
 	closetext
 	loadvar VAR_BATTLETYPE, BATTLETYPE_FORCEITEM
-	loadwildmon SNORLAX, 60
+	loadwildmon SNORLAX, 15
 	startbattle
 	disappear ROUTE7_BIG_SNORLAX
 	setevent EVENT_FOUGHT_SNORLAX

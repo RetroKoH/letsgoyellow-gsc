@@ -4236,23 +4236,22 @@ SuperNerdGroup:
 
 ; ================
 
-	; SUPER_NERD
+	; SUPER_NERD	; Route 8
 	db "Sam@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 55, GRIMER
-	db 56, MUK
+	db 9, GRIMER
+	db 10, GRIMER
 	db -1 ; end
 
 ; ================
 
-	; SUPER_NERD
-	db "Tyrone@"
+	; SUPER_NERD	; Route 8
+	db "Tom@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 55, MAGNEMITE
-	db 56, MAGNETON
-	db 55, MAGNEMITE
+	db 9, MAGNEMITE
+	db 10, GRIMER
 	db -1 ; end
 
 ; ================
@@ -4628,13 +4627,12 @@ endc
 
 ; ================
 
-	; LASS
+	; LASS - Route 8
 	db "Meadow@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 53, MEOWTH
-	db 53, MEOWTH
-	db 55, PERSIAN
+	db 10, MEOWTH
+	db 12, PIKACHU
 	db -1 ; end
 
 ; ================
@@ -6180,26 +6178,6 @@ CoupleGroup:
 ; ================
 
 	; COUPLE
-	db "Moe & Lulu@"
-	db TRAINERTYPE_PERSONALITY
-	; party
-	db 53, GLOOM, ABILITY_1 | NAT_NEUTRAL, MALE
-	db 53, WEEPINBELL, ABILITY_1 | NAT_NEUTRAL, FEMALE
-	db -1 ; end
-
-; ================
-
-	; COUPLE
-	db "Moe & Lulu@"
-	db TRAINERTYPE_PERSONALITY
-	; party
-	db 53, WEEPINBELL, ABILITY_1 | NAT_NEUTRAL, FEMALE
-	db 53, GLOOM, ABILITY_1 | NAT_NEUTRAL, MALE
-	db -1 ; end
-
-; ================
-
-	; COUPLE
 	db "Vic & Tara@"
 	db TRAINERTYPE_PERSONALITY
 	; party
@@ -6303,12 +6281,12 @@ GentlemanGroup:
 
 ; ================
 
-	; GENTLEMAN
+	; GENTLEMAN - Route 8
 	db "Milton@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 53, GROWLITHE
-	db 56, ARCANINE
+	db 9, GROWLITHE
+	db 11, GROWLITHE
 	db -1 ; end
 
 ; ================
@@ -8321,37 +8299,6 @@ GuitaristFGroup:
 
 BikerGroup:
 ; ================================
-; ================
-
-	; BIKER
-	db "Dwayne@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 54, KOFFING
-	db 55, WEEZING
-	db 56, KOFFING
-	db 57, WEEZING
-	db -1 ; end
-
-; ================
-
-	; BIKER
-	db "Harris@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 57, FLAREON
-	db -1 ; end
-
-; ================
-
-	; BIKER
-	db "Zeke@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 55, KOFFING
-	db 56, WEEZING
-	db -1 ; end
-
 ; ================
 
 	; BIKER

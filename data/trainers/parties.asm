@@ -1618,8 +1618,8 @@ CamperGroup:
 	db "Dean@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 54, GOLDUCK
-	db 52, SANDSLASH
+	db 8, PSYDUCK
+	db 11, SANDSHREW
 	db -1 ; end
 
 ; ================
@@ -1628,9 +1628,9 @@ CamperGroup:
 	db "Sid@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 53, DUGTRIO
-	db 51, PRIMEAPE
-	db 51, POLIWRATH
+	db 12, DIGLETT
+	db 11, MANKEY
+	db 11, POLIWAG
 	db -1 ; end
 
 ; ================
@@ -2006,8 +2006,8 @@ endc
 	db "Heidi@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 53, SUNFLORA
-	db 53, SUNFLORA
+	db 11, ODDISH
+	db 11, BELLSPROUT
 	db -1 ; end
 
 ; ================
@@ -2016,8 +2016,8 @@ endc
 	db "Edna@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 51, NIDORINA
-	db 55, RAICHU
+	db 10, NIDORAN_F
+	db 10, PIKACHU
 	db -1 ; end
 
 ; ================
@@ -3106,12 +3106,11 @@ HikerGroup:
 ; ================
 
 	; HIKER
-	db "Eoin@"
+	db "Tim@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 50, DIGLETT
-	db 52, GRAVELER
-	db 54, DUGTRIO
+	db 10, DIGLETT
+	db 12, GEODUDE
 	db -1 ; end
 
 ; ================
@@ -3127,11 +3126,11 @@ HikerGroup:
 ; ================
 
 	; HIKER
-	db "Clarke@"
+	db "Sidney@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 53, DUGTRIO
-	db 55, ONIX
+	db 9, DIGLETT
+	db 12, ONIX
 	db -1 ; end
 
 ; ================

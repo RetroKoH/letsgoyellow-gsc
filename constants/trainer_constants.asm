@@ -152,7 +152,7 @@ KRIS EQU __trainer_class__
 	const IVAN
 	const BARRY
 	const LLOYD
-	const DEAN
+	const DEAN ;  (Route 9)
 	const SID
 	const TED
 	const JOHN

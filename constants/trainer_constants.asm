@@ -210,8 +210,6 @@ KRIS EQU __trainer_class__
 	const MEGANDPEG2
 	const LEAANDPIA1
 	const LEAANDPIA2
-	const KAYANDTIA1
-	const KAYANDTIA2
 
 	trainerclass FISHER ; 24
 	const RALPH1
@@ -524,8 +522,6 @@ KRIS EQU __trainer_class__
 	trainerclass PSYCHIC_T ; 39
 	const NATHAN
 	const FRANKLIN
-	const HERMAN
-	const FIDEL
 	const GREG
 	const NORMAN
 	const MARK
@@ -535,13 +531,11 @@ KRIS EQU __trainer_class__
 	const JARED
 	const RODNEY
 	const LEON
-	const URI
 	const VIRGIL
 
 	trainerclass HEX_MANIAC ; 3a
 	const TAMARA
 	const ASHLEY
-	const AMY
 	const LUNA
 	const NATALIE
 	const VIVIAN
@@ -600,10 +594,6 @@ KRIS EQU __trainer_class__
 	const DUFFANDEDA2
 	const FOXANDRAE1
 	const FOXANDRAE2
-	const VICANDTARA1
-	const VICANDTARA2
-	const TIMANDSUE1
-	const TIMANDSUE2
 	const JOEANDJO1
 	const JOEANDJO2
 

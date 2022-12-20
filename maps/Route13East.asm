@@ -18,8 +18,6 @@ Route13East_MapScriptHeader:
 	object_event 40,  1, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBird_keeperBret, -1
 	object_event 10,  5, SPRITE_CAMPER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCamperTanner, -1
 	object_event 41,  9, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPicnickerPiper, -1
-	object_event 28,  6, SPRITE_COOL_DUDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCoupleTimandsue1, -1
-	object_event 29,  6, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCoupleTimandsue2, -1
 	object_event 14,  8, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPokefanmJoshua, -1
 	object_event  1,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerPokefanmAlex, -1
 	object_event  5, 13, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, Route13EastGrampsScript, -1
@@ -101,49 +99,6 @@ GenericTrainerPicnickerPiper:
 .BeatenText:
 	text "Oh, that's too"
 	line "bad…"
-	done
-
-GenericTrainerCoupleTimandsue1:
-	generictrainer COUPLE, TIMANDSUE1, EVENT_BEAT_COUPLE_TIM_AND_SUE, .SeenText, .BeatenText
-
-	text "Tim: If you've"
-	line "beaten her, you"
-	cont "must be strong!"
-	done
-
-.SeenText:
-	text "Tim: I'll give you"
-	line "a little hint."
-
-	para "My girlfriend's"
-	line "stronger than me!"
-	done
-
-.BeatenText:
-	text "Tim: You're the"
-	line "strongest!"
-	done
-
-GenericTrainerCoupleTimandsue2:
-	generictrainer COUPLE, TIMANDSUE2, EVENT_BEAT_COUPLE_TIM_AND_SUE, .SeenText, .BeatenText
-
-	text "Sue: That strength"
-	line "of yours…"
-	cont "I've got it!"
-
-	para "Are you in love?"
-	done
-
-.SeenText:
-	text "Sue: Women who"
-	line "don't take love"
-
-	para "seriously might"
-	line "get hurt."
-	done
-
-.BeatenText:
-	text "Sue: Wa ha…"
 	done
 
 GenericTrainerPokefanmAlex:

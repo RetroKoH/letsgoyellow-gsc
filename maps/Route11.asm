@@ -17,9 +17,6 @@ Route11_MapScriptHeader:
 	object_event 32, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterOwen, -1
 	object_event 30,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterJason, -1
 	object_event 21,  2, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterAlfie, -1
-	object_event 40,  7, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerPsychicHerman, -1
-	object_event 12,  6, SPRITE_PSYCHIC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicFidel, -1
-	object_event 24, 14, SPRITE_PSYCHIC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicUri, -1
 	object_event 38,  1, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerEngineerBernie, -1
 	object_event 38, 14, SPRITE_ENGINEER, SPRITEMOVEDATA_SPINCOUNTERCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerEngineerCamden, -1
 	object_event  9,  3, SPRITE_ROCKER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerGuitaristmRoger, -1
@@ -86,68 +83,6 @@ GenericTrainerYoungsterAlfie:
 
 .BeatenText:
 	text "Game, set, match."
-	done
-
-GenericTrainerPsychicHerman:
-	generictrainer PSYCHIC_T, HERMAN, EVENT_BEAT_PSYCHIC_HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText
-
-	text "…"
-
-	para "I lost while I had"
-	line "my eyes closed…"
-	done
-
-PsychicHermanSeenText:
-	text "…"
-	done
-
-PsychicHermanBeatenText:
-	text "…"
-	done
-
-GenericTrainerPsychicFidel:
-	generictrainer PSYCHIC_T, FIDEL, EVENT_BEAT_PSYCHIC_FIDEL, PsychicFidelSeenText, PsychicFidelBeatenText
-
-	text "Strength in con-"
-	line "viction…"
-
-	para "You're strong be-"
-	line "cause you believe"
-	cont "in your #mon."
-	done
-
-PsychicFidelSeenText:
-	text "I can see it…"
-
-	para "Everything to see"
-	line "about you…"
-	done
-
-PsychicFidelBeatenText:
-	text "I couldn't foresee"
-	line "your power…"
-	done
-
-GenericTrainerPsychicUri:
-	generictrainer PSYCHIC_T, URI, EVENT_BEAT_PSYCHIC_URI, .SeenText, .BeatenText
-
-	text "Prof.Oak won't"
-	line "give me a #dex."
-	cont "I wonder why?"
-	done
-
-.SeenText:
-	text "It happened one"
-	line "morning--a boy"
-	cont "with ESP awoke in"
-
-	para "bed transformed"
-	line "into Kadabra!"
-	done
-
-.BeatenText:
-	text "Urban legend?"
-	line "What's that?"
 	done
 
 GenericTrainerEngineerBernie:

@@ -22,8 +22,6 @@ Route12South_MapScriptHeader:
 	object_event 10, 74, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerFisherKyler, -1
 	object_event 10, 24, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerBird_keeperJustin, -1
 	object_event  7, 57, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerBird_keeperGail, -1
-	object_event 10, 39, SPRITE_COOL_DUDE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCoupleVicandtara1, -1
-	object_event 10, 38, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCoupleVicandtara2, -1
 	object_event 14, 89, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 	itemball_event  5, 68, CALCIUM, 1, EVENT_ROUTE_12_CALCIUM
 	itemball_event  5, 82, NUGGET, 1, EVENT_ROUTE_12_NUGGET
@@ -151,45 +149,6 @@ GenericTrainerBird_keeperGail:
 
 .BeatenText:
 	text "Pyopyopyopyo…"
-	done
-
-GenericTrainerCoupleVicandtara1:
-	generictrainer COUPLE, VICANDTARA1, EVENT_BEAT_COUPLE_VIC_AND_TARA, .SeenText, .BeatenText
-
-	text "Vic: Tara already"
-	line "saw me humiliated…"
-	done
-
-.SeenText:
-	text "Vic: All right!"
-	line "I'll be able to"
-	cont "show off for Tara!"
-	done
-
-.BeatenText:
-	text "Vic: Oh no, my"
-	line "plans!"
-	done
-
-GenericTrainerCoupleVicandtara2:
-	generictrainer COUPLE, VICANDTARA2, EVENT_BEAT_COUPLE_VIC_AND_TARA, .SeenText, .BeatenText
-
-	text "Tara: Even though"
-	line "my boyfriend lost,"
-	cont "he's still wonder-"
-	cont "ful."
-	done
-
-.SeenText:
-	text "Tara: I love to"
-	line "look at my boy-"
-	cont "friend's face while"
-	cont "he's battling!"
-	done
-
-.BeatenText:
-	text "Tara: Oh no,"
-	line "oh no…"
 	done
 
 Route12SignText:

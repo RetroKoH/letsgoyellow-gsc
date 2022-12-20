@@ -21,8 +21,6 @@ Route15_MapScriptHeader:
 	object_event 20, 10, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerTeacherHillary, -1
 	object_event 30,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerPokefanfBoone, -1
 	object_event 14,  4, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerPokefanfEleanor, -1
-	object_event 19,  5, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsKayandtia1, -1
-	object_event 20,  5, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsKayandtia2, -1
 	itemball_event 12,  5, PP_UP, 1, EVENT_ROUTE_15_PP_UP
 	object_event 43,  6, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_CUTTABLE_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_14_CUT_TREE_3
 
@@ -95,20 +93,6 @@ GenericTrainerPokefanfEleanor:
 	text "My #mon aren't"
 	line "weak! Your #mon"
 	cont "are too strong!"
-	done
-
-GenericTrainerTwinsKayandtia1:
-	generictrainer TWINS, KAYANDTIA1, EVENT_BEAT_TWINS_KAY_AND_TIA, TwinsKayandtia1SeenText, TwinsKayandtia1BeatenText
-
-	text "Absolute truth--"
-	line "I'm Kay! Maybe…"
-	done
-
-GenericTrainerTwinsKayandtia2:
-	generictrainer TWINS, KAYANDTIA2, EVENT_BEAT_TWINS_KAY_AND_TIA, TwinsKayandtia2SeenText, TwinsKayandtia2BeatenText
-
-	text "Maybe truth--I'm"
-	line "Tia! Absolutely!"
 	done
 
 TeacherColetteSeenText:
@@ -200,32 +184,6 @@ PokefanfEleanorSeenText:
 
 PokefanfEleanorBeatenText:
 	text "Oh, well…"
-	done
-
-TwinsKayandtia1SeenText:
-	text "We're the twins"
-	line "Kay and Tia!"
-
-	para "Do you know which"
-	line "one I am?"
-	done
-
-TwinsKayandtia1BeatenText:
-	text "Tia and Kay both"
-	line "lost…"
-	done
-
-TwinsKayandtia2SeenText:
-	text "We're the twins"
-	line "Kay and Tia!"
-
-	para "Do you know which"
-	line "one I am?"
-	done
-
-TwinsKayandtia2BeatenText:
-	text "Tia and Kay both"
-	line "lost…"
 	done
 
 Route15SignText:

@@ -1310,12 +1310,12 @@ YoungsterGroup:
 
 ; ================
 
-	; YOUNGSTER - Route 6 (Extra)
+	; YOUNGSTER - Route 6
 	db "Chaz@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 54, SANDSHREW
-	db 55, RATICATE
+	db 9, SANDSHREW
+	db 10, RATTATA
 	db -1 ; end
 
 ; ================
@@ -2187,26 +2187,6 @@ TwinsGroup:
 		db THUNDER_WAVE, DRAGON_PULSE, ICE_BEAM, HEADBUTT
 	db 38, DRATINI
 		db THUNDER_WAVE, DRAGON_PULSE, FLAMETHROWER, HEADBUTT
-	db -1 ; end
-
-; ================
-
-	; TWINS
-	db "Day & Dani@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 51, PIKACHU
-	db 51, PIKACHU
-	db -1 ; end
-
-; ================
-
-	; TWINS
-	db "Day & Dani@"
-	db TRAINERTYPE_NORMAL
-	; party
-	db 51, PIKACHU
-	db 51, PIKACHU
 	db -1 ; end
 
 ; ================
@@ -3857,24 +3837,6 @@ PokefanMGroup:
 	db -1 ; end
 
 ; ================
-
-	; POKEFANM
-	db "Rex@"
-	db TRAINERTYPE_ITEM
-	; party
-	db 53, PHANPY, SITRUS_BERRY
-	db -1 ; end
-
-; ================
-
-	; POKEFANM
-	db "Allan@"
-	db TRAINERTYPE_ITEM
-	; party
-	db 53, TEDDIURSA, SITRUS_BERRY
-	db -1 ; end
-
-; ================
 ; ================================
 
 PokefanFGroup:
@@ -3993,9 +3955,8 @@ OfficerFGroup:
 	db "Jamie@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 54, GROWLITHE
-	db 58, ARCANINE
-	db 57, BLASTOISE
+	db 10, GROWLITHE
+	db 12, SQUIRTLE
 	db -1 ; end
 
 ; ================
@@ -4004,19 +3965,19 @@ OfficerFGroup:
 	db "Mara@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 17, GROWLITHE
+	db 12, GROWLITHE
 	db -1 ; end
 
 ; ================
 
-	; OFFICERF
+	; OFFICERF (Route 6)
 	db "Jenny@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 53, SQUIRTLE
-	db 53, SQUIRTLE
-	db 53, SQUIRTLE
-	db 53, SQUIRTLE
+	db 11, SQUIRTLE
+	db 11, SQUIRTLE
+	db 11, SQUIRTLE
+	db 11, SQUIRTLE
 	db -1 ; end
 
 ; ================
@@ -4397,7 +4358,7 @@ SuperNerdGroup:
 
 ; ================
 
-	; SUPER_NERD
+	; SUPER_NERD (MT MOON 2F)
 	db "Miguel@"
 	db TRAINERTYPE_PERSONALITY
 	; party
@@ -8342,9 +8303,8 @@ GuitaristFGroup:
 	db "Wanda@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 53, MAGNEMITE
-	db 54, ELECTRODE
-	db 55, MAGNETON
+	db 10, MAGNEMITE
+	db 11, VOLTORB
 	db -1 ; end
 
 ; ================

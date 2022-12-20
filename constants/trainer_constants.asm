@@ -119,7 +119,7 @@ KRIS EQU __trainer_class__
 	const WARREN
 	const JIMMY
 	const OLIVER
-	const CHAZ
+	const CHAZ ;  (Route 6)
 	const OWEN
 	const JASON
 	const ALFIE
@@ -210,8 +210,6 @@ KRIS EQU __trainer_class__
 	const MEGANDPEG2
 	const LEAANDPIA1
 	const LEAANDPIA2
-	const DAYANDDANI1
-	const DAYANDDANI2
 	const KAYANDTIA1
 	const KAYANDTIA2
 
@@ -340,8 +338,6 @@ KRIS EQU __trainer_class__
 	const JEREMY
 	const COLIN
 	const ALEX
-	const REX
-	const ALLAN
 
 	trainerclass POKEFANF ; 2a
 	const BEVERLY1
@@ -360,7 +356,7 @@ KRIS EQU __trainer_class__
 	trainerclass OFFICERF ; 2c
 	const JAMIE
 	const MARA
-	const JENNY
+	const JENNY	; OFFICERF (Route 6)
 
 	trainerclass NURSE ; 2d
 	const JOY
@@ -405,7 +401,7 @@ KRIS EQU __trainer_class__
 	const MERLE
 	const LUIS
 	const JOVAN
-	const MIGUEL
+	const MIGUEL	; SUPER_NERD (MT MOON 2F)
 	const RORY
 	const GREGG
 	const FOOTE
@@ -836,7 +832,7 @@ KRIS EQU __trainer_class__
 	const JANET
 	const MORGAN
 	const RITSUKO
-	const WANDA
+	const WANDA	; Route 6
 	const JACLYN
 
 	trainerclass BIKER ; 5b

@@ -8,7 +8,7 @@
 	db NO_ITEM ; item 2
 	dn GENDER_F50, 0 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/gyarados_plain/front.dimensions"
-	abilities_for GYARADOS, INTIMIDATE, MOXIE, MOLD_BREAKER
+	abilities_for GYARADOS, INTIMIDATE, INTIMIDATE, MOXIE
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_2, EGG_DRAGON ; egg groups
 

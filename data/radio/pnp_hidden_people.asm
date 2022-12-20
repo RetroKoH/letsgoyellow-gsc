@@ -25,8 +25,8 @@ PnP_HiddenPeople_BeatKanto:
 	db LYRA2
 	db PROF_OAK
 	db PROF_ELM
-	db CAL
-	db CARRIE
+	db CHASE
+	db ELAINE
 	db RED
 	db LEAF
 	db -1

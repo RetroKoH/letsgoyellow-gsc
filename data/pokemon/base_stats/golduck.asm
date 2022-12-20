@@ -1,11 +1,7 @@
 	db  80,  82,  78,  85,  95,  80 ; 500 BST
 	;   hp  atk  def  spd  sat  sdf
 
-if DEF(FAITHFUL)
 	db WATER, WATER ; type
-else
-	db WATER, PSYCHIC ; type
-endc
 	db 75 ; catch rate
 	db 174 ; base exp
 	db NO_ITEM ; item 1

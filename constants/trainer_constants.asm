@@ -28,9 +28,9 @@ CHRIS EQU __trainer_class__
 	const PHONECONTACT_BUENA
 
 KRIS EQU __trainer_class__
-	trainerclass CARRIE ; 1
+	trainerclass ELAINE ; 1 - If you choose Chase
 
-	trainerclass CAL ; 2
+	trainerclass CHASE ; 2 - If you choose Elaine
 
 	trainerclass FALKNER ; 3
 
@@ -115,45 +115,27 @@ KRIS EQU __trainer_class__
 	trainerclass LYRA2 ; 1e
 
 	trainerclass YOUNGSTER ; 1f
-	const JOEY1
-	const JOEY2
-	const JOEY3
-	const JOEY4
-	const JOEY5
-	const MIKEY
-	const ALBERT
-	const GORDON
+	const REGIS
 	const WARREN
 	const JIMMY
-	const OWEN
-	const JASON
 	const YOUNGSTER_JOSH
-	const REGIS
-	const ALFIE
 	const OLIVER
 	const CHAZ
-	const TYLER
+	const OWEN
+	const JASON
+	const ALFIE
+	const JOEY1 ; keep for now. Will remove later
 
 	trainerclass BUG_CATCHER ; 20
-	const WADE1
-	const WADE2
-	const WADE3
-	const WADE4
-	const WADE5
-	const ARNIE1
-	const ARNIE2
-	const ARNIE3
-	const ARNIE4
-	const ARNIE5
-	const DON
-	const BENNY
-	const AL
-	const JOSH
+	const ROB ;  (Route 2 South)
+	const DOUG ;  (Route 2 South)
 	const KEN
 	const WAYNE
 	const OSCAR
 	const CALLUM
 	const DAVID
+	const WADE1 ; keep for now. Will remove later
+	const ARNIE1 ; keep for now. Will remove later
 
 	trainerclass CAMPER ; 21
 	const TODD1
@@ -469,9 +451,7 @@ KRIS EQU __trainer_class__
 
 	trainerclass BUG_MANIAC ; 33
 	const LOU
-	const ROB
 	const ED
-	const DOUG
 	const DANE
 	const DION
 	const STACEY
@@ -727,7 +707,7 @@ KRIS EQU __trainer_class__
 	const ASHE
 
 	trainerclass SWIMMERF ; 4d
-	const ELAINE
+	const ELLA
 	const PAULA
 	const KAYLEE
 	const SUSIE

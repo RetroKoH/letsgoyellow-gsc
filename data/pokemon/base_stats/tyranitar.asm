@@ -8,11 +8,7 @@
 	db NO_ITEM ; item 2
 	dn GENDER_F50, 7 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/tyranitar/front.dimensions"
-if DEF(FAITHFUL)
 	abilities_for TYRANITAR, SAND_STREAM, SAND_STREAM, UNNERVE
-else
-	abilities_for TYRANITAR, SAND_STREAM, BATTLE_ARMOR, UNNERVE
-endc
 	db GROWTH_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
 

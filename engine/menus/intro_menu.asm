@@ -935,9 +935,9 @@ DrawIntroPlayerPic:
 	ld [wCurPartySpecies], a
 	ld a, [wPlayerGender]
 	bit 0, a
-	ld a, CARRIE
+	ld a, ELAINE
 	jr nz, .ok
-	assert CARRIE + 1 == CAL
+	assert ELAINE + 1 == CHASE
 	inc a
 .ok
 	ld [wTrainerClass], a

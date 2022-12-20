@@ -8,11 +8,7 @@
 	db NO_ITEM ; item 2
 	dn GENDER_F100, 3 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/kangaskhan/front.dimensions"
-if DEF(FAITHFUL)
 	abilities_for KANGASKHAN, EARLY_BIRD, SCRAPPY, INNER_FOCUS
-else
-	abilities_for KANGASKHAN, EARLY_BIRD, SCRAPPY, PARENTAL_BOND
-endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
 

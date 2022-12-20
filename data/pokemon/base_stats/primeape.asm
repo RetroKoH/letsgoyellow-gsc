@@ -8,11 +8,7 @@
 	db KEE_BERRY ; item 2
 	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/primeape/front.dimensions"
-if DEF(FAITHFUL)
 	abilities_for PRIMEAPE, VITAL_SPIRIT, ANGER_POINT, DEFIANT
-else
-	abilities_for PRIMEAPE, GORILLA_TACTICS, ANGER_POINT, DEFIANT
-endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 

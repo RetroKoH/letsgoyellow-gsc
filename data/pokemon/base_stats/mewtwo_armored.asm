@@ -1,11 +1,7 @@
 	db 106, 110,  90, 130, 154,  90 ; 680 BST
 	;   hp  atk  def  spd  sat  sdf
 
-if DEF(FAITHFUL)
 	db PSYCHIC, PSYCHIC ; type
-else
-	db PSYCHIC, STEEL ; type
-endc
 	db 3 ; catch rate
 	db 220 ; base exp
 	db ALWAYS_ITEM_2 ; item 1

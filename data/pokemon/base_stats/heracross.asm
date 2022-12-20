@@ -8,7 +8,7 @@
 	db NO_ITEM ; item 2
 	dn GENDER_F50, 4 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/heracross/front.dimensions"
-	abilities_for HERACROSS, MOXIE, GUTS, SKILL_LINK
+	abilities_for HERACROSS, SWARM, GUTS, MOXIE
 	db GROWTH_SLOW ; growth rate
 	dn EGG_BUG, EGG_BUG ; egg groups
 

@@ -8,7 +8,7 @@
 	db PETAYA_BERRY ; item 2
 	dn GENDER_UNKNOWN, 15 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/mewtwo_plain/front.dimensions"
-	abilities_for MEWTWO, PRESSURE, INSOMNIA, UNNERVE
+	abilities_for MEWTWO, PRESSURE, PRESSURE, UNNERVE
 	db GROWTH_SLOW ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups
 

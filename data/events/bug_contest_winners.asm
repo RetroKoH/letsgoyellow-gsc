@@ -14,7 +14,7 @@ BugContestantPointers:
 	assert_table_length NUM_BUG_CONTESTANTS + 1
 
 BugContestant_BugCatcherDon:
-	db BUG_CATCHER, DON
+	db BUG_CATCHER, ROB ; CHANGED FROM DON
 	dbw KAKUNA,     300
 	dbw METAPOD,    285
 	dbw CATERPIE,   226
@@ -38,7 +38,7 @@ BugContestant_PokefanMWilliam:
 	dbw VENONAT,    321
 
 BugContestant_BugCatcherBenny:
-	db BUG_CATCHER, BENNY
+	db BUG_CATCHER, ROB ; CHANGED FROM BENNY
 	dbw BUTTERFREE, 318
 	dbw WEEDLE,     295
 	dbw CATERPIE,   285
@@ -56,7 +56,7 @@ BugContestant_PicnickerCindy:
 	dbw CATERPIE,   264
 
 BugContestant_BugCatcherJosh:
-	db BUG_CATCHER, JOSH
+	db BUG_CATCHER, ROB ; CHANGED FROM JOSH
 	dbw SCYTHER,    326
 	dbw BUTTERFREE, 292
 	dbw METAPOD,    282

@@ -22,7 +22,7 @@ Route2South_MapScriptHeader:
 	object_event 23, 23, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_CUTTABLE_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_16_WEST_CUT_TREE_1
 
 GenericTrainerBug_maniacRob:
-	generictrainer BUG_MANIAC, ROB, EVENT_BEAT_BUG_MANIAC_ROB, Bug_maniacRobSeenText, Bug_maniacRobBeatenText
+	generictrainer BUG_CATCHER, ROB, EVENT_BEAT_BUG_MANIAC_ROB, Bug_maniacRobSeenText, Bug_maniacRobBeatenText
 
 	text "I'm going to look"
 	line "for stronger bug"
@@ -30,7 +30,7 @@ GenericTrainerBug_maniacRob:
 	done
 
 GenericTrainerBug_maniacDoug:
-	generictrainer BUG_MANIAC, DOUG, EVENT_BEAT_BUG_MANIAC_DOUG, Bug_maniacDougSeenText, Bug_maniacDougBeatenText
+	generictrainer BUG_CATCHER, DOUG, EVENT_BEAT_BUG_MANIAC_DOUG, Bug_maniacDougSeenText, Bug_maniacDougBeatenText
 
 	text "Bug #mon squish"
 	line "like plush toys"

@@ -90,7 +90,7 @@ FONT_MASK EQU %00000111
 	const_def
 	const NATURES_OPT      ; 0
 	const ABILITIES_OPT    ; 1
-	const COLOR_VARY_OPT   ; 2
+	const COLOR_VARY_OPT   ; 2 - UNUSED
 	const PERFECT_IVS_OPT  ; 3
 	const TRADED_AS_OT_OPT ; 4
 	const NUZLOCKE_MODE    ; 5

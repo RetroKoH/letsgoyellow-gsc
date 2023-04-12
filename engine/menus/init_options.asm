@@ -147,8 +147,6 @@ INCBIN "gfx/new_game/init_bg.2bpp"
 	db "            :<LNBRK>"
 	db "Exp. scaling<LNBRK>"
 	db "            :<LNBRK>"
-	db "IVs vary colors<LNBRK>"
-	db "            :<LNBRK>"
 	db "Perfect stats<LNBRK>"
 	db "            :<LNBRK>"
 	db "Traded #mon<LNBRK>"
@@ -156,6 +154,8 @@ INCBIN "gfx/new_game/init_bg.2bpp"
 	db "            :<LNBRK>"
 	db "Nuzlocke mode<LNBRK>"
 	db "            :<LNBRK>"
+	db "             <LNBRK>"
+	db "             <LNBRK>"
 	db "Done@"
 
 GetInitialOptionPointer:
@@ -166,7 +166,6 @@ GetInitialOptionPointer:
 	dw InitialOptions_Abilities
 	dw InitialOptions_PSS
 	dw InitialOptions_ExpScaling
-	dw InitialOptions_ColorVariation
 	dw InitialOptions_PerfectIVs
 	dw InitialOptions_TradedMon
 	dw InitialOptions_NuzlockeMode
@@ -268,30 +267,6 @@ InitialOptions_ExpScaling:
 	and a
 	ret
 
-InitialOptions_ColorVariation:
-	ld hl, wInitialOptions
-	ldh a, [hJoyPressed]
-	and D_LEFT | D_RIGHT | A_BUTTON
-	jr nz, .Toggle
-	bit COLOR_VARY_OPT, [hl]
-	jr z, .SetNo
-	jr .SetYes
-.Toggle
-	bit COLOR_VARY_OPT, [hl]
-	jr z, .SetYes
-.SetNo:
-	res COLOR_VARY_OPT, [hl]
-	ld de, NoString
-	jr .Display
-.SetYes:
-	set COLOR_VARY_OPT, [hl]
-	ld de, YesString
-.Display:
-	hlcoord 15, 9
-	rst PlaceString
-	and a
-	ret
-
 InitialOptions_PerfectIVs:
 	ld hl, wInitialOptions
 	ldh a, [hJoyPressed]
@@ -311,7 +286,7 @@ InitialOptions_PerfectIVs:
 	set PERFECT_IVS_OPT, [hl]
 	ld de, YesString
 .Display:
-	hlcoord 15, 11
+	hlcoord 15, 9
 	rst PlaceString
 	and a
 	ret
@@ -335,7 +310,7 @@ InitialOptions_TradedMon:
 	set TRADED_AS_OT_OPT, [hl]
 	ld de, YesString
 .Display:
-	hlcoord 15, 14
+	hlcoord 15, 12
 	rst PlaceString
 	and a
 	ret
@@ -359,7 +334,7 @@ InitialOptions_NuzlockeMode:
 	set NUZLOCKE_MODE, [hl]
 	ld de, YesString
 .Display:
-	hlcoord 15, 16
+	hlcoord 15, 14
 	rst PlaceString
 	and a
 	ret
@@ -436,4 +411,4 @@ InitialOptions_UpdateCursorPosition:
 	ret
 
 .InitialOptions_CursorPositions:
-	db 0, 2, 4, 6, 8, 10, 12, 15, 17
+	db 0, 2, 4, 6, 8, 10, 13, 17

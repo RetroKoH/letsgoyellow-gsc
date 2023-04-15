@@ -908,8 +908,8 @@ MoltresGalarianBackpic:   INCBIN "gfx/pokemon/moltres_galarian/back.2bpp.lz"
 
 SECTION "Trainer Pics 1", ROMX
 
-CarriePic:                INCBIN "gfx/trainers/carrie.2bpp.lz"
-CalPic:                   INCBIN "gfx/trainers/cal.2bpp.lz"
+ElainePic:                INCBIN "gfx/trainers/elaine.2bpp.lz"
+ChasePic:                 INCBIN "gfx/trainers/chase.2bpp.lz"
 FalknerPic:               INCBIN "gfx/trainers/falkner.2bpp.lz"
 BugsyPic:                 INCBIN "gfx/trainers/bugsy.2bpp.lz"
 WhitneyPic:               INCBIN "gfx/trainers/whitney.2bpp.lz"

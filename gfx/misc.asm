@@ -63,8 +63,8 @@ PackF5GFX:: INCBIN "gfx/pack/pack_f5.2bpp.lz"
 
 SECTION "Trainer Card Pics", ROMX
 
-ChrisCardPic:: INCBIN "gfx/trainer_card/chris_card.2bpp.lz"
-KrisCardPic::  INCBIN "gfx/trainer_card/kris_card.2bpp.lz"
+ChrisCardPic:: INCBIN "gfx/trainer_card/chase_card.2bpp.lz"
+KrisCardPic::  INCBIN "gfx/trainer_card/elaine_card.2bpp.lz"
 
 
 SECTION "Trainer Backpics", ROMX

@@ -8,7 +8,7 @@ SpawnPoints:
 ; entries correspond to SPAWN_* constants
 	table_width 4, SpawnPoints
 
-	spawn TRAINER_HOUSE_1F,            2,  4 ; SPAWN_HOME
+	spawn TRAINER_HOUSE_1F,            4,  4 ; SPAWN_HOME
 
 	spawn PALLET_TOWN,                 5,  6
 	spawn VIRIDIAN_CITY,              23, 26

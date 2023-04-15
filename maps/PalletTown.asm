@@ -46,18 +46,7 @@ PalletTown_ProfOakStopsYouScene1:
 	writetext Text_OakArrives
 	waitbutton
 	closetext
-	turnobject PALLETTOWN_OAK, RIGHT
-
-	loadwildmon PIKACHU, 5
-	catchtutorial BATTLETYPE_TUTORIAL
-	special DeleteSavedMusic
-	playmusic MUSIC_PROF_OAK
-
-	opentext
-	writetext Text_OakAfterCatchingPikachu
-	waitbutton
-	closetext
-	turnobject PALLETTOWN_OAK, UP
+	showemote EMOTE_SHOCK, PALLETTOWN_OAK, 15
 	opentext
 	writetext Text_OakBringsYouToLab
 	waitbutton
@@ -91,18 +80,7 @@ PalletTown_ProfOakStopsYouScene2:
 	writetext Text_OakArrives
 	waitbutton
 	closetext
-	turnobject PALLETTOWN_OAK, LEFT
-
-	loadwildmon PIKACHU, 5
-	catchtutorial BATTLETYPE_TUTORIAL
-	special DeleteSavedMusic
-	playmusic MUSIC_PROF_OAK
-
-	opentext
-	writetext Text_OakAfterCatchingPikachu
-	waitbutton
-	closetext
-	turnobject PALLETTOWN_OAK, UP
+	showemote EMOTE_SHOCK, PALLETTOWN_OAK, 15
 	opentext
 	writetext Text_OakBringsYouToLab
 	waitbutton
@@ -157,7 +135,7 @@ Movement_OakWalksToLab1:
 
 Text_OakAppears::
 	text "OAK: Hey! Wait!"
-	line "Don't go out!@@"
+	line "Don't move!@@"
 
 Text_OakArrives::
 	text "OAK: That was"
@@ -170,23 +148,18 @@ Text_OakArrives::
 	para "Hmm?"
 	done
 
-Text_OakAfterCatchingPikachu::
-	text "OAK: Whew..."
-	done
-
 Text_OakBringsYouToLab::
-	text "OAK: As I said,"
-	line "Wild #MON can"
-	cont "appear anytime in"
-	cont "tall grass."
+	text "OAK: What? You"
+	line "already have a"
+	cont "#mon partner?"
 
-	para "You need your own"
-	line "#MON for your"
-	cont "protection."
-	cont "I know!"
+	para "Blue sent you,"
+	line "didn't he? Well"
+	cont "then, I think"
+	cont "I know why you"
+	cont "are here."
 
-	para "Here, come with"
-	line "me!"
+	para "Come with me!"
 	done
 
 PalletTownTeacherText:

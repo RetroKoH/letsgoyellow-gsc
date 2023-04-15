@@ -13,8 +13,6 @@ OaksLab_MapScriptHeader:
 	warp_event  5, 11, PALLET_TOWN, 3
 
 	def_coord_events
-	coord_event 4, 6, 2, OaksLabTryToLeaveScript
-	coord_event 5, 6, 2, OaksLabTryToLeaveScript
 	coord_event 4, 6, 3, LabBattleBlueScript
 	coord_event 5, 6, 3, LabBattleBlueScript2
 
@@ -37,9 +35,8 @@ OaksLab_MapScriptHeader:
 	bg_event  0,  1, BGEVENT_JUMPTEXT, OaksLabPCText
 
 	def_object_events
-	object_event  4,  3, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OaksLabBlueScript, EVENT_HIDE_OAKSLAB_TRACE
-	object_event  6,  3, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PikachuPokeballScript, EVENT_HIDE_OAKSLAB_STARTER_PIKA
-	object_event  8,  3, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EeveePokeballScript, EVENT_HIDE_OAKSLAB_STARTER_EEVEE
+	object_event  4,  3, SPRITE_SILVER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OaksLabBlueScript, EVENT_HIDE_OAKSLAB_TRACE
+	object_event  7,  3, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SpecialPokeballScript, -1
 	object_event  5,  2, SPRITE_OAK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OaksLabOakScript, EVENT_HIDE_OAKSLAB_OAK
 	object_event  2,  1, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptext, OaksLabPokedexDescriptionText, EVENT_GOT_POKEDEX_FROM_OAK
 	object_event  3,  1, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptext, OaksLabPokedexDescriptionText, EVENT_GOT_POKEDEX_FROM_OAK
@@ -48,8 +45,7 @@ OaksLab_MapScriptHeader:
 
 	object_const_def
 	const OAKSLAB_TRACE
-	const OAKSLAB_STARTER_PIKA
-	const OAKSLAB_STARTER_EEVEE
+	const OAKSLAB_POKEBALL
 	const OAKSLAB_OAK
 	const OAKSLAB_POKEDEX_1
 	const OAKSLAB_POKEDEX_2
@@ -66,14 +62,54 @@ OaksLabTrigger1:
 
 OaksLab_AutowalkUpToOak:
 	applymovement PLAYER, Movement_WalkUpToProfOak
-	turnobject OAKSLAB_TRACE, UP
-	showtext GrampsImFedUpText
+	showtext OaksLabArrivalText
+		playmusic MUSIC_RIVAL_ENCOUNTER
+	pause 15
+	showtext OaksLabGrampsText
+	moveobject OAKSLAB_TRACE, 4, 7
+	appear OAKSLAB_TRACE
+	applymovement OAKSLAB_TRACE, Movement_BlueRunsIn
+	special RestartMapMusic
+	opentext
+	writetext OaksLabBlueWhyDidYouCallText
 	pause 8
-	showtext OakLetMeThinkText
-	pause 8
-	showtext HeyGrampsWhatAboutMeText
-	pause 8
-	showtext OakBePatientText
+	writetext OaksLabIntroducePokedexText
+	closetext
+	readvar VAR_FACING
+	ifequal RIGHT, .OakWalk2
+	applymovement OAKSLAB_OAK, Movement_OakWalksToTable
+	disappear OAKSLAB_POKEDEX_1
+	disappear OAKSLAB_POKEDEX_2
+	pause 15
+	applymovement OAKSLAB_OAK, Movement_OakWalksBack
+	sjump .continue
+.OakWalk2
+	applymovement OAKSLAB_OAK, Movement_OakWalksToTable2
+	disappear OAKSLAB_POKEDEX_1
+	disappear OAKSLAB_POKEDEX_2
+	pause 15
+	applymovement OAKSLAB_OAK, Movement_OakWalksBack2
+	faceplayer
+.continue
+	opentext
+	writetext OaksLabReceivedPokedexText
+	playsound SFX_KEY_ITEM
+	waitsfx
+	promptbutton
+	writetext OaksLabDreamText
+	verbosegiveitem POKE_BALL, 10
+	faceobject OAKSLAB_TRACE, PLAYER
+	writetext OaksLabLeaveItToMeText
+	closetext
+	playmusic MUSIC_RIVAL_AFTER
+	applymovement OAKSLAB_TRACE, Movement_BlueRunsOut
+	disappear OAKSLAB_TRACE
+	setflag ENGINE_POKEDEX
+	setevent EVENT_GOT_POKEDEX_FROM_OAK
+	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
+	setmapscene VIRIDIAN_CITY, $1
+	setmapscene ROUTE_22, $1
+	special RestartMapMusic
 	setscene $2
 	end
 
@@ -174,12 +210,6 @@ Movement_OakWalksBack2:
 	step_down
 	step_end
 
-OaksLabTryToLeaveScript:
-	turnobject OAKSLAB_OAK, DOWN
-	showtext OakDontGoAwayText
-	applyonemovement PLAYER, step_up
-	end
-
 LabBattleBlueScript:
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	turnobject OAKSLAB_TRACE, DOWN
@@ -244,77 +274,12 @@ LabBattleBlueScript2:
 	playmapmusic
 	end
 
-PikachuPokeballScript:
-	checkevent EVENT_HIDE_OAKSLAB_OAK
-	iftrue_jumptext OaksLabPokeballDescriptionText
-	turnobject OAKSLAB_OAK, DOWN
-	refreshscreen
-	pokepic PIKACHU
-	cry PIKACHU
-	waitbutton
-	closepokepic
+SpecialPokeballScript:
 	opentext
-	writetext OaksLabPikachuText
-	yesorno
-	iffalse_jumpopenedtext OaksLabDidntChooseStarterText
-	disappear OAKSLAB_STARTER_PIKA
-	setevent EVENT_PLAYER_CHOSE_PIKACHU
-	setevent EVENT_GOT_STARTER
-	writetext OaksLabMonEnergeticText
-	promptbutton
-	waitsfx
-	givepoke PIKACHU, 5
-	closetext
-	applymovement OAKSLAB_TRACE, Movement_BluePicksEevee
-	opentext
-	writetext OaksLabBlueChoosesStarterText
-	pause 15
-	disappear OAKSLAB_STARTER_EEVEE
-	opentext
-	getmonname EEVEE, STRING_BUFFER_3
-	writetext OaksLabBlueReceivedStarterText
-	playsound SFX_CAUGHT_MON
-	waitsfx
-;	waitbutton
-	closetext
-	setscene $3
-	end
-
-EeveePokeballScript:
-	checkevent EVENT_HIDE_OAKSLAB_OAK
-	iftrue_jumptext OaksLabPokeballDescriptionText
-	turnobject OAKSLAB_OAK, DOWN
-	refreshscreen
-	pokepic EEVEE
-	cry EEVEE
-	waitbutton
-	closepokepic
-	opentext
-	writetext OaksLabEeveeText
-	yesorno
-	iffalse_jumpopenedtext OaksLabDidntChooseStarterText
-	disappear OAKSLAB_STARTER_EEVEE
-	setevent EVENT_PLAYER_CHOSE_EEVEE
-	setevent EVENT_GOT_STARTER
-	writetext OaksLabMonEnergeticText
-	promptbutton
-	waitsfx
-	givepoke EEVEE, 5
-	closetext
-	applymovement OAKSLAB_TRACE, Movement_BluePicksPikachu
-	opentext
-	writetext OaksLabBlueChoosesStarterText
-	pause 15
-	disappear OAKSLAB_STARTER_PIKA
-	opentext
-	getmonname PIKACHU, STRING_BUFFER_3
-	writetext OaksLabBlueReceivedStarterText
-	playsound SFX_CAUGHT_MON
-	waitsfx
-;	waitbutton
-	closetext
-	setscene $3
-	end
+	jumpthisopenedtext
+	text "It looks like a"
+	line "special # Ball."
+	done
 
 OaksLabOakScript:
 	faceplayer
@@ -339,13 +304,6 @@ OaksLabOakScript:
 	done
 
 .DeliverParcel
-	writetext OaksLabDeliverParcelText1
-	playsound SFX_KEY_ITEM
-	waitsfx
-	promptbutton
-	takekeyitem OAKS_PARCEL
-	writetext OaksLabDeliverParcelText2
-	closetext
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	pause 15
 	showtext OaksLabGrampsText
@@ -380,7 +338,7 @@ OaksLabOakScript:
 	waitsfx
 	promptbutton
 	writetext OaksLabDreamText
-	verbosegiveitem MASTER_BALL, 99
+	verbosegiveitem POKE_BALL, 10
 	faceobject OAKSLAB_TRACE, PLAYER
 	writetext OaksLabLeaveItToMeText
 	closetext
@@ -408,10 +366,6 @@ OaksLabOakScript:
 OaksLabBlueScript:
 	faceplayer
 	opentext
-	checkevent EVENT_HIDE_OAKSLAB_OAK
-	iftrue_jumpopenedtext GrampsIsntAroundText
-	checkevent EVENT_GOT_STARTER
-	iftrue_jumpopenedtext MyPokemonLooksStrongerText
 	jumpthisopenedtext
 ;HehIDontNeedToBeGreedyText
 	text "<RIVAL>: Heh, I"
@@ -420,117 +374,6 @@ OaksLabBlueScript:
 
 	para "Go ahead and"
 	line "choose, <PLAYER>!"
-	done
-
-GrampsIsntAroundText:
-	text "<RIVAL>: Yo"
-	line "<PLAYER>! Gramps"
-	cont "isn't around!"
-	done
-
-MyPokemonLooksStrongerText:
-	text "<RIVAL>: My"
-	line "#mon looks a"
-	cont "lot stronger."
-	done
-
-GrampsImFedUpText:
-	text "<RIVAL>: Gramps!"
-	line "I'm fed up with"
-	cont "waiting!"
-	done
-
-OakLetMeThinkText:
-	text "Oak: <RIVAL>?"
-	line "Let me think…"
-
-	para "Oh, that's right,"
-	line "I told you to"
-	cont "come! Just wait!"
-
-	para "Here, <PLAYER>!"
-
-	para "There are 3"
-	line "#mon here!"
-
-	para "Haha!"
-
-	para "They are inside"
-	line "the # Balls."
-
-	para "When I was young,"
-	line "I was a serious"
-	cont "#mon trainer!"
-
-	para "In my old age, I"
-	line "have only 3 left,"
-	cont "but you can have"
-	cont "one! Choose!"
-	done
-
-HeyGrampsWhatAboutMeText:
-	text "<RIVAL>: Hey!"
-	line "Gramps! What"
-	cont "about me?"
-	done
-
-OakBePatientText:
-	text "Oak: Be patient!"
-	line "<RIVAL>, you can"
-	cont "have one too!"
-	done
-
-OakDontGoAwayText:
-	text "Oak: Hey! Don't go"
-	line "away yet!"
-	done
-
-OaksLabPokeballDescriptionText:
-	text "It contains a"
-	line "#mon caught by"
-	cont "Prof. Oak!"
-	done
-
-OaksLabDidntChooseStarterText:
-	text "Oak: Think it over"
-	line "carefully."
-
-	para "Your partner is"
-	line "important."
-	done
-
-OaksLabPikachuText:
-	text "So, You would like"
-	line "PIKACHU?"
-	done
-
-OaksLabEeveeText:
-	text "So, You would like"
-	line "EEVEE?"
-	done
-
-OaksLabMonEnergeticText:
-	text "This #mon is"
-	line "really energetic!"
-	done
-
-OaksLabReceivedStarterText:
-	text "<PLAYER> received"
-	line "@"
-	text_ram wStringBuffer3
-	text "!"
-	done
-
-OaksLabBlueChoosesStarterText:
-	text "<RIVAL>: I'll take"
-	line "this one, then!"
-	done
-
-OaksLabBlueReceivedStarterText:
-	text "<RIVAL> received"
-	line "@"
-	text_ram wStringBuffer3
-	text "!"
 	done
 
 OaksLabYourPokemonCanBattleText:
@@ -579,33 +422,8 @@ OaksLabRivalToughenUpText:
 	line "Smell you later!"
 	done
 
-OaksLabDeliverParcelText1:
-	text "Oak: Oh, <PLAYER>!"
-
-	para "How is my old"
-	line "#mon?"
-
-	para "Well, it seems to"
-	line "like you a lot."
-
-	para "You must be"
-	line "talented as a"
-	cont "#mon trainer!"
-
-	para "What? You have"
-	line "something for me?"
-
-	para "<PLAYER> delivered"
-	line "Oak's Parcel."
-	done
-
-OaksLabDeliverParcelText2:
-	text "Ah! This is the"
-	line "part I needed for"
-	cont "a special device!"
-	cont "Thanks, <PLAYER>!"
-
-	para "By the way, I must"
+OaksLabArrivalText:
+	text "Right! So, I must"
 	line "ask you to do"
 	cont "something for me."
 	prompt

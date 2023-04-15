@@ -21,12 +21,12 @@ GoldenrodDeptStore2F_MapScriptHeader:
 	object_event  2,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, GoldenrodDeptStore2FGentlemanText, -1
 
 GoldenrodDeptStore2FClerk2Script:
-	checkevent EVENT_GOT_EEVEE
-	iftrue .eevee
+;	checkevent EVENT_GOT_EEVEE
+;	iftrue .eevee
 	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_2
 
-.eevee
-	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_2_EEVEE
+;.eevee
+;	pokemart MARTTYPE_STANDARD, MART_GOLDENROD_2F_2_EEVEE
 
 GoldenrodDeptStore2FYoungsterText:
 	text "#gear can store"

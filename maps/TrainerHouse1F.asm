@@ -12,18 +12,22 @@ TrainerHouse1F_MapScriptHeader:
 ;	warp_event  8,  2, TRAINER_HOUSE_B1F, 1
 
 	def_coord_events
-	coord_event 1, 6, 1, TrainerHouseTryToLeaveScript
-	coord_event 2, 6, 1, TrainerHouseTryToLeaveScript
-	coord_event 6, 6, 1, TrainerHouseTryToLeaveScript
-	coord_event 7, 6, 1, TrainerHouseTryToLeaveScript
+	coord_event  0,  5, 1, TrainerHouseTryToLeaveScript
+	coord_event  1,  5, 1, TrainerHouseTryToLeaveScript
+	coord_event  3,  5, 1, TrainerHouseTryToLeaveScript
+	coord_event  4,  5, 1, TrainerHouseTryToLeaveScript
+	coord_event  5,  5, 1, TrainerHouseTryToLeaveScript
+	coord_event  6,  5, 1, TrainerHouseTryToLeaveScript
+	coord_event  7,  5, 1, TrainerHouseTryToLeaveScript
+	coord_event  9,  5, 1, TrainerHouseTryToLeaveScript
 
 	def_bg_events
 
 	def_object_events
-	object_event  4,  3, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouseBlueScript, EVENT_HIDE_OAKSLAB_TRACE ;EVENT_HIDE_OAKSLAB_OAK
-	object_event  6,  4, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouseTraceScript, EVENT_HIDE_OAKSLAB_TRACE
-	object_event  3,  4, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PikaBallScript, EVENT_HIDE_OAKSLAB_STARTER_PIKA
-	object_event  5,  4, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EeveeBallScript, EVENT_HIDE_OAKSLAB_STARTER_EEVEE
+	object_event  6,  1, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouseBlueScript, EVENT_HIDE_STARTHOUSE_BLUE
+	object_event  5,  4, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouseTraceScript, EVENT_HIDE_STARTHOUSE_TRACE
+	object_event  4,  1, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PikaBallScript, EVENT_HIDE_STARTHOUSE_STARTER_PIKA
+	object_event  5,  1, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EeveeBallScript, EVENT_HIDE_STARTHOUSE_STARTER_EEVEE
 
 	object_const_def
 	const STARTHOUSE_BLUE
@@ -63,16 +67,24 @@ TrainerHouseTrigger0:
 	closetext
 	setscene $1
 TrainerHouseTrigger1:
-TrainerHouseTrigger2:
 	end
 
 TrainerHouseBlueScript:
 	faceplayer
 	opentext
+	checkevent EVENT_GOT_STARTER
+	iftrue_jumpopenedtext TrainerHouseYourPokemonCanBattleText
 	jumpthisopenedtext
 	text "Blue: Now, <PLAYER>,"
 	line "which #mon do"
 	cont "you want?"
+	done
+
+TrainerHouseYourPokemonCanBattleText:
+	text "Blue: Your new"
+	line "partner will"
+	cont "help ward off"
+	cont "wild #mon!"
 	done
 
 TrainerHouseTraceScript:
@@ -105,7 +117,7 @@ BlueDontGoAwayText:
 	done
 
 PikaBallScript:
-;	turnobject STARTHOUSE_BLUE, UP
+	turnobject STARTHOUSE_BLUE, LEFT
 	refreshscreen
 	pokepic PIKACHU
 	cry PIKACHU
@@ -124,8 +136,7 @@ PikaBallScript:
 	waitsfx
 	givepoke PIKACHU, 5
 	closetext
-	turnobject STARTHOUSE_TRACE, LEFT
-	;applymovement STARTHOUSE_TRACE, Movement_TracePicksEevee
+	applymovement STARTHOUSE_TRACE, Movement_TracePicksEevee
 	opentext
 	writetext TrainerHouseTraceTakesStarterText
 	pause 15
@@ -140,7 +151,7 @@ PikaBallScript:
 	end
 
 EeveeBallScript:
-;	turnobject STARTHOUSE_BLUE, UP
+	turnobject STARTHOUSE_BLUE, LEFT
 	refreshscreen
 	pokepic EEVEE
 	cry EEVEE
@@ -174,17 +185,15 @@ EeveeBallScript:
 	end
 
 Movement_TracePicksPikachu:
+	step_left
 	step_up
 	step_up
-	step_left
-	step_left
-	step_left
-	step_down
 	step_end
 
-;Movement_TracePicksEevee:
-;	step_left
-;	step_end
+Movement_TracePicksEevee:
+	step_up
+	step_up
+	step_end
 
 BlueDidntChooseStarterText:
 	text "Blue: Think it"
@@ -217,6 +226,81 @@ TrainerHouseTraceStarterText:
 	line "@"
 	text_ram wStringBuffer3
 	text "!"
+	done
+
+TrainerHouseTrigger2:
+	applymovement STARTHOUSE_BLUE, Movement_BlueWalksDown
+	turnobject STARTHOUSE_BLUE, LEFT
+	turnobject STARTHOUSE_TRACE, RIGHT
+	turnobject PLAYER, RIGHT
+	opentext
+	writetext Text_BlueSendsOff
+	waitbutton
+	closetext
+	turnobject STARTHOUSE_TRACE, DOWN
+	turnobject PLAYER, DOWN
+	playmusic MUSIC_RIVAL_AFTER
+	applymovement STARTHOUSE_BLUE, Movement_BlueLeaves
+	disappear STARTHOUSE_BLUE
+	special RestartMapMusic
+	faceobject STARTHOUSE_TRACE, PLAYER
+	faceobject PLAYER, STARTHOUSE_TRACE
+	opentext
+	writetext Text_TraceSaysBye
+	waitbutton
+	closetext
+	turnobject PLAYER, DOWN
+	applymovement STARTHOUSE_TRACE, Movement_BlueLeaves
+	disappear STARTHOUSE_TRACE
+	setscene $3
+	end
+
+Movement_BlueWalksDown:
+	step_down
+	step_end
+
+Movement_BlueLeaves:
+	step_down
+	step_left
+	step_down
+	step_down
+	step_down
+	step_down
+	step_end
+
+Text_BlueSendsOff:
+	text "Blue: OK, now"
+	line "that that's taken"
+	cont "care of..."
+
+	para "I need your help."
+	line "Please head south"
+	cont "to Pallet Town to"
+	cont "see Prof. Oak."
+
+	para "He's my grandpa."
+	line "He has something"
+	cont "he needs to give"
+	cont "you both."
+
+	para "Don't keep him"
+	line "waiting, you two!"
+
+	para "Smell ya later!"
+	done
+
+Text_TraceSaysBye:
+	text "<RIVAL>: Well, you"
+	line "heard the man."
+	cont "Let's get a move"
+	cont "on already!"
+
+	para "You go to the lab"
+	line "first. I've got"
+	cont "something to do"
+	cont "first."
+
+	para "See ya, <PLAYER>!"
 	done
 
 Text_BlueScoldsPlayer:

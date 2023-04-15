@@ -8,7 +8,7 @@ SpawnPoints:
 ; entries correspond to SPAWN_* constants
 	table_width 4, SpawnPoints
 
-	spawn TRAINER_HOUSE_1F,            2,  4 ; BLUE starts at 4, 3; Trace is at 6, 4
+	spawn TRAINER_HOUSE_1F,            2,  4 ; SPAWN_HOME
 
 	spawn PALLET_TOWN,                 5,  6
 	spawn VIRIDIAN_CITY,              23, 26

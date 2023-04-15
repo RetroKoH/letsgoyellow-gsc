@@ -93,12 +93,13 @@ MapScenes::
 	scene_var SEAGALLOP_FERRY_SHAMOUTI_GATE,          wSeagallopFerryShamoutiGateSceneID
 	scene_var SEAGALLOP_FERRY_VERMILION_GATE,         wSeagallopFerryVermilionGateSceneID
 	scene_var SHAMOUTI_HOTEL_RESTAURANT,              wShamoutiHotelRestaurantSceneID
-	scene_var SPROUT_TOWER_3F,                        wSproutTower3FSceneID
+	scene_var SPROUT_TOWER_3F,                        wAlways0SceneID
 	scene_var TEAM_ROCKET_BASE_B1F,                   wAlways0SceneID
 	scene_var TEAM_ROCKET_BASE_B2F,                   wTeamRocketBaseB2FSceneID
 	scene_var TEAM_ROCKET_BASE_B3F,                   wTeamRocketBaseB3FSceneID
 	scene_var TIN_TOWER_1F,                           wTinTower1FSceneID
 	scene_var TRADE_CENTER,                           wTradeCenterSceneID
+	scene_var TRAINER_HOUSE_1F,                       wTrainerHouseID
 	scene_var TRAINER_HOUSE_B1F,                      wAlways0SceneID
 	scene_var UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, wUndergroundPathSwitchRoomEntrancesSceneID
 	scene_var VERMILION_CITY,                         wVermilionCitySceneID

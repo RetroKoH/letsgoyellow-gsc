@@ -842,7 +842,7 @@ wPlayerGender::
 
 wPlayerName:: ds NAME_LENGTH
 wRivalName:: ds NAME_LENGTH
-wBackupName:: ds NAME_LENGTH
+wBackupName:: ds NAME_LENGTH ; Might use for unused player
 
 wTrendyPhrase:: ds NAME_LENGTH
 
@@ -1102,11 +1102,11 @@ wSeagallopFerryNavelGateSceneID:: db
 wSeagallopFerryShamoutiGateSceneID:: db
 wSeagallopFerryVermilionGateSceneID:: db
 wShamoutiHotelRestaurantSceneID:: db
-wSproutTower3FSceneID:: db
 wTeamRocketBaseB2FSceneID:: db
 wTeamRocketBaseB3FSceneID:: db
 wTinTower1FSceneID:: db
 wTradeCenterSceneID:: db
+wTrainerHouseID:: db
 wUndergroundPathSwitchRoomEntrancesSceneID:: db
 wVermilionCitySceneID:: db
 wVermilionPortSceneID:: db

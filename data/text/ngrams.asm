@@ -73,7 +73,7 @@ NgramStrings:
 	dw .Pokemon
 	dw wPlayerName
 	dw wRivalName
-	dw wTrendyPhrase
+	dw wBackupName
 	assert_table_length NGRAMS_END - NGRAMS_START + 1
 
 .e_:      rawchar "e @"

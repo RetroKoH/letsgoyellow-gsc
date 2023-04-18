@@ -1,0 +1,67 @@
+	coord_event 4, 6, 3, LabBattleBlueScript
+	coord_event 5, 6, 3, LabBattleBlueScript2
+coord x, coord y, scene#, script function
+
+LabBattleBlueScript:
+	playmusic MUSIC_RIVAL_ENCOUNTER
+	turnobject OAKSLAB_TRACE, DOWN
+	turnobject PLAYER, UP
+	pause 8
+	showtext OaksLabRivalChallengeText
+	winlosstext OaksLabBlueWinText, OaksLabBlueLossText
+	setlasttalked OAKSLAB_TRACE
+	checkevent EVENT_PLAYER_CHOSE_PIKACHU
+	iftrue .Pikachu
+	applymovement OAKSLAB_TRACE, Movement_BlueWalksFromPikachu1
+	loadtrainer RIVAL0, 2
+	sjump .continueBattle
+.Pikachu
+	applymovement OAKSLAB_TRACE, Movement_BlueWalksFromEevee1
+	loadtrainer RIVAL0, 1
+	sjump .continueBattle
+.continueBattle
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	startbattle
+	dontrestartmapmusic
+	reloadmap
+	playmusic MUSIC_RIVAL_AFTER
+	showtext OaksLabRivalToughenUpText
+	applymovement OAKSLAB_TRACE, Movement_BlueLeavesBattle1
+	disappear OAKSLAB_TRACE
+	special HealPartyEvenForNuzlocke
+	setevent EVENT_BATTLED_OAKSLAB_RIVAL
+	setscene $4
+	playmapmusic
+	end
+
+LabBattleBlueScript2:
+	playmusic MUSIC_RIVAL_ENCOUNTER
+	turnobject OAKSLAB_TRACE, DOWN
+	turnobject PLAYER, UP
+	pause 8
+	showtext OaksLabRivalChallengeText
+	winlosstext OaksLabBlueWinText, OaksLabBlueLossText
+	setlasttalked OAKSLAB_TRACE
+	checkevent EVENT_PLAYER_CHOSE_PIKACHU
+	iftrue .Pikachu
+	applymovement OAKSLAB_TRACE, Movement_BlueWalksFromPikachu2
+	loadtrainer RIVAL0, 2
+	sjump .continueBattle
+.Pikachu
+	applymovement OAKSLAB_TRACE, Movement_BlueWalksFromEevee2
+	loadtrainer RIVAL0, 1
+	sjump .continueBattle
+.continueBattle
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	startbattle
+	dontrestartmapmusic
+	reloadmap
+	playmusic MUSIC_RIVAL_AFTER
+	showtext OaksLabRivalToughenUpText
+	applymovement OAKSLAB_TRACE, Movement_BlueLeavesBattle2
+	disappear OAKSLAB_TRACE
+	special HealPartyEvenForNuzlocke
+	setevent EVENT_BATTLED_OAKSLAB_RIVAL
+	setscene $4
+	playmapmusic
+	end

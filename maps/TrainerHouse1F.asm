@@ -337,7 +337,7 @@ Text_BlueChoosePokemon:
 	para "There was a third"
 	line "one, but that one"
 	cont "was already taken"
-	cont "by Elaine."
+	cont "by <BACKUP>."
 
 	para "Anyway, you can"
 	line "both have one. Go"

@@ -13,8 +13,6 @@ OaksLab_MapScriptHeader:
 	warp_event  5, 11, PALLET_TOWN, 3
 
 	def_coord_events
-	coord_event 4, 6, 3, LabBattleBlueScript
-	coord_event 5, 6, 3, LabBattleBlueScript2
 
 	def_bg_events
 	bg_event  6,  1, BGEVENT_JUMPSTD, difficultbookshelf
@@ -63,15 +61,15 @@ OaksLabTrigger1:
 OaksLab_AutowalkUpToOak:
 	applymovement PLAYER, Movement_WalkUpToProfOak
 	showtext OaksLabArrivalText
-		playmusic MUSIC_RIVAL_ENCOUNTER
+	playmusic MUSIC_RIVAL_ENCOUNTER
 	pause 15
-	showtext OaksLabGrampsText
+	showtext OaksLabTraceArrivesText
 	moveobject OAKSLAB_TRACE, 4, 7
 	appear OAKSLAB_TRACE
-	applymovement OAKSLAB_TRACE, Movement_BlueRunsIn
+	applymovement OAKSLAB_TRACE, Movement_TraceRunsIn
 	special RestartMapMusic
 	opentext
-	writetext OaksLabBlueWhyDidYouCallText
+	writetext OaksLabTraceSorryText
 	pause 8
 	writetext OaksLabIntroducePokedexText
 	closetext
@@ -96,13 +94,13 @@ OaksLab_AutowalkUpToOak:
 	playsound SFX_KEY_ITEM
 	waitsfx
 	promptbutton
-	writetext OaksLabDreamText
+	writetext OaksLabRequestText
 	verbosegiveitem POKE_BALL, 10
 	faceobject OAKSLAB_TRACE, PLAYER
-	writetext OaksLabLeaveItToMeText
+	writetext OaksLabLeaveItToUsText
 	closetext
 	playmusic MUSIC_RIVAL_AFTER
-	applymovement OAKSLAB_TRACE, Movement_BlueRunsOut
+	applymovement OAKSLAB_TRACE, Movement_TraceRunsOut
 	disappear OAKSLAB_TRACE
 	setflag ENGINE_POKEDEX
 	setevent EVENT_GOT_POKEDEX_FROM_OAK
@@ -124,63 +122,14 @@ Movement_WalkUpToProfOak:
 	step_up
 	step_end
 
-Movement_BluePicksPikachu:
-	step_down
-	step_down
-	step_right
-	step_right
-	step_up
-	step_end
-
-Movement_BluePicksEevee:
-	step_down
-	step_down
-	step_right
-	step_right
-	step_right
-	step_right
-	step_up
-	step_end
-
-Movement_BlueWalksFromEevee1:
-	step_left
-Movement_BlueWalksFromEevee2:
-	step_left
-Movement_BlueWalksFromPikachu1:
-	step_left
-Movement_BlueWalksFromPikachu2:
-	step_left
-	step_down
-	step_end
-
-Movement_BlueLeavesBattle1:
-	step_right
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_end
-
-Movement_BlueLeavesBattle2:
-	step_left
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_end
-
-Movement_BlueRunsIn:
+Movement_TraceRunsIn:
 	step_up
 	step_up
 	step_up
 	step_up
 	step_end
 
-Movement_BlueRunsOut:
+Movement_TraceRunsOut:
 	step_down
 	step_down
 	step_down
@@ -210,70 +159,6 @@ Movement_OakWalksBack2:
 	step_down
 	step_end
 
-LabBattleBlueScript:
-	playmusic MUSIC_RIVAL_ENCOUNTER
-	turnobject OAKSLAB_TRACE, DOWN
-	turnobject PLAYER, UP
-	pause 8
-	showtext OaksLabRivalChallengeText
-	winlosstext OaksLabBlueWinText, OaksLabBlueLossText
-	setlasttalked OAKSLAB_TRACE
-	checkevent EVENT_PLAYER_CHOSE_PIKACHU
-	iftrue .Pikachu
-	applymovement OAKSLAB_TRACE, Movement_BlueWalksFromPikachu1
-	loadtrainer RIVAL0, 2
-	sjump .continueBattle
-.Pikachu
-	applymovement OAKSLAB_TRACE, Movement_BlueWalksFromEevee1
-	loadtrainer RIVAL0, 1
-	sjump .continueBattle
-.continueBattle
-	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
-	startbattle
-	dontrestartmapmusic
-	reloadmap
-	playmusic MUSIC_RIVAL_AFTER
-	showtext OaksLabRivalToughenUpText
-	applymovement OAKSLAB_TRACE, Movement_BlueLeavesBattle1
-	disappear OAKSLAB_TRACE
-	special HealPartyEvenForNuzlocke
-	setevent EVENT_BATTLED_OAKSLAB_RIVAL
-	setscene $4
-	playmapmusic
-	end
-
-LabBattleBlueScript2:
-	playmusic MUSIC_RIVAL_ENCOUNTER
-	turnobject OAKSLAB_TRACE, DOWN
-	turnobject PLAYER, UP
-	pause 8
-	showtext OaksLabRivalChallengeText
-	winlosstext OaksLabBlueWinText, OaksLabBlueLossText
-	setlasttalked OAKSLAB_TRACE
-	checkevent EVENT_PLAYER_CHOSE_PIKACHU
-	iftrue .Pikachu
-	applymovement OAKSLAB_TRACE, Movement_BlueWalksFromPikachu2
-	loadtrainer RIVAL0, 2
-	sjump .continueBattle
-.Pikachu
-	applymovement OAKSLAB_TRACE, Movement_BlueWalksFromEevee2
-	loadtrainer RIVAL0, 1
-	sjump .continueBattle
-.continueBattle
-	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
-	startbattle
-	dontrestartmapmusic
-	reloadmap
-	playmusic MUSIC_RIVAL_AFTER
-	showtext OaksLabRivalToughenUpText
-	applymovement OAKSLAB_TRACE, Movement_BlueLeavesBattle2
-	disappear OAKSLAB_TRACE
-	special HealPartyEvenForNuzlocke
-	setevent EVENT_BATTLED_OAKSLAB_RIVAL
-	setscene $4
-	playmapmusic
-	end
-
 SpecialPokeballScript:
 	opentext
 	jumpthisopenedtext
@@ -290,8 +175,6 @@ OaksLabOakScript:
 ;	iftrue .EnableBattleTower
 	checkevent EVENT_GOT_POKEDEX_FROM_OAK
 	iftrue .RatePokedex
-	checkevent EVENT_GOT_OAKS_PARCEL
-	iftrue .DeliverParcel
 	checkevent EVENT_BATTLED_OAKSLAB_RIVAL
 	iftrue_jumpopenedtext OaksLabMakeItFightText
 	checkevent EVENT_GOT_STARTER
@@ -302,56 +185,6 @@ OaksLabOakScript:
 	line "which #MON do"
 	cont "you want?"
 	done
-
-.DeliverParcel
-	playmusic MUSIC_RIVAL_ENCOUNTER
-	pause 15
-	showtext OaksLabGrampsText
-	moveobject OAKSLAB_TRACE, 4, 7
-	appear OAKSLAB_TRACE
-	applymovement OAKSLAB_TRACE, Movement_BlueRunsIn
-	special RestartMapMusic
-	opentext
-	writetext OaksLabBlueWhyDidYouCallText
-	pause 8
-	writetext OaksLabIntroducePokedexText
-	closetext
-	readvar VAR_FACING
-	ifequal RIGHT, .OakWalk2
-	applymovement OAKSLAB_OAK, Movement_OakWalksToTable
-	disappear OAKSLAB_POKEDEX_1
-	disappear OAKSLAB_POKEDEX_2
-	pause 15
-	applymovement OAKSLAB_OAK, Movement_OakWalksBack
-	sjump .continue
-.OakWalk2
-	applymovement OAKSLAB_OAK, Movement_OakWalksToTable2
-	disappear OAKSLAB_POKEDEX_1
-	disappear OAKSLAB_POKEDEX_2
-	pause 15
-	applymovement OAKSLAB_OAK, Movement_OakWalksBack2
-	faceplayer
-.continue
-	opentext
-	writetext OaksLabReceivedPokedexText
-	playsound SFX_KEY_ITEM
-	waitsfx
-	promptbutton
-	writetext OaksLabDreamText
-	verbosegiveitem POKE_BALL, 10
-	faceobject OAKSLAB_TRACE, PLAYER
-	writetext OaksLabLeaveItToMeText
-	closetext
-	playmusic MUSIC_RIVAL_AFTER
-	applymovement OAKSLAB_TRACE, Movement_BlueRunsOut
-	disappear OAKSLAB_TRACE
-	setflag ENGINE_POKEDEX
-	setevent EVENT_GOT_POKEDEX_FROM_OAK
-	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
-	setmapscene VIRIDIAN_CITY, $1
-	setmapscene ROUTE_22, $1
-	special RestartMapMusic
-	end
 
 .RatePokedex
 	writetext OaksLabDexCheckText
@@ -428,23 +261,24 @@ OaksLabArrivalText:
 	cont "something for me."
 	prompt
 
-OaksLabGrampsText:
-	text "<RIVAL>: Gramps!"
+OaksLabTraceArrivesText:
+	text "<RIVAL>: Hey!"
 	done
 
-OaksLabBlueWhyDidYouCallText:
-	text "<RIVAL>: What did"
-	line "you call me for?"
+OaksLabTraceSorryText:
+	text "<RIVAL>: PHEW!"
+	line "Sorry I'm late!"
 	done
 
 OaksLabIntroducePokedexText:
-	text "Oak: Oh right! I"
-	line "have a request"
-	cont "of you two."
+	text "Oak: Ah, yes! I"
+	line "actually have a"
+	cont "request for both"
+	cont "of you."
 
 	para "On the desk there"
 	line "is my invention,"
-	cont "#dex!"
+	cont "the #dex!"
 
 	para "It automatically"
 	line "records data on"
@@ -464,55 +298,65 @@ OaksLabReceivedPokedexText:
 	line "#dex from Oak!"
 	done
 
-OaksLabDreamText:
+OaksLabRequestText:
 	text "To make a complete"
 	line "guide on all the"
 	cont "#mon in the"
 	cont "world…"
 
 	para "That was my dream!"
+	line "But..."
 
-	para "But, I'm too old!"
-	line "I can't do it!"
+	para "It's already been"
+	line "done! My dream"
+	cont "has come true!"
 
-	para "So, I want you two"
-	line "to fulfill my"
-	cont "dream for me!"
+	para "<RIVAL>: So, what"
+	line "exactly do we"
+	cont "need to do?"
 
-	para "Get moving, you"
-	line "two!"
+	para "Oak: I need you to"
+	line "find the boy who"
+	cont "completed it."
 
-	para "This is a great"
-	line "undertaking in"
-	cont "#mon history!"
+	para "His name is Red,"
+	line "and he's been"
+	cont "missing for quite"
+	cont "some time now."
 
-	para "But you can't get"
-	line "detailed data on"
-	cont "#mon by just"
-	cont "seeing them."
+	para "Not long after he"
+	line "became Champion,"
+	cont "he vanished, and"
+	cont "left this behind."
 
-	para "You must catch"
-	line "them! Use these"
-	cont "to capture wild"
-	cont "#mon."
+	para "I need you to go"
+	line "out and find him."
+	cont "Use these as your"
+	cont "#mon guide."
+
+	para "Oh, take these"
+	line "# Balls too!"
+	cont "Use them to catch"
+	cont "wild #mon!"
 	prompt
 
-OaksLabLeaveItToMeText:
-	text "<RIVAL>: Alright"
-	line "Gramps! Leave it"
-	cont "all to me!"
+OaksLabLeaveItToUsText:
+	text "<RIVAL>: I see."
+	line "Ok then! Leave it"
+	cont "all to us!"
 
-	para "<PLAYER>, I hate to"
-	line "say it, but I"
-	cont "don't need you!"
+	para "<PLAYER>, We can"
+	line "use the #dex"
+	cont "to find really"
+	cont "strong #mon to"
+	cont "help find Red!"
 
-	para "I know! I'll"
-	line "borrow a Town Map"
-	cont "from my sis!"
+	para "By the way, I"
+	line "got Town Maps"
+	cont "for both of us!"
 
-	para "I'll tell her not"
-	line "to lend you one,"
-	cont "<PLAYER>! Hahaha!"
+	para "Take one, you're"
+	line "gonna need it!"
 	done
 
 OaksLabDexCheckText:

@@ -237,14 +237,6 @@ InitializeMagikarpHouse:
 	db "Ralph@"
 
 InitializeNPCNames:
-	ld hl, .Rival
-	ld de, wRivalName
-	call .Copy
-
-	ld hl, .Backup
-	ld de, wBackupName
-	call .Copy
-
 	ld hl, .Trendy
 	ld de, wTrendyPhrase
 
@@ -253,8 +245,6 @@ InitializeNPCNames:
 	rst CopyBytes
 	ret
 
-.Rival:
-.Backup: db "???@"
 .Trendy: db "Prism@"
 
 InitializeWorld:
@@ -631,6 +621,7 @@ ProfOakSpeech:
 	call PrintText
 
 	call NamePlayer
+	call NameSecond
 
 	call ClearTileMap
 	call LoadFontsExtra
@@ -847,6 +838,18 @@ NamePlayer:
 	jmp InitName
 
 INCLUDE "data/default_player_names.asm"
+
+NameSecond:
+	ld de, wBackupName
+	ld hl, DefaultFemalePlayerName
+	ld a, [wPlayerGender]
+	bit 0, a
+	jr z, .Male
+	ld hl, DefaultMalePlayerName
+.Male:
+	ld bc, NAME_LENGTH
+	rst CopyBytes		; Assign unused name to second rival.
+	ret	
 
 NameRival:
 	ld b, $2 ; rival

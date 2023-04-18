@@ -842,7 +842,7 @@ wPlayerGender::
 
 wPlayerName:: ds NAME_LENGTH
 wRivalName:: ds NAME_LENGTH
-wBackupName:: ds NAME_LENGTH ; Might use for unused player
+wBackupName:: ds NAME_LENGTH ; For unused player
 
 wTrendyPhrase:: ds NAME_LENGTH
 

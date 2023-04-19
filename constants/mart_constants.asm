@@ -1,17 +1,17 @@
 ; mart types (see engine/items/mart.asm)
 	const_def
-	const MARTTYPE_STANDARD
-	const MARTTYPE_BITTER
-	const MARTTYPE_BARGAIN
-	const MARTTYPE_PHARMACY
-	const MARTTYPE_ROOFTOP
-	const MARTTYPE_SILPH
-	const MARTTYPE_ADVENTURER
-	const MARTTYPE_INFORMAL
-	const MARTTYPE_BAZAAR
-	const MARTTYPE_TM
-	const MARTTYPE_BLUECARD
-	const MARTTYPE_BP
+	const MARTTYPE_STANDARD		; Repurpose to fill stock based on Story Progression
+	const MARTTYPE_BITTER		; Herb Shop (Unused, or sell mints)
+	const MARTTYPE_BARGAIN		; Bargain Shop (Maybe use)
+	const MARTTYPE_PHARMACY		; Unused
+	const MARTTYPE_ROOFTOP		; Goldenrod Rooftop Sale (Unused???)
+	const MARTTYPE_SILPH		; Silph Shop
+	const MARTTYPE_ADVENTURER	; Maybe Unused
+	const MARTTYPE_INFORMAL		; Yellow Forest - Unused
+	const MARTTYPE_BAZAAR		; Unused
+	const MARTTYPE_TM			; TMs
+	const MARTTYPE_BLUECARD		; Radio Tower - Unused
+	const MARTTYPE_BP			; Battle Tower Points
 
 ; Marts indexes (see data/items/marts.asm)
 	const_def

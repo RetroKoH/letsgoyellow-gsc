@@ -336,9 +336,6 @@ ALWAYS_ITEM_2  EQU $ff
 	const NAM_BRICK_PIECE
 	const NAM_BRIGHTPOWDER
 	const NAM_BURN_HEAL
-if !DEF(FAITHFUL)
-	const NAM_RAGECANDYBAR ; Cake of Rage
-endc
 	const NAM_CALCIUM
 	const NAM_CARBOS
 	const NAM_CELL_BATTERY
@@ -496,9 +493,7 @@ endc
 	const NAM_QUICK_BALL
 	const NAM_QUICK_CLAW
 	const NAM_QUICK_POWDER
-if DEF(FAITHFUL)
 	const NAM_RAGECANDYBAR
-endc
 	const NAM_RARE_BONE
 	const NAM_RARE_CANDY
 	const NAM_RAWST_BERRY
@@ -590,30 +585,30 @@ NUM_APRICORNS EQU const_value - 1
 	const OLD_ROD      ; 01
 	const GOOD_ROD     ; 02
 	const SUPER_ROD    ; 03
-	const COIN_CASE    ; 04
+	const COIN_CASE    ; 04 - Replace with Candy Jar
 	const ITEMFINDER   ; 05
 	const MYSTERY_EGG  ; 06
-	const OAKS_PARCEL  ; 07
-	const SECRETPOTION ; 08
-	const RED_SCALE    ; 09
+	const TOWN_MAP     ; 07
+	const SECRETPOTION ; 08 - UNUSED
+	const RED_SCALE    ; 09 - Unlocks Shiny Pokemon
 	const CARD_KEY     ; 0a
 	const BASEMENT_KEY ; 0b
 	const S_S_TICKET   ; 0c
 	const PASS         ; 0d
 	const MACHINE_PART ; 0e
 	const LOST_ITEM    ; 0f
-	const RAINBOW_WING ; 10
-	const SILVER_WING  ; 11
-	const CLEAR_BELL   ; 12
-	const GS_BALL      ; 13
-	const BLUE_CARD    ; 14
-	const ORANGETICKET ; 15
-	const MYSTICTICKET ; 16
+	const RAINBOW_WING ; 10 - UNUSED
+	const SILVER_WING  ; 11 - UNUSED
+	const CLEAR_BELL   ; 12 - UNUSED
+	const GS_BALL      ; 13 - UNUSED
+	const BLUE_CARD    ; 14 - UNUSED
+	const ORANGETICKET ; 15 - UNUSED
+	const MYSTICTICKET ; 16 - UNUSED
 	const OLD_SEA_MAP  ; 17
 	const SHINY_CHARM  ; 18
 	const OVAL_CHARM   ; 19
 	const CATCH_CHARM  ; 1a
-	const SILPHSCOPE2  ; 1b
+	const SILPHSCOPE2  ; 1b - UNUSED???
 	const APRICORN_BOX ; 1c
 	const TYPE_CHART   ; 1d
 NUM_KEY_ITEMS EQU const_value

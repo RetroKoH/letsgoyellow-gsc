@@ -8,7 +8,7 @@ KeyItemNames::
 	li "Coin Case"
 	li "Itemfinder"
 	li "Mystery Egg"
-	li "Oak's Parcel"
+	li "Town Map"
 	li "SecretPotion"
 	li "Red Scale"
 	li "Card Key"

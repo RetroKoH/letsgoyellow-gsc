@@ -59,11 +59,7 @@ ItemNames::
 	li "Soda Pop"
 	li "Lemonade"
 	li "Moomoo Milk"
-if DEF(FAITHFUL)
 	li "RageCandyBar"
-else
-	li "Cake of Rage"
-endc
 	li "PewterCrunch"
 	li "Sacred Ash"
 	li "EnergyPowder"
@@ -77,11 +73,7 @@ endc
 	li "X Spcl.Def"
 	li "X Accuracy"
 	li "Dire Hit"
-if DEF(FAITHFUL)
 	li "Guard Spec."
-else
-	li "Guard Stats"
-endc
 	li "Repel"
 	li "Super Repel"
 	li "Max Repel"

@@ -39,7 +39,6 @@ ContactMoves:
 	db HEADBUTT
 	db HI_JUMP_KICK
 	db HORN_ATTACK
-	db HORN_DRILL
 	db HYPER_FANG
 	db ICE_PUNCH
 	db IRON_HEAD
@@ -70,6 +69,7 @@ ContactMoves:
 	db SEISMIC_TOSS
 	db SHADOW_CLAW
 	db SLASH
+	db SMART_STRIKE
 	db SPARK
 	db STEEL_WING
 	db STOMP

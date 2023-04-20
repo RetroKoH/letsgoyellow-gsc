@@ -29,7 +29,7 @@ BattleAnimations::
 	dw BattleAnim_FlareBlitz
 	dw BattleAnim_StoneEdge
 	dw BattleAnim_FocusBlast
-	dw BattleAnim_HornDrill
+	dw BattleAnim_SmartStrike
 	dw BattleAnim_Headbutt
 	dw BattleAnim_HornAttack
 	dw BattleAnim_Trick
@@ -3911,7 +3911,7 @@ BattleAnim_Spikes:
 	anim_wait 64
 	anim_ret
 
-BattleAnim_HornDrill: ; Need to fix
+BattleAnim_SmartStrike: ; WAS Horn Drill. Need to fix
 	anim_2gfx ANIM_GFX_HORN, ANIM_GFX_HIT
 	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $40
 	anim_obj ANIM_OBJ_HORN,   9, 0,  10, 0, $3

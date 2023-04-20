@@ -1305,7 +1305,7 @@ RhyperiorLearnset:
 	db 48, EARTHQUAKE
 	db 55, CLOSE_COMBAT ; Megahorn → new move
 	db 62, MEGAHORN ; Horn Drill → Megahorn
-	db 81, HORN_DRILL
+	db 81, SMART_STRIKE
 	db 0 ; no more level-up moves
 
 HappinyLearnset:

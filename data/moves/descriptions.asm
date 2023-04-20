@@ -28,7 +28,7 @@ MoveDescriptions::
 	dw FlareBlitzDescription
 	dw StoneEdgeDescription
 	dw FocusBlastDescription
-	dw HornDrillDescription
+	dw SmartStrikeDescription
 	dw HeadbuttDescription
 	dw HornAttackDescription
 	dw TrickDescription
@@ -288,6 +288,7 @@ FeintAttackDescription:
 DisarmVoiceDescription:
 AerialAceDescription:
 AuraSphereDescription:
+SmartStrikeDescription:
 	db   "An attack that"
 	next "never misses.@"
 

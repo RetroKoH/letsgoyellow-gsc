@@ -28,7 +28,7 @@ MoveNames::
 	li "Flare Blitz"
 	li "Stone Edge"
 	li "Focus Blast"
-	li "Horn Drill"
+	li "Smart Strike"
 	li "Headbutt"
 	li "Horn Attack"
 	li "Trick"

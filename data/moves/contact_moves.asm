@@ -51,7 +51,6 @@ ContactMoves:
 	db LOW_SWEEP
 	db MACH_PUNCH
 	db MEGAHORN
-	db MEGA_PUNCH
 	db METAL_CLAW
 	db NIGHT_SLASH
 	db OUTRAGE
@@ -84,6 +83,7 @@ ContactMoves:
 	db THUNDERPUNCH
 	db U_TURN
 	db VINE_WHIP
+	db VISE_GRIP
 	db WATERFALL
 	db WILD_CHARGE
 	db WING_ATTACK

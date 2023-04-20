@@ -1305,7 +1305,6 @@ RhyperiorLearnset:
 	db 48, EARTHQUAKE
 	db 55, CLOSE_COMBAT ; Megahorn → new move
 	db 62, MEGAHORN ; Horn Drill → Megahorn
-	db 72, MEGA_PUNCH
 	db 81, HORN_DRILL
 	db 0 ; no more level-up moves
 

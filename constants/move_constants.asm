@@ -9,7 +9,7 @@
 	const STRIKE       ; $01 - POUND, SCRATCH, TACKLE
 	const ACROBATICS   ; $02
 	const LOW_SWEEP    ; $03
-	const MEGA_PUNCH   ; $04
+	const VISE_GRIP    ; $04
 	const AERIAL_ACE   ; $05
 	const DRAGON_CLAW  ; $06
 	const PAY_DAY      ; $07

@@ -4,7 +4,7 @@ MoveDescriptions::
 	dw StrikeDescription
 	dw AcrobaticsDescription
 	dw LowSweepDescription
-	dw MegaPunchDescription
+	dw ViseGripDescription
 	dw AerialAceDescription
 	dw DragonClawDescription
 	dw PayDayDescription
@@ -299,10 +299,6 @@ DrainPunchDescription:
 	db   "Steals 1/2 of the"
 	next "damage inflicted.@"
 
-MegaPunchDescription:
-	db   "A powerful punch"
-	next "thrown very hard.@"
-
 FuryStrikesDescription:
 	db   "Scratches or jabs"
 	next "2-5 times.@"
@@ -432,6 +428,7 @@ IronTailDescription:
 
 LowSweepDescription:
 BubbleBeamDescription:
+ViseGripDescription:
 	db   "An attack that may"
 	next "lower Speed.@"
 

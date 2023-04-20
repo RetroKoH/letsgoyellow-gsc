@@ -5,7 +5,7 @@ BattleAnimations::
 	dw BattleAnim_Scratch ; Variable (Pound, Scratch, Tackle)
 	dw BattleAnim_Acrobatics
 	dw BattleAnim_LowKick ; Modify Animation
-	dw BattleAnim_MegaPunch
+	dw BattleAnim_ViseGrip
 	dw BattleAnim_AerialAce
 	dw BattleAnim_DragonClaw
 	dw BattleAnim_PayDay
@@ -747,20 +747,28 @@ BattleAnim_KarateChop:
 	anim_wait 16
 	anim_ret
 
-BattleAnim_MegaPunch:
-	anim_1gfx ANIM_GFX_HIT
-	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $40, $2, $0
-	anim_wait 48
-	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
-.loop
-	anim_sound 0, 1, SFX_MEGA_PUNCH
-	anim_obj ANIM_OBJ_PUNCH, -15, 0,   7, 0, $0
-	anim_obj ANIM_OBJ_HIT_BIG_YFIX, -15, 0,   7, 0, $0
-	anim_wait 6
-	anim_obj ANIM_OBJ_PUNCH, -15, 0,   7, 0, $0
-	anim_wait 6
-	anim_loop 3, .loop
+BattleAnim_ViseGrip:
+	anim_1gfx ANIM_GFX_CUT
+	anim_sound 0, 1, SFX_VICEGRIP
+	anim_obj ANIM_OBJ_CUT_DOWN_LEFT, 152, 40, $0
+	anim_obj ANIM_OBJ_CUT_UP_RIGHT, 120, 72, $0
+	anim_wait 32
 	anim_ret
+
+;BattleAnim_MegaPunch:
+;	anim_1gfx ANIM_GFX_HIT
+;	anim_bgeffect ANIM_BG_SHAKE_SCREEN_X, $40, $2, $0
+;	anim_wait 48
+;	anim_bgeffect ANIM_BG_FLASH_INVERTED, $0, $8, $3
+;.loop
+;	anim_sound 0, 1, SFX_MEGA_PUNCH
+;	anim_obj ANIM_OBJ_PUNCH, -15, 0,   7, 0, $0
+;	anim_obj ANIM_OBJ_HIT_BIG_YFIX, -15, 0,   7, 0, $0
+;	anim_wait 6
+;	anim_obj ANIM_OBJ_PUNCH, -15, 0,   7, 0, $0
+;	anim_wait 6
+;	anim_loop 3, .loop
+;	anim_ret
 
 BattleAnim_Stomp:
 	anim_1gfx ANIM_GFX_HIT

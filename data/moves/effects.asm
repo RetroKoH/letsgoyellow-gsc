@@ -27,7 +27,6 @@ KarateChop:
 MachPunch:
 Megahorn:
 MegaKick:
-MegaPunch:
 NightSlash:
 Peck:
 PowerGem:
@@ -595,6 +594,7 @@ BrickBreak:
 
 SpeedDownHit:
 IcyWind:
+ViseGrip:
 BubbleBeam:
 Bulldoze:
 	checkobedience

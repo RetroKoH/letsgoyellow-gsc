@@ -4,7 +4,7 @@ MoveNames::
 	li "Strike"
 	li "Acrobatics"
 	li "Low Sweep"
-	li "Mega Punch"
+	li "Vise Grip"
 	li "Aerial Ace"
 	li "Dragon Claw"
 	li "Pay Day"

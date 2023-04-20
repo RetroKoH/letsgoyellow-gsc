@@ -179,7 +179,7 @@ MoveDescriptions::
 	dw EnergyBallDescription
 	dw AeroblastDescription
 	dw SeedBombDescription
-	dw ReversalDescription
+	dw FlailDescription
 	dw FakeOutDescription
 	dw IceShardDescription
 	dw ProtectDescription
@@ -936,7 +936,7 @@ CurseDescription:
 	db   "Works differently"
 	next "for Ghost-types.@"
 
-ReversalDescription:
+FlailDescription:
 	db   "Stronger if the"
 	next "user's HP is low.@"
 

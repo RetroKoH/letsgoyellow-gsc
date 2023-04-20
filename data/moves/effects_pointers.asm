@@ -100,7 +100,7 @@ MoveEffectsPointers:
 	dw Sketch
 	dw Coil
 	dw DestinyBond
-	dw Reversal
+	dw Flail
 	dw FuryCutter
 	dw FakeOut
 	dw HealBell

@@ -1,4 +1,4 @@
-ReversalPower:
+FlailPower:
 	; HP px, BP
 	db  1, 200
 	db  4, 150

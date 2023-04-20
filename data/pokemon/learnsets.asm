@@ -833,7 +833,7 @@ MachampLearnset:
 	db 24, BULK_UP
 	db 30, DYNAMICPUNCH
 	db 36, CROSS_CHOP
-	db 42, REVERSAL ; Superpower
+	db 42, FLAIL ; Superpower
 	db 48, CLOSE_COMBAT
 	db 54, DOUBLE_EDGE
 	db 0 ; no more level-up moves
@@ -1004,7 +1004,7 @@ DodrioLearnset:
 	db 38, SWORDS_DANCE
 	db 43, HI_JUMP_KICK ; Jump Kick → similar move
 	db 47, DRILL_PECK
-	db 52, REVERSAL ; Endeavor → new move
+	db 52, FLAIL ; Endeavor → new move
 	db 56, THRASH
 	db 0 ; no more level-up moves
 
@@ -1148,7 +1148,7 @@ KinglerLearnset:
 	db 44, CLOSE_COMBAT ; Slam → new move
 	db 51, CRABHAMMER ; Brine → Crabhammer
 	db 56, ANCIENTPOWER ; Crabhammer → HGSS tutor move
-	db 63, REVERSAL ; Flail → new move
+	db 63, FLAIL ; Flail → new move
 	db 0 ; no more level-up moves
 
 VoltorbLearnset:
@@ -1218,11 +1218,11 @@ HitmontopLearnset:
 	db 29, HI_JUMP_KICK
 	db 33, DOUBLE_TEAM ; Mind Reader → TM move
 	db 37, FORESIGHT
-	db 45, REVERSAL ; Blaze Kick → Reversal
+	db 45, FLAIL ; Blaze Kick → FLAIL
 	db 49, ENDURE
 	db 53, FOCUS_BLAST ; Mega Kick → TM move
 	db 57, CLOSE_COMBAT
-	db 61, COUNTER ; Reversal → TM move
+	db 61, COUNTER ; FLAIL → TM move
 	db 0 ; no more level-up moves
 
 TyrogueLearnset:
@@ -1352,57 +1352,48 @@ TangrowthLearnset:
 	db 50, POWER_WHIP
 	db 0 ; no more level-up moves
 
+KangaskidLearnset:
 KangaskhanLearnset:
-	db 1, DIZZY_PUNCH ; Comet Punch → Dizzy Punch
+	db 1, TACKLE ; POUND
 	db 1, LEER
-	db 7, LOW_KICK ; Fake Out → HGSS tutor move
-	db 10, BITE ; Tail Whip → Bite
-	db 13, HEADBUTT ; Bite → tutor move
-	db 19, DOUBLE_KICK ; Double Hit → new move
-	db 22, FURY_CUTTER
-	db 25, TAKE_DOWN ; Mega Punch → RBY TM move
-	db 31, STOMP ; Chip Away → egg move
-	db 34, MACH_PUNCH ; Dizzy Punch → new move
-	db 37, CRUNCH
-	db 43, ENDURE
-	db 46, OUTRAGE
-	db 49, SUCKER_PUNCH
-	db 50, REVERSAL
+	db 1, FLAIL ; FLAIL - Kid's move
+	db 8, FAKE_OUT
+	db 16, BITE
+	db 24, DRAIN_PUNCH
+	db 32, CRUNCH
+	db 40, OUTRAGE
+	db 48, SUCKER_PUNCH
 	db 0 ; no more level-up moves
 
 HorseaLearnset:
 SeadraLearnset:
 KingdraLearnset:
-	db 1, WATER_GUN ; Bubble → similar move
-	db 5, SMOKESCREEN
-	db 9, LEER
-	db 13, BUBBLE_BEAM ; Water Gun → Bubble Beam
-	db 17, AQUA_JET ; Twister → new move
-	db 21, WATER_PULSE ; Bubble Beam → TM move
-	db 31, OUTRAGE ; Brine → HGSS tutor move
-	db 38, AGILITY
-	db 45, DRAGON_PULSE
-	db 52, DRAGON_DANCE
-	db 60, HYDRO_PUMP
+	db 1, WATER_GUN
+	db 1, LEER
+	db 3, SMOKESCREEN
+	db 9, BUBBLE_BEAM
+	db 15, AQUA_JET ; Twister → new move
+	db 21, DRAGONBREATH
+	db 27, WATERFALL
+	db 33, AGILITY
+	db 39, DRAGON_PULSE
+	db 45, HYDRO_PUMP
+	db 51, RAIN_DANCE
 	db 0 ; no more level-up moves
 
 GoldeenLearnset:
 SeakingLearnset:
-	db 1, POISON_JAB
 	db 1, PECK
 	db 1, LEER ; Tail Whip → similar move
-	db 1, WATER_GUN ; Water Sport → RBY TM move
 	db 5, SUPERSONIC
-	db 8, HORN_ATTACK
-	db 13, REVERSAL ; Flail → similar move
-	db 16, WATER_PULSE
-	db 21, HAZE ; Aqua Ring → egg move
-	db 24, FURY_STRIKES ; Fury Attack → similar moves
-	db 29, AGILITY
-	db 32, WATERFALL
-	db 40, BODY_SLAM ; Horn Drill → tutor move
-	db 46, KNOCK_OFF ; Soak → tutor move
-	db 54, MEGAHORN
+	db 10, WATER_GUN ; Water Pulse?
+	db 15, HORN_ATTACK
+	db 20, FURY_STRIKES ; Fury Attack → similar moves
+	db 25, FLAIL ; Flail → similar move
+	db 30, WATERFALL
+	db 35, AGILITY
+	db 40, BODY_SLAM ; SMART STRIKE
+	db 45, MEGAHORN
 	db 0 ; no more level-up moves
 
 StaryuLearnset:
@@ -1548,13 +1539,13 @@ MiltankLearnset:
 MagikarpLearnset:
 	db 1, SPLASH
 	db 15, TACKLE
-	db 25, REVERSAL ; Flail
+	db 25, FLAIL ; Flail
 	db 0 ; no more level-up moves
 
 GyaradosLearnset:
 ; Add DRAGON DANCE?
 	db 1, BITE ; evolution move
-	db 1, REVERSAL ; Flail
+	db 1, FLAIL ; Flail
 	db 1, THRASH
 	db 1, FIRE_SPIN ; WHIRLPOOL
 	db 5, LEER
@@ -1678,7 +1669,7 @@ MunchlaxLearnset:
 SnorlaxLearnset:
 	db 1, LICK
 	db 1, TACKLE
-	db 1, REVERSAL ; FLAIL
+	db 1, FLAIL ; FLAIL
 	db 6, DEFENSE_CURL
 ;	db 12, YAWN
 	db 18, BITE
@@ -1870,7 +1861,7 @@ LanturnLearnset:
 	db 20, WATER_PULSE ; Bubble Beam → TM move
 	db 23, SPARK
 	db 29, PSYBEAM ; Signal Beam → egg move
-	db 33, REVERSAL ; Flail → similar move
+	db 33, FLAIL ; Flail → similar move
 	db 37, THUNDERBOLT ; Discharge → TM move
 	db 43, TAKE_DOWN
 	db 47, RECOVER ; Aqua Ring → similar move
@@ -1932,7 +1923,7 @@ AzumarillLearnset:
 	db 28, RAIN_DANCE
 	db 32, HYDRO_PUMP
 	db 36, DOUBLE_EDGE
-	db 40, REVERSAL ; Superpower
+	db 40, FLAIL ; Superpower
 	db 0 ; no more level-up moves
 
 YanmaLearnset:

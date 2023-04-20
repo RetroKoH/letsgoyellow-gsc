@@ -49,7 +49,6 @@ PidgeyEggMoves:
 RattataPlainEggMoves:
 RattataAlolanEggMoves:
 	db FURY_STRIKES
-	db REVERSAL
 	db SCREECH
 	db BITE
 	db COUNTER
@@ -86,7 +85,7 @@ SandshrewAlolanEggMoves:
 	db AMNESIA
 	db RAPID_SPIN
 	db SAFEGUARD
-	db REVERSAL ; Flail → similar move
+	db FLAIL
 	db ICICLE_CRASH
 	db ICICLE_SPEAR
 	db NIGHT_SLASH
@@ -190,7 +189,6 @@ DiglettAlolanEggMoves:
 	db FEINT_ATTACK
 	db HEADBUTT
 	db PURSUIT
-	db REVERSAL
 	db SCREECH
 	db $ff
 
@@ -220,7 +218,6 @@ MankeyEggMoves:
 	db ENCORE
 	db FORESIGHT
 	db BULK_UP
-	db REVERSAL
 	db ROCK_SLIDE
 	db COUNTER
 	db GUNK_SHOT
@@ -436,7 +433,6 @@ RhyhornEggMoves:
 	db CRUNCH
 	db DRILL_RUN
 	db PURSUIT
-	db REVERSAL
 	db THRASH
 	db ROCK_SLIDE
 	db COUNTER
@@ -491,7 +487,6 @@ MrMimeEggMoves:
 ScytherEggMoves:
 	db BATON_PASS
 	db BUG_BUZZ
-	db REVERSAL
 	db COUNTER
 	db SAFEGUARD
 	db LIGHT_SCREEN
@@ -575,7 +570,6 @@ CyndaquilEggMoves:
 	db FLARE_BLITZ
 	db FORESIGHT
 	db FURY_STRIKES
-	db REVERSAL
 	db CLOSE_COMBAT
 	db THRASH
 	db QUICK_ATTACK
@@ -597,7 +591,6 @@ SentretEggMoves:
 	db CHARM
 	db FOCUS_ENERGY
 	db PURSUIT
-	db REVERSAL
 	db SLASH
 	db DOUBLE_EDGE
 	db TRICK
@@ -646,7 +639,6 @@ ChinchouEggMoves:
 PichuEggMoves:
 	db DISARM_VOICE
 	db ENCORE
-	db REVERSAL
 	db $ff
 
 MunchlaxEggMoves:
@@ -685,7 +677,6 @@ SunkernEggMoves:
 YanmaEggMoves:
 	db FEINT_ATTACK
 	db LEECH_LIFE
-	db REVERSAL
 	db $ff
 
 WooperEggMoves:
@@ -817,7 +808,6 @@ HoundourEggMoves:
 	db FIRE_SPIN
 	db PURSUIT
 	db RAGE
-	db REVERSAL
 	db COUNTER
 	db WILL_O_WISP
 	db $ff
@@ -860,7 +850,6 @@ MagbyEggMoves:
 
 MiltankEggMoves:
 	db DIZZY_PUNCH
-	db REVERSAL
 	db SEISMIC_TOSS
 	db $ff
 

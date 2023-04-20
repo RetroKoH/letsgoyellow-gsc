@@ -2,7 +2,7 @@ INCLUDE "data/battle/critical_hit_chances.asm"
 INCLUDE "data/items/edible_berries.asm"
 INCLUDE "data/moves/continuous_moves.asm"
 INCLUDE "data/moves/critical_hit_moves.asm"
-INCLUDE "data/moves/reversal_power.asm"
+INCLUDE "data/moves/flail_power.asm"
 INCLUDE "data/pokemon/fury_attack_users.asm"
 INCLUDE "data/pokemon/withdraw_harden_users.asm"
 INCLUDE "data/types/inverse_type_matchups.asm"
@@ -4099,8 +4099,8 @@ BattleCommand_constantdamage:
 	cp EFFECT_SUPER_FANG
 	jr z, .super_fang
 
-	cp EFFECT_REVERSAL
-	jr z, .reversal
+	cp EFFECT_FLAIL
+	jr z, .flail
 
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVar
@@ -4137,13 +4137,13 @@ BattleCommand_constantdamage:
 	ld [hl], b
 	ret
 
-.reversal
+.flail
 	ld hl, wBattleMonHP
 	ldh a, [hBattleTurn]
 	and a
-	jr z, .reversal_got_hp
+	jr z, .flail_got_hp
 	ld hl, wEnemyMonHP
-.reversal_got_hp
+.flail_got_hp
 	xor a
 	ldh [hDividend], a
 	ldh [hMultiplicand + 0], a
@@ -4184,14 +4184,14 @@ BattleCommand_constantdamage:
 	call Divide
 	ldh a, [hQuotient + 2]
 	ld b, a
-	ld hl, ReversalPower
+	ld hl, FlailPower
 
-.reversal_loop
+.flail_loop
 	ld a, [hli]
 	cp b
 	jr nc, .break_loop
 	inc hl
-	jr .reversal_loop
+	jr .flail_loop
 
 .break_loop
 	ld a, [hl]

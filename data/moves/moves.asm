@@ -190,7 +190,7 @@ Moves::
 	move ENERGY_BALL,  EFFECT_SP_DEF_DOWN_HIT,    90, GRASS,     100, 10,  10, SPECIAL
 	move AEROBLAST,    EFFECT_NORMAL_HIT,        100, FLYING,     95,  5,   0, SPECIAL
 	move SEED_BOMB,    EFFECT_NORMAL_HIT,         80, GRASS,     100, 15,   0, PHYSICAL
-	move REVERSAL,     EFFECT_REVERSAL,            1, FIGHTING,  100, 15,   0, PHYSICAL
+	move FLAIL,        EFFECT_FLAIL,               1, NORMAL,    100, 15,   0, PHYSICAL
 	move FAKE_OUT,     EFFECT_FAKE_OUT,           40, NORMAL,    100, 10, 100, PHYSICAL
 	move ICE_SHARD,    EFFECT_PRIORITY_HIT,       40, ICE,       100, 30,   0, PHYSICAL
 	move PROTECT,      EFFECT_PROTECT,             0, NORMAL,    100, 10,   0, STATUS

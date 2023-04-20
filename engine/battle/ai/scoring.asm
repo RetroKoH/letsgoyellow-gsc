@@ -1607,7 +1607,7 @@ AI_Smart_Endure:
 	call AICheckEnemyQuarterHP
 	jr c, .asm_38fd9
 
-	ld b, EFFECT_REVERSAL
+	ld b, EFFECT_FLAIL
 	call AIHasMoveEffect
 	jr nc, .asm_38fcb
 
@@ -2481,8 +2481,8 @@ AIDamageCalc:
 	jr z, .low_kick
 	cp EFFECT_RETURN
 	jr z, .return
-	cp EFFECT_REVERSAL
-	jr z, .reversal
+	cp EFFECT_FLAIL
+	jr z, .flail
 	ld hl, .ConstantDamageEffects
 	call IsInByteArray
 	jr nc, .regular_damage
@@ -2524,7 +2524,7 @@ AIDamageCalc:
 	farcall BattleCommand_damagestats
 	farcall BattleCommand_happinesspower
 	jr .damagecalc
-.reversal
+.flail
 	farcall BattleCommand_constantdamage
 	jr .stab
 .regular_damage

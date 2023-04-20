@@ -184,7 +184,7 @@
 	const ENERGY_BALL  ; $b0
 	const AEROBLAST    ; $b1
 	const SEED_BOMB    ; $b2
-	const REVERSAL     ; $b3
+	const FLAIL        ; $b3 ; was REVERSAL
 	const FAKE_OUT     ; $b4
 	const ICE_SHARD    ; $b5
 	const PROTECT      ; $b6

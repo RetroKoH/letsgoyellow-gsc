@@ -28,6 +28,7 @@ ContactMoves:
 	db FAKE_OUT
 	db FEINT_ATTACK
 	db FIRE_PUNCH
+	db FLAIL
 	db FLAME_CHARGE
 	db FLARE_BLITZ
 	db FLY
@@ -65,7 +66,6 @@ ContactMoves:
 	db RAGE
 	db RAPID_SPIN
 	db RETURN
-	db REVERSAL
 	db ROCK_SMASH
 	db ROLLOUT
 	db SCRATCH

@@ -179,7 +179,7 @@ MoveNames::
 	li "Energy Ball"
 	li "Aeroblast"
 	li "Seed Bomb"
-	li "Reversal"
+	li "Flail"
 	li "Fake Out"
 	li "Ice Shard"
 	li "Protect"

@@ -180,7 +180,7 @@ BattleAnimations::
 	dw BattleAnim_EnergyBall
 	dw BattleAnim_Aeroblast
 	dw BattleAnim_SeedBomb
-	dw BattleAnim_Reversal
+	dw BattleAnim_Flail
 	dw BattleAnim_FakeOut ; Need New Animation
 	dw BattleAnim_IceShard
 	dw BattleAnim_Protect
@@ -3628,7 +3628,7 @@ BattleAnim_EnergyBall:
 	anim_wait 1
 	anim_ret
 
-BattleAnim_Reversal:
+BattleAnim_Flail:
 	anim_2gfx ANIM_GFX_SHINE, ANIM_GFX_HIT
 	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $0, $0
 	anim_sound 0, 1, SFX_MEGA_PUNCH

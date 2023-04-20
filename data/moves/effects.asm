@@ -1593,7 +1593,7 @@ DestinyBond:
 	destinybond
 	endmove
 
-Reversal:
+Flail:
 	checkobedience
 	usedmovetext
 	doturn

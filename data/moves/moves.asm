@@ -12,6 +12,7 @@ ENDM
 Moves::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	table_width MOVE_LENGTH, Moves
+	move STRIKE,       EFFECT_NORMAL_HIT,         40, NORMAL,    100, 35,   0, PHYSICAL ; POUND, SCRATCH, TACKLE
 	move ACROBATICS,   EFFECT_CONDITIONAL_BOOST,  55, FLYING,    100, 15,   0, PHYSICAL
 	move LOW_SWEEP,    EFFECT_SPEED_DOWN_HIT,     65, FIGHTING,  100, 20,   0, PHYSICAL
 	move MEGA_PUNCH,   EFFECT_NORMAL_HIT,         80, NORMAL,     85, 20,   0, PHYSICAL
@@ -21,7 +22,6 @@ Moves::
 	move FIRE_PUNCH,   EFFECT_BURN_HIT,           75, FIRE,      100, 15,  10, PHYSICAL
 	move ICE_PUNCH,    EFFECT_FREEZE_HIT,         75, ICE,       100, 15,  10, PHYSICAL
 	move THUNDERPUNCH, EFFECT_PARALYZE_HIT,       75, ELECTRIC,  100, 15,  10, PHYSICAL
-	move SCRATCH,      EFFECT_NORMAL_HIT,         40, NORMAL,    100, 35,   0, PHYSICAL
 	move X_SCISSOR,    EFFECT_NORMAL_HIT,         80, BUG,       100, 15,   0, PHYSICAL
 	move NIGHT_SLASH,  EFFECT_NORMAL_HIT,         70, DARK,      100, 15,   0, PHYSICAL
 	move AIR_SLASH,    EFFECT_FLINCH_HIT,         75, FLYING,     95, 15,  30, SPECIAL
@@ -44,7 +44,7 @@ Moves::
 	move HORN_ATTACK,  EFFECT_NORMAL_HIT,         65, NORMAL,    100, 25,   0, PHYSICAL
 	move TRICK,        EFFECT_TRICK,               0, PSYCHIC,   100, 10,   0, STATUS
 	move HEX,          EFFECT_CONDITIONAL_BOOST,  65, GHOST,     100, 10,   0, SPECIAL
-	move TACKLE,       EFFECT_NORMAL_HIT,         40, NORMAL,    100, 35,   0, PHYSICAL
+	move TACKLE,       EFFECT_NORMAL_HIT,         40, NORMAL,    100, 35,   0, PHYSICAL ; Unused
 	move BODY_SLAM,    EFFECT_BODY_SLAM,          85, NORMAL,    100, 15,  30, PHYSICAL
 	move WRAP,         EFFECT_TRAP,               15, NORMAL,     90, 20,   0, PHYSICAL
 	move TAKE_DOWN,    EFFECT_RECOIL_HIT,         90, NORMAL,     85, 20,   0, PHYSICAL

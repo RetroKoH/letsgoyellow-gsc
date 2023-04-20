@@ -1,6 +1,7 @@
 MoveDescriptions::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	table_width 2, MoveDescriptions
+	dw StrikeDescription
 	dw AcrobaticsDescription
 	dw LowSweepDescription
 	dw MegaPunchDescription
@@ -10,7 +11,6 @@ MoveDescriptions::
 	dw FirePunchDescription
 	dw IcePunchDescription
 	dw ThunderpunchDescription
-	dw ScratchDescription
 	dw XScissorDescription
 	dw NightSlashDescription
 	dw AirSlashDescription
@@ -262,6 +262,13 @@ MoveDescriptions::
 
 Move00Description:
 	db "?@"
+
+StrikeDescription:
+PoundDescription:
+ScratchDescription:
+TackleDescription:
+	db   "Attacks with a"
+	next "part of its body.@"
 
 RazorLeafDescription:
 CrabhammerDescription:
@@ -756,10 +763,6 @@ ExtremespeedDescription:
 	db   "A powerful first-"
 	next "strike attack.@"
 
-ScratchDescription:
-	db   "Scratches with"
-	next "sharp claws.@"
-
 PeckDescription:
 	db   "Jabs the foe with"
 	next "a beak, etc.@"
@@ -783,10 +786,6 @@ GustDescription:
 WingAttackDescription:
 	db   "Strikes the foe"
 	next "with wings.@"
-
-TackleDescription:
-	db   "A full-body charge"
-	next "attack.@"
 
 HornAttackDescription:
 	db   "An attack using a"

@@ -6,16 +6,16 @@
 ; - BattleAnimations (see data/moves/animations.asm)
 	const_def
 	const NO_MOVE      ; $00
-	const ACROBATICS   ; $01
-	const LOW_SWEEP    ; $02
-	const MEGA_PUNCH   ; $03
-	const AERIAL_ACE   ; $04
-	const DRAGON_CLAW  ; $05
-	const PAY_DAY      ; $06
-	const FIRE_PUNCH   ; $07
-	const ICE_PUNCH    ; $08
-	const THUNDERPUNCH ; $09
-	const SCRATCH      ; $0a
+	const STRIKE       ; $01 - POUND, SCRATCH, TACKLE
+	const ACROBATICS   ; $02
+	const LOW_SWEEP    ; $03
+	const MEGA_PUNCH   ; $04
+	const AERIAL_ACE   ; $05
+	const DRAGON_CLAW  ; $06
+	const PAY_DAY      ; $07
+	const FIRE_PUNCH   ; $08
+	const ICE_PUNCH    ; $09
+	const THUNDERPUNCH ; $0a
 	const X_SCISSOR    ; $0b
 	const NIGHT_SLASH  ; $0c
 	const AIR_SLASH    ; $0d
@@ -38,7 +38,7 @@
 	const HORN_ATTACK  ; $1e
 	const TRICK        ; $1f
 	const HEX          ; $20
-	const TACKLE       ; $21
+	const TACKLE       ; $21 - Unused
 	const BODY_SLAM    ; $22
 	const WRAP         ; $23
 	const TAKE_DOWN    ; $24

@@ -1,8 +1,8 @@
-; MOVE VARIATIONS: Tackle
+; MOVE VARIATIONS: Strike
 ; these tables must be together
 
 PoundUsers:
-; Tackle += Pound
+; Strike += Pound
 	db CLEFFA
 	db CLEAFIRY
 	db CLEFABLE
@@ -30,11 +30,10 @@ PoundUsers:
 	db TOGEPI
 	db TOGETIC
 	db TOGEKISS
-	db SUNFLORA
 	db -1
 
 ScratchUsers:
-; Tackle += Scratch
+; Strike += Scratch
 	db CHARMANDER
 	db CHARMELEON
 	db CHARIZARD
@@ -58,8 +57,6 @@ ScratchUsers:
 	db KABUTOPS
 	db SENTRET
 	db FURRET
-	db AIPOM
-	db AMBIPOM
 	db SNEASEL
 	db WEAVILE
 	db TEDDIURSA

@@ -297,7 +297,7 @@ Learnsets::
 BulbasaurLearnset:
 IvysaurLearnset:
 VenusaurLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 3, GROWL
 	db 7, VINE_WHIP
 	db 9, LEECH_SEED
@@ -315,7 +315,7 @@ VenusaurLearnset:
 CharmanderLearnset:
 CharmeleonLearnset:
 CharizardLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, GROWL
 	db 5, EMBER
 	db 9, SMOKESCREEN
@@ -331,7 +331,7 @@ CharizardLearnset:
 SquirtleLearnset:
 WartortleLearnset:
 BlastoiseLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 4, LEER ; Tail Whip → similar move
 	db 7, WATER_GUN
 	db 10, HARDEN ; DEFENSE_CURL/WITHDRAW
@@ -347,7 +347,7 @@ BlastoiseLearnset:
 	db 0 ; no more level-up moves
 
 CaterpieLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, STRING_SHOT
 	db 9, BUG_BITE
 	db 0 ; no more level-up moves
@@ -358,7 +358,7 @@ KakunaLearnset:
 	db 0 ; no more level-up moves
 
 ButterfreeLearnset:
-	db 1, TACKLE ; Caterpie move
+	db 1, STRIKE ; TACKLE ; Caterpie move
 	db 1, STRING_SHOT ; Caterpie move
 	db 1, GUST ; Evo move
 	db 11, CONFUSION
@@ -395,7 +395,7 @@ BeedrillLearnset:
 PidgeyLearnset:
 PidgeottoLearnset:
 PidgeotLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 3, MUD_SLAP ; Sand Attack → similar move
 	db 5, GUST
 	db 9, QUICK_ATTACK
@@ -412,7 +412,7 @@ RattataPlainLearnset:
 RattataAlolanLearnset:
 RaticatePlainLearnset:
 RaticateAlolanLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 6, QUICK_ATTACK
 	db 9, BITE
@@ -476,7 +476,7 @@ RaichuAlolanLearnset:
 
 SandshrewPlainLearnset:
 SandslashPlainLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, DEFENSE_CURL
 	db 3, MUD_SLAP ; Sand Attack → similar move
 	db 6, POISON_STING
@@ -496,7 +496,7 @@ SandslashPlainLearnset:
 
 SandshrewAlolanLearnset:
 SandslashAlolanLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, DEFENSE_CURL
 	db 3, HAZE
 	db 6, ICE_SHARD
@@ -614,7 +614,7 @@ BellossomLearnset:
 
 ParasLearnset:
 ParasectLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 3, SLEEP_POWDER
 	db 6, STUN_SPORE
 	db 9, POISONPOWDER
@@ -631,7 +631,7 @@ ParasectLearnset:
 
 VenonatLearnset:
 VenomothLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 4, DISABLE
 	db 8, SUPERSONIC
 	db 12, CONFUSION
@@ -646,7 +646,7 @@ VenomothLearnset:
 
 DiglettPlainLearnset:
 DugtrioPlainLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, MUD_SLAP ; Sand Attack → Mud-Slap
 	db 4, GROWL
 	db 8, AGILITY
@@ -676,7 +676,7 @@ DugtrioAlolanLearnset:
 
 MeowthPlainLearnset:
 PersianPlainLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, GROWL
 	db 3, BITE
 	db 6, FAKE_OUT
@@ -692,7 +692,7 @@ PersianPlainLearnset:
 
 MeowthAlolanLearnset:
 PersianAlolanLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, GROWL
 	db 3, BITE
 	db 6, FAKE_OUT
@@ -708,7 +708,7 @@ PersianAlolanLearnset:
 
 MeowthGalarianLearnset:
 PerrserkerLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, GROWL
 	db 3, METAL_CLAW
 	db 6, FAKE_OUT
@@ -724,7 +724,7 @@ PerrserkerLearnset:
 
 PsyduckLearnset:
 GolduckLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 4, LEER ; Tail Whip → similar move
 	db 8, WATER_GUN
 	db 12, CONFUSION
@@ -742,7 +742,7 @@ GolduckLearnset:
 MankeyLearnset:
 PrimeapeLearnset:
 AnnihilapeLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, LEER
 	db 5, SWAGGER ; TAUNT
 	db 10, LOW_KICK
@@ -790,7 +790,7 @@ PoliwhirlLearnset:
 PoliwrathLearnset:
 PolitoedLearnset:
 	db 1, WATER_GUN
-	db 4, TACKLE ;POUND
+	db 4, STRIKE ; POUND
 	db 8, HYPNOSIS
 	db 12, FURY_STRIKES ; Fury Swipes → similar move
 	db 16, BUBBLE_BEAM
@@ -875,7 +875,7 @@ GravelerPlainLearnset:
 GravelerAlolanLearnset:
 GolemPlainLearnset:
 GolemAlolanLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, DEFENSE_CURL
 	db 4, MUD_SLAP ; Mud Sport → TM move
 	db 6, RAPID_SPIN ; Rock Polish → event move
@@ -900,7 +900,7 @@ RapidashGalarianLearnset:
 	db 1, PLAY_ROUGH ; evolution move
 	db 1, MEGAHORN
 	db 1, GROWL
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 4, LEER ; Tail Whip → similar move
 	db 9, CONFUSION
 	db 13, DISARM_VOICE ; Fairy Wind → similar move
@@ -923,7 +923,7 @@ SlowkingPlainLearnset:
 SlowkingGalarianLearnset:
 	db 1, GUNK_SHOT ; Shell Side Arm → similar move ; evolution move
 	db 1, CURSE
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 5, GROWL
 	db 9, ACID
 	db 14, CONFUSION
@@ -944,7 +944,7 @@ MagnetonLearnset:
 MagnezoneLearnset:
 	db 1, TRI_ATTACK ; evolution move
 	db 1, SUPERSONIC
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 5, THUNDERSHOCK
 	db 7, THUNDER_WAVE
 	db 11, QUICK_ATTACK ; Magnet Bomb → TCG move
@@ -1035,7 +1035,7 @@ GrimerAlolanLearnset:
 MukPlainLearnset:
 MukAlolanLearnset:
 	db 1, MOONBLAST ; Let's Go move
-	db 1, TACKLE ; Pound → similar move
+	db 1, STRIKE ; POUND
 	db 1, ACID ; Poison Gas → new move
 	db 4, HARDEN
 	db 7, BITE
@@ -1090,7 +1090,7 @@ GengarLearnset:
 
 OnixLearnset:
 SteelixLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, HARDEN
 	db 1, WRAP ; Bind → similar move
 	db 4, CURSE
@@ -1114,7 +1114,7 @@ SteelixLearnset:
 
 DrowzeeLearnset:
 HypnoLearnset:
-	db 1, TACKLE ; Pound → similar move
+	db 1, STRIKE ; POUND
 	db 1, HYPNOSIS
 	db 5, DISABLE
 	db 9, CONFUSION
@@ -1136,7 +1136,7 @@ HypnoLearnset:
 KrabbyLearnset:
 KinglerLearnset:
 	db 1, AQUA_JET ; Bubble → new move
-	db 5, SCRATCH ; Vice Grip → new move
+	db 5, STRIKE ; SCRATCH ; Vice Grip → new move
 	db 9, LEER
 	db 11, HARDEN
 	db 15, BUBBLE_BEAM
@@ -1153,7 +1153,7 @@ KinglerLearnset:
 
 VoltorbLearnset:
 ElectrodeLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, THUNDERSHOCK ; Let's Go move
 	db 4, SONIC_BOOM
 	db 6, AGILITY ; Eerie Impulse → event move
@@ -1175,7 +1175,7 @@ ElectrodeLearnset:
 ExeggcuteLearnset:
 ExeggutorPlainLearnset:
 ExeggutorAlolanLearnset:
-	db 1, TACKLE ; Barrage → new move
+	db 1, STRIKE ; TACKLE ; Barrage → new move
 	db 1, HYPNOSIS
 	db 1, CONFUSION
 	db 1, DRAGON_PULSE ; evolution move
@@ -1189,7 +1189,7 @@ MarowakPlainLearnset:
 MarowakAlolanLearnset:
 	db 1, SWORDS_DANCE ; evolution move
 	db 1, GROWL
-	db 3, TACKLE ; Tail Whip → new move
+	db 3, STRIKE ; TACKLE ; Tail Whip → new move
 	db 7, FAKE_OUT ; Bone Club → new move
 	db 11, FLAME_CHARGE ; Flame Wheel → TM move
 	db 13, LEER
@@ -1249,7 +1249,7 @@ HitmonchanLearnset:
 LickitungLearnset:
 LickilickyLearnset:
 	db 1, GUST ; event move
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, WATER_GUN ; Bubble → similar move
 	db 3, SUPERSONIC
 	db 7, BUBBLE_BEAM
@@ -1269,7 +1269,7 @@ LickilickyLearnset:
 KoffingLearnset:
 WeezingPlainLearnset:
 WeezingGalarianLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 4, ACID ; Smog → new move
 	db 7, SMOKESCREEN
 	db 12, ENDURE ; Assurance → TM move
@@ -1289,7 +1289,7 @@ RhyhornLearnset:
 RhydonLearnset:
 RhyperiorLearnset:
 	db 1, OUTRAGE ; Hammer Arm → HGSS tutor move ; evolution move
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, MUD_SLAP ; Sand-Attack → similar move
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
@@ -1313,7 +1313,7 @@ HappinyLearnset:
 ChanseyLearnset:
 BlisseyLearnset:
 	db 1, DEFENSE_CURL
-	db 1, TACKLE ; Pound → similar move
+	db 1, STRIKE ; POUND
 	db 1, GROWL
 	db 5, LEER ; Tail Whip → similar move
 	db 9, SWEET_KISS ; Refresh → Happiny move
@@ -1354,9 +1354,9 @@ TangrowthLearnset:
 
 KangaskidLearnset:
 KangaskhanLearnset:
-	db 1, TACKLE ; POUND
+	db 1, STRIKE ; POUND
 	db 1, LEER
-	db 1, FLAIL ; FLAIL - Kid's move
+	db 1, FLAIL ; Kangaskid
 	db 8, FAKE_OUT
 	db 16, BITE
 	db 24, DRAIN_PUNCH
@@ -1411,7 +1411,7 @@ MimeJrLearnset:
 MrMimePlainLearnset:
 MrMimeGalarianLearnset:
 MrRimeLearnset:
-	db 1, TACKLE ; POUND
+	db 1, STRIKE ; POUND
 	db 1, BARRIER
 	db 6, CONFUSION
 	db 10, FURY_STRIKES
@@ -1449,7 +1449,7 @@ KleavorLearnset:
 
 SmoochumLearnset:
 JynxLearnset:
-	db 1, TACKLE ; Pound → similar move
+	db 1, STRIKE ; POUND
 	db 1, LICK
 	db 1, CONFUSION ; Smoochum move
 	db 8, SCREECH ; Lovely Kiss → Let's Go move
@@ -1507,7 +1507,7 @@ PinsirLearnset:
 	db 0 ; no more level-up moves
 
 TaurosLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 6, LEER ; Tail Whip → similar move
 	db 12, HORN_ATTACK
 	db 18, DOUBLE_KICK ; ADDITIONAL
@@ -1522,7 +1522,7 @@ TaurosLearnset:
 	db 0 ; no more level-up moves
 
 MiltankLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 6, GROWL
 	db 12, ROLLOUT
 	db 18, STOMP
@@ -1538,7 +1538,7 @@ MiltankLearnset:
 
 MagikarpLearnset:
 	db 1, SPLASH
-	db 15, TACKLE
+	db 15, STRIKE ; TACKLE
 	db 25, FLAIL ; Flail
 	db 0 ; no more level-up moves
 
@@ -1588,7 +1588,7 @@ UmbreonLearnset:
 LeafeonLearnset:
 GlaceonLearnset:
 SylveonLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, GROWL
 	db 1, LEER ; Tail Whip → similar move
 	db 13, QUICK_ATTACK
@@ -1606,7 +1606,7 @@ SylveonLearnset:
 PorygonLearnset:
 Porygon2Learnset:
 PorygonZLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 5, PSYBEAM
 	db 9, AGILITY
 	db 14, BARRIER
@@ -1636,7 +1636,7 @@ OmastarLearnset:
 KabutoLearnset:
 KabutopsLearnset:
 	db 1, SLASH ; evolution move
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, HARDEN ; DEFENSE_CURL
 	db 6, FURY_STRIKES
 	db 12, LEER
@@ -1668,7 +1668,7 @@ AerodactylLearnset:
 MunchlaxLearnset:
 SnorlaxLearnset:
 	db 1, LICK
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, FLAIL ; FLAIL
 	db 6, DEFENSE_CURL
 ;	db 12, YAWN
@@ -1773,7 +1773,7 @@ MewtwoLearnset:
 	db 0 ; no more level-up moves
 
 MewLearnset:
-	db 1, TACKLE ; Pound → similar move
+	db 1, STRIKE ; POUND
 	db 1, CONFUSION
 	;db 1, MIMIC
 	db 11, SWIFT
@@ -1789,7 +1789,7 @@ MewLearnset:
 
 SentretLearnset:
 FurretLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, FORESIGHT
 	db 1, AGILITY ; evolution move
 	db 4, DEFENSE_CURL
@@ -1809,7 +1809,7 @@ FurretLearnset:
 HoothootLearnset:
 NoctowlLearnset:
 	db 1, DREAM_EATER
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, GROWL
 	db 1, FORESIGHT
 	db 4, HYPNOSIS
@@ -1896,7 +1896,7 @@ XatuLearnset:
 MareepLearnset:
 FlaaffyLearnset:
 AmpharosLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, GROWL
 	db 8, THUNDER_WAVE
 	db 16, THUNDERSHOCK
@@ -1911,7 +1911,7 @@ AmpharosLearnset:
 AzurillLearnset:
 MarillLearnset:
 AzumarillLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, LEER
 	db 4, WATER_GUN
 	db 8, DEFENSE_CURL
@@ -1928,7 +1928,7 @@ AzumarillLearnset:
 
 YanmaLearnset:
 YanmegaLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, GUST
 	db 6, QUICK_ATTACK
 	db 10, DOUBLE_TEAM
@@ -1962,7 +1962,7 @@ WooperPaldeanLearnset:
 ClodsireLearnset:
 	db 1, POISON_STING
 	db 1, LEER ; Tail Whip → similar move
-	db 5, TACKLE
+	db 5, STRIKE ; TACKLE
 	db 9, BODY_SLAM
 	db 15, RECOVER ; YAWN
 	db 19, POISON_JAB
@@ -2000,7 +2000,7 @@ MismagiusLearnset:
 
 PinecoLearnset:
 ForretressLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, PROTECT
 	db 9, BUG_BITE
 	db 12, TAKE_DOWN
@@ -2030,7 +2030,7 @@ GliscorLearnset:
 
 SnubbullLearnset:
 GranbullLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, LEER ; Tail Whip → similar move
 	db 5, CHARM
 	db 10, BITE
@@ -2056,7 +2056,7 @@ ShuckleLearnset:
 	db 0 ; no more level-up moves
 
 HeracrossLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, LEER
 	db 6, FURY_STRIKES
 	db 12, AERIAL_ACE ; Fury Attack → Aerial Ace
@@ -2071,7 +2071,7 @@ HeracrossLearnset:
 
 SneaselPlainLearnset:
 WeavileLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, LEER
 	db 6, BITE ; Taunt → egg move
 	db 12, QUICK_ATTACK
@@ -2085,7 +2085,7 @@ WeavileLearnset:
 
 SneaselHisuianLearnset:
 SneaslerLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, LEER
 	db 6, ROCK_SMASH
 	db 6, BITE ; Taunt → egg move
@@ -2101,7 +2101,7 @@ SneaslerLearnset:
 TeddiursaLearnset:
 UrsaringLearnset:
 UrsalunaLearnset:
-	db 1, SCRATCH
+	db 1, STRIKE ; SCRATCH
 	db 1, LEER
 	db 7, LICK
 	db 14, FURY_STRIKES ; Fury Swipes → similar move
@@ -2130,7 +2130,7 @@ MagcargoLearnset:
 SwinubLearnset:
 PiloswineLearnset:
 MamoswineLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, MUD_SLAP
 	db 8, PAIN_SPLIT ; FLAIL
 	db 16, ICE_SHARD
@@ -2170,7 +2170,7 @@ HoundoomLearnset:
 
 PhanpyLearnset:
 DonphanLearnset:
-	db 1, TACKLE
+	db 1, STRIKE ; TACKLE
 	db 1, GROWL
 	db 1, DEFENSE_CURL
 	db 8, ROLLOUT

@@ -2,6 +2,7 @@ BattleAnimations::
 ; entries correspond to constants/move_constants.asm
 	table_width 2, BattleAnimations
 	dw BattleAnim_0
+	dw BattleAnim_Scratch ; Variable (Pound, Scratch, Tackle)
 	dw BattleAnim_Acrobatics
 	dw BattleAnim_LowKick ; Modify Animation
 	dw BattleAnim_MegaPunch
@@ -11,7 +12,6 @@ BattleAnimations::
 	dw BattleAnim_FirePunch
 	dw BattleAnim_IcePunch
 	dw BattleAnim_Thunderpunch
-	dw BattleAnim_Scratch
 	dw BattleAnim_XScissor
 	dw BattleAnim_NightSlash
 	dw BattleAnim_AirSlash
@@ -34,7 +34,7 @@ BattleAnimations::
 	dw BattleAnim_HornAttack
 	dw BattleAnim_Trick
 	dw BattleAnim_Hex
-	dw BattleAnim_Tackle
+	dw BattleAnim_Tackle ; Unused entry
 	dw BattleAnim_BodySlam
 	dw BattleAnim_Wrap
 	dw BattleAnim_TakeDown

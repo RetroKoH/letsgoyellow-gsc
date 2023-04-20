@@ -1,6 +1,7 @@
 MoveNames::
 	list_start MoveNames
 	li "?"
+	li "Strike"
 	li "Acrobatics"
 	li "Low Sweep"
 	li "Mega Punch"
@@ -10,7 +11,6 @@ MoveNames::
 	li "Fire Punch"
 	li "Ice Punch"
 	li "ThunderPunch"
-	li "Scratch"
 	li "X-Scissor"
 	li "Night Slash"
 	li "Air Slash"
@@ -33,7 +33,7 @@ MoveNames::
 	li "Horn Attack"
 	li "Trick"
 	li "Hex"
-	li "Tackle"
+	li "UNKNOWN" ; Tackle
 	li "Body Slam"
 	li "Wrap"
 	li "Take Down"

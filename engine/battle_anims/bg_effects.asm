@@ -108,7 +108,7 @@ BattleBGEffects:
 	dw BattleBGEffect_Withdraw
 	dw BattleBGEffect_BounceDown
 	dw BattleBGEffect_Dig
-	dw BattleBGEffect_Tackle
+	dw BattleBGEffect_Strike ; WAS Tackle
 	dw BattleBGEffect_BodySlam
 	dw BattleBGEffect_WobbleMon
 	dw BattleBGEffect_RemoveMon
@@ -1261,7 +1261,7 @@ BattleBGEffect_Dig:
 	inc [hl]
 	ret
 
-BattleBGEffect_Tackle:
+BattleBGEffect_Strike:
 	call BattleBGEffects_AnonJumptable
 .anon_dw
 	dw .zero

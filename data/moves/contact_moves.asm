@@ -68,7 +68,6 @@ ContactMoves:
 	db RETURN
 	db ROCK_SMASH
 	db ROLLOUT
-	db SCRATCH
 	db SEISMIC_TOSS
 	db SHADOW_CLAW
 	db SLASH
@@ -76,9 +75,9 @@ ContactMoves:
 	db STEEL_WING
 	db STOMP
 	db STRENGTH
+	db STRIKE ; POUND, SCRATCH, TACKLE
 	db SUCKER_PUNCH
 	db SUPER_FANG
-	db TACKLE
 	db TAKE_DOWN
 	db THIEF
 	db THRASH

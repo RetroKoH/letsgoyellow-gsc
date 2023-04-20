@@ -37,15 +37,14 @@ Psystrike:
 QuickAttack:
 RazorLeaf:
 RockThrow:
-Scratch:
 SeedBomb:
 ShadowClaw:
 Slash:
 StoneEdge:
 Strength:
+Strike:
 Surf:
 Swift:
-Tackle:
 VineWhip:
 WaterGun:
 WingAttack:

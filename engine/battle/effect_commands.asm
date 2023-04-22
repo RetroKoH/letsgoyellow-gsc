@@ -26,7 +26,6 @@ INCLUDE "engine/battle/move_effects/explosion.asm"
 INCLUDE "engine/battle/move_effects/false_swipe.asm" ; code needed for Sturdy
 INCLUDE "engine/battle/move_effects/feint.asm"
 INCLUDE "engine/battle/move_effects/focus_energy.asm"
-INCLUDE "engine/battle/move_effects/foresight.asm"
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"
 INCLUDE "engine/battle/move_effects/future_sight.asm"
 INCLUDE "engine/battle/move_effects/growth.asm"
@@ -1770,15 +1769,10 @@ BattleCommand_checkhit:
 	cp UNAWARE
 	jr z, .reset_evasion
 
-	; check Foresight
-	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call GetBattleVar
-	bit SUBSTATUS_IDENTIFIED, a
-	jr nz, .avoid_evasion_boost
 	call GetTrueUserAbility
 	cp KEEN_EYE
 	jr nz, .check_opponent_unaware
-.avoid_evasion_boost
+;.avoid_evasion_boost
 	ld a, c
 	cp 7
 	jr c, .check_opponent_unaware
@@ -5946,7 +5940,6 @@ PrintButItFailed:
 
 FailDisable:
 FailAttract:
-FailForesight:
 FailSpikes:
 PrintDidntAffect2:
 	call AnimateFailedMove

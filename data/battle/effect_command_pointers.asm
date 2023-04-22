@@ -86,7 +86,6 @@ BattleCommandPointers:
 	command curse
 	command protect
 	command spikes
-	command foresight
 	command startsandstorm
 	command starthail
 	command endure

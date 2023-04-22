@@ -115,7 +115,7 @@ Moves::
 	move POISON_GAS,   EFFECT_POISON,              0, POISON,     90, 40,   0, STATUS
 	move LEECH_LIFE,   EFFECT_LEECH_HIT,          80, BUG,       100, 10,   0, PHYSICAL
 	move LOVELY_KISS,  EFFECT_SLEEP,               0, NORMAL,     75, 10,   0, STATUS
-	move SKY_ATTACK,   EFFECT_SOLAR_BEAM,        160, FLYING,     90, 5,    0, PHYSICAL ; Crit Hit Flinch
+	move SKY_ATTACK,   EFFECT_SOLAR_BEAM,        160, FLYING,     90, 5,    0, PHYSICAL ; Charge up, Crit Hit, 30% Flinch
 	move TRANSFORM,    EFFECT_TRANSFORM,           0, NORMAL,    100, 10,   0, STATUS
 	move SPORE,        EFFECT_SLEEP,               0, GRASS,     100, 15,   0, STATUS
 	move SPLASH,       EFFECT_SPLASH,              0, NORMAL,    100, 40,   0, STATUS

@@ -4,6 +4,7 @@ CriticalHitMoves:
 	db CROSS_POISON
 	db NIGHT_SLASH
 	db RAZOR_LEAF
+	db SKY_ATTACK
 	db SLASH
 	db STONE_EDGE
 	db -1

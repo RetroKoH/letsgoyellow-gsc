@@ -362,7 +362,6 @@ AI_Smart:
 	dbw EFFECT_SACRED_FIRE,       AI_Smart_Defrost
 	dbw EFFECT_CURSE,             AI_Smart_Curse
 	dbw EFFECT_PROTECT,           AI_Smart_Protect
-	dbw EFFECT_FORESIGHT,         AI_Smart_Foresight
 	dbw EFFECT_ENDURE,            AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
 	dbw EFFECT_FURY_CUTTER,       AI_Smart_FuryCutter
@@ -1501,35 +1500,6 @@ AI_Smart_Protect:
 	ret c
 	inc [hl]
 	inc [hl]
-	ret
-
-AI_Smart_Foresight:
-	ld a, [wEnemyAccLevel]
-	cp $5
-	jr c, .asm_38f41
-	ld a, [wPlayerEvaLevel]
-	cp $a
-	jr nc, .asm_38f41
-
-	ld a, [wBattleMonType1]
-	cp GHOST
-	jr z, .asm_38f41
-	ld a, [wBattleMonType2]
-	cp GHOST
-	jr z, .asm_38f41
-
-	call Random
-	cp 20
-	ret c
-	inc [hl]
-	ret
-
-.asm_38f41
-	call Random
-	cp 100
-	ret c
-	dec [hl]
-	dec [hl]
 	ret
 
 AI_Smart_Endure:

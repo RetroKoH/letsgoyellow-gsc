@@ -26,7 +26,6 @@ AI_Redundant:
 	dbw EFFECT_MEAN_LOOK,     .MeanLook
 	dbw EFFECT_CURSE,         .Curse
 	dbw EFFECT_SPIKES,        .Spikes
-	dbw EFFECT_FORESIGHT,     .Foresight
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
 	dbw EFFECT_ATTRACT,       .Attract
@@ -62,11 +61,6 @@ AI_Redundant:
 .FocusEnergy:
 	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_FOCUS_ENERGY, a
-	ret
-
-.Foresight:
-	ld a, [wPlayerSubStatus1]
-	bit SUBSTATUS_IDENTIFIED, a
 	ret
 
 .FutureSight:

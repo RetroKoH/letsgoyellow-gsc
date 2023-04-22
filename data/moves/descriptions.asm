@@ -933,17 +933,9 @@ BellyDrumDescription:
 	db   "Sacrifices HP to"
 	next "maximize Attack.@"
 
-ForesightDescription:
-	db   "Negates foe's eva-"
-	next "sion and immunity.@"
-
 DestinyBondDescription:
 	db   "The foe faints if"
 	next "the user does.@"
-
-PerishSongDescription:
-	db   "Both user and foe"
-	next "faint in 3 turns.@"
 
 PowerGemDescription:
 	db   "Attacks with a ray"

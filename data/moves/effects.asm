@@ -1771,16 +1771,6 @@ Spikes:
 	spikes
 	endmove
 
-Foresight:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	checkhit
-	bounceback
-	foresight
-	endmove
-
 Sandstorm:
 	checkobedience
 	usedmovetext

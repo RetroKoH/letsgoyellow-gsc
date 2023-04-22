@@ -4192,20 +4192,6 @@ BattleAnim_AuraSphere:
 	anim_call BattleAnim_ShowMon_0
 	anim_ret
 
-BattleAnim_Foresight:
-	anim_1gfx ANIM_GFX_SHINE
-	anim_call BattleAnim_FollowEnemyFeet_1
-	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $0, $0
-	anim_sound 0, 1, SFX_FORESIGHT
-	anim_obj ANIM_OBJ_FORESIGHT, -16, 4,   5, 0, $0
-	anim_wait 24
-	anim_bgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING, $0, $0, $40
-	anim_wait 64
-	anim_incbgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING
-	anim_call BattleAnim_ShowMon_1
-	anim_wait 8
-	anim_ret
-
 BattleAnim_DestinyBond:
 	anim_1gfx ANIM_GFX_ANGELS
 	anim_bgp $1b
@@ -6451,4 +6437,18 @@ BattleAnim_StatDown:
 ;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $30
 ;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $38
 ;	anim_wait 112
+;	anim_ret
+
+;BattleAnim_Foresight:
+;	anim_1gfx ANIM_GFX_SHINE
+;	anim_call BattleAnim_FollowEnemyFeet_1
+;	anim_bgeffect ANIM_BG_CYCLE_MID_OBPALS_GRAY_AND_YELLOW, $0, $0, $0
+;	anim_sound 0, 1, SFX_FORESIGHT
+;	anim_obj ANIM_OBJ_FORESIGHT, -16, 4,   5, 0, $0
+;	anim_wait 24
+;	anim_bgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING, $0, $0, $40
+;	anim_wait 64
+;	anim_incbgeffect ANIM_BG_FADE_MON_TO_BLACK_REPEATING
+;	anim_call BattleAnim_ShowMon_1
+;	anim_wait 8
 ;	anim_ret

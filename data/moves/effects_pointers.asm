@@ -7,6 +7,7 @@ MoveEffectsPointers:
 	dw LeechHit
 	dw MultiHit ; DOUBLE
 	dw MultiHit ; MULTI
+	dw TripleKick
 	dw RecoilHit
 	dw FlinchHit
 	dw PoisonHit

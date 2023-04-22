@@ -72,6 +72,7 @@ ContactMoves:
 	db TAKE_DOWN
 	db THRASH
 	db THUNDERPUNCH
+	db TRIPLE_KICK
 	db U_TURN
 	db VINE_WHIP
 	db VISE_GRIP

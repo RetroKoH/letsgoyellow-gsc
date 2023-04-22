@@ -1251,6 +1251,7 @@ WeezingGalarianLearnset:
 	db 34, SLUDGE_BOMB
 	db 40, EXPLOSION
 	db 57, FIRE_BLAST ; Memento → TM move
+	db 99, STRANGESTEAM
 	db 0 ; no more level-up moves
 
 RhyhornLearnset:
@@ -1632,7 +1633,7 @@ SnorlaxLearnset:
 	db 1, STRIKE ; TACKLE
 	db 1, FLAIL ; FLAIL
 	db 6, DEFENSE_CURL
-;	db 12, YAWN
+	db 12, YAWN
 	db 18, BITE
 	db 24, HEADBUTT
 	db 30, REST

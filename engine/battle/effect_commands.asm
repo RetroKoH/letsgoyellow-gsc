@@ -2207,6 +2207,8 @@ BattleCommand_moveanimnosub:
 	jr z, .conversion
 	cp EFFECT_DOUBLE_HIT
 	jr z, .doublehit
+	cp EFFECT_TRIPLE_KICK
+	jr z, .triplekick
 
 .normal_move
 	xor a
@@ -2228,6 +2230,22 @@ BattleCommand_moveanimnosub:
 .fly_dig
 ; clear sprite
 	jmp AppearUserLowerSub
+
+.triplekick
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld e, a
+	ld d, 0
+	call PlayFXAnimID
+
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp FLY
+	jr z, .clear_sprite
+	cp DIG
+	ret nz
+.clear_sprite
+	jp AppearUserLowerSub
 
 .multihit
 .conversion
@@ -2352,6 +2370,8 @@ BattleCommand_failuretext:
 	cp EFFECT_MULTI_HIT
 	jr z, .multihit
 	cp EFFECT_DOUBLE_HIT
+	jr z, .multihit
+	cp EFFECT_TRIPLE_KICK
 	jr z, .multihit
 	cp EFFECT_FURY_STRIKES
 	jmp nz, EndMoveEffect
@@ -2640,6 +2660,9 @@ BattleCommand_startloop:
 	call GetBattleVar
 	cp EFFECT_DOUBLE_HIT
 	ld a, 2
+	jr z, .got_count
+	cp EFFECT_TRIPLE_KICK
+	ld a, 3
 	jr z, .got_count
 
 	call GetTrueUserAbility
@@ -4327,6 +4350,8 @@ SelfInflictDamageToSubstitute:
 	cp EFFECT_MULTI_HIT
 	jr z, .ok
 	cp EFFECT_DOUBLE_HIT
+	jr z, .ok
+	cp EFFECT_TRIPLE_KICK
 	jr z, .ok
 	cp EFFECT_FURY_STRIKES
 	jr z, .ok

@@ -100,16 +100,16 @@ PlayersHousePC:
 RedsHouse2FSNESText:
 	opentext
 	; time
-	special Special_SetDayOfWeek
-	special Special_InitialClearDSTFlag
+;	special Special_SetDayOfWeek
+;	special Special_InitialClearDSTFlag
 	; full pokegear
-	setflag ENGINE_POKEGEAR
-	setflag ENGINE_PHONE_CARD
-	setflag ENGINE_MAP_CARD
-	setflag ENGINE_RADIO_CARD
-	setflag ENGINE_EXPN_CARD
+;	setflag ENGINE_POKEGEAR
+;	setflag ENGINE_PHONE_CARD
+;	setflag ENGINE_MAP_CARD
+;	setflag ENGINE_RADIO_CARD
+;	setflag ENGINE_EXPN_CARD
 	; pokedex
-	setflag ENGINE_POKEDEX
+;	setflag ENGINE_POKEDEX
 ;	setflag ENGINE_UNOWN_DEX
 	; judge machine
 	setflag ENGINE_JUDGE_MACHINE
@@ -144,6 +144,7 @@ endr
 	giveitem PP_MAX, 99
 	giveitem MAX_REPEL, 99
 	giveitem ABILITY_CAP, 99
+	giveitem ABILITYPATCH, 99
 	giveitem LEAF_STONE, 99
 	giveitem FIRE_STONE, 99
 	giveitem WATER_STONE, 99
@@ -248,45 +249,45 @@ endr
 	setflag ENGINE_CREDITS_SKIP
 	; test party
 	; all tms+hms
-	givepoke CHARIZARD, PLAIN_FORM, 70
-	givepoke RATTATA,   ALOLAN_FORM, 70
-	givepoke RATICATE,  ALOLAN_FORM, 70
-	givepoke SANDSHREW, ALOLAN_FORM, 70
-	givepoke SANDSLASH, ALOLAN_FORM, 70
-	givepoke VULPIX,    ALOLAN_FORM, 70
-	givepoke NINETALES, ALOLAN_FORM, 70
-	givepoke DIGLETT,   ALOLAN_FORM, 70
-	givepoke DUGTRIO,   ALOLAN_FORM, 70
-	givepoke MEOWTH,    ALOLAN_FORM, 70
-	givepoke PERSIAN,   ALOLAN_FORM, 70
-	givepoke GEODUDE,   ALOLAN_FORM, 70
-	givepoke GRAVELER,  ALOLAN_FORM, 70
-	givepoke GOLEM,     ALOLAN_FORM, 70
-	givepoke GRIMER,    ALOLAN_FORM, 70
-	givepoke MUK,       ALOLAN_FORM, 70
-	givepoke RAICHU,    ALOLAN_FORM, 70
-	givepoke EXEGGUTOR, ALOLAN_FORM, 70
-	givepoke MAROWAK,   ALOLAN_FORM, 70
-	givepoke MEOWTH,    GALARIAN_FORM, 70
-	givepoke PONYTA,    GALARIAN_FORM, 70
-	givepoke RAPIDASH,  GALARIAN_FORM, 70
-	givepoke SLOWPOKE,  GALARIAN_FORM, 70
-	givepoke SLOWBRO,   GALARIAN_FORM, 70
-	givepoke SLOWKING,  GALARIAN_FORM, 70
-	givepoke FARFETCH_D,GALARIAN_FORM, 70
-	givepoke WEEZING,   GALARIAN_FORM, 70
-	givepoke MR__MIME,  GALARIAN_FORM, 70
-	givepoke ARTICUNO,  GALARIAN_FORM, 70
-	givepoke ZAPDOS,    GALARIAN_FORM, 70
-	givepoke MOLTRES,   GALARIAN_FORM, 70
+	givepoke BULBASAUR,		PLAIN_FORM, 10
+	givepoke CHARMANDER, 	PLAIN_FORM, 10
+;	givepoke RATICATE,		ALOLAN_FORM, 70
+;	givepoke SANDSHREW, ALOLAN_FORM, 70
+;	givepoke SANDSLASH, ALOLAN_FORM, 70
+;	givepoke VULPIX,    ALOLAN_FORM, 70
+;	givepoke NINETALES, ALOLAN_FORM, 70
+;	givepoke DIGLETT,   ALOLAN_FORM, 70
+;	givepoke DUGTRIO,   ALOLAN_FORM, 70
+;	givepoke MEOWTH,    ALOLAN_FORM, 70
+;	givepoke PERSIAN,   ALOLAN_FORM, 70
+;	givepoke GEODUDE,   ALOLAN_FORM, 70
+;	givepoke GRAVELER,  ALOLAN_FORM, 70
+;	givepoke GOLEM,     ALOLAN_FORM, 70
+;	givepoke GRIMER,    ALOLAN_FORM, 70
+;	givepoke MUK,       ALOLAN_FORM, 70
+;	givepoke RAICHU,    ALOLAN_FORM, 70
+;	givepoke EXEGGUTOR, ALOLAN_FORM, 70
+;	givepoke MAROWAK,   ALOLAN_FORM, 70
+;	givepoke MEOWTH,    GALARIAN_FORM, 70
+;	givepoke PONYTA,    GALARIAN_FORM, 70
+;	givepoke RAPIDASH,  GALARIAN_FORM, 70
+;	givepoke SLOWPOKE,  GALARIAN_FORM, 70
+;	givepoke SLOWBRO,   GALARIAN_FORM, 70
+;	givepoke SLOWKING,  GALARIAN_FORM, 70
+;	givepoke FARFETCH_D,GALARIAN_FORM, 70
+;	givepoke WEEZING,   GALARIAN_FORM, 70
+;	givepoke MR__MIME,  GALARIAN_FORM, 70
+;	givepoke ARTICUNO,  GALARIAN_FORM, 70
+;	givepoke ZAPDOS,    GALARIAN_FORM, 70
+;	givepoke MOLTRES,   GALARIAN_FORM, 70
 	; fill pokedex
 	callasm FillPokedex
 	; intro events
-	addcellnum PHONE_MOM
-	setmapscene PLAYERS_HOUSE_1F, $1
-	setevent EVENT_PLAYERS_HOUSE_MOM_1
-	clearevent EVENT_PLAYERS_HOUSE_MOM_2
-	setmapscene VERMILION_CITY, $1
+;	addcellnum PHONE_MOM
+;	setmapscene PLAYERS_HOUSE_1F, $1
+;	setevent EVENT_PLAYERS_HOUSE_MOM_1
+;	clearevent EVENT_PLAYERS_HOUSE_MOM_2
+;	setmapscene VERMILION_CITY, $1
 	closetext
 	end
 

@@ -4,7 +4,6 @@ MoveEffects: ; used only for BANK(MoveEffects)
 
 NormalHit:
 AerialAce:
-Aeroblast:
 AquaJet:
 AquaTail:
 AuraSphere:
@@ -303,11 +302,9 @@ FireBlast:
 ParalyzeHit:
 Lick:
 Thundershock:
-Spark:
 Thunderpunch:
 Dragonbreath:
 Thunderbolt:
-ZapCannon:
 	checkobedience
 	usedmovetext
 	doturn
@@ -324,6 +321,29 @@ ZapCannon:
 	applydamage
 	criticaltext
 	supereffectivetext
+	postfainteffects
+	posthiteffects
+	paralyzetarget
+	endmove
+
+VoltTackle:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	critical
+	effectchance
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	recoil
 	postfainteffects
 	posthiteffects
 	paralyzetarget

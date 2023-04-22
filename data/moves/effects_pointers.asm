@@ -156,4 +156,5 @@ MoveEffectsPointers:
 	dw LowKick
 	dw BrickBreak
 	dw TrickRoom
+	dw VoltTackle
 	assert_table_length NUM_MOVE_EFECTS

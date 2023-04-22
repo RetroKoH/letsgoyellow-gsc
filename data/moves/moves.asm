@@ -187,7 +187,7 @@ Moves::
 	move AERIAL_ACE,   EFFECT_ALWAYS_HIT,         60, FLYING,    100, 20,   0, PHYSICAL
 	move ICICLE_SPEAR, EFFECT_MULTI_HIT,          25, ICE,       100, 30,   0, PHYSICAL
 	move BULK_UP,      EFFECT_BULK_UP,             0, FIGHTING,  100, 20,   0, STATUS
-	move VOLT_TACKLE,  EFFECT_RECOIL_HIT,        120, ELECTRIC,  100, 15,   0, PHYSICAL ; Need to add 10% Paralyze
+	move VOLT_TACKLE,  EFFECT_VOLT_TACKLE,       120, ELECTRIC,  100, 15,  10, PHYSICAL ; Should do 1/3 recoil - Double Check this
 	move CALM_MIND,    EFFECT_CALM_MIND,           0, PSYCHIC,   100, 20,   0, STATUS
 	move LEAF_BLADE,   EFFECT_NORMAL_HIT,         90, GRASS,     100, 15,   0, PHYSICAL
 	move DRAGON_DANCE, EFFECT_DRAGON_DANCE,        0, DRAGON,    100, 20,   0, STATUS

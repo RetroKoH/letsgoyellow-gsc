@@ -19,6 +19,7 @@ BASE_PRIORITY EQU 1
 
 ; type effectiveness factors, baseline is $10 for better doubling/halving
 SUPER_EFFECTIVE    EQU $20
+FREEZE_DRY_EFFECT  EQU $18 ; Special effect code to check for Freeze Dry
 EFFECTIVE          EQU $10
 NOT_VERY_EFFECTIVE EQU $08
 NO_EFFECT          EQU $00

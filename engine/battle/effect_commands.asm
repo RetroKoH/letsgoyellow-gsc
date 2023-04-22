@@ -1474,17 +1474,17 @@ _CheckTypeMatchup:
 	jr nz, .skip_powder
 	ld a, ATKFAIL_ABILITY
 	ld [wAttackMissed], a
-	jr .Immune
+	jp .Immune
 
 .skip_powder
 	pop hl
 	push hl
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
-	ld d, a
-	ld b, [hl]
+	ld d, a    ; d = attacking move's type
+	ld b, [hl] ; b = defender's first type
 	inc hl
-	ld c, [hl]
+	ld c, [hl] ; c = defender's second type
 	ld a, $10 ; 1.0
 	ld [wTypeMatchup], a
 	ld hl, InverseTypeMatchups
@@ -1492,53 +1492,56 @@ _CheckTypeMatchup:
 	cp BATTLETYPE_INVERSE
 	jr z, .TypesLoop
 	ld hl, TypeMatchups
+
 .TypesLoop:
-	ld a, [hli]
+	ld a, [hli]				; load next attacking type into a (and increment to defending type)
 	; terminator
-	cp $ff
+	cp $ff					; have we reached the end?
 	jr z, .end
-	cp $fe
+	cp $fe					; have we reached the GHOST immunities?
 	jr nz, .Next
-	; stuff beyond this point is ignored if the foe is identified or we have Scrappy
-	ld a, BATTLE_VARS_SUBSTATUS1_OPP
-	call GetBattleVar
-	bit SUBSTATUS_IDENTIFIED, a
-	jr nz, .end
+	; stuff beyond this point is ignored if we have Scrappy
 	call GetTrueUserAbility
-	cp SCRAPPY
-	jr nz, .TypesLoop
+	cp SCRAPPY				; does the user have Scrappy?
+	jr nz, .TypesLoop		; if not, continue to check for Ghost Immunity
 .end
 	pop hl
 	ret
 
 .Next:
 	; attacking type
-	cp d
-	jr nz, .Nope
-	ld a, [hli]
+	cp d				; does the attacking type match the stored type?
+	jr nz, .Nope		; if not, branch ahead
+	ld a, [hli]			; if yes, load next defending type into a (and increment to effect code)
 	; defending types
-	cp b
-	jr z, .Yup
-	cp c
-	jr z, .Yup
-	jr .Nope2
+	cp b				; does the first defending type match the stored type?
+	jr z, .Yup			; if yes, branch ahead
+	cp c				; does the second defending type match the stored type?
+	jr z, .Yup			; if yes, branch ahead
+	jr .Nope2			; if not, branch ahead
 
 .Nope:
-	inc hl
+	inc hl				; increment to effect code (We will skip this)
 .Nope2:
-	inc hl
+	inc hl				; increment to next attack type
 	jr .TypesLoop
 
 .Yup:
 	; no need to continue if we encountered a 0x matchup
-	ld a, [hli]
+	ld a, [hli]				; load next effect code into a (and increment to next attack type)
 	and a
-	jr z, .RingTarget
+	jr z, .RingTarget		; if effect code = NO_EFFECT, check for Ring Target
 	cp SUPER_EFFECTIVE
-	jr z, .se
+	jr z, .se				; if effect code = SUPER_EFFECTIVE, set matchup accordingly
 	cp NOT_VERY_EFFECTIVE
-	jr z, .nve
-	jr .TypesLoop
+	jr z, .nve				; if effect code = NOT_VERY_EFFECTIVE, set matchup accordingly
+
+	; The only other code is a special handler for Ice vs. Water, where we check for Freeze-Dry.
+	; This doesn't occur in Inverse Battles, where Ice is normally Super effective already.
+	; If Normalize is added, a modification may be needed to ensure this move remains Super Effective.
+	cp FREEZE_DRY_EFFECT
+	jr z, .freezedry
+	jr .TypesLoop			; This is just in case we somehow get an invalid effect code.
 .se
 	ld a, [wTypeMatchup]
 	sla a
@@ -1549,6 +1552,16 @@ _CheckTypeMatchup:
 	srl a
 	ld [wTypeMatchup], a
 	jr .TypesLoop
+.freezedry
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp FREEZE_DRY				; is the move being used Freeze-Dry?
+	jr nz, .noteffective		; if not, branch 
+	ld a, SUPER_EFFECTIVE		; if yes, hard set effect code to SUPER_EFFECTIVE
+	jr .se
+.noteffective
+	ld a, NOT_VERY_EFFECTIVE	; if not, hard set effect code to NOT_VERY_EFFECTIVE
+	jr .nve
 
 .RingTarget:
 	; if opponent is holding Ring Target, ignore type-based immunity

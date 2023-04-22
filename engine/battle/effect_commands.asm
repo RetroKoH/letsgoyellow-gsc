@@ -2208,6 +2208,8 @@ BattleCommand_moveanimnosub:
 	jr z, .conversion
 	cp EFFECT_DOUBLE_HIT
 	jr z, .doublehit
+	cp EFFECT_DUO_IRON_BASH
+	jr z, .doublehit
 	cp EFFECT_TRIPLE_KICK
 	jr z, .triplekick
 
@@ -2371,6 +2373,8 @@ BattleCommand_failuretext:
 	cp EFFECT_MULTI_HIT
 	jr z, .multihit
 	cp EFFECT_DOUBLE_HIT
+	jr z, .multihit
+	cp EFFECT_DUO_IRON_BASH
 	jr z, .multihit
 	cp EFFECT_TRIPLE_KICK
 	jr z, .multihit
@@ -2659,9 +2663,10 @@ BattleCommand_startloop:
 	; Figure out how many hits we should do.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
+	cp EFFECT_DUO_IRON_BASH
+	jr z, .twohits
 	cp EFFECT_DOUBLE_HIT
-	ld a, 2
-	jr z, .got_count
+	jr z, .twohits
 	cp EFFECT_TRIPLE_KICK
 	ld a, 3
 	jr z, .got_count
@@ -2681,6 +2686,10 @@ BattleCommand_startloop:
 .random_ok
 	add 2
 .got_count
+	ld [hl], a
+	ret
+.twohits
+	ld a, 2
 	ld [hl], a
 	ret
 
@@ -4351,6 +4360,8 @@ SelfInflictDamageToSubstitute:
 	cp EFFECT_MULTI_HIT
 	jr z, .ok
 	cp EFFECT_DOUBLE_HIT
+	jr z, .ok
+	cp EFFECT_DUO_IRON_BASH
 	jr z, .ok
 	cp EFFECT_TRIPLE_KICK
 	jr z, .ok

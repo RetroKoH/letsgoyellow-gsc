@@ -2164,6 +2164,35 @@ Stomp:
 	flinchtarget
 	endmove
 
+DuoIronBash:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	startloop
+	lowersub
+	checkhit
+	critical
+	effectchance
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	doubleminimizedamage
+	clearmissdamage
+	moveanimnosub
+	failuretext
+	applydamage
+	criticaltext
+	cleartext
+	postfainteffects
+	posthiteffects
+	supereffectivetext
+	endloop
+	raisesub
+	flinchtarget
+	endmove
+
 SolarBeam:
 	checkobedience
 	usedmovetext

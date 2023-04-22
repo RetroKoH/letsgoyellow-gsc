@@ -2463,6 +2463,8 @@ AIDamageCalc:
 	jr z, .multihit
 	cp EFFECT_DOUBLE_HIT
 	jr z, .doublehit
+	cp EFFECT_DUO_IRON_BASH
+	jr z, .doublehit
 	cp EFFECT_GYRO_BALL
 	jr z, .gyro_ball
 	cp EFFECT_WEATHER_BALL

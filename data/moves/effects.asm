@@ -1379,14 +1379,6 @@ Roar:
 	roar
 	endmove
 
-SkillSwap:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	skillswap
-	endmove
-
 Trick:
 	checkobedience
 	usedmovetext

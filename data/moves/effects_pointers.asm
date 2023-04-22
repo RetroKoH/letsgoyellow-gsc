@@ -145,7 +145,6 @@ MoveEffectsPointers:
 	dw OHKOHit
 	dw Roost
 	dw CloseCombat
-	dw SkillSwap
 	dw Trick
 	dw KnockOff
 	dw FuryStrikes

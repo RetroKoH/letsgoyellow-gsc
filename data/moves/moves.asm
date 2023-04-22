@@ -18,7 +18,7 @@ Moves::
 	move ICE_PUNCH,    EFFECT_FREEZE_HIT,         75, ICE,       100, 15,  10, PHYSICAL
 	move THUNDERPUNCH, EFFECT_PARALYZE_HIT,       75, ELECTRIC,  100, 15,  10, PHYSICAL
 	move VISE_GRIP,    EFFECT_SPEED_DOWN_HIT,     65, NORMAL,    100, 20,   0, PHYSICAL ; Mirrors Bubble Beam and Low Sweep
-	move RAZOR_WIND,   EFFECT_RAZOR_WIND,        130, NORMAL,    100, 10,   0, SPECIAL ; Sp Def up
+	move RAZOR_WIND,   EFFECT_RAZOR_WIND,        130, NORMAL,    100, 10,   0, SPECIAL ; Sp Def up; Need to fix animations
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,    100, 20,   0, STATUS
 	move GUST,         EFFECT_GUST,               40, FLYING,    100, 35,   0, SPECIAL
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,    100, 35,   0, PHYSICAL
@@ -107,12 +107,12 @@ Moves::
 	move FIRE_BLAST,   EFFECT_BURN_HIT,          110, FIRE,       85,  5,  10, SPECIAL
 	move WATERFALL,    EFFECT_FLINCH_HIT,         80, WATER,     100, 15,  20, PHYSICAL
 	move SWIFT,        EFFECT_ALWAYS_HIT,         60, NORMAL,    100, 20,   0, SPECIAL
-	move SKULL_BASH,   EFFECT_SKULL_BASH,        130, NORMAL,    100, 10,   0, PHYSICAL ; DEF UP
+	move SKULL_BASH,   EFFECT_SKULL_BASH,        130, NORMAL,    100, 10,   0, PHYSICAL ; Def up; Need to fix animations
 	move AMNESIA,      EFFECT_SP_DEF_UP_2,         0, PSYCHIC,   100, 20,   0, STATUS
 	move HI_JUMP_KICK, EFFECT_JUMP_KICK,         130, FIGHTING,   90, 10,   0, PHYSICAL
 	move GLARE,        EFFECT_PARALYZE,            0, NORMAL,    100, 30,   0, STATUS
 	move DREAM_EATER,  EFFECT_DREAM_EATER,       100, PSYCHIC,   100, 15,   0, SPECIAL
-	move POISON_GAS,   EFFECT_POISON,              0, POISON,     90, 40,   0, STATUS ; Removed EFFECT_SKILL_SWAP
+	move POISON_GAS,   EFFECT_POISON,              0, POISON,     90, 40,   0, STATUS
 	move LEECH_LIFE,   EFFECT_LEECH_HIT,          80, BUG,       100, 10,   0, PHYSICAL
 	move LOVELY_KISS,  EFFECT_SLEEP,               0, NORMAL,     75, 10,   0, STATUS
 	move SKY_ATTACK,   EFFECT_SOLAR_BEAM,        160, FLYING,     90, 5,    0, PHYSICAL ; Crit Hit Flinch

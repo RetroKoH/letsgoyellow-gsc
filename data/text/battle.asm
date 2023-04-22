@@ -179,6 +179,12 @@ BrokeReflectText:
 	cont "Reflect!"
 	prompt
 
+FellForFeintText:
+	text "<TARGET>"
+	line "fell for the"
+	cont "Feint!"
+	prompt
+
 BattleText_ItemLowered:
 	text "The "
 	text_ram wStringBuffer1

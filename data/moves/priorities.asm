@@ -4,6 +4,7 @@ MovePriorities:
 	db HELPING_HAND,  4
 	db PROTECT,       4
 	db EXTREMESPEED,  2
+	db FEINT,         2
 	db AQUA_JET,      1
 	db BULLET_PUNCH,  1
 	db ICE_SHARD,     1

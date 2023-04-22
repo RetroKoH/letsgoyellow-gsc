@@ -143,6 +143,7 @@ BattleCommandPointers:
 	command checkpowder
 	command lowkick
 	command brickbreak
+	command feint
 	command trickroom
 
 	; The following commands have an argument: stat to raise/lower.

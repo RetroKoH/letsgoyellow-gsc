@@ -369,7 +369,6 @@ AI_Smart:
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
 	dbw EFFECT_FURY_CUTTER,       AI_Smart_FuryCutter
 	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
-	dbw EFFECT_SWAGGER,           AI_Smart_Swagger
 	dbw EFFECT_ATTRACT,           AI_Smart_Attract
 	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
 	dbw EFFECT_BATON_PASS,        AI_Smart_BatonPass
@@ -1695,7 +1694,6 @@ AI_Smart_Rollout:
 	inc [hl]
 	ret
 
-AI_Smart_Swagger:
 AI_Smart_FakeOut:
 AI_Smart_Attract:
 ; 80% chance to encourage this move during the first turn of player's Pokemon.

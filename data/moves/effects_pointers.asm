@@ -116,7 +116,7 @@ MoveEffectsPointers:
 	dw Hail
 	dw Endure
 	dw Rollout
-	dw Swagger
+	dw Feint
 	dw ConditionalBoostHit
 	dw Attract
 	dw Return

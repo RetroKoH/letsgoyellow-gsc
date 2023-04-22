@@ -16,7 +16,6 @@ DragonClaw:
 DrillPeck:
 DrillRun:
 Extremespeed:
-FeintAttack:
 HiJumpKick:
 HornAttack:
 HydroPump:
@@ -599,6 +598,28 @@ BrickBreak:
 	critical
 	resettypematchup
 	brickbreak
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	postfainteffects
+	posthiteffects
+	endmove
+
+Feint:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	feint
+	checkhit
+	critical
+	resettypematchup
 	damagestats
 	damagecalc
 	stab
@@ -1817,17 +1838,6 @@ Rollout:
 	supereffectivetext
 	postfainteffects
 	posthiteffects
-	endmove
-
-Swagger:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	checkhit
-	bounceback
-	raiseoppstat $10 | ATTACK
-	confusetarget
 	endmove
 
 Acrobatics:

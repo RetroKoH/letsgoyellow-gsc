@@ -195,7 +195,7 @@ Moves::
 	move WATER_PULSE,  EFFECT_CONFUSE_HIT,        60, WATER,     100, 20,  20, SPECIAL
 	move ROOST,        EFFECT_ROOST,               0, FLYING,    100, 10,   0, STATUS
 	move GYRO_BALL,    EFFECT_GYRO_BALL,           1, STEEL,     100,  5,   0, PHYSICAL
-	move FEINT,        EFFECT_BRICK_BREAK,        40, NORMAL,    100, 10,   0, PHYSICAL ; REMOVE EFFECT_SWAGGER, Change this to bypass Protect instead of Screens
+	move FEINT,        EFFECT_FEINT,              40, NORMAL,    100, 10,   0, PHYSICAL ; Test effect, Should NOT be affected by King's Rock
 	move U_TURN,       EFFECT_SWITCH_HIT,         70, BUG,       100, 20,   0, PHYSICAL
 	move CLOSE_COMBAT, EFFECT_CLOSE_COMBAT,      120, FIGHTING,  100,  5,   0, PHYSICAL
 	move SUCKER_PUNCH, EFFECT_SUCKER_PUNCH,       70, DARK,      100,  5,   0, PHYSICAL

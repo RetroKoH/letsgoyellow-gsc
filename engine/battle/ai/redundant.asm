@@ -36,7 +36,6 @@ AI_Redundant:
 	dbw EFFECT_SUNNY_DAY,     .SunnyDay
 	dbw EFFECT_TELEPORT,      .Teleport
 	dbw EFFECT_HEALING_LIGHT, .HealingLight
-	dbw EFFECT_SWAGGER,       .Swagger
 	dbw EFFECT_FUTURE_SIGHT,  .FutureSight
 	dbw EFFECT_BATON_PASS,    .BatonPass
 	dbw EFFECT_ROOST,         .Roost
@@ -121,11 +120,6 @@ AI_Redundant:
 .Substitute:
 	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_SUBSTITUTE, a
-	ret
-
-.Swagger:
-	ld a, [wPlayerSubStatus3]
-	bit SUBSTATUS_CONFUSED, a
 	ret
 
 .Transform:

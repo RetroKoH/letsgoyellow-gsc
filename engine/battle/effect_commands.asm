@@ -24,6 +24,7 @@ INCLUDE "engine/battle/move_effects/encore_disable.asm"
 INCLUDE "engine/battle/move_effects/endure.asm"
 INCLUDE "engine/battle/move_effects/explosion.asm"
 INCLUDE "engine/battle/move_effects/false_swipe.asm" ; code needed for Sturdy
+INCLUDE "engine/battle/move_effects/feint.asm"
 INCLUDE "engine/battle/move_effects/focus_energy.asm"
 INCLUDE "engine/battle/move_effects/foresight.asm"
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"
@@ -5689,10 +5690,10 @@ BattleCommand_confuse:
 
 .not_already_confused
 	call CheckSubstituteOpp
-	jr nz, Confuse_CheckSwagger_ConfuseHit
+	jr nz, Confuse_CheckConfuseHit
 	ld a, [wAttackMissed]
 	and a
-	jr nz, Confuse_CheckSwagger_ConfuseHit
+	jr nz, Confuse_CheckConfuseHit
 FinishConfusingTarget:
 	ld bc, wEnemyConfuseCount
 	ldh a, [hBattleTurn]
@@ -5712,8 +5713,7 @@ FinishConfusingTarget:
 	call GetBattleVar
 	cp EFFECT_CONFUSE_HIT
 	jr z, .got_effect
-	cp EFFECT_SWAGGER
-	call nz, AnimateCurrentMove
+	call AnimateCurrentMove
 .got_effect
 	ld hl, BecameConfusedText
 	; fallthrough
@@ -5727,12 +5727,10 @@ FinishConfusingTargetAnim:
 	farcall UseOpponentConfusionHealingItem
 	farjp RunEnemyStatusHealAbilities
 
-Confuse_CheckSwagger_ConfuseHit:
+Confuse_CheckConfuseHit:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_CONFUSE_HIT
-	ret z
-	cp EFFECT_SWAGGER
 	ret z
 	jmp PrintDidntAffect2
 

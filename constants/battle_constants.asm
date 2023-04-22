@@ -326,7 +326,6 @@ DVS_TRICK_ROOM   EQUS "$00, $f0, $00"
 
 ; Hidden Power DVs ($00 is converted to $ff in regular trainer sets)
 ; Chosen for stat importance: Speed > * > Atk
-if DEF(FAITHFUL)
 DVS_HP_FIGHTING EQUS "$00, $ee, $ee"
 DVS_HP_FLYING   EQUS "$ee, $ef, $ee"
 DVS_HP_POISON   EQUS "$00, $ef, $ee"
@@ -343,21 +342,3 @@ DVS_HP_PSYCHIC  EQUS "$fe, $fe, $00"
 DVS_HP_ICE      EQUS "$fe, $ef, $00"
 DVS_HP_DRAGON   EQUS "$fe, $00, $00"
 DVS_HP_DARK     EQUS "$00, $00, $00"
-else
-DVS_HP_FIGHTING EQUS "$00, $ee, $ee"
-DVS_HP_FLYING   EQUS "$00, $fe, $ee"
-DVS_HP_POISON   EQUS "$00, $ef, $ee"
-DVS_HP_GROUND   EQUS "$00, $00, $ee"
-DVS_HP_ROCK     EQUS "$00, $ee, $fe"
-DVS_HP_BUG      EQUS "$00, $fe, $fe"
-DVS_HP_GHOST    EQUS "$00, $ef, $fe"
-DVS_HP_STEEL    EQUS "$00, $00, $fe"
-DVS_HP_FIRE     EQUS "$00, $ee, $ef"
-DVS_HP_WATER    EQUS "$00, $fe, $ef"
-DVS_HP_GRASS    EQUS "$00, $ef, $ef"
-DVS_HP_ELECTRIC EQUS "$00, $00, $ef"
-DVS_HP_PSYCHIC  EQUS "$00, $ee, $00"
-DVS_HP_ICE      EQUS "$00, $fe, $00"
-DVS_HP_DRAGON   EQUS "$00, $ef, $00"
-DVS_HP_DARK     EQUS "$fe, $00, $00"
-endc

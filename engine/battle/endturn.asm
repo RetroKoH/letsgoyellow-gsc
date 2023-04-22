@@ -371,6 +371,7 @@ endc
 	call GetSixteenthMaxHP
 	predef_jump SubtractHPFromUser
 
+HandleWish:
 HandleFutureSight:
 	call SetFastestTurn
 	call .do_it
@@ -410,7 +411,7 @@ HandleFutureSight:
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
 	push af
-	ld [hl], FUTURE_SIGHT
+	ld [hl], WISH ; was FUTURE_SIGHT
 	farcall UpdateMoveData
 
 	xor a

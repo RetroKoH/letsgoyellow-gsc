@@ -307,7 +307,7 @@ VenusaurLearnset:
 	db 30, RAZOR_LEAF
 	db 42, GROWTH
 	db 51, HEALINGLIGHT
-	db 60, SEED_BOMB ; BULLET_SEED (Ranged Triple Kick)
+	db 60, BULLET_SEED
 	db 69, DOUBLE_EDGE
 	db 78, SOLAR_BEAM
 	db 0 ; no more level-up moves
@@ -367,7 +367,7 @@ ButterfreeLearnset:
 	db 13, SLEEP_POWDER ; Psybeam → Sleep Powder
 	db 16, PSYBEAM ; Silver Wind → Psybeam
 	db 19, SUPERSONIC
-	db 22, SAFEGUARD ; QUIVER_DANCE
+	db 22, QUIVER_DANCE
 	db 25, HYPNOSIS ; Whirlwind → new move
 	db 28, AIR_SLASH
 	db 31, BUG_BUZZ
@@ -396,7 +396,7 @@ PidgeyLearnset:
 PidgeottoLearnset:
 PidgeotLearnset:
 	db 1, STRIKE ; TACKLE
-	db 3, MUD_SLAP ; Sand Attack → similar move
+	db 3, SAND_ATTACK
 	db 5, GUST
 	db 9, QUICK_ATTACK
 	db 12, WING_ATTACK
@@ -478,7 +478,7 @@ SandshrewPlainLearnset:
 SandslashPlainLearnset:
 	db 1, STRIKE ; SCRATCH
 	db 1, DEFENSE_CURL
-	db 3, MUD_SLAP ; Sand Attack → similar move
+	db 3, SAND_ATTACK
 	db 6, POISON_STING
 	db 9, ROLLOUT
 	db 12, FURY_CUTTER
@@ -568,7 +568,7 @@ NinetalesAlolanLearnset:
 	db 21, DAZZLINGLEAM
 	db 24, ICE_BEAM
 	db 27, ROAR
-	db 30, SAFEGUARD ; AURORA_VEIL
+	db 30, AURORA_VEIL
 	db 36, BLIZZARD
 	db 0 ; no more level-up moves
 
@@ -647,7 +647,7 @@ VenomothLearnset:
 DiglettPlainLearnset:
 DugtrioPlainLearnset:
 	db 1, STRIKE ; SCRATCH
-	db 1, MUD_SLAP ; Sand Attack → Mud-Slap
+	db 1, SAND_ATTACK
 	db 4, GROWL
 	db 8, AGILITY
 	db 12, FURY_STRIKES
@@ -662,7 +662,7 @@ DugtrioPlainLearnset:
 DiglettAlolanLearnset:
 DugtrioAlolanLearnset:
 	db 1, METAL_CLAW
-	db 1, MUD_SLAP ; Sand Attack → Mud-Slap
+	db 1, SAND_ATTACK
 	db 4, GROWL
 	db 8, AGILITY
 	db 12, FURY_STRIKES
@@ -680,9 +680,9 @@ PersianPlainLearnset:
 	db 1, GROWL
 	db 3, BITE
 	db 6, FAKE_OUT
-	db 9, PURSUIT ; Taunt → egg move
+	db 9, TAUNT
 	db 12, PAY_DAY
-	db 15, THIEF ; FEINT
+	db 15, FEINT
 	db 19, FURY_STRIKES ; Fury Swipes → similar move
 	db 23, SCREECH
 	db 27, SLASH
@@ -696,9 +696,9 @@ PersianAlolanLearnset:
 	db 1, GROWL
 	db 3, BITE
 	db 6, FAKE_OUT
-	db 9, PURSUIT ; Taunt → egg move
+	db 9, TAUNT
 	db 12, PAY_DAY
-	db 15, THIEF ; FEINT
+	db 15, FEINT
 	db 19, FURY_STRIKES ; Fury Swipes → similar move
 	db 23, SCREECH
 	db 27, NIGHT_SLASH
@@ -712,9 +712,9 @@ PerrserkerLearnset:
 	db 1, GROWL
 	db 3, METAL_CLAW
 	db 6, FAKE_OUT
-	db 9, PURSUIT ; Taunt → egg move
+	db 9, TAUNT
 	db 12, PAY_DAY
-	db 15, THIEF ; FEINT
+	db 15, FEINT
 	db 19, FURY_STRIKES ; Fury Swipes → similar move
 	db 23, SCREECH
 	db 27, SLASH
@@ -744,7 +744,7 @@ PrimeapeLearnset:
 AnnihilapeLearnset:
 	db 1, STRIKE ; SCRATCH
 	db 1, LEER
-	db 5, SWAGGER ; TAUNT
+	db 5, TAUNT
 	db 10, LOW_KICK
 	db 15, FURY_STRIKES ; Fury Swipes → similar move
 	db 20, SEISMIC_TOSS
@@ -828,12 +828,12 @@ MachampLearnset:
 	db 1, LOW_KICK
 	db 1, LEER
 	db 6, SEISMIC_TOSS
-	db 12, STRENGTH ; BRICK_BREAK
+	db 12, BRICK_BREAK
 	db 18, LOW_SWEEP
 	db 24, BULK_UP
 	db 30, DYNAMICPUNCH
 	db 36, CROSS_CHOP
-	db 42, FLAIL ; Superpower
+	db 42, SUPERPOWER
 	db 48, CLOSE_COMBAT
 	db 54, DOUBLE_EDGE
 	db 0 ; no more level-up moves
@@ -843,10 +843,11 @@ WeepinbellLearnset:
 VictreebelLearnset:
 	db 1, VINE_WHIP
 	db 1, SLEEP_POWDER
-	db 1, HEALINGLIGHT ; Sweet Scent → new move
+	db 1, HEALINGLIGHT
 	db 1, RAZOR_LEAF
-	db 32, SUCKER_PUNCH ; Leaf Storm → prior move
-	db 44, SWORDS_DANCE ; Leaf Blade → prior move
+	db 1, LEAF_BLADE
+	db 32, SUCKER_PUNCH
+	db 44, SWORDS_DANCE
 	db 0 ; no more level-up moves
 
 TentacoolLearnset:
@@ -877,7 +878,6 @@ GolemPlainLearnset:
 GolemAlolanLearnset:
 	db 1, STRIKE ; TACKLE
 	db 1, DEFENSE_CURL
-	db 4, MUD_SLAP ; Mud Sport → TM move
 	db 6, RAPID_SPIN ; Rock Polish → event move
 	db 10, ROLLOUT
 	db 16, ROCK_THROW
@@ -921,8 +921,7 @@ SlowbroPlainLearnset:
 SlowbroGalarianLearnset:
 SlowkingPlainLearnset:
 SlowkingGalarianLearnset:
-	db 1, GUNK_SHOT ; Shell Side Arm → similar move ; evolution move
-	db 1, CURSE
+	db 1, POISON_JAB ; Shell Side Arm → similar move ; evolution move
 	db 1, STRIKE ; TACKLE
 	db 5, GROWL
 	db 9, ACID
@@ -931,7 +930,6 @@ SlowkingGalarianLearnset:
 	db 23, HEADBUTT
 	db 28, WATER_PULSE
 	db 32, ZEN_HEADBUTT
-	db 36, SAFEGUARD ; Slack Off → egg move
 	db 43, AMNESIA
 	db 49, PSYCHIC_M
 	db 55, RAIN_DANCE
@@ -947,29 +945,23 @@ MagnezoneLearnset:
 	db 1, STRIKE ; TACKLE
 	db 5, THUNDERSHOCK
 	db 7, THUNDER_WAVE
-	db 11, QUICK_ATTACK ; Magnet Bomb → TCG move
 	db 13, LIGHT_SCREEN
-	db 17, SONIC_BOOM
-	db 19, SPARK
 	db 23, SWIFT ; Mirror Shot → TM move
 	db 25, SCREECH ; Metal Sound → Screech
 	db 29, THUNDERBOLT ; Electro Ball → TM move
 	db 33, FLASH_CANNON
 	db 39, EXPLOSION ; Screech → TM move
-	db 43, WEATHER_BALL ; Discharge → TM move
 	db 49, AGILITY ; Lock-On → event move
 	db 53, GYRO_BALL ; Magnet Rise → Gyro Ball
 	db 59, THUNDER ; Gyro Ball → TM move
-	db 63, ZAP_CANNON
 	db 0 ; no more level-up moves
 
 FarfetchDPlainLearnset:
 FarfetchDGalarianLearnset:
 SirfetchDLearnset:
 	db 1, POISON_JAB
-	db 1, BATON_PASS ; Brave Bird → event move
 	db 1, PECK
-	db 1, MUD_SLAP ; Sand Attack → similar move
+	db 1, SAND_ATTACK
 	db 1, LEER
 	db 7, FURY_STRIKES ; Fury Attack → similar move
 	db 9, AERIAL_ACE
@@ -996,7 +988,6 @@ DodrioLearnset:
 	db 9, FURY_CUTTER
 	db 12, FURY_STRIKES ; Fury Attack → similar move
 	db 15, PURSUIT
-	db 19, BATON_PASS ; Pluck → XD move
 	db 22, DOUBLE_KICK ; Double Hit → new move
 	db 26, AGILITY
 	db 29, DOUBLE_TEAM ; Uproar → TM move
@@ -1022,10 +1013,9 @@ DewgongLearnset:
 	db 31, AQUA_JET
 	db 33, BUBBLE_BEAM ; Brine → RBY TM move
 	db 39, TAKE_DOWN
-	db 45, PERISH_SONG ; Dive → new move
 	db 49, AQUA_TAIL
 	db 55, ICE_BEAM
-	db 61, SAFEGUARD
+	db 61, AURORA_VEIL
 	db 65, HAIL
 	db 69, MEGAHORN ; Let's Go move
 	db 0 ; no more level-up moves
@@ -1047,7 +1037,7 @@ MukAlolanLearnset:
 	db 32, CRUNCH
 	db 37, SCREECH
 	db 40, GUNK_SHOT
-	db 46, PAIN_SPLIT ; Acid Armor → HGSS tutor move
+	db 46, ACID_ARMOR
 	db 52, EXPLOSION ; Belch → TM move
 	db 0 ; no more level-up moves
 
@@ -1061,8 +1051,7 @@ CloysterLearnset:
 	db 1, SUPERSONIC
 	db 1, PROTECT
 	db 1, AURORA_BEAM
-	db 1, SPIKES ; evolution move
-	db 28, ICICLE_SPEAR ; Spikes → Icicle Spear
+	db 28, ICICLE_SPEAR
 	db 32, PIN_MISSILE ; Sw/Sh TM move
 	db 50, ICICLE_CRASH
 	db 0 ; no more level-up moves
@@ -1070,22 +1059,16 @@ CloysterLearnset:
 GastlyLearnset:
 HaunterLearnset:
 GengarLearnset:
-	db 1, SHADOW_CLAW ; Shadow Punch → TM move ; evolution move
 	db 1, HYPNOSIS
 	db 1, LICK
 	db 5, DISABLE ; Spite → egg move
-	db 8, MEAN_LOOK
-	db 12, CURSE
 	db 15, NIGHT_SHADE
 	db 19, CONFUSE_RAY
 	db 22, SUCKER_PUNCH
-	db 28, PAIN_SPLIT ; Payback → HGSS tutor move
 	db 33, SHADOW_BALL
 	db 39, DREAM_EATER
 	db 44, DARK_PULSE
-	db 50, DESTINY_BOND
 	db 55, HEX
-	db 61, PERISH_SONG ; Nightmare → new move
 	db 0 ; no more level-up moves
 
 OnixLearnset:
@@ -1093,7 +1076,6 @@ SteelixLearnset:
 	db 1, STRIKE ; TACKLE
 	db 1, HARDEN
 	db 1, WRAP ; Bind → similar move
-	db 4, CURSE
 	db 7, ROCK_THROW
 	db 10, FURY_CUTTER
 	db 13, ROCK_BLAST ; Rock Tomb → egg move
@@ -1126,11 +1108,8 @@ HypnoLearnset:
 	db 33, BARRIER ; Psych Up → egg move
 	db 37, BELLY_DRUM ; Synchronoise → event move
 	db 41, ZEN_HEADBUTT
-	db 45, SWAGGER
 	db 49, PSYCHIC_M
 	db 53, NASTY_PLOT
-	db 57, TOXIC ; Psyshock → TM move
-	db 61, FUTURE_SIGHT
 	db 0 ; no more level-up moves
 
 KrabbyLearnset:
@@ -1155,9 +1134,6 @@ VoltorbLearnset:
 ElectrodeLearnset:
 	db 1, STRIKE ; TACKLE
 	db 1, THUNDERSHOCK ; Let's Go move
-	db 4, SONIC_BOOM
-	db 6, AGILITY ; Eerie Impulse → event move
-	db 9, SPARK
 	db 11, ROLLOUT
 	db 13, SCREECH
 	db 16, THUNDER_WAVE ; Charge Beam → TM move
@@ -1189,20 +1165,19 @@ MarowakPlainLearnset:
 MarowakAlolanLearnset:
 	db 1, SWORDS_DANCE ; evolution move
 	db 1, GROWL
-	db 3, STRIKE ; TACKLE ; Tail Whip → new move
-	db 7, FAKE_OUT ; Bone Club → new move
-	db 11, FLAME_CHARGE ; Flame Wheel → TM move
+	db 3, STRIKE ; TACKLE
+	db 7, FAKE_OUT
+	db 11, FLAME_WHEEL
 	db 13, LEER
 	db 17, HEX
 	db 21, BONEMERANG
 	db 23, WILL_O_WISP
-	db 27, SHADOW_CLAW ; Shadow Bone → similar move
+	db 27, SHADOW_BONE
 	db 33, THRASH
-	db 37, KNOCK_OFF ; Fling → TM move
-	db 43, ACROBATICS ; Stomping Tantrum → new move
-	db 49, ROCK_SMASH ; Endeavor → TM move
+	db 37, KNOCK_OFF
+	db 43, ACROBATICS
+	db 49, BRICK_BREAK
 	db 53, FLARE_BLITZ
-	db 59, PAIN_SPLIT ; Retaliate → S/M tutor move
 	db 65, OUTRAGE ; Bone Rush → HGSS tutor move
 	db 0 ; no more level-up moves
 
@@ -1217,9 +1192,7 @@ HitmontopLearnset:
 	db 25, AERIAL_ACE ; Feint → new move
 	db 29, HI_JUMP_KICK
 	db 33, DOUBLE_TEAM ; Mind Reader → TM move
-	db 37, FORESIGHT
-	db 45, FLAIL ; Blaze Kick → FLAIL
-	db 49, ENDURE
+	db 45, BLAZE_KICK
 	db 53, FOCUS_BLAST ; Mega Kick → TM move
 	db 57, CLOSE_COMBAT
 	db 61, COUNTER ; FLAIL → TM move
@@ -1227,7 +1200,6 @@ HitmontopLearnset:
 
 TyrogueLearnset:
 HitmonchanLearnset:
-	db 1, DIZZY_PUNCH ; Comet Punch → Dizzy Punch ; evolution move
 	db 1, BULK_UP ; Revenge → TM move
 	db 6, AGILITY
 	db 11, PURSUIT
@@ -1235,7 +1207,6 @@ HitmonchanLearnset:
 	db 17, BULLET_PUNCH
 	db 21, AERIAL_ACE ; Feint → new move
 	db 26, SEISMIC_TOSS ; Vacuum Wave → RBY TM move
-	db 31, FORESIGHT ; Quick Guard → new move
 	db 36, THUNDERPUNCH
 	db 36, ICE_PUNCH
 	db 36, FIRE_PUNCH
@@ -1272,16 +1243,13 @@ WeezingGalarianLearnset:
 	db 1, STRIKE ; TACKLE
 	db 4, ACID ; Smog → new move
 	db 7, SMOKESCREEN
-	db 12, ENDURE ; Assurance → TM move
 	db 15, WILL_O_WISP ; Clear Smog → TM move
 	db 18, VENOSHOCK ; Sludge → tutor move
-	db 23, FURY_CUTTER ; Self-Destruct → RBY TM move
+	db 23, EXPLOSION
 	db 26, HAZE
 	db 29, GYRO_BALL
 	db 34, SLUDGE_BOMB
 	db 40, EXPLOSION
-	db 46, DESTINY_BOND
-	db 51, PAIN_SPLIT ; Belch → HGSS tutor move
 	db 57, FIRE_BLAST ; Memento → TM move
 	db 0 ; no more level-up moves
 
@@ -1290,11 +1258,10 @@ RhydonLearnset:
 RhyperiorLearnset:
 	db 1, OUTRAGE ; Hammer Arm → HGSS tutor move ; evolution move
 	db 1, STRIKE ; TACKLE
-	db 1, MUD_SLAP ; Sand-Attack → similar move
+	db 1, SAND_ATTACK
 	db 1, LEER ; Tail Whip → similar move
 	db 3, HORN_ATTACK
 	db 6, FURY_STRIKES ; Fury Attack → similar move
-	db 9, SCARY_FACE
 	db 17, STOMP
 	db 21, BULLDOZE
 	db 25, ANCIENTPOWER ; Chip Away → HGSS tutor move
@@ -1315,8 +1282,7 @@ BlisseyLearnset:
 	db 1, STRIKE ; POUND
 	db 1, GROWL
 	db 5, LEER ; Tail Whip → similar move
-	db 9, SWEET_KISS ; Refresh → Happiny move
-	db 16, FRESH_SNACK ; Soft-Boiled → similar move
+	db 16, RECOVER
 	db 20, METRONOME ; Bestow → egg move
 	db 23, MINIMIZE
 	db 27, TAKE_DOWN
@@ -1331,23 +1297,19 @@ BlisseyLearnset:
 
 TangelaLearnset:
 TangrowthLearnset:
-	db 1, WRAP ; Constrict → similar move
+	db 1, WRAP
 	db 4, SLEEP_POWDER
 	db 7, VINE_WHIP
 	db 10, ABSORB
 	db 14, POISONPOWDER
-	db 17, PROTECT ; Bind → TM move
 	db 20, GROWTH
 	db 23, MEGA_DRAIN
 	db 27, KNOCK_OFF
 	db 30, STUN_SPORE
-	db 33, HEALINGLIGHT ; Natural Gift → new move
+	db 33, HEALINGLIGHT
 	db 36, GRASS_KNOT
 	db 38, ANCIENTPOWER
-	db 41, BODY_SLAM ; Slam → similar move
-	db 44, PAIN_SPLIT ; Tickle → HGSS tutor move
-	db 46, SWORDS_DANCE ; Wring Out → TM move
-	db 48, BATON_PASS ; Grassy Terrain → new move
+	db 41, BODY_SLAM
 	db 50, POWER_WHIP
 	db 0 ; no more level-up moves
 
@@ -1414,9 +1376,9 @@ MrRimeLearnset:
 	db 1, BARRIER
 	db 6, CONFUSION
 	db 10, FURY_STRIKES
-	db 16, BATON_PASS ; Mimic
+	db 16, MIMIC
 	db 20, PROTECT
-	db 26, TRICK ; RECYCLE
+	db 26, RECYCLE
 	db 30, ENCORE
 	db 36, PSYBEAM
 	db 40, SUCKER_PUNCH
@@ -1450,12 +1412,12 @@ SmoochumLearnset:
 JynxLearnset:
 	db 1, STRIKE ; POUND
 	db 1, LICK
-	db 1, CONFUSION ; Smoochum move
-	db 8, SCREECH ; Lovely Kiss → Let's Go move
+	db 1, CONFUSION
+	db 8, SCREECH
 	db 11, FURY_STRIKES
 	db 18, ICE_PUNCH
 	db 21, BODY_SLAM
-	db 25, MEAN_LOOK ; LOVELY KISS
+	db 25, LOVELY_KISS
 	db 33, PSYCHIC_M
 	db 60, BLIZZARD
 	db 0 ; no more level-up moves
@@ -1484,7 +1446,7 @@ MagmortarLearnset:
 	db 1, LEER
 	db 6, EMBER
 	db 12, FIRE_SPIN
-	db 18, LOW_KICK ; Clear Smog → HGSS tutor move
+	db 18, LOW_KICK
 	db 24, CONFUSE_RAY
 	db 30, FIRE_PUNCH
 	db 36, SUNNY_DAY ; Lava Plume → Sunny Day
@@ -1498,7 +1460,7 @@ PinsirLearnset:
 	db 8, SEISMIC_TOSS
 	db 14, FURY_STRIKES ; Vice Grip
 	db 20, BUG_BITE
-	db 26, ROCK_SMASH ; Brick Break
+	db 26, BRICK_BREAK
 	db 32, X_SCISSOR
 	db 38, SWORDS_DANCE
 	db 44, THRASH
@@ -1510,7 +1472,7 @@ TaurosLearnset:
 	db 6, LEER ; Tail Whip → similar move
 	db 12, HORN_ATTACK
 	db 18, DOUBLE_KICK ; ADDITIONAL
-	db 24, SCARY_FACE ; WORK_UP
+	db 24, BULK_UP ; WORK_UP
 	db 30, REST
 	db 34, TAKE_DOWN
 	db 38, PURSUIT
@@ -1591,14 +1553,14 @@ SylveonLearnset:
 	db 1, GROWL
 	db 1, LEER ; Tail Whip → similar move
 	db 13, QUICK_ATTACK
-	db 5, MUD_SLAP ; Sand Attack → similar move
+	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move
 	db 29, CHARM
 	db 10, SWIFT
 	db 17, BITE
 	db 20, HEAL_BELL ; Mimic
 	db 25, TAKE_DOWN
-	db 33, BATON_PASS ; Helping Hand
+	db 33, HELPING_HAND
 	db 37, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
@@ -1768,13 +1730,12 @@ MewtwoLearnset:
 	db 72, BARRIER
 	db 80, AGILITY
 	db 88, CALM_MIND
-	db 100, AURA_SPHERE ; PSYSTRIKE
 	db 0 ; no more level-up moves
 
 MewLearnset:
 	db 1, STRIKE ; POUND
 	db 1, CONFUSION
-	;db 1, MIMIC
+	db 1, MIMIC
 	db 11, SWIFT
 	db 22, AMNESIA
 	db 33, ANCIENTPOWER
@@ -1789,19 +1750,16 @@ MewLearnset:
 SentretLearnset:
 FurretLearnset:
 	db 1, STRIKE ; TACKLE
-	db 1, FORESIGHT
 	db 1, AGILITY ; evolution move
 	db 4, DEFENSE_CURL
 	db 7, QUICK_ATTACK
 	db 13, FURY_STRIKES ; Fury Swipes → similar move
-	db 17, DIZZY_PUNCH ; Helping Hand → event move
+	db 17, HELPING_HAND
 	db 21, SUPER_FANG ; Follow Me → HGSS tutor move
 	db 28, HEADBUTT ; Slam → tutor move
 	db 32, REST
 	db 36, SUCKER_PUNCH
 	db 42, AMNESIA
-	db 46, BATON_PASS
-	db 50, SLASH ; Me First → egg move
 	db 56, HYPER_VOICE
 	db 0 ; no more level-up moves
 
@@ -1810,18 +1768,14 @@ NoctowlLearnset:
 	db 1, DREAM_EATER
 	db 1, STRIKE ; TACKLE
 	db 1, GROWL
-	db 1, FORESIGHT
 	db 4, HYPNOSIS
 	db 7, PECK
 	db 10, CONFUSION
 	db 13, NIGHT_SHADE ; Echoed Voice → event move
 	db 16, ZEN_HEADBUTT
-	db 19, HEX ; Psycho Shift → new move
-	db 23, WING_ATTACK ; Extrasensory → egg move
 	db 27, TAKE_DOWN
 	db 31, REFLECT
 	db 35, AIR_SLASH
-	db 39, EXTRASENSORY ; Uproar → Extrasensory
 	db 43, ROOST
 	db 47, HYPER_VOICE ; Moonblast → tutor move
 	db 51, MOONBLAST ; Synchronoise → Moonblast
@@ -1833,20 +1787,15 @@ AriadosLearnset:
 	db 1, BUG_BITE ; evolution move
 	db 1, POISON_STING
 	db 1, STRING_SHOT
-	db 1, WRAP ; Constrict → similar move
 	db 5, ABSORB
-	db 8, GLARE ; Infestation → new move
-	db 12, SCARY_FACE
 	db 15, NIGHT_SHADE
-	db 19, GROWTH ; Shadow Sneak → event move
-	db 23, FURY_STRIKES ; Fury Swipes → similar move
+	db 23, FURY_STRIKES
 	db 28, SUCKER_PUNCH
-	db 32, MEAN_LOOK ; Spider Web → similar move
 	db 37, AGILITY
 	db 41, PIN_MISSILE
 	db 46, PSYCHIC_M
 	db 50, POISON_JAB
-	db 55, LEECH_LIFE ; Cross Poison → TM move
+	db 55, CROSS_POISON
 	db 0 ; no more level-up moves
 
 ChinchouLearnset:
@@ -1858,7 +1807,6 @@ LanturnLearnset:
 	db 12, BUBBLE_BEAM ; Water Gun → Bubble Beam
 	db 17, CONFUSE_RAY
 	db 20, WATER_PULSE ; Bubble Beam → TM move
-	db 23, SPARK
 	db 29, PSYBEAM ; Signal Beam → egg move
 	db 33, FLAIL ; Flail → similar move
 	db 37, THUNDERBOLT ; Discharge → TM move
@@ -1875,10 +1823,10 @@ TogekissLearnset:
 	db 1, DISARM_VOICE ; evolution move
 	db 1, HURRICANE ; Sky Attack → new move
 	db 1, EXTREMESPEED
-	db 1, AURA_SPHERE
+	db 1, MOONBLAST
 	db 1, AIR_SLASH
 	db 1, PLAY_ROUGH ; Sw/Sh move
-	db 1, FUTURE_SIGHT ; Sw/Sh move
+	db 1, WISH
 	db 0 ; no more level-up moves
 
 NatuLearnset:
@@ -1888,7 +1836,7 @@ XatuLearnset:
 	db 6, NIGHT_SHADE
 	db 12, TELEPORT
 	db 18, CONFUSE_RAY
-	db 24, RECOVER ; WISH
+	db 24, WISH
 	db 30, PSYCHIC_M
 	db 0 ; no more level-up moves
 
@@ -2013,7 +1961,7 @@ ForretressLearnset:
 GligarLearnset:
 GliscorLearnset:
 	db 1, POISON_STING
-	db 4, MUD_SLAP ; Sand Attack → similar move
+	db 4, SAND_ATTACK
 	db 8, HARDEN
 	db 12, KNOCK_OFF
 	db 16, QUICK_ATTACK
@@ -2086,8 +2034,8 @@ SneaselHisuianLearnset:
 SneaslerLearnset:
 	db 1, STRIKE ; SCRATCH
 	db 1, LEER
-	db 6, ROCK_SMASH
-	db 6, BITE ; Taunt → egg move
+	db 6, BRICK_BREAK
+	db 6, TAUNT
 	db 12, QUICK_ATTACK
 	db 18, METAL_CLAW
 	db 24, POISON_JAB
@@ -2113,7 +2061,7 @@ UrsalunaLearnset:
 
 SlugmaLearnset:
 MagcargoLearnset:
-	db 1, MUD_SLAP ; Smog → TM move
+	db 1, POISON_GAS
 	db 4, EMBER
 	db 8, ROCK_THROW
 	db 12, HARDEN
@@ -2130,8 +2078,8 @@ SwinubLearnset:
 PiloswineLearnset:
 MamoswineLearnset:
 	db 1, STRIKE ; TACKLE
-	db 1, MUD_SLAP
-	db 8, PAIN_SPLIT ; FLAIL
+	db 1, SAND_ATTACK
+	db 8, FLAIL
 	db 16, ICE_SHARD
 	db 24, AMNESIA
 	db 32, ICY_WIND
@@ -2143,7 +2091,7 @@ MamoswineLearnset:
 SkarmoryLearnset:
 	db 1, LEER
 	db 1, PECK
-	db 6, MUD_SLAP ; SAND_ATTACK
+	db 6, SAND_ATTACK
 	db 12, FURY_STRIKES
 	db 18, METAL_CLAW
 	db 24, SWIFT

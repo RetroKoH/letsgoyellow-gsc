@@ -113,10 +113,7 @@ BattleCommand_transform:
 	inc de
 	and a
 	jr z, .done_move
-	cp SKETCH
-	ld a, 1
-	jr z, .done_move
-	ld a, 5
+	ld a, 5 ; Assign 5 PP to each copied move
 .done_move
 	ld [hli], a
 	dec b

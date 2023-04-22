@@ -303,27 +303,28 @@ BattleTowerPharmacistScript:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_TRICK_INTRO
-	iftrue BattleTowerTutorTrickScript
+	iftrue BattleTowerTutorTauntScript
 	writethistext
 		text "The trainers here"
 		line "strategically use"
 		cont "held items."
 
 		para "But I've got a"
-		line "trick up my"
+		line "taunt up my"
 		cont "sleeve--I'll swap"
 
 		para "their items for"
-		line "mine with Trick!"
+		line "mine with Taunt!"
 		done
 	waitbutton
 	setevent EVENT_LISTENED_TO_TRICK_INTRO
-BattleTowerTutorTrickScript:
+
+BattleTowerTutorTauntScript:
 	writethistext
 		text "I'll teach your"
 		line "#mon how to"
 
-		para "use Trick…"
+		para "use Taunt…"
 		line "for a Silver Leaf."
 		done
 	waitbutton
@@ -332,11 +333,11 @@ BattleTowerTutorTrickScript:
 	writethistext
 		text "Should I teach"
 		line "your #mon"
-		cont "Trick?"
+		cont "Taunt?"
 		done
 	yesorno
 	iffalse .TutorRefused
-	setval TRICK
+	setval TAUNT
 	writetext ClearText
 	special Special_MoveTutor
 	ifequal $0, .TeachMove
@@ -356,7 +357,7 @@ BattleTowerTutorTrickScript:
 	takeitem SILVER_LEAF
 	jumpthisopenedtext
 		text "Now your #mon"
-		line "can use Trick too!"
+		line "can use Taunt too!"
 		cont "Isn't it devious?"
 		done
 

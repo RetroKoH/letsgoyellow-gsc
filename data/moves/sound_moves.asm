@@ -3,7 +3,6 @@ SoundMoves::
 	db DISARM_VOICE
 	db GROWL
 	db HYPER_VOICE
-	db PERISH_SONG
 	db ROAR
 	db SCREECH
 	db SING

@@ -1178,23 +1178,20 @@ AI_Smart_Encore:
 	db CONVERSION
 	db DISABLE
 	db DREAM_EATER
-	db FOCUS_ENERGY
 	db GROWTH
 	db HAZE
-	db HONE_CLAWS
 	db LEECH_SEED
 	db LEER
 	db POISONPOWDER
 	db ROAR
 	db SCREECH
-	db SKILL_SWAP
 	db SPLASH
 	db STRING_SHOT
 	db SUBSTITUTE
 	db SUPER_FANG
 	db SWORDS_DANCE
 	db TELEPORT
-	db TRICK
+	db TAUNT
 	db $ff
 
 AI_Smart_PainSplit:
@@ -1808,7 +1805,7 @@ AI_Smart_Pursuit:
 
 AI_Smart_RapidSpin:
 ; 80% chance to greatly encourage this move if the enemy is
-; trapped (Bind effect), seeded, or scattered with spikes.
+; trapped (Bind effect), seeded, or scattered with stealth rocks.
 
 	ld a, [wEnemyWrapCount]
 	and a
@@ -2267,7 +2264,6 @@ UsefulMoves:
 	db WILL_O_WISP
 	db RECOVER
 	db FIRE_BLAST
-	db FRESH_SNACK
 	db SUPER_FANG
 	db MOONBLAST
 	db PLAY_ROUGH
@@ -2327,24 +2323,20 @@ AI_Opportunist:
 	db DEFENSE_CURL
 	db DISABLE
 	db DRAGON_DANCE
-	db FOCUS_ENERGY
 	db GROWL
 	db GROWTH
 	db HAZE
-	db HONE_CLAWS
 	db LEECH_SEED
 	db LEER
 	db LIGHT_SCREEN
-	db RAGE
 	db REFLECT
 	db SCREECH
-	db SKILL_SWAP
 	db SPLASH
 	db STRING_SHOT
 	db SUBSTITUTE
 	db SWORDS_DANCE
 	db TRANSFORM
-	db TRICK
+	db TAUNT
 	db $ff
 
 AI_Aggressive:
@@ -2583,10 +2575,9 @@ AI_Cautious:
 
 .residualmoves
 	db CONVERSION
-	db FOCUS_ENERGY
 	db LEECH_SEED
 	db POISONPOWDER
-	db SPIKES
+	db STEALTH_ROCK
 	db STUN_SPORE
 	db SUBSTITUTE
 	db THUNDER_WAVE

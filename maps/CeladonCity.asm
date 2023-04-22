@@ -75,7 +75,7 @@ CeladonCityTutorSwaggerScript:
 	writetext Text_CeladonCityTutorQuestion
 	yesorno
 	iffalse .TutorRefused
-	setval SWAGGER
+	setval TAUNT
 	writetext ClearText
 	special Special_MoveTutor
 	ifequal $0, .TeachMove

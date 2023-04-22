@@ -247,14 +247,6 @@ InitBattleAnimBuffer:
 	or a
 	jr nz, .no_sub
 	ld a, [wFXAnimIDLo]
-	cp PSYSTRIKE
-	jr z, .sub_8
-	cp FRESH_SNACK
-	jr nz, .no_sub
-.sub_8
-	pop af
-	sub 1 * 8
-	jr .done
 .no_sub
 	pop af
 .done

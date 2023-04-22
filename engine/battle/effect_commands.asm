@@ -304,10 +304,10 @@ BattleCommand_checkturn:
 	bit FRZ, [hl]
 	jr z, .not_frozen
 
-	; Sacred Fire, Scald, and Flare Blitz thaw the user.
+	; Flame Wheel, Scald, and Flare Blitz thaw the user.
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	cp SACRED_FIRE
+	cp FLAME_WHEEL
 	jr z, .thaw
 	cp SCALD
 	jr z, .thaw
@@ -1915,10 +1915,10 @@ BattleCommand_checkhit:
 ; Return nz if the opponent is behind a Substitute for certain moves
 	call CheckSubstituteOpp
 	jr z, .not_blocked
-	ld a, BATTLE_VARS_MOVE_ANIM
-	call GetBattleVar
-	cp SWAGGER
-	jr z, .blocked
+;	ld a, BATTLE_VARS_MOVE_ANIM
+;	call GetBattleVar
+;	cp SWAGGER ; SWAGGER is blocked by substitute
+;	jr z, .blocked
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_TRAP
@@ -2867,37 +2867,7 @@ BattleCommand_postfainteffects:
 .no_multi
 	ld a, BATTLE_VARS_SUBSTATUS2_OPP
 	call GetBattleVar
-	bit SUBSTATUS_DESTINY_BOND, a
-	jr z, .no_dbond
-
-	call GetFutureSightUser
-	jr nc, .no_dbond
-
-	ld hl, TookDownWithItText
-	call StdBattleTextbox
-
-	call GetMaxHP
-	predef SubtractHPFromUser
-	call SwitchTurn
-	xor a
-	ld [wNumHits], a
-	ld [wFXAnimIDHi], a
-	inc a
-	ld [wKickCounter], a
-	ld a, DESTINY_BOND
-	call LoadAnim
-	call SwitchTurn
-
-	ldh a, [hBattleTurn]
-	and a
-	jr nz, .enemy_dbond
-	call UpdateBattleMonInParty
-	jr .finish
-.enemy_dbond
-	call UpdateEnemyMonInParty
-	jr .finish
-
-.no_dbond
+; Removed Destiny Bond
 	farcall RunFaintAbilities
 	call BattleCommand_posthiteffects
 
@@ -5815,7 +5785,7 @@ BattleCommand_heal:
 ; animation for the Pokémon that learned each one
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	cp FRESH_SNACK
+	cp RECOVER ;FRESH_SNACK
 	ld a, 0
 	jr nz, .not_fresh_snack
 	ldh a, [hBattleTurn]

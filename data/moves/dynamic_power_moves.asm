@@ -8,6 +8,5 @@ DynamicPowerMoves::
 	db NIGHT_SHADE
 	db RETURN
 	db SEISMIC_TOSS
-	db SONIC_BOOM
 	db SUPER_FANG
 	db -1

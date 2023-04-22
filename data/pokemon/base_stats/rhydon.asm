@@ -1,11 +1,5 @@
-if DEF(FAITHFUL)
 	db 105, 130, 120,  40,  45,  45 ; 485 BST
 	;   hp  atk  def  spd  sat  sdf
-else
-	db 110, 135, 125,  40,  48,  48 ; 506 BST
-	;   hp  atk  def  spd  sat  sdf
-endc
-
 	db GROUND, ROCK ; type
 	db 60 ; catch rate
 	db 204 ; base exp
@@ -13,11 +7,7 @@ endc
 	db PROTECTOR ; item 2
 	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/rhydon/front.dimensions"
-if DEF(FAITHFUL)
 	abilities_for RHYDON, LIGHTNING_ROD, ROCK_HEAD, RECKLESS
-else
-	abilities_for RHYDON, ROCK_HEAD, SOLID_ROCK, RECKLESS
-endc
 	db GROWTH_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_GROUND ; egg groups
 

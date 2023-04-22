@@ -23,7 +23,7 @@ UniqueWildMoves:
 	db WHIRL_ISLANDS,    0,          0
 	db CLIFF_CAVE,       0,          0
 	db YELLOW_FOREST,    PIKACHU,    FLY          ; replaced with Surf if Surfing
-	db QUIET_CAVE,       MUNCHLAX,   GIGA_IMPACT  ; Snorlax move
+	db QUIET_CAVE,       0,          0            ; Snorlax move
 	db MT_MORTAR,        0,          0
 	db LAKE_OF_RAGE,     MAGIKARP,   HYDRO_PUMP   ; Pokéwalker move
 	db ICE_PATH,         0,          0
@@ -42,7 +42,7 @@ UniqueWildMoves:
 	db DIM_CAVE,         GRAVELER,   SUCKER_PUNCH ; HGSS tutor move
 	db DIM_CAVE,         RHYDON,     CRUNCH       ; Prism tutor move
 	db SOUL_HOUSE,       HAUNTER,    MOONBLAST    ; Prism tutor move
-	db LAV_RADIO_TOWER,  MAROWAK,    PERISH_SONG  ; Dream World move
+	db LAV_RADIO_TOWER,  MAROWAK,    SHADOW_BONE
 	db LUCKY_ISLAND,     CHANSEY,    TRI_ATTACK   ; RBY TM move
 	db LUCKY_ISLAND,     TOGETIC,    0
 	db SAFARI_ZONE,      TANGELA,    LEECH_SEED   ; Dream World move (hub)
@@ -61,7 +61,6 @@ UniqueWildMoves:
 	db BEAUTIFUL_BEACH,  0,          0
 	db ROCKY_BEACH,      DONPHAN,    LOW_KICK     ; HGSS tutor move
 	db NOISY_FOREST,     SCIZOR,     CRABHAMMER   ; new move
-	db NOISY_FOREST,     PINECO,     PAIN_SPLIT   ; HGSS tutor move
 	db SHRINE_RUINS,     HYPNO,      METRONOME    ; RBY TM move
 	db SHAMOUTI_TUNNEL,  GOLBAT,     OUTRAGE      ; Prism tutor move
 	db WARM_BEACH,       SEADRA,     FLAMETHROWER ; new move

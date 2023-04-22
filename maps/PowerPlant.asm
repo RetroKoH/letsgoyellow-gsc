@@ -111,7 +111,7 @@ PowerPlantTutorZapCannonScript:
 	writetext Text_PowerPlantTutorQuestion
 	yesorno
 	iffalse .TutorRefused
-	setval ZAP_CANNON
+	setval WILD_CHARGE
 	writetext ClearText
 	special Special_MoveTutor
 	ifequal $0, .TeachMove

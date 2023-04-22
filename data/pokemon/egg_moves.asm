@@ -11,7 +11,6 @@ BulbasaurEggMoves:
 	db CHARM
 	db PETAL_DANCE
 	db LIGHT_SCREEN
-	db SAFEGUARD
 	db POWER_WHIP
 	db $ff
 
@@ -28,7 +27,6 @@ CharmanderEggMoves:
 
 SquirtleEggMoves:
 	db CONFUSION
-	db FORESIGHT
 	db HAZE
 	db MIRROR_COAT
 	db AQUA_JET
@@ -36,11 +34,8 @@ SquirtleEggMoves:
 
 PidgeyEggMoves:
 	db PECK
-	db FEINT_ATTACK
-	db FORESIGHT
 	db PURSUIT
 	db AIR_SLASH
-	db STEEL_WING
 	db CHARM
 	db EXTREMESPEED
 	db BRAVE_BIRD
@@ -56,9 +51,6 @@ RattataAlolanEggMoves:
 
 SpearowEggMoves:
 	db BELLY_DRUM
-	db FORESIGHT
-	db FUTURE_SIGHT
-	db PERISH_SONG
 	db SUPERSONIC
 	db LIGHT_SCREEN
 	db AMNESIA
@@ -70,13 +62,11 @@ EkansEggMoves:
 	db CRUNCH
 	db DISABLE
 	db PURSUIT
-	db SCARY_FACE
 	db $ff
 
 SandshrewPlainEggMoves:
 	db METAL_CLAW
 	db RAPID_SPIN
-	db SAFEGUARD
 	db COUNTER
 	db NIGHT_SLASH
 	db $ff
@@ -84,7 +74,6 @@ SandshrewPlainEggMoves:
 SandshrewAlolanEggMoves:
 	db AMNESIA
 	db RAPID_SPIN
-	db SAFEGUARD
 	db FLAIL
 	db ICICLE_CRASH
 	db ICICLE_SPEAR
@@ -94,7 +83,6 @@ SandshrewAlolanEggMoves:
 NidoranFEggMoves:
 	db CHARM
 	db DISABLE
-	db FOCUS_ENERGY
 	db PURSUIT
 	db SUPERSONIC ; requires Lickitung
 	db TAKE_DOWN
@@ -115,17 +103,12 @@ ClefairyEggMoves:
 	db BELLY_DRUM
 	db METRONOME
 	db AMNESIA
-	db SPLASH ; requires Hoppip
-	db FRESH_SNACK
 	db $ff
 
 VulpixPlainEggMoves:
-	db FLAME_CHARGE
 	db DISABLE
 	db FLARE_BLITZ
 	db HYPNOSIS
-	db FEINT_ATTACK
-	db EXTRASENSORY
 	db CHARM
 	db ENERGY_BALL
 	db ROAR
@@ -135,21 +118,16 @@ VulpixAlolanEggMoves:
 	db DISABLE
 	db BLIZZARD
 	db HYPNOSIS
-	db FEINT_ATTACK
-	db EXTRASENSORY
 	db CHARM
 	db ICE_BEAM
 	db ROAR
 	db $ff
 
 JigglypuffEggMoves:
-	db FEINT_ATTACK
-	db PERISH_SONG
 	db MOONBLAST
 	db $ff
 
 ZubatEggMoves:
-	db FEINT_ATTACK
 	db GUST
 	db HYPNOSIS
 	db NASTY_PLOT
@@ -173,12 +151,10 @@ ParasEggMoves:
 	db PSYBEAM
 	db PURSUIT
 	db SCREECH
-	db SHADOW_CLAW
 	db $ff
 
 VenonatEggMoves:
 	db AGILITY
-	db BATON_PASS
 	db HEALINGLIGHT
 	db SCREECH
 	db $ff
@@ -186,7 +162,6 @@ VenonatEggMoves:
 DiglettPlainEggMoves:
 DiglettAlolanEggMoves:
 	db ANCIENTPOWER
-	db FEINT_ATTACK
 	db HEADBUTT
 	db PURSUIT
 	db SCREECH
@@ -205,8 +180,6 @@ PsyduckEggMoves:
 	db CONFUSE_RAY
 	db CROSS_CHOP
 	db ENCORE
-	db FORESIGHT
-	db FUTURE_SIGHT
 	db HYPNOSIS
 	db PSYBEAM
 	db ICE_BEAM
@@ -216,7 +189,6 @@ PsyduckEggMoves:
 
 MankeyEggMoves:
 	db ENCORE
-	db FORESIGHT
 	db BULK_UP
 	db ROCK_SLIDE
 	db COUNTER
@@ -233,7 +205,6 @@ GrowlitheEggMoves:
 	db CRUNCH
 	db FLARE_BLITZ
 	db BODY_SLAM
-	db SAFEGUARD
 	db CLOSE_COMBAT
 	db $ff
 
@@ -277,7 +248,6 @@ TentacoolEggMoves:
 	db HAZE
 	db MIRROR_COAT
 	db RAPID_SPIN
-	db SAFEGUARD
 	db KNOCK_OFF
 	db $ff
 
@@ -313,23 +283,18 @@ PonytaGalarianEggMoves:
 SlowpokePlainEggMoves:
 SlowpokeGalarianEggMoves:
 	db BELLY_DRUM
-	db FUTURE_SIGHT
 	db STOMP
-	db SAFEGUARD
 	db ZEN_HEADBUTT
 	db $ff
 
 FarfetchDEggMoves:
-	db FORESIGHT
 	db GUST
 	db QUICK_ATTACK
-	db STEEL_WING
 	db NIGHT_SLASH
 	db ROOST
 	db $ff
 
 DoduoEggMoves:
-	db FEINT_ATTACK
 	db HAZE
 	db SUPERSONIC
 	db QUICK_ATTACK
@@ -340,7 +305,6 @@ SeelEggMoves:
 	db DISABLE
 	db LICK
 	db PECK
-	db PERISH_SONG
 	db ENCORE
 	db WATER_PULSE
 	db ICICLE_SPEAR
@@ -349,16 +313,11 @@ SeelEggMoves:
 GrimerPlainEggMoves:
 	db HAZE
 	db LICK
-	db MEAN_LOOK
-	db SCARY_FACE
-	db SHADOW_CLAW
 	db $ff
 
 GrimerAlolanEggMoves:
 	db HAZE
 	db LICK
-	db MEAN_LOOK
-	db SCARY_FACE
 	db PURSUIT
 	db $ff
 
@@ -376,10 +335,7 @@ ShellderEggMoves:
 GastlyEggMoves:
 	db DISABLE
 	db HAZE
-	db PERISH_SONG
-	db SCARY_FACE
 	db NASTY_PLOT
-	db FEINT_ATTACK
 	db $ff
 
 OnixEggMoves:
@@ -415,7 +371,6 @@ CuboneEggMoves:
 	db ANCIENTPOWER
 	db BELLY_DRUM
 	db DOUBLE_KICK
-	db PERISH_SONG
 	db SCREECH
 	db ROCK_SLIDE
 	db SWORDS_DANCE
@@ -425,8 +380,6 @@ CuboneEggMoves:
 KoffingEggMoves:
 	db PSYBEAM
 	db SCREECH
-	db DESTINY_BOND
-	db PAIN_SPLIT
 	db $ff
 
 RhyhornEggMoves:
@@ -451,26 +404,19 @@ TangelaEggMoves:
 
 KangaskhanEggMoves:
 	db DISABLE
-	db FOCUS_ENERGY
-	db FORESIGHT
 	db STOMP
-	db SAFEGUARD
 	db $ff
 
 HorseaEggMoves:
 	db AURORA_BEAM
 	db DISABLE
 	db DRAGONBREATH
-	db OCTAZOOKA
 	db SPLASH
 	db HAZE
 	db WATER_PULSE
 	db $ff
 
 TogepiEggMoves:
-	db EXTRASENSORY
-	db FORESIGHT
-	db FUTURE_SIGHT
 	db HEALINGLIGHT
 	db NASTY_PLOT
 	db PECK
@@ -478,17 +424,13 @@ TogepiEggMoves:
 
 MrMimeEggMoves:
 	db CONFUSE_RAY
-	db FUTURE_SIGHT
 	db HYPNOSIS
 	db NASTY_PLOT
-	db TRICK
 	db $ff
 
 ScytherEggMoves:
-	db BATON_PASS
 	db BUG_BUZZ
 	db COUNTER
-	db SAFEGUARD
 	db LIGHT_SCREEN
 	db NIGHT_SLASH
 	db $ff
@@ -499,7 +441,6 @@ JynxEggMoves:
 	db $ff
 
 PinsirEggMoves:
-	db FEINT_ATTACK
 	db FURY_STRIKES
 	db QUICK_ATTACK
 	db CLOSE_COMBAT
@@ -508,8 +449,6 @@ PinsirEggMoves:
 LaprasEggMoves:
 	db AURORA_BEAM
 	db DRAGON_DANCE
-	db FORESIGHT
-	db FUTURE_SIGHT
 	db HEAL_BELL
 	db $ff
 
@@ -521,7 +460,6 @@ OmanyteEggMoves:
 	db AURORA_BEAM
 	db BUBBLE_BEAM
 	db HAZE
-	db SPIKES
 	db SUPERSONIC
 	db WATER_PULSE
 	db KNOCK_OFF
@@ -531,7 +469,6 @@ KabutoEggMoves:
 	db AURORA_BEAM
 	db BUBBLE_BEAM
 	db CONFUSE_RAY
-	db FORESIGHT
 	db RAPID_SPIN
 	db SCREECH
 	db TAKE_DOWN
@@ -540,9 +477,7 @@ KabutoEggMoves:
 	db $ff
 
 AerodactylEggMoves:
-	db FORESIGHT
 	db PURSUIT
-	db STEEL_WING
 	db ROOST
 	db $ff
 
@@ -566,9 +501,7 @@ ChikoritaEggMoves:
 
 CyndaquilEggMoves:
 	db DOUBLE_KICK
-	db EXTRASENSORY
 	db FLARE_BLITZ
-	db FORESIGHT
 	db FURY_STRIKES
 	db CLOSE_COMBAT
 	db THRASH
@@ -589,16 +522,13 @@ TotodileEggMoves:
 
 SentretEggMoves:
 	db CHARM
-	db FOCUS_ENERGY
 	db PURSUIT
 	db SLASH
 	db DOUBLE_EDGE
-	db TRICK
 	db $ff
 
 HoothootEggMoves:
 	db AGILITY
-	db FEINT_ATTACK
 	db NIGHT_SHADE
 	db SUPERSONIC
 	db WING_ATTACK
@@ -607,7 +537,6 @@ HoothootEggMoves:
 	db $ff
 
 GoldeenEggMoves:
-	db DIZZY_PUNCH
 	db ENCORE ; requires Shuckle
 	db PSYBEAM
 	db SCREECH
@@ -617,12 +546,10 @@ GoldeenEggMoves:
 	db $ff
 
 SpinarakEggMoves:
-	db BATON_PASS
 	db DISABLE
 	db MEGAHORN
 	db PSYBEAM
 	db PURSUIT
-	db SONIC_BOOM
 	db POISON_JAB
 	db NIGHT_SLASH
 	db $ff
@@ -644,7 +571,6 @@ PichuEggMoves:
 MunchlaxEggMoves:
 	db CHARM
 	db COUNTER
-	db CURSE
 	db DOUBLE_EDGE
 	db LICK
 	db GUNK_SHOT
@@ -652,10 +578,8 @@ MunchlaxEggMoves:
 
 NatuEggMoves:
 	db DRILL_PECK
-	db FEINT_ATTACK
 	db HAZE
 	db QUICK_ATTACK
-	db STEEL_WING
 	db ZEN_HEADBUTT
 	db ROOST
 	db $ff
@@ -663,19 +587,16 @@ NatuEggMoves:
 MareepEggMoves:
 	db AGILITY
 	db REFLECT
-	db MUD_SLAP
 	db SCREECH
 	db THUNDERBOLT
 	db TAKE_DOWN
 	db BODY_SLAM
-	db SAFEGUARD
 	db $ff
 
 SunkernEggMoves:
 	db $ff
 
 YanmaEggMoves:
-	db FEINT_ATTACK
 	db LEECH_LIFE
 	db $ff
 
@@ -686,13 +607,11 @@ WooperEggMoves:
 	db RECOVER
 	db BODY_SLAM
 	db ANCIENTPOWER
-	db SAFEGUARD
 	db $ff
 
 MurkrowEggMoves:
 	db CONFUSE_RAY
 	db DRILL_PECK
-	db PERISH_SONG
 	db QUICK_ATTACK
 	db SCREECH
 	db WING_ATTACK
@@ -701,7 +620,6 @@ MurkrowEggMoves:
 	db $ff
 
 MisdreavusEggMoves:
-	db DESTINY_BOND
 	db NASTY_PLOT
 	db SCREECH
 	db $ff
@@ -714,7 +632,6 @@ PinecoEggMoves:
 
 GligarEggMoves:
 	db AGILITY
-	db BATON_PASS
 	db METAL_CLAW
 	db WING_ATTACK
 	db COUNTER
@@ -722,7 +639,6 @@ GligarEggMoves:
 	db $ff
 
 SnubbullEggMoves:
-	db FEINT_ATTACK
 	db LEER
 	db METRONOME
 	db REFLECT
@@ -744,7 +660,6 @@ ShuckleEggMoves:
 	db ROLLOUT
 	db ACID
 	db KNOCK_OFF
-	db MUD_SLAP
 	db ROCK_BLAST
 	db $ff
 
@@ -756,7 +671,6 @@ HeracrossEggMoves:
 
 SneaselEggMoves:
 	db BITE
-	db FORESIGHT
 	db PURSUIT
 	db COUNTER
 	db REFLECT
@@ -768,7 +682,6 @@ TeddiursaEggMoves:
 	db BELLY_DRUM
 	db CROSS_CHOP
 	db CRUNCH
-	db FOCUS_ENERGY
 	db METAL_CLAW
 	db PLAY_ROUGH
 	db TAKE_DOWN
@@ -781,7 +694,6 @@ TeddiursaEggMoves:
 
 SlugmaEggMoves:
 	db SMOKESCREEN
-	db CURSE
 	db $ff
 
 SwinubEggMoves:
@@ -804,16 +716,13 @@ LickitungEggMoves:
 	db $ff
 
 HoundourEggMoves:
-	db DESTINY_BOND
 	db FIRE_SPIN
 	db PURSUIT
-	db RAGE
 	db COUNTER
 	db WILL_O_WISP
 	db $ff
 
 PhanpyEggMoves:
-	db FOCUS_ENERGY
 	db PLAY_ROUGH
 	db WATER_GUN
 	db BODY_SLAM
@@ -842,20 +751,17 @@ MagbyEggMoves:
 	db BELLY_DRUM
 	db CROSS_CHOP
 	db FLARE_BLITZ
-	db FOCUS_ENERGY
 	db LOW_SWEEP
 	db MACH_PUNCH
 	db SCREECH
 	db $ff
 
 MiltankEggMoves:
-	db DIZZY_PUNCH
 	db SEISMIC_TOSS
 	db $ff
 
 LarvitarEggMoves:
 	db DRAGON_DANCE
-	db FOCUS_ENERGY
 	db PURSUIT
 	db STOMP
 	db OUTRAGE

@@ -27,7 +27,6 @@ AI_Redundant:
 	dbw EFFECT_CURSE,         .Curse
 	dbw EFFECT_SPIKES,        .Spikes
 	dbw EFFECT_FORESIGHT,     .Foresight
-	dbw EFFECT_PERISH_SONG,   .PerishSong
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
 	dbw EFFECT_ATTRACT,       .Attract
@@ -88,11 +87,6 @@ AI_Redundant:
 .MeanLook:
 	ld a, [wEnemySubStatus2]
 	bit SUBSTATUS_CANT_RUN, a
-	ret
-
-.PerishSong:
-	ld a, [wPlayerPerishCount]
-	and a
 	ret
 
 .Reflect:

@@ -442,7 +442,7 @@ wPlayerConfuseCount:: db
 wPlayerToxicCount:: db
 wPlayerDisableCount:: db
 wPlayerEncoreCount:: db ; also for choice-locking
-wPlayerPerishCount:: db
+wPlayerRageHitCount:: db ; for Rage Fist power
 wPlayerProtectCount:: db
 wPlayerFuryCutterCount:: db
 
@@ -452,7 +452,7 @@ wEnemyConfuseCount:: db
 wEnemyToxicCount:: db
 wEnemyDisableCount:: db
 wEnemyEncoreCount:: db
-wEnemyPerishCount:: db
+wEnemyRageHitCount:: db
 wEnemyProtectCount:: db
 wEnemyFuryCutterCount:: db
 

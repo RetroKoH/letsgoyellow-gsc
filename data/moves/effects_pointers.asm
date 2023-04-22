@@ -110,7 +110,6 @@ MoveEffectsPointers:
 	dw Protect
 	dw Spikes
 	dw Foresight
-	dw PerishSong
 	dw Sandstorm
 	dw Hail
 	dw Endure

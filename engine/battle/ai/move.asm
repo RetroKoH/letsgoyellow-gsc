@@ -37,14 +37,8 @@ AIChooseMove:
 	farcall CheckUsableMoves
 	call z, _AIChooseMove
 
-	; Strongly encourage switch-out by pretending we have Perish 1.
-	ld a, [wEnemyPerishCount]
-	push af
-	ld a, 1
-	ld [wEnemyPerishCount], a
+;	; Strongly encourage switch-out by pretending we have Perish 1.
 	farcall AI_MaybeSwitch
-	pop af
-	ld [wEnemyPerishCount], a
 	ret
 
 _AIChooseMove:

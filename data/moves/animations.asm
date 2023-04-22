@@ -4225,22 +4225,6 @@ BattleAnim_DestinyBond:
 	anim_bgp $e4
 	anim_ret
 
-BattleAnim_PerishSong:
-	anim_1gfx ANIM_GFX_NOISE
-	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
-	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
-	anim_sound 0, 2, SFX_PERISH_SONG
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $0
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $8
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $10
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $18
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $20
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $28
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $30
-	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $38
-	anim_wait 112
-	anim_ret
-
 BattleAnim_IcyWind:
 	anim_1gfx ANIM_GFX_SPEED
 	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
@@ -6451,4 +6435,20 @@ BattleAnim_StatDown:
 ;	anim_sound 0, 1, SFX_EMBER
 ;	anim_wait 24
 ;	anim_loop 4, .loop
+;	anim_ret
+
+;BattleAnim_PerishSong:
+;	anim_1gfx ANIM_GFX_NOISE
+;	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
+;	anim_bgeffect ANIM_BG_ALTERNATE_HUES, $0, $2, $0
+;	anim_sound 0, 2, SFX_PERISH_SONG
+;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $0
+;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $8
+;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $10
+;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $18
+;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $20
+;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $28
+;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $30
+;	anim_obj ANIM_OBJ_PERISH_SONG,  11, 0,   0, 0, $38
+;	anim_wait 112
 ;	anim_ret

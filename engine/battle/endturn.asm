@@ -48,7 +48,7 @@ HandleBetweenTurnEffects:
 	; heal block
 	; embargo
 	; yawn
-	call HandlePerishSong
+	; perish song
 	call CheckFaint
 	ret c
 	call HandleRoost
@@ -770,37 +770,6 @@ HandleDisable:
 	jr z, EndturnEncoreDisable
 	ld hl, wEnemyDisableCount
 	jr EndturnEncoreDisable
-
-HandlePerishSong:
-	call SetFastestTurn
-	call .do_it
-	call SwitchTurn
-
-.do_it
-	call HasUserFainted
-	ret z
-
-	ldh a, [hBattleTurn]
-	and a
-	ld hl, wPlayerPerishCount
-	jr z, .got_count
-	ld hl, wEnemyPerishCount
-
-.got_count
-	ld a, [hl]
-	and a
-	ret z
-	dec [hl]
-	ld a, [hl]
-	ld [wTextDecimalByte], a
-	push af
-	ld hl, PerishCountText
-	call StdBattleTextbox
-	pop af
-	ret nz
-
-	call GetMaxHP
-	predef_jump SubtractHPFromUser
 
 HandleTrickRoom:
 	ld hl, wTrickRoom

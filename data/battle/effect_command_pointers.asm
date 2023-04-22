@@ -87,7 +87,6 @@ BattleCommandPointers:
 	command protect
 	command spikes
 	command foresight
-	command perishsong
 	command startsandstorm
 	command starthail
 	command endure

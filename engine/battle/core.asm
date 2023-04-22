@@ -2847,7 +2847,7 @@ NewEnemyMonStatus:
 	ld [wEnemyEncoreCount], a
 	ld [wEnemyProtectCount], a
 	ld [wEnemyToxicCount], a
-	ld [wEnemyPerishCount], a
+	ld [wEnemyRageHitCount], a
 	ld [wPlayerWrapCount], a
 	ld [wEnemyWrapCount], a
 	ld [wEnemyTurnsTaken], a
@@ -3032,7 +3032,7 @@ endr
 	ld [wPlayerEncoreCount], a
 	ld [wPlayerProtectCount], a
 	ld [wPlayerToxicCount], a
-	ld [wPlayerPerishCount], a
+	ld [wPlayerRageHitCount], a
 	ld [wEnemyWrapCount], a
 	ld [wPlayerWrapCount], a
 	ld [wPlayerTurnsTaken], a

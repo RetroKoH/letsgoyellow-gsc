@@ -363,7 +363,6 @@ AI_Smart:
 	dbw EFFECT_CURSE,             AI_Smart_Curse
 	dbw EFFECT_PROTECT,           AI_Smart_Protect
 	dbw EFFECT_FORESIGHT,         AI_Smart_Foresight
-	dbw EFFECT_PERISH_SONG,       AI_Smart_PerishSong
 	dbw EFFECT_ENDURE,            AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
 	dbw EFFECT_FURY_CUTTER,       AI_Smart_FuryCutter
@@ -1532,68 +1531,6 @@ AI_Smart_Foresight:
 	dec [hl]
 	dec [hl]
 	ret
-
-AI_Smart_PerishSong:
-	push hl
-
-	; Strongly discourage if useless or if we can't switch out
-	farcall CheckAnyOtherAliveEnemyMons
-	jr z, .no
-
-	ld a, [wPlayerPerishCount]
-	and a
-	jr nz, .no
-
-	call GetOpponentAbilityAfterMoldBreaker
-	cp SOUNDPROOF
-	jr z, .no
-
-	farcall GetSwitchScores
-	ld a, [wEnemyAISwitchScore]
-	and a
-	jr z, .no
-
-	; Encourage if player can't switch out
-	farcall CheckAnyOtherAlivePartyMons
-	jr z, .yes
-
-	call CheckIfTargetIsGhostType
-	jr z, .neutral
-
-	farcall GetOpponentItemAfterUnnerve
-	ld a, b
-	cp HELD_SHED_SHELL
-	jr z, .neutral
-	call SwitchTurn
-	farcall CheckIfTrappedByAbility
-	call SwitchTurn
-	jr z, .yes
-
-	ld a, [wPlayerWrapCount]
-	and a
-	jr nz, .yes
-	ld a, [wEnemySubStatus2]
-	bit SUBSTATUS_CANT_RUN, a
-	jr nz, .yes
-
-.neutral
-	pop hl
-	ret
-
-.yes
-	pop hl
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	ret
-
-.no
-	pop hl
-	ld a, [hl]
-	add 5
-	ld [hl], a
-	ret
-
 
 AI_Smart_Endure:
 	ld a, [wEnemyProtectCount]

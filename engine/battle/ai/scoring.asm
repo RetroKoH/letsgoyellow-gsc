@@ -245,7 +245,6 @@ AI_IsFixedDamageMove:
 .FixedDamageMoves:
 	db EFFECT_COUNTER
 	db EFFECT_MIRROR_COAT
-	db EFFECT_STATIC_DAMAGE
 	db EFFECT_LEVEL_DAMAGE
 	db EFFECT_SUPER_FANG
 	db -1
@@ -381,6 +380,8 @@ AI_Smart:
 	dbw EFFECT_HAIL,              AI_Smart_Hail
 	dbw EFFECT_BELLY_DRUM,        AI_Smart_BellyDrum
 	dbw EFFECT_MIRROR_COAT,       AI_Smart_MirrorCoat
+	dbw EFFECT_RAZOR_WIND,        AI_Smart_SkullBash
+	dbw EFFECT_SKULL_BASH,        AI_Smart_SkullBash
 	dbw EFFECT_EARTHQUAKE,        AI_Smart_Earthquake
 	dbw EFFECT_FUTURE_SIGHT,      AI_Smart_FutureSight
 	dbw EFFECT_JUMP_KICK,         AI_Smart_JumpKick
@@ -1214,6 +1215,8 @@ AI_Smart_PainSplit:
 	ret
 
 AI_Smart_DestinyBond:
+AI_Smart_RazorWind:
+AI_Smart_SkullBash:
 ; Discourage this move if enemy's HP is above 25%.
 
 	call AICheckEnemyQuarterHP
@@ -2531,7 +2534,6 @@ AIDamageCalc:
 
 .ConstantDamageEffects:
 	db EFFECT_SUPER_FANG
-	db EFFECT_STATIC_DAMAGE
 	db EFFECT_LEVEL_DAMAGE
 	db $ff
 

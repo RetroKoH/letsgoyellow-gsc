@@ -781,8 +781,6 @@ CloseCombat:
 	endmove
 
 StaticDamage:
-Sonicboom:
-DragonRage:
 NightShade:
 SeismicToss:
 SuperFang:
@@ -2242,6 +2240,50 @@ Teleport:
 	usedmovetext
 	doturn
 	teleport
+	endmove
+
+RazorWind:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	charge
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	postfainteffects
+	posthiteffects
+	forceraisestat SP_DEFENSE
+	endmove
+
+SkullBash:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	charge
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	postfainteffects
+	posthiteffects
+	forceraisestat DEFENSE
 	endmove
 
 Fly:

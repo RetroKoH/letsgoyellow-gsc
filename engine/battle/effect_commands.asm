@@ -5493,8 +5493,16 @@ BattleCommand_charge:
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 
+	ld hl, .RazorWind
+	cp RAZOR_WIND
+	ret z
+
 	ld hl, .SolarBeam
 	cp SOLAR_BEAM
+	ret z
+
+	ld hl, .SkullBash
+	cp SKULL_BASH
 	ret z
 
 	ld hl, .Fly
@@ -5505,9 +5513,19 @@ BattleCommand_charge:
 	cp DIG
 	ret
 
+.RazorWind
+; 'made a whirlwind!'
+	text_far _BattleMadeWhirlwindText
+	text_end
+
 .SolarBeam:
 ; 'took in sunlight!'
 	text_far _BattleTookSunlightText
+	text_end
+
+.SkullBash
+; 'lowered its head!'
+	text_far _BattleLoweredHeadText
 	text_end
 
 .Fly:

@@ -28,7 +28,6 @@ MoveEffectsPointers:
 	dw AccuracyDownHit
 	dw EvasionDownHit
 	dw StaticDamage
-	dw StaticDamage
 	dw DoPoison
 	dw DoBurn
 	dw DoParalyze
@@ -139,8 +138,8 @@ MoveEffectsPointers:
 	dw Teleport
 	dw Fly
 	dw FlareBlitz
-	dw NormalHit
-	dw NormalHit
+	dw NormalHit ; Psystrike
+	dw NormalHit ; Jump Kick
 	dw SwitchHit
 	dw SuckerPunch
 	dw OHKOHit
@@ -158,4 +157,6 @@ MoveEffectsPointers:
 	dw TrickRoom
 	dw VoltTackle
 	dw DuoIronBash
+	dw SkullBash
+	dw RazorWind
 	assert_table_length NUM_MOVE_EFFECTS

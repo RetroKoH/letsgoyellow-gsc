@@ -222,7 +222,7 @@ Moves::
 	move ZEN_HEADBUTT, EFFECT_FLINCH_HIT,         80, PSYCHIC,    90, 15,  20, PHYSICAL
 	move FLASH_CANNON, EFFECT_SP_DEF_DOWN_HIT,    80, STEEL,     100, 10,  10, SPECIAL
 	move TRICK_ROOM,   EFFECT_TRICK_ROOM,          0, PSYCHIC,   100,  5,   0, STATUS
-	move LEAF_STORM,   EFFECT_NORMAL_HIT,        130, GRASS,      90,  5,   0, SPECIAL ; REMOVE EFFECT_FORESIGHT. This should lower SpATK
+	move LEAF_STORM,   EFFECT_LEAF_STORM,        130, GRASS,      90,  5,   0, SPECIAL
 	move POWER_WHIP,   EFFECT_NORMAL_HIT,        120, GRASS,      85, 10,   0, PHYSICAL
 	move ROCK_WRECKER, EFFECT_HYPER_BEAM,        150, ROCK,       90,  5,   0, PHYSICAL
 	move CROSS_POISON, EFFECT_POISON_HIT,         70, POISON,    100, 20,  10, PHYSICAL
@@ -247,12 +247,12 @@ Moves::
 	move VOLT_SWITCH,  EFFECT_SWITCH_HIT,         70, ELECTRIC,  100, 20,   0, SPECIAL
 	move BULLDOZE,     EFFECT_SPEED_DOWN_HIT,     60, GROUND,    100, 20, 100, PHYSICAL
 	move DRAGON_TAIL,  EFFECT_NORMAL_HIT,         60, DRAGON,     90, 10,   0, PHYSICAL ; Need to add Force Switch
-	move HARDEN,       EFFECT_DEFENSE_UP,          0, NORMAL,    100, 30,   0, STATUS ; Combine with Withdraw
+	move HARDEN,       EFFECT_DEFENSE_UP,          0, NORMAL,    100, 30,   0, STATUS ; Combine with Defense Curl
 	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, ELECTRIC,  100, 15,   0, PHYSICAL
 	move DRILL_RUN,    EFFECT_NORMAL_HIT,         80, GROUND,     95, 10,   0, PHYSICAL
 	move HURRICANE,    EFFECT_CONFUSE_HIT,       110, FLYING,     70, 10,  30, SPECIAL
 	move ICICLE_CRASH, EFFECT_FLINCH_HIT,         85, ICE,        90, 10,  30, PHYSICAL
-	move FELL_STINGER, EFFECT_NORMAL_HIT,         50, BUG,       100, 25,   0, PHYSICAL ; Add ATK Up Effect
+	move FELL_STINGER, EFFECT_NORMAL_HIT,         50, BUG,       100, 25,   0, PHYSICAL ; Add ATK Up Effect when mon faints
 	move FREEZE_DRY,   EFFECT_FREEZE_HIT,         75, ICE,       100, 20,  10, SPECIAL ; Test Super effectiveness on Water
 	move DISARM_VOICE, EFFECT_ALWAYS_HIT,         40, FAIRY,     100, 15,   0, SPECIAL
 	move PLAY_ROUGH,   EFFECT_ATTACK_DOWN_HIT,    90, FAIRY,      90, 10,  10, PHYSICAL

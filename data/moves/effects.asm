@@ -780,6 +780,27 @@ CloseCombat:
 	posthiteffects
 	endmove
 
+LeafStorm:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	lowerstat $10 | SP_ATTACK
+	postfainteffects
+	posthiteffects
+	endmove
+
 StaticDamage:
 NightShade:
 SeismicToss:

@@ -15,6 +15,7 @@ MovePriorities:
 	db AVALANCHE,    -4
 	db COUNTER,      -5
 	db MIRROR_COAT,  -5
+	db DRAGON_TAIL,  -6
 	db ROAR,         -6
 	db TELEPORT,     -6
 	db TRICK_ROOM,   -7

@@ -157,4 +157,5 @@ MoveEffectsPointers:
 	dw DuoIronBash
 	dw SkullBash
 	dw RazorWind
+	dw DragonTail
 	assert_table_length NUM_MOVE_EFFECTS

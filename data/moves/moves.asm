@@ -246,7 +246,7 @@ Moves::
 	move ACROBATICS,   EFFECT_CONDITIONAL_BOOST,  55, FLYING,    100, 15,   0, PHYSICAL
 	move VOLT_SWITCH,  EFFECT_SWITCH_HIT,         70, ELECTRIC,  100, 20,   0, SPECIAL
 	move BULLDOZE,     EFFECT_SPEED_DOWN_HIT,     60, GROUND,    100, 20, 100, PHYSICAL
-	move DRAGON_TAIL,  EFFECT_NORMAL_HIT,         60, DRAGON,     90, 10,   0, PHYSICAL ; Need to add Force Switch
+	move DRAGON_TAIL,  EFFECT_DRAGON_TAIL,        60, DRAGON,     90, 10,   0, PHYSICAL ; Need to add Force Switch
 	move HARDEN,       EFFECT_DEFENSE_UP,          0, NORMAL,    100, 30,   0, STATUS ; Combine with Defense Curl
 	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, ELECTRIC,  100, 15,   0, PHYSICAL
 	move DRILL_RUN,    EFFECT_NORMAL_HIT,         80, GROUND,     95, 10,   0, PHYSICAL

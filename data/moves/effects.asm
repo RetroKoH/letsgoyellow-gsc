@@ -12,7 +12,6 @@ Crabhammer:
 CrossChop:
 Cut:
 Dazzlingleam:
-DragonClaw:
 DrillPeck:
 DrillRun:
 Extremespeed:
@@ -29,11 +28,9 @@ NightSlash:
 Peck:
 PowerWhip:
 PsychoCut:
-Psystrike:
 QuickAttack:
 RazorLeaf:
 RockThrow:
-SeedBomb:
 ShadowClaw:
 Slash:
 StoneEdge:
@@ -64,7 +61,6 @@ XScissor:
 	posthiteffects
 	endmove
 
-HornDrill:
 OHKOHit:
 	checkobedience
 	usedmovetext
@@ -106,7 +102,6 @@ LeechHit:
 Absorb:
 MegaDrain:
 LeechLife:
-GigaDrain:
 DrainKiss:
 DrainPunch:
 	checkobedience
@@ -1385,6 +1380,27 @@ DreamEater:
 	criticaltext
 	supereffectivetext
 	eatdream
+	postfainteffects
+	posthiteffects
+	endmove
+
+DragonTail:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	roar
 	postfainteffects
 	posthiteffects
 	endmove

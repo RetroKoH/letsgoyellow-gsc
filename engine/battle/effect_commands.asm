@@ -2921,21 +2921,16 @@ BattleCommand_postfainteffects:
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	cp FELL_STINGER
-	jr nz, .finish
+	jr nz, .finish			; skip ahead if we didn't KO with Fell Stinger
 	call HasUserFainted
-	call nz, .fellStingerBoost
+	jr z, .finish			; skip ahead if attacking mon was KOd somehow
+; Fell Stinger Boost
+	farcall CheckAnyOtherAliveOpponentMons
+	jr z, .finish
+	ld b, $20 | ATTACK
+	call RaiseStat
 .finish
 	jmp EndMoveEffect
-
-.fellStingerBoost
-	farcall CheckAnyOtherAliveOpponentMons
-	ret z
-	ld a, STAT_SILENT
-	ld b, $10 | ATTACK
-	call _RaiseStat
-	ld a, [wFailedMessage]
-	and a
-	jr z, .finish
 
 BattleCommand_posthiteffects:
 ; This can run even if someone is fainted. Take this into account.

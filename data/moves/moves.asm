@@ -252,7 +252,7 @@ Moves::
 	move DRILL_RUN,    EFFECT_NORMAL_HIT,         80, GROUND,     95, 10,   0, PHYSICAL
 	move HURRICANE,    EFFECT_CONFUSE_HIT,       110, FLYING,     70, 10,  30, SPECIAL
 	move ICICLE_CRASH, EFFECT_FLINCH_HIT,         85, ICE,        90, 10,  30, PHYSICAL
-	move FELL_STINGER, EFFECT_NORMAL_HIT,         50, BUG,       100, 25,   0, PHYSICAL ; Add ATK Up Effect when mon faints
+	move FELL_STINGER, EFFECT_NORMAL_HIT,         50, BUG,       100, 25,   0, PHYSICAL
 	move FREEZE_DRY,   EFFECT_FREEZE_HIT,         75, ICE,       100, 20,  10, SPECIAL ; Test Super effectiveness on Water
 	move DISARM_VOICE, EFFECT_ALWAYS_HIT,         40, FAIRY,     100, 15,   0, SPECIAL
 	move PLAY_ROUGH,   EFFECT_ATTACK_DOWN_HIT,    90, FAIRY,      90, 10,  10, PHYSICAL

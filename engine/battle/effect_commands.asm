@@ -2913,11 +2913,29 @@ BattleCommand_postfainteffects:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_SWITCH_HIT
-	jr nz, .finish
+	jr nz, .notswitchhit
 	call HasUserFainted
 	call nz, BattleCommand_switchout
+	jr .finish
+.notswitchhit
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp FELL_STINGER
+	jr nz, .finish
+	call HasUserFainted
+	call nz, .fellStingerBoost
 .finish
 	jmp EndMoveEffect
+
+.fellStingerBoost
+	farcall CheckAnyOtherAliveOpponentMons
+	ret z
+	ld a, STAT_SILENT
+	ld b, $10 | ATTACK
+	call _RaiseStat
+	ld a, [wFailedMessage]
+	and a
+	jr z, .finish
 
 BattleCommand_posthiteffects:
 ; This can run even if someone is fainted. Take this into account.

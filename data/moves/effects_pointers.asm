@@ -54,7 +54,7 @@ MoveEffectsPointers:
 	dw CalmMind
 	dw Growth
 	dw DragonDance
-	dw HoneClaws
+	dw QuiverDance
 	dw DefenseCurl
 	dw Minimize
 	dw ShellSmash

@@ -1051,12 +1051,13 @@ DragonDance:
 	forceraisestat SPEED
 	endmove
 
-HoneClaws:
+QuiverDance:
 	checkobedience
 	usedmovetext
 	doturn
-	forceraisestat ATTACK
-	forceraisestat ACCURACY
+	forceraisestat SP_ATTACK
+	forceraisestat SP_DEFENSE
+	forceraisestat SPEED
 	endmove
 
 Coil:

@@ -1,0 +1,13 @@
+SlicingMoves:
+	db AERIAL_ACE
+	db AIR_SLASH
+	db CROSS_POISON
+	db FURY_CUTTER
+	db LEAF_BLADE
+	db NIGHT_SLASH
+	db PSYCHO_CUT
+	db RAZOR_LEAF
+	db SLASH
+;	db STONE_AXE
+	db X_SCISSOR
+	db -1

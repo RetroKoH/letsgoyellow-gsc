@@ -842,6 +842,8 @@ CheckNullificationAbilities:
 	jr z, .damp
 	cp SOUNDPROOF
 	jr z, .soundproof
+	cp BULLETPROOF
+	jr z, .bulletproof
 	cp FLASH_FIRE
 	jr z, .flash_fire
 	cp LIGHTNING_ROD
@@ -883,6 +885,14 @@ CheckNullificationAbilities:
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	ld hl, SoundMoves
+	call IsInByteArray
+	jr c, .ability_ok
+	ret
+
+.bulletproof
+	ld a, BATTLE_VARS_MOVE
+	call GetBattleVar
+	ld hl, BombBallMoves
 	call IsInByteArray
 	jr c, .ability_ok
 	ret
@@ -1546,9 +1556,11 @@ OffensiveDamageAbilities:
 	dbw RECKLESS, RecklessAbility
 	dbw GUTS, GutsAbility
 	dbw PIXILATE, PixilateAbility
+	dbw AERILATE, AerilateAbility
 	dbw GALVANIZE, GalvanizeAbility
 	dbw GORILLA_TACTICS, GorillaTacticsAbility
 	dbw STEELY_SPIRIT, SteelySpiritAbility
+	dbw SHARPNESS, SharpnessAbility
 	dbw -1, -1
 
 DefensiveDamageAbilities:
@@ -1656,12 +1668,14 @@ SolarPowerAbility:
 	jmp ApplySpecialAttackDamageMod
 
 ToughClawsAbility:
+; 130% damage for moves that make contact
 	call CheckContactMove
 	ret c
 	ln a, 13, 10 ; x1.3
 	jmp MultiplyAndDivide
 
 MegaLauncherAbility:
+; 150% damage for pulse moves
 	ld hl, LauncherMoves
 	ln b, 3, 2 ; x1.5
 	jr MoveBoostAbility
@@ -1675,6 +1689,14 @@ IronFistAbility:
 	jr MoveBoostAbility
 
 INCLUDE "data/moves/punching_moves.asm"
+
+SharpnessAbility:
+; 150% damage for slicing moves
+	ld hl, SlicingMoves
+	ln b, 6, 5 ; x1.5
+	jr MoveBoostAbility
+
+INCLUDE "data/moves/slicing_moves.asm"
 
 MoveBoostAbility:
 	ld a, BATTLE_VARS_MOVE
@@ -1737,6 +1759,9 @@ GutsAbility:
 
 PixilateAbility:
 	ld b, FAIRY
+	jr AteAbilities
+AerilateAbility:
+	ld b, FLYING
 	jr AteAbilities
 GalvanizeAbility:
 	ld b, ELECTRIC

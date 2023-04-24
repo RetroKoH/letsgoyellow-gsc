@@ -132,22 +132,26 @@ AbilityDescriptions:
 	dw PranksterDescription
 	dw SandForceDescription
 	dw FurCoatDescription
+	dw BulletproofDescription
 	dw CompetitiveDescription
 	dw MegaLauncherDescription
 	dw ToughClawsDescription
 	dw PixilateDescription
+	dw AerilateDescription
 	dw ParentalBondDescription
 	dw BerserkDescription
 	dw SlushRushDescription
 	dw GalvanizeDescription
+	dw SurgeSurferDescription
 	dw CorrosionDescription
 	dw TanglingHairDescription
 	dw GorillaTacticsDescription
 	dw NeutralizingGasDescription
 	dw PastelVeilDescription
 	dw QuickDrawDescription
-	dw SteelySpiritDescription
 	dw ScreenCleanerDescription
+	dw SteelySpiritDescription
+	dw SharpnessDescription
 	assert_table_length NUM_ABILITIES
 
 NoAbilityDescription:
@@ -667,6 +671,10 @@ FurCoatDescription:
 	db    "Halves damage from"
 	next1 "physical moves.@"
 
+BulletproofDescription:
+	db    "Nullifies bomb and"
+	next1 "ball-based moves.@"
+
 CompetitiveDescription:
 	db    "Boosts Spcl.Atk on"
 	next1 "stat reduction.@"
@@ -683,6 +691,10 @@ PixilateDescription:
 	db    "Normal-type moves"
 	next1 "become Fairy-type.@"
 
+AerilateDescription:
+	db    "Normal-type moves"
+	next1 "become Flying.@"
+
 ParentalBondDescription:
 	db    "Parent and child"
 	next1 "attack together.@"
@@ -698,6 +710,10 @@ SlushRushDescription:
 GalvanizeDescription:
 	db    "Normal-type moves"
 	next1 "become Electric.@"
+
+SurgeSurferDescription:
+	db    "Boosts Electric-"
+	next1 "type moves.@"
 
 CorrosionDescription:
 	db    "Foes of any type"
@@ -726,3 +742,7 @@ SteelySpiritDescription:
 ScreenCleanerDescription:
 	db    "Removes screens"
 	next1 "when switched in.@"
+
+SharpnessDescription:
+	db    "Boosts power of"
+	next1 "slicing moves.@"

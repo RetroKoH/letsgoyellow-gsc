@@ -132,22 +132,26 @@ AbilityNames:
 	dw Prankster
 	dw SandForce
 	dw FurCoat
+	dw Bulletproof
 	dw Competitive
 	dw MegaLauncher
 	dw ToughClaws
 	dw Pixilate
+	dw Aerilate
 	dw ParentalBond
 	dw Berserk
 	dw SlushRush
 	dw Galvanize
+	dw SurgeSurfer
 	dw Corrosion
 	dw TanglingHair
 	dw GorillaTactics
 	dw NeutralizingGas
 	dw PastelVeil
 	dw QuickDraw
-	dw SteelySpirit
 	dw ScreenCleaner
+	dw SteelySpirit
+	dw Sharpness
 	assert_table_length NUM_ABILITIES
 
 NoAbility:       rawchar "---@"
@@ -282,19 +286,23 @@ SapSipper:       rawchar "Sap Sipper@"
 Prankster:       rawchar "Prankster@"
 SandForce:       rawchar "Sand Force@"
 FurCoat:         rawchar "Fur Coat@"
+Bulletproof:     rawchar "Bulletproof@"
 Competitive:     rawchar "Competitive@"
 MegaLauncher:    rawchar "Mega Launcher@"
 ToughClaws:      rawchar "Tough Claws@"
 Pixilate:        rawchar "Pixilate@"
+Aerilate:        rawchar "Aerilate@"
 ParentalBond:    rawchar "Parental Bond@"
 Berserk:         rawchar "Berserk@"
 SlushRush:       rawchar "Slush Rush@"
 Galvanize:       rawchar "Galvanize@"
+SurgeSurfer:     rawchar "Surge Surfer@"
 Corrosion:       rawchar "Corrosion@"
 TanglingHair:    rawchar "Tangling Hair@"
 GorillaTactics:  rawchar "Gorilla Tactics@"
 NeutralizingGas: rawchar "Neutralizing Gas@"
 PastelVeil:      rawchar "Pastel Veil@"
 QuickDraw:       rawchar "Quick Draw@"
-SteelySpirit:    rawchar "Steely Spirit@"
 ScreenCleaner:   rawchar "Screen Cleaner@"
+SteelySpirit:    rawchar "Steely Spirit@"
+Sharpness:       rawchar "Sharpness@"

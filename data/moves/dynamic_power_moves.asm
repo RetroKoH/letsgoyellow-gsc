@@ -3,6 +3,7 @@ DynamicPowerMoves::
 	db COUNTER
 	db FLAIL
 	db GYRO_BALL
+	db HEAVY_SLAM
 	db LOW_KICK
 	db MIRROR_COAT
 	db NIGHT_SHADE

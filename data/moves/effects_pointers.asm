@@ -117,7 +117,6 @@ MoveEffectsPointers:
 	dw ConditionalBoostHit
 	dw Attract
 	dw Return
-	dw SacredFire
 	dw BatonPass
 	dw Pursuit
 	dw RapidSpin
@@ -151,6 +150,7 @@ MoveEffectsPointers:
 	dw GyroBall
 	dw BodySlam
 	dw LowKick
+	dw HeavySlam
 	dw BrickBreak
 	dw TrickRoom
 	dw VoltTackle

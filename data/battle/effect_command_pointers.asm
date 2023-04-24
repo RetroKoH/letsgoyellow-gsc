@@ -139,6 +139,7 @@ BattleCommandPointers:
 	command gyroball
 	command checkpowder
 	command lowkick
+	command heavyslam
 	command brickbreak
 	command feint
 	command trickroom

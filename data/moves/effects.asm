@@ -27,7 +27,6 @@ Megahorn:
 MegaKick:
 NightSlash:
 Peck:
-PowerGem:
 PowerWhip:
 PsychoCut:
 Psystrike:
@@ -1891,29 +1890,6 @@ Return:
 	posthiteffects
 	endmove
 
-SacredFire:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	checkhit
-	critical
-	effectchance
-	damagestats
-	damagecalc
-	stab
-	damagevariation
-	moveanim
-	failuretext
-	applydamage
-	criticaltext
-	supereffectivetext
-	defrost
-	postfainteffects
-	posthiteffects
-	burntarget
-	endmove
-
 GyroBall:
 	checkobedience
 	usedmovetext
@@ -1948,6 +1924,28 @@ LowKick:
 	damagecalc
 	stab
 	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	postfainteffects
+	posthiteffects
+	endmove
+
+HeavySlam:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	critical
+	damagestats
+	heavyslam
+	damagecalc
+	stab
+	damagevariation
+	doubleminimizedamage
 	moveanim
 	failuretext
 	applydamage

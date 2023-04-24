@@ -235,7 +235,7 @@ Moves::
 	move AQUA_JET,     EFFECT_PRIORITY_HIT,       40, WATER,     100, 20,   0, PHYSICAL
 	move VENOSHOCK,    EFFECT_CONDITIONAL_BOOST,  65, POISON,    100, 10,   0, SPECIAL
 	move QUIVER_DANCE, EFFECT_HONE_CLAWS,          0, BUG,       100, 20,   0, STATUS ; Change effect
-	move HEAVY_SLAM,   EFFECT_PARALYZE_HIT,       90, STEEL,     100, 10,   0, PHYSICAL ; Change effect
+	move HEAVY_SLAM,   EFFECT_HEAVY_SLAM,          1, STEEL,     100, 10,   0, PHYSICAL ; Change effect
 	move COIL,         EFFECT_COIL,                0, POISON,    100, 20,   0, STATUS
 	move LOW_SWEEP,    EFFECT_SPEED_DOWN_HIT,     65, FIGHTING,  100, 20,   0, PHYSICAL
 	move FOUL_PLAY,    EFFECT_NORMAL_HIT,         95, DARK,      100, 15,   0, PHYSICAL ; Need to make the move use opponent's ATTACK

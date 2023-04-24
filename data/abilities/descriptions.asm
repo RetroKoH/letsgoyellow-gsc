@@ -712,8 +712,8 @@ GalvanizeDescription:
 	next1 "become Electric.@"
 
 SurgeSurferDescription:
-	db    "Boosts Electric-"
-	next1 "type moves.@"
+	db    "Electric moves"
+	next1 "double Speed.@"
 
 CorrosionDescription:
 	db    "Foes of any type"

@@ -4711,6 +4711,12 @@ BattleCommand_poisontarget:
 	and a
 	ret nz
 
+; Check for Poison Fang
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp POISON_FANG
+	jr z, .applyToxicPoison
+
 	call PoisonOpponent
 	ld de, ANIM_PSN
 	call PlayOpponentBattleAnim
@@ -4721,10 +4727,28 @@ BattleCommand_poisontarget:
 
 	jmp PostStatusWithSynchronize
 
+.applyToxicPoison
+	call ToxicOpponent
+	ld de, ANIM_PSN
+	call PlayOpponentBattleAnim
+	call RefreshBattleHuds
+
+	ld hl, BadlyPoisonedText
+	call StdBattleTextbox
+
+	jmp PostStatusWithSynchronize
+
 PoisonOpponent:
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set PSN, [hl]
+	jmp UpdateOpponentInParty
+
+ToxicOpponent:
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+	set PSN, [hl]
+	set TOX, [hl]
 	jmp UpdateOpponentInParty
 
 BattleCommand_draintarget:

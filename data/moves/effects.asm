@@ -773,6 +773,28 @@ CloseCombat:
 	posthiteffects
 	endmove
 
+Superpower:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	lowerstat ATTACK
+	lowerstat DEFENSE
+	postfainteffects
+	posthiteffects
+	endmove
+
 LeafStorm:
 	checkobedience
 	usedmovetext

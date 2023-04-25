@@ -142,6 +142,7 @@ MoveEffectsPointers:
 	dw OHKOHit
 	dw Roost
 	dw CloseCombat
+	dw Superpower
 	dw LeafStorm
 	dw Trick
 	dw KnockOff

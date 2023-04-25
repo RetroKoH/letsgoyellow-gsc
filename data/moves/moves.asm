@@ -143,11 +143,11 @@ Moves::
 	move SANDSTORM,    EFFECT_SANDSTORM,           0, ROCK,      100, 10,   0, STATUS
 	move CHARM,        EFFECT_ATTACK_DOWN_2,       0, FAIRY,     100, 20,   0, STATUS
 	move ROLLOUT,      EFFECT_ROLLOUT,            30, ROCK,       90, 20,   0, PHYSICAL
-	move FALSE_SWIPE,  EFFECT_NORMAL_HIT,          0, NORMAL,    100,  1,   0, STATUS ; Remove EFFECT_SKETCH, Add EFFECT_FALSE_SWIPE
+	move FALSE_SWIPE,  EFFECT_NORMAL_HIT,          0, NORMAL,    100,  1,   0, STATUS ; Add EFFECT_FALSE_SWIPE
 	move FURY_CUTTER,  EFFECT_FURY_CUTTER,        10, BUG,        95, 20,   0, PHYSICAL
 	move HEAL_BELL,    EFFECT_HEAL_BELL,           0, NORMAL,    100,  5,   0, STATUS
 	move RETURN,       EFFECT_RETURN,              1, NORMAL,    100, 20,   0, PHYSICAL ; Partner move. Always STAB
-	move FRUSTRATION,  EFFECT_RECOIL_HIT,        100, UNKNOWN_T, 100, 10,   0, PHYSICAL ; Shadow move
+	move FRUSTRATION,  EFFECT_RECOIL_HIT,        100, UNKNOWN_T, 100, 10,   0, PHYSICAL ; Shadow move. Typeless, but always Super Effective.
 	move DYNAMICPUNCH, EFFECT_CONFUSE_HIT,       100, FIGHTING,   50,  5, 100, PHYSICAL
 	move MEGAHORN,     EFFECT_NORMAL_HIT,        120, BUG,        85, 10,   0, PHYSICAL
 	move DRAGONBREATH, EFFECT_PARALYZE_HIT,       60, DRAGON,    100, 20,  30, SPECIAL
@@ -173,7 +173,7 @@ Moves::
 	move TAUNT,        EFFECT_TRICK,               0, PSYCHIC,   100, 10,   0, STATUS ; Make Taunt Effect
 	move HELPING_HAND, EFFECT_BATON_PASS,          0, NORMAL,    100, 40,   0, STATUS ; Make Help Effect
 	move WISH,         EFFECT_FUTURE_SIGHT,      120, PSYCHIC,   100, 10,   0, SPECIAL ; Add Wish Heal Effect
-	move SUPERPOWER,   EFFECT_CLOSE_COMBAT,      120, FIGHTING,  100,  5,   0, PHYSICAL ; Remove EFFECT_SACRED_FIRE, change this effect
+	move SUPERPOWER,   EFFECT_SUPERPOWER,        120, FIGHTING,  100,  5,   0, PHYSICAL
 	move RECYCLE,      EFFECT_PAIN_SPLIT,          0, NORMAL,    100, 20,   0, STATUS ; Change effect, Remove old one
 	move BRICK_BREAK,  EFFECT_BRICK_BREAK,        75, FIGHTING,  100, 15,   0, PHYSICAL
 	move YAWN,         EFFECT_ATTRACT,             0, NORMAL,    100, 15,   0, STATUS

@@ -75,7 +75,7 @@ battle_struct: MACRO
 \1Happiness::      db
 \1Level::          db
 \1Status::         db
-\1Unused::         db
+\1Unused::         db ; USE FOR SHADOW STATUS
 \1HP::             dw
 \1MaxHP::          dw
 \1Stats:: ; big endian

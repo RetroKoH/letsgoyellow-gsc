@@ -233,13 +233,13 @@ ParkBallMultiplier:
 GetSpeciesWeight::
 ; input: a = species
 ; output: hl = weight
-	ld hl, PokedexDataPointerTable
-	dec a
+	ld hl, PokedexDataPointerTable			; Load Dex data pointers to hl
+	dec a									; The first entry is for species #001
 	ld e, a
-	ld d, 0
+	ld d, 0									; de = species #
 	add hl, de
-	add hl, de
-	add hl, de
+	add hl, de								; Find the correct dex data pointer
+	add hl, de								; (Each entry in the table is 3 bytes)
 	ld a, BANK(PokedexDataPointerTable)
 	call GetFarByte
 	push af
@@ -251,17 +251,17 @@ GetSpeciesWeight::
 .skip_species
 	ld a, d
 	call GetFarByte
-	inc hl
-	cp "@"
-	jr nz, .skip_species
+	inc hl					; Advance to the next text character
+	cp "@"					; Have we reached the string terminator?
+	jr nz, .skip_species	; if not, loop and iterate through the species name
 
 	; skip height
 	ld a, d
-	inc hl
+	inc hl					; increment 2 bytes (height and width are two bytes)
 	inc hl
 
 	; get weight
-	jmp GetFarWord
+	jmp GetFarWord			; hl = species weight (2 bytes)
 
 HeavyBallMultiplier:
 ; subtract 20 from base catch rate if weight < 102.4 kg

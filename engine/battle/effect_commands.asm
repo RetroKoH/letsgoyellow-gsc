@@ -4167,18 +4167,18 @@ BattleCommand_constantdamage:
 	ld hl, wEnemyMonHP
 .flail_got_hp
 	xor a
-	ldh [hDividend], a
-	ldh [hMultiplicand + 0], a
+	ldh [hDividend], a			; 0
+	ldh [hMultiplicand + 0], a	; 0
 	ld a, [hli]
-	ldh [hMultiplicand + 1], a
+	ldh [hMultiplicand + 1], a	; HP
 	ld a, [hli]
-	ldh [hMultiplicand + 2], a
+	ldh [hMultiplicand + 2], a	; HP
 	ld a, $30
 	ldh [hMultiplier], a
 	call Multiply
 	ld a, [hli]
 	ld b, a
-	ld a, [hl]
+	ld a, [hl]					; ab = maxHP
 	ldh [hDivisor], a
 	ld a, b
 	and a

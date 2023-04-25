@@ -42,7 +42,7 @@ ENDM
 party_struct: MACRO
 	breed_struct \1
 \1Status::         db
-\1Unused::         db
+\1Unused::         db ; USE FOR SHADOW STATUS
 \1HP::             dw
 \1MaxHP::          dw
 \1Stats:: ; big endian

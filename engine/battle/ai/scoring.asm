@@ -2221,6 +2221,7 @@ AI_Opportunist:
 	jr .checkmove
 
 .stallmoves
+	db ACID_ARMOR
 	db AGILITY
 	db BARRIER
 	db BULK_UP
@@ -2236,6 +2237,7 @@ AI_Opportunist:
 	db LEECH_SEED
 	db LEER
 	db LIGHT_SCREEN
+	db MIMIC
 	db REFLECT
 	db SCREECH
 	db SPLASH

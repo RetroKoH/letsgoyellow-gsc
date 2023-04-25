@@ -74,7 +74,7 @@ BattleCommandPointers:
 	command counter
 	command encore
 	command painsplit
-	command sketch
+	command mimic
 	command destinybond
 	command healbell
 	command hastarget

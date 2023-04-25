@@ -22,7 +22,7 @@ Moves::
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,    100, 20,   0, STATUS
 	move GUST,         EFFECT_GUST,               40, FLYING,    100, 35,   0, SPECIAL
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,    100, 35,   0, PHYSICAL
-	move WHIRLWIND,    EFFECT_ROAR,                0, NORMAL,    100, 20,   0, STATUS ; Replaced Tackle
+	move WHIRLWIND,    EFFECT_ROAR,                0, NORMAL,    100, 20,   0, STATUS ; Replaced Tackle. Test Animation
 	move FLY,          EFFECT_FLY,                90, FLYING,     95, 15,   0, PHYSICAL
 	move VINE_WHIP,    EFFECT_NORMAL_HIT,         45, GRASS,     100, 25,   0, PHYSICAL
 	move STOMP,        EFFECT_STOMP,              65, NORMAL,    100, 20,  30, PHYSICAL
@@ -89,7 +89,7 @@ Moves::
 	move QUICK_ATTACK, EFFECT_PRIORITY_HIT,       40, NORMAL,    100, 30,   0, PHYSICAL
 	move TELEPORT,     EFFECT_TELEPORT,            0, PSYCHIC,   100, 20,   0, STATUS
 	move NIGHT_SHADE,  EFFECT_LEVEL_DAMAGE,        1, GHOST,     100, 15,   0, SPECIAL
-	move MIMIC,        EFFECT_NORMAL_HIT,         80, NORMAL,    100, 15,   0, PHYSICAL ; Re-Add MIMIC
+	move MIMIC,        EFFECT_MIMIC,               0, NORMAL,    100, 15,   0, STATUS
 	move SCREECH,      EFFECT_DEFENSE_DOWN_2,      0, NORMAL,     85, 40,   0, STATUS
 	move DOUBLE_TEAM,  EFFECT_EVASION_UP,          0, NORMAL,    100, 15,   0, STATUS
 	move RECOVER,      EFFECT_HEAL,                0, NORMAL,    100, 10,   0, STATUS

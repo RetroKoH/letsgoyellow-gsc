@@ -6,7 +6,6 @@ NormalHit:
 AerialAce:
 AquaJet:
 AquaTail:
-AuraSphere:
 BulletPunch:
 Crabhammer:
 CrossChop:
@@ -1575,6 +1574,14 @@ Rage:
 	posthiteffects
 	endmove
 
+Mimic:
+	checkobedience
+	usedmovetext
+	doturn
+	checkhit
+	mimic
+	endmove
+
 Metronome:
 	checkobedience
 	usedmovetext
@@ -1642,14 +1649,6 @@ PainSplit:
 	hastarget
 	checkhit
 	painsplit
-	endmove
-
-Sketch:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	sketch
 	endmove
 
 DestinyBond:

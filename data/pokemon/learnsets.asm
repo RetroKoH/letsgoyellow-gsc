@@ -460,7 +460,7 @@ PichuLearnset:
 PikachuLearnset:
 RaichuPlainLearnset:
 RaichuAlolanLearnset:
-	db 1, HEAVY_SLAM
+	db 1, THUNDERSHOCK
 	db 1, GROWL
 	db 3, LEER ; Tail Whip → similar move
 	db 6, QUICK_ATTACK

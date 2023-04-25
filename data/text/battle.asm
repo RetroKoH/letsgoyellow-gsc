@@ -1104,6 +1104,14 @@ SubFadedText:
 	line "substitute faded!"
 	prompt
 
+MimicLearnedMoveText:
+	text "<USER>"
+	line "learned"
+	cont "@"
+	text_ram wStringBuffer1
+	text "!"
+	prompt
+
 WasSeededText:
 	text "<TARGET>"
 	line "was seeded!"

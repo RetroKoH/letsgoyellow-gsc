@@ -97,7 +97,7 @@ MoveEffectsPointers:
 	dw Counter
 	dw Encore
 	dw PainSplit
-	dw Sketch
+	dw Mimic
 	dw Coil
 	dw DestinyBond
 	dw Flail

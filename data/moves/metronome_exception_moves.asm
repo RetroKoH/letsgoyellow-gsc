@@ -4,6 +4,7 @@ MetronomeExcepts:
 	db NO_MOVE
 	db COUNTER
 	db METRONOME
+	db MIMIC
 	db MIRROR_COAT
 	db PROTECT
 	db TRANSFORM

@@ -39,6 +39,7 @@ INCLUDE "engine/battle/move_effects/low_kick.asm"
 INCLUDE "engine/battle/move_effects/magic_bounce.asm"
 INCLUDE "engine/battle/move_effects/mean_look.asm"
 INCLUDE "engine/battle/move_effects/metronome.asm"
+INCLUDE "engine/battle/move_effects/mimic.asm"
 INCLUDE "engine/battle/move_effects/minimize.asm"
 INCLUDE "engine/battle/move_effects/ohko.asm"
 INCLUDE "engine/battle/move_effects/pain_split.asm"
@@ -53,7 +54,6 @@ INCLUDE "engine/battle/move_effects/roar.asm"
 INCLUDE "engine/battle/move_effects/rollout.asm"
 INCLUDE "engine/battle/move_effects/roost.asm"
 INCLUDE "engine/battle/move_effects/safeguard.asm"
-INCLUDE "engine/battle/move_effects/sketch.asm"
 INCLUDE "engine/battle/move_effects/spikes.asm"
 INCLUDE "engine/battle/move_effects/splash.asm"
 INCLUDE "engine/battle/move_effects/substitute.asm"
@@ -5964,6 +5964,10 @@ PrintButItFailed:
 ; 'but it failed!'
 	ld hl, ButItFailedText
 	jmp StdBattleTextbox
+
+FailMimic: ; unused???
+	ld hl, ButItFailedText ; 'but it failed!'
+	jp FailText_CheckOpponentProtect
 
 FailDisable:
 FailAttract:

@@ -1,9 +1,6 @@
 BattleCommand_mimic:
 	call ClearLastMove
 	call BattleCommand_movedelay
-	ld a, [wAttackMissed]
-	and a
-	jr nz, .fail
 	ld hl, wBattleMonMoves
 	ldh a, [hBattleTurn]
 	and a

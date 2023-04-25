@@ -89,7 +89,7 @@ Moves::
 	move QUICK_ATTACK, EFFECT_PRIORITY_HIT,       40, NORMAL,    100, 30,   0, PHYSICAL
 	move TELEPORT,     EFFECT_TELEPORT,            0, PSYCHIC,   100, 20,   0, STATUS
 	move NIGHT_SHADE,  EFFECT_LEVEL_DAMAGE,        1, GHOST,     100, 15,   0, SPECIAL
-	move MIMIC,        EFFECT_MIMIC,               0, NORMAL,    100, 15,   0, STATUS
+	move MIMIC,        EFFECT_MIMIC,               0, NORMAL,    100, 10,   0, STATUS
 	move SCREECH,      EFFECT_DEFENSE_DOWN_2,      0, NORMAL,     85, 40,   0, STATUS
 	move DOUBLE_TEAM,  EFFECT_EVASION_UP,          0, NORMAL,    100, 15,   0, STATUS
 	move RECOVER,      EFFECT_HEAL,                0, NORMAL,    100, 10,   0, STATUS

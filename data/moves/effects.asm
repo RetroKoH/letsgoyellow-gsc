@@ -1578,7 +1578,7 @@ Mimic:
 	checkobedience
 	usedmovetext
 	doturn
-	checkhit
+	hastarget
 	mimic
 	endmove
 

@@ -3458,7 +3458,7 @@ BattleCommand_damagestats:
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVar
 	and a
-	ld d, a
+	ld d, a				; load move's BP to register d
 	ret z
 
 	ld a, BATTLE_VARS_MOVE_CATEGORY
@@ -3471,16 +3471,27 @@ BattleCommand_damagestats:
 	call GetOpponentMonAttr
 	ld a, [hli]
 	ld b, a
-	ld c, [hl]
+	ld c, [hl]	; load defending mon's defense to register d
 
-if !DEF(FAITHFUL)
 	call HailDefenseBoost
-endc
 
+; Determine which attack stat to load, based on whether this move is Foul Play or not.
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp FOUL_PLAY
 	ld hl, wBattleMonAttack
-	call GetUserMonAttr
+	jr nz, .notFoulPlay
+	call GetOpponentMonAttr	; Foul Play uses the opponent's attack stat.
+	jr .continue
+
+.notFoulPlay
+	call GetUserMonAttr		; Other attacks use the attacker's attack stat.
+
+; location of attack stat stored in hl; TruncateHL_BC will load this to b.
+.continue
 	call GetFutureSightUser
 	jr z, .atk_ok
+; Next two lines are only called if Future Sight is used.
 	ld a, MON_ATK
 	call TrueUserPartyAttr
 .atk_ok

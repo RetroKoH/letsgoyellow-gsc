@@ -178,7 +178,7 @@ Moves::
 	move BRICK_BREAK,  EFFECT_BRICK_BREAK,        75, FIGHTING,  100, 15,   0, PHYSICAL
 	move YAWN,         EFFECT_ATTRACT,             0, NORMAL,    100, 15,   0, STATUS
 	move KNOCK_OFF,    EFFECT_KNOCK_OFF,          65, DARK,      100, 20, 100, PHYSICAL
-	move BLAZE_KICK,   EFFECT_BURN_HIT,           85, FIRE,       90, 10,  10, PHYSICAL ; Add Crit Hit Up
+	move BLAZE_KICK,   EFFECT_BURN_HIT,           85, FIRE,       90, 10,  10, PHYSICAL
 	move HYPER_VOICE,  EFFECT_NORMAL_HIT,         90, NORMAL,    100, 10,   0, SPECIAL
 	move POISON_FANG,  EFFECT_POISON_HIT,         60, POISON,    100, 15,  50, PHYSICAL ; Should apply Toxic Poison
 	move METEOR_MASH,  EFFECT_ATTACK_UP_HIT,      90, STEEL,      90, 10,  20, PHYSICAL ; Get rid of MEAN_LOOK_EFFECT
@@ -238,7 +238,7 @@ Moves::
 	move HEAVY_SLAM,   EFFECT_HEAVY_SLAM,          1, STEEL,     100, 10,   0, PHYSICAL ; Change effect
 	move COIL,         EFFECT_COIL,                0, POISON,    100, 20,   0, STATUS
 	move LOW_SWEEP,    EFFECT_SPEED_DOWN_HIT,     65, FIGHTING,  100, 20,   0, PHYSICAL
-	move FOUL_PLAY,    EFFECT_NORMAL_HIT,         95, DARK,      100, 15,   0, PHYSICAL ; Need to make the move use opponent's ATTACK
+	move FOUL_PLAY,    EFFECT_NORMAL_HIT,         95, DARK,      100, 15,   0, PHYSICAL ; Test further
 	move CLEAR_SMOG,   EFFECT_ALWAYS_HIT,         50, POISON,    100, 15,   0, SPECIAL ; Need to add a one-sided HAZE effect
 	move SCALD,        EFFECT_BURN_HIT,           80, WATER,     100, 15,  30, SPECIAL
 	move SHELL_SMASH,  EFFECT_SHELL_SMASH,         0, NORMAL,    100, 15,   0, STATUS

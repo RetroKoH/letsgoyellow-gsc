@@ -744,15 +744,16 @@ PrimeapeLearnset:
 AnnihilapeLearnset:
 	db 1, STRIKE ; SCRATCH
 	db 1, LEER
-	db 5, TAUNT
+	db 5, FURY_STRIKES ; Fury Swipes → similar move
 	db 10, LOW_KICK
-	db 15, FURY_STRIKES ; Fury Swipes → similar move
+	db 15, TAUNT
 	db 20, SEISMIC_TOSS
 	db 25, CROSS_CHOP
 	db 30, SCREECH
-	db 35, CLOSE_COMBAT
+	db 35, RAGE_FIST ; New move. Triggers evolution
 	db 40, THRASH
-	db 45, OUTRAGE
+	db 45, CLOSE_COMBAT
+	db 50, OUTRAGE
 	db 0 ; no more level-up moves
 
 GrowlithePlainLearnset:

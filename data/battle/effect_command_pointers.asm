@@ -109,7 +109,7 @@ BattleCommandPointers:
 	command switchturn
 	command bellydrum
 	command furycutter
-	command rage
+	command ragefist
 	command doubleflyingdamage
 	command doubleundergrounddamage
 	command checkfuturesight

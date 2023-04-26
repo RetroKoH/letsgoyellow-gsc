@@ -89,7 +89,7 @@ MoveEffectsPointers:
 	dw Transform
 	dw Substitute
 	dw HyperBeam
-	dw Rage
+	dw RageFist
 	dw Metronome
 	dw LeechSeed
 	dw Splash

@@ -503,13 +503,6 @@ ParsePlayerAction:
 
 .continue_fury_cutter
 	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
-	cp EFFECT_RAGE
-	jr z, .continue_rage
-	ld hl, wPlayerSubStatus4
-	res SUBSTATUS_RAGE, [hl]
-
-.continue_rage
-	ld a, [wPlayerMoveStruct + MOVE_EFFECT]
 	cp EFFECT_PROTECT
 	jr z, .continue_protect
 	xor a
@@ -520,20 +513,16 @@ ParsePlayerAction:
 	xor a
 	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
-	ld hl, wPlayerSubStatus4
-	res SUBSTATUS_RAGE, [hl]
 
 .continue_protect
 	call ParseEnemyAction
 	xor a
 	ret
 
-.reset_rage
+.reset_rage ; not sure if we need this. Rage is gone.
 	xor a
 	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
-	ld hl, wPlayerSubStatus4
-	res SUBSTATUS_RAGE, [hl]
 .lavender_ghost
 	xor a
 	ret
@@ -1110,7 +1099,7 @@ SendInUserPkmn:
 	call BreakAttraction
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
-	res SUBSTATUS_ENDURE, [hl]
+;	res SUBSTATUS_ENDURE, [hl]
 	res SUBSTATUS_PROTECT, [hl]
 	inc hl
 	; substatus2
@@ -1122,7 +1111,7 @@ SendInUserPkmn:
 	and [hl]
 	ld [hli], a
 	; substatus4
-	ld a, ~(1 << SUBSTATUS_RAGE | 1 << SUBSTATUS_FLINCHED | 1 << SUBSTATUS_CURLED)
+	ld a, ~(1 << SUBSTATUS_FLINCHED | 1 << SUBSTATUS_CURLED) ;~(1 << SUBSTATUS_RAGE | 1 << SUBSTATUS_FLINCHED | 1 << SUBSTATUS_CURLED)
 	and [hl]
 	ld [hl], a
 
@@ -5523,18 +5512,11 @@ ParseEnemyAction:
 .fury_cutter
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_FURY_CUTTER
-	jr z, .raging
+	jr z, .protect
 	xor a
 	ld [wEnemyFuryCutterCount], a
 
-.raging
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	cp EFFECT_RAGE
-	jr z, .no_rage
-	ld hl, wEnemySubStatus4
-	res SUBSTATUS_RAGE, [hl]
-
-.no_rage
+.protect
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_PROTECT
 	ret z
@@ -5550,8 +5532,6 @@ ResetVarsForSubstatusRage:
 	xor a
 	ld [wEnemyFuryCutterCount], a
 	ld [wEnemyProtectCount], a
-	ld hl, wEnemySubStatus4
-	res SUBSTATUS_RAGE, [hl]
 	ret
 
 LinkBattleError:

@@ -46,7 +46,7 @@ INCLUDE "engine/battle/move_effects/recycle.asm"
 INCLUDE "engine/battle/move_effects/pay_day.asm"
 INCLUDE "engine/battle/move_effects/protect.asm"
 INCLUDE "engine/battle/move_effects/pursuit.asm"
-INCLUDE "engine/battle/move_effects/rage.asm"
+INCLUDE "engine/battle/move_effects/rage_fist.asm"
 INCLUDE "engine/battle/move_effects/rapid_spin.asm"
 INCLUDE "engine/battle/move_effects/reflect_light_screen.asm"
 INCLUDE "engine/battle/move_effects/return.asm"
@@ -2961,26 +2961,22 @@ BattleCommand_posthiteffects:
 .air_balloon_done
 	call HasOpponentFainted
 	jr z, .rage_done
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_RAGE, a
-	jr z, .rage_done
 
-	call SwitchTurn
+;	call SwitchTurn ; IS THIS STILL NEEDED HERE???
 
 	; use skiptext so we can print the rage msg first
-	ld b, ATTACK
-	ld a, STAT_SKIPTEXT
-	call _RaiseStat
-	ld a, [wFailedMessage]
+	ld hl, wPlayerRageHitCount
+	ldh a, [hBattleTurn]
 	and a
-	jr nz, .rage_done_switchturn
+	jr z, .go
+	ld hl, wEnemyRageHitCount
 
-	push bc
-	ld hl, RageBuildingText
-	call StdBattleTextbox
-	pop bc
-	farcall PrintStatChange
+.go
+	inc [hl]	; Increment Rage counter w/ each hit
+	ld a, [hl]
+	cp 6
+	jr c, .rage_done_switchturn
+	ld [hl], 5	; Damage capped at 5 turns' worth
 
 .rage_done_switchturn
 	call SwitchTurn

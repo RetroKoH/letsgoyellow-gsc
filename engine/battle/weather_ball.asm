@@ -34,7 +34,6 @@ WeatherBallDamageStats:
 	call GetBattleVarAddr
 	pop af
 	ld [hl], a
-	; fallthrough
 
 ; Then, overwrite power to 100
 	ld a, 100

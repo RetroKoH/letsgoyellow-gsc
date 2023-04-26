@@ -199,10 +199,6 @@ AI_TryItem:
 	jr c, .loop
 
 .used_item
-
-	ld hl, wEnemySubStatus4
-	res SUBSTATUS_RAGE, [hl]
-
 	xor a
 	ld [de], a
 	ld [wCurEnemyMove], a

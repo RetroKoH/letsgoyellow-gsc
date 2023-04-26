@@ -174,7 +174,7 @@ Moves::
 	move HELPING_HAND, EFFECT_BATON_PASS,          0, NORMAL,    100, 40,   0, STATUS ; Make Help Effect
 	move WISH,         EFFECT_FUTURE_SIGHT,      120, PSYCHIC,   100, 10,   0, SPECIAL ; Add Wish Heal Effect
 	move SUPERPOWER,   EFFECT_SUPERPOWER,        120, FIGHTING,  100,  5,   0, PHYSICAL
-	move RECYCLE,      EFFECT_RECYCLE,             0, NORMAL,    100, 10,   0, STATUS ; Remove Pain Splii
+	move RECYCLE,      EFFECT_RECYCLE,             0, NORMAL,    100, 10,   0, STATUS
 	move BRICK_BREAK,  EFFECT_BRICK_BREAK,        75, FIGHTING,  100, 15,   0, PHYSICAL
 	move YAWN,         EFFECT_ATTRACT,             0, NORMAL,    100, 15,   0, STATUS
 	move KNOCK_OFF,    EFFECT_KNOCK_OFF,          65, DARK,      100, 20, 100, PHYSICAL
@@ -265,6 +265,6 @@ Moves::
 	move LIQUIDATION,  EFFECT_DEFENSE_DOWN_HIT,   85, WATER,     100, 10,  20, PHYSICAL
 	move DUOIRONBASH,  EFFECT_DUO_IRON_BASH,      60, STEEL,     100,  5,  30, PHYSICAL
 	move STRANGESTEAM, EFFECT_CONFUSE_HIT,        90, FAIRY,      95, 10,  20, SPECIAL
-	move RAGE_FIST,    EFFECT_RAGE,               50, GHOST,     100, 10,   0, PHYSICAL
+	move RAGE_FIST,    EFFECT_RAGE_FIST,          20, GHOST,     100, 10,   0, PHYSICAL ; Further test scaling effect.
 	move STRUGGLE,     EFFECT_RECOIL_HIT,         50, UNKNOWN_T, 100,  1,   0, PHYSICAL
 	assert_table_length NUM_ATTACKS

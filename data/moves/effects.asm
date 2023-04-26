@@ -1575,20 +1575,19 @@ GigaImpact:
 	posthiteffects
 	endmove
 
-Rage:
+RageFist:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
 	checkhit
 	critical
-	damagestats
+	ragefist ; calls damagestats
 	damagecalc
 	stab
 	damagevariation
 	moveanim
 	failuretext
-	rage
 	applydamage
 	criticaltext
 	supereffectivetext
@@ -2071,7 +2070,7 @@ WeatherBall:
 	hastarget
 	checkhit
 	critical
-	weatherball
+	weatherball ; calls damagestats
 	damagecalc
 	stab
 	damagevariation

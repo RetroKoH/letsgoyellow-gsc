@@ -348,7 +348,7 @@ AI_Smart:
 	dbw EFFECT_SPEED_DOWN_HIT,    AI_Smart_SpeedDownHit
 	dbw EFFECT_SUBSTITUTE,        AI_Smart_Substitute
 	dbw EFFECT_HYPER_BEAM,        AI_Smart_HyperBeam
-	dbw EFFECT_RAGE,              AI_Smart_Rage
+	dbw EFFECT_RAGE_FIST,         AI_Smart_RageFist
 	dbw EFFECT_LEECH_SEED,        AI_Smart_LeechSeed
 	dbw EFFECT_DISABLE,           AI_Smart_Disable
 	dbw EFFECT_COUNTER,           AI_Smart_Counter
@@ -1031,9 +1031,9 @@ AI_Smart_HyperBeam:
 	inc [hl]
 	ret
 
-AI_Smart_Rage:
-	ld a, [wEnemySubStatus4]
-	bit SUBSTATUS_RAGE, a
+AI_Smart_RageFist:
+	ld a, [wEnemyRageHitCount]
+	and a
 	jr z, .asm_38b9b
 
 ; If enemy's Rage is building, 50% chance to encourage this move.
@@ -2112,6 +2112,7 @@ UsefulMoves:
 	db MOONBLAST
 	db PLAY_ROUGH
 	db HURRICANE
+	db RAGE_FIST
 	db $ff
 
 AI_Opportunist:

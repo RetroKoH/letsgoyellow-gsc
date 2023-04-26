@@ -23,7 +23,7 @@ INCLUDE "engine/battle/move_effects/dream_eater.asm"
 INCLUDE "engine/battle/move_effects/encore_disable.asm"
 INCLUDE "engine/battle/move_effects/endure.asm"
 INCLUDE "engine/battle/move_effects/explosion.asm"
-INCLUDE "engine/battle/move_effects/false_swipe.asm" ; code needed for Sturdy
+INCLUDE "engine/battle/move_effects/false_swipe.asm" ; Used for False Swipe AND Sturdy ability.
 INCLUDE "engine/battle/move_effects/feint.asm"
 INCLUDE "engine/battle/move_effects/focus_energy.asm"
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"
@@ -2405,7 +2405,7 @@ BattleCommand_failuretext:
 BattleCommand_applydamage:
 ; b is set to an endure flag as follows:
 ; 0 - Nothing
-; 1 - Endure (the move)
+; 1 - False Swipe (Also WAS used for Endure)
 ; 2 - Ability (i.e. Sturdy)
 ; 3 - Nonconsumable item (i.e. Focus Band)
 ; 4 - Item consumed after use (i.e. Focus Sash)

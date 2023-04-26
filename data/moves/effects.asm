@@ -1843,11 +1843,25 @@ Hail:
 	starthail
 	endmove
 
-Endure:
+FalseSwipe:
 	checkobedience
 	usedmovetext
 	doturn
-	endure
+	hastarget
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	falseswipe
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	postfainteffects
+	posthiteffects
 	endmove
 
 Rollout:

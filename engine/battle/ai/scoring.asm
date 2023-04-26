@@ -361,7 +361,6 @@ AI_Smart:
 	dbw EFFECT_FLARE_BLITZ,       AI_Smart_Defrost
 	dbw EFFECT_CURSE,             AI_Smart_Curse
 	dbw EFFECT_PROTECT,           AI_Smart_Protect
-	dbw EFFECT_ENDURE,            AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
 	dbw EFFECT_FURY_CUTTER,       AI_Smart_FuryCutter
 	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
@@ -1498,48 +1497,6 @@ AI_Smart_Protect:
 	cp 20
 	ret c
 	inc [hl]
-	inc [hl]
-	ret
-
-AI_Smart_Endure:
-	ld a, [wEnemyProtectCount]
-	and a
-	jr nz, .asm_38fd8
-
-	call AICheckEnemyMaxHP
-	jr c, .asm_38fd8
-
-	call AICheckEnemyQuarterHP
-	jr c, .asm_38fd9
-
-	ld b, EFFECT_FLAIL
-	call AIHasMoveEffect
-	jr nc, .asm_38fcb
-
-	call AI_80_20
-	ret c
-
-	dec [hl]
-	dec [hl]
-	dec [hl]
-	ret
-
-.asm_38fcb
-	ld a, [wEnemySubStatus2]
-	bit SUBSTATUS_LOCK_ON, a
-	ret z
-
-	call AI_50_50
-	ret c
-
-	dec [hl]
-	dec [hl]
-	ret
-
-.asm_38fd8
-	inc [hl]
-
-.asm_38fd9
 	inc [hl]
 	ret
 

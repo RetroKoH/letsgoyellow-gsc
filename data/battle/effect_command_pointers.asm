@@ -89,6 +89,7 @@ BattleCommandPointers:
 	command startsandstorm
 	command starthail
 	command endure
+	command falseswipe
 	command rolloutpower
 	command conditionalboost
 	command attract

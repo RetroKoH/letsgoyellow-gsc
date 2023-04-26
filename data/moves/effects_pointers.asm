@@ -111,7 +111,7 @@ MoveEffectsPointers:
 	dw Spikes
 	dw Sandstorm
 	dw Hail
-	dw Endure
+	dw FalseSwipe
 	dw Rollout
 	dw Feint
 	dw ConditionalBoostHit

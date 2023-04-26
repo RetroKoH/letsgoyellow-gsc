@@ -353,7 +353,6 @@ AI_Smart:
 	dbw EFFECT_DISABLE,           AI_Smart_Disable
 	dbw EFFECT_COUNTER,           AI_Smart_Counter
 	dbw EFFECT_ENCORE,            AI_Smart_Encore
-	dbw EFFECT_PAIN_SPLIT,        AI_Smart_PainSplit
 	dbw EFFECT_DESTINY_BOND,      AI_Smart_DestinyBond
 	dbw EFFECT_HEAL_BELL,         AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
@@ -1179,6 +1178,7 @@ AI_Smart_Encore:
 	db LEECH_SEED
 	db LEER
 	db POISONPOWDER
+	db RECYCLE
 	db ROAR
 	db SCREECH
 	db SPLASH
@@ -1189,26 +1189,6 @@ AI_Smart_Encore:
 	db TELEPORT
 	db TAUNT
 	db $ff
-
-AI_Smart_PainSplit:
-; Discourage this move if [enemy's current HP * 2 > player's current HP].
-
-	push hl
-	ld hl, wEnemyMonHP
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-	sla c
-	rl b
-	ld hl, wBattleMonHP + 1
-	ld a, [hld]
-	cp c
-	ld a, [hl]
-	sbc b
-	pop hl
-	ret nc
-	inc [hl]
-	ret
 
 AI_Smart_DestinyBond:
 AI_Smart_RazorWind:

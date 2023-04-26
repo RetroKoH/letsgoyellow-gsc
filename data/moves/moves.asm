@@ -174,7 +174,7 @@ Moves::
 	move HELPING_HAND, EFFECT_BATON_PASS,          0, NORMAL,    100, 40,   0, STATUS ; Make Help Effect
 	move WISH,         EFFECT_FUTURE_SIGHT,      120, PSYCHIC,   100, 10,   0, SPECIAL ; Add Wish Heal Effect
 	move SUPERPOWER,   EFFECT_SUPERPOWER,        120, FIGHTING,  100,  5,   0, PHYSICAL
-	move RECYCLE,      EFFECT_PAIN_SPLIT,          0, NORMAL,    100, 20,   0, STATUS ; Change effect, Remove old one
+	move RECYCLE,      EFFECT_RECYCLE,             0, NORMAL,    100, 10,   0, STATUS ; Remove Pain Splii
 	move BRICK_BREAK,  EFFECT_BRICK_BREAK,        75, FIGHTING,  100, 15,   0, PHYSICAL
 	move YAWN,         EFFECT_ATTRACT,             0, NORMAL,    100, 15,   0, STATUS
 	move KNOCK_OFF,    EFFECT_KNOCK_OFF,          65, DARK,      100, 20, 100, PHYSICAL
@@ -246,7 +246,7 @@ Moves::
 	move ACROBATICS,   EFFECT_CONDITIONAL_BOOST,  55, FLYING,    100, 15,   0, PHYSICAL
 	move VOLT_SWITCH,  EFFECT_SWITCH_HIT,         70, ELECTRIC,  100, 20,   0, SPECIAL
 	move BULLDOZE,     EFFECT_SPEED_DOWN_HIT,     60, GROUND,    100, 20, 100, PHYSICAL
-	move DRAGON_TAIL,  EFFECT_DRAGON_TAIL,        60, DRAGON,     90, 10,   0, PHYSICAL ; Test Force Switch
+	move DRAGON_TAIL,  EFFECT_DRAGON_TAIL,        60, DRAGON,     90, 10,   0, PHYSICAL ; Fix Force Switch effect
 	move HARDEN,       EFFECT_DEFENSE_UP,          0, NORMAL,    100, 30,   0, STATUS ; Combine with Defense Curl
 	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, ELECTRIC,  100, 15,   0, PHYSICAL
 	move DRILL_RUN,    EFFECT_NORMAL_HIT,         80, GROUND,     95, 10,   0, PHYSICAL

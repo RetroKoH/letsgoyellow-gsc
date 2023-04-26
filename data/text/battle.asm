@@ -1499,6 +1499,14 @@ HarvestedItemText:
 	text "!"
 	prompt
 
+RecycledItemText:
+	text "<USER>"
+	line "found one"
+	cont ""
+	text_ram wStringBuffer1
+	text "!"
+	prompt
+
 FirePoweredUpText:
 	text "<USER>'s"
 	line "Fire-type moves"

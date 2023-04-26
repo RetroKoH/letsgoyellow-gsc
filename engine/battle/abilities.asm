@@ -1284,10 +1284,10 @@ HarvestAbility:
 ; At end of turn, re-harvest an used up Berry (100% in sun, 50% otherwise)
 	call GetWeatherAfterUserUmbrella
 	cp WEATHER_SUN
-	jr z, .ok
+	jr z, .ok			; 100% in sun
 	call BattleRandom
 	and 1
-	ret z
+	ret z				; 50% in sun
 
 .ok
 	; Don't do anything if we have an item already

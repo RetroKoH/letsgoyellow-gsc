@@ -73,7 +73,7 @@ BattleCommandPointers:
 	command constantdamage
 	command counter
 	command encore
-	command painsplit
+	command recycle
 	command mimic
 	command destinybond
 	command healbell

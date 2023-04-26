@@ -96,7 +96,7 @@ MoveEffectsPointers:
 	dw Disable
 	dw Counter
 	dw Encore
-	dw PainSplit
+	dw Recycle
 	dw Mimic
 	dw Coil
 	dw DestinyBond

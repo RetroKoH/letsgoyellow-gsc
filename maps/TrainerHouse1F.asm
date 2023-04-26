@@ -134,7 +134,7 @@ PikaBallScript:
 	writetext TrainerHouseBlueConfirm
 	promptbutton
 	waitsfx
-	givepoke PIKACHU, 5
+	givepoke PIKACHU, PLAIN_FORM, 5, ORAN_BERRY
 	closetext
 	applymovement STARTHOUSE_TRACE, Movement_TracePicksEevee
 	opentext
@@ -168,7 +168,7 @@ EeveeBallScript:
 	writetext TrainerHouseBlueConfirm
 	promptbutton
 	waitsfx
-	givepoke EEVEE, 5
+	givepoke EEVEE, PLAIN_FORM, 5, ORAN_BERRY
 	closetext
 	applymovement STARTHOUSE_TRACE, Movement_TracePicksPikachu
 	opentext

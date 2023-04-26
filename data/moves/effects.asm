@@ -1664,13 +1664,11 @@ Encore:
 	encore
 	endmove
 
-PainSplit:
+Recycle:
 	checkobedience
 	usedmovetext
 	doturn
-	hastarget
-	checkhit
-	painsplit
+	recycle
 	endmove
 
 DestinyBond:

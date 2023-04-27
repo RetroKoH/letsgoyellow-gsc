@@ -40,7 +40,7 @@ HandleBetweenTurnEffects:
 	call HandleWrap
 	call CheckFaint
 	ret c
-	; taunt
+	call HandleTaunt
 	call HandleEncore
 	call HandleDisable
 	; magnet rise
@@ -686,6 +686,23 @@ HandleWrap:
 	ld [wNamedObjectIndex], a
 	call GetMoveName
 	jmp StdBattleTextbox
+
+HandleTaunt:
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
+
+.do_it
+	call HasUserFainted
+	ret z
+	ld de, TauntedNoMoreText
+
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPlayerTauntCount
+	jr z, EndturnEncoreDisable
+	ld hl, wEnemyTauntCount
+	jr EndturnEncoreDisable
 
 HandleEncore:
 	call SetFastestTurn

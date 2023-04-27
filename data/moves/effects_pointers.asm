@@ -144,7 +144,7 @@ MoveEffectsPointers:
 	dw CloseCombat
 	dw Superpower
 	dw LeafStorm
-	dw Trick
+	dw Taunt
 	dw KnockOff
 	dw FuryStrikes
 	dw BugBite

@@ -1437,15 +1437,6 @@ Roar:
 	roar
 	endmove
 
-Trick:
-	checkobedience
-	usedmovetext
-	doturn
-	hastarget
-	checkhit
-	trick
-	endmove
-
 Conversion:
 	checkobedience
 	usedmovetext
@@ -1661,6 +1652,17 @@ Encore:
 	bounceback
 	failuretext
 	encore
+	endmove
+
+Taunt:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	bounceback
+	failuretext
+	taunt
 	endmove
 
 Recycle:

@@ -378,11 +378,11 @@ wAttackMissed::
 wBattleSubStatusWRAM::
 wPlayerSubStatus1::
 ; bit
-; 7 attract
+; 7 attract (UNUSED)
 ; 6 flash fire
-; 5 endure
-; 4 perish song
-; 3 identified
+; 5 endure (UNUSED)
+; 4 perish song (UNUSED)
+; 3 identified (UNUSED)
 ; 2 protect
 ; 1 curse
 ; 0 unburden
@@ -390,7 +390,7 @@ wPlayerSubStatus1::
 wPlayerSubStatus2::
 ; bit
 ; 7 cant run
-; 6 destiny bond
+; 6 destiny bond (UNUSED)
 ; 5 lock-on
 ; 4 transformed
 ; 3 magic bounce
@@ -413,7 +413,7 @@ wPlayerSubStatus3::
 wPlayerSubStatus4::
 ; bit
 ; 7 leech seed
-; 6 rage
+; 6 rage (UNUSED)
 ; 5 flinched
 ; 4 substitute
 ; 3 roost
@@ -445,6 +445,7 @@ wPlayerEncoreCount:: db ; also for choice-locking
 wPlayerRageHitCount:: db ; for Rage Fist power
 wPlayerProtectCount:: db
 wPlayerFuryCutterCount:: db
+wPlayerTauntCount:: db
 
 wEnemyAbility:: db
 wEnemyRolloutCount:: db
@@ -455,6 +456,7 @@ wEnemyEncoreCount:: db
 wEnemyRageHitCount:: db
 wEnemyProtectCount:: db
 wEnemyFuryCutterCount:: db
+wEnemyTauntCount:: db
 
 wCriticalCount:: ds PARTY_LENGTH ; for g-Farfetch'd evolution
 wBattleSubStatusWRAMEnd::
@@ -536,7 +538,7 @@ wLinkBattleRNCount:: db ; how far through the prng stream
 
 wEnemyItemState:: db
 
-	ds 2
+;	ds 2 < I believe these were unused???
 
 wCurEnemyMoveNum:: db
 

@@ -133,7 +133,7 @@ BattleCommandPointers:
 	command suckerpunch
 	command ohko
 	command roost
-	command trick
+	command taunt
 	command knockoff
 	command bugbite
 	command toxic

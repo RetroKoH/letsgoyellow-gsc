@@ -15,7 +15,6 @@ AI_Redundant:
 	dbw EFFECT_HEAL,          .Heal
 	dbw EFFECT_ROAR,          .Roar
 	dbw EFFECT_LIGHT_SCREEN,  .LightScreen
-	dbw EFFECT_FOCUS_ENERGY,  .FocusEnergy
 	dbw EFFECT_CONFUSE,       .Confuse
 	dbw EFFECT_TRANSFORM,     .Transform
 	dbw EFFECT_REFLECT,       .Reflect
@@ -23,12 +22,10 @@ AI_Redundant:
 	dbw EFFECT_LEECH_SEED,    .LeechSeed
 	dbw EFFECT_DISABLE,       .Disable
 	dbw EFFECT_ENCORE,        .Encore
-	dbw EFFECT_MEAN_LOOK,     .MeanLook
-	dbw EFFECT_CURSE,         .Curse
+	dbw EFFECT_TAUNT,         .Taunt
 	dbw EFFECT_SPIKES,        .Spikes
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
-	dbw EFFECT_ATTRACT,       .Attract
 	dbw EFFECT_SAFEGUARD,     .Safeguard
 	dbw EFFECT_RAIN_DANCE,    .RainDance
 	dbw EFFECT_SUNNY_DAY,     .SunnyDay
@@ -58,9 +55,9 @@ AI_Redundant:
 	and a
 	ret
 
-.FocusEnergy:
-	ld a, [wEnemySubStatus4]
-	bit SUBSTATUS_FOCUS_ENERGY, a
+.Taunt:
+	ld a, [wPlayerTauntCount]
+	and a
 	ret
 
 .FutureSight:
@@ -76,11 +73,6 @@ AI_Redundant:
 .LightScreen:
 	ld a, [wEnemyScreens]
 	and SCREENS_LIGHT_SCREEN
-	ret
-
-.MeanLook:
-	ld a, [wEnemySubStatus2]
-	bit SUBSTATUS_CANT_RUN, a
 	ret
 
 .Reflect:
@@ -130,21 +122,6 @@ AI_Redundant:
 	ld a, [wBattleWeather]
 	cp WEATHER_HAIL
 	jr .InvertZero
-
-.Attract:
-	farcall CheckOppositeGender
-	jr c, .Redundant
-	jr z, .Redundant
-	ld a, [wPlayerSubStatus1]
-	bit SUBSTATUS_IN_LOVE, a
-	ret
-
-.Curse:
-	call CheckIfUserIsGhostType
-	jr nz, .NotRedundant
-	ld a, [wPlayerSubStatus1]
-	bit SUBSTATUS_CURSE, a
-	ret
 
 .RainDance:
 	ld a, [wBattleWeather]

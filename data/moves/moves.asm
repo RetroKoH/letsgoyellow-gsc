@@ -170,7 +170,7 @@ Moves::
 	move HAIL,         EFFECT_HAIL,                0, ICE,       100, 10,   0, STATUS
 	move WILL_O_WISP,  EFFECT_BURN,                0, FIRE,       85, 15,   0, STATUS
 	move FACADE,       EFFECT_CONDITIONAL_BOOST,  70, NORMAL,    100, 20,   0, PHYSICAL
-	move TAUNT,        EFFECT_TRICK,               0, PSYCHIC,   100, 10,   0, STATUS ; Make Taunt Effect
+	move TAUNT,        EFFECT_TAUNT,               0, DARK,      100, 20,   0, STATUS
 	move HELPING_HAND, EFFECT_BATON_PASS,          0, NORMAL,    100, 40,   0, STATUS ; Make Help Effect
 	move WISH,         EFFECT_FUTURE_SIGHT,      120, PSYCHIC,   100, 10,   0, SPECIAL ; Add Wish Heal Effect
 	move SUPERPOWER,   EFFECT_SUPERPOWER,        120, FIGHTING,  100,  5,   0, PHYSICAL

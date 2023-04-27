@@ -530,6 +530,12 @@ BattleText_ItemPreventsStatusMoves: ; assault vest
 	cont "of status moves!"
 	prompt
 
+BattleText_TauntPreventsStatusMoves:
+	text "The Taunt"
+	line "prevents usage"
+	cont "of status moves!"
+	prompt
+
 BattleText_TheMoveIsDisabled:
 	text "The move is"
 	line "disabled!"
@@ -599,6 +605,11 @@ FlinchedText:
 MustRechargeText:
 	text "<USER>"
 	line "must recharge!"
+	prompt
+
+TauntedNoMoreText:
+	text "<USER> is"
+	line "taunted no more!"
 	prompt
 
 DisabledNoMoreText:
@@ -874,9 +885,10 @@ GotAnEncoreText:
 	line "got an encore!"
 	prompt
 
-SharedPainText:
-	text "The battlers"
-	line "shared pain!"
+FellForTauntText:
+	text "<TARGET>"
+	line "fell for the"
+	cont "Taunt!"
 	prompt
 
 SwappedAbilitiesText:

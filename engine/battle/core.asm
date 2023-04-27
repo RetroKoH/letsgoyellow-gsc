@@ -1115,18 +1115,21 @@ SendInUserPkmn:
 	and [hl]
 	ld [hl], a
 
-	; Reset Disable and Encore statuses
+	; Reset Disable, Encore and Taunt statuses
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPlayerDisableCount
 	ld de, wPlayerEncoreCount
+	ld bc, wPlayerTauntCount
 	jr z, .got_encore_and_disable
 	ld hl, wEnemyDisableCount
 	ld de, wEnemyEncoreCount
+	ld bc, wEnemyTauntCount
 .got_encore_and_disable
 	xor a
 	ld [hl], a
 	ld [de], a
+	ld [bc], a
 
 	ldh a, [hBattleTurn]
 	and a
@@ -2835,6 +2838,7 @@ NewEnemyMonStatus:
 	ld [wEnemyProtectCount], a
 	ld [wEnemyToxicCount], a
 	ld [wEnemyRageHitCount], a
+	ld [wEnemyTauntCount], a
 	ld [wPlayerWrapCount], a
 	ld [wEnemyWrapCount], a
 	ld [wEnemyTurnsTaken], a
@@ -3015,11 +3019,12 @@ rept NUM_MOVES - 1
 endr
 	ld [hl], a
 	ld [wPlayerDisableCount], a
-	ld [wEnemyFuryCutterCount], a
+	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerEncoreCount], a
 	ld [wPlayerProtectCount], a
 	ld [wPlayerToxicCount], a
 	ld [wPlayerRageHitCount], a
+	ld [wPlayerTauntCount], a
 	ld [wEnemyWrapCount], a
 	ld [wPlayerWrapCount], a
 	ld [wPlayerTurnsTaken], a
@@ -4839,15 +4844,19 @@ MoveSelectionScreen:
 	ld c, a
 	call CheckUsableMove
 	dec a
-	jr z, .no_pp_left
+	jr z, .no_pp_left ; 1
 	dec a
-	jr z, .move_disabled
+	jr z, .move_disabled ; 2
 	dec a
-	jr z, .choiced
+	jr z, .choiced ; 3
 	dec a
-	jr z, .assault_vest
-	sub 3 ; 5 or 6 gives the same message
-	jr c, .encore_or_gorilla_tactics
+	jr z, .assault_vest ; 4
+	dec a
+	jr z, .encore_or_gorilla_tactics ; 5 or 6 gives the same message
+	dec a
+	jr z, .encore_or_gorilla_tactics ; 5 or 6 gives the same message
+	dec a
+	jr z, .taunt ; 7
 	ld b, 0
 	ld hl, wBattleMonMoves
 	add hl, bc
@@ -4903,6 +4912,10 @@ MoveSelectionScreen:
 	call GetItemName
 
 	ld hl, BattleText_ItemPreventsStatusMoves
+	jr .place_textbox_start_over
+
+.taunt
+	ld hl, BattleText_TauntPreventsStatusMoves
 	jr .place_textbox_start_over
 
 .no_pp_left
@@ -5286,9 +5299,10 @@ CheckUsableMove:
 ; 1 - no PP
 ; 2 - disabled
 ; 3 - choiced item
-; 4 - assault vest on status move
+; 4 - assault vest
 ; 5 - encored
-; 6 - choiced ability
+; 6 - choiced ability (Gorilla Tactics)
+; 7 - taunt
 	push hl
 	push de
 	push bc
@@ -5305,7 +5319,7 @@ CheckUsableMove:
 	add hl, bc
 	ld a, [hl]
 	and $3f
-	ld a, 1
+	ld a, 1		; 1 - no PP
 	jmp z, .end
 
 	; Check Encore
@@ -5324,8 +5338,8 @@ CheckUsableMove:
 	jr z, .not_encored
 	dec a
 	cp c
-	ld a, 5
-	jr nz, .end
+	ld a, 5		; 5 - encored
+	jmp nz, .end
 
 .not_encored
 	; Check Disable
@@ -5340,7 +5354,7 @@ CheckUsableMove:
 	jr z, .not_disabled
 	dec a
 	cp c
-	ld a, 2
+	ld a, 2		; 2 - disabled
 	jr z, .end
 
 .not_disabled
@@ -5363,22 +5377,41 @@ CheckUsableMove:
 	cp HELD_ASSAULT_VEST
 	jr z, .assault_vest
 
-	; Check for Gorilla Tactics
+; Check for Taunt
+	ldh a, [hBattleTurn]
+	and a
+	ld de, wPlayerTauntCount
+	jr z, .got_count
+	ld de, wEnemyTauntCount
+.got_count
+	ld a, [de]
+	and $f
+	jr nz, .taunt
+
+; Check for Gorilla Tactics
 	call GetTrueUserAbility
 	cp GORILLA_TACTICS
 	jr z, .check_choiced
 	jr .usable
 
-.assault_vest
-	; Assault Vest check
+.taunt
+; Taunt check
 	ld a, b
 	call GetMoveFixedCategory
 	cp STATUS
-	ld a, 4
+	ld a, 7		; 7 - taunt
+	jr z, .end
+	jr .usable
+.assault_vest
+; Assault Vest check
+	ld a, b
+	call GetMoveFixedCategory
+	cp STATUS
+	ld a, 4		; 4 - assault vest
 	jr z, .end
 	jr .usable
 .check_choiced
-	; Check if we did a move yet
+; Check if we did a move yet
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wPlayerEncoreCount]
@@ -5396,9 +5429,9 @@ CheckUsableMove:
 	farcall GetUserItem
 	ld a, b
 	cp HELD_CHOICE
-	ld a, 3
+	ld a, 3		; 3 - choice item
 	jr z, .end
-	add a ; sets a to 6, which is what we want
+	add a ; sets a to 6 - choice ability (GORILLA_TACTICS)
 	jr .end
 
 	; fallthrough

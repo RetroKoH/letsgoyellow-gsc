@@ -256,7 +256,7 @@ HandleBerserkGene:
 	farcall UseStatItemText
 	farcall ConsumeUserItem
 
-	; Own Tempo prevents confusion. Safeguard, however, doesn't.
+	; Own Tempo prevents confusion.
 	call GetTrueUserAbility
 	cp OWN_TEMPO
 	ret z

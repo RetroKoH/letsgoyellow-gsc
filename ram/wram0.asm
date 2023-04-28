@@ -585,7 +585,7 @@ wPlayerScreens::
 wPlayerGuards::
 ; bit
 ; 4-7 mist
-; 0-3 safeguard
+; 0-3 aurora veil
 	db
 
 wPlayerHelpingHandBoost:: db

@@ -26,7 +26,7 @@ AI_Redundant:
 	dbw EFFECT_STEALTH_ROCK,  .StealthRock
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
-	dbw EFFECT_SAFEGUARD,     .Safeguard
+	dbw EFFECT_AURORA_VEIL,   .AuroraVeil
 	dbw EFFECT_RAIN_DANCE,    .RainDance
 	dbw EFFECT_SUNNY_DAY,     .SunnyDay
 	dbw EFFECT_TELEPORT,      .Teleport
@@ -40,9 +40,6 @@ AI_Redundant:
 .Confuse:
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_CONFUSED, a
-	ret nz
-	ld a, [wPlayerGuards]
-	and GUARD_SAFEGUARD
 	ret
 
 .Disable:
@@ -80,6 +77,11 @@ AI_Redundant:
 	and SCREENS_REFLECT
 	ret
 
+.AuroraVeil
+	ld a, [wEnemyGuards]
+	and GUARD_AURORA_VEIL
+	ret
+
 .HelpingHand:
 	call CallOpponentTurn
 .Roar:
@@ -91,11 +93,6 @@ AI_Redundant:
 	pop de
 	pop hl
 	jr .InvertZero
-
-.Safeguard:
-	ld a, [wEnemyGuards]
-	and GUARD_SAFEGUARD
-	ret
 
 .Substitute:
 	ld a, [wEnemySubStatus4]

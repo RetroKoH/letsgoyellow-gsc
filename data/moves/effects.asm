@@ -844,7 +844,6 @@ Poisonpowder:
 	checkhit
 	checkpowder
 	bounceback
-	checksafeguard
 	poison
 	endmove
 
@@ -856,7 +855,6 @@ Toxic:
 	checkhit
 	checkpowder
 	bounceback
-	checksafeguard
 	toxic
 	endmove
 
@@ -870,7 +868,6 @@ WillOWisp:
 	resettypematchup
 	bounceback
 	stab
-	checksafeguard
 	burn
 	endmove
 
@@ -885,7 +882,6 @@ Glare:
 	checkhit
 	checkpowder
 	bounceback
-	checksafeguard
 	paralyze
 	endmove
 
@@ -901,7 +897,6 @@ Spore:
 	checkhit
 	checkpowder
 	bounceback
-	checksafeguard
 	sleep
 	endmove
 
@@ -912,7 +907,6 @@ DoFreeze:
 	hastarget
 	checkhit
 	bounceback
-	checksafeguard
 	freezetarget
 	endmove
 
@@ -926,7 +920,6 @@ SweetKiss:
 	hastarget
 	checkhit
 	bounceback
-	checksafeguard
 	confuse
 	endmove
 
@@ -1274,11 +1267,11 @@ Haze:
 	resetstats
 	endmove
 
-Safeguard:
+AuroraVeil:
 	checkobedience
 	usedmovetext
 	doturn
-	safeguard
+	auroraveil
 	endmove
 
 Screen:

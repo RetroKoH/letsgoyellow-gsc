@@ -239,8 +239,8 @@ SCREENS_REFLECT      EQU %00001111
 SCREENS_LIGHT_SCREEN EQU %11110000
 
 ; wPlayerGuards or wEnemyGuards bit masks (stackable)
-GUARD_SAFEGUARD EQU %00001111
-GUARD_MIST      EQU %11110000
+GUARD_AURORA_VEIL EQU %00001111 ; DOES NOT stack with Screens
+GUARD_MIST        EQU %11110000
 
 ; values in wBattleWeather
 	const_def

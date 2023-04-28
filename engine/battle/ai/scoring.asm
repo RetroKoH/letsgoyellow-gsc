@@ -51,9 +51,9 @@ AI_Basic:
 	and a
 	jr nz, .discourage
 
-; Dismiss Safeguard if it's already active.
+; Dismiss Aurora Veil if it's already active. (Maybe this isn't applicable here?)
 	ld a, [wPlayerGuards]
-	and GUARD_SAFEGUARD
+	and GUARD_AURORA_VEIL
 	jr z, .checkmove
 
 .discourage
@@ -360,7 +360,7 @@ AI_Smart:
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
 	dbw EFFECT_FURY_CUTTER,       AI_Smart_FuryCutter
 	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
-	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
+	dbw EFFECT_AURORA_VEIL,       AI_Smart_AuroraVeil
 	dbw EFFECT_HELPING_HAND,      AI_Smart_HelpingHand
 	dbw EFFECT_PURSUIT,           AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,        AI_Smart_RapidSpin
@@ -816,6 +816,11 @@ AI_Smart_LeechSeed:
 	ret c
 	inc [hl]
 	ret
+
+AI_Smart_AuroraVeil:
+	call GetWeatherAfterUserUmbrella
+	cp WEATHER_HAIL
+	jmp z, AIDiscourageMove
 
 AI_Smart_LightScreen:
 AI_Smart_Reflect:
@@ -1473,17 +1478,6 @@ AI_Smart_FakeOut:
 	ret nc
 	dec [hl]
 	ret
-
-AI_Smart_Safeguard:
-; 80% chance to discourage this move if player's HP is below 50%.
-
-	call AICheckPlayerHalfHP
-	ret c
-	call AI_80_20
-	ret c
-	inc [hl]
-	ret
-
 
 AI_Smart_Earthquake:
 ; Greatly encourage this move if the player is underground and the enemy is faster.

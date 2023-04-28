@@ -17,6 +17,13 @@ BattleCommand_brickbreak:
 .reflect_done
 	pop af
 	and SCREENS_LIGHT_SCREEN
-	ret z ; if no light screen, exit
+	jr z, .aurora_veil_done ; if no light screen, skip ahead
 	ld hl, BrokeLightScreenText
+	call StdBattleTextbox
+.aurora_veil_done
+	ld a, [bc]
+	and GUARD_MIST
+	ld [bc], a
+	ret z ; if no aurora veil, exit
+	ld hl, BrokeAuroraVeilText
 	jmp StdBattleTextbox

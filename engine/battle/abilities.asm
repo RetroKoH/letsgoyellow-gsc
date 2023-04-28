@@ -520,8 +520,10 @@ ScreenCleanerAbility:
 .do_it
 	farcall GetTurnAndPlacePrefix
 	ld hl, wPlayerScreens
+	ld bc, wPlayerGuards
 	jr z, .got_screens
 	ld hl, wEnemyScreens
+	ld bc, wEnemyGuards
 .got_screens
 	ld a, [hl]
 	ld [hl], 0
@@ -533,8 +535,15 @@ ScreenCleanerAbility:
 .no_reflect
 	pop af
 	and SCREENS_LIGHT_SCREEN
-	ret z
+	jr z, .no_light_screen
 	ld hl, BattleText_LightScreenFell
+	call StdBattleTextbox
+.no_light_screen
+	ld a, [bc]
+	and GUARD_MIST
+	ld [bc], a
+	ret z
+	ld hl, BattleText_AuroraVeilFaded
 	jmp StdBattleTextbox
 
 RunEnemyOwnTempoAbility:

@@ -54,7 +54,7 @@ HandleBetweenTurnEffects:
 	call HandleRoost
 	call HandleReflect
 	call HandleLightScreen
-	call HandleSafeguard
+	call HandleAuroraVeil
 	call HandleMist
 	; tailwind
 	; lucky chant
@@ -832,7 +832,7 @@ HandleReflect:
 	ld de, BattleText_ReflectFaded
 	jr DecrementLowNibble
 
-HandleSafeguard:
+HandleAuroraVeil:
 	call SetFastestTurn
 	call .do_it
 	call SwitchTurn
@@ -843,7 +843,7 @@ HandleSafeguard:
 	jr z, .got_guards
 	ld hl, wEnemyGuards
 .got_guards
-	ld de, BattleText_SafeguardFaded
+	ld de, BattleText_AuroraVeilFaded
 
 DecrementLowNibble:
 ; Decrements lower nibble in hl. If it reaches 0, print message in de.

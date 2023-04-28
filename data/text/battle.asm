@@ -179,6 +179,12 @@ BrokeReflectText:
 	cont "Reflect!"
 	prompt
 
+BrokeAuroraVeilText:
+	text "<USER>"
+	line "broke the target's"
+	cont "Aurora Veil!"
+	prompt
+
 FellForFeintText:
 	text "<TARGET>"
 	line "fell for the"
@@ -281,10 +287,11 @@ BattleText_MistFaded:
 	line "mist faded!"
 	prompt
 
-BattleText_SafeguardFaded:
+BattleText_AuroraVeilFaded:
 	text_ram wStringBuffer1
 	text " #mon's"
-	line "Safeguard faded!"
+	line "Aurora Veil has"
+	cont "faded away!"
 	prompt
 
 BattleText_LightScreenFell:
@@ -1367,15 +1374,10 @@ FellInLoveText:
 	line "fell in love!"
 	prompt
 
-CoveredByVeilText:
+CoveredByAuroraVeilText:
 	text "<USER> is"
-	line "covered by a veil!"
-	prompt
-
-SafeguardProtectText:
-	text "<TARGET>"
-	line "is protected by"
-	cont "Safeguard!"
+	line "covered by a veil"
+	cont "of light!"
 	prompt
 
 ReleasedByText:

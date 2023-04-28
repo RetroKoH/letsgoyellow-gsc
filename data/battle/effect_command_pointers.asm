@@ -95,8 +95,7 @@ BattleCommandPointers:
 	command attract
 	command happinesspower
 	command damagecalc
-	command safeguard
-	command checksafeguard
+	command auroraveil
 	command helpinghand
 	command pursuit
 	command clearhazards

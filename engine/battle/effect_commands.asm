@@ -10,6 +10,7 @@ INCLUDE "data/types/type_matchups.asm"
 
 INCLUDE "engine/battle/ai/switch.asm"
 INCLUDE "engine/battle/move_effects/attract.asm"
+INCLUDE "engine/battle/move_effects/aurora_veil.asm"
 INCLUDE "engine/battle/move_effects/helping_hand.asm"
 INCLUDE "engine/battle/move_effects/belly_drum.asm"
 INCLUDE "engine/battle/move_effects/brick_break.asm"
@@ -53,7 +54,6 @@ INCLUDE "engine/battle/move_effects/return.asm"
 INCLUDE "engine/battle/move_effects/roar.asm"
 INCLUDE "engine/battle/move_effects/rollout.asm"
 INCLUDE "engine/battle/move_effects/roost.asm"
-INCLUDE "engine/battle/move_effects/safeguard.asm"
 INCLUDE "engine/battle/move_effects/splash.asm"
 INCLUDE "engine/battle/move_effects/stealth_rock.asm"
 INCLUDE "engine/battle/move_effects/substitute.asm"
@@ -3570,7 +3570,7 @@ BattleCommand_damagestats:
 .atk_ok
 	call GetTrueUserAbility
 	cp INFILTRATOR
-	jr z, .thickcluborlightball
+	jp z, .thickcluborlightball
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wEnemyScreens]
@@ -3578,13 +3578,29 @@ BattleCommand_damagestats:
 	ld a, [wPlayerScreens]
 .got_opp_screens
 	and SCREENS_REFLECT
-	jr z, .thickcluborlightball
+	jr z, .check_aurora_veil		; if no REFLECT, skip ahead
+	ld a, [wCriticalHit]
+	and a
+	jp nz, .thickcluborlightball
+	sla c
+	rl b
+	jmp .thickcluborlightball		; jump ahead. Reflect and A.V. don't stack.
+
+.check_aurora_veil
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyGuards]
+	jr z, .got_opp_guards
+	ld a, [wPlayerGuards]
+.got_opp_guards
+	and GUARD_AURORA_VEIL
+	jr z, .thickcluborlightball		; if no AURORA_VEIL, skip ahead
 	ld a, [wCriticalHit]
 	and a
 	jr nz, .thickcluborlightball
 	sla c
 	rl b
-	jr .thickcluborlightball
+	jr .thickcluborlightball	; Change the above formula
 
 .special
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -3627,12 +3643,29 @@ BattleCommand_damagestats:
 	ld a, [wPlayerScreens]
 .got_opp_screens2
 	and SCREENS_LIGHT_SCREEN
-	jr z, .lightball
+	jr z, .check_aurora_veil2		; if no LIGHT_SCREEN, skip ahead
 	ld a, [wCriticalHit]
 	and a
 	jr nz, .lightball
 	sla c
 	rl b
+	jr .lightball		; jump ahead. Light Screen and A.V. don't stack.
+
+.check_aurora_veil2
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wEnemyGuards]
+	jr z, .got_opp_guards2
+	ld a, [wPlayerGuards]
+.got_opp_guards2
+	and GUARD_AURORA_VEIL
+	jr z, .lightball		; if no AURORA_VEIL, skip ahead
+	ld a, [wCriticalHit]
+	and a
+	jr nz, .lightball
+	sla c
+	rl b
+	; Change the above formula
 
 .lightball
 ; Note: Returns player special attack at hl in hl.
@@ -3815,6 +3848,7 @@ HitSelfInConfusion:
 	ld a, [de]
 	and SCREENS_REFLECT
 	jr z, .mimic_screen
+	; NOTE: Aurora Veil does NOT mitigate confusion damage.
 
 	sla c
 	rl b
@@ -5013,8 +5047,6 @@ BattleCommand_freezetarget:
 	ld a, [wEffectFailed]
 	and a
 	ret nz
-	call SafeCheckSafeguard
-	ret nz
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	set FRZ, [hl]
@@ -5817,8 +5849,6 @@ BattleCommand_confusetarget:
 	ret z
 	ld a, [wEffectFailed]
 	and a
-	ret nz
-	call SafeCheckSafeguard
 	ret nz
 	call CheckSubstituteOpp
 	ret nz

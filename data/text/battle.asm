@@ -452,9 +452,11 @@ BattleText_UserFledUsingAStringBuffer1:
 	text "!"
 	prompt
 
-BattleText_UserHurtBySpikes:
+; Need to change this text.
+BattleText_UserHurtByStealthRocks:
 	text "<USER> is"
-	line "hurt by spikes!"
+	line "hurt by Stealth"
+	cont "Rocks!"
 	prompt
 
 RecoveredUsingText:
@@ -1327,9 +1329,9 @@ ProtectingItselfText:
 	line "protecting itself!"
 	done
 
-SpikesText:
-	text "Spikes scattered"
-	line "all around"
+StealthRockText:
+	text "Pointed rocks"
+	line "scattered around"
 	cont "<TARGET>!"
 	prompt
 
@@ -1387,15 +1389,10 @@ ShedLeechSeedText:
 	line "shed Leech Seed!"
 	prompt
 
-BlewSpikesText:
+BlewStealthRocksText:
 	text "<USER>"
-	line "blew away Spikes!"
-	prompt
-
-BlewToxicSpikesText:
-	text "<USER>"
-	line "blew away Toxic"
-	cont "Spikes!"
+	line "blew away Stealth"
+	cont "Rocks!"
 	prompt
 
 DownpourText:

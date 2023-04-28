@@ -54,8 +54,8 @@ INCLUDE "engine/battle/move_effects/roar.asm"
 INCLUDE "engine/battle/move_effects/rollout.asm"
 INCLUDE "engine/battle/move_effects/roost.asm"
 INCLUDE "engine/battle/move_effects/safeguard.asm"
-INCLUDE "engine/battle/move_effects/spikes.asm"
 INCLUDE "engine/battle/move_effects/splash.asm"
+INCLUDE "engine/battle/move_effects/stealth_rock.asm"
 INCLUDE "engine/battle/move_effects/substitute.asm"
 INCLUDE "engine/battle/move_effects/sucker_punch.asm"
 INCLUDE "engine/battle/move_effects/taunt.asm"
@@ -6095,7 +6095,7 @@ FailMimic: ; unused???
 
 FailDisable:
 FailAttract:
-FailSpikes:
+FailStealthRock:
 PrintDidntAffect2:
 	call AnimateFailedMove
 	; fallthrough

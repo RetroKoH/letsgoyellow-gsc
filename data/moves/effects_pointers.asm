@@ -108,7 +108,7 @@ MoveEffectsPointers:
 	dw MeanLook
 	dw Curse
 	dw Protect
-	dw Spikes
+	dw StealthRock
 	dw Sandstorm
 	dw Hail
 	dw FalseSwipe

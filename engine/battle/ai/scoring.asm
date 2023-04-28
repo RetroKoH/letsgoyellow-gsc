@@ -1573,8 +1573,8 @@ AI_Smart_RapidSpin:
 	jr nz, .asm_39097
 
 	ld a, [wEnemyHazards]
-	and HAZARDS_SPIKES
-	cp HAZARDS_SPIKES
+	and HAZARDS_STEALTH_ROCK
+	cp HAZARDS_STEALTH_ROCK
 	ret nz
 
 .asm_39097

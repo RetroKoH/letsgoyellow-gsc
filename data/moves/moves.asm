@@ -229,7 +229,7 @@ Moves::
 	move GUNK_SHOT,    EFFECT_POISON_HIT,        120, POISON,     80,  5,  30, PHYSICAL
 	move IRON_HEAD,    EFFECT_FLINCH_HIT,         80, STEEL,     100, 15,  30, PHYSICAL
 	move STONE_EDGE,   EFFECT_NORMAL_HIT,        100, ROCK,       80,  5,   0, PHYSICAL
-	move STEALTH_ROCK, EFFECT_SPIKES,              0, GROUND,    100, 20,   0, STATUS
+	move STEALTH_ROCK, EFFECT_STEALTH_ROCK,        0, ROCK,      100, 20,   0, STATUS
 	move GRASS_KNOT,   EFFECT_LOW_KICK,            1, GRASS,     100, 20,   0, SPECIAL
 	move BUG_BITE,     EFFECT_BUG_BITE,           60, BUG,       100, 20,   0, PHYSICAL
 	move AQUA_JET,     EFFECT_PRIORITY_HIT,       40, WATER,     100, 20,   0, PHYSICAL

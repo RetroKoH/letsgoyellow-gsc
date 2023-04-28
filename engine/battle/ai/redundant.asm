@@ -23,7 +23,7 @@ AI_Redundant:
 	dbw EFFECT_DISABLE,       .Disable
 	dbw EFFECT_ENCORE,        .Encore
 	dbw EFFECT_TAUNT,         .Taunt
-	dbw EFFECT_SPIKES,        .Spikes
+	dbw EFFECT_STEALTH_ROCK,  .StealthRock
 	dbw EFFECT_SANDSTORM,     .Sandstorm
 	dbw EFFECT_HAIL,          .Hail
 	dbw EFFECT_SAFEGUARD,     .Safeguard
@@ -107,10 +107,10 @@ AI_Redundant:
 	bit SUBSTATUS_TRANSFORMED, a
 	ret
 
-.Spikes:
+.StealthRock:
 	ld a, [wPlayerHazards]
-	and HAZARDS_SPIKES
-	cp HAZARDS_SPIKES
+	and HAZARDS_STEALTH_ROCK
+	cp HAZARDS_STEALTH_ROCK
 	jr .InvertZero
 
 .Sandstorm:

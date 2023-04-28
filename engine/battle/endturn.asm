@@ -183,19 +183,19 @@ HandleBetweenTurnEffects:
 .finish_sendin
 	pop de
 
-	; Run Spikes and entry abilities depending on which mons are alive
+	; Run Stealth Rock and entry abilities depending on which mons are alive
 	ld a, e
 	cp 3
 	jr nz, .not_both2
 
-	farcall SpikesDamageBoth
+	farcall StealthRockDamageBoth
 	farcall RunBothActivationAbilities
 	jmp .endturn_loop
 .not_both2
 	call SetEnemyTurn
 	dec e
 	call z, SetPlayerTurn
-	farcall SpikesDamage
+	farcall StealthRockDamage
 	farcall RunActivationAbilities
 	jmp .endturn_loop
 

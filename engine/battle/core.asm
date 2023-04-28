@@ -95,7 +95,7 @@ DoBattle:
 	call SendInUserPkmn
 .not_linked_2
 	call AutomaticRainWhenOvercast
-	call SpikesDamageBoth ; for Air Balloon
+	call StealthRockDamageBoth ; for Air Balloon (Unneeded now??)
 	call BoostGiovannisArmoredMewtwo
 	call RunBothActivationAbilities
 	jr BattleTurn
@@ -936,12 +936,12 @@ ForceDeferredSwitch:
 	call SendInUserPkmn
 	ld a, [wDeferredSwitch]
 	cp 1 << SWITCH_DEFERRED | 1 << SWITCH_TARGET | 1 << SWITCH_FORCED
-	jr nz, .regular_spikes
-	call SpikesDamage_CheckMoldBreaker
-	jr .done_spikes
-.regular_spikes
-	call SpikesDamage
-.done_spikes
+	jr nz, .regular_stealthrock
+	call StealthRockDamage_CheckMoldBreaker
+	jr .done_stealthrock
+.regular_stealthrock
+	call StealthRockDamage
+.done_stealthrock
 	call RunActivationAbilities
 
 .all_done
@@ -3046,15 +3046,15 @@ BreakAttraction:
 	res SUBSTATUS_IN_LOVE, [hl]
 	ret
 
-SpikesDamageBoth:
+StealthRockDamageBoth:
 ; for the first mon, Spikes logic doesn't run by itself, and we also want to perform
 ; speed checks to see whose air balloon to announce first.
 	ldh a, [hBattleTurn]
 	push af
 	call SetFastestTurn
-	call SpikesDamage
+	call StealthRockDamage
 	call SwitchTurn
-	call SpikesDamage
+	call StealthRockDamage
 	pop af
 	ldh [hBattleTurn], a
 	ret
@@ -3132,7 +3132,7 @@ RunActivationAbilities:
 	farcall RunActivationAbilitiesInner
 	jmp SwitchTurn
 
-SpikesDamage_CheckMoldBreaker:
+StealthRockDamage_CheckMoldBreaker:
 ; Called when a Pokémon with Mold Breaker uses Roar/Whirlwind.
 ; This is neccessary because it negates Levitate (but not Magic Guard for some reason),
 ; but can't be checked unconditionally since other kind of switches ignore MB as usual.
@@ -3141,16 +3141,15 @@ SpikesDamage_CheckMoldBreaker:
 	ld b, a
 	call SwitchTurn
 	ld c, 0
-	jr SpikesDamage_GotAbility
-SpikesDamage:
+	jr StealthRockDamage_GotAbility
+StealthRockDamage:
 	call GetTrueUserAbility
 	ld b, a
 	ld c, 1
-SpikesDamage_GotAbility:
+StealthRockDamage_GotAbility:
 ; Input: b: ability, c: 0 if forced out, 1 otherwise
 	push bc
 	call SetParticipant
-	call HandleAirBalloon
 	pop bc
 	ret z
 
@@ -3159,21 +3158,8 @@ SpikesDamage_GotAbility:
 	ld a, b
 	cp HELD_HEAVY_BOOTS
 	pop bc
-	ret z
-	cp HELD_IRON_BALL
-	jr z, .iron_ball
+	ret z		; Stealth Rock doesn't damage mons with Heavy Duty Boots
 
-	ld a, b
-	cp LEVITATE
-	ret z
-
-	; Flying-types aren't affected by Spikes.
-	push bc
-	call CheckIfUserIsFlyingType
-	pop bc
-	ret z
-
-.iron_ball
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPlayerHazards
@@ -3181,100 +3167,34 @@ SpikesDamage_GotAbility:
 	ld hl, wEnemyHazards
 .ok
 	push hl
-	call .Spikes
+	call .StealthRock
 	pop hl
-	jr .ToxicSpikes
+	jmp SwitchTurn
 
-.Spikes:
+.StealthRock:
 	ld a, b
 	cp MAGIC_GUARD
+	ret z			; Stealth Rock doesn't damage mons with Magic Guard
+
+	bit HAZARDS_STEALTH_ROCK, [hl]
 	ret z
 
-	ld a, [hl]
-	and HAZARDS_SPIKES
-	ret z
-
-	ld hl, GetEighthMaxHP
-	sub HAZARDS_SPIKES / 3
-	jr z, .got_hp
-	ld hl, GetSixthMaxHP
-	sub HAZARDS_SPIKES / 3
-	jr z, .got_hp
-	ld hl, GetQuarterMaxHP
+	; For now, just deal 1/8 damage.
+	; In the future, deal damage based on Rock effectiveness.
+	ld hl, GetEighthMaxHP ; Normal
+	;sub HAZARDS_SPIKES / 3
+	;jr z, .got_hp
+	;ld hl, GetQuarterMaxHP ; Super Effective
+	;sub HAZARDS_SPIKES / 3
+	;jr z, .got_hp
+	;ld hl, GetHalfMaxHP ; Hyper Effective
 .got_hp
 	call _hl_
 	predef SubtractHPFromUser
 	call UpdateUserInParty
 
-	ld hl, BattleText_UserHurtBySpikes
+	ld hl, BattleText_UserHurtByStealthRocks
 	jmp StdBattleTextbox
-
-.ToxicSpikes:
-	ld a, [hl]
-	and HAZARDS_TOXIC_SPIKES
-	ret z
-
-	push af
-	push bc
-	push hl
-	call CheckIfUserIsPoisonType
-	pop hl
-	pop bc
-	jr nz, .no_poison_type
-	pop af
-
-	; Grounded Poison types absorb the Toxic Spikes
-	xor [hl]
-	ld [hl], a
-	ret
-
-.no_poison_type
-	pop af
-	push bc
-	push hl
-	call SwitchTurn
-	ld b, c
-	farcall CanPoisonTarget
-	push af
-	call SwitchTurn
-	pop af
-	pop hl
-	pop bc
-	ret nz
-
-	ld a, [hl]
-	and HAZARDS_TOXIC_SPIKES
-	cp (HAZARDS_TOXIC_SPIKES / 3) * 2
-	ld a, 1 << PSN
-	ld hl, WasPoisonedText
-	jr nz, .no_toxic
-	or 1 << TOX
-	ld hl, BadlyPoisonedText
-.no_toxic
-	push bc
-	push hl
-	push af
-	ld a, BATTLE_VARS_STATUS
-	call GetBattleVarAddr
-	pop af
-	ld [hl], a
-	ld de, ANIM_PSN
-	call Call_PlayBattleAnim
-	call RefreshBattleHuds
-	pop hl
-
-	call SwitchTurn
-	call StdBattleTextbox
-	pop bc
-	ld a, c
-	and a
-	jr z, .no_synchronize
-	farcall PostStatusWithSynchronize
-	jr .poststatus_done
-.no_synchronize
-	farcall PostStatus
-.poststatus_done
-	jmp SwitchTurn
 
 HandleAirBalloon:
 ; prints air balloon msg and returns z if we have air balloon

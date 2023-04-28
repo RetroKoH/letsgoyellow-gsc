@@ -85,7 +85,7 @@ BattleCommandPointers:
 	command defrost
 	command curse
 	command protect
-	command spikes
+	command stealthrock
 	command startsandstorm
 	command starthail
 	command endure

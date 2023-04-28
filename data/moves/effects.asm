@@ -1820,13 +1820,13 @@ Protect:
 	protect
 	endmove
 
-Spikes:
+StealthRock:
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
 	bounceback
-	spikes
+	stealthrock
 	endmove
 
 Sandstorm:

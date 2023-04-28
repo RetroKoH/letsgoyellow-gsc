@@ -1255,7 +1255,7 @@ BattleCommand_stab:
 	ret
 
 .not_immune
-	; Always apply STAB to Return
+	; Always apply STAB boost to Return
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	cp RETURN
@@ -1433,6 +1433,16 @@ CheckAirborne_GotAbility:
 	ret
 
 BattleCheckTypeMatchup:
+; Add check for Frustration (Shadow move always Super Effective)
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp FRUSTRATION
+	jr nz, .notFrustration
+	ld a, SUPER_EFFECTIVE
+	ld [wTypeMatchup], a
+	ret							; Frustration is always Super Effective
+
+.notFrustration
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wEnemyMonType1
@@ -1523,11 +1533,11 @@ _CheckTypeMatchup:
 	push hl
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
-	ld d, a    ; d = attacking move's type
-	ld b, [hl] ; b = defender's first type
+	ld d, a					; d = attacking move's type
+	ld b, [hl]				; b = defender's first type
 	inc hl
-	ld c, [hl] ; c = defender's second type
-	ld a, $10 ; 1.0
+	ld c, [hl]				; c = defender's second type
+	ld a, $10				; 1.0
 	ld [wTypeMatchup], a
 	ld hl, InverseTypeMatchups
 	ld a, [wBattleType]
@@ -5699,9 +5709,11 @@ BattleCommand_traptarget:
 BattleCommand_recoil:
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
+	cp FRUSTRATION
+	jr z, .StruggleRecoil	; FRUSTRATION has increased recoil.
 	ld b, a
 	inc a ; cp STRUGGLE
-	jr z, .StruggleRecoil
+	jr z, .StruggleRecoil	; STRUGGLE has increased recoil.
 
 	; For all other moves, potentially disable
 	; recoil based on ability

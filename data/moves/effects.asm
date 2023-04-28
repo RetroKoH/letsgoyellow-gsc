@@ -185,6 +185,7 @@ Struggle:
 TakeDown:
 WildCharge:
 BraveBird:
+Frustration:
 	checkobedience
 	usedmovetext
 	doturn

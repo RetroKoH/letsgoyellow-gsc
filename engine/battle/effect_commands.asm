@@ -373,7 +373,7 @@ BattleCommand_checkturn:
 
 	call HitConfusion
 	call CantMove
-	jr EndTurn
+	jp EndTurn
 
 .not_confused
 	ld a, BATTLE_VARS_SUBSTATUS1
@@ -399,6 +399,28 @@ BattleCommand_checkturn:
 	jr EndTurn
 
 .not_infatuated
+	; Are we using a status move while Taunted?
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wPlayerTauntCount]
+	ld hl, wCurMoveNum
+	jr z, .check_taunted
+	ld a, [wEnemyTauntCount]
+	ld hl, wCurEnemyMoveNum
+
+.check_taunted
+	and a
+	jr z, .not_taunted
+	ld a, BATTLE_VARS_MOVE_CATEGORY
+	call GetBattleVar
+	cp STATUS
+	jr nz, .not_taunted
+
+	call MoveFailedDueToTaunt
+	call CantMove
+	jr EndTurn
+
+.not_taunted
 	; Are we using a disabled move?
 	ldh a, [hBattleTurn]
 	and a
@@ -407,6 +429,7 @@ BattleCommand_checkturn:
 	jr z, .check_disabled
 	ld a, [wEnemyDisableCount]
 	ld hl, wCurEnemyMoveNum
+
 .check_disabled
 	and a
 	jr z, .not_disabled
@@ -587,6 +610,16 @@ MoveDisabled:
 	call GetMoveName
 
 	ld hl, DisabledMoveText
+	jmp StdBattleTextbox
+
+MoveFailedDueToTaunt:
+	; Don't use Status moves if Taunted
+	ld a, BATTLE_VARS_MOVE
+	call GetBattleVar
+	ld [wNamedObjectIndex], a
+	call GetMoveName
+
+	ld hl, MoveFailedDueToTauntText
 	jmp StdBattleTextbox
 
 GenericHitAnim:

@@ -761,7 +761,7 @@ EndturnEncoreDisable:
 	ld a, [hl]
 	and $f
 	ret z
-	dec [hl]
+	dec [hl]	; Decrement timer (Encore, Disable, Taunt)
 	ld a, [hl]
 	and $f
 	ret nz

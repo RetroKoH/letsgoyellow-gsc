@@ -18,6 +18,7 @@ BattleCommand_disable:
 	jr z, DoEncoreDisable
 	ld de, wPlayerDisableCount
 	ld hl, wBattleMonMoves
+
 DoEncoreDisable:
 	ld a, [de]
 	and $f

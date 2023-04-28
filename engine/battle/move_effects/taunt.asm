@@ -10,7 +10,7 @@ BattleCommand_taunt:
 .doTaunt:
 	ld a, [de]
 	and $f
-	jr nz, .failed
+	jr nz, .failed	; Fail if already disabled.
 
 	ld hl, FellForTauntText
 	ld a, 4
@@ -22,4 +22,3 @@ BattleCommand_taunt:
 .failed
 	call AnimateFailedMove
 	jmp PrintButItFailed
-

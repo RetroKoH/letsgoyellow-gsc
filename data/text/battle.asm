@@ -746,6 +746,14 @@ DisabledMoveText:
 	cont "disabled!"
 	prompt
 
+MoveFailedDueToTauntText:
+	text "<USER>'s"
+	line ""
+	text_ram wStringBuffer1
+	cont "failed due to"
+	cont "the Taunt!"
+	prompt
+
 UsedMoveText:
 	text "<USER>"
 	line "used "

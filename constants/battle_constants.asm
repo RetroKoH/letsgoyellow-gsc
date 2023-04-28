@@ -188,7 +188,7 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | (1 << TOX) | 
 	const SUBSTATUS_UNBURDEN
 	const SUBSTATUS_CURSE
 	const SUBSTATUS_PROTECT
-	const SUBSTATUS_IDENTIFIED
+	const_skip ;Formerly _IDENTIFIED
 	const SUBSTATUS_PERISH
 	const SUBSTATUS_ENDURE
 	const SUBSTATUS_FLASH_FIRE
@@ -219,7 +219,7 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | (1 << TOX) | 
 ; wPlayerSubStatus4 or wEnemySubStatus4 bit flags
 	const_def
 	const SUBSTATUS_CURLED
-	const_skip
+	const SUBSTATUS_ALLYHELPED ; Set by Helping Hand
 	const SUBSTATUS_FOCUS_ENERGY
 	const SUBSTATUS_ROOST
 	const SUBSTATUS_SUBSTITUTE
@@ -268,7 +268,7 @@ GUARD_MIST      EQU %11110000
 	const SWITCH_PURSUIT
 	const SWITCH_ITEM
 	const SWITCH_OPPITEM
-	const SWITCH_BATON_PASS
+	const SWITCH_HELPING_HAND ; Was Baton Pass
 
 ; wBattleAction
 	const_def

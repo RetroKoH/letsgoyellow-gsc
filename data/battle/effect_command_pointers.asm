@@ -97,7 +97,7 @@ BattleCommandPointers:
 	command damagecalc
 	command safeguard
 	command checksafeguard
-	command batonpass
+	command helpinghand
 	command pursuit
 	command clearhazards
 	command healweather

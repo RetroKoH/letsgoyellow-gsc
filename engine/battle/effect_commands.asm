@@ -10,7 +10,7 @@ INCLUDE "data/types/type_matchups.asm"
 
 INCLUDE "engine/battle/ai/switch.asm"
 INCLUDE "engine/battle/move_effects/attract.asm"
-INCLUDE "engine/battle/move_effects/baton_pass.asm"
+INCLUDE "engine/battle/move_effects/helping_hand.asm"
 INCLUDE "engine/battle/move_effects/belly_drum.asm"
 INCLUDE "engine/battle/move_effects/brick_break.asm"
 INCLUDE "engine/battle/move_effects/bug_bite.asm"
@@ -396,7 +396,7 @@ BattleCommand_checkturn:
 	ld hl, InfatuationText
 	call StdBattleTextbox
 	call CantMove
-	jr EndTurn
+	jp EndTurn
 
 .not_infatuated
 	; Are we using a status move while Taunted?
@@ -462,6 +462,20 @@ BattleCommand_checkturn:
 	call FarPlayBattleAnimation
 	call CantMove
 	; fallthrough
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPlayerHelpingHandBoost ; wHelpingHandDamageBoost
+	jr z, .got_current_turn
+	ld hl, wEnemyHelpingHandBoost ; wHelpingHandDamageBoost
+
+.got_current_turn
+	ld a, BATTLE_VARS_LAST_COUNTER_MOVE
+	call GetBattleVar
+	and a
+	jr z, EndTurn
+.clear_HH
+	xor a
+	ld [hl], a ; Clear Helping Hand Boost flag
 
 EndTurn:
 	ld a, [wMoveState]
@@ -982,8 +996,10 @@ BattleCommand_doturn:
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wPlayerTurnsTaken
+	ld de, wPlayerHelpingHandBoost ; wHelpingHandDamageBoost
 	jr z, .got_turns_taken
 	ld hl, wEnemyTurnsTaken
+	ld de, wEnemyHelpingHandBoost ; wHelpingHandDamageBoost
 .got_turns_taken
 	; If we've gotten this far, this counts as a turn.
 	inc [hl]
@@ -992,6 +1008,16 @@ BattleCommand_doturn:
 	jr nz, .no_overflow
 	dec [hl]
 .no_overflow
+	ld a, BATTLE_VARS_SUBSTATUS4
+	call GetBattleVarAddr
+	bit SUBSTATUS_ALLYHELPED, [hl]
+	jr z, .no_helpinghand 			; Skip if helping hand wasn't used on switch-in
+	res SUBSTATUS_ALLYHELPED, [hl]
+.set_HH
+	ld a, 1
+	ld [de], a ; Set Helping Hand Boost flag
+
+.no_helpinghand
 	; check if we're locked in to a multi-turn move
 	ld a, BATTLE_VARS_SUBSTATUS3
 	call GetBattleVar
@@ -4001,6 +4027,20 @@ BattleCommand_damagecalc:
 	call MultiplyAndDivide
 
 .no_crit
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wPlayerHelpingHandBoost ; wHelpingHandDamageBoost
+	jr z, .use_HH
+	ld hl, wEnemyHelpingHandBoost ; wHelpingHandDamageBoost
+
+.use_HH
+	ld a, [hl]
+	and a
+	jr z, .no_helping_hand
+	ln a, 3, 2 ; x1.5
+	call MultiplyAndDivide
+
+.no_helping_hand
 	; Item boosts. TODO: move species items here
 	call GetUserItem
 

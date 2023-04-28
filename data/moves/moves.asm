@@ -132,7 +132,7 @@ Moves::
 	move SLASH,        EFFECT_NORMAL_HIT,         70, NORMAL,    100, 20,   0, PHYSICAL
 	move SUBSTITUTE,   EFFECT_SUBSTITUTE,          0, NORMAL,    100, 10,   0, STATUS
 	move TRIPLE_KICK,  EFFECT_TRIPLE_KICK,        20, FIGHTING,   90, 10,   0, PHYSICAL
-	move FLAME_WHEEL,  EFFECT_SPEED_UP_HIT,       60, FIRE,      100, 25,  10, PHYSICAL ; Remove EFFECT_SPEED_UP_HIT, Add EFFECT_FLAME_WHEEL
+	move FLAME_WHEEL,  EFFECT_SPEED_UP_HIT,       60, FIRE,      100, 25,  10, PHYSICAL ; Possibly revert to Flame Charge
 	move FLAIL,        EFFECT_FLAIL,               1, NORMAL,    100, 15,   0, PHYSICAL
 	move PROTECT,      EFFECT_PROTECT,             0, NORMAL,    100, 10,   0, STATUS
 	move MACH_PUNCH,   EFFECT_PRIORITY_HIT,       40, FIGHTING,  100, 30,   0, PHYSICAL
@@ -171,7 +171,7 @@ Moves::
 	move WILL_O_WISP,  EFFECT_BURN,                0, FIRE,       85, 15,   0, STATUS
 	move FACADE,       EFFECT_CONDITIONAL_BOOST,  70, NORMAL,    100, 20,   0, PHYSICAL
 	move TAUNT,        EFFECT_TAUNT,               0, DARK,      100, 20,   0, STATUS
-	move HELPING_HAND, EFFECT_BATON_PASS,          0, NORMAL,    100, 40,   0, STATUS ; Make Help Effect
+	move HELPING_HAND, EFFECT_HELPING_HAND,        0, NORMAL,    100, 20,   0, STATUS ; Make Help Effect
 	move WISH,         EFFECT_FUTURE_SIGHT,      120, PSYCHIC,   100, 10,   0, SPECIAL ; Add Wish Heal Effect
 	move SUPERPOWER,   EFFECT_SUPERPOWER,        120, FIGHTING,  100,  5,   0, PHYSICAL
 	move RECYCLE,      EFFECT_RECYCLE,             0, NORMAL,    100, 10,   0, STATUS

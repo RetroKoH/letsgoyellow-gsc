@@ -117,7 +117,7 @@ MoveEffectsPointers:
 	dw ConditionalBoostHit
 	dw Attract
 	dw Return
-	dw BatonPass
+	dw HelpingHand
 	dw Pursuit
 	dw RapidSpin
 	dw HealingLight

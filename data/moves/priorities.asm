@@ -1,7 +1,7 @@
 MovePriorities:
 	; no move is for explicit switch-out
 	db NO_MOVE,       10
-	db HELPING_HAND,  4
+	db HELPING_HAND,  5
 	db PROTECT,       4
 	db EXTREMESPEED,  2
 	db FEINT,         2

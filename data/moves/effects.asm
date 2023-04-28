@@ -2007,11 +2007,11 @@ HeavySlam:
 	posthiteffects
 	endmove
 
-BatonPass:
+HelpingHand:
 	checkobedience
 	usedmovetext
 	doturn
-	batonpass
+	helpinghand
 	endmove
 
 Pursuit:

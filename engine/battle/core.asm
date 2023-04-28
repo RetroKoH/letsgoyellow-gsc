@@ -891,7 +891,7 @@ ForceDeferredSwitch:
 	pop hl
 
 	; Withdraw animation.
-	bit SWITCH_BATON_PASS, [hl]
+	bit SWITCH_HELPING_HAND, [hl]
 	jr nz, .anim_done
 
 	; This is only set exactly by Teleport, which also lacks animation.
@@ -1141,10 +1141,6 @@ endr
 	ld [hl], a
 
 .reset_used_moves_done
-	; for non-baton pass, just reset everything
-	ld a, [wDeferredSwitch]
-	bit SWITCH_BATON_PASS, a
-	jr nz, .volatile_done
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVarAddr
 	xor a
@@ -1168,9 +1164,20 @@ endr
 	and a
 	jr nz, .new_enemy_mon_status
 	call NewBattleMonStatus
-	jr .volatile_done
+	jr .helping_hand_boost
 .new_enemy_mon_status
 	call NewEnemyMonStatus
+
+.helping_hand_boost
+	; Set Helping Hand Sub-Status, to apply move boost.
+	ld a, [wDeferredSwitch]
+	bit SWITCH_HELPING_HAND, a
+	jr z, .volatile_done
+	ld a, BATTLE_VARS_SUBSTATUS4
+	call GetBattleVarAddr
+	set SUBSTATUS_ALLYHELPED, [hl]
+	; It's possible we might need to clear Helping Hand if
+	; if was never utilized in the next turn.
 
 .volatile_done
 	; Switch active mon

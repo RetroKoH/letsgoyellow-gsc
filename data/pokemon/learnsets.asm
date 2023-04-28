@@ -461,7 +461,7 @@ PikachuLearnset:
 RaichuPlainLearnset:
 RaichuAlolanLearnset:
 	db 1, THUNDERSHOCK
-	db 1, GROWL
+	db 1, HELPING_HAND
 	db 3, LEER ; Tail Whip → similar move
 	db 6, QUICK_ATTACK
 	db 9, DOUBLE_KICK

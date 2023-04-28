@@ -361,7 +361,7 @@ AI_Smart:
 	dbw EFFECT_FURY_CUTTER,       AI_Smart_FuryCutter
 	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
 	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
-	dbw EFFECT_BATON_PASS,        AI_Smart_BatonPass
+	dbw EFFECT_HELPING_HAND,      AI_Smart_HelpingHand
 	dbw EFFECT_PURSUIT,           AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,        AI_Smart_RapidSpin
 	dbw EFFECT_HEALING_LIGHT,     AI_Smart_HealingLight
@@ -841,13 +841,13 @@ AI_Smart_Bind:
 
 	; 50% chance to greatly encourage this move if player is either
 	; badly poisoned, in love, identified, or stuck in Rollout, or first turn.
-	; Don't encourage it if we're at low HP.
+	; Don't encourage it if we're at low HP. (Removed Identified check)
 	ld a, [wBattleMonStatus]
 	bit TOX, a
 	jr nz, .coinflip_encourage
 
 	ld a, [wPlayerSubStatus1]
-	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_IDENTIFIED
+	and 1<<SUBSTATUS_IN_LOVE; | 1<<SUBSTATUS_IDENTIFIED
 	jr nz, .coinflip_encourage
 	ld a, [wPlayerSubStatus3]
 	and 1<<SUBSTATUS_ROLLOUT
@@ -1514,7 +1514,7 @@ AI_Smart_Earthquake:
 	dec [hl]
 	ret
 
-AI_Smart_BatonPass:
+AI_Smart_HelpingHand: ; BatonPass
 ; Check total net stat boost effect:
 ; <0: Discourage
 ; >2: Encourage

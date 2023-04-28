@@ -32,7 +32,7 @@ AI_Redundant:
 	dbw EFFECT_TELEPORT,      .Teleport
 	dbw EFFECT_HEALING_LIGHT, .HealingLight
 	dbw EFFECT_FUTURE_SIGHT,  .FutureSight
-	dbw EFFECT_BATON_PASS,    .BatonPass
+	dbw EFFECT_HELPING_HAND,  .HelpingHand
 	dbw EFFECT_ROOST,         .Roost
 	dbw EFFECT_TRICK_ROOM,    .TrickRoom
 	db -1
@@ -80,7 +80,7 @@ AI_Redundant:
 	and SCREENS_REFLECT
 	ret
 
-.BatonPass:
+.HelpingHand:
 	call CallOpponentTurn
 .Roar:
 	push hl

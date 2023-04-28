@@ -418,7 +418,7 @@ wPlayerSubStatus4::
 ; 4 substitute
 ; 3 roost
 ; 2 focus energy
-; 1 unused
+; 1 helping hand
 ; 0 curled
 	db
 
@@ -588,7 +588,8 @@ wPlayerGuards::
 ; 0-3 safeguard
 	db
 
-	ds 2
+wPlayerHelpingHandBoost:: db
+	ds 1
 
 wEnemyScreens::
 ; see wPlayerScreens
@@ -597,7 +598,8 @@ wEnemyGuards::
 ; see wPlayerGuards
 	db
 
-	ds 2
+wEnemyHelpingHandBoost:: db
+	ds 1
 
 wBattleWeather::
 ; 00 normal

@@ -1255,7 +1255,15 @@ BattleCommand_stab:
 	ret
 
 .not_immune
-	; Apply STAB
+	; Always apply STAB to Return
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp RETURN
+	jr nz, .notReturn
+	jr .stab ; Jump here to apply STAB (and adaptability, if possible.)
+
+.notReturn
+	; Apply STAB normally
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	ld b, a
@@ -1278,26 +1286,26 @@ BattleCommand_stab:
 	jr z, .got_attacker_types
 	ld hl, wEnemyMonType1
 .got_attacker_types
-	ld a, [hli]
-	cp b
-	jr z, .stab
-	ld a, [hl]
-	cp b
-	jr nz, .stab_done
+	ld a, [hli]			; Check attacker's first type
+	cp b				; Does it match the move type?
+	jr z, .stab			; if yes, apply STAB
+	ld a, [hl]			; Check attacker's second type
+	cp b				; Does it match the move type?
+	jr nz, .stab_done	; if no, skip and don't apply STAB
 .stab
 	; Adaptability gives 2x, otherwise STAB is 1.5x
 	call GetTrueUserAbility
 	cp ADAPTABILITY
 	ld a, [wTypeMatchup]
 	jr nz, .no_adaptability
-	sla a
-	ld [wTypeMatchup], a
+	sla a					; Multiply by 2. $10 becomes $20
+	ld [wTypeMatchup], a	; Boosted STAB is $20 (2x)
 	jr .stab_done
 .no_adaptability
-	ld b, a
-	srl b
-	add b
-	ld [wTypeMatchup], a
+	ld b, a					; Copy a to b.
+	srl b					; Divide by 2. $10 becomes $08
+	add b					; Add stored $10 from a. ($08 + $10)
+	ld [wTypeMatchup], a	; Standard STAB is $18 (1.5x)
 
 .stab_done
 	; Apply weather modifiers

@@ -43,7 +43,7 @@ TMHMMoves:
 	db AERIAL_ACE   ; TM40 (Mount Mortar)
 	db SUBSTITUTE   ; TM41 (Lake of Rage)
 	db FACADE       ; TM42 (Dim Cave)
-	db FLAME_WHEEL  ; TM43 (Burned Tower)
+	db FLAME_CHARGE ; TM43 (Burned Tower)
 	db REST         ; TM44 (Dim Cave)
 	db STRANGESTEAM ; TM45 (Whitney)
 	db RAGE_FIST    ; TM46 (Team Rocket Base)

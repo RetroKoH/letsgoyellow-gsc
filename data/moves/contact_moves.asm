@@ -34,7 +34,7 @@ ContactMoves:
 	db FELL_STINGER
 	db FIRE_PUNCH
 	db FLAIL
-	db FLAME_WHEEL
+	db FLAME_CHARGE
 	db FLARE_BLITZ
 	db FLY
 	db FOUL_PLAY

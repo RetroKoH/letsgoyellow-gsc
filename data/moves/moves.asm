@@ -132,7 +132,7 @@ Moves::
 	move SLASH,        EFFECT_NORMAL_HIT,         70, NORMAL,    100, 20,   0, PHYSICAL
 	move SUBSTITUTE,   EFFECT_SUBSTITUTE,          0, NORMAL,    100, 10,   0, STATUS
 	move TRIPLE_KICK,  EFFECT_TRIPLE_KICK,        20, FIGHTING,   90, 10,   0, PHYSICAL
-	move FLAME_WHEEL,  EFFECT_SPEED_UP_HIT,       60, FIRE,      100, 25,  10, PHYSICAL ; Possibly revert to Flame Charge
+	move FLAME_CHARGE, EFFECT_SPEED_UP_HIT,       50, FIRE,      100, 20,   0, PHYSICAL
 	move FLAIL,        EFFECT_FLAIL,               1, NORMAL,    100, 15,   0, PHYSICAL
 	move PROTECT,      EFFECT_PROTECT,             0, NORMAL,    100, 10,   0, STATUS
 	move MACH_PUNCH,   EFFECT_PRIORITY_HIT,       40, FIGHTING,  100, 30,   0, PHYSICAL

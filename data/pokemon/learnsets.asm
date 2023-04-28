@@ -396,7 +396,7 @@ PidgeyLearnset:
 PidgeottoLearnset:
 PidgeotLearnset:
 	db 1, STRIKE ; TACKLE
-	db 3, STEALTH_ROCK
+	db 3, SAND_ATTACK
 	db 5, GUST
 	db 9, QUICK_ATTACK
 	db 12, WING_ATTACK
@@ -413,7 +413,7 @@ RattataAlolanLearnset:
 RaticatePlainLearnset:
 RaticateAlolanLearnset:
 	db 1, STRIKE ; TACKLE
-	db 1, STEALTH_ROCK ; Tail Whip → similar move
+	db 1, LEER ; Tail Whip → similar move
 	db 6, QUICK_ATTACK
 	db 9, BITE
 	db 12, TAKE_DOWN
@@ -461,7 +461,7 @@ PikachuLearnset:
 RaichuPlainLearnset:
 RaichuAlolanLearnset:
 	db 1, THUNDERSHOCK
-	db 1, RAPID_SPIN
+	db 1, GROWL
 	db 3, LEER ; Tail Whip → similar move
 	db 6, QUICK_ATTACK
 	db 9, DOUBLE_KICK
@@ -1168,7 +1168,7 @@ MarowakAlolanLearnset:
 	db 1, GROWL
 	db 3, STRIKE ; TACKLE
 	db 7, FAKE_OUT
-	db 11, FLAME_WHEEL
+	db 11, FLAME_CHARGE ; ???
 	db 13, LEER
 	db 17, HEX
 	db 21, BONEMERANG

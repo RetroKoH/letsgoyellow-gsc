@@ -306,8 +306,6 @@ BattleCommand_checkturn:
 	; Flame Wheel, Scald, and Flare Blitz thaw the user.
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	cp FLAME_WHEEL
-	jr z, .thaw
 	cp SCALD
 	jr z, .thaw
 	cp FLARE_BLITZ

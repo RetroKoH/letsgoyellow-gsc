@@ -121,7 +121,7 @@ MoveNames::
 	li "Slash"
 	li "Substitute"
 	li "Triple Kick"
-	li "Flame Wheel"
+	li "Flame Charge"
 	li "Flail"
 	li "Protect"
 	li "Mach Punch"

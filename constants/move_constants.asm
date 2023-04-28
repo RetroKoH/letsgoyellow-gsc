@@ -126,7 +126,7 @@
 	const SLASH        ; $76
 	const SUBSTITUTE   ; $77
 	const TRIPLE_KICK  ; $78
-	const FLAME_WHEEL  ; $79
+	const FLAME_CHARGE ; $79
 	const FLAIL        ; $7a
 	const PROTECT      ; $7b
 	const MACH_PUNCH   ; $7c

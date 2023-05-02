@@ -46,6 +46,7 @@ BattleCommandPointers:
 	command selfdestruct
 	command payday
 	command conversion
+	command haze
 	command resetstats
 	command roar
 	command endloop

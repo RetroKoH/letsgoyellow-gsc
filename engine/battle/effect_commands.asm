@@ -5948,6 +5948,47 @@ EndRechargeOpp:
 	pop hl
 	ret
 
+BattleCommand_haze:
+	ld hl, wPlayerGuards
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld hl, wEnemyGuards
+
+.ok
+	ld a, [hl]
+	and GUARD_MIST
+	jr nz, .already_mist
+	ld a, 5 << 4
+	or [hl]
+	ld [hl], a					; Apply 5 turns of Mist effect
+
+	call AnimateCurrentMove
+	ld hl, MistText
+	call StdBattleTextbox
+								; Apply Haze effect
+	ld a, BASE_STAT_LEVEL
+	ld hl, wPlayerStatLevels
+	call .Fill
+	ld hl, wEnemyStatLevels
+	call .Fill
+
+	ld hl, EliminatedStatsText
+	jmp StdBattleTextbox
+
+; same structure as ResetPlayerStatLevels and ResetEnemyStatLevels
+.Fill:
+	ld b, NUM_LEVEL_STATS
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
+	ret
+
+.already_mist
+	call AnimateFailedMove
+	jp PrintButItFailed
+
 BattleCommand_resetstats:
 	ld a, BASE_STAT_LEVEL
 	ld hl, wPlayerStatLevels

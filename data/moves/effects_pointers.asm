@@ -72,7 +72,8 @@ MoveEffectsPointers:
 	dw SpecialDefenseDown2
 	dw AccuracyDown2
 	dw EvasionDown2
-	dw ResetStats
+;	dw ClearSmog
+	dw Haze
 	dw AuroraVeil
 	dw Reflect
 	dw LightScreen

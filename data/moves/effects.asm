@@ -1259,12 +1259,11 @@ EvasionDown2:
 	loweroppstat $10 | EVASION
 	endmove
 
-ResetStats:
 Haze:
 	checkobedience
 	usedmovetext
 	doturn
-	resetstats
+	haze ; mist and resetstats called here
 	endmove
 
 AuroraVeil:

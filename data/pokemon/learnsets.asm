@@ -1553,7 +1553,7 @@ GlaceonLearnset:
 SylveonLearnset:
 	db 1, STRIKE ; TACKLE
 	db 1, GROWL
-	db 1, LEER ; Tail Whip → similar move
+	db 1, HAZE ; Tail Whip → similar move
 	db 13, QUICK_ATTACK
 	db 5, SAND_ATTACK
 	db 9, DOUBLE_KICK ; Baby-Doll Eyes → Let's Go move

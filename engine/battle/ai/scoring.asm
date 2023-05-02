@@ -374,7 +374,7 @@ AI_Smart:
 	dbw EFFECT_RAZOR_WIND,        AI_Smart_SkullBash
 	dbw EFFECT_SKULL_BASH,        AI_Smart_SkullBash
 	dbw EFFECT_EARTHQUAKE,        AI_Smart_Earthquake
-	dbw EFFECT_FUTURE_SIGHT,      AI_Smart_FutureSight
+	dbw EFFECT_WISH,              AI_Smart_Wish
 	dbw EFFECT_JUMP_KICK,         AI_Smart_JumpKick
 	dbw EFFECT_GUST,              AI_Smart_Gust
 	dbw EFFECT_STOMP,             AI_Smart_Stomp
@@ -1747,7 +1747,7 @@ AI_Smart_Gust:
 	dec [hl]
 	ret
 
-AI_Smart_FutureSight:
+AI_Smart_Wish:
 ; Greatly encourage this move if the player is
 ; flying or underground, and slower than the enemy.
 ; Otherwise discourage.

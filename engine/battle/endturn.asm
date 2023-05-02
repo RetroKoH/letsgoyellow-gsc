@@ -15,10 +15,9 @@ HandleBetweenTurnEffects:
 	call CheckFaint
 	ret c
 	; Self-curing status from high Affection
-	call HandleFutureSight
 	call CheckFaint
 	ret c
-	; Wish
+	call HandleWish
 	call HandleEndturnBlockA
 	call CheckFaint
 	ret c
@@ -372,7 +371,6 @@ endc
 	predef_jump SubtractHPFromUser
 
 HandleWish:
-HandleFutureSight:
 	call SetFastestTurn
 	call .do_it
 	call SwitchTurn
@@ -380,10 +378,10 @@ HandleFutureSight:
 .do_it
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wPlayerFutureSightCount
-	jr z, .got_future
-	ld hl, wEnemyFutureSightCount
-.got_future
+	ld hl, wPlayerWishCount
+	jr z, .got_wish
+	ld hl, wEnemyWishCount
+.got_wish
 	ld a, [hl]
 	and a
 	ret z
@@ -393,36 +391,31 @@ HandleFutureSight:
 	ret nz
 
 	push hl
-	call HasOpponentFainted
+	call HasUserFainted
 	pop hl
-	jr nz, .do_future_sight
+	jr z, .wish_failed
+	push hl
+	farcall CheckFullHP
+	pop hl
+	jr nz, .do_wish
 
-	; Future Sight misses automatically
-	xor a
-	ld [hl], a
-	ld hl, BattleText_UsersFutureSightMissed
+	; Wish misses automatically
+.wish_failed
+	ld [hl], 0 ; Resetting causes a Divide by 0 bug
+	ld hl, BattleText_UsersWishFailed
 	jmp StdBattleTextbox
 
-.do_future_sight
+.do_wish
 	push hl
-	ld hl, BattleText_TargetWasHitByFutureSight
+	ld hl, BattleText_WishCameTrue
 	call StdBattleTextbox
 
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
 	push af
-	ld [hl], WISH ; was FUTURE_SIGHT
+	ld [hl], RECOVER
 	farcall UpdateMoveData
-
-	xor a
-	ld [wAttackMissed], a
-	ld [wAlreadyDisobeyed], a
-	ld a, $10
-	ld [wTypeModifier], a
 	farcall DoMove
-	xor a
-	ld [wCurDamage], a
-	ld [wCurDamage + 1], a
 
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
@@ -430,7 +423,7 @@ HandleFutureSight:
 	ld [hl], a
 	farcall UpdateMoveData
 	pop hl
-	ld [hl], 0
+	ld [hl], 0 ; Resetting causes a Divide by 0 bug
 	call UpdateBattleMonInParty
 	jmp UpdateEnemyMonInParty
 

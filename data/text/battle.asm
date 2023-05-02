@@ -266,19 +266,18 @@ BattleText_UserChargedWithItem:
 	text "!"
 	prompt
 
-BattleText_UsersFutureSightMissed:
+BattleText_UsersWishFailed:
 ; used when Future Sight can't hit anything because there was
 ; no target (so <TARGET> is undefined)
-	text "The Future Sight"
-	line "arrived!"
+	text "The Wish"
+	line "came true!"
 
 	para "But it failed!"
 	prompt
 
-BattleText_TargetWasHitByFutureSight:
-	text "<TARGET>"
-	line "took the"
-	cont "Future Sight!"
+BattleText_WishCameTrue:
+	text "The Wish"
+	line "came true!"
 	prompt
 
 BattleText_MistFaded:
@@ -756,11 +755,10 @@ DisabledMoveText:
 	prompt
 
 MoveFailedDueToTauntText:
-	text "<USER>'s"
-	line ""
+	text "<USER>"
+	line "can't use"
 	text_ram wStringBuffer1
-	cont "failed due to"
-	cont "the Taunt!"
+	text "after the Taunt!"
 	prompt
 
 UsedMoveText:
@@ -1425,9 +1423,9 @@ BellyDrumContraryText:
 	cont "minimized Attack!"
 	prompt
 
-ForesawAttackText:
+MadeAWishText: ; Future sight -> Wish
 	text "<USER>"
-	line "foresaw an attack!"
+	line "made a wish!"
 	prompt
 
 IgnoredOrders2Text:

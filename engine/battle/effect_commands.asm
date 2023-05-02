@@ -28,7 +28,6 @@ INCLUDE "engine/battle/move_effects/false_swipe.asm" ; Used for False Swipe AND 
 INCLUDE "engine/battle/move_effects/feint.asm"
 INCLUDE "engine/battle/move_effects/focus_energy.asm"
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"
-INCLUDE "engine/battle/move_effects/future_sight.asm"
 INCLUDE "engine/battle/move_effects/growth.asm"
 INCLUDE "engine/battle/move_effects/gyro_ball.asm"
 INCLUDE "engine/battle/move_effects/heal_bell.asm"
@@ -69,6 +68,7 @@ INCLUDE "engine/battle/move_effects/triple_kick.asm"
 INCLUDE "engine/battle/move_effects/toxic.asm"
 INCLUDE "engine/battle/move_effects/weather.asm"
 INCLUDE "engine/battle/move_effects/weather_ball.asm"
+INCLUDE "engine/battle/move_effects/wish.asm"
 
 
 DoTurn:
@@ -507,10 +507,6 @@ IncreaseMetronomeCount:
 	; Don't arbitrarily boost usage counter twice on a turn
 	call CheckUserIsCharging
 	ret nz
-
-	; unaffected by Metronome
-	call GetFutureSightUser
-	ret nc
 
 	ldh a, [hBattleTurn]
 	and a
@@ -1137,9 +1133,6 @@ BattleCommand_critical:
 	ret z
 	cp SHELL_ARMOR
 	ret z
-	call GetFutureSightUser
-	ld c, 0
-	jr nz, .Ability
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .EnemyTurn
@@ -1291,19 +1284,6 @@ BattleCommand_stab:
 	ld a, BATTLE_VARS_MOVE_TYPE
 	call GetBattleVar
 	ld b, a
-	call GetFutureSightUser
-	jr z, .not_external
-	ld a, MON_SPECIES
-	call TrueUserPartyAttr
-	ld [wCurSpecies], a
-	ld a, MON_FORM
-	call TrueUserPartyAttr
-	and SPECIESFORM_MASK
-	ld [wCurForm], a
-	call GetBaseData
-	ld hl, wBaseType
-	jr .got_attacker_types
-.not_external
 	ldh a, [hBattleTurn]
 	and a
 	ld hl, wBattleMonType1
@@ -1849,11 +1829,6 @@ BattleCommand_checkhit:
 	ld c, a
 
 .got_acc_eva
-	call GetFutureSightUser
-	jr z, .not_external_acc
-	ld b, 7
-
-.not_external_acc
 	; Handle stat modifiers
 	; Unaware ignores enemy stat changes, identification also does if above 0
 	call GetTrueUserAbility
@@ -2243,7 +2218,7 @@ BattleCommand_moveanimnosub:
 	and a
 	jmp nz, BattleCommand_movedelay
 
-	call GetFutureSightUser
+	call GetWishUser
 	jr nc, .normal_move
 
 	; We hit, mark physical/special damage on opponent.
@@ -2592,7 +2567,7 @@ GetFailureResultText:
 	jr z, .got_text
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	cp EFFECT_FUTURE_SIGHT
+	cp EFFECT_WISH
 	ld hl, ButItFailedText
 	jr z, .got_text
 	ld hl, AttackMissedText
@@ -3062,8 +3037,6 @@ BattleCommand_posthiteffects:
 	; Absorb Bulb, Snowball, Cell Battery, Luminous Moss
 	call HasUserFainted
 	jr z, .rocky_helmet_done
-	call GetFutureSightUser
-	jr nz, .rocky_helmet_done
 	call GetOpponentItemAfterUnnerve
 	call GetCurItemName
 	ld a, b
@@ -3204,8 +3177,6 @@ CheckEndMoveEffects:
 	call HandleRampage
 	call CheckSheerForceNegation
 	ret z
-	call GetFutureSightUser
-	ret nz
 
 	; Only check white herb if we didn't do damage
 	ld a, [wDamageTaken]
@@ -3562,12 +3533,6 @@ BattleCommand_damagestats:
 
 ; location of attack stat stored in hl; TruncateHL_BC will load this to b.
 .continue
-	call GetFutureSightUser
-	jr z, .atk_ok
-; Next two lines are only called if Future Sight is used.
-	ld a, MON_ATK
-	call TrueUserPartyAttr
-.atk_ok
 	call GetTrueUserAbility
 	cp INFILTRATOR
 	jp z, .thickcluborlightball
@@ -3628,11 +3593,6 @@ BattleCommand_damagestats:
 .lightscreen
 	ld hl, wBattleMonSpclAtk
 	call GetUserMonAttr
-	call GetFutureSightUser
-	jr z, .sat_ok
-	ld a, MON_SAT
-	call TrueUserPartyAttr
-.sat_ok
 	call GetTrueUserAbility
 	cp INFILTRATOR
 	jr z, .lightball
@@ -3893,8 +3853,6 @@ GetStatBoost:
 	ret
 
 ApplyStatBoostDamageAfterUnaware:
-	call GetFutureSightUser
-	ret nz
 	call GetOpponentAbilityAfterMoldBreaker
 	cp UNAWARE
 	ret z
@@ -4016,15 +3974,8 @@ BattleCommand_damagecalc:
 	farcall ApplyDamageAbilities
 
 	; If we're burned (and don't have Guts), halve damage
-	call GetFutureSightUser
-	jr z, .not_external_burn
-	ld a, MON_STATUS
-	call TrueUserPartyAttr
-	jr .check_burn
-.not_external_burn
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-.check_burn
 	bit BRN, a
 	jr z, .burn_done
 	call GetTrueUserAbility
@@ -4034,8 +3985,6 @@ BattleCommand_damagecalc:
 
 .burn_done
 	; Flash Fire
-	call GetFutureSightUser
-	jr nz, .no_flash_fire
 	ld a, BATTLE_VARS_SUBSTATUS1
 	call GetBattleVar
 	bit SUBSTATUS_FLASH_FIRE, a
@@ -4121,9 +4070,6 @@ BattleCommand_damagecalc:
 	call ApplySpecialAttackDamageMod
 	jr .done_attacker_item
 .metronome_item
-	; Skip Metronome for Future Sight
-	call GetFutureSightUser
-	jr nc, .done_attacker_item
 	ln b, 5, 5 ; (5+n)/5 = 100% + 20% * n
 	ldh a, [hBattleTurn]
 	and a
@@ -6202,12 +6148,7 @@ CheckSubstituteOpp:
 	call GetTrueUserAbility
 	cp INFILTRATOR
 	ret z
-	call GetFutureSightUser
-	jr c, .not_future_sight
-	xor a
-	ret
 
-.not_future_sight
 	; don't let move effects impact ability processing
 	ld a, [wAnimationsDisabled]
 	and a
@@ -6444,7 +6385,7 @@ BattleCommand_doubleminimizedamage:
 	ld [hl], a
 	ret
 
-GetFutureSightUser::
+GetWishUser::
 ; Returns:
 ; c|z: Regular user in a (Future Sight not involved)
 ; nc|z: Active user in a (Future Sight applying)
@@ -6454,17 +6395,17 @@ GetFutureSightUser::
 	push bc
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wPlayerFutureSightCount
+	ld hl, wPlayerWishCount
 	ld bc, wCurBattleMon
 	jr z, .got_future
-	ld hl, wEnemyFutureSightCount
+	ld hl, wEnemyWishCount
 	ld bc, wCurOTMon
 .got_future
 	ld a, [hl]
 	and a
-	jr z, .future_sight_offline
+	jr z, .wish_offline
 	and $f
-	jr nz, .future_sight_offline
+	jr nz, .wish_offline
 	ld a, [hl]
 	swap a
 	dec a
@@ -6496,7 +6437,7 @@ GetFutureSightUser::
 	rrca
 	ret
 
-.future_sight_offline
+.wish_offline
 	xor a
 	ld a, [bc]
 	pop bc
@@ -6506,9 +6447,9 @@ GetFutureSightUser::
 	ret
 
 _GetTrueUserAbility::
-; Returns current user's ability, or 0 (no ability) for external future sight user
+; Returns current user's ability, or 0 (no ability) for external wish user
 ; Also returns 0 (no ability) if opponent has Neutralizing Gas and user doesn't
-	call GetFutureSightUser
+	call GetWishUser
 	jr nz, .external
 
 	ld a, BATTLE_VARS_ABILITY
@@ -6551,7 +6492,7 @@ GetUserItem::
 ; Return the effect of the user's item in bc, and its id at hl.
 ; Also updates the object name buffer, allowing you to just
 ; GetCurItemName to get the item name
-	call GetFutureSightUser
+	call GetWishUser
 	jr z, .not_external
 
 	; External users may not use their items

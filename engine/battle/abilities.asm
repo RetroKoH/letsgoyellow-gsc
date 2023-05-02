@@ -623,8 +623,6 @@ ResolveOpponentBerserk:
 
 RunFaintAbilities:
 ; abilities that run after an attack faints an enemy
-	farcall GetFutureSightUser
-	ret nz
 	call GetTrueUserAbility
 	call _RunFaintUserAbilities
 	call GetOpponentAbilityAfterMoldBreaker
@@ -697,11 +695,7 @@ RunHitAbilities:
 
 CursedBodyAbility:
 	call SwitchTurn
-	farcall GetFutureSightUser
-	push af
-	call SwitchTurn
-	pop af
-	ret nz
+	; With removal of Future Sight, I think second Switch Turn isn't needed?
 	ld a, 10
 	call BattleRandomRange
 	cp 3
@@ -1649,14 +1643,11 @@ SheerForceAbility:
 
 AnalyticAbility:
 ; 130% damage if opponent went first
-	farcall GetFutureSightUser
-	jr nc, .future_sight
 	ld a, [wEnemyGoesFirst] ; 0 = player goes first
 	ld b, a
 	ldh a, [hBattleTurn] ; 0 = player's turn
 	xor b ; nz if opponent went first
 	ret z
-.future_sight
 	ln a, 13, 10 ; x1.3
 	jmp MultiplyAndDivide
 
@@ -1752,15 +1743,8 @@ RecklessAbility:
 
 GutsAbility:
 ; 150% physical attack if user is statused
-	farcall GetFutureSightUser
-	jr z, .not_external
-	ld a, MON_STATUS
-	call TrueUserPartyAttr
-	jr .got_status
-.not_external
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-.got_status
 	and a
 	ret z
 	ld a, $32

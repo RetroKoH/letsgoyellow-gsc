@@ -172,7 +172,7 @@ Moves::
 	move FACADE,       EFFECT_CONDITIONAL_BOOST,  70, NORMAL,    100, 20,   0, PHYSICAL
 	move TAUNT,        EFFECT_TAUNT,               0, DARK,      100, 20,   0, STATUS
 	move HELPING_HAND, EFFECT_HELPING_HAND,        0, NORMAL,    100, 20,   0, STATUS
-	move WISH,         EFFECT_FUTURE_SIGHT,      120, PSYCHIC,   100, 10,   0, SPECIAL ; Add Wish Heal Effect
+	move WISH,         EFFECT_WISH,                0, NORMAL,    100, 10,   0, STATUS ; Add Wish Heal Effect
 	move SUPERPOWER,   EFFECT_SUPERPOWER,        120, FIGHTING,  100,  5,   0, PHYSICAL
 	move RECYCLE,      EFFECT_RECYCLE,             0, NORMAL,    100, 10,   0, STATUS
 	move BRICK_BREAK,  EFFECT_BRICK_BREAK,        75, FIGHTING,  100, 15,   0, PHYSICAL

@@ -2155,13 +2155,13 @@ Earthquake:
 	posthiteffects
 	endmove
 
-FutureSight:
-	checkfuturesight
+Wish:
+	checkwish
 	checkobedience
 	usedmovetext
 	doturn
 	hastarget
-	futuresight
+	wish
 	checkhit
 	critical
 	damagestats

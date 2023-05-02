@@ -32,7 +32,7 @@ TrueUserPartyAttr::
 .got_partymons
 	ld b, 0
 	add hl, bc
-	farcall GetFutureSightUser
+	farcall GetWishUser
 	call GetPartyLocation
 	or 1
 	ld a, [hl]
@@ -156,7 +156,7 @@ HalfHP::
 
 GetMaxHP::
 ; output: bc, wBuffer1-2
-	farcall GetFutureSightUser
+	farcall GetWishUser
 	jr z, .not_external
 	ld a, MON_MAXHP
 	call TrueUserPartyAttr
@@ -595,7 +595,7 @@ CheckPinch::
 CompareHP::
 ; return c if HP<bc, z if HP=bc, nc+nz if HP>bc
 	push hl
-	farcall GetFutureSightUser
+	farcall GetWishUser
 	jr z, .not_external
 	ld a, MON_HP
 	call TrueUserPartyAttr

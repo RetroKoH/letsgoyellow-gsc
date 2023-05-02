@@ -640,10 +640,10 @@ wLastEnemyMove:: db
 
 wEnemyUsingItem:: db
 
-wPlayerFutureSightCount:: db
-wEnemyFutureSightCount:: db
-wPlayerFutureSightDamage:: dw
-wEnemyFutureSightDamage:: dw
+wPlayerWishCount:: db
+wEnemyWishCount:: db
+wPlayerWishRecovery:: dw ; Unneeded?
+wEnemyWishRecovery:: dw ; Unneeded?
 wPlayerTrappingMove:: db
 wEnemyTrappingMove:: db
 wPlayerWrapCount:: db

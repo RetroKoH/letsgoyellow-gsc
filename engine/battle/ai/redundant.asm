@@ -31,7 +31,7 @@ AI_Redundant:
 	dbw EFFECT_SUNNY_DAY,     .SunnyDay
 	dbw EFFECT_TELEPORT,      .Teleport
 	dbw EFFECT_HEALING_LIGHT, .HealingLight
-	dbw EFFECT_FUTURE_SIGHT,  .FutureSight
+	dbw EFFECT_WISH,          .Wish
 	dbw EFFECT_HELPING_HAND,  .HelpingHand
 	dbw EFFECT_ROOST,         .Roost
 	dbw EFFECT_TRICK_ROOM,    .TrickRoom
@@ -57,8 +57,8 @@ AI_Redundant:
 	and a
 	ret
 
-.FutureSight:
-	ld a, [wEnemyFutureSightCount]
+.Wish:
+	ld a, [wEnemyWishCount]
 	and a
 	ret
 

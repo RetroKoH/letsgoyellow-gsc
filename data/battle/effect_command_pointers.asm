@@ -112,8 +112,8 @@ BattleCommandPointers:
 	command ragefist
 	command doubleflyingdamage
 	command doubleundergrounddamage
-	command checkfuturesight
-	command futuresight
+	command checkwish
+	command wish
 	command doubleminimizedamage
 	command thunderaccuracy
 	command teleport

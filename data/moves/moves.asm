@@ -171,7 +171,7 @@ Moves::
 	move WILL_O_WISP,  EFFECT_BURN,                0, FIRE,       85, 15,   0, STATUS
 	move FACADE,       EFFECT_CONDITIONAL_BOOST,  70, NORMAL,    100, 20,   0, PHYSICAL
 	move TAUNT,        EFFECT_TAUNT,               0, DARK,      100, 20,   0, STATUS
-	move HELPING_HAND, EFFECT_HELPING_HAND,        0, NORMAL,    100, 20,   0, STATUS ; Make Help Effect
+	move HELPING_HAND, EFFECT_HELPING_HAND,        0, NORMAL,    100, 20,   0, STATUS
 	move WISH,         EFFECT_FUTURE_SIGHT,      120, PSYCHIC,   100, 10,   0, SPECIAL ; Add Wish Heal Effect
 	move SUPERPOWER,   EFFECT_SUPERPOWER,        120, FIGHTING,  100,  5,   0, PHYSICAL
 	move RECYCLE,      EFFECT_RECYCLE,             0, NORMAL,    100, 10,   0, STATUS
@@ -187,7 +187,7 @@ Moves::
 	move AERIAL_ACE,   EFFECT_ALWAYS_HIT,         60, FLYING,    100, 20,   0, PHYSICAL
 	move ICICLE_SPEAR, EFFECT_MULTI_HIT,          25, ICE,       100, 30,   0, PHYSICAL
 	move BULK_UP,      EFFECT_BULK_UP,             0, FIGHTING,  100, 20,   0, STATUS
-	move VOLT_TACKLE,  EFFECT_VOLT_TACKLE,       120, ELECTRIC,  100, 15,  10, PHYSICAL ; Should do 1/3 recoil - Double Check this
+	move VOLT_TACKLE,  EFFECT_VOLT_TACKLE,       120, ELECTRIC,  100, 15,  10, PHYSICAL
 	move CALM_MIND,    EFFECT_CALM_MIND,           0, PSYCHIC,   100, 20,   0, STATUS
 	move LEAF_BLADE,   EFFECT_NORMAL_HIT,         90, GRASS,     100, 15,   0, PHYSICAL
 	move DRAGON_DANCE, EFFECT_DRAGON_DANCE,        0, DRAGON,    100, 20,   0, STATUS
@@ -235,11 +235,11 @@ Moves::
 	move AQUA_JET,     EFFECT_PRIORITY_HIT,       40, WATER,     100, 20,   0, PHYSICAL
 	move VENOSHOCK,    EFFECT_CONDITIONAL_BOOST,  65, POISON,    100, 10,   0, SPECIAL
 	move QUIVER_DANCE, EFFECT_QUIVER_DANCE,        0, BUG,       100, 20,   0, STATUS
-	move HEAVY_SLAM,   EFFECT_HEAVY_SLAM,          1, STEEL,     100, 10,   0, PHYSICAL ; Change effect
+	move HEAVY_SLAM,   EFFECT_HEAVY_SLAM,          1, STEEL,     100, 10,   0, PHYSICAL ; Effect needs to be fixed
 	move COIL,         EFFECT_COIL,                0, POISON,    100, 20,   0, STATUS
 	move LOW_SWEEP,    EFFECT_SPEED_DOWN_HIT,     65, FIGHTING,  100, 20,   0, PHYSICAL
-	move FOUL_PLAY,    EFFECT_NORMAL_HIT,         95, DARK,      100, 15,   0, PHYSICAL ; Test further
-	move CLEAR_SMOG,   EFFECT_ALWAYS_HIT,         50, POISON,    100, 15,   0, SPECIAL ; Need to add a one-sided HAZE effect
+	move FOUL_PLAY,    EFFECT_NORMAL_HIT,         95, DARK,      100, 15,   0, PHYSICAL
+	move CLEAR_SMOG,   EFFECT_CLEAR_SMOG,         50, POISON,    100, 15,   0, SPECIAL ; Need to add a one-sided HAZE effect
 	move SCALD,        EFFECT_BURN_HIT,           80, WATER,     100, 15,  30, SPECIAL
 	move SHELL_SMASH,  EFFECT_SHELL_SMASH,         0, NORMAL,    100, 15,   0, STATUS
 	move HEX,          EFFECT_CONDITIONAL_BOOST,  65, GHOST,     100, 10,   0, SPECIAL

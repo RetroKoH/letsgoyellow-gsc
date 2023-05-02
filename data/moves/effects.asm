@@ -1266,6 +1266,27 @@ Haze:
 	haze ; mist and resetstats called here
 	endmove
 
+ClearSmog:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	postfainteffects
+	posthiteffects
+	resetstats
+	endmove
+
 AuroraVeil:
 	checkobedience
 	usedmovetext

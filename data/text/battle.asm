@@ -1177,6 +1177,12 @@ EliminatedStatsText:
 	line "were eliminated!"
 	prompt
 
+EliminatedTargetStatsText:
+	text "<TARGET>"
+	line "had its stat"
+	cont "changes reset!"
+	prompt
+
 TransformedText:
 	text "<USER>"
 	line "transformed into"

@@ -1817,6 +1817,8 @@ BattleCommand_checkhit:
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
+	cp EFFECT_CLEAR_SMOG
+	ret z
 	cp EFFECT_ROAR
 	ret z
 	cp EFFECT_COUNTER
@@ -5990,15 +5992,31 @@ BattleCommand_haze:
 	jp PrintButItFailed
 
 BattleCommand_resetstats:
-	ld a, BASE_STAT_LEVEL
-	ld hl, wPlayerStatLevels
-	call .Fill
+	xor a
+	ld [wNumHits], a
+	call CheckSubstituteOpp
+	ret nz						; Fails if target has a substitute
+	ld a, [wTypeModifier]
+	and a
+	ret z						; Fails against Steel and Poison types
+
 	ld hl, wEnemyStatLevels
+	ld de, wEnemyGuards
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld hl, wPlayerStatLevels
+	ld de, wPlayerGuards
+
+.ok
+	ld a, [de]
+	and GUARD_MIST
+	ret nz						; Fails if Mist effect is active
+
+	ld a, BASE_STAT_LEVEL
 	call .Fill
 
-	call AnimateCurrentMove
-
-	ld hl, EliminatedStatsText
+	ld hl, EliminatedTargetStatsText
 	jmp StdBattleTextbox
 
 ; same structure as ResetPlayerStatLevels and ResetEnemyStatLevels

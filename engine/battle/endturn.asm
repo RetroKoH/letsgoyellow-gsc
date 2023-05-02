@@ -46,7 +46,7 @@ HandleBetweenTurnEffects:
 	; telekinesis
 	; heal block
 	; embargo
-	; yawn
+	call HandleYawn
 	; perish song
 	call CheckFaint
 	ret c
@@ -780,6 +780,79 @@ HandleDisable:
 	jr z, EndturnEncoreDisable
 	ld hl, wEnemyDisableCount
 	jr EndturnEncoreDisable
+
+HandleYawn:
+	call SetFastestTurn
+	call .do_it
+	call SwitchTurn
+
+.do_it
+	ldh a, [hBattleTurn]
+	and a
+	ld hl, wEnemyYawnCount
+	jr z, .got_yawn
+	ld hl, wPlayerYawnCount
+.got_yawn
+	ld a, [hl]
+	and a
+	ret z
+	dec [hl]
+	ld a, [hl]
+	and $f
+	ret nz
+
+	push hl
+	call HasOpponentFainted
+	pop hl
+	jr z, .yawn_failed
+
+	ld b, 0
+	push hl
+	; ... Check abilitiesand check for non-vol status
+	farcall CanSleepTarget
+	pop hl
+	jr c, .ability_ok
+	jr z, .do_yawn
+
+	; Wish misses automatically
+.yawn_failed
+	ld [hl], 0
+	ret
+
+.do_yawn
+;	ld c, 30
+;	call DelayFrames
+;	xor a
+;	ld [wNumHits], a
+;	ld de, ANIM_SLP
+;	call PlayOpponentBattleAnim
+;	ld a, $1
+;	ldh [hBGMapMode], a
+	push hl
+	ld a, BATTLE_VARS_STATUS_OPP
+	call GetBattleVarAddr
+
+	; 1-3 turns of sleep, rnd(0-2) + 2 since Pokémon wake up once it ticks to 0.
+	push hl
+	ld a, 3
+	farcall BattleRandomRange
+	add 2
+	pop hl
+	ld [hl], a
+	pop hl
+	ld [hl], 0 ; Reset Yawn timer
+	call UpdateOpponentInParty
+	call UpdateBattleHuds
+	ld hl, FellAsleepText
+	call StdBattleTextbox
+	farjp PostStatus
+
+.ability_ok
+	farcall DisableAnimations
+	farjp ShowEnemyAbilityActivation
+;	call AnimateFailedMove
+;	call PrintDoesntAffect
+;	farjp EnableAnimations
 
 HandleTrickRoom:
 	ld hl, wTrickRoom

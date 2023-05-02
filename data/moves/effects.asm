@@ -900,6 +900,16 @@ Spore:
 	sleep
 	endmove
 
+Yawn:
+	checkobedience
+	usedmovetext
+	doturn
+	hastarget
+	checkhit
+	bounceback
+	yawn
+	endmove
+
 DoFreeze:
 	checkobedience
 	usedmovetext

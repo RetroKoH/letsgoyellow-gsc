@@ -1428,6 +1428,12 @@ MadeAWishText: ; Future sight -> Wish
 	line "made a wish!"
 	prompt
 
+FeelingDrowsyText:
+	text "<TARGET>"
+	line "started to"
+	cont "feel drowsy."
+	prompt
+
 IgnoredOrders2Text:
 	text "<USER>"
 	line "ignored orders!"

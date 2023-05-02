@@ -38,6 +38,7 @@ BattleCommandPointers:
 	command posthiteffects
 	command poisontarget
 	command sleep
+	command yawn
 	command draintarget
 	command eatdream
 	command burntarget

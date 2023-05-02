@@ -642,8 +642,11 @@ wEnemyUsingItem:: db
 
 wPlayerWishCount:: db
 wEnemyWishCount:: db
-wPlayerWishRecovery:: dw ; Unneeded?
-wEnemyWishRecovery:: dw ; Unneeded?
+wPlayerYawnCount:: db
+wEnemyYawnCount:: db
+
+	ds 2
+
 wPlayerTrappingMove:: db
 wEnemyTrappingMove:: db
 wPlayerWrapCount:: db

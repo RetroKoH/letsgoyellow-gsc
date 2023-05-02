@@ -69,6 +69,7 @@ INCLUDE "engine/battle/move_effects/toxic.asm"
 INCLUDE "engine/battle/move_effects/weather.asm"
 INCLUDE "engine/battle/move_effects/weather_ball.asm"
 INCLUDE "engine/battle/move_effects/wish.asm"
+INCLUDE "engine/battle/move_effects/yawn.asm"
 
 
 DoTurn:

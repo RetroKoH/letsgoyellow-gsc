@@ -172,11 +172,11 @@ Moves::
 	move FACADE,       EFFECT_CONDITIONAL_BOOST,  70, NORMAL,    100, 20,   0, PHYSICAL
 	move TAUNT,        EFFECT_TAUNT,               0, DARK,      100, 20,   0, STATUS
 	move HELPING_HAND, EFFECT_HELPING_HAND,        0, NORMAL,    100, 20,   0, STATUS
-	move WISH,         EFFECT_WISH,                0, NORMAL,    100, 10,   0, STATUS ; Add Wish Heal Effect
+	move WISH,         EFFECT_WISH,                0, NORMAL,    100, 10,   0, STATUS
 	move SUPERPOWER,   EFFECT_SUPERPOWER,        120, FIGHTING,  100,  5,   0, PHYSICAL
 	move RECYCLE,      EFFECT_RECYCLE,             0, NORMAL,    100, 10,   0, STATUS
 	move BRICK_BREAK,  EFFECT_BRICK_BREAK,        75, FIGHTING,  100, 15,   0, PHYSICAL
-	move YAWN,         EFFECT_ATTRACT,             0, NORMAL,    100, 15,   0, STATUS
+	move YAWN,         EFFECT_YAWN,                0, NORMAL,    100, 15,   0, STATUS
 	move KNOCK_OFF,    EFFECT_KNOCK_OFF,          65, DARK,      100, 20, 100, PHYSICAL
 	move BLAZE_KICK,   EFFECT_BURN_HIT,           85, FIRE,       90, 10,  10, PHYSICAL
 	move HYPER_VOICE,  EFFECT_NORMAL_HIT,         90, NORMAL,    100, 10,   0, SPECIAL

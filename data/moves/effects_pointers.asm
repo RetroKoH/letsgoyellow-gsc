@@ -32,6 +32,7 @@ MoveEffectsPointers:
 	dw DoBurn
 	dw DoParalyze
 	dw DoSleep
+	dw Yawn
 	dw DoFreeze
 	dw DoConfuse
 	dw Toxic
@@ -116,7 +117,7 @@ MoveEffectsPointers:
 	dw Rollout
 	dw Feint
 	dw ConditionalBoostHit
-	dw Attract
+	dw Attract ; Do we need this code???
 	dw Return
 	dw HelpingHand
 	dw Pursuit

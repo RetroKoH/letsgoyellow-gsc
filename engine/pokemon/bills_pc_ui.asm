@@ -1476,7 +1476,7 @@ ManageBoxes:
 
 .PartyMonMenu:
 	db $40 ; flags
-	db 02, 10 ; start coords
+	db 02, 09 ; start coords
 	db 17, 19 ; end coords
 	dw .PartyMenuData2
 	db 1 ; default option

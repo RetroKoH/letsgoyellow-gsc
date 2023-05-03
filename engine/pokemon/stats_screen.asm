@@ -201,8 +201,9 @@ StatsScreen_JoypadAction:
 
 .a_button
 	ld a, c
-	cp $3
-	jr z, EggStatsJoypad.quit
+	cp $0
+	jr z, StatsScreen_ChangeNickname
+
 .d_right
 	inc c
 	ld a, $3
@@ -226,6 +227,28 @@ StatsScreen_JoypadAction:
 	ld [wStatsScreenFlags], a
 	ld h, 3
 	jr StatsScreen_SetJumptableIndex
+
+StatsScreen_ChangeNickname:
+	xor a ; PARTYMON
+	ld [wMonType], a
+	ld a, [wCurPartySpecies]
+	ld [wNamedObjectIndex], a
+	ld [wCurSpecies], a
+	call GetBaseData
+	ld b, $0 ; pokemon
+	ld de, wStringBuffer2
+	farcall NamingScreen
+; Copy the new name from wStringBuffer2
+	ld hl, wPartyMonNicknames
+	ld bc, MON_NAME_LENGTH
+	ld a, [wCurPartyMon]
+	rst AddNTimes
+	ld e, l
+	ld d, h
+	ld hl, wStringBuffer2
+	ld bc, MON_NAME_LENGTH
+	rst CopyBytes
+	ret
 
 StatsScreen_InitUpperHalf:
 	call .PlaceHPBar
@@ -374,7 +397,7 @@ StatsScreen_LoadGFX:
 .ClearBox:
 	ld a, [wStatsScreenFlags]
 	and $3
-	ld c, a
+	ld c, a									; c = current page
 	call StatsScreen_LoadPageIndicators
 	call StatsScreen_PlaceHorizontalDivider
 	hlcoord 0, 8
@@ -420,40 +443,55 @@ StatsScreen_LoadGFX:
 	dw .GreenPage
 	dw .BluePage
 	dw .OrangePage
+;	dw YellowPage	; Add for Field Techniques
 
+; FIX this to always show status, even with Pokerus
 .PinkPage:
-	ld de, .Status_Type
-	hlcoord 0, 9
-	rst PlaceString
+	ld de, .Status
+	hlcoord 0, 8
+	rst PlaceString					; Place "STATUS/" in 8th row, first space
 	ld a, [wTempMonPokerusStatus]
 	ld b, a
-	and $f
-	jr nz, .HasPokerus
+	and $f							; does this mon have Pokerus?
+	jr nz, .HasPokerus				; if yes, branch to draw Pokerus text
 	ld a, b
-	and $f0
-	jr z, .NotImmuneToPkrs
+	and $f0							; if not, has it been cured of Pokerus? 
+	jr z, .NotImmuneToPkrs			; if not, skip ahead
 	hlcoord 8, 8
-	ld [hl], "."
+	ld [hl], "p"					; "p" signifies cured Pokerus
 .NotImmuneToPkrs:
-	hlcoord 5, 10
+	hlcoord 0, 9
 	push hl
 	ld de, wTempMonStatus
-	farcall PlaceStatusString
+	farcall PlaceStatusString		; Place status string in 9th row, first space
 	pop hl
 	jr nz, .done_status
 	jr .StatusOK
 .HasPokerus:
-	ld de, .PkrsStr
-	hlcoord 1, 10
-	rst PlaceString
+	hlcoord 8, 8
+	ld [hl], "P"					; "P" signifies active Pokerus
 	jr .done_status
 .StatusOK:
 	ld de, .OK_str
-	rst PlaceString
+	rst PlaceString					; Place " OK" in 9th row, first space
+
 .done_status
+	ld de, .Type					; Place "TYPES/" for pure types
+	ld a, [wBaseType1]
+	ld b, a
+	ld a, [wBaseType2]
+	cp b
+	jr z, .skip
+	ld de, .Types					; Place "TYPES/" for dual types
+
+.skip
+	hlcoord 0, 11
+	rst PlaceString					; Place "TYPE(s)/" in 11th row, first space
+
 	hlcoord 1, 12
-	farcall PrintMonTypes
-	call .PlaceOTInfo
+	farcall PrintMonTypes			; Place type(s) in 12th row, second space
+	call .PlaceOTInfo				; Place Trainer/Rental info below
+
 	hlcoord 9, 8
 	ld de, SCREEN_WIDTH
 	ld b, 10
@@ -462,37 +500,41 @@ StatsScreen_LoadGFX:
 	ld [hl], a
 	add hl, de
 	dec b
-	jr nz, .vertical_divider
-	ld de, .ExpPointStr
-	hlcoord 10, 9
+	jr nz, .vertical_divider		; Loop and Place divider 
+
+	ld de, .Chg_Nickname
+	hlcoord 10, 8
 	rst PlaceString
-	hlcoord 17, 14
-	call .PrintNextLevel
-	hlcoord 13, 10
+	ld de, .ExpPointStr
+	hlcoord 10, 11
+	rst PlaceString					; Place "EXP. Points" in 11th row, 11th space
+	hlcoord 17, 16
+	call .PrintNextLevel			; Place "to Lv. x" in 16th row, at the end
+	hlcoord 13, 12
 	lb bc, 3, 7
 	ld de, wTempMonExp
-	call PrintNum
+	call PrintNum					; Place exp number in the 12th row, (right-aligned)
 	call .CalcExpToNextLevel
-	hlcoord 13, 13
+	hlcoord 13, 15
 	lb bc, 3, 7
 	ld de, wBuffer1
-	call PrintNum
+	call PrintNum					; Place exp number in the 15th row, (right-aligned)
 	ld de, .LevelUpStr
-	hlcoord 10, 12
-	rst PlaceString
+	hlcoord 10, 14
+	rst PlaceString					; Place "Level Up" in 14th row, 11th space
 	ld de, .ToStr
-	hlcoord 14, 14
-	rst PlaceString
-	hlcoord 12, 16
+	hlcoord 14, 16
+	rst PlaceString					; Place "To" in 16th row, 11th space
+	hlcoord 12, 17
 	ld a, [wTempMonLevel]
 	ld b, a
 	ld de, wTempMonExp + 2
-	farcall FillInExpBar
-	hlcoord 10, 16
+	farcall FillInExpBar			; Place Exp bar in 17th row. from 12-19 (Header at 10)
+	hlcoord 10, 17
 	ld a, "<XP1>"
 	ld [hli], a
 	ld [hl], "<XP2>"
-	hlcoord 19, 16
+	hlcoord 19, 17
 	ld [hl], "<XPEND>"
 	ret
 
@@ -540,24 +582,24 @@ StatsScreen_LoadGFX:
 
 .PlaceOTInfo:
 	; for rental mons, replace the whole thing with "Rental #mon"
-	farcall BT_InRentalMode
-	jr nz, .not_rental_mon
-	hlcoord 0, 15
+	farcall BT_InRentalMode		; is this a rental Pokemon?
+	jr nz, .not_rental_mon		; if not, branch to printing OT info
+	hlcoord 0, 16
 	ld de, .Rental_OT
-	rst PlaceString
+	rst PlaceString				; Place rental text in the last two rows
 	ret
 
 .not_rental_mon
 	ld de, .OT_ID_str
-	hlcoord 0, 14
+	hlcoord 0, 15
 	rst PlaceString
-	hlcoord 3, 16
+	hlcoord 3, 17
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	ld de, wTempMonID
 	call PrintNum
 	ld hl, wTempMonOT
 	call CopyNickname
-	hlcoord 1, 15
+	hlcoord 1, 16
 	rst PlaceString
 	ld a, [wTempMonCaughtGender]
 	and FEMALE
@@ -566,13 +608,18 @@ StatsScreen_LoadGFX:
 	assert "♀" - 1 == "♂"
 	dec a
 .got_gender
-	hlcoord 8, 15
+	hlcoord 8, 16
 	ld [hl], a
 	ret
 
-.Status_Type:
-	db   "Status/"
-	next "Type/@"
+.Status:
+	db "Status/@"
+
+.Type:
+	db "Type/@"
+
+.Types
+	db "Types/@"
 
 .OK_str:
 	db " OK@"
@@ -585,6 +632,10 @@ StatsScreen_LoadGFX:
 	db "Rental"
 	next1 "#mon@"
 
+.Chg_Nickname:
+	db "A: Change"
+	next1 " Nickname@"
+
 .ExpPointStr:
 	db "Exp.Points@"
 
@@ -593,9 +644,6 @@ StatsScreen_LoadGFX:
 
 .ToStr:
 	db "to@"
-
-.PkrsStr:
-	db "#rus@"
 
 .GreenPage:
 	ld de, .Item
@@ -1076,41 +1124,37 @@ StatsScreen_AnimateEgg:
 
 StatsScreen_LoadPageIndicators:
 	; Write the smaller squares for page display.
-	hlcoord 11, 5
-	ld a, $7f
-	ld b, 8
-.loop
-	ld [hli], a
-	dec b
-	jr nz, .loop
-
 	hlcoord 11, 6
-	ld a, $38
-	ld b, 4
-.loop2
-	ld [hli], a
-	inc a
-	ld [hli], a
-	dec a
-	dec b
-	jr nz, .loop2
-
-	; Write the bigger (selected) square for selected page.
-	; c contains current page (0-3)
-	sla c
-	hlcoord 11, 5
-	add hl, bc
-	ld a, $3a
-	ld [hli], a
-	inc a
-	ld [hld], a
-	ld bc, SCREEN_WIDTH
-	add hl, bc
-	inc a
-	ld [hli], a
-	inc a
-	ld [hl], a
+	ld de, StatScreenString0
+	ld a, c
+	cp 0
+	jr z, .write
+	ld de, StatScreenString1
+	cp 1
+	jr z, .write
+	ld de, StatScreenString2
+	cp 2
+	jr z, .write
+	ld de, StatScreenString3
+; fallthrough
+.write
+	rst PlaceString
 	ret
+
+StatScreenString0:
+	db   " Basic @" ; Hmm....
+
+StatScreenString1:
+	db   " Moves @"
+
+StatScreenString2:
+	db   " Stats @"
+
+StatScreenString3:
+	db   " Trait @" ; TERRIBLE NAME
+
+StatScreenString4:
+	db   " Field @"
 
 CopyNickname:
 	ld de, wStringBuffer1

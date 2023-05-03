@@ -1068,6 +1068,14 @@ Growth:
 	growth
 	endmove
 
+WorkUp:
+	checkobedience
+	usedmovetext
+	doturn
+	forceraisestat ATTACK
+	forceraisestat SP_ATTACK
+	endmove
+
 DragonDance:
 	checkobedience
 	usedmovetext

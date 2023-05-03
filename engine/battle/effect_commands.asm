@@ -2362,14 +2362,14 @@ StatUpDownAnim:
 	xor a
 	ld [wNumHits], a
 
-; Withdraw and Harden were merged, so use the correct
-; animation for the Pokémon that learned each one
+; Withdraw and Harden were merged with Defense Curl,
+; so use the correct animation for the Pokémon that learned each one
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld e, a
 	ld d, 0
-	cp HARDEN
-	jr nz, .not_harden
+	cp DEFENSE_CURL
+	jr nz, .not_defensecurl
 	ldh a, [hBattleTurn]
 	and a
 	ld a, [wBattleMonSpecies]
@@ -2377,12 +2377,19 @@ StatUpDownAnim:
 	ld a, [wEnemyMonSpecies]
 .got_user_species
 	ld hl, WithdrawUsers
+	push af
 	call IsInByteArray
+	pop af
 	jr nc, .not_withdraw
 	ld a, $1
 	jr .got_kick_counter
 .not_withdraw
-.not_harden
+	ld hl, HardenUsers
+	call IsInByteArray
+	jr nc, .not_defensecurl
+	ld a, $2
+	jr .got_kick_counter
+.not_defensecurl
 	xor a
 .got_kick_counter
 	ld [wKickCounter], a

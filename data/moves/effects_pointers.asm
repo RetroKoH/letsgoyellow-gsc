@@ -54,6 +54,7 @@ MoveEffectsPointers:
 	dw BulkUp
 	dw CalmMind
 	dw Growth
+	dw WorkUp
 	dw DragonDance
 	dw QuiverDance
 	dw DefenseCurl

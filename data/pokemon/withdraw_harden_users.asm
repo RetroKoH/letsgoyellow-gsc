@@ -1,7 +1,7 @@
-; Pokemon that have HARDEN, but want to use WITHDRAW
+; Pokemon that have DEFENSE_CURL, but want to use WITHDRAW or HARDEN
 
 WithdrawUsers:
-; Harden += Withdraw
+; Defense Curl += Withdraw
 	db SQUIRTLE
 	db WARTORTLE
 	db BLASTOISE
@@ -11,4 +11,23 @@ WithdrawUsers:
 	db OMANYTE
 	db OMASTAR
 	db SHUCKLE
+	db -1
+
+HardenUsers:
+; Defense Curl += Harden
+	db METAPOD
+	db BUTTERFREE
+	db KAKUNA
+	db BEEDRILL
+	db GRIMER
+	db MUK
+	db ONIX
+	db STEELIX
+	db KRABBY
+	db KINGLER
+	db STARYU
+	db STARMIE
+	db KABUTO
+	db KABUTOPS
+	; ... add GSC mons
 	db -1

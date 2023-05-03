@@ -334,7 +334,7 @@ BlastoiseLearnset:
 	db 1, STRIKE ; TACKLE
 	db 4, LEER ; Tail Whip → similar move
 	db 7, WATER_GUN
-	db 10, HARDEN ; DEFENSE_CURL/WITHDRAW
+	db 10, DEFENSE_CURL ; DEFENSE_CURL/WITHDRAW
 	db 14, RAPID_SPIN
 	db 20, BUBBLE_BEAM
 	db 26, BITE
@@ -354,7 +354,7 @@ CaterpieLearnset:
 
 MetapodLearnset:
 KakunaLearnset:
-	db 1, HARDEN
+	db 1, DEFENSE_CURL
 	db 0 ; no more level-up moves
 
 ButterfreeLearnset:
@@ -1028,7 +1028,7 @@ MukAlolanLearnset:
 	db 1, MOONBLAST ; Let's Go move
 	db 1, STRIKE ; POUND
 	db 1, ACID ; Poison Gas → new move
-	db 4, HARDEN
+	db 4, DEFENSE_CURL
 	db 7, BITE
 	db 12, DISABLE
 	db 15, VENOSHOCK ; Acid Spray → tutor move
@@ -1048,7 +1048,7 @@ CloysterLearnset:
 	db 1, SHELL_SMASH
 	db 1, FURY_STRIKES ; Spike Cannon → similar move
 	db 1, TRI_ATTACK ; RBY TM move
-	db 1, HARDEN ; WITHDRAW
+	db 1, DEFENSE_CURL ; WITHDRAW
 	db 1, SUPERSONIC
 	db 1, PROTECT
 	db 1, AURORA_BEAM
@@ -1075,7 +1075,7 @@ GengarLearnset:
 OnixLearnset:
 SteelixLearnset:
 	db 1, STRIKE ; TACKLE
-	db 1, HARDEN
+	db 1, DEFENSE_CURL
 	db 1, WRAP ; Bind → similar move
 	db 7, ROCK_THROW
 	db 10, FURY_CUTTER
@@ -1118,7 +1118,7 @@ KinglerLearnset:
 	db 1, AQUA_JET ; Bubble → new move
 	db 5, STRIKE ; SCRATCH ; Vice Grip → new move
 	db 9, LEER
-	db 11, HARDEN
+	db 11, DEFENSE_CURL
 	db 15, BUBBLE_BEAM
 	db 19, DIG ; Mud Shot → egg move
 	db 21, METAL_CLAW
@@ -1458,7 +1458,7 @@ MagmortarLearnset:
 
 PinsirLearnset:
 	db 1, WRAP ; Bind → similar move
-	db 1, HARDEN
+	db 1, DEFENSE_CURL
 	db 8, SEISMIC_TOSS
 	db 14, FURY_STRIKES ; Vice Grip
 	db 20, BUG_BITE
@@ -1583,7 +1583,7 @@ OmanyteLearnset:
 OmastarLearnset:
 	db 1, CRUNCH ; evolution move
 	db 1, WRAP
-	db 1, HARDEN ; DEFENSE_CURL
+	db 1, DEFENSE_CURL ; DEFENSE_CURL
 	db 6, ROLLOUT
 	db 12, LEER
 	db 18, WATER_GUN
@@ -1600,7 +1600,7 @@ KabutoLearnset:
 KabutopsLearnset:
 	db 1, SLASH ; evolution move
 	db 1, STRIKE ; SCRATCH
-	db 1, HARDEN ; DEFENSE_CURL
+	db 1, DEFENSE_CURL ; DEFENSE_CURL
 	db 6, FURY_STRIKES
 	db 12, LEER
 	db 18, ABSORB
@@ -1964,7 +1964,7 @@ GligarLearnset:
 GliscorLearnset:
 	db 1, POISON_STING
 	db 4, SAND_ATTACK
-	db 8, HARDEN
+	db 8, DEFENSE_CURL
 	db 12, KNOCK_OFF
 	db 16, QUICK_ATTACK
 	db 20, FURY_CUTTER
@@ -2066,7 +2066,7 @@ MagcargoLearnset:
 	db 1, POISON_GAS
 	db 4, EMBER
 	db 8, ROCK_THROW
-	db 12, HARDEN
+	db 12, DEFENSE_CURL
 	db 16, SMOKESCREEN ; Clear Smog → egg move
 	db 20, ANCIENTPOWER
 	db 24, ROCK_SLIDE

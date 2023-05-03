@@ -247,7 +247,7 @@ Moves::
 	move VOLT_SWITCH,  EFFECT_SWITCH_HIT,         70, ELECTRIC,  100, 20,   0, SPECIAL
 	move BULLDOZE,     EFFECT_SPEED_DOWN_HIT,     60, GROUND,    100, 20, 100, PHYSICAL
 	move DRAGON_TAIL,  EFFECT_DRAGON_TAIL,        60, DRAGON,     90, 10,   0, PHYSICAL ; Fix Force Switch effect
-	move HARDEN,       EFFECT_DEFENSE_UP,          0, NORMAL,    100, 30,   0, STATUS ; Combine with Defense Curl
+	move WORK_UP,      EFFECT_WORK_UP,             0, NORMAL,    100, 30,   0, STATUS
 	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, ELECTRIC,  100, 15,   0, PHYSICAL
 	move DRILL_RUN,    EFFECT_NORMAL_HIT,         80, GROUND,     95, 10,   0, PHYSICAL
 	move HURRICANE,    EFFECT_CONFUSE_HIT,       110, FLYING,     70, 10,  30, SPECIAL

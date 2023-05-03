@@ -241,7 +241,7 @@
 	const VOLT_SWITCH  ; $e9
 	const BULLDOZE     ; $ea
 	const DRAGON_TAIL  ; $eb
-	const HARDEN       ; $ec - Replace with WORK_UP (Amalgamated move
+	const WORK_UP      ; $ec
 	const WILD_CHARGE  ; $ed
 	const DRILL_RUN    ; $ee
 	const HURRICANE    ; $ef

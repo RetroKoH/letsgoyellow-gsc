@@ -820,14 +820,14 @@ HandleYawn:
 	ret
 
 .do_yawn
-;	ld c, 30
-;	call DelayFrames
-;	xor a
-;	ld [wNumHits], a
-;	ld de, ANIM_SLP
-;	call PlayOpponentBattleAnim
-;	ld a, $1
-;	ldh [hBGMapMode], a
+	ld c, 30
+	call DelayFrames
+	xor a
+	ld [wNumHits], a
+	ld de, ANIM_SLP
+	farcall PlayOpponentBattleAnim
+	ld a, $1
+	ldh [hBGMapMode], a
 	push hl
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr

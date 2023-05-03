@@ -203,6 +203,7 @@ StatsScreen_JoypadAction:
 	ld a, c
 	cp $0
 	jr z, StatsScreen_ChangeNickname
+	ret
 
 .d_right
 	inc c
@@ -238,6 +239,11 @@ StatsScreen_ChangeNickname:
 	ld b, $0 ; pokemon
 	ld de, wStringBuffer2
 	farcall NamingScreen
+
+; If the new name is empty, treat it as unchanged.
+	farcall IsNewNameEmpty
+	jr c, .exit
+
 ; Copy the new name from wStringBuffer2
 	ld hl, wPartyMonNicknames
 	ld bc, MON_NAME_LENGTH
@@ -248,6 +254,7 @@ StatsScreen_ChangeNickname:
 	ld hl, wStringBuffer2
 	ld bc, MON_NAME_LENGTH
 	rst CopyBytes
+.exit
 	ret
 
 StatsScreen_InitUpperHalf:

@@ -4,7 +4,7 @@
 PoundUsers:
 ; Strike += Pound
 	db CLEFFA
-	db CLEAFIRY
+	db CLEFAIRY
 	db CLEFABLE
 	db IGGLYBUFF
 	db JIGGLYPUFF
@@ -62,3 +62,5 @@ ScratchUsers:
 	db TEDDIURSA
 	db URSARING
 	db -1
+
+; Strike += Tackle (Default)

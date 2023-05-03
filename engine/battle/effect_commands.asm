@@ -5,6 +5,7 @@ INCLUDE "data/moves/critical_hit_moves.asm"
 INCLUDE "data/moves/flail_power.asm"
 INCLUDE "data/pokemon/fury_attack_users.asm"
 INCLUDE "data/pokemon/withdraw_harden_users.asm"
+INCLUDE "data/pokemon/pound_scratch_users.asm"
 INCLUDE "data/types/inverse_type_matchups.asm"
 INCLUDE "data/types/type_matchups.asm"
 

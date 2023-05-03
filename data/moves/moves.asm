@@ -12,7 +12,7 @@ ENDM
 Moves::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	table_width MOVE_LENGTH, Moves
-	move STRIKE,       EFFECT_NORMAL_HIT,         40, NORMAL,    100, 35,   0, PHYSICAL ; POUND, SCRATCH, TACKLE
+	move STRIKE,       EFFECT_NORMAL_HIT,         40, NORMAL,    100, 35,   0, PHYSICAL ; POUND, SCRATCH, TACKLE - Animation depends on user
 	move PAY_DAY,      EFFECT_PAY_DAY,            40, NORMAL,    100, 20,   0, PHYSICAL
 	move FIRE_PUNCH,   EFFECT_BURN_HIT,           75, FIRE,      100, 15,  10, PHYSICAL
 	move ICE_PUNCH,    EFFECT_FREEZE_HIT,         75, ICE,       100, 15,  10, PHYSICAL

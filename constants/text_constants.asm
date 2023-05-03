@@ -17,6 +17,7 @@ TRAINER_CLASS_NAME_LENGTH EQU 13
 	const ENEMY_OT_NAME ; 6
 	const TRAINER_NAME  ; 7
 	const KEY_ITEM_NAME ; 8
+	const CLONE_MOVE_NAME ; 9
 
 ; see home/text.asm
 BORDER_WIDTH   EQU 2

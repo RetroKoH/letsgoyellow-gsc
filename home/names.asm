@@ -1,12 +1,13 @@
 NamesPointers::
-	dba PokemonNames
-	dba MoveNames
-	dba ApricornNames
-	dba ItemNames
-	dbw 0, wPartyMonOTs
-	dbw 0, wOTPartyMonOTs
-	dba TrainerClassNames
-	dba KeyItemNames
+	dba PokemonNames		; MON_NAME
+	dba MoveNames			; MOVE_NAME
+	dba ApricornNames		; APRICORN_NAME
+	dba ItemNames			; ITEM_NAME
+	dbw 0, wPartyMonOTs		; PARTY_OT_NAME
+	dbw 0, wOTPartyMonOTs	; ENEMY_OT_NAME
+	dba TrainerClassNames	; TRAINER_NAME
+	dba KeyItemNames		; KEY_ITEM_NAME
+	dba CloneMoveNames		; CLONE_MOVE_NAME
 
 GetName::
 ; Return name wCurSpecies from name list wNamedObjectTypeBuffer in wStringBuffer1.
@@ -178,6 +179,7 @@ GetTMHMName::
 	homecall _GetTMHMName
 	ret
 
+; Used in the Battle Window (Not in anything that lists off moves)
 GetMoveName::
 	push hl
 
@@ -187,8 +189,52 @@ GetMoveName::
 	ld a, [wNamedObjectIndex] ; move id
 	ld [wCurSpecies], a
 
+	cp STRIKE
+	jr nz, .notStrike
+	jr GetStrikeName
+
+.notStrike
 	call GetName
 	ld de, wStringBuffer1
 
+.end
+	pop hl
+	ret
+
+; Needs to be worked on a bit.
+GetStrikeName::
+	ld a, CLONE_MOVE_NAME
+	ld [wNamedObjectTypeBuffer], a
+
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [wBattleMonSpecies]
+	jr z, .got_user_species
+	ld a, [wEnemyMonSpecies]
+
+.got_user_species
+	ld hl, PoundUsers
+	push af
+	call IsInByteArray
+	pop af
+	jr nc, .not_pound
+	ld a, $0
+	jr .got_user
+
+.not_pound
+	ld hl, ScratchUsers
+	call IsInByteArray
+	jr nc, .not_scratch
+	ld a, $1
+	jr .got_user
+
+.not_scratch
+	ld a, $2
+.got_user
+	ld [wCurSpecies], a
+	call GetName
+	ld de, wStringBuffer1
+
+.end
 	pop hl
 	ret

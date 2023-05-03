@@ -257,3 +257,9 @@ MoveNames::
 	li "Rage Fist"
 	li "Struggle"
 	assert_list_length NUM_ATTACKS + 1
+
+CloneMoveNames::
+	list_start CloneMoveNames
+	li "Pound"
+	li "Scratch"
+	li "Tackle"

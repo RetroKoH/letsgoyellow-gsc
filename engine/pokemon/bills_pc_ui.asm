@@ -19,7 +19,6 @@ NUM_PC_MODES EQU const_value
 	const BOXMENU_DEPOSIT
 	const BOXMENU_STATS
 	const BOXMENU_SWITCH
-	const BOXMENU_MOVES
 	const BOXMENU_ITEM
 	const BOXMENU_TRANSFER
 	const BOXMENU_RENAME
@@ -1462,7 +1461,7 @@ ManageBoxes:
 
 .StorageMonMenu:
 	db $40 ; flags
-	db 02, 09 ; start coords
+	db 04, 09 ; start coords
 	db 17, 19 ; end coords
 	dw .StorageMenuData2
 	db 1 ; default option
@@ -1476,7 +1475,7 @@ ManageBoxes:
 
 .PartyMonMenu:
 	db $40 ; flags
-	db 02, 09 ; start coords
+	db 04, 09 ; start coords
 	db 17, 19 ; end coords
 	dw .PartyMenuData2
 	db 1 ; default option
@@ -1503,22 +1502,20 @@ ManageBoxes:
 	dw BillsPC_MenuStrings
 
 .storageitems
-	db 7
+	db 6
 	db BOXMENU_WITHDRAW
 	db BOXMENU_STATS
 	db BOXMENU_SWITCH
-	db BOXMENU_MOVES
 	db BOXMENU_ITEM
 	db BOXMENU_TRANSFER
 	db BOXMENU_CANCEL
 	db -1
 
 .partyitems
-	db 7
+	db 6
 	db BOXMENU_DEPOSIT
 	db BOXMENU_STATS
 	db BOXMENU_SWITCH
-	db BOXMENU_MOVES
 	db BOXMENU_ITEM
 	db BOXMENU_TRANSFER
 	db BOXMENU_CANCEL
@@ -1539,7 +1536,6 @@ BillsPC_MenuStrings:
 	db "Deposit@"
 	db "Stats@"
 	db "Switch@"
-	db "Moves@"
 	db "Item@"
 	db "Transfer@"
 	; box options
@@ -1561,7 +1557,6 @@ BillsPC_MenuJumptable:
 	dw BillsPC_Deposit
 	dw BillsPC_Stats
 	dw BillsPC_Switch
-	dw BillsPC_Moves
 	dw BillsPC_Item
 	dw BillsPC_Transfer
 	dw BillsPC_Rename
@@ -2125,20 +2120,6 @@ BillsPC_PrepareTransistion:
 	res LCD_STAT, [hl]
 
 	jmp ClearSprites
-
-BillsPC_Moves:
-	ld a, [wTempMonIsEgg]
-	bit MON_IS_EGG_F, a
-	ld hl, .CantCheckEggMoves
-	jmp nz, BillsPC_PrintText
-	call BillsPC_PrepareTransistion
-	farcall _ManagePokemonMoves
-	jr BillsPC_ReturnFromTransistion
-
-.CantCheckEggMoves:
-	text "You can't check"
-	line "an Egg's moves!"
-	prompt
 
 BillsPC_GetStorageSpace:
 ; Forces game save until we have at least a free pokedb entries left.

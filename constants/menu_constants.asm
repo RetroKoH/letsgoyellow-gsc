@@ -55,9 +55,8 @@
 	const MONMENUITEM_SWITCH     ; 11
 	const MONMENUITEM_ITEM       ; 12
 	const MONMENUITEM_CANCEL     ; 13
-	const MONMENUITEM_MOVE       ; 14
-	const MONMENUITEM_MAIL       ; 15
-	const MONMENUITEM_ERROR      ; 16
+	const MONMENUITEM_MAIL       ; 14
+	const MONMENUITEM_ERROR      ; 15
 NUM_MONMENUITEMS EQU const_value - 1
 
 ; MonMenuOptions categories

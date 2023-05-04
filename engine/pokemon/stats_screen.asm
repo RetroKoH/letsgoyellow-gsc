@@ -204,6 +204,9 @@ StatsScreen_JoypadAction:
 	ld a, c
 	cp $0
 	jr z, StatsScreen_ChangeNickname
+	cp $1
+	jr z, StatsScreen_EditMoveset
+	; 2: Toggle EVs
 	cp $3
 	jr z, StatsScreen_ToggleAbility
 	ret
@@ -259,6 +262,14 @@ StatsScreen_ChangeNickname:
 	rst CopyBytes
 .exit
 	ret
+
+StatsScreen_EditMoveset:
+	farcall _ManagePokemonMoves
+	call ClearPalettes
+	call ClearSprites
+	call ClearSpriteAnims
+	ld h, 0
+	jmp StatsScreen_SetJumptableIndex
 
 StatsScreen_ToggleAbility:
 	ld a, [wStatsScreenToggle]
@@ -1155,7 +1166,7 @@ StatsScreen_AnimateEgg:
 	ret
 
 StatsScreen_LoadPageIndicators:
-	; Write the smaller squares for page display.
+	; Write text for page display.
 	hlcoord 11, 6
 	ld de, StatScreenString0
 	ld a, c

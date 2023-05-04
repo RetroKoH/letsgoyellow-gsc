@@ -121,7 +121,7 @@ GetMonSubmenuItems:
 	jr nz, .egg                ; if this mon is an egg, branch and skip
 	ld a, [wLinkMode]
 	and a
-	jr nz, .skip_moves         ; if we are in link mode, skip field moves
+	jr nz, .skip_field         ; if we are in link mode, skip field moves
 
 ; GET MENU ITEMS BASED ON THE HARDCODED DATA
 	ld a, MON_SPECIES
@@ -141,12 +141,12 @@ GetMonSubmenuItems:
 .loop
 	ld a, [de]		    ; field technique ID
 	and a               ; is a == 0? (End of tech list)
-	jr z, .skip_moves   ; if yes, branch and skip ahead
+	jr z, .skip_field   ; if yes, branch and skip ahead
 	call AddMonMenuItem ; if a field move is detected, add the item to the menu
 	inc de
 	jr .loop
 
-.skip_moves
+.skip_field
 	ld a, MONMENUITEM_STATS
 	call AddMonMenuItem
 	ld a, MONMENUITEM_SWITCH

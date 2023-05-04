@@ -2,8 +2,9 @@ StatsScreenInit:
 	ldh a, [hMapAnims]
 	push af
 	xor a
-	ldh [hMapAnims], a ; disable overworld tile animations
-	ld a, [wBoxAlignment] ; whether sprite is to be mirrorred
+	ld [wStatsScreenToggle], a		; reset menu toggling
+	ldh [hMapAnims], a				; disable overworld tile animations
+	ld a, [wBoxAlignment]			; whether sprite is to be mirrorred
 	push af
 	ld a, [wJumptableIndex]
 	ld b, a
@@ -203,6 +204,8 @@ StatsScreen_JoypadAction:
 	ld a, c
 	cp $0
 	jr z, StatsScreen_ChangeNickname
+	cp $3
+	jr z, StatsScreen_ToggleAbility
 	ret
 
 .d_right
@@ -227,7 +230,7 @@ StatsScreen_JoypadAction:
 	or c
 	ld [wStatsScreenFlags], a
 	ld h, 3
-	jr StatsScreen_SetJumptableIndex
+	jmp StatsScreen_SetJumptableIndex
 
 StatsScreen_ChangeNickname:
 	xor a ; PARTYMON
@@ -256,6 +259,22 @@ StatsScreen_ChangeNickname:
 	rst CopyBytes
 .exit
 	ret
+
+StatsScreen_ToggleAbility:
+	ld a, [wStatsScreenToggle]
+	and a
+	jr z, .set_field
+	ld a, 0
+	jr .finish
+.set_field
+	ld a, 1
+
+.finish
+	ld [wStatsScreenToggle], a
+	call StatsScreen_LoadGFX.ClearBox
+	call StatsScreen_LoadGFX.LoadPokeBall
+	call StatsScreen_LoadGFX.PageTilemap
+	jmp StatsScreen_LoadGFX.LoadPals
 
 StatsScreen_InitUpperHalf:
 	call .PlaceHPBar
@@ -781,7 +800,13 @@ StatsScreen_LoadGFX:
 	push bc
 	farcall PrintAbility
 	pop bc
+; Print either the battle effect or the field effect
+	ld a, [wStatsScreenToggle]
+	and a
+	jr nz, .fieldAbility
 	farjp PrintAbilityDescription
+.fieldAbility
+	farjp PrintAbilityDescription2
 
 .AbilityString:
 	db "Ability/@"

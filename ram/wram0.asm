@@ -662,7 +662,7 @@ wBattleEnded:: db
 
 wAmuletCoin:: db
 
-	ds 1
+;	ds 1
 
 wDVAndPersonalityBuffer:: ds 5
 wBattleEnd::
@@ -1082,6 +1082,7 @@ wBattleTransitionSpinQuadrant:: db
 
 NEXTU
 ; stats screen
+wStatsScreenToggle:: db
 wStatsScreenFlags:: db
 
 NEXTU

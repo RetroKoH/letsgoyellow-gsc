@@ -69,7 +69,7 @@ FindNest:
 .FindGrass:
 	ld a, [hl]
 	cp -1
-	ret z
+	ret z		; if the first byte is $FF, there are no mons. stop here
 	push hl
 
 	; assume that navel rock is the first off-screen map, and end the search early
@@ -85,14 +85,14 @@ FindNest:
 
 	ld a, [hli]
 .not_navel_rock_group
-	ld b, a
+	ld b, a					; map group stored in b
 	ld a, [hli]
 .not_navel_rock_map
-	ld c, a
+	ld c, a					; map ID stored in c
 	inc hl
 	inc hl
-	inc hl
-	ld a, NUM_GRASSMON * 3
+	inc hl					; skip past probabilities
+	ld a, NUM_GRASSMON * 3	; a = 7 Grass mons * 3 bytes each (level, species, form) = 21
 	call .SearchMapForMon
 	jr nc, .next_grass
 	ld [de], a
@@ -127,7 +127,7 @@ FindNest:
 	jr .FindWater
 
 .SearchMapForMon:
-	inc hl
+	inc hl						; skip past mon level
 .ScanMapLoop:
 	push af
 	ld a, [wNamedObjectIndex]
@@ -1238,23 +1238,16 @@ GetTimeOfDayNotEve:
 	inc a ; NITE
 	ret
 
-JohtoGrassWildMons:
-INCLUDE "data/wild/johto_grass.asm"
-
-JohtoWaterWildMons:
-INCLUDE "data/wild/johto_water.asm"
 
 KantoGrassWildMons:
+JohtoGrassWildMons:
+OrangeGrassWildMons:
 INCLUDE "data/wild/kanto_grass.asm"
 
 KantoWaterWildMons:
-INCLUDE "data/wild/kanto_water.asm"
-
-OrangeGrassWildMons:
-INCLUDE "data/wild/orange_grass.asm"
-
+JohtoWaterWildMons:
 OrangeWaterWildMons:
-INCLUDE "data/wild/orange_water.asm"
+INCLUDE "data/wild/kanto_water.asm"
 
 SwarmGrassWildMons:
 INCLUDE "data/wild/swarm_grass.asm"

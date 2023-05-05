@@ -1,4 +1,6 @@
 ; Kanto Pokémon in grass
+; KantoGrassWildMons:
+
 	def_grass_wildmons ROUTE_1
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn

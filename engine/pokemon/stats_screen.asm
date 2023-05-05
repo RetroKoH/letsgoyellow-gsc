@@ -798,7 +798,12 @@ StatsScreen_LoadGFX:
 
 	hlcoord 11, 8
 	ld bc, 6
-	farjp PrintTempMonEVs
+	farcall PrintTempMonEVs
+
+	hlcoord 0, 9
+	bccoord 1, 1, 0
+	add hl, bc
+	farjp PrintTotalEVs
 
 .HealthString:
 	db "Health@"

@@ -121,6 +121,67 @@ endr
 	add hl, de
 	ret
 
+PrintTotalEVs:
+	xor a
+	ld [wBuffer1], a ; D1F0
+	ld [wBuffer2], a ; D1F1
+
+	push hl
+	ld hl, wBuffer2
+
+	ld de, wTempMonHPEV
+	ld a, [de]
+	adc [hl]
+	ld [hl], a
+	inc de			; wTempMonAtkEV
+	ld a, [de]
+	adc [hl]
+	ld [hl], a
+	inc de			; wTempMonDefEV
+	ld a, [de]
+	adc [hl]
+	ld [hl], a
+	inc de			; wTempMonSpdEV
+	ld a, [de]
+	adc [hl]
+	ld [hl], a
+	inc de			; wTempMonSatEV
+	ld a, [de]
+	adc [hl]
+	ld [hl], a
+	inc de			; wTempMonSpdEV
+	ld a, [de]
+	adc [hl]
+	ld [hl], a
+
+	pop hl
+
+	ld de, wBuffer1
+	lb bc, 2, 3
+	call PrintNum
+
+	ld a, "/"
+	ld [hli], a
+
+; Print Max EVs
+	ld a, $01
+	ld [wBuffer3], a
+	ld a, $FE
+	ld [wBuffer4], a
+	ld de, wBuffer3 ; 510
+	lb bc, 2, 3
+	jmp PrintNum
+
+; Print Max EVs
+	ld a, $01
+	ld [wBuffer3], a
+	ld a, $FE
+	ld [wBuffer4], a
+	ld de, wBuffer3 ; 510
+	lb bc, 2, 3
+	jmp PrintNum
+
+
 PrintTempMonStats:
 ; Print wTempMon's stats at hl, with spacing bc.
 	push bc

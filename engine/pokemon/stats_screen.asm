@@ -206,7 +206,8 @@ StatsScreen_JoypadAction:
 	jr z, StatsScreen_ChangeNickname
 	cp $1
 	jr z, StatsScreen_EditMoveset
-	; 2: Toggle EVs
+	cp $2
+	jr z, StatsScreen_ToggleEVs
 	cp $3
 	jr z, StatsScreen_ToggleAbility
 	ret
@@ -271,6 +272,7 @@ StatsScreen_EditMoveset:
 	ld h, 0
 	jmp StatsScreen_SetJumptableIndex
 
+StatsScreen_ToggleEVs:
 StatsScreen_ToggleAbility:
 	ld a, [wStatsScreenToggle]
 	and a
@@ -555,7 +557,7 @@ StatsScreen_LoadGFX:
 	hlcoord 13, 15
 	lb bc, 3, 7
 	ld de, wBuffer1
-	call PrintNum					; Place exp number in the 15th row, (right-aligned)
+	call PrintNum					; Place next lv exp number in the 15th row, (right-aligned)
 	ld de, .LevelUpStr
 	hlcoord 10, 14
 	rst PlaceString					; Place "Level Up" in 14th row, 11th space
@@ -723,8 +725,9 @@ StatsScreen_LoadGFX:
 	db "Moves@"
 
 .BluePage:
-	hlcoord 0, 9
-	predef DrawPlayerHP
+	ld de, .HealthString
+	hlcoord 0, 8
+	rst PlaceString
 	call .PlaceNatureInfo
 	call TN_PrintCharacteristics
 	hlcoord 10, 8
@@ -736,6 +739,27 @@ StatsScreen_LoadGFX:
 	add hl, de
 	dec b
 	jr nz, .BluePageVerticalDivider
+	ret
+
+.PlaceNatureInfo:
+	ld de, .NatureString
+	hlcoord 0, 12
+	rst PlaceString
+	ld a, [wTempMonNature]
+	ld b, a
+	call GetNature
+	hlcoord 1, 13
+	farcall PrintNature
+
+; Print either the current stats, or EV points
+	ld a, [wStatsScreenToggle]
+	and a
+	jr nz, .printEVs
+
+.printStats
+	hlcoord 0, 9
+	predef DrawPlayerHP
+
 	hlcoord 11, 8
 	ld bc, 6
 	farcall PrintTempMonStats
@@ -766,15 +790,18 @@ StatsScreen_LoadGFX:
 	add hl, de
 	ret
 
-.PlaceNatureInfo:
-	ld de, .NatureString
-	hlcoord 0, 12
-	rst PlaceString
-	ld a, [wTempMonNature]
-	ld b, a
-	call GetNature
-	hlcoord 1, 13
-	farjp PrintNature
+.printEVs
+	hlcoord 2, 9
+	ld de, wTempMonHPEV
+	lb bc, 1, 3
+	call PrintNum
+
+	hlcoord 11, 8
+	ld bc, 6
+	farjp PrintTempMonEVs
+
+.HealthString:
+	db "Health@"
 
 .NatureString:
 	db "Nature/@"

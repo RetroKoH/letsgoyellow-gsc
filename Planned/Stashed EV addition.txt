@@ -1,0 +1,41 @@
+; ADDITIONAL
+; Print Total # of EVs
+	hlcoord 0, 9
+	bccoord 1, 1, 0
+	add hl, bc
+
+.addEVs
+	push hl
+	xor a
+	ld [wBuffer1], a ; D1F0
+	ld [wBuffer2], a ; D1F1
+	ld hl, wTempMonHPEV
+	ld a, [hli]
+	add a, [hl] ; Attack EV
+	inc hl
+	add a, [hl] ; Defense EV
+	inc hl
+	add a, [hl] ; Speed EV
+	inc hl
+	add a, [hl] ; Sat EV
+	inc hl
+	add a, [hl] ; Sdf EV
+	ld hl, wBuffer2
+	ld [hl], a
+	pop hl
+
+	ld de, wBuffer1 ; EVs
+	lb bc, 2, 3
+	call PrintNum
+
+	ld a, "/"
+	ld [hli], a
+
+; Print Max EVs
+	ld a, $01
+	ld [wBuffer3], a
+	ld a, $FE
+	ld [wBuffer4], a
+	ld de, wBuffer3 ; 510
+	lb bc, 2, 3
+	jmp PrintNum

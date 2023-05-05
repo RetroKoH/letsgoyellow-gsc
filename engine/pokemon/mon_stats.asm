@@ -75,6 +75,52 @@ DrawPlayerHP:
 	pop de
 	ret
 
+PrintTempMonEVs:
+	push bc
+	push hl
+	ld de, MostStatNames
+	rst PlaceString
+	pop hl
+	pop bc
+
+	push bc
+	push hl
+	push hl
+	ld a, [wTempMonNature]
+	ld b, a
+	call GetNature
+	pop hl
+rept 8
+	inc hl
+endr
+	call PrintNatureIndicators
+	pop hl
+	pop bc
+
+.printEVs
+	add hl, bc
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	ld de, wTempMonAtkEV ; D134
+	lb bc, 2, 3
+	call .PrintEV
+	ld de, wTempMonDefEV ; D135
+	call .PrintEV
+	ld de, wTempMonSatEV ; D137
+	call .PrintEV
+	ld de, wTempMonSdfEV ; D138
+	call .PrintEV
+	ld de, wTempMonSpdEV ; D136
+	jmp PrintNum
+
+.PrintEV:
+	push hl
+	call PrintNum
+	pop hl
+	ld de, SCREEN_WIDTH * 2
+	add hl, de
+	ret
+
 PrintTempMonStats:
 ; Print wTempMon's stats at hl, with spacing bc.
 	push bc

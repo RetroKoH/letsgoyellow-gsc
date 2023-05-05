@@ -6694,7 +6694,7 @@ GiveExperiencePoints:
 	pop bc
 	ret
 
-GiveBattleEVs:
+GiveBattleEVs: ; BOOKMARKED
 ; prepare registers for EV gain loop.
 ; b: contains EV yield data
 ; c: loop iterator

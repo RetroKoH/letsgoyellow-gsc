@@ -102,7 +102,7 @@ endr
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld de, wTempMonAtkEV ; D134
-	lb bc, 2, 3
+	lb bc, 1, 3
 	call .PrintEV
 	ld de, wTempMonDefEV ; D135
 	call .PrintEV

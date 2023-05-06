@@ -7,11 +7,11 @@ GrassMonProbTable:
 	db 95  ;  5% chance
 	db 98  ;  3% chance
 	db 100 ;  2% chance
-	assert_table_length NUM_GRASSMON
+	assert_table_length NUM_GRASSMON_ACTUAL
 
 WaterMonProbTable:
 	table_width 1, WaterMonProbTable
 	db 60  ; 60% chance
 	db 90  ; 30% chance
 	db 100 ; 10% chance
-	assert_table_length NUM_WATERMON
+	assert_table_length NUM_WATERMON_ACTUAL

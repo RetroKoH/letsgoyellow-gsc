@@ -69,7 +69,7 @@ FindNest:
 .FindGrass:
 	ld a, [hl]
 	cp -1
-	ret z		; if the first byte is $FF, there are no mons. stop here
+	ret z					; if the first byte is $FF, there are no mons. stop here
 	push hl
 
 	; assume that navel rock is the first off-screen map, and end the search early
@@ -90,9 +90,11 @@ FindNest:
 .not_navel_rock_map
 	ld c, a					; map ID stored in c
 	inc hl
+	inc hl					; skip past level ranges
+	inc hl
 	inc hl
 	inc hl					; skip past probabilities
-	ld a, NUM_GRASSMON * 3	; a = 7 Grass mons * 3 bytes each (level, species, form) = 21
+	ld a, NUM_GRASSMON * 2	; a = 8 Grass mons * 2 bytes each (species, form) = 14
 	call .SearchMapForMon
 	jr nc, .next_grass
 	ld [de], a
@@ -104,17 +106,20 @@ FindNest:
 	add hl, bc
 	jr .FindGrass
 
+; CHECK WHERE THIS IS USED
 .FindWater:
 	ld a, [hl]
 	cp -1
-	ret z
+	ret z					; if the first byte is $FF, there are no mons. stop here
 	push hl
 	ld a, [hli]
-	ld b, a
+	ld b, a					; map group stored in b
 	ld a, [hli]
-	ld c, a
+	ld c, a					; map ID stored in c
 	inc hl
-	ld a, 3
+	inc hl					; skip past level ranges
+	inc hl					; skip past probability
+	ld a, 2					; CHECK WHERE THIS IS USED
 	call .SearchMapForMon
 	jr nc, .next_water
 	ld [de], a
@@ -127,8 +132,6 @@ FindNest:
 	jr .FindWater
 
 .SearchMapForMon:
-	inc hl						; skip past mon level
-.ScanMapLoop:
 	push af
 	ld a, [wNamedObjectIndex]
 	cp [hl]
@@ -142,11 +145,10 @@ FindNest:
 	jr z, .found
 
 .not_found
-	inc hl
-	inc hl
+	inc hl	; jump to next species
 	pop af
 	dec a
-	jr nz, .ScanMapLoop
+	jr nz, .SearchMapForMon ; loop
 	and a
 	ret
 
@@ -312,11 +314,35 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	xor a ; BATTLETYPE_NORMAL
 	ld [wBattleType], a
 
-; hl = pop the start of the appropriate wild data table
+; hl = start of the appropriate wild data table
 .found_wild_data
-	inc hl
-	inc hl
-	inc hl
+	inc hl ; SKIP MAP GROUP
+	inc hl ; SKIP MAP ID
+
+; Min level
+	ld a, [hli]
+	ld d, a
+; Max level
+	ld a, [hli]
+	sub d
+	jr nz, .RandomLevel
+; If min and max are the same.
+	ld a, d
+	jr .GotLevel
+; Get a random level between the min and max.
+.RandomLevel
+	push bc
+	ld c, a
+	inc c			; number of possible values
+	call Random
+	ldh a, [hRandomAdd]
+	call SimpleDivide
+	add d
+	pop bc
+
+.GotLevel:
+	ld [wCurPartyLevel], a
+	inc hl ; SKIP FIRST ENCOUNTER RATE
 	push bc
 	call CheckOnWater
 	pop bc
@@ -327,7 +353,7 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	inc hl						; if not on water, skip remaining encounter rate bytes
 	call GetTimeOfDayNotEve
 	push bc
-	ld bc, NUM_GRASSMON * 3
+	ld bc, NUM_GRASSMON * 2
 	rst AddNTimes				; skip to correct time period mon data. (Morn, Day, Eve/Nite)
 	pop bc
 	ld de, GrassMonProbTable	; data/wild/probabilities.asm
@@ -343,7 +369,6 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	push de
 	push hl
 .force_loop
-	inc hl					; Skip level byte
 	ld a, [hli]				; Get species
 	ld [wCurSpecies], a
 	ld a, [hli]				; Get form
@@ -369,7 +394,7 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 
 .get_random_mon
 	dec c				; c = $FF
-	push hl				; push wild mon data [level, species, form] to stack
+	push hl				; push wild mon data [species, form] to stack
 	ld a, 100
 	call RandomRange
 	ld b, -1
@@ -384,11 +409,12 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	jr nc, .prob_bracket_loop	; loop based on the random number stored in a
 
 	; At this point, b contains wildmon index to encounter.
-	; Since each entry is 3 bytes, add b*3 to hl.
+	; OLD: Since each entry is 3 bytes, add b*3 to hl.
+	; NEW: Since each entry is 2 bytes, add b*2 to hl.
 	ld a, b
 	add b
-	add b
-	pop hl				; pop wild mon data [level, species, form] from stack
+;	add b
+	pop hl				; pop wild mon data [species, form] from stack
 	push hl				; keep it stored in the stack
 	add l
 	ld l, a
@@ -398,8 +424,8 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 
 ; ---------------------------------------------------------------
 	; Get level <- remove from here and do this earlier
-	ld a, [hli]
-	ld b, a
+;	ld a, [hli]
+;	ld b, a
 ; ---------------------------------------------------------------
 
 	; Mons encountered while surfing sometimes get a minor level boost.
@@ -421,10 +447,10 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	jr c, .ok
 	inc b
 
-; Store the level
+
 .ok
-	ld a, b
-	ld [wCurPartyLevel], a
+;	ld a, b
+;	ld [wCurPartyLevel], a	; Store the level (Now done earlier)
 	ld a, [hli]				; Get species
 	ld b, [hl]				; Get form
 	pop hl

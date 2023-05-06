@@ -43,7 +43,8 @@ def_grass_wildmons: MACRO
 	REDEF CURRENT_GRASS_WILDMONS_MAP EQUS "\1"
 	REDEF CURRENT_GRASS_WILDMONS_LABEL EQUS "._def_grass_wildmons_\1"
 	{CURRENT_GRASS_WILDMONS_LABEL}:
-	map_id \1
+	map_id \1 ; db GROUP_\1, MAP_\1
+	db \2, \3
 ENDM
 
 end_grass_wildmons: MACRO
@@ -56,7 +57,8 @@ def_water_wildmons: MACRO
 	REDEF CURRENT_WATER_WILDMONS_MAP EQUS "\1"
 	REDEF CURRENT_WATER_WILDMONS_LABEL EQUS "._def_water_wildmons_\1"
 	{CURRENT_WATER_WILDMONS_LABEL}:
-	map_id \1
+	map_id \1 ; db GROUP_\1, MAP_\1
+	db \2, \3
 ENDM
 
 end_water_wildmons: MACRO
@@ -65,12 +67,10 @@ end_water_wildmons: MACRO
 ENDM
 
 wildmon: MACRO
-	if _NARG == 3
-		db \1
-		dp \2, \3
+	if _NARG == 2
+		dp \1, \2
 	else
-		db \1
-		dp \2
+		dp \1
 	endc
 ENDM
 

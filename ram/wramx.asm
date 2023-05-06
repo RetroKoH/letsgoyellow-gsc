@@ -1252,7 +1252,7 @@ wLuckyIDNumber:: dw
 
 wLureEffect:: db ; If a Lure is in use, it contains the nr of steps it's still active
 wRepelEffect:: db ; If a Repel is in use, it contains the nr of steps it's still active
-wRepelType:: db
+wRepelType:: db ; Item index stored for both Repels and Lures (For the Auto renewal system)
 
 wBikeStep:: dw
 

@@ -1,32 +1,35 @@
 ; Kanto Pokémon in grass
 ; KantoGrassWildMons:
 
-	def_grass_wildmons ROUTE_1
+	def_grass_wildmons ROUTE_1, 2, 6
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
-	wildmon 3, PIDGEY
-	wildmon 3, RATTATA
-	wildmon 3, RATTATA
-	wildmon 2, RATTATA
-	wildmon 2, PIDGEY
-	wildmon 4, PIDGEY
-	wildmon 6, PIDGEY
+	wildmon PIDGEY
+	wildmon RATTATA
+	wildmon RATTATA
+	wildmon RATTATA
+	wildmon PIDGEY
+	wildmon PIDGEY
+	wildmon BELLSPROUT
+	wildmon BULBASAUR ; RARE
 	; day
-	wildmon 3, PIDGEY
-	wildmon 3, RATTATA
-	wildmon 3, RATTATA
-	wildmon 2, RATTATA
-	wildmon 2, PIDGEY
-	wildmon 4, PIDGEY
-	wildmon 4, BELLSPROUT
+	wildmon PIDGEY
+	wildmon RATTATA
+	wildmon RATTATA
+	wildmon RATTATA
+	wildmon PIDGEY
+	wildmon PIDGEY
+	wildmon BELLSPROUT
+	wildmon BULBASAUR ; RARE
 	; nite
-	wildmon 3, HOOTHOOT
-	wildmon 3, RATTATA
-	wildmon 3, RATTATA
-	wildmon 2, RATTATA
-	wildmon 2, HOOTHOOT
-	wildmon 4, HOOTHOOT
-	wildmon 4, ODDISH
+	wildmon HOOTHOOT
+	wildmon RATTATA
+	wildmon RATTATA
+	wildmon RATTATA
+	wildmon HOOTHOOT
+	wildmon HOOTHOOT
+	wildmon ODDISH
+	wildmon BULBASAUR ; RARE
 	end_grass_wildmons
 
 	db -1 ; end

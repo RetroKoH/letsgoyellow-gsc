@@ -1,11 +1,12 @@
 ; Kanto Pokémon in water
 ; KantoWaterWildMons:
 
-	def_water_wildmons VIRIDIAN_CITY
+	def_water_wildmons VIRIDIAN_CITY, 5, 10
 	db 2 percent ; encounter rate
-	wildmon 5, POLIWAG
-	wildmon 5, POLIWAG
-	wildmon 5, GOLDEEN
+	wildmon POLIWAG
+	wildmon POLIWAG
+	wildmon GOLDEEN
+	wildmon STARYU ; RARE
 	end_water_wildmons
 
 	db -1 ; end

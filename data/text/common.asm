@@ -1217,6 +1217,20 @@ UseAnotherRepelText::
 	para "Use another?"
 	done
 
+SECTION "_LureWoreOffText", ROMX
+_LureWoreOffText::
+	text "Lure's effect"
+	line "wore off."
+	done
+
+SECTION "UseAnotherLureText", ROMX
+UseAnotherLureText::
+	text "Lure's effect"
+	line "wore off."
+
+	para "Use another?"
+	done
+
 SECTION "_JustSawSomeRareMonText", ROMX
 _JustSawSomeRareMonText::
 	text "I just saw some"
@@ -4293,6 +4307,13 @@ _ItemCantUseOnMonText::
 SECTION "Text_RepelUsedEarlierIsStillInEffect", ROMX
 Text_RepelUsedEarlierIsStillInEffect::
 	text "The Repel used"
+	line "earlier is still"
+	cont "in effect."
+	prompt
+
+SECTION "Text_LureUsedEarlierIsStillInEffect", ROMX
+Text_LureUsedEarlierIsStillInEffect::
+	text "The Lure used"
 	line "earlier is still"
 	cont "in effect."
 	prompt

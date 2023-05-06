@@ -296,7 +296,7 @@ CheckTileEvent:
 	jr z, .ok
 
 	call RandomEncounter
-	ret c
+	ret c								; if wild encounter attempt was successful, exit here.
 
 .ok
 	xor a
@@ -329,14 +329,14 @@ CheckTileEvent:
 	jmp CallScript
 
 CheckWildEncounterCooldown:
-	ld hl, wWildEncounterCooldown
+	ld hl, wWildEncounterCooldown	; Get cooldown step counter.
 	ld a, [hl]
-	and a
-	ret z
-	dec [hl]
-	ret z
+	and a 							; was the counter already at zero?
+	ret z							; if yes, exit. We can encounter.
+	dec [hl]						; Decrement cooldown step counter.
+	ret z							; Now, if zero, no cooldown. We can encounter again.
 	scf
-	ret
+	ret								; Set carry flag, then exit the RandomEncounter function.
 
 SetUpFiveStepWildEncounterCooldown:
 	ld a, 5
@@ -843,6 +843,10 @@ CountStep:
 	call DoRepelStep
 	jr c, .doscript
 
+	; If Lure wore off, don't count the step.
+	call DoLureStep
+	jr c, .doscript
+
 	; Count the step for poison and total steps
 	ld hl, wPoisonStepCount
 	inc [hl]
@@ -914,9 +918,10 @@ DoRepelStep:
 	jr nc, .okay
 	ld a, BANK(UseAnotherRepelScript)
 	ld hl, UseAnotherRepelScript
+
 .okay
 	call CallScript
-	scf
+	scf 				; Set carry flag if Repel wore off, NOT counting the step
 	ret
 
 RepelWoreOffScript:
@@ -925,6 +930,42 @@ RepelWoreOffScript:
 UseAnotherRepelScript:
 	opentext
 	farwritetext UseAnotherRepelText
+	yesorno
+	iffalse_endtext
+	callasm DoItemEffect
+	endtext
+
+DoLureStep:
+	ld a, [wLureEffect]
+	and a
+	ret z
+
+	dec a
+	ld [wLureEffect], a
+	ret nz
+
+	ld a, [wRepelType]
+	ld [wCurItem], a
+	ld hl, wNumItems
+	call CheckItem
+
+	ld a, BANK(LureWoreOffScript)
+	ld hl, LureWoreOffScript
+	jr nc, .okay
+	ld a, BANK(UseAnotherLureScript)
+	ld hl, UseAnotherLureScript
+
+.okay
+	call CallScript
+	scf 				; Set carry flag if Lure wore off, NOT counting the step
+	ret
+
+LureWoreOffScript:
+	farjumptext _LureWoreOffText
+
+UseAnotherLureScript:
+	opentext
+	farwritetext UseAnotherLureText
 	yesorno
 	iffalse_endtext
 	callasm DoItemEffect
@@ -1097,22 +1138,22 @@ TryTileCollisionEvent:
 RandomEncounter::
 ; Random encounter
 	call CheckWildEncounterCooldown
-	jr c, .nope
+	jr c, .nope							; if carry flag was set, we will not have an encounter.
 	call CanUseSweetScent
-	jr nc, .nope
+	jr nc, .nope						; We won't have an encounter if we aren't in an area where it's possible.
 	ld hl, wStatusFlags2
 	bit STATUSFLAGS2_SAFARI_GAME_F, [hl]
-	jr nz, .safari_game
-	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
-	jr nz, .bug_contest
+	jr nz, .safari_game					; Run a slightly different battle script for Safari encounters.
+;	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
+;	jr nz, .bug_contest
 	farcall TryWildEncounter
-	jr nz, .nope
+	jr nz, .nope						; If this function returns non-zero, that means there's no encounter
 .ok
 	ld a, BANK(WildBattleScript)
 	ld hl, WildBattleScript
 .done
-	call CallScript
-	scf
+	call CallScript						; call the loaded battle script
+	scf									; Set carry flag if encounter attempt was successful
 	ret
 
 .safari_game
@@ -1195,6 +1236,7 @@ _TryWildEncounter_BugContest:
 	ld a, d
 	jr .GotLevel
 
+; Adapt this to the standard wild encounter method
 .RandomLevel:
 ; Get a random level between the min and max.
 	ld c, a
@@ -1216,7 +1258,7 @@ TryWildEncounter_BugContest:
 	ld b, 20 percent
 
 .ok
-	farcall ApplyMusicEffectOnEncounterRate
+	farcall ApplySoftLullEffectOnEncounterRate
 	farcall ApplyCleanseTagEffectOnEncounterRate
 	call Random
 	ldh a, [hRandomAdd]

@@ -1243,8 +1243,6 @@ wPoisonStepCount:: db
 
 wPhoneList:: ds CONTACT_LIST_SIZE + 1
 
-	ds 1 ; unused
-
 wParkBallsRemaining::
 wSafariBallsRemaining:: db
 wSafariTimeRemaining:: dw
@@ -1252,6 +1250,7 @@ wSafariTimeRemaining:: dw
 wLuckyNumberShowFlag:: dw
 wLuckyIDNumber:: dw
 
+wLureEffect:: db ; If a Lure is in use, it contains the nr of steps it's still active
 wRepelEffect:: db ; If a Repel is in use, it contains the nr of steps it's still active
 wRepelType:: db
 

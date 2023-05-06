@@ -198,14 +198,14 @@ FindNest:
 TryWildEncounter::
 ; Try to trigger a wild encounter.
 	; Do this first, because this affects some abilities messing with encounter rate
-	call ChooseWildEncounter
+	call ChooseWildEncounter	; First, determine a wild Pokemon to encounter.
 	jr nz, .no_battle
-	call .EncounterRate
+	call .EncounterRate			; Random number determines whether we will see this Pokemon.
 	jr nc, .no_battle
-	call CheckRepelEffect
+	call CheckRepelEffect		; Even if we CAN encounter it, a Repel might prevent the encounter.
 	jr nc, .no_battle
 	xor a
-	ret
+	ret							; returns 0, meaning the encounter was successful
 
 .no_battle
 	xor a ; BATTLETYPE_NORMAL
@@ -213,17 +213,18 @@ TryWildEncounter::
 	ld [wBattleType], a
 	ld a, 1
 	and a
-	ret
+	ret								; returns 1, meaning the encounter was unsuccessful
 
 .EncounterRate:
 	call GetMapEncounterRate
-	call ApplyMusicEffectOnEncounterRate
+	call ApplySoftLullEffectOnEncounterRate
+	call ApplyLureEffectOnEncounterRate
 	call ApplyCleanseTagEffectOnEncounterRate
 	call SetBattlerLevel
 	call ApplyAbilityEffectsOnEncounterMon
 	call Random
-	cp b
-	ret
+	cp b							; Random number a is compared to b.
+	ret								; If a is not within range (nc), the encounter will fail.
 
 GetMapEncounterRate:
 	ld hl, wMornEncounterRate
@@ -238,19 +239,21 @@ GetMapEncounterRate:
 	ld b, [hl]
 	ret
 
-ApplyMusicEffectOnEncounterRate::
-; Pokemon March and Ruins of Alph signal double encounter rate.
-; Pokemon Lullaby halves encounter rate.
+ApplySoftLullEffectOnEncounterRate::
+; Soft Lull halves encounter rate.
 	ld a, [wMapMusic]
-	cp MUSIC_POKEMON_MARCH
-	jr z, .double
 	cp MUSIC_POKEMON_LULLABY
 	ret nz
-	srl b ; halves the encounter rate.
+	srl b		; Lullaby halves the encounter rate.
 	ret
 
-.double
-	sla b ; doubles the encounter rate. (Lure item can do this)
+ApplyLureEffectOnEncounterRate::
+; Using a Lure doubles the encounter rate.
+	ld a, [wLureEffect]
+	and a
+	ret nz		; If there is no active Lure, exit.
+
+	sla b 		; Lure item doubles the encounter rate.
 	ret
 
 ApplyCleanseTagEffectOnEncounterRate::
@@ -295,13 +298,13 @@ endr
 	ld c, [hl]
 	ret
 
-ChooseWildEncounter:
+ChooseWildEncounter:	; Called if we DON'T want to force a type
 	ld c, $ff
-_ChooseWildEncounter:
+_ChooseWildEncounter:	; Called if we DO want to force a type
 	push bc
 	call LoadWildMonDataPointer
 	pop bc
-	jmp nc, .nowildbattle
+	jmp nc, .nowildbattle		; If no wild data was found for this map, branch 
 	push bc
 	call CheckEncounterRoamMon
 	pop bc
@@ -309,6 +312,8 @@ _ChooseWildEncounter:
 	xor a ; BATTLETYPE_NORMAL
 	ld [wBattleType], a
 
+; hl = pop the start of the appropriate wild data table
+.found_wild_data
 	inc hl
 	inc hl
 	inc hl
@@ -317,16 +322,16 @@ _ChooseWildEncounter:
 	pop bc
 	ld de, WaterMonProbTable
 	ld b, NUM_WATERMON
-	jr z, .got_table
+	jr z, .got_table			; Water mons have only one encounter rate, so data starts early
 	inc hl
-	inc hl
+	inc hl						; if not on water, skip remaining encounter rate bytes
 	call GetTimeOfDayNotEve
 	push bc
 	ld bc, NUM_GRASSMON * 3
-	rst AddNTimes
+	rst AddNTimes				; skip to correct time period mon data. (Morn, Day, Eve/Nite)
 	pop bc
-	ld de, GrassMonProbTable
-	ld b, NUM_GRASSMON
+	ld de, GrassMonProbTable	; data/wild/probabilities.asm
+	ld b, NUM_GRASSMON_ACTUAL	; If I make tables 8 mons in length, I still need this to be 7. Non Lure will access the first 7. Lure will access all but the first one.
 
 .got_table
 	; Check if we want to force a type
@@ -338,10 +343,10 @@ _ChooseWildEncounter:
 	push de
 	push hl
 .force_loop
-	inc hl ; We don't care about level
-	ld a, [hli]
+	inc hl					; Skip level byte
+	ld a, [hli]				; Get species
 	ld [wCurSpecies], a
-	ld a, [hli]
+	ld a, [hli]				; Get form
 	ld [wCurForm], a
 	push bc
 	push hl
@@ -349,49 +354,53 @@ _ChooseWildEncounter:
 	pop hl
 	pop bc
 	ld a, [wBaseType1]
-	cp c
-	jr z, .can_force_type
+	cp c					; does type 1 match the given type?
+	jr z, .can_force_type	; if yes, branch
 	ld a, [wBaseType2]
-	cp c
-	jr z, .can_force_type
+	cp c					; does type 2 match the given type?
+	jr z, .can_force_type	; if yes, branch
 	dec b
-	jr nz, .force_loop
+	jr nz, .force_loop		; loop for (b) number of times
 	ld c, $ff
 .can_force_type
 	inc c
 	pop hl
 	pop de
+
 .get_random_mon
-	dec c
-	push hl ; wild mon data pointer
+	dec c				; c = $FF
+	push hl				; push wild mon data [level, species, form] to stack
 	ld a, 100
 	call RandomRange
 	ld b, -1
 	ld h, d
-	ld l, e
+	ld l, e				; load probabilities table to hl
+
 ; This next loop chooses which mon to load up.
 .prob_bracket_loop
-	inc b
+	inc b						; increment b for x times (length of given probability table)
 	cp [hl]
 	inc hl
-	jr nc, .prob_bracket_loop
+	jr nc, .prob_bracket_loop	; loop based on the random number stored in a
 
 	; At this point, b contains wildmon index to encounter.
 	; Since each entry is 3 bytes, add b*3 to hl.
 	ld a, b
 	add b
 	add b
-	pop hl
-	push hl
+	pop hl				; pop wild mon data [level, species, form] from stack
+	push hl				; keep it stored in the stack
 	add l
 	ld l, a
 	adc h
 	sub l
 	ld h, a
 
-	; Get level
+; ---------------------------------------------------------------
+	; Get level <- remove from here and do this earlier
 	ld a, [hli]
 	ld b, a
+; ---------------------------------------------------------------
 
 	; Mons encountered while surfing sometimes get a minor level boost.
 	push bc
@@ -411,30 +420,16 @@ _ChooseWildEncounter:
 	cp 95 percent
 	jr c, .ok
 	inc b
+
 ; Store the level
 .ok
 	ld a, b
 	ld [wCurPartyLevel], a
-	ld a, [hli]
-	ld b, [hl]
+	ld a, [hli]				; Get species
+	ld b, [hl]				; Get form
 	pop hl
 
-	push af
-	cp UNOWN
-	jr nz, .unown_check_done
-
-	; verify that it is actually unown
-	bit MON_EXTSPECIES_F, b
-	jr nz, .unown_check_done
-
-	ld a, [wUnlockedUnowns]
-	and a
-	jr nz, .unown_check_done
-	pop af
-	jr .nowildbattle
-
-.unown_check_done
-	pop af
+; UNOWN is removed
 
 	; Check if we're forcing type
 	ld [wCurSpecies], a
@@ -608,7 +603,7 @@ _GrassWildmonLookup:
 	ld bc, GRASS_WILDDATA_LENGTH
 	call _SwarmWildmonCheck
 	ret c
-	call _GetGrassWildmonPointer
+	ld hl, KantoGrassWildMons
 	ld bc, GRASS_WILDDATA_LENGTH
 	jr _NormalWildmonOK
 
@@ -617,33 +612,9 @@ _WaterWildmonLookup:
 	ld bc, WATER_WILDDATA_LENGTH
 	call _SwarmWildmonCheck
 	ret c
-	call _GetWaterWildmonPointer
+	ld hl, KantoWaterWildMons
 	ld bc, WATER_WILDDATA_LENGTH
 	jr _NormalWildmonOK
-
-_GetGrassWildmonPointer:
-	call RegionCheck
-	ld a, e
-	ld hl, JohtoGrassWildMons
-	and a ; cp JOHTO_REGION
-	ret z
-	ld hl, KantoGrassWildMons
-	dec a ; cp KANTO_REGION
-	ret z
-	ld hl, OrangeGrassWildMons
-	ret
-
-_GetWaterWildmonPointer:
-	call RegionCheck
-	ld a, e
-	ld hl, JohtoWaterWildMons
-	and a ; cp JOHTO_REGION
-	ret z
-	ld hl, KantoWaterWildMons
-	dec a ; cp KANTO_REGION
-	ret z
-	ld hl, OrangeWaterWildMons
-	ret
 
 _SwarmWildmonCheck:
 	call CopyCurrMapDE
@@ -695,33 +666,34 @@ CopyCurrMapDE:
 	ld e, a
 	ret
 
+; Using the given map group and number, find wildmons for that map, if any
 LookUpWildmonsForMapDE:
 .loop
-	push hl
+	push hl			; push the start of this wild data table to the stack
 	ld a, [hl]
 	inc a
-	jr z, .nope
+	jr z, .nope		; exit if we reach the end of the wild data ($FF)
 	ld a, d
-	cp [hl]
-	jr nz, .next
+	cp [hl]			; does this match the given map group?
+	jr nz, .next	; if not, branch
 	inc hl
 	ld a, e
-	cp [hl]
-	jr z, .yup
+	cp [hl]			; does this match the given map number?
+	jr z, .yup		; if yes, branch ahead. We found our map data.
 
 .next
-	pop hl
-	add hl, bc
+	pop hl			; pop the start of this wild data table from the stack
+	add hl, bc		; Advance to the next table in the wild data and try again
 	jr .loop
 
 .nope
-	pop hl
+	pop hl			; pop the start of this wild data table from the stack
 	and a
 	ret
 
 .yup
-	pop hl
-	scf
+	pop hl			; pop the start of this wild data table from the stack
+	scf				; Set carry flag if wild data was found for this map
 	ret
 
 InitRoamMons:

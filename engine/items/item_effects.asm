@@ -1752,6 +1752,9 @@ RepelEffect:
 	call CheckItemParam
 	ld [wRepelEffect], a
 
+	xor a
+	ld [wLureEffect], a
+
 	ld a, [wCurItem]
 	ld [wRepelType], a
 
@@ -1761,6 +1764,29 @@ TextJump_RepelUsedEarlierIsStillInEffect:
 	; The REPEL used earlier is still in effect.
 	text_far Text_RepelUsedEarlierIsStillInEffect
 	text_end
+
+LureEffect:
+	ld a, [wLureEffect]
+	and a
+	ld hl, TextJump_LureUsedEarlierIsStillInEffect
+	jmp nz, PrintText
+
+	call CheckItemParam
+	ld [wLureEffect], a
+
+	xor a
+	ld [wRepelEffect], a
+
+	ld a, [wCurItem]
+	ld [wRepelType], a
+
+	jmp UseItemText
+
+TextJump_LureUsedEarlierIsStillInEffect:
+	; The LURE used earlier is still in effect.
+	text_far Text_LureUsedEarlierIsStillInEffect
+	text_end
+
 
 PokeDoll:
 	ld a, [wBattleMode]

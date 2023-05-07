@@ -236,6 +236,7 @@ endr
 	push hl
 	jr .random_dvs
 
+; GENERATING A WILD POKEMON STARTS HERE
 .wildmon
 	ld a, [wBattleType]
 	cp BATTLETYPE_ROAMING
@@ -293,7 +294,9 @@ endr
 	ld b, a
 
 ; Random ability
-; 5% hidden ability, otherwise 50% either main ability
+; 50% either main ability
+; 10% hidden ability chance with Lure.
+; Safari Zone event will give a greater chance.
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .ability_check
@@ -304,9 +307,18 @@ endr
 	jr z, .got_ability
 
 .ability_check
+	ld a, [wLureEffect]
+	and a
+	jr z, .no_hidden_ability_chance
+
 	call Random
-	cp 1 + 5 percent
+	cp 1 + 10 percent
 	jr c, .hidden_ability
+	jr .no_hidden_ability
+
+.no_hidden_ability_chance
+	call Random
+.no_hidden_ability
 	and $1
 	jr z, .ability_2
 .ability_1
@@ -334,9 +346,11 @@ endr
 	jr z, .not_shiny
 
 .shiny_check
-	call Random
-	and a
-	jr nz, .not_shiny ; 255/256 not shiny
+; Might remove this for an easier shiny rate
+;	call Random
+;	and a
+;	jr nz, .not_shiny		; 255/256 not shiny
+
 	ld a, [wCurKeyItem]
 	push af
 	ld a, SHINY_CHARM
@@ -349,20 +363,49 @@ endr
 	pop bc
 	pop hl
 	jr c, .shiny_charm
+; no shiny charm
+	ld a, [wLureEffect]
+	and a
+	jr z, .no_lure			; If there is no active Lure, skip.
+.lure
+	pop af
+	ld [wCurKeyItem], a
+	call Random
+	cp LURE_SHINY_NUMERATOR
+	jr nc, .not_shiny		; 224/256 still not shiny < (32/65536 = 1/2048; +1 boosted shiny rate)
+	jr .shiny
+
+.no_lure
 	pop af
 	ld [wCurKeyItem], a
 	call Random
 	cp SHINY_NUMERATOR
-	jr nc, .not_shiny ; 240/256 still not shiny
+	jr nc, .not_shiny		; 240/256 still not shiny < (16/65536 = 1/4096; base shiny rate)
+
 .shiny
 	ld a, SHINY_MASK
 	jr .got_shininess
+
 .shiny_charm
+	ld a, [wLureEffect]
+	and a
+	jr z, .charmed_no_lure	; If there is no active Lure, skip.
+
+.charmed_lure
+	pop af
+	ld [wCurKeyItem], a
+	call Random
+	cp CHARMED_LURE_SHINY_NUMERATOR
+	jr nc, .not_shiny		; 192/256 still not shiny < (64/65536 = 1/1024; +3 boosted shiny rate)
+	jr .shiny
+
+.charmed_no_lure
 	pop af
 	ld [wCurItem], a
 	call Random
 	cp CHARMED_SHINY_NUMERATOR
-	jr c, .shiny ; 208/256 still not shiny
+	jr c, .shiny			; 208/256 still not shiny < (48/65536 = 1/1365; +2 boosted shiny rate)
+
 .not_shiny
 	xor a
 .got_shininess

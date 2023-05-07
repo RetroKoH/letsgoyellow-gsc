@@ -359,8 +359,15 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	call CheckOnWater
 	pop bc
 	ld de, WaterMonProbTable
-	ld b, NUM_WATERMON
-	jr z, .got_table			; Water mons have only one encounter rate, so data starts early
+	ld b, NUM_WATERMON_ACTUAL
+	jr nz, .notWater			; If NOT in water, go to grass
+	ld a, [wLureEffect]
+	and a
+	jr z, .got_table			; If there is no active Lure, skip ahead.
+	ld de, WaterMonProbTable_Lure
+	jr .got_table				; Water mons have only one encounter rate, so data starts early
+
+.notWater
 	inc hl
 	inc hl						; if not on water, skip remaining encounter rate bytes
 	call GetTimeOfDayNotEve
@@ -368,8 +375,12 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	ld bc, NUM_GRASSMON * 2
 	rst AddNTimes				; skip to correct time period mon data. (Morn, Day, Eve/Nite)
 	pop bc
-	ld de, GrassMonProbTable	; data/wild/probabilities.asm
-	ld b, NUM_GRASSMON_ACTUAL	; If I make tables 8 mons in length, I still need this to be 7. Non Lure will access the first 7. Lure will access all but the first one.
+	ld de, GrassMonProbTable
+	ld b, NUM_GRASSMON_ACTUAL	; Tables are 8 mons in length, But this is still 7. Non Lure will access the first 7. Lure will access all but the first one.
+	ld a, [wLureEffect]
+	and a
+	jr z, .got_table			; If there is no active Lure, skip ahead.
+	ld de, GrassMonProbTable_Lure
 
 .got_table
 	; Check if we want to force a type
@@ -426,8 +437,18 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	ld a, b
 	add b
 ;	add b
-	pop hl				; pop wild mon data [species, form] from stack
-	push hl				; keep it stored in the stack
+	pop hl					; pop wild mon data [species, form] from stack
+
+	push af
+	ld a, [wLureEffect]
+	and a
+	jr z, .no_rare_spawn	; If there is no active Lure, skip ahead.
+	inc hl
+	inc hl					; Skip the first entry, granting access to the rare entry
+
+.no_rare_spawn
+	pop af
+	push hl					; keep first possible mon stored in the stack
 	add l
 	ld l, a
 	adc h

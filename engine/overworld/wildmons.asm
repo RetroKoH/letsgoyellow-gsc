@@ -253,9 +253,11 @@ ApplyLureEffectOnEncounterRate::
 ; Using a Lure doubles the encounter rate.
 	ld a, [wLureEffect]
 	and a
-	ret nz		; If there is no active Lure, exit.
+	ret z		; If there is no active Lure, exit.
 
 	sla b 		; Lure item doubles the encounter rate.
+	sla b
+	sla b
 	sla b
 	ret
 

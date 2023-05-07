@@ -17,26 +17,26 @@ ItemEffects:
 	dw PokeBallEffect     ; ULTRA_BALL
 	dw PokeBallEffect     ; MASTER_BALL
 	dw PokeBallEffect     ; SAFARI_BALL
+	dw PokeBallEffect     ; FAST_BALL
 	dw PokeBallEffect     ; LEVEL_BALL
 	dw PokeBallEffect     ; LURE_BALL
-	dw PokeBallEffect     ; MOON_BALL
-	dw PokeBallEffect     ; FRIEND_BALL
-	dw PokeBallEffect     ; FAST_BALL
 	dw PokeBallEffect     ; HEAVY_BALL
 	dw PokeBallEffect     ; LOVE_BALL
-	dw AbilityPatch       ; ABILITYPATCH
-	dw PokeBallEffect     ; REPEAT_BALL
-	dw PokeBallEffect     ; TIMER_BALL
-	dw PokeBallEffect     ; NEST_BALL
+	dw PokeBallEffect     ; FRIEND_BALL
+	dw PokeBallEffect     ; MOON_BALL
 	dw PokeBallEffect     ; NET_BALL
 	dw PokeBallEffect     ; DIVE_BALL
+	dw PokeBallEffect     ; NEST_BALL
+	dw PokeBallEffect     ; REPEAT_BALL
+	dw PokeBallEffect     ; TIMER_BALL
 	dw PokeBallEffect     ; LUXURY_BALL
+	dw PokeBallEffect     ; DUSK_BALL
 	dw PokeBallEffect     ; HEAL_BALL
 	dw PokeBallEffect     ; QUICK_BALL
-	dw PokeBallEffect     ; DUSK_BALL
 	dw PokeBallEffect     ; DREAM_BALL
 	dw PokeBallEffect     ; PREMIER_BALL
 	dw PokeBallEffect     ; CHERISH_BALL
+	dw PokeBallEffect     ; SNAG_BALL
 	dw RestoreHPEffect    ; POTION
 	dw RestoreHPEffect    ; SUPER_POTION
 	dw RestoreHPEffect    ; HYPER_POTION
@@ -67,7 +67,6 @@ ItemEffects:
 	dw RestoreHPEffect    ; SODA_POP
 	dw RestoreHPEffect    ; LEMONADE
 	dw RestoreHPEffect    ; MOOMOO_MILK
-	dw HealStatusEffect   ; RAGECANDYBAR
 	dw HealStatusEffect   ; PEWTERCRUNCH
 	dw SacredAsh          ; SACRED_ASH
 	dw EnergyPowder       ; ENERGYPOWDER
@@ -85,9 +84,11 @@ ItemEffects:
 	dw RepelEffect        ; REPEL
 	dw RepelEffect        ; SUPER_REPEL
 	dw RepelEffect        ; MAX_REPEL
+	dw LureEffect         ; LURE
 	dw EscapeRope         ; ESCAPE_ROPE
 	dw PokeDoll           ; POKE_DOLL
 	dw AbilityCap         ; ABILITY_CAP
+	dw AbilityPatch       ; ABILITYPATCH
 	dw EvoStoneEffect     ; LEAF_STONE
 	dw EvoStoneEffect     ; FIRE_STONE
 	dw EvoStoneEffect     ; WATER_STONE
@@ -244,7 +245,6 @@ ItemEffects:
 	dw IsntTheTimeMessage ; PEARL_STRING
 	dw IsntTheTimeMessage ; STARDUST
 	dw IsntTheTimeMessage ; STAR_PIECE
-	dw IsntTheTimeMessage ; BRICK_PIECE
 	dw IsntTheTimeMessage ; RARE_BONE
 	dw IsntTheTimeMessage ; SILVER_LEAF
 	dw IsntTheTimeMessage ; GOLD_LEAF

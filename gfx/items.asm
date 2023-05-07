@@ -64,7 +64,7 @@ FreshWaterIcon::   INCBIN "gfx/items/fresh_water.2bpp.lz"
 SodaPopIcon::      INCBIN "gfx/items/soda_pop.2bpp.lz"
 LemonadeIcon::     INCBIN "gfx/items/lemonade.2bpp.lz"
 MoomooMilkIcon::   INCBIN "gfx/items/moomoo_milk.2bpp.lz"
-RageCandyBarIcon:: INCBIN "gfx/items/ragecandybar.2bpp.lz"
+LureIcon::         INCBIN "gfx/items/lure.2bpp.lz"
 PewterCrunchIcon:: INCBIN "gfx/items/pewtercrunch.2bpp.lz"
 SacredAshIcon::
 SoftSandIcon::

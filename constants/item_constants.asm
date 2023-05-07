@@ -6,6 +6,7 @@
 ; - ItemAttributes (see data/items/attributes.asm)
 ; - ItemIconPointers (see data/items/icon_pointers.asm)
 ; - ItemEffects (see engine/items/item_effects.asm)
+; - Palettes (see engine/gfx/palettes.asm)
 	const_def
 	const NO_ITEM      ; 00
 
@@ -16,29 +17,27 @@
 
 	const SAFARI_BALL  ; 05
 
-	const LEVEL_BALL   ; 06
-	const LURE_BALL    ; 07
-	const MOON_BALL    ; 08
-	const FRIEND_BALL  ; 09
-	const FAST_BALL    ; 0a
-	const HEAVY_BALL   ; 0b
-	const LOVE_BALL    ; 0c
+	const FAST_BALL    ; 06
+	const LEVEL_BALL   ; 07
+	const LURE_BALL    ; 08
+	const HEAVY_BALL   ; 09
+	const LOVE_BALL    ; 0a
+	const FRIEND_BALL  ; 0b
+	const MOON_BALL    ; 0c
 
-	const ABILITYPATCH ; 0d
-
-	const REPEAT_BALL  ; 0e
-	const TIMER_BALL   ; 0f
+	const NET_BALL     ; 0e
+	const DIVE_BALL    ; 0f
 	const NEST_BALL    ; 10
-	const NET_BALL     ; 11
-	const DIVE_BALL    ; 12
+	const REPEAT_BALL  ; 11
+	const TIMER_BALL   ; 12
 	const LUXURY_BALL  ; 13
-	const HEAL_BALL    ; 14
-	const QUICK_BALL   ; 15
-	const DUSK_BALL    ; 16
+	const DUSK_BALL    ; 14
+	const HEAL_BALL    ; 15
+	const QUICK_BALL   ; 16
 	const DREAM_BALL   ; 17
 	const PREMIER_BALL ; 18
 	const CHERISH_BALL ; 19
-	; Add Snag Ball here
+	const SNAG_BALL    ; 1a - REPLACED BRICK PIECE
 
 	const POTION       ; 1a
 	const SUPER_POTION ; 1b
@@ -75,7 +74,6 @@
 	const SODA_POP     ; 35
 	const LEMONADE     ; 36
 	const MOOMOO_MILK  ; 37
-	const RAGECANDYBAR ; 38
 	const PEWTERCRUNCH ; 39
 
 	const SACRED_ASH   ; 3a
@@ -96,10 +94,12 @@
 	const REPEL        ; 47
 	const SUPER_REPEL  ; 48
 	const MAX_REPEL    ; 49
-	const ESCAPE_ROPE  ; 4a
-	const POKE_DOLL    ; 4b
+	const LURE_ITEM    ; 38 ; Formerly the RAGECANDYBAR
+	const ESCAPE_ROPE  ; 4a ; Make key item, replace with SUPER_LURE
+	const POKE_DOLL    ; 4b ; Make key item, replace with MAX_LURE
 
 	const ABILITY_CAP  ; 4c
+	const ABILITYPATCH ; 0d
 
 	const LEAF_STONE   ; 4d
 	const FIRE_STONE   ; 4e
@@ -273,7 +273,6 @@
 	const PEARL_STRING ; e6
 	const STARDUST     ; e7
 	const STAR_PIECE   ; e8
-	const BRICK_PIECE  ; e9
 	const RARE_BONE    ; ea
 	const SILVER_LEAF  ; eb
 	const GOLD_LEAF    ; ec
@@ -333,7 +332,6 @@ ALWAYS_ITEM_2  EQU $ff
 	const NAM_BLUESKY_MAIL
 	const NAM_BLUNDRPOLICY
 	const NAM_BOTTLE_CAP
-	const NAM_BRICK_PIECE
 	const NAM_BRIGHTPOWDER
 	const NAM_BURN_HEAL
 	const NAM_CALCIUM
@@ -428,6 +426,7 @@ ALWAYS_ITEM_2  EQU $ff
 	const NAM_LUCKY_PUNCH
 	const NAM_LUM_BERRY
 	const NAM_LUMINOUSMOSS
+	const NAM_LURE
 	const NAM_LURE_BALL
 	const NAM_LUXURY_BALL
 	const NAM_MACHO_BRACE
@@ -493,7 +492,6 @@ ALWAYS_ITEM_2  EQU $ff
 	const NAM_QUICK_BALL
 	const NAM_QUICK_CLAW
 	const NAM_QUICK_POWDER
-	const NAM_RAGECANDYBAR
 	const NAM_RARE_BONE
 	const NAM_RARE_CANDY
 	const NAM_RAWST_BERRY
@@ -524,6 +522,7 @@ ALWAYS_ITEM_2  EQU $ff
 	const NAM_SLOWPOKETAIL
 	const NAM_SMOKE_BALL
 	const NAM_SMOOTH_ROCK
+	const NAM_SNAG_BALL
 	const NAM_SNOWBALL
 	const NAM_SODA_POP
 	const NAM_SOFT_SAND

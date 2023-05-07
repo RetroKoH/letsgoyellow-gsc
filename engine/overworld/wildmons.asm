@@ -256,6 +256,7 @@ ApplyLureEffectOnEncounterRate::
 	ret nz		; If there is no active Lure, exit.
 
 	sla b 		; Lure item doubles the encounter rate.
+	sla b
 	ret
 
 ApplyCleanseTagEffectOnEncounterRate::
@@ -322,6 +323,15 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 ; Min level
 	ld a, [hli]
 	ld d, a
+
+	ld a, [wLureEffect]
+	and a
+	jr z, .noLure
+	ld a, [hli]
+	add a, 2
+	jr .GotLevel
+
+.noLure
 ; Max level
 	ld a, [hli]
 	sub d
@@ -421,12 +431,6 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	adc h
 	sub l
 	ld h, a
-
-; ---------------------------------------------------------------
-	; Get level <- remove from here and do this earlier
-;	ld a, [hli]
-;	ld b, a
-; ---------------------------------------------------------------
 
 	; Mons encountered while surfing sometimes get a minor level boost.
 	push bc

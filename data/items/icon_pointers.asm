@@ -6,26 +6,26 @@ ItemIconPointers:
 	dba UltraBallIcon
 	dba MasterBallIcon
 	dba SafariBallIcon
+	dba FastBallIcon
 	dba LevelBallIcon
 	dba LureBallIcon
-	dba MoonBallIcon
-	dba FriendBallIcon
-	dba FastBallIcon
 	dba HeavyBallIcon
 	dba LoveBallIcon
-	dba AbilityPatchIcon
-	dba RepeatBallIcon
-	dba TimerBallIcon
-	dba NestBallIcon
+	dba FriendBallIcon
+	dba MoonBallIcon
 	dba NetBallIcon
 	dba DiveBallIcon
+	dba NestBallIcon
+	dba RepeatBallIcon
+	dba TimerBallIcon
 	dba LuxuryBallIcon
+	dba DuskBallIcon
 	dba HealBallIcon
 	dba QuickBallIcon
-	dba DuskBallIcon
 	dba DreamBallIcon
 	dba PremierBallIcon
 	dba CherishBallIcon
+	dba BrickPieceIcon ; Snag Ball
 	dba PotionIcon
 	dba SuperPotionIcon
 	dba HyperPotionIcon
@@ -56,7 +56,6 @@ ItemIconPointers:
 	dba SodaPopIcon
 	dba LemonadeIcon
 	dba MoomooMilkIcon
-	dba RageCandyBarIcon
 	dba PewterCrunchIcon
 	dba SacredAshIcon
 	dba EnergyPowderIcon
@@ -74,9 +73,11 @@ ItemIconPointers:
 	dba RepelIcon
 	dba SuperRepelIcon
 	dba MaxRepelIcon
+	dba LureIcon ; LURE
 	dba EscapeRopeIcon
 	dba PokeDollIcon
 	dba AbilityCapIcon
+	dba AbilityPatchIcon
 	dba LeafStoneIcon
 	dba FireStoneIcon
 	dba WaterStoneIcon
@@ -233,7 +234,6 @@ ItemIconPointers:
 	dba PearlStringIcon
 	dba StardustIcon
 	dba StarPieceIcon
-	dba BrickPieceIcon
 	dba RareBoneIcon
 	dba SilverLeafIcon
 	dba GoldLeafIcon

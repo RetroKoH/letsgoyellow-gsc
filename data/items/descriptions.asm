@@ -5,26 +5,26 @@ ItemDescriptions:
 	dw UltraBallDesc
 	dw MasterBallDesc
 	dw SafariBallDesc
+	dw FastBallDesc
 	dw LevelBallDesc
 	dw LureBallDesc
-	dw MoonBallDesc
-	dw FriendBallDesc
-	dw FastBallDesc
 	dw HeavyBallDesc
 	dw LoveBallDesc
-	dw AbilityPatchDesc
-	dw RepeatBallDesc
-	dw TimerBallDesc
-	dw NestBallDesc
+	dw FriendBallDesc
+	dw MoonBallDesc
 	dw NetBallDesc
 	dw DiveBallDesc
+	dw NestBallDesc
+	dw RepeatBallDesc
+	dw TimerBallDesc
 	dw LuxuryBallDesc
+	dw DuskBallDesc
 	dw HealBallDesc
 	dw QuickBallDesc
-	dw DuskBallDesc
 	dw DreamBallDesc
 	dw PremierBallDesc
 	dw CherishBallDesc
+	dw SnagBallDesc
 	dw PotionDesc
 	dw SuperPotionDesc
 	dw HyperPotionDesc
@@ -55,7 +55,6 @@ ItemDescriptions:
 	dw SodaPopDesc
 	dw LemonadeDesc
 	dw MoomooMilkDesc
-	dw RageCandyBarDesc
 	dw PewterCrunchDesc
 	dw SacredAshDesc
 	dw EnergyPowderDesc
@@ -73,9 +72,11 @@ ItemDescriptions:
 	dw RepelDesc
 	dw SuperRepelDesc
 	dw MaxRepelDesc
+	dw LureDesc
 	dw EscapeRopeDesc
 	dw PokeDollDesc
 	dw AbilityCapDesc
+	dw AbilityPatchDesc
 	dw LeafStoneDesc
 	dw FireStoneDesc
 	dw WaterStoneDesc
@@ -232,7 +233,6 @@ ItemDescriptions:
 	dw PearlStringDesc
 	dw StardustDesc
 	dw StarPieceDesc
-	dw BrickPieceDesc
 	dw RareBoneDesc
 	dw SilverLeafDesc
 	dw GoldLeafDesc
@@ -380,6 +380,10 @@ DreamBallDesc:
 	db   "A Ball for sleep-"
 	next "ing #mon.@"
 
+SnagBallDesc:
+	db   "A Ball made for"
+	next "Shadow #mon.@"
+
 PremierBallDesc:
 	db   "A rare commemor-"
 	next "ative Ball.@"
@@ -425,7 +429,6 @@ IceHealDesc:
 	next "#mon.@"
 
 FullHealDesc:
-RageCandyBarDesc:
 PewterCrunchDesc:
 	db   "Eliminates all"
 	next "status problems.@"
@@ -573,6 +576,10 @@ SuperRepelDesc:
 MaxRepelDesc:
 	db   "Repels weak #-"
 	next "mon for 250 steps.@"
+
+LureDesc:
+	db   "Lures rare #-"
+	next "mon for 100 steps.@"
 
 EscapeRopeDesc:
 	db   "Use for escaping"
@@ -1124,10 +1131,6 @@ StardustDesc:
 StarPieceDesc:
 	db   "A hunk of red gem."
 	next "Sell very high.@"
-
-BrickPieceDesc:
-	db   "A rare chunk of"
-	next "tile.@"
 
 RareBoneDesc:
 	db   "A rare bone for"

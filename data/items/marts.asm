@@ -242,8 +242,7 @@ MahoganyMart1:
 	db -1
 
 MahoganyMart2:
-	db 10 ; # items
-	db RAGECANDYBAR
+	db 9 ; # items
 	db AIR_BALLOON
 	db QUICK_CLAW
 	db KINGS_ROCK

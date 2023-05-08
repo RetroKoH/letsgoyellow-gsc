@@ -185,7 +185,7 @@ PalletTownFisherText:
 PalletTownYoungsterText:
 	text "Smell ya later!"
 
-	para "…People started"
+	para "People started"
 	line "saying that around"
 	cont "here, but it's"
 

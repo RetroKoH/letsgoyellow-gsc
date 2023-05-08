@@ -46,13 +46,13 @@ RedsMom:
 	text "I worry about Red"
 	line "getting hurt or"
 
-	para "sick, but he's a"
-	line "boy. I'm proud"
+	para "sick, but he isn't"
+	line "a little kid any-"
+	cont "more."
 
-	para "that he is doing"
-	line "what he wants to"
-
-	para "do."
+	para "I'm proud that he"
+	line "is out doing what"
+	cont "he wants to do."
 	done
 
 RedsHouse1FTVScript:

@@ -16,35 +16,63 @@ Route1_MapScriptHeader:
 	fruittree_event  5,  7, FRUITTREE_ROUTE_1, ORAN_BERRY, PAL_NPC_BLUE
 
 Route1Text1:
-	checkevent EVENT_GOT_POTION_ROUTE_1
-	iftrue_jumptextfaceplayer Route1ViridianMartSampleReceivedText
 	faceplayer
 	opentext
+	checkevent EVENT_GOT_POKEDEX_FROM_OAK
+	iffalse_jumpopenedtext Route1ViridianMartEarlyText
+	checkevent EVENT_GOT_LURE_ROUTE_1
+	iftrue_jumpopenedtext Route1ViridianMartLateText
 	writetext Route1ViridianMartSampleText
 	promptbutton
-	verbosegiveitem POTION
+	verbosegiveitem LURE_ITEM
 	iffalse_endtext
-	setevent EVENT_GOT_POTION_ROUTE_1
+	setevent EVENT_GOT_LURE_ROUTE_1
 	jumpthisopenedtext
 
-Route1ViridianMartSampleReceivedText:
 	text "We also carry"
 	line "# Balls for"
 	cont "catching #mon!"
 	done
 
-Route1ViridianMartSampleText:
+Route1ViridianMartEarlyText:
 	text "Hi! I work at"
-	line "a #Mart."
+	line "a # Mart."
 
 	para "It's a convenient"
 	line "shop, so please"
 	cont "visit us in"
 	cont "Viridian City."
+	done
 
-	para "I know, I'll give"
-	line "you a sample!"
-	cont "Here you go!"
+Route1ViridianMartLateText:
+	text "If you ever run"
+	line "out of stock, go"
+	cont "to your nearest"
+	cont "# Mart!"
+	done
+
+Route1ViridianMartSampleText:
+	text "Hi! I work at"
+	line "a # Mart."
+
+	para "We are running a"
+	line "promotion on a"
+	cont "brand-new item"
+	cont "we have in stock."
+
+	para "It's a Lure! It's"
+	line "sprayed just like"
+	cont "Repel, only this"
+	cont "attracts #mon!"
+
+	para "Some of them may"
+	line "even be more rare"
+	cont "than usual!"
+
+	para "Try it out!"
+	line "If you like it,"
+	cont "we will have more"
+	cont "in stock later."
 	done
 
 Route1Text2:

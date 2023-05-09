@@ -28,7 +28,7 @@ PewterGymBrockScript:
 	waitbutton
 	closetext
 	winlosstext BrockWinLossText, 0
-	loadtrainer BROCK, 1
+	loadgymleader BROCK
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BROCK

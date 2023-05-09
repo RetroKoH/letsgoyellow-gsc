@@ -610,6 +610,13 @@ loadtrainer: MACRO
 	db \2 ; trainer_id
 ENDM
 
+	const loadgymleader_command
+loadgymleader: MACRO
+	db loadgymleader_command
+	db \1 ; trainer_group
+	; ID determined by gym badges
+ENDM
+
 	const startbattle_command
 startbattle: MACRO
 	db startbattle_command

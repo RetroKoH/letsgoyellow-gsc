@@ -147,6 +147,7 @@ ScriptCommandTable:
 	dw Script_loadtemptrainer            ; 58
 	dw Script_loadwildmon                ; 59
 	dw Script_loadtrainer                ; 5a
+	dw Script_loadgymleader
 	dw Script_startbattle                ; 5b
 	dw Script_reloadmapafterbattle       ; 5c
 	dw Script_catchtutorial              ; 5d
@@ -1207,6 +1208,20 @@ Script_loadtrainer:
 	call GetScriptByte
 	ld [wOtherTrainerClass], a
 	call GetScriptByte
+	ld [wOtherTrainerID], a
+	ret
+
+Script_loadgymleader:
+	ld a, (1 << 7) | 1
+	ld [wBattleScriptFlags], a
+	call GetScriptByte
+	ld [wOtherTrainerClass], a
+	
+	ld hl, wKantoBadges
+	ld b, wKantoBadges - wBadges
+	call CountSetBits
+	ld a, [wNumSetBits]
+	add a, 1
 	ld [wOtherTrainerID], a
 	ret
 

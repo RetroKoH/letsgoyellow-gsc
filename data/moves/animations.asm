@@ -122,7 +122,6 @@ BattleAnimations::
 	dw BattleAnim_Slash
 	dw BattleAnim_Substitute
 	dw BattleAnim_TripleKick
-	dw BattleAnim_FlameWheel
 	dw BattleAnim_Flail
 	dw BattleAnim_Protect
 	dw BattleAnim_MachPunch
@@ -226,6 +225,7 @@ BattleAnimations::
 	dw BattleAnim_Venoshock
 	dw BattleAnim_QuiverDance
 	dw BattleAnim_HeavySlam ; Uses Slam anim. Add to this
+	dw BattleAnim_FlameWheel ; Flame Charge
 	dw BattleAnim_Coil
 	dw BattleAnim_LowSweep ; Uses LowKick; Modify Animation
 	dw BattleAnim_FoulPlay ; BeatUp

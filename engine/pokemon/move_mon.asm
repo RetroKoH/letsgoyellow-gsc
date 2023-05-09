@@ -346,10 +346,10 @@ endr
 	jr z, .not_shiny
 
 .shiny_check
-; Might remove this for an easier shiny rate
-;	call Random
-;	and a
-;	jr nz, .not_shiny		; 255/256 not shiny
+; This can be greatly optimized. See code in my Sonic engine for Speed Shoes settings.
+	call Random
+	cp 64
+	jr nc, .not_shiny		; 1/4: possible shiny. 3/4: not shiny.
 
 	ld a, [wCurKeyItem]
 	push af
@@ -372,15 +372,15 @@ endr
 	ld [wCurKeyItem], a
 	call Random
 	cp LURE_SHINY_NUMERATOR
-	jr nc, .not_shiny		; 224/256 still not shiny < (32/65536 = 1/2048; +1 boosted shiny rate)
+	jr nc, .not_shiny		; 2/256 shiny < (2/(256*4) = 2/1024 = 1/512; +1 boosted shiny rate)
 	jr .shiny
 
 .no_lure
 	pop af
 	ld [wCurKeyItem], a
 	call Random
-	cp SHINY_NUMERATOR
-	jr nc, .not_shiny		; 240/256 still not shiny < (16/65536 = 1/4096; base shiny rate)
+	and a
+	jr nz, .not_shiny		; 1/256 shiny < (1/(256*4) = 1/1024; base shiny rate)
 
 .shiny
 	ld a, SHINY_MASK
@@ -396,7 +396,7 @@ endr
 	ld [wCurKeyItem], a
 	call Random
 	cp CHARMED_LURE_SHINY_NUMERATOR
-	jr nc, .not_shiny		; 192/256 still not shiny < (64/65536 = 1/1024; +3 boosted shiny rate)
+	jr nc, .not_shiny		; 4/256 shiny < (4/(256*4) = 4/1024 = 1/256; +3 boosted shiny rate)
 	jr .shiny
 
 .charmed_no_lure
@@ -404,7 +404,7 @@ endr
 	ld [wCurItem], a
 	call Random
 	cp CHARMED_SHINY_NUMERATOR
-	jr c, .shiny			; 208/256 still not shiny < (48/65536 = 1/1365; +2 boosted shiny rate)
+	jr c, .shiny			; 3/256 shiny < (3/(256*4) = 3/1024 = 1/341; +2 boosted shiny rate)
 
 .not_shiny
 	xor a

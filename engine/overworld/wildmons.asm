@@ -329,8 +329,8 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	ld a, [wLureEffect]
 	and a
 	jr z, .noLure
-	ld a, [hli]
-	add a, 2
+	ld a, [hli]		; Max level
+	add a, 2		; increase this by 2
 	jr .GotLevel
 
 .noLure

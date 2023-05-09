@@ -30,6 +30,7 @@ VarActionTable:
 	dwb wKenjiBreakTimer,               RETVAR_STRBUF2
 	dwb Var_CountPokemonJournals,       RETVAR_EXECUTE
 	dwb Var_CountTrainerStars,          RETVAR_EXECUTE
+	dwb Var_RandomCatchTutorial,        RETVAR_EXECUTE
 	dwb NULL,                           RETVAR_STRBUF2
 
 _GetVarAction::
@@ -110,6 +111,14 @@ Var_UnownCaught:
 	cp NUM_UNOWN
 	jr c, .loop
 	ret
+
+Var_RandomCatchTutorial:
+	ld a, 4
+	ld c, a
+	call Random
+	ldh a, [hRandomAdd]
+	call SimpleDivide
+	jr _Var_loadstringbuffer2
 
 Var_BoxFreeSpace:
 ; Remaining database entries

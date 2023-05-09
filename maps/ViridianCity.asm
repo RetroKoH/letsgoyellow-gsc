@@ -55,19 +55,95 @@ ViridianCityGymDoorLockTrigger:
 ViridianCityCatchTutorialScript:
 	faceplayer
 	opentext
-	writetext ViridianCityText_1920a
+	checkevent EVENT_VIRIDIAN_OLD_MAN_CATCH
+	iftrue_jumpopenedtext ViridianCityText_NoTutorial
+	writetext ViridianCityText_OldManFeelsGreat
 	yesorno
-	iftrue_jumpopenedtext ViridianCityText_19214
-	writetext ViridianCityText_1920f
-	waitbutton
-	closetext
-	loadwildmon WEEDLE, 5
-	catchtutorial BATTLETYPE_TUTORIAL
-	opentext
-	writetext ViridianCityText_19219
+	iffalse .StartTutorial
+	writetext ViridianCityText_TimeIsMoney
 	waitbutton
 	closetext
 	end
+
+.StartTutorial
+	readvar VAR_DEXCAUGHT
+	ifgreater 1, .skipTutorial
+	writetext ViridianCityText_GoToTutorial
+	waitbutton
+	closetext
+	readvar VAR_TUTORIALMON
+	ifequal TUTORIAL_CATERPIE, .catchCaterpie
+	ifequal TUTORIAL_WEEDLE, .catchWeedle
+	ifequal TUTORIAL_PIDGEY, .catchPidgey
+
+	loadwildmon RATTATA, 5
+	catchtutorial BATTLETYPE_TUTORIAL
+	opentext
+	writetext ViridianCityText_PostTutorial
+	promptbutton
+	waitsfx
+	givepoke RATTATA, 5
+	closetext
+	setevent EVENT_VIRIDIAN_OLD_MAN_CATCH
+	end
+
+.catchCaterpie
+	loadwildmon CATERPIE, 5
+	catchtutorial BATTLETYPE_TUTORIAL
+	opentext
+	writetext ViridianCityText_PostTutorial
+	promptbutton
+	waitsfx
+	givepoke CATERPIE, 5
+	closetext
+	setevent EVENT_VIRIDIAN_OLD_MAN_CATCH
+	end
+
+.catchWeedle
+	loadwildmon WEEDLE, 5
+	catchtutorial BATTLETYPE_TUTORIAL
+	opentext
+	writetext ViridianCityText_PostTutorial
+	promptbutton
+	waitsfx
+	givepoke WEEDLE, 5
+	closetext
+	setevent EVENT_VIRIDIAN_OLD_MAN_CATCH
+	end
+
+.catchPidgey
+	loadwildmon PIDGEY, 5
+	catchtutorial BATTLETYPE_TUTORIAL
+	opentext
+	writetext ViridianCityText_PostTutorial
+	promptbutton
+	waitsfx
+	givepoke PIDGEY, 5
+	closetext
+	setevent EVENT_VIRIDIAN_OLD_MAN_CATCH
+	end
+
+.skipTutorial
+	setevent EVENT_VIRIDIAN_OLD_MAN_CATCH
+	jumpthisopenedtext
+
+	text "I see you're using"
+	line "a #dex."
+
+	para "When you catch a"
+	line "#mon, #dex"
+	cont "is automatically"
+	cont "updated."
+
+	para "It looks like you"
+	line "already know how"
+	cont "to catch your"
+	cont "own #mon."
+
+	para "Best of luck to"
+	line "you, kiddo!"
+	done
+
 
 ViridianCityGirlScript:
 	faceplayer
@@ -102,7 +178,7 @@ ViridianCityText_GrumpyOldMan:
 	line "property!"
 	done
 
-ViridianCityText_1920a:
+ViridianCityText_OldManFeelsGreat:
 	text "Ahh, I've had my"
 	line "coffee now and I"
 	cont "feel great!"
@@ -114,7 +190,7 @@ ViridianCityText_1920a:
 	line "hurry?"
 	done
 
-ViridianCityText_1920f:
+ViridianCityText_GoToTutorial:
 	text "I see you're using"
 	line "a #dex."
 
@@ -131,15 +207,32 @@ ViridianCityText_1920f:
 	line "how to then."
 	done
 
-ViridianCityText_19214:
+ViridianCityText_NoTutorial:
+	text "Run along, kiddo."
+	line "Life's too short"
+	cont "to loiter around!"
+	done
+
+ViridianCityText_TimeIsMoney:
 	text "Time is money…"
 	line "Go along then."
 	done
 
-ViridianCityText_19219:
-	text "First, you need"
-	line "to weaken the"
-	cont "target #mon."
+ViridianCityText_PostTutorial:
+	text "Keep in mind that"
+	line "you should weaken"
+	cont "the wild #mon"
+	cont "first."
+
+	para "Thank you for"
+	line "listening to me."
+	cont "How can I repay"
+	cont "you for your time?"
+
+	para "How about I give"
+	line "you the #mon I"
+	cont "just caught. No"
+	cont "strings attached!"
 	done
 
 ViridianCityGrampsNearGymText:

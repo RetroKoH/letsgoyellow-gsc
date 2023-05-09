@@ -73,7 +73,8 @@ STRING_BUFFER_LENGTH EQU 19
 	const VAR_KENJI_BREAK      ; 19
 	const VAR_PKMN_JOURNALS    ; 1a
 	const VAR_TRAINER_STARS    ; 1b
-NUM_VARS EQU const_value           ; 1c
+	const VAR_TUTORIALMON      ; 1c
+NUM_VARS EQU const_value       ; 1d
 
 ; variable action types
 RETVAR_STRBUF2 EQU 0 << 6
@@ -345,3 +346,11 @@ NUM_UNOWN_PUZZLES EQU const_value
 	const AERODACTYL_PUZZLE
 	const HO_OH_PUZZLE
 NUM_PAINTINGS EQU const_value
+
+; Viridian City Old Man Catch Tutorial arguments
+	const_def
+	const TUTORIAL_CATERPIE
+	const TUTORIAL_WEEDLE
+	const TUTORIAL_PIDGEY
+	const TUTORIAL_RATTATA
+NUM_TUTORIAL_MONS EQU const_value

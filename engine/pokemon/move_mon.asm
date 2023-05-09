@@ -334,7 +334,7 @@ endr
 	ld b, a
 
 ; Random shininess
-; 1/4096 chance to be shiny, 3/4096 with Shiny Charm
+; 1/1024 chance to be shiny, with ways to boost odds
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .shiny_check

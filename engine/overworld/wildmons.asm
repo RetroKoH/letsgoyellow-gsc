@@ -418,6 +418,18 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 .get_random_mon
 	dec c				; c = $FF
 	push hl				; push wild mon data [species, form] to stack
+
+; Check to force rare spawn IF lure is active. (Could this be moved?)
+	ld a, [wLureEffect]
+	and a
+	jr z, .go_random	; If there is no active Lure, skip rare spawn chance.
+	call Random
+	cp 1 + 10 percent
+	jr nc, .go_random	; 10% chance for rare encounter
+	ld b, 7
+	jr .get_wildmon		; force load rare spawn
+
+.go_random
 	ld a, 100
 	call RandomRange
 	ld b, -1
@@ -434,20 +446,10 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	; At this point, b contains wildmon index to encounter.
 	; OLD: Since each entry is 3 bytes, add b*3 to hl.
 	; NEW: Since each entry is 2 bytes, add b*2 to hl.
-	ld a, b
+.get_wildmon
+	ld a, b					; a now contains wildmon index to encounter
 	add b
-;	add b
 	pop hl					; pop wild mon data [species, form] from stack
-
-	push af
-	ld a, [wLureEffect]
-	and a
-	jr z, .no_rare_spawn	; If there is no active Lure, skip ahead.
-	inc hl
-	inc hl					; Skip the first entry, granting access to the rare entry
-
-.no_rare_spawn
-	pop af
 	push hl					; keep first possible mon stored in the stack
 	add l
 	ld l, a

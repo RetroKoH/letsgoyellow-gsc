@@ -17,49 +17,6 @@ LyrasHouse1F_MapScriptHeader:
 	bg_event  5,  1, BGEVENT_UP, LyrasTVScript
 
 	def_object_events
-	object_event  2,  3, SPRITE_DAD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LyrasDadScript, -1
-
-LyrasDadScript:
-	faceplayer
-	opentext
-	checkevent EVENT_LYRA_IN_HER_ROOM
-	iffalse .LyraInside
-	checkevent EVENT_GOT_SS_TICKET_FROM_ELM
-	iftrue .LyraTraining
-	jumpopenedtext LyrasDadHelpingText
-
-.LyraInside
-	jumpopenedtext LyrasDadInsideText
-
-.LyraTraining
-	jumpopenedtext LyrasDadTrainingText
-
-LyrasDadInsideText:
-	text "Hi, <PLAYER>!"
-	line "Lyra is upstairs."
-
-	para "She's playing"
-	line "with her #mon"
-	cont "as usual."
-	done
-
-LyrasDadHelpingText:
-	text "Hi, <PLAYER>!"
-	line "Lyra isn't here."
-
-	para "She's been busy"
-	line "helping the prof-"
-	cont "essor."
-	done
-
-LyrasDadTrainingText:
-	text "Hi, <PLAYER>!"
-	line "Lyra isn't here."
-
-	para "She's collecting"
-	line "Badges all over"
-	cont "Johto!"
-	done
 
 LyrasFridgeScript:
 	jumpthistext

@@ -1237,8 +1237,6 @@ IrwinRumorScript:
 	iftrue UnknownScript_0xa08b0
 	checkevent EVENT_CLEARED_ROCKET_HIDEOUT
 	iftrue UnknownScript_0xa08a8
-	checkevent EVENT_JASMINE_RETURNED_TO_GYM
-	iftrue UnknownScript_0xa08a0
 	checkflag ENGINE_FOGBADGE
 	iftrue UnknownScript_0xa08e8
 	checkflag ENGINE_PLAINBADGE

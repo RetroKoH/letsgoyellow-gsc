@@ -24,6 +24,8 @@ ViridianForest_MapScriptHeader:
 	bg_event  3, 14, BGEVENT_ITEM + LEAF_STONE, EVENT_VIRIDIAN_FOREST_HIDDEN_LEAF_STONE
 
 	def_object_events
+	object_event 18, 44, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJessieText, -1
+	object_event 19, 44, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJamesText, -1
 	object_event 29, 42, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerBug_maniacDane, -1
 	object_event 33, 35, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBug_maniacDion, -1
 	object_event 32, 21, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBug_maniacStacey, -1
@@ -193,4 +195,16 @@ ViridianForestSignText6:
 
 	para "When healthy,"
 	line "they may escape!"
+	done
+
+ViridianForestJessieText:
+	text "Beat it, twerp!"
+	line "We're hard at"
+	cont "work over here!"
+	done
+
+ViridianForestJamesText:
+	text "Prepare for"
+	line "trouble! And make"
+	cont "it double!"
 	done

@@ -1,7 +1,7 @@
-; Every Pokémon sorted in Expanded Pokédex Order.
+; Every Pokémon sorted in Original Pokédex Order.
 
-NewPokedexOrder:
-	table_width 1, NewPokedexOrder
+OldPokedexOrder:
+	table_width 1, OldPokedexOrder
 	db BULBASAUR
 	db IVYSAUR
 	db VENUSAUR
@@ -26,7 +26,6 @@ NewPokedexOrder:
 	db FEAROW
 	db EKANS
 	db ARBOK
-	db PICHU
 	db PIKACHU
 	db RAICHU
 	db SANDSHREW
@@ -37,12 +36,10 @@ NewPokedexOrder:
 	db NIDORAN_M
 	db NIDORINO
 	db NIDOKING
-	db CLEFFA
 	db CLEFAIRY
 	db CLEFABLE
 	db VULPIX
 	db NINETALES
-	db IGGLYBUFF
 	db JIGGLYPUFF
 	db WIGGLYTUFF
 	db ZUBAT
@@ -60,7 +57,6 @@ NewPokedexOrder:
 	db DUGTRIO
 	db MEOWTH
 	db PERSIAN
-	db PERRSERKER
 	db PSYDUCK
 	db GOLDUCK
 	db MANKEY
@@ -70,7 +66,6 @@ NewPokedexOrder:
 	db POLIWAG
 	db POLIWHIRL
 	db POLIWRATH
-	db POLITOED
 	db ABRA
 	db KADABRA
 	db ALAKAZAM
@@ -89,12 +84,9 @@ NewPokedexOrder:
 	db RAPIDASH
 	db SLOWPOKE
 	db SLOWBRO
-	db SLOWKING
 	db MAGNEMITE
 	db MAGNETON
-	db MAGNEZONE
 	db FARFETCH_D
-	db SIRFETCH_D
 	db DODUO
 	db DODRIO
 	db SEEL
@@ -107,7 +99,6 @@ NewPokedexOrder:
 	db HAUNTER
 	db GENGAR
 	db ONIX
-	db STEELIX
 	db DROWZEE
 	db HYPNO
 	db KRABBY
@@ -118,46 +109,29 @@ NewPokedexOrder:
 	db EXEGGUTOR
 	db CUBONE
 	db MAROWAK
-	db TYROGUE
 	db HITMONLEE
 	db HITMONCHAN
-	db HITMONTOP
 	db LICKITUNG
-	db LICKILICKY
 	db KOFFING
 	db WEEZING
 	db RHYHORN
 	db RHYDON
-	db RHYPERIOR
-	db HAPPINY
 	db CHANSEY
-	db BLISSEY
 	db TANGELA
-	db TANGROWTH
 	db KANGASKHAN
 	db HORSEA
 	db SEADRA
-	db KINGDRA
 	db GOLDEEN
 	db SEAKING
 	db STARYU
 	db STARMIE
-	db MIME_JR_
 	db MR__MIME
-	db MR__RIME
 	db SCYTHER
-	db SCIZOR
-	db SMOOCHUM
 	db JYNX
-	db ELEKID
 	db ELECTABUZZ
-	db ELECTIVIRE
-	db MAGBY
 	db MAGMAR
-	db MAGMORTAR
 	db PINSIR
 	db TAUROS
-	db MILTANK
 	db MAGIKARP
 	db GYARADOS
 	db LAPRAS
@@ -172,8 +146,6 @@ NewPokedexOrder:
 	db GLACEON
 	db SYLVEON
 	db PORYGON
-	db PORYGON2
-	db PORYGON_Z
 	db OMANYTE
 	db OMASTAR
 	db KABUTO

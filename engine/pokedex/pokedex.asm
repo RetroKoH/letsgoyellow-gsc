@@ -1179,8 +1179,8 @@ Pokedex_DrawOptionScreenBG:
 	rawchar $3b, " Option ", $3c, $ff
 
 .Modes:
-	db   "Johto Mode"
-	next "National Mode"
+	db   "Original Mode"
+	next "Expanded Mode"
 	next "A to Z Mode@"
 
 .UnownMode:
@@ -1639,14 +1639,14 @@ Pokedex_OrderMonsByMode:
 	call StackJumpTable
 
 .Jumptable:
-	dw .NewMode
-	dw .OldMode
+	dw .OldMode ; Kanto
+	dw .NewMode ; Expanded
 	dw Pokedex_ABCMode
 
 .NewMode:
 	ld de, NewPokedexOrder
 	ld hl, wPokedexDataStart
-	ld c, NUM_POKEMON
+	ld c, 187 ;NUM_POKEMON
 .loopnew
 	ld a, [de]
 	inc de
@@ -1656,9 +1656,10 @@ Pokedex_OrderMonsByMode:
 	jr .FindLastSeen
 
 .OldMode:
+	ld de, OldPokedexOrder
 	ld hl, wPokedexDataStart
 	ld a, $1
-	ld c, NUM_POKEMON
+	ld c, 151 ;NUM_POKEMON
 .loopold
 	ld [hli], a
 	inc a
@@ -1718,6 +1719,7 @@ Pokedex_ABCMode:
 
 INCLUDE "data/pokemon/dex_order_alpha.asm"
 INCLUDE "data/pokemon/dex_order_new.asm"
+INCLUDE "data/pokemon/dex_order_old.asm"
 
 Pokedex_DisplayModeDescription:
 	xor a
@@ -1741,16 +1743,16 @@ Pokedex_DisplayModeDescription:
 	ret
 
 .Modes:
-	dw .NewMode
-	dw .OldMode
+	dw .KantoMode ; Old
+	dw .ExpandedMode ; New
 	dw .ABCMode
 	dw .UnownMode
 
-.NewMode:
+.KantoMode:
 	db   "<PK><MN> are listed in"
 	next "regional order.@"
 
-.OldMode:
+.ExpandedMode:
 	db   "<PK><MN> are listed in"
 	next "national order.@"
 

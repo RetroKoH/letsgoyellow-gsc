@@ -34,7 +34,7 @@ FuchsiaGymJanineScript:
 	applymovement FUCHSIAGYM_JANINE, Movement_NinjaSpin
 	showtextfaceplayer JanineText_DisappointYou
 	winlosstext JanineText_ToughOne, 0
-	loadtrainer JANINE, 1
+	loadgymleader JANINE
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JANINE

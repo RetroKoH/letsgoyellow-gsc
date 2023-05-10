@@ -31,7 +31,7 @@ CeladonGymErikaScript:
 	waitbutton
 	closetext
 	winlosstext ErikaBeatenText, 0
-	loadtrainer ERIKA, 1
+	loadgymleader ERIKA
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ERIKA

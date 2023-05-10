@@ -69,7 +69,7 @@ CeruleanGymMistyScript:
 	waitbutton
 	closetext
 	winlosstext MistyWinLossText, 0
-	loadtrainer MISTY, 1
+	loadgymleader MISTY
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_MISTY

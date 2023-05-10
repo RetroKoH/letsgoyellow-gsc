@@ -63,7 +63,7 @@ SaffronGymSabrinaScript:
 	waitbutton
 	closetext
 	winlosstext SabrinaWinLossText, 0
-	loadtrainer SABRINA, 1
+	loadgymleader SABRINA
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_SABRINA

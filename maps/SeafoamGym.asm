@@ -78,7 +78,7 @@ SeafoamGymBlaineScript:
 	waitbutton
 	closetext
 	winlosstext BlaineWinLossText, 0
-	loadtrainer BLAINE, 1
+	loadgymleader BLAINE
 	startbattle
 	iftrue .ReturnAfterBattle
 	appear SEAFOAMGYM_GYM_GUY

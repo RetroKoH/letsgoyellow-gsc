@@ -68,7 +68,7 @@ VermilionGymSurgeScript:
 	waitbutton
 	closetext
 	winlosstext LtSurgeWinLossText, 0
-	loadtrainer LT_SURGE, 1
+	loadgymleader LT_SURGE
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_LTSURGE

@@ -317,6 +317,8 @@ AnimationExtraPointers:
 
 	dw GyaradosRedAnimationExtra
 	dw MewtwoArmoredAnimationExtra
+	dw PikachuPartnerAnimationExtra
+	dw EeveePartnerAnimationExtra
 	dw RattataAlolanAnimationExtra
 	dw RaticateAlolanAnimationExtra
 	dw SandshrewAlolanAnimationExtra

@@ -389,6 +389,11 @@ FIRST_VARIANT_FORM_MON EQU const_value ; 134
 	ext_const_def 2
 	ext_const MEWTWO_ARMORED_FORM ; 135 (2)
 
+; partner pokemon
+PARTNER EQU 2
+	const_skip ; 136 pikachu
+	const_skip ; 137 eevee
+
 ; alolan forms
 ALOLAN_FORM EQU 2
 	const_skip ; 136 rattata

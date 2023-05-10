@@ -251,6 +251,7 @@ endr
 	; test party
 	givepoke CHARIZARD, 	PLAIN_FORM,		50, HEAVY_BOOTS
 	givepoke BLASTOISE, 	PLAIN_FORM,		50, LIFE_ORB
+	givepoke RATICATE,      ALOLAN_FORM,    50, ICY_ROCK
 
 	; fill pokedex
 	callasm FillPokedex

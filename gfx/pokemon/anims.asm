@@ -288,6 +288,9 @@ GyaradosRedAnimation:   INCLUDE "gfx/pokemon/gyarados_red/anim0.asm"
 MewtwoPlainAnimation:   INCLUDE "gfx/pokemon/mewtwo_plain/anim0.asm"
 MewtwoArmoredAnimation: INCLUDE "gfx/pokemon/mewtwo_armored/anim0.asm"
 
+PikachuPartnerAnimation: INCLUDE "gfx/pokemon/pikachu_partner/anim0.asm"
+EeveePartnerAnimation:   INCLUDE "gfx/pokemon/eevee_partner/anim0.asm"
+
 RattataPlainAnimation:  INCLUDE "gfx/pokemon/rattata_plain/anim0.asm"
 RattataAlolanAnimation: INCLUDE "gfx/pokemon/rattata_alolan/anim0.asm"
 

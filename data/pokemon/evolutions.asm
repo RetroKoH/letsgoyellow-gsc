@@ -274,6 +274,8 @@ EvolutionPointers::
 
 	dw NoEvolutions ; GyaradosEvolutions
 	dw NoEvolutions ; MewtwoEvolutions
+	dw NoEvolutions ; PartnerPikachuEvolutions
+	dw NoEvolutions ; PartnerEeveeEvolutions
 	dw RattataAlolanEvolutions
 	dw NoEvolutions ; RaticateAlolanEvolutions
 	dw SandshrewAlolanEvolutions

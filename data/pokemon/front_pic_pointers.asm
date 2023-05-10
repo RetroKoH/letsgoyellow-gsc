@@ -317,6 +317,8 @@ FrontPicPointers::
 
 	dba GyaradosRedFrontpic
 	dba MewtwoArmoredFrontpic
+	dba PikachuPlainFrontpic ; Will change
+	dba EeveeFrontpic ; Will change
 	dba RattataAlolanFrontpic
 	dba RaticateAlolanFrontpic
 	dba SandshrewAlolanFrontpic

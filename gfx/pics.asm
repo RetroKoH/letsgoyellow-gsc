@@ -653,7 +653,6 @@ PikachuChuchuFrontpic:    INCBIN "gfx/pokemon/pikachu_chuchu/front.animated.2bpp
 PikachuChuchuBackpic:     INCBIN "gfx/pokemon/pikachu_chuchu/back.2bpp.lz"
 PikachuSparkFrontpic:     INCBIN "gfx/pokemon/pikachu_spark/front.animated.2bpp.lz"
 
-
 SECTION "Pichu Pics", ROMX
 
 PichuPlainFrontpic:       INCBIN "gfx/pokemon/pichu_plain/front.animated.2bpp.lz"
@@ -731,6 +730,11 @@ GyaradosRedFrontpic:      INCBIN "gfx/pokemon/gyarados_red/front.animated.2bpp.l
 GyaradosPlainBackpic:
 GyaradosRedBackpic:       INCBIN "gfx/pokemon/gyarados/back.2bpp.lz"
 
+SECTION "Partner Pics", ROMX
+PikachuPartnerFrontPic:   INCBIN "gfx/pokemon/pikachu_partner/front.animated.2bpp.lz"
+PikachuPartnerBackpic:    INCBIN "gfx/pokemon/pikachu_partner/back.2bpp.lz"
+EeveePartnerFrontPic:     INCBIN "gfx/pokemon/eevee_partner/front.animated.2bpp.lz"
+EeveePartnerBackpic:      INCBIN "gfx/pokemon/eevee_partner/back.2bpp.lz"
 
 SECTION "Rattata/Raticate Pics", ROMX
 

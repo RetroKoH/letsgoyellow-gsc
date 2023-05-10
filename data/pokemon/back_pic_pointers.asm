@@ -317,6 +317,8 @@ BackPicPointers::
 
 	dba GyaradosRedBackpic
 	dba MewtwoArmoredBackpic
+	dba PikachuPartnerBackpic
+	dba EeveePartnerBackpic
 	dba RattataAlolanBackpic
 	dba RaticateAlolanBackpic
 	dba SandshrewAlolanBackpic

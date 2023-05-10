@@ -317,6 +317,8 @@ FramesPointers:
 
 	dw GyaradosRedFrames
 	dw MewtwoArmoredFrames
+	dw PikachuPartnerFrames
+	dw EeveePartnerFrames
 	dw RattataAlolanFrames
 	dw RaticateAlolanFrames
 	dw SandshrewAlolanFrames

@@ -317,6 +317,8 @@ BitmasksPointers:
 
 	dw GyaradosRedBitmasks
 	dw MewtwoArmoredBitmasks
+	dw PikachuPartnerBitmasks
+	dw EeveePartnerBitmasks
 	dw RattataAlolanBitmasks
 	dw RaticateAlolanBitmasks
 	dw SandshrewAlolanBitmasks

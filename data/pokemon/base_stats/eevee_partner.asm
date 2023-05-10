@@ -1,17 +1,17 @@
-	db  55,  55,  50,  55,  45,  65 ; 325 BST
+	db  65,  75,  70,  75,  65,  85 ; 435 BST
 	;   hp  atk  def  spd  sat  sdf
 	db NORMAL, NORMAL ; type
-	db 45 ; catch rate
-	db 92 ; base exp
+	db 0 ; catch rate
+	db 0 ; base exp
 	db NO_ITEM ; item 1
 	db NO_ITEM ; item 2
-	dn GENDER_F12_5, 6 ; gender ratio, step cycles to hatch
+	dn GENDER_F100, 1 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/eevee/front.dimensions"
-	abilities_for EEVEE, RUN_AWAY, ADAPTABILITY, ANTICIPATION
+	abilities_for EEVEE, ADAPTABILITY, ADAPTABILITY, ADAPTABILITY
 	db GROWTH_MEDIUM_FAST ; growth rate
-	dn EGG_GROUND, EGG_GROUND ; egg groups
+	dn EGG_NONE, EGG_NONE ; egg groups
 
-	ev_yield   0,   0,   0,   0,   0,   1
+	ev_yield   0,   0,   0,   0,   0,   0
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset

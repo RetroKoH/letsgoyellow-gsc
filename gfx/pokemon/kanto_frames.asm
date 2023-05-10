@@ -155,6 +155,9 @@ GyaradosRedFrames:   INCLUDE "gfx/pokemon/gyarados_red/frames.asm"
 MewtwoPlainFrames:   INCLUDE "gfx/pokemon/mewtwo_plain/frames.asm"
 MewtwoArmoredFrames: INCLUDE "gfx/pokemon/mewtwo_armored/frames.asm"
 
+PikachuPartnerFrames:   INCLUDE "gfx/pokemon/pikachu_partner/frames.asm"
+EeveePartnerFrames: INCLUDE "gfx/pokemon/eevee_partner/frames.asm"
+
 RattataPlainFrames:  INCLUDE "gfx/pokemon/rattata_plain/frames.asm"
 RattataAlolanFrames: INCLUDE "gfx/pokemon/rattata_alolan/frames.asm"
 

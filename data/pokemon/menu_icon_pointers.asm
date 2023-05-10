@@ -306,6 +306,8 @@ endr
 
 	dba GyaradosIcon ; Red
 	dba MewtwoArmoredIcon
+	dba PikachuIcon ; Partner (Add Heart)
+	dba EeveeIcon ; Partner (Add Heart)
 	dba RattataIcon ; TODO
 	dba RaticateIcon ; TODO
 	dba SandshrewIcon ; TODO

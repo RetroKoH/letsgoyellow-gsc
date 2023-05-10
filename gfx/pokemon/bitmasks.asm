@@ -286,6 +286,9 @@ GyaradosRedBitmasks:   INCLUDE "gfx/pokemon/gyarados_red/bitmask.asm"
 MewtwoPlainBitmasks:   INCLUDE "gfx/pokemon/mewtwo_plain/bitmask.asm"
 MewtwoArmoredBitmasks: INCLUDE "gfx/pokemon/mewtwo_armored/bitmask.asm"
 
+PikachuPartnerBitmasks: INCLUDE "gfx/pokemon/pikachu_partner/bitmask.asm"
+EeveePartnerBitmasks:   INCLUDE "gfx/pokemon/eevee_partner/bitmask.asm"
+
 RattataPlainBitmasks:  INCLUDE "gfx/pokemon/rattata_plain/bitmask.asm"
 RattataAlolanBitmasks: INCLUDE "gfx/pokemon/rattata_alolan/bitmask.asm"
 

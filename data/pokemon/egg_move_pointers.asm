@@ -260,6 +260,8 @@ EggMovePointers::
 
 	dw NoEggMoves
 	dw NoEggMoves
+	dw NoEggMoves ; Partner Pika
+	dw NoEggMoves ; Partner Eevee
 	dw RattataAlolanEggMoves
 	dw NoEggMoves
 	dw SandshrewAlolanEggMoves

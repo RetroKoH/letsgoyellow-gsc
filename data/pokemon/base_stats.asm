@@ -295,6 +295,8 @@ INCLUDE "data/pokemon/base_stats/egg.asm"
 
 INCLUDE "data/pokemon/base_stats/gyarados.asm" ; red
 INCLUDE "data/pokemon/base_stats/mewtwo_armored.asm"
+INCLUDE "data/pokemon/base_stats/pikachu_partner.asm"
+INCLUDE "data/pokemon/base_stats/eevee_partner.asm"
 INCLUDE "data/pokemon/base_stats/rattata_alolan.asm"
 INCLUDE "data/pokemon/base_stats/raticate_alolan.asm"
 INCLUDE "data/pokemon/base_stats/sandshrew_alolan.asm"
@@ -313,15 +315,15 @@ INCLUDE "data/pokemon/base_stats/muk_alolan.asm"
 INCLUDE "data/pokemon/base_stats/raichu_alolan.asm"
 INCLUDE "data/pokemon/base_stats/exeggutor_alolan.asm"
 INCLUDE "data/pokemon/base_stats/marowak_alolan.asm"
-INCLUDE "data/pokemon/base_stats/meowth_galarian.asm" ; NEW
+INCLUDE "data/pokemon/base_stats/meowth_galarian.asm"
 INCLUDE "data/pokemon/base_stats/ponyta_galarian.asm"
 INCLUDE "data/pokemon/base_stats/rapidash_galarian.asm"
 INCLUDE "data/pokemon/base_stats/slowpoke_galarian.asm"
 INCLUDE "data/pokemon/base_stats/slowbro_galarian.asm"
 INCLUDE "data/pokemon/base_stats/slowking_galarian.asm"
-INCLUDE "data/pokemon/base_stats/farfetch_d_galarian.asm" ; NEW
+INCLUDE "data/pokemon/base_stats/farfetch_d_galarian.asm"
 INCLUDE "data/pokemon/base_stats/weezing_galarian.asm"
-INCLUDE "data/pokemon/base_stats/mr__mime_galarian.asm" ; NEW
+INCLUDE "data/pokemon/base_stats/mr__mime_galarian.asm"
 INCLUDE "data/pokemon/base_stats/articuno_galarian.asm"
 INCLUDE "data/pokemon/base_stats/zapdos_galarian.asm"
 INCLUDE "data/pokemon/base_stats/moltres_galarian.asm"

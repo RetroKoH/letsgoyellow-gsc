@@ -62,6 +62,8 @@ VariantSpeciesAndFormTable:
 	table_width 2, VariantSpeciesAndFormTable
 	dp GYARADOS,  GYARADOS_RED_FORM
 	dp MEWTWO,    MEWTWO_ARMORED_FORM
+	dp PIKACHU,   PARTNER
+	dp EEVEE,     PARTNER
 	dp RATTATA,   ALOLAN_FORM
 	dp RATICATE,  ALOLAN_FORM
 	dp SANDSHREW, ALOLAN_FORM

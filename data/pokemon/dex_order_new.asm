@@ -60,7 +60,6 @@ NewPokedexOrder:
 	db DUGTRIO
 	db MEOWTH
 	db PERSIAN
-	db PERRSERKER
 	db PSYDUCK
 	db GOLDUCK
 	db MANKEY
@@ -94,7 +93,6 @@ NewPokedexOrder:
 	db MAGNETON
 	db MAGNEZONE
 	db FARFETCH_D
-	db SIRFETCH_D
 	db DODUO
 	db DODRIO
 	db SEEL
@@ -144,7 +142,6 @@ NewPokedexOrder:
 	db STARMIE
 	db MIME_JR_
 	db MR__MIME
-	db MR__RIME
 	db SCYTHER
 	db SCIZOR
 	db SMOOCHUM

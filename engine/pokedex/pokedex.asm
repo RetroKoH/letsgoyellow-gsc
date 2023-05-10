@@ -1646,7 +1646,7 @@ Pokedex_OrderMonsByMode:
 .NewMode:
 	ld de, NewPokedexOrder
 	ld hl, wPokedexDataStart
-	ld c, 187 ;NUM_POKEMON
+	ld c, 184 ;NUM_POKEMON
 .loopnew
 	ld a, [de]
 	inc de
@@ -1658,11 +1658,12 @@ Pokedex_OrderMonsByMode:
 .OldMode:
 	ld de, OldPokedexOrder
 	ld hl, wPokedexDataStart
-	ld a, $1
+;	ld a, $1
 	ld c, 151 ;NUM_POKEMON
 .loopold
+	ld a, [de]
+	inc de
 	ld [hli], a
-	inc a
 	dec c
 	jr nz, .loopold
 	; fallthrough

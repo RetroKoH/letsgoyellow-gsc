@@ -929,7 +929,7 @@ IntroFadePalettesEnd:
 DrawIntroRivalPic:
 	xor a
 	ld [wCurPartySpecies], a
-	ld a, RIVAL0
+	ld a, TRACE0
 	ld [wTrainerClass], a
 	jp Intro_PrepTrainerPic
 

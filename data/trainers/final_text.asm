@@ -1,5 +1,5 @@
 FinalTextList_TriplePhrases:
-	dbw RIVAL0, .FinalText_Rival0
+	dbw TRACE0, .FinalText_Rival0
 	dbw RIVAL1, .FinalText_Rival1
 	dbw RIVAL2, .FinalText_Rival2
 	dbw LYRA1,  .FinalText_Lyra1
@@ -7,7 +7,7 @@ FinalTextList_TriplePhrases:
 	db -1
 
 .FinalText_Rival0:
-	dw Rival1_1FinalPkmnText
+	dw Trace1_1FinalPkmnText
 
 .FinalText_Rival1:
 	dw Rival1_2FinalPkmnText

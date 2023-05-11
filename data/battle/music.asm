@@ -6,7 +6,7 @@ BattleMusic_Trainers:
 	dbw CHAMPION,         MUSIC_CHAMPION_BATTLE
 	dbw RED,              MUSIC_WCS_BATTLE_BW
 	dbw LEAF,             MUSIC_CHAMPION_BATTLE_B2W2
-	dbw RIVAL0,           MUSIC_RIVAL_BATTLE
+	dbw TRACE0,           MUSIC_RIVAL_BATTLE
 	dbw RIVAL1,           MUSIC_RIVAL_BATTLE
 	dbw RIVAL2,           MUSIC_RIVAL_BATTLE
 	dbw LYRA1,            MUSIC_RIVAL_BATTLE_XY

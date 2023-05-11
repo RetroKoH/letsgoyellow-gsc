@@ -1403,20 +1403,20 @@ Rival0Group:
 ; ================================
 ; ================
 
-	; #0: Oak's Lab - Player chose Pikachu
+	; #0: Trainer House - Player chose Pikachu
 	db "<RIVAL>@"
-	db TRAINERTYPE_NORMAL
+	db TRAINERTYPE_NORMAL | TRAINERTYPE_PERSONALITY
 	; party
-	db 5, EEVEE
+	db 5, EEVEE, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
 
-	; #0: Oak's Lab - Player chose Eevee
+	; #0: Trainer House - Player chose Eevee
 	db "<RIVAL>@"
-	db TRAINERTYPE_NORMAL
+	db TRAINERTYPE_NORMAL | TRAINERTYPE_PERSONALITY
 	; party
-	db 5, PIKACHU
+	db 5, PIKACHU, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
@@ -1427,20 +1427,20 @@ Rival0Group:
 
 	; #1: Route 22 (Early) - Player chose Pikachu
 	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
+	db TRAINERTYPE_ITEM | TRAINERTYPE_PERSONALITY
 	; party
-	db 9, SPEAROW, NO_ITEM
-	db 9, EEVEE, ORAN_BERRY
+	db 9, SPEAROW, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 9, EEVEE, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
 
 	; #1: Route 22 (Early) - Player chose Eevee
 	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
+	db TRAINERTYPE_ITEM | TRAINERTYPE_PERSONALITY
 	; party
-	db 9, PIDGEY, NO_ITEM
-	db 9, PIKACHU, ORAN_BERRY
+	db 9, PIDGEY, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 9, PIKACHU, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
@@ -1451,24 +1451,24 @@ Rival0Group:
 
 	; #2: Cerulean City - Player chose Pikachu
 	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
+	db TRAINERTYPE_ITEM | TRAINERTYPE_PERSONALITY
 	; party
-	db 17, SPEAROW, NO_ITEM
-	db 16, SANDSHREW, NO_ITEM
-	db 16, RATTATA, ORAN_BERRY
-	db 17, EEVEE, ORAN_BERRY
+	db 17, SPEAROW, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 16, SANDSHREW, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 16, BELLSPROUT, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE
+	db 17, EEVEE, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
 
 	; #2: Cerulean City - Player chose Eevee
 	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
+	db TRAINERTYPE_ITEM | TRAINERTYPE_PERSONALITY
 	; party
-	db 17, PIDGEY, NO_ITEM
-	db 16, ABRA, NO_ITEM
-	db 16, RATTATA, ORAN_BERRY
-	db 17, PIKACHU, ORAN_BERRY
+	db 17, PIDGEY, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 16, ABRA, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 16, ODDISH, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE
+	db 17, PIKACHU, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
@@ -1480,86 +1480,60 @@ Rival1Group:
 
 	; #3: Vermilion City - Player chose Pikachu
 	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
+	db TRAINERTYPE_ITEM | TRAINERTYPE_PERSONALITY
 	; party
-	db 20, FEAROW, NO_ITEM
-	db 20, SANDSHREW, NO_ITEM
-	db 19, RATTATA, ORAN_BERRY
-	db 21, EEVEE, ORAN_BERRY
+	db 20, FEAROW, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 20, SANDSHREW, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 19, BELLSPROUT, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE
+	db 21, EEVEE, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
 
 	; #3: Vermilion City - Player chose Eevee
 	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
+	db TRAINERTYPE_ITEM | TRAINERTYPE_PERSONALITY
 	; party
-	db 20, PIDGEOTTO, NO_ITEM
-	db 29, KADABRA, NO_ITEM
-	db 19, RATTATA, ORAN_BERRY
-	db 21, PIKACHU, ORAN_BERRY
+	db 20, PIDGEOTTO, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 29, KADABRA, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 19, ODDISH, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE
+	db 21, PIKACHU, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
 ; ================================
 
 ; At this point, Trace's Team begins to change.
-; Trace will choose Jolteon if you defeat him twice in the 1st two battles
-; Trace will choose Flareon if you defeat him once in the first two battles
-; Trace will choose Vaporeon if you lose to him in both of the first two battles
-; Trace will always go in the same route with Raichu, however
+; Depending on a certain event, he adds one mon of a certain type
+; +FIRE: Vulpix/Growlithe
+; +WATER: Shellder/Tentacool
+; +ELEC: Magnemite/Voltorb
 
 ; ================================
 ; ================
 
-	; #4: Lavender Town - Trace will evolve into Jolteon
+	; #4: Lavender Town - Player chose Pikachu
 	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
+	db TRAINERTYPE_ITEM | TRAINERTYPE_PERSONALITY
 	; party
-	db 25, FEAROW, ORAN_BERRY
-	db 23, SHELLDER, NO_ITEM
-	db 23, VULPIX, NO_ITEM
-	db 20, SANDSHREW, ORAN_BERRY
-	db 25, EEVEE, SITRUS_BERRY
+	db 25, FEAROW, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 23, VULPIX, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, FEMALE
+	db 23, WEEPINBELL, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, FEMALE
+	db 20, SANDSHREW, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 25, EEVEE, SITRUS_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
 
-	; #4: Lavender Town - Trace will evolve into Flareon
+	; #4: Lavender Town - Player chose Eevee
 	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
+	db TRAINERTYPE_ITEM | TRAINERTYPE_PERSONALITY
 	; party
-	db 25, FEAROW, ORAN_BERRY
-	db 23, MAGNEMITE, NO_ITEM
-	db 23, SHELLDER, NO_ITEM
-	db 20, SANDSHREW, ORAN_BERRY
-	db 25, EEVEE, SITRUS_BERRY
-	db -1 ; end
-
-; ================
-
-	; #4: Lavender Town - Trace will evolve into Vaporeon
-	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
-	; party
-	db 25, FEAROW, ORAN_BERRY
-	db 23, VULPIX, NO_ITEM
-	db 23, MAGNEMITE, NO_ITEM
-	db 20, SANDSHREW, ORAN_BERRY
-	db 25, EEVEE, SITRUS_BERRY
-	db -1 ; end
-
-; ================
-
-	; #4: Lavender Town - Trace will evolve into Raichu
-	db "<RIVAL>@"
-	db TRAINERTYPE_ITEM
-	; party
-	db 25, PIDGEOTTO, ORAN_BERRY
-	db 23, GROWLITHE, NO_ITEM
-	db 23, GYARADOS, NO_ITEM
-	db 20, ALAKAZAM, ORAN_BERRY
-	db 25, PIKACHU, SITRUS_BERRY
+	db 25, PIDGEOTTO, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 23, GROWLITHE, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 23, GLOOM, NO_ITEM, NO_ITEM, ABILITY_1 | NAT_NEUTRAL, FEMALE
+	db 20, KADABRA, ORAN_BERRY, ABILITY_1 | NAT_NEUTRAL, MALE
+	db 25, PIKACHU, SITRUS_BERRY, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================

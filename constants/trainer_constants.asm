@@ -80,7 +80,7 @@ KRIS EQU __trainer_class__
 
 	trainerclass LEAF ; 19
 
-	trainerclass RIVAL0 ; 1a
+	trainerclass TRACE0 ; 1a
 
 	trainerclass RIVAL1 ; 1b
 	const RIVAL1_4

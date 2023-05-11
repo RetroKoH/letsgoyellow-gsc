@@ -18,7 +18,7 @@ PnP_HiddenPeople_BeatE4:
 	db BLUE
 	; fallthrough
 PnP_HiddenPeople_BeatKanto:
-	db RIVAL0
+	db TRACE0
 	db RIVAL1
 	db RIVAL2
 	db LYRA1

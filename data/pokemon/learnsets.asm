@@ -260,8 +260,8 @@ LearnsetPointers::
 
 	dw GyaradosLearnset
 	dw MewtwoLearnset
-	dw PikachuPartnerLearnset
-	dw EeveePartnerLearnset
+	dw PikachuLearnset ; Partner
+	dw EeveeLearnset ; Partner
 	dw RattataAlolanLearnset
 	dw RaticateAlolanLearnset
 	dw SandshrewAlolanLearnset
@@ -459,7 +459,7 @@ ArbokLearnset:
 	db 0 ; no more level-up moves
 
 PikachuPartnerLearnset:
-	db 1, RETURN
+;	db 1, RETURN
 PichuLearnset:
 PikachuLearnset:
 RaichuPlainLearnset:
@@ -1547,7 +1547,7 @@ LaprasLearnset:
 	db 0 ; no more level-up moves
 
 EeveePartnerLearnset:
-	db 1, RETURN
+;	db 1, RETURN
 EeveeLearnset:
 VaporeonLearnset:
 JolteonLearnset:

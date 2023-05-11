@@ -134,7 +134,7 @@ PikaBallScript:
 	writetext TrainerHouseBlueConfirm
 	promptbutton
 	waitsfx
-	givepoke PIKACHU, PARTNER, 5, ORAN_BERRY
+	givepoke PIKACHU, PARTNER, 5
 	closetext
 	applymovement STARTHOUSE_TRACE, Movement_TracePicksEevee
 	opentext
@@ -168,7 +168,7 @@ EeveeBallScript:
 	writetext TrainerHouseBlueConfirm
 	promptbutton
 	waitsfx
-	givepoke EEVEE, PARTNER, 5, ORAN_BERRY
+	givepoke EEVEE, PARTNER, 5
 	closetext
 	applymovement STARTHOUSE_TRACE, Movement_TracePicksPikachu
 	opentext
@@ -246,6 +246,25 @@ TrainerHouseTrigger2:
 	faceobject STARTHOUSE_TRACE, PLAYER
 	faceobject PLAYER, STARTHOUSE_TRACE
 	opentext
+	writetext Text_TraceChallengesYou
+	waitbutton
+	closetext
+
+	winlosstext TrainerHouseTraceWinText, TrainerHouseTraceLossText
+	setlasttalked STARTHOUSE_TRACE
+	checkevent EVENT_PLAYER_CHOSE_EEVEE
+	iftrue .Eevee
+	loadtrainer TRACE0, 1
+	sjump .continueBattle
+.Eevee
+	loadtrainer TRACE0, 2
+
+.continueBattle
+	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	startbattle
+;	dontrestartmapmusic
+	reloadmap
+	opentext
 	writetext Text_TraceSaysBye
 	waitbutton
 	closetext
@@ -261,7 +280,7 @@ Movement_BlueWalksDown:
 
 Movement_BlueLeaves:
 	step_down
-	step_left
+	step_down
 	step_down
 	step_down
 	step_down
@@ -289,16 +308,38 @@ Text_BlueSendsOff:
 	para "Smell ya later!"
 	done
 
-Text_TraceSaysBye:
+Text_TraceChallengesYou:
 	text "<RIVAL>: Well, you"
 	line "heard the man."
 	cont "Let's get a move"
 	cont "on already!"
 
-	para "You go to the lab"
-	line "first. I've got"
-	cont "something to do"
-	cont "first."
+	para "Before we do, why"
+	line "don't we have a"
+	cont "quick battle?"
+
+	para "It'll be nice to"
+	line "see what our new"
+	cont "#mon can do!"
+
+	para "Ready? Let's go!"
+	done
+
+Text_TraceSaysBye:
+	text "<RIVAL>: Whoa!"
+	line "What a battle!"
+	cont "Your #mon sure"
+	cont "is strong!"
+
+	para "You'd better"
+	line "start training,"
+	cont "I want a rematch"
+	cont "later on."
+
+	para "Anyway, You go to"
+	line "the lab first. I"
+	cont "have something to"
+	cont "do before I go."
 
 	para "See ya, <PLAYER>!"
 	done
@@ -353,4 +394,14 @@ Text_TraceYouPickFirst:
 	line "first. You seem"
 	cont "like you can't"
 	cont "wait anymore!"
+	done
+
+TrainerHouseTraceWinText:
+	text "<RIVAL>: What?!"
+	line "Did I lose?"
+	done
+
+TrainerHouseTraceLossText:
+	text "<RIVAL>: Yes!"
+	line "I did it!"
 	done

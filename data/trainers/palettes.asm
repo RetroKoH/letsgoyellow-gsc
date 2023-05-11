@@ -3,10 +3,10 @@ TrainerPalettes:
 	table_width PAL_COLOR_SIZE * 2, TrainerPalettes
 
 if !DEF(MONOCHROME)
-ChrisPalette:            INCLUDE "gfx/trainers/cal.pal"
+ChrisPalette:            INCLUDE "gfx/trainers/chase.pal"
 KrisPalette:
-CarriePalette:           INCLUDE "gfx/trainers/carrie.pal"
-CalPalette:              INCLUDE "gfx/trainers/cal.pal"
+CarriePalette:           INCLUDE "gfx/trainers/elaine.pal"
+CalPalette:              INCLUDE "gfx/trainers/chase.pal"
 FalknerPalette:          INCLUDE "gfx/trainers/falkner.pal"
 BugsyPalette:            INCLUDE "gfx/trainers/bugsy.pal"
 WhitneyPalette:          INCLUDE "gfx/trainers/whitney.pal"

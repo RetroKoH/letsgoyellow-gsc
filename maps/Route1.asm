@@ -13,7 +13,17 @@ Route1_MapScriptHeader:
 	def_object_events
 	object_event  5, 24, SPRITE_CLERK, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route1Text1, -1
 	object_event 15, 13, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route1Text2, -1
+	object_event 13, 2, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, YoungsterDannyText1, EVENT_GOT_POKEDEX_FROM_OAK
+	object_event 12, 2, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, GenericTrainerYoungsterDanny, EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN	
 	fruittree_event  5,  7, FRUITTREE_ROUTE_1, ORAN_BERRY, PAL_NPC_BLUE
+
+GenericTrainerYoungsterDanny:
+	generictrainer YOUNGSTER, YOUNGSTER_DANNY, EVENT_BEAT_YOUNGSTER_DANNY, YoungsterDannySeenText, YoungsterDannyBeatenText
+
+	text "If this is it,"
+	line "then I don't mind"
+	cont "losing!"
+	done
 
 Route1Text1:
 	faceplayer
@@ -93,4 +103,27 @@ Route1SignText:
 
 	para "Pallet Town -"
 	line "Viridian City"
+	done
+
+YoungsterDannyText1:
+	text "Wow! You've got a"
+	line "cool #mon with"
+	cont "you. I'll bring"
+	cont "my favorite one"
+	cont "later."
+
+	para "You'd better be"
+	line "ready to battle"
+	cont "when I do!"
+	done
+
+YoungsterDannySeenText:
+	text "You're back! Now"
+	line "I'll show you my"
+	cont "favorite #mon!"
+	done
+
+YoungsterDannyBeatenText:
+	text "You're way too"
+	line "strong!"
 	done

@@ -1863,6 +1863,13 @@ YoungsterGroup:
 ; ================================
 ; ================
 
+; YOUNGSTER - Route 1
+	db "Danny@"
+	db TRAINERTYPE_NORMAL
+	; party
+	db 05, RATTATA
+	db -1 ; end
+
 ; YOUNGSTER - Route 3
 	db "Regis@"
 	db TRAINERTYPE_NORMAL

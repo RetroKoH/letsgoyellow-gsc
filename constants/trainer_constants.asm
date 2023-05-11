@@ -115,6 +115,7 @@ KRIS EQU __trainer_class__
 	trainerclass LYRA2 ; 1e
 
 	trainerclass YOUNGSTER ; 1f
+	const YOUNGSTER_DANNY ; (Route 1)
 	const REGIS
 	const WARREN
 	const JIMMY

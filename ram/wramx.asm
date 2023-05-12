@@ -1107,12 +1107,12 @@ wTeamRocketBaseB3FSceneID:: db
 wTinTower1FSceneID:: db
 wTradeCenterSceneID:: db
 wTrainerHouseID:: db
-wUndergroundPathSwitchRoomEntrancesSceneID:: db
 wVermilionCitySceneID:: db
 wVermilionPortSceneID:: db
 wVictoryRoad2FSceneID:: db
 wViridianCitySceneID:: db
-wViridianMartSceneID:: db
+wViridianForestSceneID:: db
+wViridianMartSceneID:: db ; Unused
 wWillsRoomSceneID:: db
 wYellowForestSceneID:: db
 

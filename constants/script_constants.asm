@@ -182,6 +182,7 @@ NUM_FLOORS EQU const_value
 	const EMOTE_BOLT
 	const EMOTE_SLEEP
 	const EMOTE_FISH
+	const EMOTE_WAIT
 NUM_EMOTES EQU const_value
 EMOTE_FROM_MEM EQU -1
 

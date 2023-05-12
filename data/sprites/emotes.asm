@@ -9,4 +9,5 @@ Emotes:
 	dba BoltEmote     ; EMOTE_BOLT
 	dba SleepEmote    ; EMOTE_SLEEP
 	dba FishEmote     ; EMOTE_FISH
+	dba WaitEmote     ; EMOTE_WAIT
 	assert_table_length NUM_EMOTES

@@ -101,9 +101,9 @@ MapScenes::
 	scene_var TRADE_CENTER,                           wTradeCenterSceneID
 	scene_var TRAINER_HOUSE_1F,                       wTrainerHouseID
 	scene_var TRAINER_HOUSE_B1F,                      wAlways0SceneID
-	scene_var UNDERGROUND_PATH_SWITCH_ROOM_ENTRANCES, wUndergroundPathSwitchRoomEntrancesSceneID
 	scene_var VERMILION_CITY,                         wVermilionCitySceneID
 	scene_var VERMILION_PORT,                         wVermilionPortSceneID
+	scene_var VIRIDIAN_FOREST,                        wViridianForestSceneID
 	scene_var VICTORY_ROAD_2F,                        wVictoryRoad2FSceneID
 	scene_var VIRIDIAN_CITY,                          wViridianCitySceneID
 	scene_var WILLS_ROOM,                             wWillsRoomSceneID

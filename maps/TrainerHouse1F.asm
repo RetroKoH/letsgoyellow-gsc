@@ -264,6 +264,17 @@ TrainerHouseTrigger2:
 	startbattle
 ;	dontrestartmapmusic
 	reloadmap
+	iffalse .AfterYouWin
+	sjump .AfterYouLose
+
+.AfterYouWin:
+	showtext Text_PlayerWon
+	sjump .FinishTrace
+
+.AfterYouLose:
+	showtext Text_TraceWon
+.FinishTrace
+	showemote EMOTE_HAPPY, STARTHOUSE_TRACE, 20
 	opentext
 	writetext Text_TraceSaysBye
 	waitbutton
@@ -271,6 +282,7 @@ TrainerHouseTrigger2:
 	turnobject PLAYER, DOWN
 	applymovement STARTHOUSE_TRACE, Movement_BlueLeaves
 	disappear STARTHOUSE_TRACE
+	special HealPartyEvenForNuzlocke
 	setscene $3
 	end
 
@@ -325,13 +337,22 @@ Text_TraceChallengesYou:
 	para "Ready? Let's go!"
 	done
 
-Text_TraceSaysBye:
+Text_PlayerWon:
 	text "<RIVAL>: Whoa!"
 	line "What a battle!"
 	cont "Your #mon sure"
 	cont "is strong!"
+	done
 
-	para "You'd better"
+Text_TraceWon:
+	text "<RIVAL>: Whoa!"
+	line "What a battle!"
+	cont "Your #mon needs"
+	cont "practice though!"
+	done
+
+Text_TraceSaysBye:
+	text "You'd better"
 	line "start training,"
 	cont "I want a rematch"
 	cont "later on."

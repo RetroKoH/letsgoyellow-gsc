@@ -124,8 +124,8 @@ for x, NUM_TMS + NUM_HMS
 	givetmhm x
 endr
 	; useful items
-for x, POKE_BALL, CHERISH_BALL + 1
-if x != PARK_BALL && x != SAFARI_BALL
+for x, POKE_BALL, SNAG_BALL + 1
+if x != PARK_BALL && x != SAFARI_BALL && x != CHERISH_BALL
 	giveitem x, 99
 endc
 endr

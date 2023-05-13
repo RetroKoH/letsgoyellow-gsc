@@ -25,7 +25,7 @@ ItemIconPointers:
 	dba DreamBallIcon
 	dba PremierBallIcon
 	dba CherishBallIcon
-	dba BrickPieceIcon ; Snag Ball
+	dba SnagBallIcon
 	dba PotionIcon
 	dba SuperPotionIcon
 	dba HyperPotionIcon

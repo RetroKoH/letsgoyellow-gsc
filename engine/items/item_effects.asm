@@ -322,8 +322,12 @@ PokeBallEffect:
 
 	; Using balls in trainer battles
 	dec a
-	jmp nz, UseBallInTrainerBattle
+	jmp z, .notBlocked ; nz = trainer battle
+	ld a, [wCurItem]
+	cp SNAG_BALL
+	jp nz, UseBallInTrainerBattle ; block if not snag ball
 
+.notBlocked
 	; Battling ghosts
 	ld a, [wBattleType]
 	cp BATTLETYPE_GHOST

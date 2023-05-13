@@ -14,6 +14,10 @@ GetModifiedCaptureRate:
 	cp MASTER_BALL
 	ld a, 255
 	ret z
+	ld a, [wCurItem]
+	cp SNAG_BALL
+	ld a, 255
+	ret z
 
 	; Start with 3M-2H
 	ld hl, wEnemyMonHP

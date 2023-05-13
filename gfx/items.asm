@@ -282,7 +282,7 @@ PearlIcon::        INCBIN "gfx/items/pearl.2bpp.lz"
 BigPearlIcon::     INCBIN "gfx/items/big_pearl.2bpp.lz"
 PearlStringIcon::  INCBIN "gfx/items/pearl_string.2bpp.lz"
 StarPieceIcon::    INCBIN "gfx/items/star_piece.2bpp.lz"
-BrickPieceIcon::   INCBIN "gfx/items/brick_piece.2bpp.lz"
+SnagBallIcon::     INCBIN "gfx/items/snag_ball.2bpp.lz"
 SilverLeafIcon::
 GoldLeafIcon::     INCBIN "gfx/items/leaf.2bpp.lz"
 SlowpokeTailIcon:: INCBIN "gfx/items/slowpoketail.2bpp.lz"

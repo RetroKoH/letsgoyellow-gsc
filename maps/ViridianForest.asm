@@ -11,6 +11,7 @@ ViridianForest_MapScriptHeader:
 	def_coord_events
 	coord_event 18, 46, 0, ViridianForest_MeetJessieJames
 	coord_event 19, 46, 0, ViridianForest_MeetJessieJames
+	coord_event 3, 7, 1, ViridianForest_BattleJessieJames
 
 	def_bg_events
 	bg_event  4,  7, BGEVENT_JUMPTEXT, ViridianForestSignText1
@@ -28,18 +29,21 @@ ViridianForest_MapScriptHeader:
 	def_object_events
 	object_event 18, 44, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJessieText, EVENT_MET_JESSIE_JAMES
 	object_event 19, 44, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJamesText, EVENT_MET_JESSIE_JAMES
+	object_event 12, 4, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJamesText, EVENT_HIDE_VIRIDIAN_FOREST_JESSIE
+	object_event 19, 4, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJessieText, EVENT_HIDE_VIRIDIAN_FOREST_JAMES
 	object_event 16, 18, SPRITE_YELLOW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestYellowText, -1
 	object_event 29, 42, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerBug_maniacDane, -1
 	object_event 33, 35, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBug_maniacDion, -1
 	object_event 32, 21, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBug_maniacStacey, -1
 	object_event 31,  4, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBug_maniacEllis, -1
 	object_event  5, 24, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBug_maniacAbner, -1
-	itemball_event 14, 31, DIRE_HIT, 1, EVENT_ROUTE_2_DIRE_HIT
-	itemball_event  3, 33, MAX_POTION, 1, EVENT_ROUTE_2_MAX_POTION
+	;itemball_event 14, 31, DIRE_HIT, 1, EVENT_ROUTE_2_DIRE_HIT
 
 	object_const_def
 	const VFOREST_JAMES
 	const VFOREST_JESSIE
+	const VFOREST_JAMES_2
+	const VFOREST_JESSIE_2
 
 ViridianForest_MeetJessieJames:
 	showemote EMOTE_WAIT, VFOREST_JESSIE, 15
@@ -68,6 +72,8 @@ ViridianForest_MeetJessieJames:
 	showtext Text_JamesWarnsPlayer
 	applymovement VFOREST_JAMES, Movement_JamesLeaves
 	disappear VFOREST_JAMES
+	appear VFOREST_JESSIE_2
+	appear VFOREST_JAMES_2
 	setscene $1
 	end
 
@@ -101,8 +107,8 @@ Text_JamesAsksForMeowth:
 
 Text_JessieDemandsPlayer:
 	text "???: We know there"
-	line "are rare Bug-type"
-	cont "#mon hiding in"
+	line "are rare Bulbasaur"
+	cont "hiding within"
 	cont "Viridian Forest!"
 
 	para "If you've found"
@@ -143,6 +149,102 @@ Movement_JessieLeaves:
 	step_right
 	step_right
 	step_end
+
+ViridianForest_BattleJessieJames:
+	playmusic MUSIC_JESSIE_JAMES_ENCOUNTER
+	pause 15
+	opentext
+	writetext JessieJamesHoldItText
+	waitbutton
+	closetext
+	showemote EMOTE_SHOCK, PLAYER, 15
+	disappear VFOREST_JAMES_2
+	disappear VFOREST_JESSIE_2
+	moveobject VFOREST_JAMES_2, 3, 12
+	moveobject VFOREST_JESSIE_2, 4, 12
+	appear VFOREST_JAMES_2
+	appear VFOREST_JESSIE_2
+	turnobject PLAYER, DOWN
+	applymovement VFOREST_JAMES_2, Movement_RocketsRunIn
+	applymovement VFOREST_JESSIE_2, Movement_RocketsRunIn
+	turnobject VFOREST_JAMES_2, RIGHT
+	showtext JamesRocketText
+	turnobject VFOREST_JESSIE_2, LEFT
+	showtext JessieRocketText
+	turnobject VFOREST_JAMES_2, UP
+	turnobject VFOREST_JESSIE_2, UP
+	showtext JessieJamesRocketText
+	winlosstext JessieJamesWinLossText, 0
+	loadtrainer JESSIE_JAMES, 1
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	showtext JessieJamesAfterDefeat
+	disappear VFOREST_JAMES_2
+	disappear VFOREST_JESSIE_2
+	setscene $2
+	playmapmusic
+	end
+
+Movement_RocketsRunIn:
+	step_up
+	step_up
+	step_up
+	step_up
+	step_end
+
+JessieJamesHoldItText:
+	text "???: HOLD IT RIGHT"
+	line "THERE, TWERP!"
+	done
+
+JamesRocketText:
+	text "???: Ready,"
+	line "Jessie?"
+	done
+
+JessieRocketText:
+	text "Jessie: Ready,"
+	line "James!"
+	done
+
+JessieJamesRocketText:
+	text "Jessie: Prepare"
+	line "for trouble!"
+
+	para "James: And make"
+	line "it double!"
+
+	para "Jessie: We found"
+	line "Bulbasaur with a"
+	cont "trusty Lure!"
+
+	para "James: And now we"
+	line "will use it to"
+	cont "win for sure!"
+	done
+
+JessieJamesWinLossText:
+	text "Jessie: Yikes! Our"
+	line "new power wasn't"
+	cont "enough!"
+	done
+
+JessieJamesAfterDefeat:
+	text "James: What do we"
+	line "do now, Jessie?"
+
+	para "Jessie: This"
+	line "doesn't matter."
+	cont "Let's get our new"
+	cont "weapon back to"
+	cont "the boss!"
+
+	para "James: You'd best"
+	line "stay out of our"
+	cont "way, brat!"
+	done
+
 
 GenericTrainerBug_maniacDane:
 	generictrainer BUG_CATCHER, DANE, EVENT_BEAT_BUG_MANIAC_DANE, BugManiacDaneSeenText, BugManiacDaneBeatenText

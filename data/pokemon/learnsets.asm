@@ -595,7 +595,7 @@ CrobatLearnset:
 	db 4, WING_ATTACK
 	db 8, BITE
 	db 12, SWIFT
-	db 16, SUPER_FANG ; POISON_FANG
+	db 16, POISON_FANG
 	db 20, CONFUSE_RAY
 	db 24, HAZE
 	db 28, LEECH_LIFE
@@ -607,7 +607,7 @@ OddishLearnset:
 GloomLearnset:
 VileplumeLearnset:
 BellossomLearnset:
-	db 1, MEGA_DRAIN
+	db 1, ABSORB
 	db 1, POISONPOWDER
 	db 1, STUN_SPORE
 	db 39, GROWTH

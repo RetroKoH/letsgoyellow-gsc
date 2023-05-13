@@ -197,7 +197,7 @@ FrontPicPointers::
 	dba SlowkingPlainFrontpic
 	dba MisdreavusFrontpic
 	dba MismagiusFrontpic
-	dba ScizorFrontpic ; KLEAVOR
+	dba KleavorFrontpic
 	dba SirfetchDFrontpic
 	dba MrRimeFrontpic
 	dba PinecoFrontpic

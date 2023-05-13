@@ -346,6 +346,7 @@ endr
 	jr z, .not_shiny
 
 .shiny_check
+;	jr .shiny
 ; This can be greatly optimized. See code in my Sonic engine for Speed Shoes settings.
 	call Random
 	cp 64

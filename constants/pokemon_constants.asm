@@ -217,7 +217,7 @@
 	const SLOWKING   ; c3
 	const MISDREAVUS ; c4
 	const MISMAGIUS  ; c5
-	const KLEAVOR    ; c6 - ADDED
+	const KLEAVOR    ; c6
 	const SIRFETCH_D ; c7
 	const MR__RIME   ; c8
 	const PINECO     ; c9

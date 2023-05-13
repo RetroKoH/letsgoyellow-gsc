@@ -249,9 +249,10 @@ endr
 	; post-e4
 	setflag ENGINE_CREDITS_SKIP
 	; test party
-	givepoke CHARIZARD, 	PLAIN_FORM,		50, HEAVY_BOOTS
-	givepoke BLASTOISE, 	PLAIN_FORM,		50, LIFE_ORB
-	givepoke RATICATE,      ALOLAN_FORM,    50, ICY_ROCK
+	givepoke CHARIZARD,		PLAIN_FORM,		50, HEAVY_BOOTS
+	givepoke BLASTOISE,		PLAIN_FORM,		50, LIFE_ORB
+	givepoke SCYTHER,		PLAIN_FORM,     50, METAL_COAT
+	givepoke SCYTHER,		PLAIN_FORM,     50, HARD_STONE
 
 	; fill pokedex
 	callasm FillPokedex

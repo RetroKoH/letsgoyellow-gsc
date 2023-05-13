@@ -190,7 +190,7 @@ EvolveAfterBattle_MasterLoop:
 	ld b, a
 	ld a, [wTempMonItem]
 	cp b
-	jmp nz, .dont_evolve_3
+	jmp nz, .dont_evolve_2
 	ld a, [hli]
 	cp TR_ANYTIME
 	jr z, .ok

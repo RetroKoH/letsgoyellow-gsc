@@ -25,19 +25,19 @@
 	const FRIEND_BALL  ; 0b
 	const MOON_BALL    ; 0c
 
-	const NET_BALL     ; 0e
-	const DIVE_BALL    ; 0f
-	const NEST_BALL    ; 10
-	const REPEAT_BALL  ; 11
-	const TIMER_BALL   ; 12
-	const LUXURY_BALL  ; 13
-	const DUSK_BALL    ; 14
-	const HEAL_BALL    ; 15
-	const QUICK_BALL   ; 16
-	const DREAM_BALL   ; 17
-	const PREMIER_BALL ; 18
-	const CHERISH_BALL ; 19
-	const SNAG_BALL    ; 1a - REPLACED BRICK PIECE
+	const NET_BALL     ; 0d
+	const DIVE_BALL    ; 0e
+	const NEST_BALL    ; 0f
+	const REPEAT_BALL  ; 10
+	const TIMER_BALL   ; 11
+	const LUXURY_BALL  ; 12
+	const DUSK_BALL    ; 13
+	const HEAL_BALL    ; 14
+	const QUICK_BALL   ; 15
+	const DREAM_BALL   ; 16
+	const PREMIER_BALL ; 17
+	const CHERISH_BALL ; 18
+	const SNAG_BALL    ; 19 - REPLACED BRICK PIECE
 
 	const POTION       ; 1a
 	const SUPER_POTION ; 1b
@@ -74,98 +74,98 @@
 	const SODA_POP     ; 35
 	const LEMONADE     ; 36
 	const MOOMOO_MILK  ; 37
-	const PEWTERCRUNCH ; 39
+	const PEWTERCRUNCH ; 38
 
-	const SACRED_ASH   ; 3a
-	const ENERGYPOWDER ; 3b
-	const ENERGY_ROOT  ; 3c
-	const HEAL_POWDER  ; 3d
-	const REVIVAL_HERB ; 3e
+	const SACRED_ASH   ; 39
+	const ENERGYPOWDER ; 3a
+	const ENERGY_ROOT  ; 3b
+	const HEAL_POWDER  ; 3c
+	const REVIVAL_HERB ; 3d
 
-	const X_ATTACK     ; 3f
-	const X_DEFEND     ; 40
-	const X_SPEED      ; 41
-	const X_SPCL_ATK   ; 42
-	const X_SPCL_DEF   ; 43
-	const X_ACCURACY   ; 44
-	const DIRE_HIT     ; 45
-	const GUARD_SPEC   ; 46
+	const X_ATTACK     ; 3e
+	const X_DEFEND     ; 3f
+	const X_SPEED      ; 40
+	const X_SPCL_ATK   ; 41
+	const X_SPCL_DEF   ; 42
+	const X_ACCURACY   ; 43
+	const DIRE_HIT     ; 44
+	const GUARD_SPEC   ; 45
 
-	const REPEL        ; 47
-	const SUPER_REPEL  ; 48
-	const MAX_REPEL    ; 49
-	const LURE_ITEM    ; 38 ; Formerly the RAGECANDYBAR
+	const REPEL        ; 46
+	const SUPER_REPEL  ; 47
+	const MAX_REPEL    ; 48
+	const LURE_ITEM    ; 49 ; Formerly the RAGECANDYBAR
 	const ESCAPE_ROPE  ; 4a ; Make key item, replace with SUPER_LURE
 	const POKE_DOLL    ; 4b ; Make key item, replace with MAX_LURE
 
 	const ABILITY_CAP  ; 4c
-	const ABILITYPATCH ; 0d
+	const ABILITYPATCH ; 4d
 
-	const LEAF_STONE   ; 4d
-	const FIRE_STONE   ; 4e
-	const WATER_STONE  ; 4f
-	const THUNDERSTONE ; 50
-	const MOON_STONE   ; 51
-	const SUN_STONE    ; 52
-	const DUSK_STONE   ; 53
-	const DAWN_STONE   ; 54
-	const SHINY_STONE  ; 55
-	const ICE_STONE    ; 56
-	const EVERSTONE    ; 57
+	const LEAF_STONE   ; 4e
+	const FIRE_STONE   ; 4f
+	const WATER_STONE  ; 50
+	const THUNDERSTONE ; 51
+	const MOON_STONE   ; 52
+	const SUN_STONE    ; 53
+	const DUSK_STONE   ; 54
+	const DAWN_STONE   ; 55
+	const SHINY_STONE  ; 56
+	const ICE_STONE    ; 57
+	const EVERSTONE    ; 58
 
-	const EXP_SHARE    ; 58
+	const EXP_SHARE    ; 59 ; Make a party-wide key item
 
-	const CHERI_BERRY  ; 59
-	const CHESTO_BERRY ; 5a
-	const PECHA_BERRY  ; 5b
-	const RAWST_BERRY  ; 5c
-	const ASPEAR_BERRY ; 5d
-	const LEPPA_BERRY  ; 5e
-	const ORAN_BERRY   ; 5f
-	const PERSIM_BERRY ; 60
-	const LUM_BERRY    ; 61
-	const SITRUS_BERRY ; 62
-	const FIGY_BERRY   ; 63
-	const POMEG_BERRY  ; 64
-	const KELPSY_BERRY ; 65
-	const QUALOT_BERRY ; 66
-	const HONDEW_BERRY ; 67
-	const GREPA_BERRY  ; 68
-	const TAMATO_BERRY ; 69
-	const LIECHI_BERRY ; 6a
-	const GANLON_BERRY ; 6b
-	const SALAC_BERRY  ; 6c
-	const PETAYA_BERRY ; 6d
-	const APICOT_BERRY ; 6e
-	const LANSAT_BERRY ; 6f
-	const STARF_BERRY  ; 70
-	const ENIGMA_BERRY ; 71
-	const CUSTAP_BERRY ; 72
-	const JABOCA_BERRY ; 73
-	const ROWAP_BERRY  ; 74
-	const KEE_BERRY    ; 75
-	const MARANGABERRY ; 76
+	const CHERI_BERRY  ; 5a
+	const CHESTO_BERRY ; 5b
+	const PECHA_BERRY  ; 5c
+	const RAWST_BERRY  ; 5d
+	const ASPEAR_BERRY ; 5e
+	const LEPPA_BERRY  ; 5f
+	const ORAN_BERRY   ; 60
+	const PERSIM_BERRY ; 61
+	const LUM_BERRY    ; 62
+	const SITRUS_BERRY ; 63
+	const FIGY_BERRY   ; 64
+	const POMEG_BERRY  ; 65
+	const KELPSY_BERRY ; 66
+	const QUALOT_BERRY ; 67
+	const HONDEW_BERRY ; 68
+	const GREPA_BERRY  ; 69
+	const TAMATO_BERRY ; 6a
+	const LIECHI_BERRY ; 6b
+	const GANLON_BERRY ; 6c
+	const SALAC_BERRY  ; 6d
+	const PETAYA_BERRY ; 6e
+	const APICOT_BERRY ; 6f
+	const LANSAT_BERRY ; 70
+	const STARF_BERRY  ; 71
+	const ENIGMA_BERRY ; 72
+	const CUSTAP_BERRY ; 73
+	const JABOCA_BERRY ; 74
+	const ROWAP_BERRY  ; 75
+	const KEE_BERRY    ; 76
+	const MARANGABERRY ; 77
 
-	const BERRY_JUICE  ; 77
+	const BERRY_JUICE  ; 78
 
-	const SILK_SCARF   ; 78
-	const BLACK_BELT   ; 79
-	const SHARP_BEAK   ; 7a
-	const POISON_BARB  ; 7b
-	const SOFT_SAND    ; 7c
-	const HARD_STONE   ; 7d
-	const SILVERPOWDER ; 7e
-	const SPELL_TAG    ; 7f
-	const METAL_COAT   ; 80
-	const CHARCOAL     ; 81
-	const MYSTIC_WATER ; 82
-	const MIRACLE_SEED ; 83
-	const MAGNET       ; 84
-	const TWISTEDSPOON ; 85
-	const NEVERMELTICE ; 86
-	const DRAGON_FANG  ; 87
-	const BLACKGLASSES ; 88
-	const PINK_BOW     ; 89
+	const SILK_SCARF   ; 79
+	const BLACK_BELT   ; 7a
+	const SHARP_BEAK   ; 7b
+	const POISON_BARB  ; 7c
+	const SOFT_SAND    ; 7d
+	const HARD_STONE   ; 7e
+	const SILVERPOWDER ; 7f
+	const SPELL_TAG    ; 80
+	const METAL_COAT   ; 81
+	const CHARCOAL     ; 82
+	const MYSTIC_WATER ; 83
+	const MIRACLE_SEED ; 84
+	const MAGNET       ; 85
+	const TWISTEDSPOON ; 86
+	const NEVERMELTICE ; 87
+	const DRAGON_FANG  ; 88
+	const BLACKGLASSES ; 89
+	const PINK_BOW     ; 8a
 
 	const BRIGHTPOWDER ; 8a
 	const SCOPE_LENS   ; 8b

@@ -791,7 +791,7 @@ INCLUDE "data/pokemon/dex_entries/429.asm"
 
 SECTION "KleavorPokedexEntry", ROMX
 KleavorPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/201.asm"
+INCLUDE "data/pokemon/dex_entries/900.asm"
 
 SECTION "SirfetchDPokedexEntry", ROMX
 SirfetchDPokedexEntry::

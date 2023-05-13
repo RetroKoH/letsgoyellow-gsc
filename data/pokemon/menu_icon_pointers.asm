@@ -198,7 +198,7 @@ IconPointers:
 	dba SlowkingIcon
 	dba MisdreavusIcon
 	dba MismagiusIcon
-	dba ScizorIcon
+	dba KleavorIcon
 	dba SirfetchDIcon
 	dba MrRimeIcon
 	dba PinecoIcon

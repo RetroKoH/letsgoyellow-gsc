@@ -638,9 +638,11 @@ StaryuEvolutions:
 
 MrMimeGalarianEvolutions:
 	evo_data EVOLVE_LEVEL, 42, MR__RIME
+	db 0 ; no more evolutions
 
 ScytherEvolutions:
 	evo_data EVOLVE_HOLDING, METAL_COAT, TR_ANYTIME, SCIZOR
+	evo_data EVOLVE_HOLDING, HARD_STONE, TR_ANYTIME, KLEAVOR
 	db 0 ; no more evolutions
 
 ElectabuzzEvolutions:

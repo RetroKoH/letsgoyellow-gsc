@@ -201,7 +201,7 @@ MenuMonIconColors::
 	iconpal PINK, PURPLE ; SLOWKING
 	iconpal PURPLE, BROWN ; MISDREAVUS
 	iconpal PURPLE, BROWN ; MISMAGIUS
-	iconpal GRAY, BROWN ; KLEAVOR
+	iconpal BROWN, GREEN ; KLEAVOR
 	iconpal BROWN, RED ; SIRFETCH_D
 	iconpal BLUE, GRAY ; MR__RIME
 	iconpal GRAY, RED ; PINECO

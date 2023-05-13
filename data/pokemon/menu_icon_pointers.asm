@@ -198,7 +198,7 @@ IconPointers:
 	dba SlowkingIcon
 	dba MisdreavusIcon
 	dba MismagiusIcon
-	dba UnownAIcon
+	dba ScizorIcon
 	dba SirfetchDIcon
 	dba MrRimeIcon
 	dba PinecoIcon
@@ -258,34 +258,6 @@ IconPointers:
 	assert_table_length NUM_POKEMON + 1
 
 	dba EggIcon
-
-	dba UnownBIcon
-	dba UnownCIcon
-	dba UnownDIcon
-	dba UnownEIcon
-	dba UnownFIcon
-	dba UnownGIcon
-	dba UnownHIcon
-	dba UnownIIcon
-	dba UnownJIcon
-	dba UnownKIcon
-	dba UnownLIcon
-	dba UnownMIcon
-	dba UnownNIcon
-	dba UnownOIcon
-	dba UnownPIcon
-	dba UnownQIcon
-	dba UnownRIcon
-	dba UnownSIcon
-	dba UnownTIcon
-	dba UnownUIcon
-	dba UnownVIcon
-	dba UnownWIcon
-	dba UnownXIcon
-	dba UnownYIcon
-	dba UnownZIcon
-	dba UnownExclamationIcon
-	dba UnownQuestionIcon
 
 	dba ArbokIcon ; Kanto
 	dba ArbokIcon ; Koga

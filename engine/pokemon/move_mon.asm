@@ -535,15 +535,15 @@ endr
 	and $f
 	jr nz, .done
 	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr nz, .done
-	ld hl, wPartyMon1Form
-	ld a, [wPartyCount]
-	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
-	rst AddNTimes
-	predef GetVariant
-	farcall UpdateUnownDex
+;	cp DITTO
+;	jr nz, .done
+;	ld hl, wPartyMon1Form
+;	ld a, [wPartyCount]
+;	dec a
+;	ld bc, PARTYMON_STRUCT_LENGTH
+;	rst AddNTimes
+;	predef GetVariant
+;	farcall UpdateUnownDex do we need this for regionals???
 
 .done
 	scf ; When this function returns, the carry flag indicates success vs failure.
@@ -636,23 +636,6 @@ AddTempMonToParty:
 	rst AddNTimes
 	ld [hl], BASE_HAPPINESS
 .egg
-
-	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr nz, .not_unown
-	ld hl, wPartyMon1Form
-	ld a, [wPartyCount]
-	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
-	rst AddNTimes
-	predef GetVariant
-	farcall UpdateUnownDex
-	ld a, [wFirstUnownSeen]
-	and a
-	jr nz, .done
-	ld a, [wCurForm]
-	ld [wFirstUnownSeen], a
-.not_unown
 
 	ld a, [wCurPartySpecies]
 	cp MAGIKARP
@@ -1018,11 +1001,11 @@ SentPkmnIntoBox:
 	dec a
 	call SetSeenAndCaughtMon
 
-	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr nz, .not_unown
-	farcall UpdateUnownDex
-.not_unown
+;	ld a, [wCurPartySpecies]
+;	cp DITTO
+;	jr nz, .not_unown
+;	farcall UpdateUnownDex ; Should this change for regional variants
+;.not_unown
 	pop bc
 	ld a, b
 	ld [wTempMonBox], a
@@ -1686,16 +1669,7 @@ GivePoke::
 	ld a, [wCurPartySpecies]
 	dec a
 	call SetSeenAndCaughtMon
-	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr nz, .check_magikarp
-	farcall UpdateUnownDex
-	ld a, [wFirstUnownSeen]
-	and a
-	jr nz, .check_magikarp
-	ld a, [wTempMonForm]
-	and FORM_MASK
-	ld [wFirstUnownSeen], a
+
 .check_magikarp
 	ld a, [wCurPartySpecies]
 	cp MAGIKARP

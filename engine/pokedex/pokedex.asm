@@ -10,8 +10,8 @@
 	const DEXSTATE_UPDATE_OPTION_SCR
 	const DEXSTATE_SEARCH_RESULTS_SCR
 	const DEXSTATE_UPDATE_SEARCH_RESULTS_SCR
-	const DEXSTATE_UNOWN_MODE
-	const DEXSTATE_UPDATE_UNOWN_MODE
+	const DEXSTATE_REGIONAL_MODE
+	const DEXSTATE_UPDATE_REGIONAL_MODE
 	const DEXSTATE_EXIT
 
 Pokedex:
@@ -86,7 +86,7 @@ InitPokedex:
 	rst ByteFill
 
 	ld a, [wStatusFlags]
-	and 1 << 1 ; ENGINE_UNOWN_DEX
+	and 1 << 1 ; ENGINE_REGIONAL_DEX
 	rra
 	ld [wUnlockedUnownMode], a
 
@@ -158,8 +158,8 @@ Pokedex_RunJumptable:
 	dw Pokedex_UpdateOptionScreen
 	dw Pokedex_InitSearchResultsScreen
 	dw Pokedex_UpdateSearchResultsScreen
-	dw Pokedex_InitUnownMode
-	dw Pokedex_UpdateUnownMode
+	dw Pokedex_InitRegionalMode
+	dw Pokedex_UpdateRegionalMode
 	dw Pokedex_Exit
 
 Pokedex_Exit:
@@ -531,7 +531,7 @@ Pokedex_UpdateOptionScreen:
 
 .MenuAction_UnownMode:
 	call Pokedex_BlackOutBG
-	ld a, DEXSTATE_UNOWN_MODE
+	ld a, DEXSTATE_REGIONAL_MODE
 	ld [wJumptableIndex], a
 	ret
 
@@ -710,20 +710,20 @@ Pokedex_UpdateSearchResultsScreen:
 	ldh [hWX], a
 	ret
 
-Pokedex_InitUnownMode:
+Pokedex_InitRegionalMode:
 	call Pokedex_LoadUnownFont
 	call Pokedex_DrawUnownModeBG
 	xor a
 	ld [wDexCurUnownIndex], a
-	call Pokedex_LoadUnownFrontpicTiles
+	call Pokedex_LoadRegionalFrontpicTiles
 	call Pokedex_UnownModePlaceCursor
 	farcall PrintUnownWord
 	call ApplyTilemapInVBlank
-	ld a, CGB_POKEDEX_UNOWN_MODE
+	ld a, CGB_POKEDEX_REGIONAL_MODE
 	call Pokedex_GetCGBLayout
 	jmp Pokedex_IncrementDexPointer
 
-Pokedex_UpdateUnownMode:
+Pokedex_UpdateRegionalMode:
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON
@@ -778,7 +778,7 @@ Pokedex_UnownModeHandleDPadInput:
 	ldh [hBGMapMode], a
 	pop af
 	call Pokedex_UnownModeEraseCursor
-	call Pokedex_LoadUnownFrontpicTiles
+	call Pokedex_LoadRegionalFrontpicTiles
 	call Pokedex_UnownModePlaceCursor
 	farcall PrintUnownWord
 	ld a, $1
@@ -1288,7 +1288,7 @@ Pokedex_DrawUnownModeBG:
 	hlcoord 6, 5
 	call PlaceFrontpicAtHL
 	ld de, 0
-	lb bc, 0, NUM_UNOWN
+	lb bc, 0, 28 ; Place number of regional variants here
 .loop
 	ld hl, wUnownDex
 	add hl, de
@@ -2312,14 +2312,9 @@ Pokedex_LoadSelectedMonTiles:
 	call Pokedex_CheckSeen
 	jr z, .QuestionMark
 	call Pokedex_GetSelectedMon
-	cp UNOWN
-	jr z, .use_first_unown
 	cp MAGIKARP
 	jr z, .use_first_magikarp
 	ld a, PLAIN_FORM
-	jr .continue
-.use_first_unown
-	ld a, [wFirstUnownSeen]
 	jr .continue
 .use_first_magikarp
 	ld a, [wFirstMagikarpSeen]
@@ -2403,7 +2398,7 @@ Pokedex_LoadUnownFont:
 	ld [wOptions2], a
 	jmp LoadStandardFont
 
-Pokedex_LoadUnownFrontpicTiles:
+Pokedex_LoadRegionalFrontpicTiles:
 	ld a, [wCurForm]
 	push af
 	ld a, [wDexCurUnownIndex]
@@ -2413,7 +2408,7 @@ Pokedex_LoadUnownFrontpicTiles:
 	add hl, de
 	ld a, [hl]
 	ld [wCurForm], a
-	ld a, UNOWN
+	ld a, DITTO
 	ld [wCurPartySpecies], a
 	call GetBaseData
 	ld de, vTiles2 tile $00

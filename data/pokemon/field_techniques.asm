@@ -253,7 +253,7 @@ TechniquePointers::
 	dw SlowbroTechniques	; SLOWKING
 	dw NoTechniques			; MISDREAVUS
 	dw NoTechniques			; MISMAGIUS
-	dw NoTechniques			; UNOWN
+	dw RaticateTechniques	; KLEAVOR
 	dw RaticateTechniques	; SIRFETCHD
 	dw AbraTechniques		; MR RIME
 	dw NoTechniques			; PINECO

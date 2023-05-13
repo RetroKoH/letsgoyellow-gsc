@@ -789,8 +789,8 @@ SECTION "MismagiusPokedexEntry", ROMX
 MismagiusPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/429.asm"
 
-SECTION "UnownPokedexEntry", ROMX
-UnownPokedexEntry::
+SECTION "KleavorPokedexEntry", ROMX
+KleavorPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/201.asm"
 
 SECTION "SirfetchDPokedexEntry", ROMX

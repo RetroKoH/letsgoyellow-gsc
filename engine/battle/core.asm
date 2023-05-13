@@ -1318,16 +1318,6 @@ endr
 	ld [wEnemyMonBaseExp], a
 
 	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr nz, .skip_unown
-	ld a, [wFirstUnownSeen]
-	and a
-	jr nz, .skip_unown
-	ld a, [wCurForm]
-	ld [wFirstUnownSeen], a
-.skip_unown
-
-	ld a, [wCurPartySpecies]
 	cp MAGIKARP
 	jr nz, .enemy_extras_done
 	ld a, [wFirstMagikarpSeen]
@@ -5853,20 +5843,10 @@ random_wild_form: MACRO
 ENDM
 
 RandomWildSpeciesForms:
-	random_wild_form UNOWN,    .Unown
 	random_wild_form MAGIKARP, .Magikarp
 	random_wild_form EKANS,    .EkansArbok
 	random_wild_form ARBOK,    .EkansArbok
-	dbw 0,        .Default
-
-.Unown:
-	; Random Unown letter
-	ld a, NUM_UNOWN
-	call .RandomForm
-	; Can't use any letters that haven't been unlocked
-	call CheckUnownLetter
-	jr nc, .Unown ; re-roll
-	ret
+	dbw 0,                     .Default
 
 .Magikarp:
 	; Random Magikarp pattern
@@ -5888,40 +5868,6 @@ RandomWildSpeciesForms:
 
 CheckUnownLetter:
 ; Return carry if the Unown letter in a has been unlocked.
-	ld b, a
-	ld a, [wUnlockedUnowns]
-	ld c, a
-	ld de, 0
-
-.loop
-; Don't check this set unless it's been unlocked
-	srl c
-	jr nc, .next
-
-; Is our letter in the set?
-	ld hl, UnlockedUnownLetterSets
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	push de
-	push bc
-	ld a, b
-	call IsInByteArray
-	pop bc
-	pop de
-
-	ret c ; unlocked letter, returns carry
-
-.next
-; Make sure we haven't gone past the end of the table
-	inc e
-	inc e
-	ld a, e
-	cp UnlockedUnownLetterSets.End - UnlockedUnownLetterSets
-	jr c, .loop
-
 	ret ; not unlocked or invalid letter, returns not carry
 
 CheckValidMagikarpLength:
@@ -5983,8 +5929,6 @@ CheckValidMagikarpLength:
 .redo:
 	scf
 	ret
-
-INCLUDE "data/wild/unlocked_unowns.asm"
 
 FinalPkmnSlideInEnemyMonFrontpic:
 	call FinishBattleAnim
@@ -7677,16 +7621,6 @@ InitEnemyWildmon:
 	call SendInUserPkmn
 	ld hl, wOTPartyMon1Form
 	predef GetVariant
-
-	ld a, [wCurPartySpecies]
-	cp UNOWN
-	jr nz, .skip_unown
-	ld a, [wFirstUnownSeen]
-	and a
-	jr nz, .skip_unown
-	ld a, [wCurForm]
-	ld [wFirstUnownSeen], a
-.skip_unown
 
 	ld a, [wCurPartySpecies]
 	cp MAGIKARP

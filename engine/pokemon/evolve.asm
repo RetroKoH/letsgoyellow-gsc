@@ -393,15 +393,11 @@ endr
 	dec a
 	call SetSeenAndCaughtMon
 
-	ld a, [wTempSpecies]
-	cp UNOWN
-	jr nz, .skip_unown
+; Use for updating the regional dex
+;	ld hl, wTempMonForm
+;	predef GetVariant
+;	farcall UpdateUnownDex
 
-	ld hl, wTempMonForm
-	predef GetVariant
-	farcall UpdateUnownDex
-
-.skip_unown
 	pop de
 	pop hl
 	ld a, [wTempMonSpecies]

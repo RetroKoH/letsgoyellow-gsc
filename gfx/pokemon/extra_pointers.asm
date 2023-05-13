@@ -197,7 +197,7 @@ AnimationExtraPointers:
 	dw SlowkingPlainAnimationExtra
 	dw MisdreavusAnimationExtra
 	dw MismagiusAnimationExtra
-	dw UnownAAnimationExtra
+	dw KleavorAnimationExtra
 	dw SirfetchDAnimationExtra
 	dw MrRimeAnimationExtra
 	dw PinecoAnimationExtra
@@ -257,34 +257,6 @@ AnimationExtraPointers:
 	assert_table_length NUM_POKEMON
 
 	dw EggAnimationExtra
-
-	dw UnownBAnimationExtra
-	dw UnownCAnimationExtra
-	dw UnownDAnimationExtra
-	dw UnownEAnimationExtra
-	dw UnownFAnimationExtra
-	dw UnownGAnimationExtra
-	dw UnownHAnimationExtra
-	dw UnownIAnimationExtra
-	dw UnownJAnimationExtra
-	dw UnownKAnimationExtra
-	dw UnownLAnimationExtra
-	dw UnownMAnimationExtra
-	dw UnownNAnimationExtra
-	dw UnownOAnimationExtra
-	dw UnownPAnimationExtra
-	dw UnownQAnimationExtra
-	dw UnownRAnimationExtra
-	dw UnownSAnimationExtra
-	dw UnownTAnimationExtra
-	dw UnownUAnimationExtra
-	dw UnownVAnimationExtra
-	dw UnownWAnimationExtra
-	dw UnownXAnimationExtra
-	dw UnownYAnimationExtra
-	dw UnownZAnimationExtra
-	dw UnownExclamationAnimationExtra
-	dw UnownQuestionAnimationExtra
 
 	dw ArbokKantoAnimationExtra
 	dw ArbokKogaAnimationExtra

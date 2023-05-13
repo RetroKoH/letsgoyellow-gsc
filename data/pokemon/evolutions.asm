@@ -211,7 +211,7 @@ EvolutionPointers::
 	dw NoEvolutions ; Slowking
 	dw MisdreavusEvolutions
 	dw NoEvolutions ; Mismagius
-	dw NoEvolutions ; Unown
+	dw NoEvolutions ; Kleavor
 	dw NoEvolutions ; SirfetchD
 	dw NoEvolutions ; Mr Rime
 	dw PinecoEvolutions

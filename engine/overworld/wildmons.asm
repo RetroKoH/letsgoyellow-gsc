@@ -484,8 +484,6 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	ld b, [hl]				; Get form
 	pop hl
 
-; UNOWN is removed
-
 	; Check if we're forcing type
 	ld [wCurSpecies], a
 	ld a, b

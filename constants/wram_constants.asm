@@ -6,7 +6,7 @@ AUTO_INPUT EQU $ff
 	const DEXMODE_NEW
 	const DEXMODE_OLD
 	const DEXMODE_ABC
-	const DEXMODE_UNOWN
+	const DEXMODE_REGIONAL
 
 ; wMonType::
 	const_def
@@ -210,7 +210,7 @@ SPAWN_LEAF  EQU 2
 ; wStatusFlags::
 	const_def
 	const STATUSFLAGS_POKEDEX_F                  ; 0
-	const STATUSFLAGS_UNOWN_DEX_F                ; 1
+	const STATUSFLAGS_REGIONAL_DEX_F             ; 1
 	const STATUSFLAGS_FLASH_F                    ; 2
 	const STATUSFLAGS_CAUGHT_POKERUS_F           ; 3
 	const STATUSFLAGS_ROCKET_SIGNAL_F            ; 4

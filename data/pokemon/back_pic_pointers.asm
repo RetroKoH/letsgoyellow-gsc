@@ -197,7 +197,7 @@ BackPicPointers::
 	dba SlowkingPlainBackpic
 	dba MisdreavusBackpic
 	dba MismagiusBackpic
-	dba UnownABackpic
+	dba KleavorBackpic
 	dba SirfetchDBackpic
 	dba MrRimeBackpic
 	dba PinecoBackpic
@@ -257,34 +257,6 @@ BackPicPointers::
 	assert_table_length NUM_POKEMON
 
 	dba EggPic
-
-	dba UnownBBackpic
-	dba UnownCBackpic
-	dba UnownDBackpic
-	dba UnownEBackpic
-	dba UnownFBackpic
-	dba UnownGBackpic
-	dba UnownHBackpic
-	dba UnownIBackpic
-	dba UnownJBackpic
-	dba UnownKBackpic
-	dba UnownLBackpic
-	dba UnownMBackpic
-	dba UnownNBackpic
-	dba UnownOBackpic
-	dba UnownPBackpic
-	dba UnownQBackpic
-	dba UnownRBackpic
-	dba UnownSBackpic
-	dba UnownTBackpic
-	dba UnownUBackpic
-	dba UnownVBackpic
-	dba UnownWBackpic
-	dba UnownXBackpic
-	dba UnownYBackpic
-	dba UnownZBackpic
-	dba UnownExclamationBackpic
-	dba UnownQuestionBackpic
 
 	dba ArbokKantoBackpic
 	dba ArbokKogaBackpic

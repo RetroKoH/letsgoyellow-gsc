@@ -59,7 +59,7 @@ STRING_BUFFER_LENGTH EQU 19
 	const VAR_WEEKDAY          ; 0b
 	const VAR_MAPGROUP         ; 0c
 	const VAR_MAPNUMBER        ; 0d
-	const VAR_UNOWNCOUNT       ; 0e
+	const VAR_REGIONALCOUNT    ; 0e
 	const VAR_ENVIRONMENT      ; 0f
 	const VAR_BOXSPACE         ; 10
 	const VAR_CONTESTMINUTES   ; 11
@@ -318,22 +318,17 @@ BUG_CONTESTANT_SIZE EQU 4
 	const HEALMACHINE_ELMS_LAB     ; 1
 	const HEALMACHINE_HALL_OF_FAME ; 2
 
-; UnownPuzzle setval arguments
+; Mystery Puzzle setval arguments
 ; LoadUnownPuzzlePiecesGFX.LZPointers indexes (see engine/games/unown_puzzle.asm)
 	const_def
-	const UNOWNPUZZLE_KABUTO     ; 0
-	const UNOWNPUZZLE_OMANYTE    ; 1
-	const UNOWNPUZZLE_AERODACTYL ; 2
-	const UNOWNPUZZLE_HO_OH      ; 3
-NUM_UNOWN_PUZZLES EQU const_value
+	const MYSTERYPUZZLE_KABUTO     ; 0
+	const MYSTERYPUZZLE_OMANYTE    ; 1
+	const MYSTERYPUZZLE_AERODACTYL ; 2
+	const MYSTERYPUZZLE_MEW        ; 3
+NUM_MYSTERY_PUZZLES EQU const_value
 
 ; DisplayUnownWords setval arguments
 ; UnownWalls and MenuHeaders_UnownWalls indexes (see data/events/unown_walls.asm)
-	const_def
-	const UNOWNWORDS_ESCAPE ; 0
-	const UNOWNWORDS_LIGHT  ; 1
-	const UNOWNWORDS_WATER  ; 2
-	const UNOWNWORDS_HO_OH  ; 3
 
 ; paintingpic arguments
 ; PaintingPicPointers indexes (see data/events/paintings/pic_pointers.asm)

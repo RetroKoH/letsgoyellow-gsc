@@ -31,7 +31,7 @@ LoadCGBLayout::
 	dw _CGB_TrainerCard3
 	dw _CGB_PokedexUnownMode
 	dw _CGB_BillsPC
-	dw _CGB_UnownPuzzle
+	dw _CGB_MysteryPuzzle
 	dw _CGB_GameFreakLogo
 	dw _CGB_TradeTube
 	dw _CGB_IntroPals
@@ -1045,7 +1045,7 @@ else
 	RGB_MONOCHROME_BLACK
 endc
 
-_CGB_UnownPuzzle:
+_CGB_MysteryPuzzle:
 	ld de, wBGPals1
 	ld hl, .UnownPuzzlePalette
 	call LoadHLPaletteIntoDE

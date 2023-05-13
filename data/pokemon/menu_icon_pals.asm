@@ -201,7 +201,7 @@ MenuMonIconColors::
 	iconpal PINK, PURPLE ; SLOWKING
 	iconpal PURPLE, BROWN ; MISDREAVUS
 	iconpal PURPLE, BROWN ; MISMAGIUS
-	iconpal GRAY, BLUE ; UNOWN
+	iconpal GRAY, BROWN ; KLEAVOR
 	iconpal BROWN, RED ; SIRFETCH_D
 	iconpal BLUE, GRAY ; MR__RIME
 	iconpal GRAY, RED ; PINECO
@@ -261,10 +261,6 @@ MenuMonIconColors::
 	assert_table_length NUM_POKEMON
 
 	iconpal RED, BLUE ; EGG
-
-rept NUM_UNOWN - 1
-	iconpal GRAY, BLUE
-endr
 
 rept 4
 	iconpal PURPLE, BROWN ; ARBOK

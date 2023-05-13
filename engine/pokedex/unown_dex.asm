@@ -1,7 +1,7 @@
 UpdateUnownDex:
 	ld a, [wCurForm]
 	ld c, a
-	ld b, NUM_UNOWN
+	ld b, 28 ; Change to number of regional variants
 	ld hl, wUnownDex
 .loop
 	ld a, [hli]

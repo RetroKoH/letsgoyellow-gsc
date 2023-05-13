@@ -198,7 +198,7 @@ PokedexDataPointerTable:
 	dba SlowkingPokedexEntry
 	dba MisdreavusPokedexEntry
 	dba MismagiusPokedexEntry
-	dba UnownPokedexEntry
+	dba KleavorPokedexEntry
 	dba SirfetchDPokedexEntry
 	dba MrRimePokedexEntry
 	dba PinecoPokedexEntry

@@ -199,7 +199,7 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  37, 100 ; Slowking
 	db   1,  39 ; Misdreavus
 	db  40, 100 ; Mismagius
-	db 255, 255 ; Unown
+	db  20, 100 ; Kleavor
 	db  30, 100 ; Sirfetch'd
 	db  30, 100 ; Mr. Rime
 	db   1,  30 ; Pineco

@@ -198,7 +198,7 @@ PokemonNames::
 	rawchar "Slowking@@"
 	rawchar "Misdreavus"
 	rawchar "Mismagius@"
-	rawchar "Unown@@@@@"
+	rawchar "Kleavor@@@"
 	rawchar "Sirfetch'd@"
 	rawchar "Mr. Rime@@"
 	rawchar "Pineco@@@@"

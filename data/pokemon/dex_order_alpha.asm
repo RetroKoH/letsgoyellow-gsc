@@ -103,6 +103,7 @@ AlphabeticalPokedexOrder:
 	db KANGASKHAN
 	db KINGDRA
 	db KINGLER
+	db KLEAVOR
 	db KOFFING
 	db KRABBY
 	db LANTURN
@@ -234,7 +235,6 @@ AlphabeticalPokedexOrder:
 	db TYRANITAR
 	db TYROGUE
 	db UMBREON
-	db UNOWN
 	db URSARING
 	db VAPOREON
 	db VENOMOTH

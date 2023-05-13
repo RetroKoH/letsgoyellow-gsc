@@ -197,7 +197,7 @@ LearnsetPointers::
 	dw SlowkingPlainLearnset
 	dw MisdreavusLearnset
 	dw MismagiusLearnset
-	dw UnownLearnset
+	dw KleavorLearnset
 	dw SirfetchDLearnset
 	dw MrRimeLearnset
 	dw PinecoLearnset
@@ -2163,7 +2163,6 @@ CroconawLearnset:
 FeraligatrLearnset:
 SunkernLearnset:
 SunfloraLearnset:
-UnownLearnset:
 QwilfishLearnset:
 RaikouLearnset:
 EnteiLearnset:

@@ -197,7 +197,7 @@ FramesPointers:
 	dw SlowkingPlainFrames
 	dw MisdreavusFrames
 	dw MismagiusFrames
-	dw UnownAFrames
+	dw KleavorFrames
 	dw SirfetchDFrames
 	dw MrRimeFrames
 	dw PinecoFrames
@@ -257,34 +257,6 @@ FramesPointers:
 	assert_table_length NUM_POKEMON
 
 	dw EggFrames
-
-	dw UnownBFrames
-	dw UnownCFrames
-	dw UnownDFrames
-	dw UnownEFrames
-	dw UnownFFrames
-	dw UnownGFrames
-	dw UnownHFrames
-	dw UnownIFrames
-	dw UnownJFrames
-	dw UnownKFrames
-	dw UnownLFrames
-	dw UnownMFrames
-	dw UnownNFrames
-	dw UnownOFrames
-	dw UnownPFrames
-	dw UnownQFrames
-	dw UnownRFrames
-	dw UnownSFrames
-	dw UnownTFrames
-	dw UnownUFrames
-	dw UnownVFrames
-	dw UnownWFrames
-	dw UnownXFrames
-	dw UnownYFrames
-	dw UnownZFrames
-	dw UnownExclamationFrames
-	dw UnownQuestionFrames
 
 	dw ArbokKantoFrames
 	dw ArbokKogaFrames

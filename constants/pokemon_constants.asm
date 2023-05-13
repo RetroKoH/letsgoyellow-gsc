@@ -2,9 +2,8 @@
 ; indexes for:
 ; - PokemonNames (see data/pokemon/names.asm)
 ; - BaseData (see data/pokemon/base_stats.asm)
-; - EvosAttacksPointers (see data/pokemon/evos_attacks_pointers.asm)
+; - EvosAttacksPointers (see data/pokemon/evolutions.asm and learnsets.asm)
 ; - EggMovePointers (see data/pokemon/egg_move_pointers.asm)
-; - EvolutionMoves (see data/pokemon/evolution_moves.asm)
 ; - PokemonCries (see data/pokemon/cries.asm)
 ; - IconPointers (see data/pokemon/menu_icon_pointers.asm)
 ; - MenuMonIconColors (see data/pokemon/menu_icon_pals.asm)
@@ -218,7 +217,7 @@
 	const SLOWKING   ; c3
 	const MISDREAVUS ; c4
 	const MISMAGIUS  ; c5
-	const UNOWN      ; c6
+	const KLEAVOR    ; c6 - ADDED
 	const SIRFETCH_D ; c7
 	const MR__RIME   ; c8
 	const PINECO     ; c9
@@ -308,43 +307,12 @@ PLAIN_FORM EQU 1
 
 FIRST_COSMETIC_FORM_MON EQU const_value ; 100
 
-; unown
-	ext_const_def 1, UNOWN_A_FORM    ;     (01)
-	ext_const UNOWN_B_FORM           ; 100 (02)
-	ext_const UNOWN_C_FORM           ; 101 (03)
-	ext_const UNOWN_D_FORM           ; 102 (04)
-	ext_const UNOWN_E_FORM           ; 103 (05)
-	ext_const UNOWN_F_FORM           ; 104 (06)
-	ext_const UNOWN_G_FORM           ; 105 (07)
-	ext_const UNOWN_H_FORM           ; 106 (08)
-	ext_const UNOWN_I_FORM           ; 107 (09)
-	ext_const UNOWN_J_FORM           ; 108 (0a)
-	ext_const UNOWN_K_FORM           ; 109 (0b)
-	ext_const UNOWN_L_FORM           ; 10a (0c)
-	ext_const UNOWN_M_FORM           ; 10b (0d)
-	ext_const UNOWN_N_FORM           ; 10c (0e)
-	ext_const UNOWN_O_FORM           ; 10d (0f)
-	ext_const UNOWN_P_FORM           ; 10e (10)
-	ext_const UNOWN_Q_FORM           ; 10f (11)
-	ext_const UNOWN_R_FORM           ; 110 (12)
-	ext_const UNOWN_S_FORM           ; 111 (13)
-	ext_const UNOWN_T_FORM           ; 112 (14)
-	ext_const UNOWN_U_FORM           ; 113 (15)
-	ext_const UNOWN_V_FORM           ; 114 (16)
-	ext_const UNOWN_W_FORM           ; 115 (17)
-	ext_const UNOWN_X_FORM           ; 116 (18)
-	ext_const UNOWN_Y_FORM           ; 117 (19)
-	ext_const UNOWN_Z_FORM           ; 118 (1a)
-	ext_const UNOWN_EXCLAMATION_FORM ; 119 (1b)
-	ext_const UNOWN_QUESTION_FORM    ; 11a (1c)
-NUM_UNOWN EQU ext_const_value - 1
-
 ; arbok
 	ext_const_def 1, ARBOK_JOHTO_FORM ; (1)
-	ext_const ARBOK_KANTO_FORM    ; 11b (2)
-	ext_const ARBOK_KOGA_FORM     ; 11c (3)
-	ext_const ARBOK_AGATHA_FORM   ; 11d (4)
-	ext_const ARBOK_ARIANA_FORM   ; 11e (5)
+	ext_const ARBOK_KANTO_FORM    ; 100 (2)
+	ext_const ARBOK_KOGA_FORM     ; 101 (3)
+	ext_const ARBOK_AGATHA_FORM   ; 102 (4)
+	ext_const ARBOK_ARIANA_FORM   ; 103 (5) ...
 
 ; pikachu
 	ext_const_def 2

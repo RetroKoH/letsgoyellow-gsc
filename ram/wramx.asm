@@ -1322,7 +1322,7 @@ wEndPokedexCaught::
 wPokedexSeen:: flag_array NUM_POKEMON
 wEndPokedexSeen::
 
-wUnownDex:: ds NUM_UNOWN
+wUnownDex:: ds 28 ; Replace with wRegionalDex
 wUnlockedUnowns:: db
 
 wFirstUnownSeen:: db

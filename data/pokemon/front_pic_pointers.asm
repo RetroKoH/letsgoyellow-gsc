@@ -197,7 +197,7 @@ FrontPicPointers::
 	dba SlowkingPlainFrontpic
 	dba MisdreavusFrontpic
 	dba MismagiusFrontpic
-	dba UnownAFrontpic
+	dba ScizorFrontpic ; KLEAVOR
 	dba SirfetchDFrontpic
 	dba MrRimeFrontpic
 	dba PinecoFrontpic
@@ -257,34 +257,6 @@ FrontPicPointers::
 	assert_table_length NUM_POKEMON
 
 	dba EggPic
-
-	dba UnownBFrontpic
-	dba UnownCFrontpic
-	dba UnownDFrontpic
-	dba UnownEFrontpic
-	dba UnownFFrontpic
-	dba UnownGFrontpic
-	dba UnownHFrontpic
-	dba UnownIFrontpic
-	dba UnownJFrontpic
-	dba UnownKFrontpic
-	dba UnownLFrontpic
-	dba UnownMFrontpic
-	dba UnownNFrontpic
-	dba UnownOFrontpic
-	dba UnownPFrontpic
-	dba UnownQFrontpic
-	dba UnownRFrontpic
-	dba UnownSFrontpic
-	dba UnownTFrontpic
-	dba UnownUFrontpic
-	dba UnownVFrontpic
-	dba UnownWFrontpic
-	dba UnownXFrontpic
-	dba UnownYFrontpic
-	dba UnownZFrontpic
-	dba UnownExclamationFrontpic
-	dba UnownQuestionFrontpic
 
 	dba ArbokKantoFrontpic
 	dba ArbokKogaFrontpic

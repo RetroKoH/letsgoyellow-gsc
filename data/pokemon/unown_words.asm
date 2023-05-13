@@ -30,7 +30,6 @@ UnownWords:
 	dw UnownWord26
 	dw UnownWord27
 	dw UnownWord28
-	assert_table_length NUM_UNOWN + 1
 
 UnownWord1:  db "ANGER@"
 UnownWord2:  db "BEAR@"

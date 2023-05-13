@@ -197,7 +197,7 @@ BitmasksPointers:
 	dw SlowkingPlainBitmasks
 	dw MisdreavusBitmasks
 	dw MismagiusBitmasks
-	dw UnownABitmasks
+	dw KleavorBitmasks
 	dw SirfetchDBitmasks
 	dw MrRimeBitmasks
 	dw PinecoBitmasks
@@ -257,34 +257,6 @@ BitmasksPointers:
 	assert_table_length NUM_POKEMON
 
 	dw EggBitmasks
-
-	dw UnownBBitmasks
-	dw UnownCBitmasks
-	dw UnownDBitmasks
-	dw UnownEBitmasks
-	dw UnownFBitmasks
-	dw UnownGBitmasks
-	dw UnownHBitmasks
-	dw UnownIBitmasks
-	dw UnownJBitmasks
-	dw UnownKBitmasks
-	dw UnownLBitmasks
-	dw UnownMBitmasks
-	dw UnownNBitmasks
-	dw UnownOBitmasks
-	dw UnownPBitmasks
-	dw UnownQBitmasks
-	dw UnownRBitmasks
-	dw UnownSBitmasks
-	dw UnownTBitmasks
-	dw UnownUBitmasks
-	dw UnownVBitmasks
-	dw UnownWBitmasks
-	dw UnownXBitmasks
-	dw UnownYBitmasks
-	dw UnownZBitmasks
-	dw UnownExclamationBitmasks
-	dw UnownQuestionBitmasks
 
 	dw ArbokKantoBitmasks
 	dw ArbokKogaBitmasks

@@ -1,4 +1,4 @@
-	db "Symbol@" ; species name
+	db "Symbol@" ; species name KLEAVOR
 	dw 108, 110 ; height, width
 
 	db   "Because different"

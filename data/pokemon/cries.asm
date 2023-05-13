@@ -203,7 +203,7 @@ PokemonCries::
 	mon_cry CRY_SLOWKING,    $104,  $200 ; Slowking
 	mon_cry CRY_HOOTHOOT,    $130,  $0e8 ; Misdreavus
 	mon_cry CRY_HOOTHOOT,    $130,  $0e8 ; Mismagius
-	mon_cry CRY_HOOTHOOT,    $162,  $100 ; Unown
+	mon_cry CRY_AMPHAROS,    $000,  $160 ; Kleavor
 	mon_cry CRY_SPEAROW,     $0dd,  $081 ; SirfetchD
 	mon_cry CRY_KRABBY,      $008,  $0c0 ; Mr.Rime
 	mon_cry CRY_SLOWKING,    $080,  $100 ; Pineco

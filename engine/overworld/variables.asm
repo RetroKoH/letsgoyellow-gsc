@@ -94,7 +94,7 @@ Var_DayOfWeek:
 	call GetWeekday
 	jr _Var_loadstringbuffer2
 
-Var_UnownCaught:
+Var_UnownCaught: ; We will repurpose this
 	call .count
 	ld a, b
 	jr _Var_loadstringbuffer2
@@ -108,7 +108,7 @@ Var_UnownCaught:
 	ret z
 	inc b
 	ld a, b
-	cp NUM_UNOWN
+	cp 28
 	jr c, .loop
 	ret
 

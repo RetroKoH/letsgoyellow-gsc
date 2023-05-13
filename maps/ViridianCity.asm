@@ -78,6 +78,7 @@ ViridianCityCatchTutorialScript:
 
 	loadwildmon RATTATA, 5
 	catchtutorial BATTLETYPE_TUTORIAL
+	special RestoreMusic
 	opentext
 	writetext ViridianCityText_PostTutorial
 	promptbutton
@@ -90,6 +91,7 @@ ViridianCityCatchTutorialScript:
 .catchCaterpie
 	loadwildmon CATERPIE, 5
 	catchtutorial BATTLETYPE_TUTORIAL
+	special RestoreMusic
 	opentext
 	writetext ViridianCityText_PostTutorial
 	promptbutton
@@ -102,6 +104,7 @@ ViridianCityCatchTutorialScript:
 .catchWeedle
 	loadwildmon WEEDLE, 5
 	catchtutorial BATTLETYPE_TUTORIAL
+	special RestoreMusic
 	opentext
 	writetext ViridianCityText_PostTutorial
 	promptbutton
@@ -114,6 +117,7 @@ ViridianCityCatchTutorialScript:
 .catchPidgey
 	loadwildmon PIDGEY, 5
 	catchtutorial BATTLETYPE_TUTORIAL
+	special RestoreMusic
 	opentext
 	writetext ViridianCityText_PostTutorial
 	promptbutton

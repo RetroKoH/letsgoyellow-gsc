@@ -168,23 +168,23 @@ endr
 	dba AnimObjUltraBallGFX
 	dba AnimObjMasterBallGFX
 	dba AnimObjSafariBallGFX
+	dba AnimObjFastBallGFX
 	dba AnimObjLevelBallGFX
 	dba AnimObjLureBallGFX
-	dba AnimObjMoonBallGFX
-	dba AnimObjFriendBallGFX
-	dba AnimObjFastBallGFX
 	dba AnimObjHeavyBallGFX
 	dba AnimObjLoveBallGFX
-	dba AnimObjPokeBallGFX ; ABILITYPATCH
-	dba AnimObjRepeatBallGFX
-	dba AnimObjTimerBallGFX
-	dba AnimObjNestBallGFX
+	dba AnimObjFriendBallGFX
+	dba AnimObjMoonBallGFX
 	dba AnimObjNetBallGFX
 	dba AnimObjDiveBallGFX
+	dba AnimObjNestBallGFX
+	dba AnimObjRepeatBallGFX
+	dba AnimObjTimerBallGFX
 	dba AnimObjLuxuryBallGFX
+	dba AnimObjDuskBallGFX
 	dba AnimObjHealBallGFX
 	dba AnimObjQuickBallGFX
-	dba AnimObjDuskBallGFX
 	dba AnimObjDreamBallGFX
 	dba AnimObjPremierBallGFX
 	dba AnimObjCherishBallGFX
+	dba AnimObjSnagBallGFX

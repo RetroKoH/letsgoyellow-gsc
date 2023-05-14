@@ -116,6 +116,7 @@ AnimObjDuskBallGFX::    INCBIN "gfx/battle_balls/dusk_ball.2bpp.lz"
 AnimObjDreamBallGFX::   INCBIN "gfx/battle_balls/dream_ball.2bpp.lz"
 AnimObjPremierBallGFX:: INCBIN "gfx/battle_balls/premier_ball.2bpp.lz"
 AnimObjCherishBallGFX:: INCBIN "gfx/battle_balls/cherish_ball.2bpp.lz"
+AnimObjSnagBallGFX::    INCBIN "gfx/battle_balls/snag_ball.2bpp.lz"
 
 
 SECTION "SGB Border Graphics", ROMX

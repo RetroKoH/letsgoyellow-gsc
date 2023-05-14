@@ -1,8 +1,8 @@
-	db  45,  80,  50, 120,  75,  60 ; 430 BST
+	db  55,  70,  65, 100,  75,  55 ; 420 BST +100 (20/15/25/10/25/5)
 	;   hp  atk  def  spd  sat  sdf
 	db ELECTRIC, ELECTRIC ; type
 	db 0 ; catch rate
-	db 0 ; base exp
+	db 82 ; base exp
 	db NO_ITEM ; item 1
 	db NO_ITEM ; item 2
 	dn GENDER_F100, 1 ; gender ratio, step cycles to hatch

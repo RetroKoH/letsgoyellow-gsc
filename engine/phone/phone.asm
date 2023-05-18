@@ -562,9 +562,9 @@ CheckCanDeletePhoneNumber:
 ;	and a
 ;	ret nz
 	ld a, b
-	cp PHONECONTACT_MOM
+	cp PHONECONTACT_TRACE
 	ret z
-	cp PHONECONTACT_ELM
+	cp PHONECONTACT_OAK
 	ret z
 	cp PHONECONTACT_LYRA
 	ret z
@@ -621,17 +621,17 @@ GetCallerLocation:
 
 NonTrainerCallerNames:
 	dw EmptyString
-	dw .mom
-	dw .bikeshop
+	dw .trace
+	dw .oak
 	dw .bill
 	dw .elm
 	dw .lyra
 	dw .buena
 
-.mom:      db "Mom:@"
+.trace:    db "<RIVAL>@"
 .bill:     db "Bill:<LNBRK>   #maniac@"
 .elm:      db "Prof.Elm:<LNBRK>   #mon Prof.@"
-.bikeshop: db "Miracle Cycle:@"
+.oak:      db "Prof.Oak:<LNBRK>   #mon Prof.@"
 .lyra:     db "Lyra:<LNBRK>   <PK><MN> Trainer@"
 .buena:    db "Buena:<LNBRK>   Disc Jockey@"
 

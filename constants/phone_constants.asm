@@ -1,7 +1,7 @@
 ; PhoneContacts indexes (see data/phone/phone_contacts.asm)
 	const_def
 	const PHONE_00
-	const PHONE_MOM
+	const PHONE_TRACE
 	const PHONE_OAK
 	const PHONE_BILL
 	const PHONE_ELM
@@ -43,14 +43,7 @@ NUM_PHONE_CONTACTS EQU const_value - 1
 ; SpecialPhoneCallList indexes (see data/phone/special_calls.asm)
 	const_def
 	const SPECIALCALL_NONE
-	const SPECIALCALL_POKERUS
-	const SPECIALCALL_ROBBED
-	const SPECIALCALL_ASSISTANT
-	const SPECIALCALL_WEIRDBROADCAST
-	const SPECIALCALL_SSTICKET
 	const SPECIALCALL_BIKESHOP
-	const SPECIALCALL_WORRIED
-	const SPECIALCALL_MASTERBALL
 	const SPECIALCALL_YELLOWFOREST
 	const SPECIALCALL_FIRSTBADGE
 	const SPECIALCALL_SECONDBADGE

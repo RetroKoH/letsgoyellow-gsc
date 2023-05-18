@@ -20,8 +20,8 @@ ENDM
 ; trainer constants are indexes for the sub-tables of TrainerGroups (see data/trainers/parties.asm)
 CHRIS EQU __trainer_class__
 	trainerclass TRAINER_NONE ; 0
-	const PHONECONTACT_MOM
-	const PHONECONTACT_BIKESHOP
+	const PHONECONTACT_TRACE
+	const PHONECONTACT_OAK
 	const PHONECONTACT_BILL
 	const PHONECONTACT_ELM
 	const PHONECONTACT_LYRA

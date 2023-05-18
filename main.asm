@@ -501,9 +501,9 @@ INCLUDE "data/phone/text/ralph_overworld.asm"
 
 SECTION "Phone Text 3", ROMX
 
-INCLUDE "data/phone/text/mom.asm"
+INCLUDE "data/phone/text/trace.asm"
+INCLUDE "data/phone/text/oak.asm"
 INCLUDE "data/phone/text/bill.asm"
-INCLUDE "data/phone/text/elm.asm"
 INCLUDE "data/phone/text/trainers1.asm"
 INCLUDE "data/phone/text/liz_overworld.asm"
 

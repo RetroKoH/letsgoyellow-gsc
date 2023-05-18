@@ -1,8 +1,11 @@
-MomPhoneGreetingText:
+TracePhoneGreetingText:
 	text "Hello?"
 
 	para "Oh, hi, <PLAYER>!"
-	line "Working hard?"
+	line "How do you like"
+	cont "the new #Gear?"
+
+	para "Have fun, dude!"
 	done
 
 MomPhoneLandmarkText:

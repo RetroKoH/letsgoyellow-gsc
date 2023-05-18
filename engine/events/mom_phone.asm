@@ -37,14 +37,14 @@ MomTriesToBuySomething::
 	ld hl, wWhichMomItem
 	inc [hl]
 .ok
-	ld a, PHONE_MOM
+	ld a, PHONE_TRACE
 	ld [wCurCaller], a
 	ld bc, wCallerContact
 	ld hl, PHONE_CONTACT_TRAINER_CLASS
 	add hl, bc
 	xor a ; TRAINER_NONE
 	ld [hli], a
-	ld [hl], PHONE_MOM
+	ld [hl], PHONE_TRACE
 	ld hl, PHONE_CONTACT_SCRIPT2_BANK
 	add hl, bc
 	ld a, BANK(Mom_GetScriptPointer)

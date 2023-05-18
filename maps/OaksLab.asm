@@ -60,17 +60,18 @@ OaksLabTrigger1:
 
 OaksLab_AutowalkUpToOak:
 	applymovement PLAYER, Movement_WalkUpToProfOak
-	showtext OaksLabArrivalText
-	playmusic MUSIC_RIVAL_ENCOUNTER
+	opentext
+	writetext OaksLabArrivalText
 	pause 15
-	showtext OaksLabTraceArrivesText
+	writetext OaksLabTraceArrivesText
+	promptbutton
+	closetext
 	moveobject OAKSLAB_TRACE, 4, 7
 	appear OAKSLAB_TRACE
 	applymovement OAKSLAB_TRACE, Movement_TraceRunsIn
-	special RestartMapMusic
 	opentext
 	writetext OaksLabTraceSorryText
-	pause 8
+	promptbutton
 	writetext OaksLabIntroducePokedexText
 	closetext
 	readvar VAR_FACING
@@ -98,11 +99,20 @@ OaksLab_AutowalkUpToOak:
 	verbosegiveitem POKE_BALL, 10
 	faceobject OAKSLAB_TRACE, PLAYER
 	writetext OaksLabLeaveItToUsText
+	promptbutton
+	writetext OaksLabReceivedGearText
+	playsound SFX_KEY_ITEM
+	waitsfx
+	promptbutton
 	closetext
-	playmusic MUSIC_RIVAL_AFTER
 	applymovement OAKSLAB_TRACE, Movement_TraceRunsOut
 	disappear OAKSLAB_TRACE
 	setflag ENGINE_POKEDEX
+	setflag ENGINE_POKEGEAR
+	setflag ENGINE_MAP_CARD
+	setflag ENGINE_PHONE_CARD
+	addcellnum PHONE_TRACE
+	addcellnum PHONE_OAK
 	setevent EVENT_GOT_POKEDEX_FROM_OAK
 	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
 	setmapscene VIRIDIAN_CITY, $1
@@ -295,7 +305,12 @@ OaksLabReceivedPokedexText:
 	cont "these with you!"
 
 	para "<PLAYER> got"
-	line "#dex from Oak!"
+	line "the #dex!"
+	done
+
+OaksLabReceivedGearText:
+	text "<PLAYER> got"
+	line "the # Gear!"
 	done
 
 OaksLabRequestText:
@@ -351,9 +366,10 @@ OaksLabLeaveItToUsText:
 	cont "strong #mon to"
 	cont "help find Red!"
 
-	para "By the way, I"
-	line "got Town Maps"
-	cont "for both of us!"
+	para "Oh, and I got new"
+	line "# Gears for us!"
+	cont "They have a Town"
+	cont "Map and a Phone."
 
 	para "Take one, you're"
 	line "gonna need it!"

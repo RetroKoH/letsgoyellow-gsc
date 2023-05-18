@@ -11,10 +11,10 @@ PhoneContacts:
 ; entries correspond to PHONE_* constants
 	table_width PHONE_CONTACT_SIZE, PhoneContacts
 	phone TRAINER_NONE, PHONE_00,              N_A,                       %0000, UnusedPhoneScript,   %0000, UnusedPhoneScript
-	phone TRAINER_NONE, PHONECONTACT_MOM,      PLAYERS_HOUSE_1F,          %1111, MomPhoneScript,      %0000, UnusedPhoneScript
-	phone TRAINER_NONE, PHONECONTACT_BIKESHOP, OAKS_LAB,                  %0000, UnusedPhoneScript,   %0000, UnusedPhoneScript
+	phone TRAINER_NONE, PHONECONTACT_TRACE,    N_A,                       %1111, TracePhoneScript,    %0000, UnusedPhoneScript
+	phone TRAINER_NONE, PHONECONTACT_OAK,      OAKS_LAB,                  %0000, OakPhoneScript,      %0000, UnusedPhoneScript
 	phone TRAINER_NONE, PHONECONTACT_BILL,     N_A,                       %1111, BillPhoneScript1,    %0000, BillPhoneScript2
-	phone TRAINER_NONE, PHONECONTACT_ELM,      ELMS_LAB,                  %1111, ElmPhoneScript1,     %0000, ElmPhoneScript2
+	phone TRAINER_NONE, PHONECONTACT_ELM,      ELMS_LAB,                  %1111, OakPhoneScript,      %0000, UnusedPhoneScript
 	phone TRAINER_NONE, PHONECONTACT_LYRA,     LYRAS_HOUSE_1F,            %1111, LyraPhoneScript,     %0000, LyraPhoneScript2
 	phone SCHOOLBOY,    JACK1,                 NATIONAL_PARK,             %1111, JackPhoneScript1,    %1111, JackPhoneScript2
 	phone POKEFANF,     BEVERLY1,              NATIONAL_PARK,             %1111, BeverlyPhoneScript1, %1111, BeverlyPhoneScript2

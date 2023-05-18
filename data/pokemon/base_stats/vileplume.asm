@@ -1,18 +1,9 @@
-if DEF(FAITHFUL)
 	db  75,  80,  85,  50, 110,  90 ; 490 BST
 	;   hp  atk  def  spd  sat  sdf
-else
-	db  75,  80,  85,  50, 110, 100 ; 500 BST
-	;   hp  atk  def  spd  sat  sdf
-endc
 
 	db GRASS, POISON ; type
 	db 45 ; catch rate
-if DEF(FAITHFUL)
 	db 184 ; base exp
-else
-	db 192 ; base exp
-endc
 	db ALWAYS_ITEM_2 ; item 1
 	db ABSORB_BULB ; item 2
 	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch

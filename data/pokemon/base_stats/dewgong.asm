@@ -1,10 +1,7 @@
-if DEF(FAITHFUL)
-	db  90,  70,  80,  70,  70,  95 ; 475 BST
+;	db  90,  70,  80,  70,  70,  95 ; 475 BST
 	;   hp  atk  def  spd  sat  sdf
-else
 	db  90,  70,  80,  70,  80,  95 ; 485 BST
 	;   hp  atk  def  spd  sat  sdf
-endc
 
 	db WATER, ICE ; type
 	db 75 ; catch rate

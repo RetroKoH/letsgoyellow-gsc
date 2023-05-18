@@ -1,16 +1,9 @@
-if DEF(FAITHFUL)
-	db  90,  75,  75,  70,  90, 100 ; 500 BST
+;	db  90,  75,  75,  70,  90, 100 ; 500 BST
 	;   hp  atk  def  spd  sat  sdf
-else
 	db  90,  75,  80,  80,  90, 100 ; 515 BST
 	;   hp  atk  def  spd  sat  sdf
-endc
 
-if DEF(FAITHFUL)
 	db WATER, WATER ; type
-else
-	db WATER, GRASS ; type
-endc
 	db 45 ; catch rate
 	db 185 ; base exp
 	db NO_ITEM ; item 1

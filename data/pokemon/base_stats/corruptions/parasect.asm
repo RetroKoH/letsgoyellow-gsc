@@ -1,9 +1,7 @@
-;	db  60, 110,  95,  30,  70,  90 ; 455 BST
+	db  60, 120, 100,  30,  60,  85 ; 455 BST
 	;   hp  atk  def  spd  sat  sdf
-	db  60, 130, 115,  30,  70, 100 ; 505 BST
-	;   hp  atk  def  spd  sat  sdf
-
-	db BUG, GROUND ; type
+	;       +25  +20             +5
+	db BUG, ROCK ; type
 	db 75 ; catch rate
 	db 128 ; base exp
 	db NO_ITEM ; item 1

@@ -1,7 +1,7 @@
 	db  80, 115,  75, 140,  70,  85 ; 555 BST
 	;   hp  atk  def  spd  sat  sdf
 
-	db ROCK, FLYING ; type
+	db GROUND, FLYING ; type
 	db 45 ; catch rate
 	db 202 ; base exp
 	db NO_ITEM ; item 1

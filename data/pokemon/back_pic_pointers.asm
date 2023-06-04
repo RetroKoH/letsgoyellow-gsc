@@ -57,8 +57,8 @@ BackPicPointers::
 	dba GolduckBackpic
 	dba MankeyBackpic
 	dba PrimeapeBackpic
-	dba GrowlitheBackpic
-	dba ArcanineBackpic
+	dba GrowlithePlainBackpic
+	dba ArcaninePlainBackpic
 	dba PoliwagBackpic
 	dba PoliwhirlBackpic
 	dba PoliwrathBackpic
@@ -99,8 +99,8 @@ BackPicPointers::
 	dba HypnoBackpic
 	dba KrabbyBackpic
 	dba KinglerBackpic
-	dba VoltorbBackpic
-	dba ElectrodeBackpic
+	dba VoltorbPlainBackpic
+	dba ElectrodePlainBackpic
 	dba ExeggcuteBackpic
 	dba ExeggutorPlainBackpic
 	dba CuboneBackpic
@@ -127,7 +127,7 @@ BackPicPointers::
 	dba ElectabuzzBackpic
 	dba MagmarBackpic
 	dba PinsirBackpic
-	dba TaurosBackpic
+	dba TaurosPlainBackpic
 	dba MagikarpPlainBackpic
 	dba GyaradosBackpic
 	dba LaprasBackpic
@@ -188,7 +188,7 @@ BackPicPointers::
 	dba SunfloraBackpic
 	dba YanmaBackpic
 	dba YanmegaBackpic
-	dba WooperBackpic
+	dba WooperPlainBackpic
 	dba QuagsireBackpic
 	dba EspeonBackpic
 	dba UmbreonBackpic
@@ -212,7 +212,7 @@ BackPicPointers::
 	dba ScizorBackpic
 	dba ShuckleBackpic
 	dba HeracrossBackpic
-	dba SneaselBackpic
+	dba SneaselPlainBackpic
 	dba WeavileBackpic
 	dba TeddiursaBackpic
 	dba UrsaringBackpic
@@ -288,8 +288,10 @@ BackPicPointers::
 	dba MagikarpRaindropBackpic
 
 	dba MewtwoArmoredBackpic
+
 	dba PikachuPartnerBackpic
 	dba EeveePartnerBackpic
+
 	dba RattataAlolanBackpic
 	dba RaticateAlolanBackpic
 	dba SandshrewAlolanBackpic
@@ -308,6 +310,7 @@ BackPicPointers::
 	dba RaichuAlolanBackpic
 	dba ExeggutorAlolanBackpic
 	dba MarowakAlolanBackpic
+
 	dba MeowthGalarianBackpic
 	dba PonytaGalarianBackpic
 	dba RapidashGalarianBackpic
@@ -320,5 +323,16 @@ BackPicPointers::
 	dba ArticunoGalarianBackpic
 	dba ZapdosGalarianBackpic
 	dba MoltresGalarianBackpic
+
+	dba GrowlitheHisuianBackpic
+	dba ArcanineHisuianBackpic
+	dba VoltorbHisuianBackpic
+	dba ElectrodeHisuianBackpic
+	dba SneaselHisuianBackpic
+
+	dba WooperPaldeanBackpic
+	dba TaurosPaldeanBackpic
+	dba TaurosPaldeanFireBackpic
+	dba TaurosPaldeanWaterBackpic
 
 	assert_table_length NUM_UNIQUE_POKEMON

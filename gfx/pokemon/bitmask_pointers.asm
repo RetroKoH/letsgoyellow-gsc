@@ -57,8 +57,8 @@ BitmasksPointers:
 	dw GolduckBitmasks
 	dw MankeyBitmasks
 	dw PrimeapeBitmasks
-	dw GrowlitheBitmasks
-	dw ArcanineBitmasks
+	dw GrowlithePlainBitmasks
+	dw ArcaninePlainBitmasks
 	dw PoliwagBitmasks
 	dw PoliwhirlBitmasks
 	dw PoliwrathBitmasks
@@ -99,8 +99,8 @@ BitmasksPointers:
 	dw HypnoBitmasks
 	dw KrabbyBitmasks
 	dw KinglerBitmasks
-	dw VoltorbBitmasks
-	dw ElectrodeBitmasks
+	dw VoltorbPlainBitmasks
+	dw ElectrodePlainBitmasks
 	dw ExeggcuteBitmasks
 	dw ExeggutorPlainBitmasks
 	dw CuboneBitmasks
@@ -127,7 +127,7 @@ BitmasksPointers:
 	dw ElectabuzzBitmasks
 	dw MagmarBitmasks
 	dw PinsirBitmasks
-	dw TaurosBitmasks
+	dw TaurosPlainBitmasks
 	dw MagikarpPlainBitmasks
 	dw GyaradosBitmasks
 	dw LaprasBitmasks
@@ -188,7 +188,7 @@ BitmasksPointers:
 	dw SunfloraBitmasks
 	dw YanmaBitmasks
 	dw YanmegaBitmasks
-	dw WooperBitmasks
+	dw WooperPlainBitmasks
 	dw QuagsireBitmasks
 	dw EspeonBitmasks
 	dw UmbreonBitmasks
@@ -212,7 +212,7 @@ BitmasksPointers:
 	dw ScizorBitmasks
 	dw ShuckleBitmasks
 	dw HeracrossBitmasks
-	dw SneaselBitmasks
+	dw SneaselPlainBitmasks
 	dw WeavileBitmasks
 	dw TeddiursaBitmasks
 	dw UrsaringBitmasks
@@ -320,5 +320,16 @@ BitmasksPointers:
 	dw ArticunoGalarianBitmasks
 	dw ZapdosGalarianBitmasks
 	dw MoltresGalarianBitmasks
+
+	dw GrowlitheHisuianBitmasks
+	dw ArcanineHisuianBitmasks
+	dw VoltorbHisuianBitmasks
+	dw ElectrodeHisuianBitmasks
+	dw SneaselHisuianBitmasks
+
+	dw WooperPaldeanBitmasks
+	dw TaurosPaldeanBitmasks
+	dw TaurosPaldeanFireBitmasks
+	dw TaurosPaldeanWaterBitmasks
 
 	assert_table_length NUM_UNIQUE_POKEMON

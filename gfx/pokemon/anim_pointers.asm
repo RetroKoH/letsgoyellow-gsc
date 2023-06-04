@@ -57,8 +57,8 @@ AnimationPointers:
 	dw GolduckAnimation
 	dw MankeyAnimation
 	dw PrimeapeAnimation
-	dw GrowlitheAnimation
-	dw ArcanineAnimation
+	dw GrowlithePlainAnimation
+	dw ArcaninePlainAnimation
 	dw PoliwagAnimation
 	dw PoliwhirlAnimation
 	dw PoliwrathAnimation
@@ -99,8 +99,8 @@ AnimationPointers:
 	dw HypnoAnimation
 	dw KrabbyAnimation
 	dw KinglerAnimation
-	dw VoltorbAnimation
-	dw ElectrodeAnimation
+	dw VoltorbPlainAnimation
+	dw ElectrodePlainAnimation
 	dw ExeggcuteAnimation
 	dw ExeggutorPlainAnimation
 	dw CuboneAnimation
@@ -127,7 +127,7 @@ AnimationPointers:
 	dw ElectabuzzAnimation
 	dw MagmarAnimation
 	dw PinsirAnimation
-	dw TaurosAnimation
+	dw TaurosPlainAnimation
 	dw MagikarpPlainAnimation
 	dw GyaradosAnimation
 	dw LaprasAnimation
@@ -188,7 +188,7 @@ AnimationPointers:
 	dw SunfloraAnimation
 	dw YanmaAnimation
 	dw YanmegaAnimation
-	dw WooperAnimation
+	dw WooperPlainAnimation
 	dw QuagsireAnimation
 	dw EspeonAnimation
 	dw UmbreonAnimation
@@ -212,7 +212,7 @@ AnimationPointers:
 	dw ScizorAnimation
 	dw ShuckleAnimation
 	dw HeracrossAnimation
-	dw SneaselAnimation
+	dw SneaselPlainAnimation
 	dw WeavileAnimation
 	dw TeddiursaAnimation
 	dw UrsaringAnimation
@@ -290,6 +290,7 @@ AnimationPointers:
 	dw MewtwoArmoredAnimation
 	dw PikachuPartnerAnimation
 	dw EeveePartnerAnimation
+
 	dw RattataAlolanAnimation
 	dw RaticateAlolanAnimation
 	dw SandshrewAlolanAnimation
@@ -308,6 +309,7 @@ AnimationPointers:
 	dw RaichuAlolanAnimation
 	dw ExeggutorAlolanAnimation
 	dw MarowakAlolanAnimation
+
 	dw MeowthGalarianAnimation
 	dw PonytaGalarianAnimation
 	dw RapidashGalarianAnimation
@@ -320,5 +322,16 @@ AnimationPointers:
 	dw ArticunoGalarianAnimation
 	dw ZapdosGalarianAnimation
 	dw MoltresGalarianAnimation
+
+	dw GrowlitheHisuianAnimation
+	dw ArcanineHisuianAnimation
+	dw VoltorbHisuianAnimation
+	dw ElectrodeHisuianAnimation
+	dw SneaselHisuianAnimation
+
+	dw WooperPaldeanAnimation
+	dw TaurosPaldeanAnimation
+	dw TaurosPaldeanFireAnimation
+	dw TaurosPaldeanWaterAnimation
 
 	assert_table_length NUM_UNIQUE_POKEMON

@@ -99,8 +99,8 @@ LearnsetPointers::
 	dw HypnoLearnset
 	dw KrabbyLearnset
 	dw KinglerLearnset
-	dw VoltorbLearnset
-	dw ElectrodeLearnset
+	dw VoltorbPlainLearnset
+	dw ElectrodePlainLearnset
 	dw ExeggcuteLearnset
 	dw ExeggutorPlainLearnset
 	dw CuboneLearnset
@@ -127,7 +127,7 @@ LearnsetPointers::
 	dw ElectabuzzLearnset
 	dw MagmarLearnset
 	dw PinsirLearnset
-	dw TaurosLearnset
+	dw TaurosPlainLearnset
 	dw MagikarpLearnset
 	dw GyaradosLearnset
 	dw LaprasLearnset
@@ -261,6 +261,7 @@ LearnsetPointers::
 	dw MewtwoLearnset
 	dw PikachuLearnset ; Partner
 	dw EeveeLearnset ; Partner
+
 	dw RattataAlolanLearnset
 	dw RaticateAlolanLearnset
 	dw SandshrewAlolanLearnset
@@ -279,6 +280,7 @@ LearnsetPointers::
 	dw RaichuAlolanLearnset
 	dw ExeggutorAlolanLearnset
 	dw MarowakAlolanLearnset
+
 	dw MeowthGalarianLearnset
 	dw PonytaGalarianLearnset
 	dw RapidashGalarianLearnset
@@ -291,6 +293,17 @@ LearnsetPointers::
 	dw ArticunoGalarianLearnset
 	dw ZapdosGalarianLearnset
 	dw MoltresGalarianLearnset
+
+	dw GrowlitheHisuianLearnset
+	dw ArcanineHisuianLearnset
+	dw VoltorbHisuianLearnset
+	dw ElectrodeHisuianLearnset
+	dw SneaselHisuianLearnset
+
+	dw WooperPaldeanLearnset
+	dw TaurosPaldeanLearnset
+	dw TaurosPaldeanFireLearnset
+	dw TaurosPaldeanWaterLearnset
 	assert_table_length NUM_EXT_POKEMON
 
 Learnsets::
@@ -1134,8 +1147,10 @@ KinglerLearnset:
 	db 63, FLAIL ; Flail → new move
 	db 0 ; no more level-up moves
 
-VoltorbLearnset:
-ElectrodeLearnset:
+VoltorbPlainLearnset:
+ElectrodePlainLearnset:
+VoltorbHisuianLearnset:
+ElectrodeHisuianLearnset:
 	db 1, STRIKE ; TACKLE
 	db 1, THUNDERSHOCK ; Let's Go move
 	db 11, ROLLOUT
@@ -1472,7 +1487,10 @@ PinsirLearnset:
 	db 50, CLOSE_COMBAT ; Superpower
 	db 0 ; no more level-up moves
 
-TaurosLearnset:
+TaurosPlainLearnset:
+TaurosPaldeanLearnset:
+TaurosPaldeanFireLearnset:
+TaurosPaldeanWaterLearnset:
 	db 1, STRIKE ; TACKLE
 	db 6, LEER ; Tail Whip → similar move
 	db 12, HORN_ATTACK

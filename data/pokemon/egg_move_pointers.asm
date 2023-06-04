@@ -261,6 +261,7 @@ EggMovePointers::
 	dw NoEggMoves ; Armored Mewtwo
 	dw NoEggMoves ; Partner Pika
 	dw NoEggMoves ; Partner Eevee
+	
 	dw RattataAlolanEggMoves
 	dw NoEggMoves
 	dw SandshrewAlolanEggMoves
@@ -279,16 +280,28 @@ EggMovePointers::
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+	
 	dw MeowthAlolanEggMoves
 	dw PonytaGalarianEggMoves
 	dw NoEggMoves
 	dw SlowpokeGalarianEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+	dw FarfetchDEggMoves ; Farfetchd-G
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+
+	dw GrowlitheEggMoves
 	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw SneaselEggMoves
+
+	dw WooperEggMoves
+	dw NoEggMoves
+	dw NoEggMoves
+	dw NoEggMoves	
 	assert_table_length NUM_EXT_POKEMON

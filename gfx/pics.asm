@@ -127,10 +127,6 @@ MankeyFrontpic:           INCBIN "gfx/pokemon/mankey/front.animated.2bpp.lz"
 MankeyBackpic:            INCBIN "gfx/pokemon/mankey/back.2bpp.lz"
 PrimeapeFrontpic:         INCBIN "gfx/pokemon/primeape/front.animated.2bpp.lz"
 PrimeapeBackpic:          INCBIN "gfx/pokemon/primeape/back.2bpp.lz"
-GrowlitheFrontpic:        INCBIN "gfx/pokemon/growlithe/front.animated.2bpp.lz"
-GrowlitheBackpic:         INCBIN "gfx/pokemon/growlithe/back.2bpp.lz"
-ArcanineFrontpic:         INCBIN "gfx/pokemon/arcanine/front.animated.2bpp.lz"
-ArcanineBackpic:          INCBIN "gfx/pokemon/arcanine/back.2bpp.lz"
 PoliwagFrontpic:          INCBIN "gfx/pokemon/poliwag/front.animated.2bpp.lz"
 PoliwagBackpic:           INCBIN "gfx/pokemon/poliwag/back.2bpp.lz"
 PoliwhirlFrontpic:        INCBIN "gfx/pokemon/poliwhirl/front.animated.2bpp.lz"
@@ -207,10 +203,6 @@ KrabbyFrontpic:           INCBIN "gfx/pokemon/krabby/front.animated.2bpp.lz"
 KrabbyBackpic:            INCBIN "gfx/pokemon/krabby/back.2bpp.lz"
 KinglerFrontpic:          INCBIN "gfx/pokemon/kingler/front.animated.2bpp.lz"
 KinglerBackpic:           INCBIN "gfx/pokemon/kingler/back.2bpp.lz"
-VoltorbFrontpic:          INCBIN "gfx/pokemon/voltorb/front.animated.2bpp.lz"
-VoltorbBackpic:           INCBIN "gfx/pokemon/voltorb/back.2bpp.lz"
-ElectrodeFrontpic:        INCBIN "gfx/pokemon/electrode/front.animated.2bpp.lz"
-ElectrodeBackpic:         INCBIN "gfx/pokemon/electrode/back.2bpp.lz"
 ExeggcuteFrontpic:        INCBIN "gfx/pokemon/exeggcute/front.animated.2bpp.lz"
 ExeggcuteBackpic:         INCBIN "gfx/pokemon/exeggcute/back.2bpp.lz"
 
@@ -267,8 +259,6 @@ MagmarFrontpic:           INCBIN "gfx/pokemon/magmar/front.animated.2bpp.lz"
 MagmarBackpic:            INCBIN "gfx/pokemon/magmar/back.2bpp.lz"
 PinsirFrontpic:           INCBIN "gfx/pokemon/pinsir/front.animated.2bpp.lz"
 PinsirBackpic:            INCBIN "gfx/pokemon/pinsir/back.2bpp.lz"
-TaurosFrontpic:           INCBIN "gfx/pokemon/tauros/front.animated.2bpp.lz"
-TaurosBackpic:            INCBIN "gfx/pokemon/tauros/back.2bpp.lz"
 LaprasFrontpic:           INCBIN "gfx/pokemon/lapras/front.animated.2bpp.lz"
 LaprasBackpic:            INCBIN "gfx/pokemon/lapras/back.2bpp.lz"
 
@@ -403,8 +393,6 @@ YanmaFrontpic:            INCBIN "gfx/pokemon/yanma/front.animated.2bpp.lz"
 YanmaBackpic:             INCBIN "gfx/pokemon/yanma/back.2bpp.lz"
 YanmegaFrontpic:          INCBIN "gfx/pokemon/yanmega/front.animated.2bpp.lz"
 YanmegaBackpic:           INCBIN "gfx/pokemon/yanmega/back.2bpp.lz"
-WooperFrontpic:           INCBIN "gfx/pokemon/wooper/front.animated.2bpp.lz"
-WooperBackpic:            INCBIN "gfx/pokemon/wooper/back.2bpp.lz"
 QuagsireFrontpic:         INCBIN "gfx/pokemon/quagsire/front.animated.2bpp.lz"
 QuagsireBackpic:          INCBIN "gfx/pokemon/quagsire/back.2bpp.lz"
 EspeonFrontpic:           INCBIN "gfx/pokemon/espeon/front.animated.2bpp.lz"
@@ -459,8 +447,6 @@ ShuckleFrontpic:          INCBIN "gfx/pokemon/shuckle/front.animated.2bpp.lz"
 ShuckleBackpic:           INCBIN "gfx/pokemon/shuckle/back.2bpp.lz"
 HeracrossFrontpic:        INCBIN "gfx/pokemon/heracross/front.animated.2bpp.lz"
 HeracrossBackpic:         INCBIN "gfx/pokemon/heracross/back.2bpp.lz"
-SneaselFrontpic:          INCBIN "gfx/pokemon/sneasel/front.animated.2bpp.lz"
-SneaselBackpic:           INCBIN "gfx/pokemon/sneasel/back.2bpp.lz"
 WeavileFrontpic:          INCBIN "gfx/pokemon/weavile/front.animated.2bpp.lz"
 WeavileBackpic:           INCBIN "gfx/pokemon/weavile/back.2bpp.lz"
 TeddiursaFrontpic:        INCBIN "gfx/pokemon/teddiursa/front.animated.2bpp.lz"
@@ -837,6 +823,52 @@ ZapdosGalarianBackpic:    INCBIN "gfx/pokemon/zapdos_galarian/back.2bpp.lz"
 MoltresGalarianFrontpic:  INCBIN "gfx/pokemon/moltres_galarian/front.animated.2bpp.lz"
 MoltresGalarianBackpic:   INCBIN "gfx/pokemon/moltres_galarian/back.2bpp.lz"
 
+SECTION "Growlithe/Arcanine Pics", ROMX
+
+GrowlithePlainFrontpic:        INCBIN "gfx/pokemon/growlithe_plain/front.animated.2bpp.lz"
+GrowlithePlainBackpic:         INCBIN "gfx/pokemon/growlithe_plain/back.2bpp.lz"
+GrowlitheHisuianFrontpic:      INCBIN "gfx/pokemon/growlithe_hisuian/front.animated.2bpp.lz"
+GrowlitheHisuianBackpic:       INCBIN "gfx/pokemon/growlithe_hisuian/back.2bpp.lz"
+ArcaninePlainFrontpic:         INCBIN "gfx/pokemon/arcanine_plain/front.animated.2bpp.lz"
+ArcaninePlainBackpic:          INCBIN "gfx/pokemon/arcanine_plain/back.2bpp.lz"
+ArcanineHisuianFrontpic:       INCBIN "gfx/pokemon/arcanine_hisuian/front.animated.2bpp.lz"
+ArcanineHisuianBackpic:        INCBIN "gfx/pokemon/arcanine_hisuian/back.2bpp.lz"
+
+SECTION "Voltorb/Electrode Pics", ROMX
+
+VoltorbPlainFrontpic:        INCBIN "gfx/pokemon/voltorb_plain/front.animated.2bpp.lz"
+VoltorbPlainBackpic:         INCBIN "gfx/pokemon/voltorb_plain/back.2bpp.lz"
+VoltorbHisuianFrontpic:      INCBIN "gfx/pokemon/voltorb_hisuian/front.animated.2bpp.lz"
+VoltorbHisuianBackpic:       INCBIN "gfx/pokemon/voltorb_hisuian/back.2bpp.lz"
+ElectrodePlainFrontpic:      INCBIN "gfx/pokemon/electrode_plain/front.animated.2bpp.lz"
+ElectrodePlainBackpic:       INCBIN "gfx/pokemon/electrode_plain/back.2bpp.lz"
+ElectrodeHisuianFrontpic:    INCBIN "gfx/pokemon/electrode_hisuian/front.animated.2bpp.lz"
+ElectrodeHisuianBackpic:     INCBIN "gfx/pokemon/electrode_hisuian/back.2bpp.lz"
+
+SECTION "Sneasel Pics", ROMX
+
+SneaselPlainFrontpic:        INCBIN "gfx/pokemon/sneasel_plain/front.animated.2bpp.lz"
+SneaselPlainBackpic:         INCBIN "gfx/pokemon/sneasel_plain/back.2bpp.lz"
+SneaselHisuianFrontpic:      INCBIN "gfx/pokemon/sneasel_hisuian/front.animated.2bpp.lz"
+SneaselHisuianBackpic:       INCBIN "gfx/pokemon/sneasel_hisuian/back.2bpp.lz"
+
+SECTION "Wooper Pics", ROMX
+
+WooperPlainFrontpic:        INCBIN "gfx/pokemon/wooper_plain/front.animated.2bpp.lz"
+WooperPlainBackpic:         INCBIN "gfx/pokemon/wooper_plain/back.2bpp.lz"
+WooperPaldeanFrontpic:      INCBIN "gfx/pokemon/wooper_paldean/front.animated.2bpp.lz"
+WooperPaldeanBackpic:       INCBIN "gfx/pokemon/wooper_paldean/back.2bpp.lz"
+
+SECTION "Tauros Pics", ROMX
+
+TaurosPlainFrontpic:        INCBIN "gfx/pokemon/tauros_plain/front.animated.2bpp.lz"
+TaurosPlainBackpic:         INCBIN "gfx/pokemon/tauros_plain/back.2bpp.lz"
+TaurosPaldeanFrontpic:      INCBIN "gfx/pokemon/tauros_paldean/front.animated.2bpp.lz"
+TaurosPaldeanBackpic:       INCBIN "gfx/pokemon/tauros_paldean/back.2bpp.lz"
+TaurosPaldeanFireFrontpic:  INCBIN "gfx/pokemon/tauros_paldean_fire/front.animated.2bpp.lz"
+TaurosPaldeanFireBackpic:   INCBIN "gfx/pokemon/tauros_paldean_fire/back.2bpp.lz"
+TaurosPaldeanWaterFrontpic: INCBIN "gfx/pokemon/tauros_paldean_water/front.animated.2bpp.lz"
+TaurosPaldeanWaterBackpic:  INCBIN "gfx/pokemon/tauros_paldean_water/back.2bpp.lz"
 
 SECTION "Trainer Pics 1", ROMX
 

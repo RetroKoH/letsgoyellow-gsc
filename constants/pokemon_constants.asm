@@ -395,6 +395,24 @@ GALARIAN_FORM EQU 3
 	const_skip ; 138 zapdos
 	const_skip ; 139 moltres
 
+; hisuian forms
+DEF HISUIAN_FORM EQU 4
+	const_skip ; 13a growlithe
+	const_skip ; 13b arcanine
+	const_skip ; 13c voltorb
+	const_skip ; 13d electrode
+	const_skip ; 13e sneasel
+
+; paldean forms
+DEF PALDEAN_FORM EQU 5
+	const_skip ; 13f wooper
+	const_skip ; 140 tauros
+
+; tauros
+	ext_const_def 2
+	ext_const TAUROS_PALDEAN_FIRE_FORM  ; 141 (2)
+	ext_const TAUROS_PALDEAN_WATER_FORM ; 142 (3)
+
 NUM_VARIANT_FORMS EQU const_value - FIRST_VARIANT_FORM_MON ; 1f
 
 FIRST_EXT_MON EQU const_value ; 151

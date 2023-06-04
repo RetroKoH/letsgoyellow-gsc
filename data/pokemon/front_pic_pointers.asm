@@ -57,8 +57,8 @@ FrontPicPointers::
 	dba GolduckFrontpic
 	dba MankeyFrontpic
 	dba PrimeapeFrontpic
-	dba GrowlitheFrontpic
-	dba ArcanineFrontpic
+	dba GrowlithePlainFrontpic
+	dba ArcaninePlainFrontpic
 	dba PoliwagFrontpic
 	dba PoliwhirlFrontpic
 	dba PoliwrathFrontpic
@@ -99,8 +99,8 @@ FrontPicPointers::
 	dba HypnoFrontpic
 	dba KrabbyFrontpic
 	dba KinglerFrontpic
-	dba VoltorbFrontpic
-	dba ElectrodeFrontpic
+	dba VoltorbPlainFrontpic
+	dba ElectrodePlainFrontpic
 	dba ExeggcuteFrontpic
 	dba ExeggutorPlainFrontpic
 	dba CuboneFrontpic
@@ -127,7 +127,7 @@ FrontPicPointers::
 	dba ElectabuzzFrontpic
 	dba MagmarFrontpic
 	dba PinsirFrontpic
-	dba TaurosFrontpic
+	dba TaurosPlainFrontpic
 	dba MagikarpPlainFrontpic
 	dba GyaradosFrontpic
 	dba LaprasFrontpic
@@ -188,7 +188,7 @@ FrontPicPointers::
 	dba SunfloraFrontpic
 	dba YanmaFrontpic
 	dba YanmegaFrontpic
-	dba WooperFrontpic
+	dba WooperPlainFrontpic
 	dba QuagsireFrontpic
 	dba EspeonFrontpic
 	dba UmbreonFrontpic
@@ -212,7 +212,7 @@ FrontPicPointers::
 	dba ScizorFrontpic
 	dba ShuckleFrontpic
 	dba HeracrossFrontpic
-	dba SneaselFrontpic
+	dba SneaselPlainFrontpic
 	dba WeavileFrontpic
 	dba TeddiursaFrontpic
 	dba UrsaringFrontpic
@@ -320,5 +320,16 @@ FrontPicPointers::
 	dba ArticunoGalarianFrontpic
 	dba ZapdosGalarianFrontpic
 	dba MoltresGalarianFrontpic
+
+	dba GrowlitheHisuianFrontpic
+	dba ArcanineHisuianFrontpic
+	dba VoltorbHisuianFrontpic
+	dba ElectrodeHisuianFrontpic
+	dba SneaselHisuianFrontpic
+
+	dba WooperPaldeanFrontpic
+	dba TaurosPaldeanFrontpic
+	dba TaurosPaldeanFireFrontpic
+	dba TaurosPaldeanWaterFrontpic
 
 	assert_table_length NUM_UNIQUE_POKEMON

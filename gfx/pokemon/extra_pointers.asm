@@ -57,8 +57,8 @@ AnimationExtraPointers:
 	dw GolduckAnimationExtra
 	dw MankeyAnimationExtra
 	dw PrimeapeAnimationExtra
-	dw GrowlitheAnimationExtra
-	dw ArcanineAnimationExtra
+	dw GrowlithePlainAnimationExtra
+	dw ArcaninePlainAnimationExtra
 	dw PoliwagAnimationExtra
 	dw PoliwhirlAnimationExtra
 	dw PoliwrathAnimationExtra
@@ -99,8 +99,8 @@ AnimationExtraPointers:
 	dw HypnoAnimationExtra
 	dw KrabbyAnimationExtra
 	dw KinglerAnimationExtra
-	dw VoltorbAnimationExtra
-	dw ElectrodeAnimationExtra
+	dw VoltorbPlainAnimationExtra
+	dw ElectrodePlainAnimationExtra
 	dw ExeggcuteAnimationExtra
 	dw ExeggutorPlainAnimationExtra
 	dw CuboneAnimationExtra
@@ -127,7 +127,7 @@ AnimationExtraPointers:
 	dw ElectabuzzAnimationExtra
 	dw MagmarAnimationExtra
 	dw PinsirAnimationExtra
-	dw TaurosAnimationExtra
+	dw TaurosPlainAnimationExtra
 	dw MagikarpPlainAnimationExtra
 	dw GyaradosAnimationExtra
 	dw LaprasAnimationExtra
@@ -188,7 +188,7 @@ AnimationExtraPointers:
 	dw SunfloraAnimationExtra
 	dw YanmaAnimationExtra
 	dw YanmegaAnimationExtra
-	dw WooperAnimationExtra
+	dw WooperPlainAnimationExtra
 	dw QuagsireAnimationExtra
 	dw EspeonAnimationExtra
 	dw UmbreonAnimationExtra
@@ -212,7 +212,7 @@ AnimationExtraPointers:
 	dw ScizorAnimationExtra
 	dw ShuckleAnimationExtra
 	dw HeracrossAnimationExtra
-	dw SneaselAnimationExtra
+	dw SneaselPlainAnimationExtra
 	dw WeavileAnimationExtra
 	dw TeddiursaAnimationExtra
 	dw UrsaringAnimationExtra
@@ -308,6 +308,7 @@ AnimationExtraPointers:
 	dw RaichuAlolanAnimationExtra
 	dw ExeggutorAlolanAnimationExtra
 	dw MarowakAlolanAnimationExtra
+
 	dw MeowthGalarianAnimationExtra
 	dw PonytaGalarianAnimationExtra
 	dw RapidashGalarianAnimationExtra
@@ -320,5 +321,16 @@ AnimationExtraPointers:
 	dw ArticunoGalarianAnimationExtra
 	dw ZapdosGalarianAnimationExtra
 	dw MoltresGalarianAnimationExtra
+
+	dw GrowlitheHisuianAnimationExtra
+	dw ArcanineHisuianAnimationExtra
+	dw VoltorbHisuianAnimationExtra
+	dw ElectrodeHisuianAnimationExtra
+	dw SneaselHisuianAnimationExtra
+
+	dw WooperPaldeanAnimationExtra
+	dw TaurosPaldeanAnimationExtra
+	dw TaurosPaldeanFireAnimationExtra
+	dw TaurosPaldeanWaterAnimationExtra
 
 	assert_table_length NUM_UNIQUE_POKEMON

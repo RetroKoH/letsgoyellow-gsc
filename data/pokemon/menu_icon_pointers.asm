@@ -310,4 +310,15 @@ endr
 	dba ZapdosIcon ; TODO
 	dba MoltresIcon ; TODO
 
+	dba GrowlitheIcon
+	dba ArcanineIcon
+	dba VoltorbIcon
+	dba ElectrodeIcon
+	dba SneaselIcon
+
+	dba WooperIcon
+	dba TaurosIcon
+	dba TaurosIcon
+	dba TaurosIcon
+
 	assert_table_length NUM_UNIQUE_POKEMON + 1

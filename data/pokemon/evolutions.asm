@@ -71,7 +71,7 @@ EvolutionPointers::
 	dw NoEvolutions
 	dw MankeyEvolutions
 	dw NoEvolutions
-	dw GrowlitheEvolutions
+	dw GrowlithePlainEvolutions
 	dw NoEvolutions
 	dw PoliwagEvolutions
 	dw PoliwhirlEvolutions
@@ -113,7 +113,7 @@ EvolutionPointers::
 	dw NoEvolutions
 	dw KrabbyEvolutions
 	dw NoEvolutions
-	dw VoltorbEvolutions
+	dw VoltorbPlainEvolutions
 	dw NoEvolutions
 	dw ExeggcuteEvolutions
 	dw NoEvolutions
@@ -202,7 +202,7 @@ EvolutionPointers::
 	dw NoEvolutions
 	dw YanmaEvolutions
 	dw NoEvolutions
-	dw WooperEvolutions
+	dw WooperPlainEvolutions
 	dw NoEvolutions
 	dw NoEvolutions ; Espeon
 	dw NoEvolutions ; Umbreon
@@ -226,7 +226,7 @@ EvolutionPointers::
 	dw NoEvolutions ; Scizor
 	dw NoEvolutions ; Shuckle
 	dw NoEvolutions ; Heracross
-	dw SneaselEvolutions
+	dw SneaselPlainEvolutions
 	dw NoEvolutions
 	dw TeddiursaEvolutions
 	dw NoEvolutions
@@ -275,6 +275,7 @@ EvolutionPointers::
 	dw NoEvolutions ; MewtwoEvolutions
 	dw NoEvolutions ; PartnerPikachuEvolutions
 	dw NoEvolutions ; PartnerEeveeEvolutions
+
 	dw RattataAlolanEvolutions
 	dw NoEvolutions ; RaticateAlolanEvolutions
 	dw SandshrewAlolanEvolutions
@@ -293,6 +294,7 @@ EvolutionPointers::
 	dw NoEvolutions ; RaichuAlolanEvolutions
 	dw NoEvolutions ; ExeggutorAlolanEvolutions
 	dw NoEvolutions ; MarowakAlolanEvolutions
+
 	dw MeowthGalarianEvolutions
 	dw PonytaGalarianEvolutions
 	dw NoEvolutions ; RapidashGalarianEvolutions
@@ -305,6 +307,17 @@ EvolutionPointers::
 	dw NoEvolutions ; ArticunoGalarianEvolutions
 	dw NoEvolutions ; ZapdosGalarianEvolutions
 	dw NoEvolutions ; MoltresGalarianEvolutions
+
+	dw GrowlitheHisuianEvolutions
+	dw NoEvolutions
+	dw VoltorbHisuianEvolutions
+	dw NoEvolutions
+	dw SneaselHisuianEvolutions
+
+	dw WooperPaldeanEvolutions
+	dw NoEvolutions
+	dw NoEvolutions
+	dw NoEvolutions
 	assert_table_length NUM_EXT_POKEMON
 
 Evolutions::
@@ -469,7 +482,8 @@ MankeyEvolutions:
 	evo_data EVOLVE_LEVEL, 28, PRIMEAPE
 	db 0 ; no more evolutions
 
-GrowlitheEvolutions:
+GrowlithePlainEvolutions:
+GrowlitheHisuianEvolutions:
 	evo_data EVOLVE_ITEM, FIRE_STONE, ARCANINE
 	db 0 ; no more evolutions
 
@@ -580,8 +594,12 @@ KrabbyEvolutions:
 	evo_data EVOLVE_LEVEL, 28, KINGLER
 	db 0 ; no more evolutions
 
-VoltorbEvolutions:
+VoltorbPlainEvolutions:
 	evo_data EVOLVE_LEVEL, 30, ELECTRODE
+	db 0 ; no more evolutions
+
+VoltorbHisuianEvolutions:
+	evo_data EVOLVE_ITEM, LEAF_STONE, ELECTRODE ; HISUIAN
 	db 0 ; no more evolutions
 
 ExeggcuteEvolutions:
@@ -771,9 +789,14 @@ YanmaEvolutions:
 	evo_data EVOLVE_MOVE, ANCIENTPOWER, YANMEGA
 	db 0 ; no more evolutions
 
-WooperEvolutions:
+WooperPlainEvolutions:
 	evo_data EVOLVE_LEVEL, 20, QUAGSIRE
+WooperPaldeanEvolutions:
 	db 0 ; no more evolutions
+
+;WooperPaldeanEvolutions:
+;	evo_data EVOLVE_LEVEL, 20, CLODSIRE
+;	db 0 ; no more evolutions
 
 MurkrowEvolutions:
 	evo_data EVOLVE_ITEM, DUSK_STONE, HONCHKROW
@@ -795,8 +818,10 @@ SnubbullEvolutions:
 	evo_data EVOLVE_LEVEL, 23, GRANBULL
 	db 0 ; no more evolutions
 
-SneaselEvolutions:
-	evo_data EVOLVE_HOLDING, RAZOR_CLAW, TR_ANYTIME, WEAVILE
+SneaselPlainEvolutions:
+	evo_data EVOLVE_HOLDING, RAZOR_CLAW, TR_EVENITE, WEAVILE
+SneaselHisuianEvolutions:
+;	evo_data EVOLVE_HOLDING, RAZOR_CLAW, TR_MORNDAY, SNEASLER
 	db 0 ; no more evolutions
 
 TeddiursaEvolutions:

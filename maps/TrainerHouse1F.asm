@@ -134,7 +134,7 @@ PikaBallScript:
 	writetext TrainerHouseBlueConfirm
 	promptbutton
 	waitsfx
-	givepoke PIKACHU, PARTNER, 15
+	givepoke WOOPER, PALDEAN_FORM, 15
 	closetext
 	applymovement STARTHOUSE_TRACE, Movement_TracePicksEevee
 	opentext

@@ -57,8 +57,8 @@ FramesPointers:
 	dw GolduckFrames
 	dw MankeyFrames
 	dw PrimeapeFrames
-	dw GrowlitheFrames
-	dw ArcanineFrames
+	dw GrowlithePlainFrames
+	dw ArcaninePlainFrames
 	dw PoliwagFrames
 	dw PoliwhirlFrames
 	dw PoliwrathFrames
@@ -99,8 +99,8 @@ FramesPointers:
 	dw HypnoFrames
 	dw KrabbyFrames
 	dw KinglerFrames
-	dw VoltorbFrames
-	dw ElectrodeFrames
+	dw VoltorbPlainFrames
+	dw ElectrodePlainFrames
 	dw ExeggcuteFrames
 	dw ExeggutorPlainFrames
 	dw CuboneFrames
@@ -127,7 +127,7 @@ FramesPointers:
 	dw ElectabuzzFrames
 	dw MagmarFrames
 	dw PinsirFrames
-	dw TaurosFrames
+	dw TaurosPlainFrames
 	dw MagikarpPlainFrames
 	dw GyaradosFrames
 	dw LaprasFrames
@@ -188,7 +188,7 @@ FramesPointers:
 	dw SunfloraFrames
 	dw YanmaFrames
 	dw YanmegaFrames
-	dw WooperFrames
+	dw WooperPlainFrames
 	dw QuagsireFrames
 	dw EspeonFrames
 	dw UmbreonFrames
@@ -212,7 +212,7 @@ FramesPointers:
 	dw ScizorFrames
 	dw ShuckleFrames
 	dw HeracrossFrames
-	dw SneaselFrames
+	dw SneaselPlainFrames
 	dw WeavileFrames
 	dw TeddiursaFrames
 	dw UrsaringFrames
@@ -308,6 +308,7 @@ FramesPointers:
 	dw RaichuAlolanFrames
 	dw ExeggutorAlolanFrames
 	dw MarowakAlolanFrames
+
 	dw MeowthGalarianFrames
 	dw PonytaGalarianFrames
 	dw RapidashGalarianFrames
@@ -320,5 +321,16 @@ FramesPointers:
 	dw ArticunoGalarianFrames
 	dw ZapdosGalarianFrames
 	dw MoltresGalarianFrames
+
+	dw GrowlitheHisuianFrames
+	dw ArcanineHisuianFrames
+	dw VoltorbHisuianFrames
+	dw ElectrodeHisuianFrames
+	dw SneaselHisuianFrames
+
+	dw WooperPaldeanFrames
+	dw TaurosPaldeanFrames
+	dw TaurosPaldeanFireFrames
+	dw TaurosPaldeanWaterFrames
 
 	assert_table_length NUM_UNIQUE_POKEMON

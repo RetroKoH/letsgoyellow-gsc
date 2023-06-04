@@ -310,40 +310,57 @@ TechniquePointers::
 	dw NoTechniques			; LEAFEON
 	dw NoTechniques			; GLACEON
 	dw NoTechniques			; SYLVEON
-;	assert_table_length NUM_POKEMON
+	assert_table_length NUM_POKEMON
 
 	dw NoTechniques ; Egg
 
-;	dw BlastoiseTechniques	; RED_GYARADOS
-;	dw AbraTechniques		; ARMORED_MEWTWO
-;	dw NoTechniques			; RATTATA
-;	dw RaticateTechniques
-;	dw TechniqueChop		; SANDSHREW
-;	dw RaticateTechniques	; SANDSLASH
-;	dw NoTechniques			; VULPIX
-;	dw NoTechniques			; NINETALES
-;	dw NoTechniques			; DIGLETT
-;	dw NoTechniques			; DUGTRIO
-;	dw TechniqueGlow		; MEOWTH
-;	dw TechniqueGlow		; PERSIAN
-;	dw GeodudeAlolanTechniques
-;	dw GravelerAlolanTechniques
-;	dw GolemAlolanTechniques
-;	dw GrimerAlolanTechniques
-;	dw MukAlolanTechniques
-;	dw RaichuAlolanTechniques
-;	dw ExeggutorAlolanTechniques
-;	dw MarowakAlolanTechniques
-;	dw PonytaGalarianTechniques
-;	dw RapidashGalarianTechniques
-;	dw SlowpokeGalarianTechniques
-;	dw SlowbroGalarianTechniques
-;	dw SlowkingGalarianTechniques
-;	dw WeezingGalarianTechniques
-;	dw ArticunoGalarianTechniques
-;	dw ZapdosGalarianTechniques
-;	dw MoltresGalarianTechniques
-;	assert_table_length NUM_EXT_POKEMON
+	dw AbraTechniques		; ARMORED_MEWTWO
+	dw NoTechniques			; PARTNER_PIKACHU
+	dw NoTechniques			; PARTNER_EEVEE
+
+	dw NoTechniques			; RATTATA
+	dw RaticateTechniques
+	dw TechniqueChop		; SANDSHREW
+	dw RaticateTechniques	; SANDSLASH
+	dw NoTechniques			; VULPIX
+	dw NoTechniques			; NINETALES
+	dw NoTechniques			; DIGLETT
+	dw NoTechniques			; DUGTRIO
+	dw TechniqueGlow		; MEOWTH
+	dw TechniqueGlow		; PERSIAN
+	dw NoTechniques			; GEODUDE ; ADD FLASH TO THIS LINE???
+	dw TechniquePush		; GRAVELER
+	dw TechniquePush		; GOLEM
+	dw NoTechniques			; GRIMER
+	dw NoTechniques			; MUK
+	dw RaichuTechniques
+	dw ExeggutorTechniques
+	dw TechniquePush		; MAROWAK
+
+	dw TechniqueGlow		; MEOWTH
+	dw NoTechniques			; PONYTA
+	dw NoTechniques			; RAPIDASH
+	dw AbraTechniques		; SLOWPOKE
+	dw SlowbroTechniques
+	dw SlowbroTechniques	; SLOWKING
+	dw TechniqueChop		; FARFETCHD
+	dw TechniqueGlow		; WEEZING
+	dw AbraTechniques		; MR MIME
+	dw TechniqueSoar		; ARTICUNO
+	dw ZapdosTechniques
+	dw TechniqueSoar		; MOLTRES
+
+	dw NoTechniques			; GROWLITHE
+	dw TechniquePush		; ARCANINE
+	dw AbraTechniques		; VOLTORB
+	dw AbraTechniques		; ELECTRODE
+	dw TechniqueChop		; SNEASEL
+
+	dw NoTechniques			; WOOPER
+	dw TechniquePush		; TAUROS
+	dw TechniquePush		; TAUROS_F
+	dw TechniquePush		; TAUROS_W
+	assert_table_length NUM_EXT_POKEMON
 
 Techniques::
 

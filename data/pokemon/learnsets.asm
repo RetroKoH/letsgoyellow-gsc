@@ -294,7 +294,7 @@ LearnsetPointers::
 	dw ZapdosGalarianLearnset
 	dw MoltresGalarianLearnset
 
-	dw GrowlitheHisuianLearnset
+	dw CorruptionMoveset ;GrowlitheHisuianLearnset
 	dw ArcanineHisuianLearnset
 	dw VoltorbHisuianLearnset
 	dw ElectrodeHisuianLearnset
@@ -2168,6 +2168,12 @@ TyranitarLearnset:
 	db 48, STONE_EDGE
 	db 54, HYPER_BEAM
 	db 0 ; no more level-up moves
+
+CorruptionMoveset:
+	db 1, X_SCISSOR
+	db 1, BRICK_BREAK
+	db 1, DEFENSE_CURL
+	db 1, LEECH_LIFE
 
 ChikoritaLearnset:
 BayleefLearnset:

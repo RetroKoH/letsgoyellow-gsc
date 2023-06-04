@@ -1,20 +1,20 @@
-	db  60,  75,  45,  55,  65,  50 ; 350 BST
-	;   hp  atk  def  spe  sat  sdf
-
-	db FIRE, ROCK ; type
-	db 190 ; catch rate
-	db 91 ; base exp
-	db ALWAYS_ITEM_2 ; item 1
-	db ASPEAR_BERRY ; item 2
-	dn GENDER_F25, 3 ; gender ratio, step cycles to hatch
+	db  60, 105,  90,  30,  60,  85 ; 455 BST
+	;   hp  atk  def  spd  sat  sdf
+	;       +10  +10             +5
+	db BUG, ROCK ; type
+	db 75 ; catch rate
+	db 128 ; base exp
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
+	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/growlithe_hisuian/front.dimensions"
-	abilities_for GROWLITHE_HISUIAN, INTIMIDATE, FLASH_FIRE, ROCK_HEAD
-	db GROWTH_SLOW ; growth rate
-	dn EGG_GROUND, EGG_GROUND ; egg groups
+	abilities_for GROWLITHE_HISUIAN, SOLID_ROCK, SOLID_ROCK, SOLID_ROCK
+	db GROWTH_MEDIUM_FAST ; growth rate
+	dn EGG_BUG, EGG_PLANT ; egg groups
 
-	ev_yield   0,   1,   0,   0,   0,   0
+	ev_yield   0,   2,   1,   0,   0,   0
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, ROAR, TOXIC, SUNNY_DAY, PROTECT, SAFEGUARD, IRON_TAIL, RETURN, DIG, ROCK_SMASH, DOUBLE_TEAM, FLAMETHROWER, FIRE_BLAST, SWIFT, AERIAL_ACE, SUBSTITUTE, FACADE, FLAME_CHARGE, REST, ATTRACT, THIEF, WILD_CHARGE, WILL_O_WISP, STRENGTH, BODY_SLAM, DOUBLE_EDGE, ENDURE, HEADBUTT, SWAGGER
+	tmhm
 	; end

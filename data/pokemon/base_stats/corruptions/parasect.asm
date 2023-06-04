@@ -1,6 +1,6 @@
-	db  60, 120, 100,  30,  60,  85 ; 455 BST
+	db  60, 115, 100,  30,  60,  90 ; 455 BST
 	;   hp  atk  def  spd  sat  sdf
-	;       +25  +20             +5
+	;       +20  +20            +10
 	db BUG, ROCK ; type
 	db 75 ; catch rate
 	db 128 ; base exp

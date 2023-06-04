@@ -276,7 +276,6 @@ rept NUM_MAGIKARP - 1
 	dba MagikarpIcon
 endr
 
-	dba GyaradosIcon ; Red
 	dba MewtwoArmoredIcon
 	dba PikachuIcon ; Partner (Add Heart)
 	dba EeveeIcon ; Partner (Add Heart)

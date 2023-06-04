@@ -272,7 +272,6 @@ EvolutionPointers::
 
 	dw NoEvolutions ; Egg
 
-	dw NoEvolutions ; GyaradosEvolutions
 	dw NoEvolutions ; MewtwoEvolutions
 	dw NoEvolutions ; PartnerPikachuEvolutions
 	dw NoEvolutions ; PartnerEeveeEvolutions

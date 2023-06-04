@@ -293,7 +293,6 @@ INCLUDE "data/pokemon/base_stats/sylveon.asm"
 
 INCLUDE "data/pokemon/base_stats/egg.asm"
 
-INCLUDE "data/pokemon/base_stats/gyarados.asm" ; red
 INCLUDE "data/pokemon/base_stats/mewtwo_armored.asm"
 INCLUDE "data/pokemon/base_stats/pikachu_partner.asm"
 INCLUDE "data/pokemon/base_stats/eevee_partner.asm"

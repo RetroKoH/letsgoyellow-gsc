@@ -254,8 +254,7 @@ MagikarpMaskAnimation:
 MagikarpSaucyAnimation:
 MagikarpRaindropAnimation: INCLUDE "gfx/pokemon/magikarp/anim0.asm"
 
-GyaradosPlainAnimation: INCLUDE "gfx/pokemon/gyarados_plain/anim0.asm"
-GyaradosRedAnimation:   INCLUDE "gfx/pokemon/gyarados_red/anim0.asm"
+GyaradosAnimation: INCLUDE "gfx/pokemon/gyarados/anim0.asm"
 
 MewtwoPlainAnimation:   INCLUDE "gfx/pokemon/mewtwo_plain/anim0.asm"
 MewtwoArmoredAnimation: INCLUDE "gfx/pokemon/mewtwo_armored/anim0.asm"

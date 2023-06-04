@@ -129,7 +129,7 @@ BitmasksPointers:
 	dw PinsirBitmasks
 	dw TaurosBitmasks
 	dw MagikarpPlainBitmasks
-	dw GyaradosPlainBitmasks
+	dw GyaradosBitmasks
 	dw LaprasBitmasks
 	dw DittoBitmasks
 	dw EeveeBitmasks
@@ -287,7 +287,6 @@ BitmasksPointers:
 	dw MagikarpSaucyBitmasks
 	dw MagikarpRaindropBitmasks
 
-	dw GyaradosRedBitmasks
 	dw MewtwoArmoredBitmasks
 	dw PikachuPartnerBitmasks
 	dw EeveePartnerBitmasks

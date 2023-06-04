@@ -481,19 +481,6 @@ DayCare_GiveEgg:
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 
-	; Red Gyarados' Eggs should be plain
-	cp MAGIKARP
-	jr nz, .not_red_magikarp
-	ld a, [wTempMonForm]
-	and SPECIESFORM_MASK
-	cp GYARADOS_RED_FORM
-	jr c, .not_red_magikarp
-	ld a, [wTempMonForm]
-	and $ff - SPECIESFORM_MASK
-	or PLAIN_FORM
-	ld [wTempMonForm], a
-.not_red_magikarp
-	; Recalculates stats and sets other partymon stuff.
 	farcall SetTempPartyMonData
 	farcall AddTempMonToParty
 	ld a, 0

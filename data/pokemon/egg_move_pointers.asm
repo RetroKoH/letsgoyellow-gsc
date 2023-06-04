@@ -258,8 +258,7 @@ EggMovePointers::
 
 	dw NoEggMoves
 
-	dw NoEggMoves
-	dw NoEggMoves
+	dw NoEggMoves ; Armored Mewtwo
 	dw NoEggMoves ; Partner Pika
 	dw NoEggMoves ; Partner Eevee
 	dw RattataAlolanEggMoves

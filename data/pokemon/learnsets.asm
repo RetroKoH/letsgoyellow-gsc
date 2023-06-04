@@ -258,7 +258,6 @@ LearnsetPointers::
 
 	dw NoLearnset ; Egg
 
-	dw GyaradosLearnset
 	dw MewtwoLearnset
 	dw PikachuLearnset ; Partner
 	dw EeveeLearnset ; Partner

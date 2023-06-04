@@ -129,7 +129,7 @@ BackPicPointers::
 	dba PinsirBackpic
 	dba TaurosBackpic
 	dba MagikarpPlainBackpic
-	dba GyaradosPlainBackpic
+	dba GyaradosBackpic
 	dba LaprasBackpic
 	dba DittoBackpic
 	dba EeveeBackpic
@@ -287,7 +287,6 @@ BackPicPointers::
 	dba MagikarpSaucyBackpic
 	dba MagikarpRaindropBackpic
 
-	dba GyaradosRedBackpic
 	dba MewtwoArmoredBackpic
 	dba PikachuPartnerBackpic
 	dba EeveePartnerBackpic

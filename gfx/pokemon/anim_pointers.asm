@@ -129,7 +129,7 @@ AnimationPointers:
 	dw PinsirAnimation
 	dw TaurosAnimation
 	dw MagikarpPlainAnimation
-	dw GyaradosPlainAnimation
+	dw GyaradosAnimation
 	dw LaprasAnimation
 	dw DittoAnimation
 	dw EeveeAnimation
@@ -287,7 +287,6 @@ AnimationPointers:
 	dw MagikarpSaucyAnimation
 	dw MagikarpRaindropAnimation
 
-	dw GyaradosRedAnimation
 	dw MewtwoArmoredAnimation
 	dw PikachuPartnerAnimation
 	dw EeveePartnerAnimation

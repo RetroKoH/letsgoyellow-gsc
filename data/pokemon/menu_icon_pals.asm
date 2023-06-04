@@ -276,7 +276,7 @@ rept NUM_MAGIKARP - 1
 	iconpal RED, BROWN ; MAGIKARP
 endr
 
-	iconpal RED, RED ; GYARADOS, GYARADOS_RED_FORM
+; double check these
 	iconpal GRAY, GRAY ; MEWTWO, MEWTWO_ARMORED_FORM
 	iconpal RED, BLUE ; PARTNER PIKACHU
 	iconpal BROWN, GRAY ; PARTNER EEVEE

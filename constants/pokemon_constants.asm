@@ -350,56 +350,52 @@ NUM_COSMETIC_FORMS EQU const_value - FIRST_COSMETIC_FORM_MON ; 34
 
 FIRST_VARIANT_FORM_MON EQU const_value ; 119
 
-; gyarados - to be removed
-	ext_const_def NUM_MAGIKARP + 1
-	ext_const GYARADOS_RED_FORM ; 119 (11)
-
 ; mewtwo
 	ext_const_def 2
-	ext_const MEWTWO_ARMORED_FORM ; 11a (2)
+	ext_const MEWTWO_ARMORED_FORM ; 119 (2)
 
 ; partner pokemon
 PARTNER EQU 2
-	const_skip ; 11b pikachu
-	const_skip ; 11c eevee
+	const_skip ; 11a pikachu
+	const_skip ; 11b eevee
 
 ; alolan forms
 ALOLAN_FORM EQU 2
-	const_skip ; 11d rattata
-	const_skip ; 11e raticate
-	const_skip ; 11f sandshrew
-	const_skip ; 120 sandslash
-	const_skip ; 121 vulpix
-	const_skip ; 122 ninetales
-	const_skip ; 123 diglett
-	const_skip ; 124 dugtrio
-	const_skip ; 125 meowth
-	const_skip ; 126 persian
-	const_skip ; 127 geodude
-	const_skip ; 128 graveler
-	const_skip ; 129 golem
-	const_skip ; 12a grimer
-	const_skip ; 12b muk
-	const_skip ; 12c raichu
-	const_skip ; 12d exeggutor
-	const_skip ; 12e marowak
+	const_skip ; 11c rattata
+	const_skip ; 11d raticate
+	const_skip ; 11e sandshrew
+	const_skip ; 11f sandslash
+	const_skip ; 120 vulpix
+	const_skip ; 121 ninetales
+	const_skip ; 122 diglett
+	const_skip ; 123 dugtrio
+	const_skip ; 124 meowth
+	const_skip ; 125 persian
+	const_skip ; 126 geodude
+	const_skip ; 127 graveler
+	const_skip ; 128 golem
+	const_skip ; 129 grimer
+	const_skip ; 12a muk
+	const_skip ; 12b raichu
+	const_skip ; 12c exeggutor
+	const_skip ; 12d marowak
 
 ; galarian forms
 GALARIAN_FORM EQU 3
-	const_skip ; 12f meowth
-	const_skip ; 130 ponyta
-	const_skip ; 131 rapidash
-	const_skip ; 132 slowpoke
-	const_skip ; 133 slowbro
-	const_skip ; 134 slowking
-	const_skip ; 135 farfetchd
-	const_skip ; 136 weezing
-	const_skip ; 137 mr mime
-	const_skip ; 138 articuno
-	const_skip ; 139 zapdos
-	const_skip ; 13a moltres
+	const_skip ; 12e meowth
+	const_skip ; 12f ponyta
+	const_skip ; 130 rapidash
+	const_skip ; 131 slowpoke
+	const_skip ; 132 slowbro
+	const_skip ; 133 slowking
+	const_skip ; 134 farfetchd
+	const_skip ; 135 weezing
+	const_skip ; 136 mr mime
+	const_skip ; 137 articuno
+	const_skip ; 138 zapdos
+	const_skip ; 139 moltres
 
-NUM_VARIANT_FORMS EQU const_value - FIRST_VARIANT_FORM_MON ; 20
+NUM_VARIANT_FORMS EQU const_value - FIRST_VARIANT_FORM_MON ; 1f
 
 FIRST_EXT_MON EQU const_value ; 151
 

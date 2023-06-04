@@ -129,7 +129,7 @@ FramesPointers:
 	dw PinsirFrames
 	dw TaurosFrames
 	dw MagikarpPlainFrames
-	dw GyaradosPlainFrames
+	dw GyaradosFrames
 	dw LaprasFrames
 	dw DittoFrames
 	dw EeveeFrames
@@ -287,7 +287,6 @@ FramesPointers:
 	dw MagikarpSaucyFrames
 	dw MagikarpRaindropFrames
 
-	dw GyaradosRedFrames
 	dw MewtwoArmoredFrames
 	dw PikachuPartnerFrames
 	dw EeveePartnerFrames

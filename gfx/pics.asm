@@ -655,10 +655,8 @@ KleavorBackpic:           INCBIN "gfx/pokemon/kleavor/back.2bpp.lz"
 
 SECTION "Gyarados Pics", ROMX
 
-GyaradosPlainFrontpic:    INCBIN "gfx/pokemon/gyarados_plain/front.animated.2bpp.lz"
-GyaradosRedFrontpic:      INCBIN "gfx/pokemon/gyarados_red/front.animated.2bpp.lz"
-GyaradosPlainBackpic:
-GyaradosRedBackpic:       INCBIN "gfx/pokemon/gyarados/back.2bpp.lz"
+GyaradosFrontpic:    INCBIN "gfx/pokemon/gyarados/front.animated.2bpp.lz"
+GyaradosBackpic:     INCBIN "gfx/pokemon/gyarados/back.2bpp.lz"
 
 SECTION "Partner Pics", ROMX
 PikachuPartnerFrontPic:   INCBIN "gfx/pokemon/pikachu_partner/front.animated.2bpp.lz"

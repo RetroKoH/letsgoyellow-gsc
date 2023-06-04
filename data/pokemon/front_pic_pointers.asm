@@ -129,7 +129,7 @@ FrontPicPointers::
 	dba PinsirFrontpic
 	dba TaurosFrontpic
 	dba MagikarpPlainFrontpic
-	dba GyaradosPlainFrontpic
+	dba GyaradosFrontpic
 	dba LaprasFrontpic
 	dba DittoFrontpic
 	dba EeveeFrontpic
@@ -287,7 +287,6 @@ FrontPicPointers::
 	dba MagikarpSaucyFrontpic
 	dba MagikarpRaindropFrontpic
 
-	dba GyaradosRedFrontpic
 	dba MewtwoArmoredFrontpic
 	dba PikachuPlainFrontpic ; Will change
 	dba EeveeFrontpic ; Will change

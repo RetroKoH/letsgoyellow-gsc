@@ -3023,7 +3023,7 @@ BattleCommand_posthiteffects:
 	call HasOpponentFainted
 	jr z, .rage_done
 
-;	call SwitchTurn ; IS THIS STILL NEEDED HERE???
+	call SwitchTurn
 
 	; use skiptext so we can print the rage msg first
 	ld hl, wPlayerRageHitCount

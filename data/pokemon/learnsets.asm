@@ -2170,10 +2170,11 @@ TyranitarLearnset:
 	db 0 ; no more level-up moves
 
 CorruptionMoveset:
-	db 1, X_SCISSOR
-	db 1, BRICK_BREAK
+	db 1, LEER;X_SCISSOR
+	db 1, GROWL;BRICK_BREAK
 	db 1, DEFENSE_CURL
-	db 1, LEECH_LIFE
+	db 1, SCREECH;LEECH_LIFE
+	db 0 ; no more level-up moves
 
 ChikoritaLearnset:
 BayleefLearnset:

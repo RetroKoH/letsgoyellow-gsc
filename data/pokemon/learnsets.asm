@@ -208,7 +208,7 @@ LearnsetPointers::
 	dw SteelixLearnset
 	dw SnubbullLearnset
 	dw GranbullLearnset
-	dw QwilfishLearnset
+	dw AnnihilapeLearnset
 	dw ScizorLearnset
 	dw ShuckleLearnset
 	dw HeracrossLearnset
@@ -242,15 +242,15 @@ LearnsetPointers::
 	dw MagmortarLearnset
 	dw MiltankLearnset
 	dw BlisseyLearnset
-	dw RaikouLearnset
-	dw EnteiLearnset
-	dw SuicuneLearnset
+	dw KangaskidLearnset
+	dw MeltanLearnset
+	dw MelmetalLearnset
 	dw LarvitarLearnset
 	dw PupitarLearnset
 	dw TyranitarLearnset
-	dw LugiaLearnset
-	dw HoOhLearnset
-	dw CelebiLearnset
+	dw SneaslerLearnset
+	dw UrsalunaLearnset
+	dw ClodsireLearnset
 	dw LeafeonLearnset
 	dw GlaceonLearnset
 	dw SylveonLearnset
@@ -1334,6 +1334,9 @@ TangrowthLearnset:
 	db 0 ; no more level-up moves
 
 KangaskidLearnset:
+	db 1, FLAIL
+	db 0 ; no more level-up moves
+
 KangaskhanLearnset:
 	db 1, STRIKE ; POUND
 	db 1, LEER
@@ -2195,6 +2198,8 @@ LugiaLearnset:
 HoOhLearnset:
 CelebiLearnset:
 DittoLearnset:
+MeltanLearnset:
+MelmetalLearnset:
 NoLearnset::
 	db 1, TRANSFORM
 	db 0 ; no more level-up moves

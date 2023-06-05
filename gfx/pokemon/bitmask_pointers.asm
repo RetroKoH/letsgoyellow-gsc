@@ -208,7 +208,7 @@ BitmasksPointers:
 	dw SteelixBitmasks
 	dw SnubbullBitmasks
 	dw GranbullBitmasks
-	dw QwilfishBitmasks
+	dw AnnihilapeBitmasks
 	dw ScizorBitmasks
 	dw ShuckleBitmasks
 	dw HeracrossBitmasks
@@ -242,15 +242,15 @@ BitmasksPointers:
 	dw MagmortarBitmasks
 	dw MiltankBitmasks
 	dw BlisseyBitmasks
-	dw RaikouBitmasks
-	dw EnteiBitmasks
-	dw SuicuneBitmasks
+	dw KangaskidBitmasks
+	dw MeltanBitmasks
+	dw MelmetalBitmasks
 	dw LarvitarBitmasks
 	dw PupitarBitmasks
 	dw TyranitarBitmasks
-	dw LugiaBitmasks
-	dw HoOhBitmasks
-	dw CelebiBitmasks
+	dw SneaslerBitmasks
+	dw UrsalunaBitmasks
+	dw ClodsireBitmasks
 	dw LeafeonBitmasks
 	dw GlaceonBitmasks
 	dw SylveonBitmasks

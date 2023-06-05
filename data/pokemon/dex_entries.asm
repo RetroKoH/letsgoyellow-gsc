@@ -833,9 +833,9 @@ SECTION "GranbullPokedexEntry", ROMX
 GranbullPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/210.asm"
 
-SECTION "QwilfishPokedexEntry", ROMX
-QwilfishPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/211.asm"
+SECTION "AnnihilapePokedexEntry", ROMX
+AnnihilapePokedexEntry::
+INCLUDE "data/pokemon/dex_entries/211.asm" ; Change
 
 SECTION "ScizorPokedexEntry", ROMX
 ScizorPokedexEntry::
@@ -969,17 +969,17 @@ SECTION "BlisseyPokedexEntry", ROMX
 BlisseyPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/242.asm"
 
-SECTION "RaikouPokedexEntry", ROMX
-RaikouPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/243.asm"
+SECTION "KangaskidPokedexEntry", ROMX
+KangaskidPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/243.asm" ; Change
 
-SECTION "EnteiPokedexEntry", ROMX
-EnteiPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/244.asm"
+SECTION "MeltanPokedexEntry", ROMX
+MeltanPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/244.asm" ; Change
 
-SECTION "SuicunePokedexEntry", ROMX
-SuicunePokedexEntry::
-INCLUDE "data/pokemon/dex_entries/245.asm"
+SECTION "MelmetalPokedexEntry", ROMX
+MelmetalPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/245.asm" ; Change
 
 SECTION "LarvitarPokedexEntry", ROMX
 LarvitarPokedexEntry::
@@ -993,17 +993,17 @@ SECTION "TyranitarPokedexEntry", ROMX
 TyranitarPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/248.asm"
 
-SECTION "LugiaPokedexEntry", ROMX
-LugiaPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/249.asm"
+SECTION "SneaslerPokedexEntry", ROMX
+SneaslerPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/249.asm" ; Change
 
-SECTION "HoOhPokedexEntry", ROMX
-HoOhPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/250.asm"
+SECTION "UrsalunaPokedexEntry", ROMX
+UrsalunaPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/250.asm" ; Change
 
-SECTION "CelebiPokedexEntry", ROMX
-CelebiPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/251.asm"
+SECTION "ClodsirePokedexEntry", ROMX
+ClodsirePokedexEntry::
+INCLUDE "data/pokemon/dex_entries/251.asm" ; Change
 
 SECTION "LeafeonPokedexEntry", ROMX
 LeafeonPokedexEntry::

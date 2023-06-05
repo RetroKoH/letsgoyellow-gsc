@@ -6,6 +6,7 @@ AlphabeticalPokedexOrder:
 	db AERODACTYL
 	db ALAKAZAM
 	db AMPHAROS
+	db ANNIHILAPE
 	db ARBOK
 	db ARCANINE
 	db ARIADOS
@@ -19,7 +20,6 @@ AlphabeticalPokedexOrder:
 	db BULBASAUR
 	db BUTTERFREE
 	db CATERPIE
-	db CELEBI
 	db CHANSEY
 	db CHARIZARD
 	db CHARMANDER
@@ -29,6 +29,7 @@ AlphabeticalPokedexOrder:
 	db CLEFABLE
 	db CLEFAIRY
 	db CLEFFA
+	db CLODSIRE
 	db CLOYSTER
 	db CROBAT
 	db CROCONAW
@@ -51,7 +52,6 @@ AlphabeticalPokedexOrder:
 	db ELECTIVIRE
 	db ELECTRODE
 	db ELEKID
-	db ENTEI
 	db ESPEON
 	db EXEGGCUTE
 	db EXEGGUTOR
@@ -84,7 +84,6 @@ AlphabeticalPokedexOrder:
 	db HITMONCHAN
 	db HITMONLEE
 	db HITMONTOP
-	db HO_OH
 	db HONCHKROW
 	db HOOTHOOT
 	db HORSEA
@@ -101,6 +100,7 @@ AlphabeticalPokedexOrder:
 	db KADABRA
 	db KAKUNA
 	db KANGASKHAN
+	db KANGASKID
 	db KINGDRA
 	db KINGLER
 	db KLEAVOR
@@ -112,7 +112,6 @@ AlphabeticalPokedexOrder:
 	db LEAFEON
 	db LICKILICKY
 	db LICKITUNG
-	db LUGIA
 	db MACHAMP
 	db MACHOKE
 	db MACHOP
@@ -129,6 +128,8 @@ AlphabeticalPokedexOrder:
 	db MAREEP
 	db MAROWAK
 	db MEGANIUM
+	db MELMETAL
+	db MELTAN
 	db MEOWTH
 	db METAPOD
 	db MEW
@@ -182,9 +183,7 @@ AlphabeticalPokedexOrder:
 	db PUPITAR
 	db QUAGSIRE
 	db QUILAVA
-	db QWILFISH
 	db RAICHU
-	db RAIKOU
 	db RAPIDASH
 	db RATICATE
 	db RATTATA
@@ -208,6 +207,7 @@ AlphabeticalPokedexOrder:
 	db SLUGMA
 	db SMOOCHUM
 	db SNEASEL
+	db SNEASLER
 	db SNORLAX
 	db SNUBBULL
 	db SPEAROW
@@ -216,7 +216,6 @@ AlphabeticalPokedexOrder:
 	db STARMIE
 	db STARYU
 	db STEELIX
-	db SUICUNE
 	db SUNFLORA
 	db SUNKERN
 	db SWINUB
@@ -235,6 +234,7 @@ AlphabeticalPokedexOrder:
 	db TYRANITAR
 	db TYROGUE
 	db UMBREON
+	db URSALUNA
 	db URSARING
 	db VAPOREON
 	db VENOMOTH

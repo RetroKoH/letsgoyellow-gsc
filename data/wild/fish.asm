@@ -100,17 +100,17 @@ FishGroups:
 .Qwilfish_Swarm_Old:
 	db  70 percent + 1, MAGIKARP,   5
 	db  85 percent + 1, MAGIKARP,   5
-	db 100 percent,     QWILFISH,   5
+	db 100 percent,     TENTACOOL,   5
 .Qwilfish_Swarm_Good:
 	db  35 percent,     MAGIKARP,   20
-	db  70 percent,     QWILFISH,   20
-	db  90 percent + 1, QWILFISH,   20
+	db  70 percent,     TENTACOOL,   20
+	db  90 percent + 1, TENTACOOL,   20
 	db 100 percent,     0, 10
 .Qwilfish_Swarm_Super:
-	db  40 percent,     QWILFISH,   40
+	db  40 percent,     TENTACOOL,   40
 	db  70 percent,     0, 11
-	db  90 percent + 1, QWILFISH,   40
-	db 100 percent,     QWILFISH,   40
+	db  90 percent + 1, TENTACOOL,   40
+	db 100 percent,     TENTACOOL,   40
 
 .Goldeen_Swarm_Old:
 	db  70 percent + 1, MAGIKARP,   10
@@ -188,7 +188,7 @@ FishGroups:
 	db  40 percent,     TENTACOOL,  40
 	db  70 percent,     0, 21
 	db  90 percent + 1, MAGIKARP,   40
-	db 100 percent,     QWILFISH,   40
+	db 100 percent,     TENTACOOL,   40
 
 .Goldeen_Old:
 	db  70 percent + 1, MAGIKARP,   10
@@ -217,8 +217,8 @@ TimeFishGroups:
 	db POLIWAG,    40,  POLIWAG,    40
 	db DRATINI,    20,  DRATINI,    20
 	db DRATINI,    40,  DRATINI,    40
-	db QWILFISH,   20,  QWILFISH,   20
-	db QWILFISH,   40,  QWILFISH,   40
+	db TENTACOOL,   20,  TENTACOOL,   20
+	db TENTACOOL,   40,  TENTACOOL,   40
 	db GOLDEEN,    20,  GOLDEEN,    20
 	db GOLDEEN,    40,  GOLDEEN,    40
 	db GYARADOS,   20,  GYARADOS,   20

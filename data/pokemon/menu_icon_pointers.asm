@@ -209,7 +209,7 @@ IconPointers:
 	dba SteelixIcon
 	dba SnubbullIcon
 	dba GranbullIcon
-	dba QwilfishIcon
+	dba AnnihilapeIcon
 	dba ScizorIcon
 	dba ShuckleIcon
 	dba HeracrossIcon
@@ -243,15 +243,15 @@ IconPointers:
 	dba MagmortarIcon
 	dba MiltankIcon
 	dba BlisseyIcon
-	dba RaikouIcon
-	dba EnteiIcon
-	dba SuicuneIcon
+	dba KangaskhanIcon;KangaskidIcon
+	dba DittoIcon;MeltanIcon
+	dba DittoIcon;MelmetalIcon
 	dba LarvitarIcon
 	dba PupitarIcon
 	dba TyranitarIcon
-	dba LugiaIcon
-	dba HoOhIcon
-	dba CelebiIcon
+	dba SneaslerIcon
+	dba UrsalunaIcon
+	dba ClodsireIcon
 	dba LeafeonIcon
 	dba GlaceonIcon
 	dba SylveonIcon

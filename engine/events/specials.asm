@@ -385,7 +385,7 @@ RespawnOneOffs:
 	eventflagreset EVENT_FARAWAY_JUNGLE_MEW
 .CaughtMew
 
-	ld a, RAIKOU - 1
+	ld a, ARTICUNO - 1
 	call CheckCaughtMon
 	jr nz, .CaughtRaikou
 	ld hl, wRoamMon1Species
@@ -394,7 +394,7 @@ RespawnOneOffs:
 	call z, RespawnRoamingRaikou
 .CaughtRaikou
 
-	ld a, ENTEI - 1
+	ld a, ZAPDOS - 1
 	call CheckCaughtMon
 	jr nz, .CaughtEntei
 	ld hl, wRoamMon2Species
@@ -405,7 +405,7 @@ RespawnOneOffs:
 
 	eventflagcheck EVENT_FOUGHT_SUICUNE
 	jr z, .CaughtSuicune
-	ld a, SUICUNE - 1
+	ld a, MOLTRES - 1
 	call CheckCaughtMon
 	jr nz, .CaughtSuicune
 	ld hl, wRoamMon3Species
@@ -414,14 +414,14 @@ RespawnOneOffs:
 	call z, RespawnRoamingSuicune
 .CaughtSuicune
 
-	ld a, LUGIA - 1
+	ld a, MELTAN - 1
 	call CheckCaughtMon
 	jr nz, .CaughtLugia
 	eventflagreset EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
 	eventflagreset EVENT_FOUGHT_LUGIA
 .CaughtLugia
 
-	ld a, HO_OH - 1
+	ld a, MELMETAL - 1
 	call CheckCaughtMon
 	ret nz
 	eventflagreset EVENT_TIN_TOWER_ROOF_HO_OH
@@ -429,7 +429,7 @@ RespawnOneOffs:
 	ret
 
 RespawnRoamingRaikou:
-	ld a, RAIKOU
+	ld a, ARTICUNO
 	ld [wRoamMon1Species], a
 	ld a, 50
 	ld [wRoamMon1Level], a
@@ -442,7 +442,7 @@ RespawnRoamingRaikou:
 	ret
 
 RespawnRoamingEntei:
-	ld a, ENTEI
+	ld a, ZAPDOS
 	ld [wRoamMon2Species], a
 	ld a, 50
 	ld [wRoamMon2Level], a
@@ -455,7 +455,7 @@ RespawnRoamingEntei:
 	ret
 
 RespawnRoamingSuicune:
-	ld a, SUICUNE
+	ld a, MOLTRES
 	ld [wRoamMon3Species], a
 	ld a, 50
 	ld [wRoamMon3Level], a

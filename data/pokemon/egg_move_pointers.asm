@@ -208,7 +208,7 @@ EggMovePointers::
 	dw NoEggMoves
 	dw SnubbullEggMoves
 	dw NoEggMoves
-	dw QwilfishEggMoves
+	dw NoEggMoves ; ANNIHILAPE
 	dw NoEggMoves
 	dw ShuckleEggMoves
 	dw HeracrossEggMoves
@@ -242,7 +242,7 @@ EggMovePointers::
 	dw NoEggMoves
 	dw MiltankEggMoves
 	dw NoEggMoves
-	dw NoEggMoves
+	dw NoEggMoves ; KANGASKID
 	dw NoEggMoves
 	dw NoEggMoves
 	dw LarvitarEggMoves

@@ -208,7 +208,7 @@ FrontPicPointers::
 	dba SteelixFrontpic
 	dba SnubbullFrontpic
 	dba GranbullFrontpic
-	dba QwilfishFrontpic
+	dba AnnihilapeFrontpic
 	dba ScizorFrontpic
 	dba ShuckleFrontpic
 	dba HeracrossFrontpic
@@ -242,15 +242,15 @@ FrontPicPointers::
 	dba MagmortarFrontpic
 	dba MiltankFrontpic
 	dba BlisseyFrontpic
-	dba RaikouFrontpic
-	dba EnteiFrontpic
-	dba SuicuneFrontpic
+	dba KangaskidFrontpic
+	dba MeltanFrontpic
+	dba MelmetalFrontpic
 	dba LarvitarFrontpic
 	dba PupitarFrontpic
 	dba TyranitarFrontpic
-	dba LugiaFrontpic
-	dba HoOhFrontpic
-	dba CelebiFrontpic
+	dba SneaslerFrontpic
+	dba UrsalunaFrontpic
+	dba ClodsireFrontpic
 	dba LeafeonFrontpic
 	dba GlaceonFrontpic
 	dba SylveonFrontpic

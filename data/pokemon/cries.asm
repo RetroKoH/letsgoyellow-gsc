@@ -214,7 +214,7 @@ PokemonCries::
 	mon_cry CRY_TYPHLOSION,  $0ef,  $0f7 ; Steelix
 	mon_cry CRY_DUNSPARCE,   $112,  $0e8 ; Snubbull
 	mon_cry CRY_DUNSPARCE,   $000,  $180 ; Granbull
-	mon_cry CRY_SLOWKING,    $160,  $0e0 ; Qwilfish
+	mon_cry CRY_NIDOQUEEN,   $0af,  $0c0 ; Annihilape
 	mon_cry CRY_AMPHAROS,    $000,  $160 ; Scizor
 	mon_cry CRY_DUNSPARCE,   $290,  $0a8 ; Shuckle
 	mon_cry CRY_AMPHAROS,    $035,  $0e0 ; Heracross
@@ -248,15 +248,15 @@ PokemonCries::
 	mon_cry CRY_CHARMANDER,  $0ff,  $0b0 ; Magmortar
 	mon_cry CRY_GLIGAR,     -$1cd,  $1a0 ; Miltank
 	mon_cry CRY_SLOWKING,    $293,  $140 ; Blissey
-	mon_cry CRY_RAIKOU,      $22e,  $120 ; Raikou
-	mon_cry CRY_ENTEI,       $000,  $1a0 ; Entei
-	mon_cry CRY_MAGCARGO,    $000,  $180 ; Suicune
+	mon_cry CRY_RAIKOU,      $22e,  $120 ; Kangaskid
+	mon_cry CRY_ENTEI,       $000,  $1a0 ; Meltan
+	mon_cry CRY_MAGCARGO,    $000,  $180 ; Melmetal
 	mon_cry CRY_RAIKOU,      $05f,  $0d0 ; Larvitar
 	mon_cry CRY_SPINARAK,   -$1db,  $150 ; Pupitar
 	mon_cry CRY_RAIKOU,     -$100,  $180 ; Tyranitar
-	mon_cry CRY_TYPHLOSION,  $000,  $100 ; Lugia
-	mon_cry CRY_TYROGUE,     $000,  $180 ; HoOh
-	mon_cry CRY_ENTEI,       $14a,  $111 ; Celebi
+	mon_cry CRY_WOOPER,      $053,  $0af ; Sneasler
+	mon_cry CRY_TEDDIURSA,   $640,  $0d8 ; Ursaluna
+	mon_cry CRY_WOOPER,     -$0c6,  $140 ; Clodsire
 	mon_cry CRY_VENONAT,     $03d,  $160 ; Leafeon
 	mon_cry CRY_VENONAT,     $0b0,  $16f ; Glaceon
 	mon_cry CRY_VENONAT,     $0b0,  $16f ; Sylveon

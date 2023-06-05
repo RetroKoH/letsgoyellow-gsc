@@ -208,7 +208,7 @@ FramesPointers:
 	dw SteelixFrames
 	dw SnubbullFrames
 	dw GranbullFrames
-	dw QwilfishFrames
+	dw AnnihilapeFrames
 	dw ScizorFrames
 	dw ShuckleFrames
 	dw HeracrossFrames
@@ -242,15 +242,15 @@ FramesPointers:
 	dw MagmortarFrames
 	dw MiltankFrames
 	dw BlisseyFrames
-	dw RaikouFrames
-	dw EnteiFrames
-	dw SuicuneFrames
+	dw KangaskidFrames
+	dw MeltanFrames
+	dw MelmetalFrames
 	dw LarvitarFrames
 	dw PupitarFrames
 	dw TyranitarFrames
-	dw LugiaFrames
-	dw HoOhFrames
-	dw CelebiFrames
+	dw SneaslerFrames
+	dw UrsalunaFrames
+	dw ClodsireFrames
 	dw LeafeonFrames
 	dw GlaceonFrames
 	dw SylveonFrames

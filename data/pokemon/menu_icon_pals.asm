@@ -212,7 +212,7 @@ MenuMonIconColors::
 	iconpal GRAY, BROWN ; STEELIX
 	iconpal PINK, BLUE ; SNUBBULL
 	iconpal PURPLE, GRAY ; GRANBULL
-	iconpal BLUE, PURPLE ; QWILFISH
+	iconpal PURPLE, GRAY ; ANNIHILAPE
 	iconpal RED, GRAY ; SCIZOR
 	iconpal RED, BLUE ; SHUCKLE
 	iconpal BLUE, PURPLE ; HERACROSS
@@ -246,15 +246,15 @@ MenuMonIconColors::
 	iconpal RED, BROWN ; MAGMORTAR
 	iconpal PINK, BLUE ; MILTANK
 	iconpal PINK, RED ; BLISSEY
-	iconpal BROWN, RED ; RAIKOU
-	iconpal RED, BROWN ; ENTEI
-	iconpal BLUE, BLUE ; SUICUNE
+	iconpal BROWN, GRAY ; KANGSAKID
+	iconpal GRAY, BROWN ; MELTAN
+	iconpal GRAY, BROWN ; MELMETAL
 	iconpal GREEN, GREEN ; LARVITAR
 	iconpal GRAY, PURPLE ; PUPITAR
 	iconpal GREEN, GRAY ; TYRANITAR
-	iconpal BLUE, RED ; LUGIA
-	iconpal RED, GREEN ; HO_OH
-	iconpal GREEN, RED ; CELEBI
+	iconpal GRAY, PURPLE ; SNEASLER
+	iconpal BROWN, GRAY ; URSALUNA
+	iconpal BROWN, BLUE ; CLODSIRE
 	iconpal GREEN, BROWN ; LEAFEON
 	iconpal BLUE, BLUE ; GLACEON
 	iconpal PINK, BLUE ; SYLVEON

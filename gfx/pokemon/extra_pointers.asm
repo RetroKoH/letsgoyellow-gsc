@@ -208,7 +208,7 @@ AnimationExtraPointers:
 	dw SteelixAnimationExtra
 	dw SnubbullAnimationExtra
 	dw GranbullAnimationExtra
-	dw QwilfishAnimationExtra
+	dw AnnihilapeAnimationExtra
 	dw ScizorAnimationExtra
 	dw ShuckleAnimationExtra
 	dw HeracrossAnimationExtra
@@ -242,15 +242,15 @@ AnimationExtraPointers:
 	dw MagmortarAnimationExtra
 	dw MiltankAnimationExtra
 	dw BlisseyAnimationExtra
-	dw RaikouAnimationExtra
-	dw EnteiAnimationExtra
-	dw SuicuneAnimationExtra
+	dw KangaskidAnimationExtra
+	dw MeltanAnimationExtra
+	dw MelmetalAnimationExtra
 	dw LarvitarAnimationExtra
 	dw PupitarAnimationExtra
 	dw TyranitarAnimationExtra
-	dw LugiaAnimationExtra
-	dw HoOhAnimationExtra
-	dw CelebiAnimationExtra
+	dw SneaslerAnimationExtra
+	dw UrsalunaAnimationExtra
+	dw ClodsireAnimationExtra
 	dw LeafeonAnimationExtra
 	dw GlaceonAnimationExtra
 	dw SylveonAnimationExtra

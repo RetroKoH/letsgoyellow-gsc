@@ -28,40 +28,40 @@ CeladonEusine:
 	writetext EusineNoBeastsText
 	waitbutton
 	closetext
-	setval RAIKOU
+	setval ZAPDOS
 	special SpecialMonCheck
 	iftrue .OwnRaikou
 	showtext EusineShowsRaikouText
 	refreshscreen
-	pokepic RAIKOU
-	cry RAIKOU
+	pokepic ZAPDOS
+	cry ZAPDOS
 	waitbutton
 	closepokepic
-	setval RAIKOU
+	setval ZAPDOS
 	special SpecialSeenMon
 .OwnRaikou
-	setval ENTEI
+	setval MOLTRES
 	special SpecialMonCheck
 	iftrue .OwnEntei
 	showtext EusineShowsEnteiText
 	refreshscreen
-	pokepic ENTEI
-	cry ENTEI
+	pokepic MOLTRES
+	cry MOLTRES
 	waitbutton
 	closepokepic
-	setval ENTEI
+	setval MOLTRES
 	special SpecialSeenMon
 .OwnEntei
-	setval SUICUNE
+	setval ARTICUNO
 	special SpecialMonCheck
 	iftrue .OwnSuicune
 	showtext EusineShowsSuicuneText
 	refreshscreen
-	pokepic SUICUNE
-	cry SUICUNE
+	pokepic ARTICUNO
+	cry ARTICUNO
 	waitbutton
 	closepokepic
-	setval SUICUNE
+	setval ARTICUNO
 	special SpecialSeenMon
 .OwnSuicune
 	jumptext EusineQuestHintText

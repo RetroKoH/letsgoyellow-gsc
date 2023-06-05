@@ -752,10 +752,10 @@ LookUpWildmonsForMapDE:
 InitRoamMons:
 ; initialize wRoamMon structs
 
-; species
-	ld a, RAIKOU
+; species - Change this to GALARIAN BIRDS
+	ld a, ARTICUNO
 	ld [wRoamMon1Species], a
-	assert RAIKOU + 1 == ENTEI
+	assert ARTICUNO + 1 == ZAPDOS
 	inc a
 	ld [wRoamMon2Species], a
 

@@ -70,7 +70,7 @@ EvolutionPointers::
 	dw PsyduckEvolutions
 	dw NoEvolutions
 	dw MankeyEvolutions
-	dw NoEvolutions
+	dw PrimeapeEvolutions
 	dw GrowlithePlainEvolutions
 	dw NoEvolutions
 	dw PoliwagEvolutions
@@ -222,14 +222,14 @@ EvolutionPointers::
 	dw NoEvolutions ; Steelix
 	dw SnubbullEvolutions
 	dw NoEvolutions
-	dw NoEvolutions ; Qwilfish
+	dw NoEvolutions ; Annihilape
 	dw NoEvolutions ; Scizor
 	dw NoEvolutions ; Shuckle
 	dw NoEvolutions ; Heracross
 	dw SneaselPlainEvolutions
 	dw NoEvolutions
 	dw TeddiursaEvolutions
-	dw NoEvolutions
+	dw UrsaringEvolutions
 	dw SlugmaEvolutions
 	dw NoEvolutions
 	dw SwinubEvolutions
@@ -256,15 +256,15 @@ EvolutionPointers::
 	dw NoEvolutions
 	dw NoEvolutions ; Miltank
 	dw NoEvolutions ; Blissey
-	dw NoEvolutions ; RaikouEvolutions
-	dw NoEvolutions ; EnteiEvolutions
-	dw NoEvolutions ; SuicuneEvolutions
+	dw KangaskidEvolutions
+	dw MeltanEvolutions
+	dw NoEvolutions ; MelmetalEvolutions
 	dw LarvitarEvolutions
 	dw PupitarEvolutions
 	dw NoEvolutions ; TyranitarEvolutions
-	dw NoEvolutions ; LugiaEvolutions
-	dw NoEvolutions ; HoOhEvolutions
-	dw NoEvolutions ; CelebiEvolutions
+	dw NoEvolutions ; SneaslerEvolutions
+	dw NoEvolutions ; UrsalunaEvolutions
+	dw NoEvolutions ; ClodsireEvolutions
 	dw NoEvolutions ; LeafeonEvolutions
 	dw NoEvolutions ; GlaceonEvolutions
 	dw NoEvolutions ; SylveonEvolutions
@@ -482,6 +482,10 @@ MankeyEvolutions:
 	evo_data EVOLVE_LEVEL, 28, PRIMEAPE
 	db 0 ; no more evolutions
 
+PrimeapeEvolutions:
+	evo_data EVOLVE_MOVE, RAGE_FIST, ANNIHILAPE
+	db 0 ; no more evolutions
+
 GrowlithePlainEvolutions:
 GrowlitheHisuianEvolutions:
 	evo_data EVOLVE_ITEM, FIRE_STONE, ARCANINE
@@ -631,6 +635,10 @@ ChanseyEvolutions:
 
 TangelaEvolutions:
 	evo_data EVOLVE_MOVE, ANCIENTPOWER, TANGROWTH
+	db 0 ; no more evolutions
+
+KangaskidEvolutions:
+	evo_data EVOLVE_HAPPINESS, TR_ANYTIME, KANGASKHAN
 	db 0 ; no more evolutions
 
 HorseaEvolutions:
@@ -791,12 +799,11 @@ YanmaEvolutions:
 
 WooperPlainEvolutions:
 	evo_data EVOLVE_LEVEL, 20, QUAGSIRE
-WooperPaldeanEvolutions:
 	db 0 ; no more evolutions
 
-;WooperPaldeanEvolutions:
-;	evo_data EVOLVE_LEVEL, 20, CLODSIRE
-;	db 0 ; no more evolutions
+WooperPaldeanEvolutions:
+	evo_data EVOLVE_LEVEL, 20, CLODSIRE
+	db 0 ; no more evolutions
 
 MurkrowEvolutions:
 	evo_data EVOLVE_ITEM, DUSK_STONE, HONCHKROW
@@ -821,11 +828,15 @@ SnubbullEvolutions:
 SneaselPlainEvolutions:
 	evo_data EVOLVE_HOLDING, RAZOR_CLAW, TR_EVENITE, WEAVILE
 SneaselHisuianEvolutions:
-;	evo_data EVOLVE_HOLDING, RAZOR_CLAW, TR_MORNDAY, SNEASLER
+	evo_data EVOLVE_HOLDING, RAZOR_CLAW, TR_MORNDAY, SNEASLER
 	db 0 ; no more evolutions
 
 TeddiursaEvolutions:
 	evo_data EVOLVE_LEVEL, 30, URSARING
+	db 0 ; no more evolutions
+
+UrsaringEvolutions:
+	evo_data EVOLVE_ITEM, MOON_STONE, URSALUNA ; Change to evo @ nite holding Peat Block
 	db 0 ; no more evolutions
 
 SlugmaEvolutions:
@@ -872,6 +883,10 @@ ElekidEvolutions:
 
 MagbyEvolutions:
 	evo_data EVOLVE_LEVEL, 30, MAGMAR
+	db 0 ; no more evolutions
+
+MeltanEvolutions:
+	evo_data EVOLVE_LEVEL, 40, MELMETAL ; Will change this to event only
 	db 0 ; no more evolutions
 
 LarvitarEvolutions:

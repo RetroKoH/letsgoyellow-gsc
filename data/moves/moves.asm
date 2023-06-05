@@ -269,5 +269,5 @@ Moves::
 	move STRUGGLE,     EFFECT_RECOIL_HIT,         50, UNKNOWN_T, 100,  1,   0, PHYSICAL
 	assert_table_length NUM_ATTACKS
 
-; Add Stone Axe and Fairy Wind
+; Add Stone Axe and Fairy Wind (maybe Chloroblast)
 ; Remove Razor Wind and one more (Either Skull Bash or Pay Day)

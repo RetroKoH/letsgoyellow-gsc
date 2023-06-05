@@ -209,7 +209,7 @@ PokedexDataPointerTable:
 	dba SteelixPokedexEntry
 	dba SnubbullPokedexEntry
 	dba GranbullPokedexEntry
-	dba QwilfishPokedexEntry
+	dba AnnihilapePokedexEntry
 	dba ScizorPokedexEntry
 	dba ShucklePokedexEntry
 	dba HeracrossPokedexEntry
@@ -243,15 +243,15 @@ PokedexDataPointerTable:
 	dba MagmortarPokedexEntry
 	dba MiltankPokedexEntry
 	dba BlisseyPokedexEntry
-	dba RaikouPokedexEntry
-	dba EnteiPokedexEntry
-	dba SuicunePokedexEntry
+	dba KangaskidPokedexEntry
+	dba MeltanPokedexEntry
+	dba MelmetalPokedexEntry
 	dba LarvitarPokedexEntry
 	dba PupitarPokedexEntry
 	dba TyranitarPokedexEntry
-	dba LugiaPokedexEntry
-	dba HoOhPokedexEntry
-	dba CelebiPokedexEntry
+	dba SneaslerPokedexEntry
+	dba UrsalunaPokedexEntry
+	dba ClodsirePokedexEntry
 	dba LeafeonPokedexEntry
 	dba GlaceonPokedexEntry
 	dba SylveonPokedexEntry

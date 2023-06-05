@@ -1,19 +1,19 @@
 SpecialBeastsCheck:
-; Check if the player owns all three legendary beasts.
+; Check if the player owns all three Johto Starters.
 ; They must exist in either party or PC, and have the player's OT and ID.
 ; Return the result in hScriptVar.
 
-	ld a, RAIKOU
+	ld a, MEGANIUM
 	ldh [hScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, SpecialMonCheckFailed
 
-	ld a, ENTEI
+	ld a, TYPHLOSION
 	ldh [hScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, SpecialMonCheckFailed
 
-	ld a, SUICUNE
+	ld a, FERALIGATR
 	ldh [hScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, SpecialMonCheckFailed
@@ -49,16 +49,16 @@ SpecialBirdsCheck:
 	ret
 
 SpecialDuoCheck:
-; Check if the player owns Lugia and Ho-Oh.
+; Check if the player owns Meltan and Melmetal.
 ; They must exist in either party or PC, and have the player's OT and ID.
 ; Return the result in hScriptVar.
 
-	ld a, LUGIA
+	ld a, MELTAN
 	ldh [hScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, SpecialMonCheckFailed
 
-	ld a, HO_OH
+	ld a, MELMETAL
 	ldh [hScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, SpecialMonCheckFailed

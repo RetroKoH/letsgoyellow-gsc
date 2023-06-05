@@ -228,7 +228,7 @@
 	const STEELIX    ; ce
 	const SNUBBULL   ; cf
 	const GRANBULL   ; d0
-	const QWILFISH   ; d1
+	const ANNIHILAPE ; d1
 	const SCIZOR     ; d2
 	const SHUCKLE    ; d3
 	const HERACROSS  ; d4
@@ -262,15 +262,15 @@
 	const MAGMORTAR  ; f0
 	const MILTANK    ; f1
 	const BLISSEY    ; f2
-	const RAIKOU     ; f3
-	const ENTEI      ; f4
-	const SUICUNE    ; f5
+	const KANGASKID  ; f3
+	const MELTAN     ; f4
+	const MELMETAL   ; f5
 	const LARVITAR   ; f6
 	const PUPITAR    ; f7
 	const TYRANITAR  ; f8
-	const LUGIA      ; f9
-	const HO_OH      ; fa
-	const CELEBI     ; fb
+	const SNEASLER   ; f9
+	const URSALUNA   ; fa
+	const CLODSIRE   ; fb
 	const LEAFEON    ; fc
 	const GLACEON    ; fd
 	const SYLVEON    ; fe

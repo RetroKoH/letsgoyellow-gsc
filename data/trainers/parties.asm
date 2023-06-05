@@ -1407,7 +1407,7 @@ Rival0Group:
 	db "<RIVAL>@"
 	db TRAINERTYPE_NORMAL | TRAINERTYPE_PERSONALITY
 	; party
-	db 15, GROWLITHE, ABILITY_1 | NAT_NEUTRAL, FEMALE | HISUIAN_FORM
+	db 10, PIDGEY, ABILITY_2 | NAT_NEUTRAL, FEMALE
 	db -1 ; end
 
 ; ================
@@ -2825,7 +2825,7 @@ FisherGroup:
 	db "Ralph@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 17, QWILFISH
+	db 17, TENTACOOL
 	db 19, CHINCHOU
 	db -1 ; end
 
@@ -2835,7 +2835,7 @@ FisherGroup:
 	db "Ralph@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 30, QWILFISH
+	db 30, TENTACOOL
 	db 32, LANTURN
 	db -1 ; end
 
@@ -2845,7 +2845,7 @@ FisherGroup:
 	db "Ralph@"
 	db TRAINERTYPE_MOVES
 	; party
-	db 35, QWILFISH
+	db 35, TENTACOOL
 		db TOXIC, MINIMIZE, SURF, PIN_MISSILE
 	db 39, LANTURN
 		db FLAIL, WATERFALL, THUNDERBOLT, CONFUSE_RAY
@@ -2857,7 +2857,7 @@ FisherGroup:
 	db "Tully@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 30, QWILFISH
+	db 30, TENTACOOL
 	db -1 ; end
 
 ; ================
@@ -2866,7 +2866,7 @@ FisherGroup:
 	db "Tully@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 35, QWILFISH
+	db 35, TENTACOOL
 	db -1 ; end
 
 ; ================
@@ -2876,8 +2876,8 @@ FisherGroup:
 	db TRAINERTYPE_NORMAL
 	; party
 	db 40, POLIWHIRL
-	db 40, QWILFISH
-	db 40, QWILFISH
+	db 40, TENTACOOL
+	db 40, TENTACOOL
 	db -1 ; end
 
 ; ================
@@ -2888,9 +2888,9 @@ FisherGroup:
 	; party
 	db 43, POLIWRATH
 		db RAIN_DANCE, HYPNOSIS, WATERFALL, CLOSE_COMBAT
-	db 43, QWILFISH
+	db 43, TENTACOOL
 		db ROLLOUT, SURF, PIN_MISSILE, TAKE_DOWN
-	db 45, QWILFISH
+	db 45, TENTACOOL
 		db ROLLOUT, WATERFALL, PIN_MISSILE, TAKE_DOWN
 	db -1 ; end
 
@@ -2900,7 +2900,7 @@ FisherGroup:
 	db "Wilton@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 34, QWILFISH
+	db 34, TENTACOOL
 	db 34, SEAKING
 	db 36, GYARADOS
 	db -1 ; end
@@ -2911,7 +2911,7 @@ FisherGroup:
 	db "Wilton@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 36, QWILFISH
+	db 36, TENTACOOL
 	db 36, SEAKING
 	db 38, GYARADOS
 	db -1 ; end
@@ -2922,7 +2922,7 @@ FisherGroup:
 	db "Wilton@"
 	db TRAINERTYPE_MOVES
 	; party
-	db 38, QWILFISH
+	db 38, TENTACOOL
 		db WATERFALL, TAKE_DOWN, PIN_MISSILE, ROLLOUT
 	db 38, GYARADOS
 		db WATERFALL, DRAGON_PULSE, DRAGONBREATH, RAIN_DANCE
@@ -3070,8 +3070,8 @@ FisherGroup:
 	db "Scott@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 40, QWILFISH
-	db 40, QWILFISH
+	db 40, TENTACOOL
+	db 40, TENTACOOL
 	db 42, GYARADOS
 	db -1 ; end
 
@@ -3105,7 +3105,7 @@ FisherGroup:
 	; party
 	db 24, SEAKING
 	db 25, CHINCHOU
-	db 24, QWILFISH
+	db 24, TENTACOOL
 	db -1 ; end
 
 ; ================
@@ -3179,7 +3179,7 @@ FisherGroup:
 	db "Hall@"
 	db TRAINERTYPE_DVS | TRAINERTYPE_NICKNAME
 	; party
-	db 56, QWILFISH, %10000111, %11011000, %00101000, "Dopefish@" ; green
+	db 56, TENTACOOL, %10000111, %11011000, %00101000, "Dopefish@" ; green
 	db -1 ; end
 
 ; ================
@@ -3188,7 +3188,7 @@ FisherGroup:
 	db "Dallas@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 61, QWILFISH
+	db 61, TENTACOOL
 	db 63, LANTURN
 	db 65, GYARADOS
 	db -1 ; end
@@ -4269,7 +4269,7 @@ GruntFGroup:
 	; party
 	db 29, ARBOK
 		db GLARE, SCREECH, ACID, CRUNCH
-	db 28, QWILFISH
+	db 28, TENTACOOL
 		db DEFENSE_CURL, MINIMIZE, WATER_GUN, ROLLOUT
 	db 28, GLOOM
 		db GROWTH, STUN_SPORE, SLEEP_POWDER, MEGA_DRAIN
@@ -7242,7 +7242,7 @@ SwimmerMGroup:
 	db "Berke@"
 	db TRAINERTYPE_NORMAL
 	; party
-	db 23, QWILFISH
+	db 23, TENTACOOL
 	db -1 ; end
 
 ; ================
@@ -10038,7 +10038,7 @@ ProtonGroup:
 	; party
 	db 39, GOLBAT, KINGS_ROCK
 		db AERIAL_ACE, CONFUSE_RAY, SUPER_FANG, POISON_JAB
-	db 40, QWILFISH, BRIGHTPOWDER
+	db 40, TENTACOOL, BRIGHTPOWDER
 		db MINIMIZE, BUBBLE_BEAM, PROTECT, ROLLOUT
 	db 40, DEWGONG, LUM_BERRY
 		db SMOKESCREEN, POWER_WHIP, FLAMETHROWER, ICE_BEAM
@@ -10053,7 +10053,7 @@ ProtonGroup:
 	db TRAINERTYPE_EVS
 	; party
 	db 10, ZUBAT, 32
-	db 12, QWILFISH, 32
+	db 12, TENTACOOL, 32
 	db 14, KOFFING, 32
 	db -1 ; end
 

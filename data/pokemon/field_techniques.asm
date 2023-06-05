@@ -264,7 +264,7 @@ TechniquePointers::
 	dw TechniquePush		; STEELIX
 	dw ClefairyTechniques	; SNUBBULL
 	dw ClefableTechniques	; GRANBULL
-	dw NoTechniques			; QWILFISH
+	dw TechniquePush		; ANNIHILAPE
 	dw RaticateTechniques	; SCIZOR
 	dw NoTechniques			; SHUCKLE
 	dw RaticateTechniques	; HERACROSS
@@ -295,18 +295,18 @@ TechniquePointers::
 	dw NoTechniques			; ELEKID
 	dw ExeggutorTechniques	; ELECTIVIRE
 	dw NoTechniques			; MAGBY
-	dw ExeggutorTechniques	; MARGMORTAR
+	dw ExeggutorTechniques	; MAGMORTAR
 	dw MiltankTechniques
 	dw ChanseyTechniques	; BLISSEY
-	dw NoTechniques			; RAIKOU
-	dw NoTechniques			; ENTEI
-	dw NoTechniques			; SUICUNE
+	dw NoTechniques			; KANGASKID
+	dw NoTechniques			; MELTAN
+	dw TechniquePush		; MELMETAL
 	dw NoTechniques			; LARVITAR
 	dw NoTechniques			; PUPITAR
 	dw TechniquePush		; TYRANITAR
-	dw TechniqueSoar		; LUGIA
-	dw TechniqueSoar		; HO_OH
-	dw AbraTechniques		; CELEBI
+	dw TechniqueChop		; SNEASLER
+	dw TechniquePush		; URSALUNA
+	dw TechniquePush		; CLODSIRE
 	dw NoTechniques			; LEAFEON
 	dw NoTechniques			; GLACEON
 	dw NoTechniques			; SYLVEON

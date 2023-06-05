@@ -26,7 +26,7 @@ CinnabarLab_MapScriptHeader:
 	object_event 20,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CINNABAR_LAB_SCIENTIST1
 	object_event 11,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CINNABAR_LAB_SCIENTIST2
 	object_event 15,  7, SPRITE_MON_ICON, SPRITEMOVEDATA_STILL, 0, MEWTWO, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CINNABAR_LAB_MEWTWO
-	object_event 14,  8, SPRITE_CELEBI, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CINNABAR_LAB_CELEBI
+	object_event 14,  8, SPRITE_CELEBI, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CINNABAR_LAB_MELTAN
 	object_event 15,  8, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CINNABAR_LAB_CHRIS
 	object_event 15,  8, SPRITE_KRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CINNABAR_LAB_KRIS
 
@@ -37,7 +37,7 @@ CinnabarLab_MapScriptHeader:
 	const CINNABARLAB_SCIENTIST2
 	const CINNABARLAB_SCIENTIST3
 	const CINNABARLAB_MEWTWO
-	const CINNABARLAB_CELEBI
+	const CINNABARLAB_MELTAN
 	const CINNABARLAB_CHRIS
 	const CINNABARLAB_KRIS
 
@@ -59,7 +59,7 @@ CinnabarLabCelebiEventScript:
 	playsound SFX_EXIT_BUILDING
 	special FadeOutPalettes
 	pause 15
-	setevent EVENT_CINNABAR_LAB_CELEBI
+	setevent EVENT_CINNABAR_LAB_MELTAN
 	setevent EVENT_CINNABAR_LAB_MEWTWO
 	setevent EVENT_CINNABAR_LAB_CHRIS
 	setevent EVENT_CINNABAR_LAB_KRIS
@@ -185,18 +185,18 @@ CinnabarLabCelebiEventScript:
 	special FadeOutPalettes
 	special LoadMapPalettes
 	pause 30
-	appear CINNABARLAB_CELEBI
+	appear CINNABARLAB_MELTAN
 	special FadeInPalettes
 	waitsfx
 	opentext
 	writetext CinnabarLabCelebiText
-	cry CELEBI
+	cry MELTAN
 	waitsfx
 	closetext
 	turnobject PLAYER, LEFT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	playsound SFX_PROTECT
-	applymovement CINNABARLAB_CELEBI, CinnabarLabCelebiFloatsMovementData
+	applymovement CINNABARLAB_MELTAN, CinnabarLabCelebiFloatsMovementData
 	waitsfx
 	playsound SFX_GAME_FREAK_LOGO_GS
 	special FadeOutPalettes
@@ -399,5 +399,5 @@ CinnabarLabGiovanniStopText:
 	done
 
 CinnabarLabCelebiText:
-	text "Celebi: Biii!"
+	text "Meltan: Biii!"
 	done

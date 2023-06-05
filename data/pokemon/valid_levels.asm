@@ -210,7 +210,7 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  20, 100 ; Steelix
 	db   1,  22 ; Snubbull
 	db  23, 100 ; Granbull
-	db   1, 100 ; Qwilfish
+	db  40, 100 ; Annihilape
 	db  20, 100 ; Scizor
 	db   1, 100 ; Shuckle
 	db  10, 100 ; Heracross
@@ -244,15 +244,15 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  47, 100 ; Magmortar
 	db  20, 100 ; Miltank
 	db  20, 100 ; Blissey
-	db 255, 255 ; Raikou
-	db 255, 255 ; Entei
-	db 255, 255 ; Suicune
+	db   1,  19 ; Kangaskid
+	db 255, 255 ; Meltan
+	db 255, 255 ; Melmetal
 	db   1,  29 ; Larvitar
 	db  30,  54 ; Pupitar
 	db  55, 100 ; Tyranitar
-	db 255, 255 ; Lugia
-	db 255, 255 ; Ho-Oh
-	db 255, 255 ; Celebi
+	db  40, 100 ; Sneasler
+	db  40, 100 ; Ursaluna
+	db  20, 100 ; Clodsire
 	db  20, 100 ; Leafeon
 	db  20, 100 ; Glaceon
 	db  20, 100 ; Sylveon

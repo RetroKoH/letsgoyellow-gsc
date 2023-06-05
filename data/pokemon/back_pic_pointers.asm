@@ -208,7 +208,7 @@ BackPicPointers::
 	dba SteelixBackpic
 	dba SnubbullBackpic
 	dba GranbullBackpic
-	dba QwilfishBackpic
+	dba AnnihilapeBackpic
 	dba ScizorBackpic
 	dba ShuckleBackpic
 	dba HeracrossBackpic
@@ -242,15 +242,15 @@ BackPicPointers::
 	dba MagmortarBackpic
 	dba MiltankBackpic
 	dba BlisseyBackpic
-	dba RaikouBackpic
-	dba EnteiBackpic
-	dba SuicuneBackpic
+	dba KangaskidBackpic
+	dba MeltanBackpic
+	dba MelmetalBackpic
 	dba LarvitarBackpic
 	dba PupitarBackpic
 	dba TyranitarBackpic
-	dba LugiaBackpic
-	dba HoOhBackpic
-	dba CelebiBackpic
+	dba SneaslerBackpic
+	dba UrsalunaBackpic
+	dba ClodsireBackpic
 	dba LeafeonBackpic
 	dba GlaceonBackpic
 	dba SylveonBackpic

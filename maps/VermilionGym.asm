@@ -101,7 +101,7 @@ VermilionGymSurgeScript:
 	iftrue_jumpopenedtext LtSurgeFightDoneText
 	writetext LtSurgeThunderBadgeText
 	promptbutton
-	verbosegivetmhm TM_WILD_CHARGE
+	verbosegivetmhm TM_THUNDERBOLT
 	setevent EVENT_GOT_TM43_WILD_CHARGE
 	jumpopenedtext SurgeOutroText
 

@@ -4,7 +4,8 @@
 	db NORMAL, FAIRY ; type
 	db 150 ; catch rate
 	db 39 ; base exp
-	db NO_ITEM, NO_ITEM ; held items
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
 	dn GENDER_F75, 1 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/igglybuff/front.dimensions"
 	abilities_for IGGLYBUFF, CUTE_CHARM, COMPETITIVE, FRISK
@@ -15,5 +16,5 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, TOXIC, SUNNY_DAY, LIGHT_SCREEN, PROTECT, RAIN_DANCE, SAFEGUARD, SOLAR_BEAM, RETURN, DIG, PSYCHIC, SHADOW_BALL, DOUBLE_TEAM, REFLECT, FLAMETHROWER, FIRE_BLAST, SUBSTITUTE, FACADE, REST, ATTRACT, WILD_CHARGE, WATER_PULSE, FLASH, THUNDER_WAVE, BODY_SLAM, COUNTER, DEFENSE_CURL, DOUBLE_EDGE, DREAM_EATER, ENDURE, HEADBUTT, HYPER_VOICE, ICY_WIND, ROLLOUT, SEISMIC_TOSS, SWAGGER, ZAP_CANNON
+	tmhm
 	; end

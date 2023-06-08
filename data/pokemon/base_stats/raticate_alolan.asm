@@ -1,10 +1,5 @@
-if DEF(FAITHFUL)
 	db  75,  71,  70,  77,  40,  80 ; 413 BST
 	;   hp  atk  def  spd  sat  sdf
-else
-	db  85,  81,  70,  87,  40,  80 ; 443 BST
-	;   hp  atk  def  spd  sat  sdf
-endc
 
 	db DARK, NORMAL ; type
 	db 90 ; catch rate
@@ -21,5 +16,5 @@ endc
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, ROAR, TOXIC, BULK_UP, SUNNY_DAY, ICE_BEAM, BLIZZARD, HYPER_BEAM, PROTECT, RAIN_DANCE, IRON_TAIL, RETURN, DIG, SHADOW_BALL, ROCK_SMASH, DOUBLE_TEAM, SLUDGE_BOMB, SWIFT, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, DARK_PULSE, SHADOW_CLAW, GIGA_IMPACT, U_TURN, SWORDS_DANCE, SLASH, STRENGTH, BODY_SLAM, COUNTER, DEFENSE_CURL, DOUBLE_EDGE, ENDURE, HEADBUTT, ICY_WIND, SUCKER_PUNCH, SWAGGER, ZEN_HEADBUTT
+	tmhm
 	; end

@@ -121,7 +121,6 @@ MoveDescriptions::
 	dw SlashDescription
 	dw SubstituteDescription
 	dw TripleKickDescription
-	dw FlameWheelDescription
 	dw FlailDescription
 	dw ProtectDescription
 	dw MachPunchDescription
@@ -225,6 +224,7 @@ MoveDescriptions::
 	dw VenoshockDescription
 	dw QuiverDanceDescription
 	dw HeavySlamDescription
+	dw FlameWheelDescription
 	dw CoilDescription
 	dw LowSweepDescription
 	dw FoulPlayDescription
@@ -837,8 +837,8 @@ EarthquakeDescription:
 	next "vs. flying foes.@"
 
 TeleportDescription:
-	db   "A move for fleeing"
-	next "from battle.@"
+	db   "User switches out"
+	next "of the battle.@"
 
 DragonPulseDescription:
 	db   "Attacks foe with"
@@ -1046,8 +1046,8 @@ GyroBallDescription:
 	next "at lower speed.@"
 
 TauntDescription:
-	db   "Swaps held items"
-	next "with the foe.@"
+	db   "Prevents foe's"
+	next "status moves.@"
 
 DuoIronBashDescription:
 	db   "An attack that"

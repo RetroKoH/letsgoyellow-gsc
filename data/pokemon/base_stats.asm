@@ -14,7 +14,7 @@ ENDM
 
 tmhm: MACRO
 	; initialize bytes to 0
-	for n, (NUM_TM_HM_TUTOR + 7) / 8
+	for n, (NUM_TM_TUTOR + 7) / 8
 		def _tm{d:n} = 0
 	endr
 	; set bits of bytes
@@ -24,11 +24,11 @@ tmhm: MACRO
 			def t = (\<i>_TMNUM - 1) % 8
 			def _tm{d:n} |= 1 << t
 		else
-			fail "\<i> is not a TM, HM, or tutor move"
+			fail "\<i> is not a TM, or tutor move"
 		endc
 	endr
 	; output bytes
-	for n, (NUM_TM_HM_TUTOR + 7) / 8
+	for n, (NUM_TM_TUTOR + 7) / 8
 		db _tm{d:n}
 	endr
 ENDM

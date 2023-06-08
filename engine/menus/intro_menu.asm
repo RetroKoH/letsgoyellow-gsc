@@ -157,7 +157,7 @@ ResetWRAM:
 
 	ld hl, wTMsHMs
 	xor a
-rept ((NUM_TMS + NUM_HMS) + 7) / 8
+rept (NUM_TMS + 7) / 8
 	ld [hli], a
 endr
 

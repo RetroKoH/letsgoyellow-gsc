@@ -156,15 +156,10 @@ Celadon5FMart1:
 	db -1
 
 Goldenrod5FTMMart:
-	db 8 ; # items
+	db 3 ; # items
 	dbw TM_PROTECT,       10000
 	dbw TM_REFLECT,       10000
 	dbw TM_LIGHT_SCREEN,  10000
-	dbw TM_SOLAR_BEAM,    25000
-	dbw TM_THUNDER,       30000
-	dbw TM_FIRE_BLAST,    30000
-	dbw TM_BLIZZARD,      30000
-	dbw TM_HYPER_BEAM,    50000
 	db -1
 
 GoldenrodHarborMart:
@@ -389,11 +384,7 @@ Celadon2FMart2:
 	db -1
 
 Celadon3FTMMart:
-	db 8 ; # items
-	dbw TM_SAFEGUARD,     10000
-	dbw TM_BULK_UP,       20000
-	dbw TM_CALM_MIND,     20000
-	dbw TM_SWORDS_DANCE,  20000
+	db 4 ; # items
 	dbw TM_SUNNY_DAY,     40000
 	dbw TM_RAIN_DANCE,    40000
 	dbw TM_SANDSTORM,     40000

@@ -67,7 +67,6 @@ INCLUDE "home/vba.asm"
 INCLUDE "audio/alternate_music.asm"
 INCLUDE "data/text/ngrams.asm"
 INCLUDE "data/pokemon/variant_forms.asm"
-INCLUDE "data/moves/hm_moves.asm"
 INCLUDE "data/maps/special_music.asm"
 
 ; data used in multiple banks, or one full bank, outside home

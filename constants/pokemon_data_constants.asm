@@ -32,7 +32,7 @@ BASE_EV_YIELDS   rw
 rsset BASE_EV_YIELDS
 BASE_EV_YIELD_1  rb
 BASE_EV_YIELD_2  rb
-BASE_TMHM        rb (NUM_TM_HM_TUTOR + 7) / 8
+BASE_TMHM        rb (NUM_TM_TUTOR + 7) / 8
 BASE_DATA_SIZE EQU _RS
 
 ; gender ratio constants

@@ -1090,18 +1090,31 @@ MoveScreenLoop:
 	cp MOVESCREEN_NEWMOVE
 	ld a, c
 	jr nz, .ok
+
+; Removed HM Move limitation. Replace with not removing Frustration
 	ld a, [hl]
-	push bc
-	ld hl, HMMoves
-	call IsInByteArray
-	pop bc
+	cp FRUSTRATION
 	ld a, c
-	jr nc, .ok
+	jr nz, .ok
 	cp 4 ; selected new move
 	jr z, .ok
-	ld hl, Text_CantForgetHM
+	ld hl, Text_CantForgetFrustration
 	call PrintTextNoBox
 	jr .outer_loop
+
+;	ld a, [hl]
+;	push bc
+;	ld hl, HMMoves
+;	call IsInByteArray
+;	pop bc
+;	ld a, c
+;	jr nc, .ok
+;	cp 4 ; selected new move
+;	jr z, .ok
+;	ld hl, Text_CantForgetHM
+;	call PrintTextNoBox
+;	jr .outer_loop
+
 .ok
 	inc a
 	and a
@@ -1674,7 +1687,7 @@ String_na:
 String_PowAcc:
 	db "   <BOLDP>/   %@"
 
-Text_CantForgetHM:
-; HM moves can't be forgotten now.
-	text_far _MoveCantForgetHMText
+Text_CantForgetFrustration:
+; Frustration can't be forgotten now.
+	text_far _MoveCantForgetText
 	text_end

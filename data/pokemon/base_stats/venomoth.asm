@@ -1,10 +1,5 @@
-if DEF(FAITHFUL)
 	db  70,  65,  60,  90,  90,  75 ; 450 BST
 	;   hp  atk  def  spd  sat  sdf
-else
-	db  70,  65,  60,  90, 115,  75 ; 475 BST
-	;   hp  atk  def  spd  sat  sdf
-endc
 
 	db BUG, POISON ; type
 	db 75 ; catch rate
@@ -21,5 +16,5 @@ endc
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, TOXIC, SUNNY_DAY, HYPER_BEAM, PROTECT, GRASS_KNOT, SOLAR_BEAM, RETURN, PSYCHIC, DOUBLE_TEAM, SLUDGE_BOMB, SWIFT, AERIAL_ACE, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, LEECH_LIFE, ROOST, ENERGY_BALL, ACROBATICS, GIGA_IMPACT, U_TURN, FLASH, DOUBLE_EDGE, DREAM_EATER, ENDURE, SKILL_SWAP, SWAGGER, ZEN_HEADBUTT
+	tmhm
 	; end

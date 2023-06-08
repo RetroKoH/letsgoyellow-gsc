@@ -2677,34 +2677,8 @@ BillsPC_CanTransferMon:
 	ld a, 2
 	ret nz
 
-	; Ensure that the mon doesn't know any HMs.
-	push de
-	push hl
-	push bc
-	ld hl, wTempMonMoves
-	ld b, NUM_MOVES
-.loop
-	ld a, [hli]
-	and a
-	jr z, .hm_check_done
-	push hl
-	push bc
-	ld hl, HMMoves
-	ld de, 1
-	call IsInArray
-	pop bc
-	pop hl
-	ld a, 3
-	jr c, .hm_check_done
-	dec b
-	jr nz, .loop
-	xor a
-.hm_check_done
-	pop bc
-	pop hl
-	; fallthrough
-.pop_de_done
-	pop de
+	; Ensure that the mon doesn't know any HMs. - REMOVED
+	; Instead, ensure that Partner cannot be transferred
 .done
 	and a
 	ret
@@ -2772,7 +2746,7 @@ BillsPC_TransferAll:
 	jr c, .done
 
 	; We want to give 3 possible messages:
-	; * Nothing was transferred. You can't transfer Eggs or PKMN knowing HMs.
+	; * Nothing was transferred. You can't transfer Eggs or Partner.
 	; * There's nothing there!
 	; * X PKMN transferred.
 	lb de, 0, 0 ; Successful and failed transfers.
@@ -2841,8 +2815,8 @@ BillsPC_TransferAll:
 
 .NothingTransferred:
 	text "You can't transfer"
-	line "Eggs or #mon"
-	cont "with HM moves."
+	line "Eggs or your"
+	cont "partner."
 	prompt
 
 .TransferredXMon:
@@ -2854,7 +2828,7 @@ BillsPC_TransferAll:
 
 .TheRestWasnt:
 	text "The rest are Eggs"
-	line "or know HM moves."
+	line "or your partner."
 	prompt
 
 BillsPC_Transfer:
@@ -2866,7 +2840,7 @@ BillsPC_Transfer:
 	ld hl, .CantTransferEgg
 	dec a
 	jr z, .print
-	ld hl, .CantTransferHMMons
+	ld hl, .CantTransferPartner
 	dec a
 	jr z, .print
 
@@ -2913,9 +2887,9 @@ BillsPC_Transfer:
 	line "an Egg!"
 	prompt
 
-.CantTransferHMMons:
+.CantTransferPartner:
 	text "You can't transfer"
-	line "<PK><MN> with HM moves!"
+	line "your partner!"
 	prompt
 
 .ReallyTransferMon:

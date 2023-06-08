@@ -1,26 +1,9 @@
-if DEF(FAITHFUL)
 	db  75,  75,  55,  30, 105,  85 ; 425 BST
 	;   hp  atk  def  spd  sat  sdf
-else
-	db  75,  55,  75,  85, 105,  85 ; 480 BST
-	;   hp  atk  def  spd  sat  sdf
-endc
 
-if DEF(FAITHFUL)
 	db GRASS, GRASS ; type
-else
-	db GRASS, FIRE ; type
-endc
-if DEF(FAITHFUL)
 	db 120 ; catch rate
-else
-	db 110 ; catch rate
-endc
-if DEF(FAITHFUL)
 	db 146 ; base exp
-else
-	db 156 ; base exp
-endc
 	db NO_ITEM ; item 1
 	db NO_ITEM ; item 2
 	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
@@ -33,5 +16,5 @@ endc
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, TOXIC, SUNNY_DAY, HYPER_BEAM, LIGHT_SCREEN, PROTECT, GRASS_KNOT, SAFEGUARD, SOLAR_BEAM, RETURN, DOUBLE_TEAM, FLAMETHROWER, SLUDGE_BOMB, FIRE_BLAST, SUBSTITUTE, FACADE, REST, ATTRACT, ENERGY_BALL, GIGA_IMPACT, FLASH, SWORDS_DANCE, SLASH, DEFENSE_CURL, DOUBLE_EDGE, EARTH_POWER, ENDURE, ROLLOUT, SEED_BOMB, SWAGGER
+	tmhm
 	; end

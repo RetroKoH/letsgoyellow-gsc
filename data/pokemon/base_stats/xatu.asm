@@ -1,10 +1,5 @@
-if DEF(FAITHFUL)
 	db  65,  75,  70,  95,  95,  70 ; 470 BST
 	;   hp  atk  def  spd  sat  sdf
-else
-	db  65,  75,  70, 100, 100,  70 ; 480 BST
-	;   hp  atk  def  spd  sat  sdf
-endc
 
 	db PSYCHIC, FLYING ; type
 	db 75 ; catch rate
@@ -21,5 +16,5 @@ endc
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, CALM_MIND, TOXIC, SUNNY_DAY, HYPER_BEAM, LIGHT_SCREEN, PROTECT, RAIN_DANCE, GRASS_KNOT, SOLAR_BEAM, RETURN, PSYCHIC, SHADOW_BALL, DOUBLE_TEAM, REFLECT, SWIFT, AERIAL_ACE, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, STEEL_WING, DAZZLINGLEAM, ROOST, GIGA_IMPACT, U_TURN, FLASH, THUNDER_WAVE, FLY, DOUBLE_EDGE, DREAM_EATER, ENDURE, SKILL_SWAP, SUCKER_PUNCH, SWAGGER, TRICK, ZEN_HEADBUTT
+	tmhm
 	; end

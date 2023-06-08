@@ -8,11 +8,7 @@
 	db NO_ITEM ; item 2
 	dn GENDER_F12_5, 3 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/chikorita/front.dimensions"
-if DEF(FAITHFUL)
 	abilities_for CHIKORITA, OVERGROW, OVERGROW, LEAF_GUARD
-else
-	abilities_for CHIKORITA, OVERGROW, NATURAL_CURE, LEAF_GUARD
-endc
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_PLANT ; egg groups
 
@@ -20,5 +16,5 @@ endc
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, CALM_MIND, TOXIC, SUNNY_DAY, LIGHT_SCREEN, PROTECT, GRASS_KNOT, SAFEGUARD, SOLAR_BEAM, IRON_TAIL, RETURN, DOUBLE_TEAM, REFLECT, SUBSTITUTE, FACADE, REST, ATTRACT, ENERGY_BALL, FLASH, SWORDS_DANCE, SLASH, BODY_SLAM, COUNTER, DOUBLE_EDGE, ENDURE, HEADBUTT, SEED_BOMB, SWAGGER
+	tmhm
 	; end

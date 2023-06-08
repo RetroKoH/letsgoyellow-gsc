@@ -103,7 +103,7 @@ CeruleanGymMistyScript:
 	iftrue_jumpopenedtext MistyFightDoneText
 	writetext MistyGiveTMText
 	promptbutton
-	verbosegivetmhm TM_WATER_PULSE
+	verbosegivetmhm TM_SCALD
 	setevent EVENT_GOT_TM63_WATER_PULSE
 	jumpopenedtext MistyOutroText
 

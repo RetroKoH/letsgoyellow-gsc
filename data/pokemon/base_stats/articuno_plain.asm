@@ -8,11 +8,7 @@
 	db LUM_BERRY ; item 2
 	dn GENDER_UNKNOWN, 15 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/articuno_plain/front.dimensions"
-if DEF(FAITHFUL)
 	abilities_for ARTICUNO, PRESSURE, PRESSURE, SNOW_CLOAK
-else
-	abilities_for ARTICUNO, PRESSURE, SNOW_WARNING, SNOW_CLOAK
-endc
 	db GROWTH_SLOW ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups
 
@@ -20,5 +16,5 @@ endc
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, ROAR, TOXIC, HAIL, SUNNY_DAY, ICE_BEAM, BLIZZARD, HYPER_BEAM, PROTECT, RAIN_DANCE, RETURN, ROCK_SMASH, DOUBLE_TEAM, REFLECT, SANDSTORM, SWIFT, AERIAL_ACE, SUBSTITUTE, FACADE, REST, STEEL_WING, ROOST, WATER_PULSE, AVALANCHE, GIGA_IMPACT, U_TURN, FLY, AGILITY, DOUBLE_EDGE, ENDURE, ICY_WIND, SWAGGER
+	tmhm
 	; end

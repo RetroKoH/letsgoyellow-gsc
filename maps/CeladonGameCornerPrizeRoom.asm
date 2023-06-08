@@ -43,14 +43,14 @@ CeladonPrizeRoom_tmcounterloop:
 	jumpopenedtext CeladonPrizeRoom_ComeAgainText
 
 .doubleteam
-	checktmhm TM_DOUBLE_TEAM
+	checktmhm TM_TRICK_ROOM
 	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	ifequal $2, CeladonPrizeRoom_notenoughcoins
-	gettmhmname TM_DOUBLE_TEAM, $0
+	gettmhmname TM_TRICK_ROOM, $0
 	scall CeladonPrizeRoom_askbuytm
 	iffalse_jumpopenedtext CeladonPrizeRoom_ComeAgainText
-	givetmhm TM_DOUBLE_TEAM
+	givetmhm TM_TRICK_ROOM
 	takecoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	sjump CeladonPrizeRoom_purchased
 
@@ -67,14 +67,14 @@ CeladonPrizeRoom_tmcounterloop:
 	sjump CeladonPrizeRoom_purchased
 
 .gigaimpact
-	checktmhm TM_GIGA_IMPACT
+	checktmhm TM_HYPER_BEAM
 	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM68_COINS
 	ifequal $2, CeladonPrizeRoom_notenoughcoins
-	gettmhmname TM_GIGA_IMPACT, $0
+	gettmhmname TM_HYPER_BEAM, $0
 	scall CeladonPrizeRoom_askbuytm
 	iffalse_jumpopenedtext CeladonPrizeRoom_ComeAgainText
-	givetmhm TM_GIGA_IMPACT
+	givetmhm TM_HYPER_BEAM
 	takecoins CELADONGAMECORNERPRIZEROOM_TM68_COINS
 	sjump CeladonPrizeRoom_purchased
 

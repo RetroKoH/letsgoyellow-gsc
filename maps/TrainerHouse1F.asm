@@ -134,9 +134,9 @@ PikaBallScript:
 	writetext TrainerHouseBlueConfirm
 	promptbutton
 	waitsfx
-	givepoke ANNIHILAPE, 20
-	givepoke MELTAN, 20
-	givepoke MELMETAL, 20
+	givepoke PIKACHU, 15
+	givepoke GEODUDE, 15
+	givepoke BELLSPROUT, 15
 	closetext
 	applymovement STARTHOUSE_TRACE, Movement_TracePicksEevee
 	opentext

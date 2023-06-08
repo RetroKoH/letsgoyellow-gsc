@@ -1,6 +1,4 @@
-;	db  90,  70,  80,  70,  70,  95 ; 475 BST
-	;   hp  atk  def  spd  sat  sdf
-	db  90,  70,  80,  70,  80,  95 ; 485 BST
+	db  90,  70,  80,  70,  70,  95 ; 475 BST
 	;   hp  atk  def  spd  sat  sdf
 
 	db WATER, ICE ; type
@@ -18,5 +16,5 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, TOXIC, HAIL, ICE_BEAM, BLIZZARD, HYPER_BEAM, PROTECT, RAIN_DANCE, SAFEGUARD, IRON_TAIL, RETURN, DOUBLE_TEAM, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, WATER_PULSE, AVALANCHE, GIGA_IMPACT, SURF, WHIRLPOOL, WATERFALL, AQUA_TAIL, BODY_SLAM, DOUBLE_EDGE, ENDURE, HEADBUTT, ICY_WIND, PAY_DAY, SWAGGER
+	tmhm
 	; end

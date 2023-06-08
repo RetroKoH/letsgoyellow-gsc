@@ -78,7 +78,7 @@ TMHM_ShowTMMoveDescription:
 	lb bc, 4, SCREEN_WIDTH - 2
 	call Textbox
 	ld a, [wCurTMHM]
-	cp NUM_TMS + NUM_HMS + 1
+	cp NUM_TMS + 1
 	jr nc, .Cancel
 	ld [wTempTMHM], a
 	predef GetTMHMMove
@@ -118,7 +118,7 @@ TMHM_GetCurrentTMHM:
 .loop
 	inc c
 	ld a, c
-	cp NUM_TMS + NUM_HMS + 1
+	cp NUM_TMS + 1
 	jr nc, .okay
 	call InnerCheckTMHM
 	jr z, .loop
@@ -157,7 +157,7 @@ TMHM_ScrollPocket:
 .loop
 	inc c
 	ld a, c
-	cp NUM_TMS + NUM_HMS + 1
+	cp NUM_TMS + 1
 	jmp nc, TMHM_JoypadLoop
 	call InnerCheckTMHM
 	jr z, .loop
@@ -181,7 +181,7 @@ TMHM_DisplayPocketItems:
 .loop2
 	inc c
 	ld a, c
-	cp NUM_TMS + NUM_HMS + 1
+	cp NUM_TMS + 1
 	jr nc, .NotTMHM
 	call InnerCheckTMHM
 	jr z, .loop2
@@ -309,7 +309,7 @@ TMHM_GetAlpha:
 	ld c, a
 	ld b, 0
 	dec c
-	ld hl, TMHMListAlpha
+	ld hl, TMListAlpha
 	add hl, bc
 	ld a, [hl]
 	pop bc
@@ -366,7 +366,7 @@ AskTeachTMHM:
 	call CopyName1
 	ld hl, Text_BootedTM ; Booted up a TM
 	ld a, [wCurTMHM]
-	cp HM01 + 1 ; off by one error?
+	cp MT01 + 1 ; off by one error?
 	jr c, .TM
 
 	; allow full PP restore for HMs
@@ -500,7 +500,7 @@ _GetTMHMName::
 	push af
 
 ; TM/HM prefix
-	cp HM01
+	cp MT01
 	push af
 	jr c, .TM
 
@@ -572,7 +572,7 @@ _GetTMHMName::
 	db "@"
 
 IsHM::
-	cp HM01
+	cp MT01
 	jr c, .NotHM
 	scf
 	ret
@@ -626,4 +626,4 @@ Text_TMHMNotCompatible:
 	text_far _TMHMNotCompatibleText
 	text_end
 
-INCLUDE "data/moves/tmhm_order.asm"
+INCLUDE "data/moves/tm_order.asm"

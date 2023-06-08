@@ -1,16 +1,7 @@
-if DEF(FAITHFUL)
 	db  75,  95,  67,  83, 125,  95 ; 540 BST
 	;   hp  atk  def  spd  sat  sdf
-else
-	db  75,  95,  67,  93, 125,  95 ; 550 BST
-	;   hp  atk  def  spd  sat  sdf
-endc
 
-if DEF(FAITHFUL)
 	db FIRE, FIRE ; type
-else
-	db FIRE, FIGHTING ; type
-endc
 	db 30 ; catch rate
 	db 199 ; base exp
 	db ASPEAR_BERRY ; item 1
@@ -25,5 +16,5 @@ endc
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm DYNAMICPUNCH, CURSE, TOXIC, SUNNY_DAY, HYPER_BEAM, PROTECT, BULLDOZE, SOLAR_BEAM, IRON_TAIL, THUNDERBOLT, EARTHQUAKE, RETURN, PSYCHIC, ROCK_SMASH, DOUBLE_TEAM, FLASH_CANNON, FLAMETHROWER, FIRE_BLAST, SUBSTITUTE, FACADE, FLAME_CHARGE, REST, ATTRACT, THIEF, ROCK_SLIDE, FOCUS_BLAST, WILL_O_WISP, GIGA_IMPACT, STRENGTH, BODY_SLAM, COUNTER, DOUBLE_EDGE, ENDURE, FIRE_PUNCH, HEADBUTT, SEISMIC_TOSS, SWAGGER, THUNDERPUNCH
+	tmhm
 	; end

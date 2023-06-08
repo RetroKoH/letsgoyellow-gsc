@@ -51,7 +51,7 @@ ViridianGymBlueScript:
 	iftrue_jumpopenedtext LeaderBlueEpilogueText
 	writetext LeaderBlueAfterText
 	promptbutton
-	verbosegivetmhm TM_STONE_EDGE
+	verbosegivetmhm TM_EARTHQUAKE
 	setevent EVENT_GOT_TM71_STONE_EDGE
 	jumpopenedtext BlueOutroText
 

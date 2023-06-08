@@ -8,11 +8,7 @@
 	db NO_ITEM ; item 2
 	dn GENDER_F12_5, 6 ; gender ratio, step cycles to hatch
 	INCBIN "gfx/pokemon/umbreon/front.dimensions"
-if DEF(FAITHFUL)
 	abilities_for UMBREON, SYNCHRONIZE, SYNCHRONIZE, INNER_FOCUS
-else
-	abilities_for UMBREON, SYNCHRONIZE, MAGIC_GUARD, INNER_FOCUS
-endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
@@ -20,5 +16,5 @@ endc
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, TOXIC, SUNNY_DAY, HYPER_BEAM, PROTECT, RAIN_DANCE, IRON_TAIL, RETURN, DIG, PSYCHIC, SHADOW_BALL, DOUBLE_TEAM, SWIFT, SUBSTITUTE, FACADE, REST, ATTRACT, DARK_PULSE, GIGA_IMPACT, FLASH, SLASH, BODY_SLAM, DOUBLE_EDGE, DREAM_EATER, ENDURE, HEADBUTT, HYPER_VOICE, PAY_DAY, SUCKER_PUNCH, SWAGGER, ZAP_CANNON
+	tmhm
 	; end

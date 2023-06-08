@@ -12,7 +12,7 @@ CanLearnTMHMMove:
 	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, 0
-	ld hl, TMHMMoves
+	ld hl, TMMoves
 .loop
 	ld a, [hli]
 	and a
@@ -39,7 +39,7 @@ CanLearnTMHMMove:
 GetTMHMMove:
 	ld a, [wTempTMHM]
 	dec a
-	ld hl, TMHMMoves
+	ld hl, TMMoves
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -47,4 +47,4 @@ GetTMHMMove:
 	ld [wTempTMHM], a
 	ret
 
-INCLUDE "data/moves/tmhm_moves.asm"
+INCLUDE "data/moves/tm_tutor_moves.asm"

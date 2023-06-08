@@ -4,7 +4,8 @@
 	db WATER, WATER ; type
 	db 225 ; catch rate
 	db 111 ; base exp
-	db NO_ITEM, NO_ITEM ; items
+	db NO_ITEM ; item 1
+	db NO_ITEM ; item 2
 	dn GENDER_F50, 3 ; gender ratio
 	INCBIN "gfx/pokemon/goldeen/front.dimensions"
 	abilities_for GOLDEEN, SWIFT_SWIM, WATER_VEIL, LIGHTNING_ROD
@@ -15,5 +16,5 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm CURSE, TOXIC, HAIL, ICE_BEAM, BLIZZARD, PROTECT, RAIN_DANCE, RETURN, DOUBLE_TEAM, SWIFT, SUBSTITUTE, FACADE, REST, ATTRACT, SCALD, WATER_PULSE, POISON_JAB, SWORDS_DANCE, SURF, WHIRLPOOL, WATERFALL, AGILITY, AQUA_TAIL, BODY_SLAM, DOUBLE_EDGE, ENDURE, HEADBUTT, ICY_WIND, KNOCK_OFF, SWAGGER
+	tmhm
 	; end

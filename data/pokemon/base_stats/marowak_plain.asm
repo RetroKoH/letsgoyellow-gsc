@@ -1,18 +1,9 @@
-if DEF(FAITHFUL)
 	db  60,  80, 110,  45,  50,  80 ; 425 BST
 	;   hp  atk  def  spd  sat  sdf
-else
-	db  60,  80, 110,  70,  50,  80 ; 450 BST
-	;   hp  atk  def  spd  sat  sdf
-endc
 
 	db GROUND, GROUND ; type
 	db 75 ; catch rate
-if DEF(FAITHFUL)
 	db 124 ; base exp
-else
-	db 140 ; base exp
-endc
 	db NO_ITEM ; item 1
 	db THICK_CLUB ; item 2
 	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
@@ -25,5 +16,5 @@ endc
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/hm learnset
-	tmhm DYNAMICPUNCH, CURSE, TOXIC, SUNNY_DAY, ICE_BEAM, BLIZZARD, HYPER_BEAM, PROTECT, BULLDOZE, IRON_TAIL, EARTHQUAKE, RETURN, DIG, ROCK_SMASH, DOUBLE_TEAM, FLAMETHROWER, SANDSTORM, FIRE_BLAST, AERIAL_ACE, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, ROCK_SLIDE, FOCUS_BLAST, FURY_CUTTER, GIGA_IMPACT, STONE_EDGE, SWORDS_DANCE, STRENGTH, BODY_SLAM, COUNTER, DOUBLE_EDGE, EARTH_POWER, ENDURE, FIRE_PUNCH, HEADBUTT, ICE_PUNCH, ICY_WIND, IRON_HEAD, KNOCK_OFF, SEISMIC_TOSS, SWAGGER, THUNDERPUNCH
+	tmhm
 	; end

@@ -479,7 +479,7 @@ RaichuAlolanLearnset:
 	db 1, THUNDERSHOCK
 	db 1, GROWL
 	db 3, LEER ; Tail Whip → similar move
-	db 6, QUICK_ATTACK
+	db 6, FRUSTRATION
 	db 9, DOUBLE_KICK
 	db 12, DOUBLE_TEAM
 	db 15, THUNDER_WAVE

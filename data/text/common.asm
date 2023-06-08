@@ -4032,10 +4032,10 @@ _MoveForgotText::
 	para "And…"
 	prompt
 
-SECTION "_MoveCantForgetHMText", ROMX
-_MoveCantForgetHMText::
-	text "HM moves can't be"
-	line "forgotten now."
+SECTION "_MoveCantForgetText", ROMX
+_MoveCantForgetText::
+	text "Frustration can't"
+	line "be forgotten now."
 	prompt
 
 SECTION "_CardFlipPlayWithThreeCoinsText", ROMX

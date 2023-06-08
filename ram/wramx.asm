@@ -662,7 +662,7 @@ wBaseGrowthRate:: db
 wBaseEggGroups:: db
 wBaseEVYield1:: db
 wBaseEVYield2:: db
-wBaseTMHM:: flag_array NUM_TM_HM_TUTOR
+wBaseTMHM:: flag_array NUM_TM_TUTOR
 wCurBaseDataEnd::
 
 wCurDamage:: dw
@@ -972,7 +972,7 @@ wBadgesEnd::
 wPokemonJournals:: flag_array NUM_POKEMON_JOURNALS
 wPokemonJournalsEnd::
 
-wTMsHMs:: flag_array NUM_TMS + NUM_HMS
+wTMsHMs:: flag_array NUM_TMS
 wTMsHMsEnd::
 
 wKeyItems:: flag_array NUM_KEY_ITEMS

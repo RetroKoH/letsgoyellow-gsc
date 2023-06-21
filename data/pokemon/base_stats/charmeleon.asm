@@ -15,6 +15,8 @@
 	ev_yield   0,   0,   0,   1,   1,   0
 	;         hp  atk  def  spd  sat  sdf
 
-	; tm/hm learnset
-	tmhm
+	; tm/move tutor learnset
+	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, REFLECT, DIG, WILL_O_WISP, FACADE, BRICK_BREAK, SEISMIC_TOSS, IRON_TAIL, ROCK_SLIDE, THUNDERPUNCH, FIRE_PUNCH, DRAGON_PULSE, FLAMETHROWER, OUTRAGE, FIRE_BLAST, WORK_UP, SUNNY_DAY
+
+;	tutors WEATHER_BALL, AERIAL_ACE, DRAGON_DANCE
 	; end

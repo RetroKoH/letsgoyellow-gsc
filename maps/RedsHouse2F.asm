@@ -249,7 +249,7 @@ endr
 	; post-e4
 	setflag ENGINE_CREDITS_SKIP
 	; test party
-	;givepoke CHARIZARD,		PLAIN_FORM,		50, HEAVY_BOOTS, MASTER_BALL
+	givepoke CHARIZARD,		PLAIN_FORM,		50, HEAVY_BOOTS, MASTER_BALL
 	
 
 	; fill pokedex

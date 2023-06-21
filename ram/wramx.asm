@@ -975,6 +975,8 @@ wPokemonJournalsEnd::
 wTMsHMs:: flag_array NUM_TMS
 wTMsHMsEnd::
 
+; At least 5 bytes have been freed here.
+
 wKeyItems:: flag_array NUM_KEY_ITEMS
 wKeyItemsEnd::
 

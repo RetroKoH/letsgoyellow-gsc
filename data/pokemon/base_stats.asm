@@ -12,7 +12,7 @@ abilities_for: MACRO
 	def ABIL_\1_\2 = ABILITY_1
 ENDM
 
-tmhm: MACRO
+tms: MACRO
 	; initialize bytes to 0
 	for n, (NUM_TM_TUTOR + 7) / 8
 		def _tm{d:n} = 0
@@ -24,7 +24,7 @@ tmhm: MACRO
 			def t = (\<i>_TMNUM - 1) % 8
 			def _tm{d:n} |= 1 << t
 		else
-			fail "\<i> is not a TM, or tutor move"
+			fail "\<i> is not a TM or tutor move"
 		endc
 	endr
 	; output bytes

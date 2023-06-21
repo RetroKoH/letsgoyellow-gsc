@@ -15,6 +15,8 @@
 	ev_yield   0,   0,   0,   0,   2,   1
 	;         hp  atk  def  spd  sat  sdf
 
-	; tm/hm learnset
-	tmhm
+	; tm/move tutor learnset
+	tms HEADBUTT, HELPING_HAND, REST, LIGHT_SCREEN, PROTECT, SUBSTITUTE, REFLECT, FACADE, TOXIC, OUTRAGE, EARTHQUAKE, SOLAR_BEAM, HYPER_BEAM, SLUDGE_BOMB, MEGA_DRAIN, WORK_UP, SUNNY_DAY, BULLET_SEED, ENERGY_BALL, BULLDOZE
+
+;	tutors WEATHER_BALL, EARTH_POWER, GRASS_KNOT, KNOCK_OFF
 	; end

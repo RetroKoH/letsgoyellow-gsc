@@ -172,15 +172,15 @@
 	const MEWTWO     ; 96
 	const MEW        ; 97
 
-	const CHIKORITA  ; 98 - MAYBE keep Hoppip
-	const BAYLEEF    ; 99 - MAYBE keep Skiploom
-	const MEGANIUM   ; 9a - MAYBE keep Jumpluff
-	const CYNDAQUIL  ; 9b - MAYBE keep Ledyba
-	const QUILAVA    ; 9c - MAYBE keep Ledian
-	const TYPHLOSION ; 9d - MAYBE keep Skarmory
-	const TOTODILE   ; 9e - MAYBE keep Azurill
-	const CROCONAW   ; 9f - MAYBE keep Marill
-	const FERALIGATR ; a0 - MAYBE keep Azumarill
+	const CHIKORITA  ; 98 - REPLACE with Hoppip
+	const BAYLEEF    ; 99 - REPLACE with Skiploom
+	const MEGANIUM   ; 9a - REPLACE with Jumpluff
+	const CYNDAQUIL  ; 9b - REPLACE with Ledyba
+	const QUILAVA    ; 9c - REPLACE with Ledian
+	const TYPHLOSION ; 9d - REPLACE with Skarmory
+	const TOTODILE   ; 9e - REPLACE with Azurill
+	const CROCONAW   ; 9f - REPLACE with Marill
+	const FERALIGATR ; a0 - REPLACE with Azumarill
 	const SENTRET    ; a1 - keep
 	const FURRET     ; a2 - keep
 	const HOOTHOOT   ; a3 - keep
@@ -207,8 +207,8 @@
 	const POLITOED   ; b8 - related
 	const SUNKERN    ; b9 - scrap
 	const SUNFLORA   ; ba - scrap
-	const YANMA      ; bb - MAYBE keep
-	const YANMEGA    ; bc - MAYBE keep
+	const YANMA      ; bb - keep
+	const YANMEGA    ; bc - keep
 	const WOOPER     ; bd - keep
 	const QUAGSIRE   ; be - keep
 	const ESPEON     ; bf - related
@@ -231,7 +231,7 @@
 	const GRANBULL   ; d0 - keep
 	const ANNIHILAPE ; d1 - related
 	const SCIZOR     ; d2 - related
-	const SHUCKLE    ; d3 - MAYBE keep
+	const SHUCKLE    ; d3 - keep
 	const HERACROSS  ; d4 - keep
 	const SNEASEL    ; d5 - keep
 	const WEAVILE    ; d6 - keep

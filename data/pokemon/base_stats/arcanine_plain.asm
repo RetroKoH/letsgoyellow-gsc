@@ -15,6 +15,8 @@
 	ev_yield   0,   2,   0,   0,   0,   0
 	;         hp  atk  def  spd  sat  sdf
 
-	; tm/hm learnset
-	tmhm
+	; tm/move tutor learnset
+	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, DIG, WILL_O_WISP, FACADE, IRON_TAIL, DRAGON_PULSE, FLAMETHROWER, OUTRAGE, PLAY_ROUGH, SOLAR_BEAM, FIRE_BLAST, HYPER_BEAM, SUPERPOWER, SUNNY_DAY, BULLDOZE
+
+;	tutors AERIAL_ACE, FLAME_CHARGE, WILD_CHARGE
 	; end

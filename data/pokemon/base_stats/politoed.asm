@@ -15,6 +15,8 @@
 	ev_yield   0,   0,   0,   0,   0,   3
 	;         hp  atk  def  spd  sat  sdf
 
-	; tm/hm learnset
-	tmhm
+	; tm/move tutor learnset
+	tms
+
+;	tutors
 	; end

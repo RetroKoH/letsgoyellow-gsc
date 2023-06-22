@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, TAUNT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, FACADE, FLY, U_TURN, DARK_PULSE, X_SCISSOR, TOXIC, SHADOW_BALL, HYPER_BEAM, ROOST, SLUDGE_BOMB, MEGA_DRAIN, SUNNY_DAY, ACROBATICS
 
-;	tutors
+	;tutors AERIAL_ACE, HEX, ZEN_HEADBUTT
 	; end

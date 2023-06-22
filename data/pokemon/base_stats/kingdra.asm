@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, FACADE, WATERFALL, SCALD, DRAGON_PULSE, OUTRAGE, SURF, HYPER_BEAM, BLIZZARD, FLASH_CANNON, ICE_BEAM, RAIN_DANCE, HAIL
 
-;	tutors
+	;tutors SIGNAL_BEAM, LIQUIDATION, DRAGON_DANCE
 	; end

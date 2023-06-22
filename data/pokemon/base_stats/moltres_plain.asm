@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, REFLECT, WILL_O_WISP, FACADE, FLY, U_TURN, FLAMETHROWER, SOLAR_BEAM, FIRE_BLAST, HYPER_BEAM, ROOST, SUNNY_DAY, SANDSTORM
 
-;	tutors
+	;tutors WEATHER_BALL, AERIAL_ACE, FLAME_CHARGE
 	; end

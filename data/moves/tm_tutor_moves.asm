@@ -66,7 +66,7 @@ TMMoves:
 	db SANDSTORM    ; TM63 (***NEW LOC*** Weather Researcher Side Quest)
 	db HAIL         ; TM64 (***NEW LOC*** Weather Researcher Side Quest)
 	db TRICK_ROOM   ; TM65 (Underground)
-	db ICY_WIND     ; TM66 (Lake of Rage)
+	db VOLT_SWITCH  ; TM66 (Lake of Rage)
 	db FALSE_SWIPE  ; TM67 (Janine)
 	db BULLET_SEED  ; TM68 (Pryce)
 	db DRAIN_PUNCH  ; TM69 (Celadon Game Corner)

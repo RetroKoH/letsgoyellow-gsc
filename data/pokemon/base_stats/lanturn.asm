@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HELPING_HAND, REST, PROTECT, SUBSTITUTE, FACADE, THUNDER_WAVE, WATERFALL, SCALD, DAZZLINGLEAM, THUNDERBOLT, THUNDER, SURF, HYPER_BEAM, BLIZZARD, ICE_BEAM, RAIN_DANCE, VOLT_SWITCH
 
-;	tutors
+	;tutors SIGNAL_BEAM, WILD_CHARGE
 	; end

@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, WILL_O_WISP, FACADE, BRICK_BREAK, SEISMIC_TOSS, IRON_TAIL, THUNDERPUNCH, FIRE_PUNCH, FLAMETHROWER, PSYCHIC, FIRE_BLAST, SUNNY_DAY
 
-;	tutors
+	;tutors FLAME_CHARGE
 	; end

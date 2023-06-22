@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, TAUNT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, DIG, FACADE, THUNDER_WAVE, U_TURN, IRON_TAIL, THUNDERBOLT, THUNDER, SHADOW_BALL, BLIZZARD, ICE_BEAM, WORK_UP
 
-;	tutors
+	;tutors GRASS_KNOT, WILD_CHARGE, ZEN_HEADBUTT
 	; end

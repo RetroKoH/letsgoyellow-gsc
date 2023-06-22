@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, HELPING_HAND, TELEPORT, REST, PROTECT, SUBSTITUTE, FACADE, IRON_TAIL, DAZZLINGLEAM, CALM_MIND, PSYCHIC, PLAY_ROUGH
 
-;	tutors
+	;tutors WILD_CHARGE, ZEN_HEADBUTT
 	; end

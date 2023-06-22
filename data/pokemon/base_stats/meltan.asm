@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, FACADE, THUNDER_WAVE, THUNDERBOLT, FLASH_CANNON
 
-;	tutors
+	;tutors GYRO_BALL
 	; end

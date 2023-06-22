@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, REFLECT, FACADE, PSYCHIC, SOLAR_BEAM, SLUDGE_BOMB, MEGA_DRAIN
 
-;	tutors
+	;tutors SIGNAL_BEAM, ZEN_HEADBUTT
 	; end

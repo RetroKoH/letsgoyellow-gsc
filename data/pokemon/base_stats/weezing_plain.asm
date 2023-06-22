@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, TAUNT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, WILL_O_WISP, FACADE, DARK_PULSE, TOXIC, THUNDERBOLT, FLAMETHROWER, THUNDER, EXPLOSION, SHADOW_BALL, FIRE_BLAST, HYPER_BEAM, SLUDGE_BOMB
 
-;	tutors
+	;tutors GYRO_BALL
 	; end

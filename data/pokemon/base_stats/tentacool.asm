@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, REFLECT, FACADE, WATERFALL, POISON_JAB, SCALD, DAZZLINGLEAM, SURF, BLIZZARD, SLUDGE_BOMB, MEGA_DRAIN, ICE_BEAM, RAIN_DANCE, HAIL
 
-;	tutors
+	;tutors HEX, KNOCK_OFF
 	; end

@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HELPING_HAND, REST, LIGHT_SCREEN, PROTECT, SUBSTITUTE, REFLECT, WILL_O_WISP, FACADE, ROCK_SLIDE, FLAMETHROWER, SOLAR_BEAM, FIRE_BLAST, SUNNY_DAY, SANDSTORM, BULLDOZE
 
-;	tutors
+	;tutors EARTH_POWER, FLAME_CHARGE
 	; end

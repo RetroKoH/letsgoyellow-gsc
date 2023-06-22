@@ -83,7 +83,7 @@ ENDM
 	add_tm SANDSTORM    ; $3e
 	add_tm HAIL         ; $3f
 	add_tm TRICK_ROOM   ; $40
-	add_tm ICY_WIND     ; $41 - RECONSIDER???
+	add_tm VOLT_SWITCH  ; $41
 	add_tm FALSE_SWIPE  ; $42
 	add_tm BULLET_SEED  ; $43
 	add_tm DRAIN_PUNCH  ; $44

@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, DIG, FACADE, ROCK_SLIDE, EARTHQUAKE, SLUDGE_BOMB, STEALTH_ROCK, SANDSTORM, BULLDOZE
 
-;	tutors
+	;tutors EARTH_POWER, STONE_EDGE, GYRO_BALL, KNOCK_OFF
 	; end

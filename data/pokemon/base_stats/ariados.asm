@@ -16,7 +16,7 @@
 	;         hp  atk  def  spd  sat  sdf
 
 	; tm/move tutor learnset
-	tms
+	tms HELPING_HAND, REST, PROTECT, SUBSTITUTE, DIG, FACADE, FOUL_PLAY, X_SCISSOR, POISON_JAB, CALM_MIND, SOLAR_BEAM, HYPER_BEAM, SLUDGE_BOMB, MEGA_DRAIN, SMART_STRIKE
 
-;	tutors
+	;tutors SIGNAL_BEAM
 	; end

@@ -16,11 +16,11 @@ Moves::
 	move FIRE_PUNCH,   EFFECT_BURN_HIT,           75, FIRE,      100, 15,  10, PHYSICAL
 	move ICE_PUNCH,    EFFECT_FREEZE_HIT,         75, ICE,       100, 15,  10, PHYSICAL
 	move THUNDERPUNCH, EFFECT_PARALYZE_HIT,       75, ELECTRIC,  100, 15,  10, PHYSICAL
-	move VISE_GRIP,    EFFECT_SPEED_DOWN_HIT,     65, NORMAL,    100, 20,   0, PHYSICAL ; Mirrors Bubble Beam and Low Sweep
+	move VISE_GRIP,    EFFECT_SPEED_DOWN_HIT,     65, NORMAL,    100, 20,   0, PHYSICAL
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,    100, 20,   0, STATUS
 	move GUST,         EFFECT_GUST,               40, FLYING,    100, 35,   0, SPECIAL
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,    100, 35,   0, PHYSICAL
-	move WHIRLWIND,    EFFECT_ROAR,                0, NORMAL,    100, 20,   0, STATUS ; Replaced Tackle. Test Animation
+	move WHIRLWIND,    EFFECT_ROAR,                0, NORMAL,    100, 20,   0, STATUS ; Test Animation
 	move FLY,          EFFECT_FLY,                90, FLYING,     95, 15,   0, PHYSICAL
 	move VINE_WHIP,    EFFECT_NORMAL_HIT,         45, GRASS,     100, 25,   0, PHYSICAL
 	move STOMP,        EFFECT_STOMP,              65, NORMAL,    100, 20,  30, PHYSICAL

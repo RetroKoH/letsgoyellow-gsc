@@ -1726,7 +1726,7 @@ SandForceAbility:
 	jmp MultiplyAndDivide
 
 RecklessAbility:
-; 120% damage for (Hi) Jump Kick and recoil moves except for Struggle
+; 120% damage for Hi Jump Kick and recoil moves except for Struggle
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
 	inc a ; cp STRUGGLE

@@ -5742,33 +5742,20 @@ BattleCommand_recoil:
 	cp MAGIC_GUARD
 	ret z
 
-	ld a, b
-	cp DOUBLE_EDGE
-	jr z, .OneThirdRecoil
-	cp FLARE_BLITZ
-	jr z, .OneThirdRecoil
+; Special case: Chloroblast (1/2 max HP, negated by ability)
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	ld d, a
-; get 1/4 damage or 1 HP, whichever is higher
-	ld a, [wCurDamage]
-	ld b, a
-	ld a, [wCurDamage + 1]
-	ld c, a
-	call HalveBC
-	call HalveBC
-.recoil_floor
-	call FloorBC
-	predef SubtractHPFromUser
-.recoil_text
-	ld hl, RecoilText
-	jmp StdBattleTextbox
+	cp CHLOROBLAST
+	jr z, .ChloroblastRecoil
 
-.StruggleRecoil
-	call GetQuarterMaxHP
-	jr .recoil_floor
-
-.OneThirdRecoil
+; Determine whether move should deal 1/3 or 1/4 recoil
+; Only Take Down and Wild Charge deal 1/4, all others deal 1/3
+	ld a, b
+	cp TAKE_DOWN
+	jr z, .OneQuarterRecoil
+	cp WILD_CHARGE
+	jr z, .OneQuarterRecoil
+;.OneThirdRecoil
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld d, a
@@ -5784,6 +5771,33 @@ BattleCommand_recoil:
 	ld c, a
 	ldh a, [hQuotient + 1]
 	ld b, a
+
+.recoil_floor
+	call FloorBC
+	predef SubtractHPFromUser
+.recoil_text
+	ld hl, RecoilText
+	jmp StdBattleTextbox
+
+.StruggleRecoil
+	call GetQuarterMaxHP
+	jr .recoil_floor
+
+.ChloroblastRecoil
+	call GetHalfMaxHP
+	jr .recoil_floor
+
+.OneQuarterRecoil
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld d, a
+; get 1/4 damage or 1 HP, whichever is higher
+	ld a, [wCurDamage]
+	ld b, a
+	ld a, [wCurDamage + 1]
+	ld c, a
+	call HalveBC
+	call HalveBC
 	jr .recoil_floor
 
 BattleCommand_confusetarget:

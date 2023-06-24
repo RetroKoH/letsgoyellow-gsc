@@ -2,12 +2,10 @@ MoveDescriptions::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	table_width 2, MoveDescriptions
 	dw StrikeDescription
-	dw PayDayDescription
 	dw FirePunchDescription
 	dw IcePunchDescription
 	dw ThunderpunchDescription
 	dw ViseGripDescription
-	dw RazorWindDescription
 	dw SwordsDanceDescription
 	dw GustDescription
 	dw WingAttackDescription
@@ -96,18 +94,15 @@ MoveDescriptions::
 	dw FireBlastDescription
 	dw WaterfallDescription
 	dw SwiftDescription
-	dw SkullBashDescription
 	dw AmnesiaDescription
 	dw HiJumpKickDescription
 	dw GlareDescription
 	dw DreamEaterDescription
 	dw PoisonGasDescription
 	dw LeechLifeDescription
-	dw LovelyKissDescription
 	dw SkyAttackDescription
 	dw TransformDescription
 	dw SporeDescription
-	dw SplashDescription
 	dw AcidArmorDescription
 	dw CrabhammerDescription
 	dw ExplosionDescription
@@ -170,6 +165,7 @@ MoveDescriptions::
 	dw HyperVoiceDescription
 	dw PoisonFangDescription
 	dw MeteorMashDescription
+	dw AstonishDescription
 	dw WeatherBallDescription
 	dw SignalBeamDescription
 	dw AerialAceDescription
@@ -240,11 +236,13 @@ MoveDescriptions::
 	dw WildChargeDescription
 	dw DrillRunDescription
 	dw HurricaneDescription
+	dw SnarlDescription
 	dw IcicleCrashDescription
 	dw FellStingerDescription
 	dw FreezeDryDescription
 	dw DisarmVoiceDescription
 	dw PlayRoughDescription
+	dw FairyWindDescription
 	dw DrainKissDescription
 	dw MoonblastDescription
 	dw DazzlingleamDescription
@@ -254,6 +252,8 @@ MoveDescriptions::
 	dw LiquidationDescription
 	dw DuoIronBashDescription
 	dw StrangeSteamDescription
+	dw StoneAxeDescription
+	dw ChloroblastDescription
 	dw RageFistDescription
 	dw StruggleDescription
 	assert_table_length NUM_ATTACKS
@@ -287,8 +287,6 @@ SmartStrikeDescription:
 	db   "An attack that"
 	next "never misses.@"
 
-RazorWindDescription:
-SkullBashDescription:
 SkyAttackDescription:
 	db   "1st turn: Prepare"
 	next "2nd turn: Attack@"
@@ -329,6 +327,10 @@ BraveBirdDescription:
 	db   "A charge that also"
 	next "hurts the user.@"
 
+ChloroblastDescription:
+	db   "An explosion that"
+	next "hurts the user.@"
+
 StompDescription:
 HeadbuttDescription:
 BiteDescription:
@@ -341,6 +343,7 @@ ZenHeadbuttDescription:
 ExtrasensoryDescription:
 DarkPulseDescription:
 IcicleCrashDescription:
+AstonishDescription:
 	db   "An attack that may"
 	next "cause flinching.@"
 
@@ -461,6 +464,10 @@ MoonblastDescription:
 	db   "An attack that may"
 	next "lower Spcl.Atk.@"
 
+SnarlDescription:
+	db   "An attack that"
+	next "lowers Spcl.Atk.@"
+
 AcidDescription:
 PsychicMDescription:
 ShadowBallDescription:
@@ -495,7 +502,6 @@ GlareDescription:
 SingDescription:
 SleepPowderDescription:
 HypnosisDescription:
-LovelyKissDescription:
 	db   "May cause the foe"
 	next "to fall asleep.@"
 
@@ -643,10 +649,6 @@ ExplosionDescription:
 	db   "Very powerful but"
 	next "makes user faint.@"
 
-EndureDescription:
-	db   "Endures any hit"
-	next "with at least 1HP.@"
-
 FuryCutterDescription:
 	db   "Successive hits"
 	next "raise power.@"
@@ -730,6 +732,10 @@ StealthRockDescription:
 	db   "Hurts foes when"
 	next "they switch in.@"
 
+StoneAxeDescription:
+	db   "Attacks and leaves"
+	next "pointed rocks.@"
+
 QuickAttackDescription:
 	db   "Lets the user get"
 	next "in the first hit.@"
@@ -786,10 +792,6 @@ DoubleKickDescription:
 BlazeKickDescription:
 	db   "A kick attack"
 	next "that can burn.@"
-
-PayDayDescription:
-	db   "Throws coins. Gets"
-	next "them back later.@"
 
 SuckerPunchDescription:
 	db   "Attacks before the"
@@ -868,10 +870,6 @@ TransformDescription:
 	db   "The user assumes"
 	next "the foe's guise.@"
 
-SplashDescription:
-	db   "Has no effect"
-	next "whatsoever.@"
-
 BonemerangDescription:
 	db   "An attack that"
 	next "strikes twice.@"
@@ -921,10 +919,6 @@ FlailDescription:
 	db   "Stronger if the"
 	next "user's HP is low.@"
 
-SeedBombDescription:
-	db   "Slams a barrage of"
-	next "seeds at the foe.@"
-
 ProtectDescription:
 	db   "Foils attack that"
 	next "turn. It may fail.@"
@@ -932,14 +926,6 @@ ProtectDescription:
 BellyDrumDescription:
 	db   "Sacrifices HP to"
 	next "maximize Attack.@"
-
-DestinyBondDescription:
-	db   "The foe faints if"
-	next "the user does.@"
-
-PowerGemDescription:
-	db   "Attacks with a ray"
-	next "of gem-like light.@"
 
 RolloutDescription:
 	db   "Attacks 5 turns"

@@ -65,7 +65,6 @@ BattleCommandPointers:
 	command rechargenextturn
 	command metronome
 	command leechseed
-	command splash
 	command disable
 	command cleartext
 	command charge

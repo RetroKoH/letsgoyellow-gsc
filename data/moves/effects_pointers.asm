@@ -95,7 +95,7 @@ MoveEffectsPointers:
 	dw RageFist
 	dw Metronome
 	dw LeechSeed
-	dw Splash
+	dw StoneAxe
 	dw Disable
 	dw Counter
 	dw Encore

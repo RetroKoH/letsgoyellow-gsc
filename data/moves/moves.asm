@@ -263,7 +263,7 @@ Moves::
 	move LIQUIDATION,  EFFECT_DEFENSE_DOWN_HIT,   85, WATER,     100, 10,  20, PHYSICAL
 	move DUOIRONBASH,  EFFECT_DUO_IRON_BASH,      60, STEEL,     100,  5,  30, PHYSICAL
 	move STRANGESTEAM, EFFECT_CONFUSE_HIT,        90, FAIRY,      95, 10,  20, SPECIAL
-	move STONE_AXE,    EFFECT_NORMAL_HIT,         65, ROCK,       90, 10,   0, PHYSICAL ; < NEW MOVE
+	move STONE_AXE,    EFFECT_STONE_AXE,          65, ROCK,       90, 10,   0, PHYSICAL ; < NEW MOVE < Fix Stealth Rock effect
 	move CHLOROBLAST,  EFFECT_RECOIL_HIT,        150, GRASS,      95,  5,   0, SPECIAL  ; < NEW MOVE
 	move RAGE_FIST,    EFFECT_RAGE_FIST,          20, GHOST,     100, 10,   0, PHYSICAL ; Further test scaling effect.
 	move STRUGGLE,     EFFECT_RECOIL_HIT,         50, UNKNOWN_T, 100,  1,   0, PHYSICAL

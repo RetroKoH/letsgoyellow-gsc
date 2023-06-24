@@ -1643,11 +1643,25 @@ LeechSeed:
 	leechseed
 	endmove
 
-Splash:
+StoneAxe:
 	checkobedience
 	usedmovetext
 	doturn
-	splash
+	hastarget
+	checkhit
+	critical
+	damagestats
+	damagecalc
+	stab
+	damagevariation
+	moveanim
+	failuretext
+	applydamage
+	criticaltext
+	supereffectivetext
+	postfainteffects
+	posthiteffects
+	stealthrock
 	endmove
 
 Disable:

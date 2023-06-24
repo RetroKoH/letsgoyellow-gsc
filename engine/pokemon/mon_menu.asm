@@ -1358,21 +1358,30 @@ GetForgottenMoves::
 	push hl
 	ld a, MON_LEVEL
 	call GetPartyParamLocation
-	ld b, [hl]
+	ld b, [hl] ; b = current level
 	pop hl
 	inc b ; so that we can use jr nc
 .loop
 	ld a, BANK(EvosAttacks)
 	call GetFarByte
 	inc hl
-	and a
-	ret z
+	and a		; have we reached the end of the learn set?
+	ret z		; if we've reached the end of the learn set, jump (If no moves present in set)
+	cp $ff		; is the move an evo move? (Level = $FF)
+	jr nz, .not_evomove
+	ld a, BANK(EvosAttacks)
+	call GetFarByte
+	inc hl
+	jr .continue_withmove
+
+.not_evomove
 	cp b
-	ret nc
+	ret nc		; if move's level is higher than your current level, stop here
 	ld a, BANK(EvosAttacks)
 	call GetFarByte
 	inc hl
 
+.continue_withmove
 	; exclude moves the user already knows
 	push hl
 	push bc

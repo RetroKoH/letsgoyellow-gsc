@@ -1182,7 +1182,6 @@ AI_Smart_Encore:
 	db RECYCLE
 	db ROAR
 	db SCREECH
-	db SPLASH
 	db STRING_SHOT
 	db SUBSTITUTE
 	db SUPER_FANG
@@ -2085,7 +2084,6 @@ AI_Opportunist:
 	db MIMIC
 	db REFLECT
 	db SCREECH
-	db SPLASH
 	db STRING_SHOT
 	db SUBSTITUTE
 	db SWORDS_DANCE

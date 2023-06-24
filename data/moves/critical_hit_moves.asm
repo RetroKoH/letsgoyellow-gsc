@@ -8,7 +8,6 @@ CriticalHitMoves:
 	db NIGHT_SLASH
 	db PSYCHO_CUT
 	db RAZOR_LEAF
-	db RAZOR_WIND
 	db SKY_ATTACK
 	db SLASH
 	db STONE_EDGE

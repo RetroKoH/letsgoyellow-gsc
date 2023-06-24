@@ -2508,19 +2508,9 @@ Text_BattleUser::
 	text "<USER>@"
 	text_end
 
-SECTION "_BattleMadeWhirlwindText", ROMX
-_BattleMadeWhirlwindText::
-	line "made a whirlwind!"
-	prompt
-
 SECTION "_BattleTookSunlightText", ROMX
 _BattleTookSunlightText::
 	line "took in sunlight!"
-	prompt
-
-SECTION "_BattleLoweredHeadText", ROMX
-_BattleLoweredHeadText::
-	line "lowered its head!"
 	prompt
 
 SECTION "_BattleGlowingText", ROMX

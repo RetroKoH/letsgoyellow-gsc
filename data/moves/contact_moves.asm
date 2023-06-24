@@ -78,7 +78,6 @@ ContactMoves:
 	db RETURN
 	db ROLLOUT
 	db SEISMIC_TOSS
-	db SKULL_BASH
 	db SLASH
 	db SMART_STRIKE
 	db STOMP

@@ -211,7 +211,6 @@ GrowlitheEggMoves:
 PoliwagEggMoves:
 	db ENCORE
 	db HAZE
-	db SPLASH
 	db BUBBLE_BEAM
 	db WATER_PULSE
 	db $ff
@@ -411,7 +410,6 @@ HorseaEggMoves:
 	db AURORA_BEAM
 	db DISABLE
 	db DRAGONBREATH
-	db SPLASH
 	db HAZE
 	db WATER_PULSE
 	db $ff
@@ -710,7 +708,6 @@ SwinubEggMoves:
 LickitungEggMoves:
 	db HAZE
 	db MIRROR_COAT
-	db SPLASH
 	db HYDRO_PUMP
 	db GUNK_SHOT
 	db $ff

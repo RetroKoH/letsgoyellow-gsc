@@ -75,7 +75,7 @@ GoldenrodGameCornerTutorPayDayScript:
 	iffalse .NoSilverLeaf
 	yesorno
 	iffalse .TutorRefused
-	setval PAY_DAY
+	setval RETURN
 	writetext ClearText
 	special Special_MoveTutor
 	ifequal $0, .TeachMove

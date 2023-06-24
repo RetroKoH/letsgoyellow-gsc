@@ -855,7 +855,7 @@ WigglytuffLearnset:
 ZubatLearnset:
 	db 1, ABSORB
 	db 1, SUPERSONIC
-;	db 4, ASTONISH
+	db 4, ASTONISH
 	db 8, WING_ATTACK
 	db 12, BITE
 	db 16, SWIFT
@@ -870,7 +870,7 @@ GolbatLearnset:
 	db $FF, CRUNCH
 	db 1, ABSORB
 	db 1, SUPERSONIC
-;	db 4, ASTONISH
+	db 4, ASTONISH
 	db 8, WING_ATTACK
 	db 12, BITE
 	db 16, SWIFT
@@ -886,7 +886,7 @@ CrobatLearnset:
 	db 1, CRUNCH
 	db 1, ABSORB
 	db 1, SUPERSONIC
-;	db 4, ASTONISH
+	db 4, ASTONISH
 	db 8, WING_ATTACK
 	db 12, BITE
 	db 16, SWIFT
@@ -1005,7 +1005,7 @@ DiglettPlainLearnset:
 	db 1, STRIKE ; SCRATCH
 	db 1, SAND_ATTACK
 	db 4, GROWL
-;	db 8, ASTONISH
+	db 8, ASTONISH
 	db 12, AGILITY
 	db 16, FURY_STRIKES ; FURY_SWIPES
 	db 20, DIG
@@ -1019,7 +1019,7 @@ DiglettAlolanLearnset:
 	db 1, METAL_CLAW
 	db 1, SAND_ATTACK
 	db 4, GROWL
-;	db 8, ASTONISH
+	db 8, ASTONISH
 	db 12, AGILITY
 	db 16, FURY_STRIKES ; FURY_SWIPES
 	db 20, DIG
@@ -1035,7 +1035,7 @@ DugtrioPlainLearnset:
 	db 1, STRIKE ; SCRATCH
 	db 1, SAND_ATTACK
 	db 4, GROWL
-;	db 8, ASTONISH
+	db 8, ASTONISH
 	db 12, AGILITY
 	db 16, FURY_STRIKES ; FURY_SWIPES
 	db 20, DIG
@@ -1051,7 +1051,7 @@ DugtrioAlolanLearnset:
 	db 1, METAL_CLAW
 	db 1, SAND_ATTACK
 	db 4, GROWL
-;	db 8, ASTONISH
+	db 8, ASTONISH
 	db 12, AGILITY
 	db 16, FURY_STRIKES ; FURY_SWIPES
 	db 20, DIG
@@ -1521,7 +1521,7 @@ PonytaGalarianLearnset:
 	db 1, STRIKE ; TACKLE
 	db 1, LEER ; TAIL_WHIP
 	db 5, CONFUSION
-;	db 10, FAIRY_WIND
+	db 10, FAIRY_WIND
 	db 15, DOUBLE_KICK
 	db 20, STOMP
 	db 26, PSYBEAM
@@ -1555,7 +1555,7 @@ RapidashGalarianLearnset:
 	db 1, STRIKE ; TACKLE
 	db 1, LEER ; TAIL_WHIP
 	db 5, CONFUSION
-;	db 10, FAIRY_WIND
+	db 10, FAIRY_WIND
 	db 15, DOUBLE_KICK
 	db 20, STOMP
 	db 26, PSYBEAM
@@ -1819,7 +1819,7 @@ CloysterLearnset:
 GastlyLearnset:
 	db 1, HYPNOSIS
 	db 1, LICK
-;	db 3, ASTONISH
+	db 3, ASTONISH
 	db 7, CONFUSE_RAY
 	db 10, POISON_GAS
 	db 14, NIGHT_SHADE
@@ -1834,7 +1834,7 @@ HaunterLearnset:
 GengarLearnset:
 	db 1, HYPNOSIS
 	db 1, LICK
-;	db 3, ASTONISH
+	db 3, ASTONISH
 	db 7, CONFUSE_RAY
 	db 10, POISON_GAS
 	db 14, NIGHT_SHADE
@@ -1947,7 +1947,7 @@ ElectrodePlainLearnset:
 	db 60, EXPLOSION
 	db 0 ; no more level-up moves
 ElectrodeHisuianLearnset:
-;	db $FF, CHLOROBLAST
+	db $FF, CHLOROBLAST
 	db 1, STRIKE
 	db 4, LIGHT_SCREEN
 	db 9, THUNDERSHOCK
@@ -2098,7 +2098,7 @@ KoffingLearnset:
 	db 0 ; no more level-up moves
 WeezingGalarianLearnset:
 	db $FF, STRANGESTEAM
-;	db 1, FAIRY_WIND
+	db 1, FAIRY_WIND
 WeezingPlainLearnset:
 	db 1, POISON_GAS
 	db 1, STRIKE
@@ -2398,7 +2398,7 @@ ScizorLearnset:
 	db 44, CLOSE_COMBAT
 	db 0 ; no more level-up moves
 KleavorLearnset:
-;	db $FF, STONE_AXE
+	db $FF, STONE_AXE
 	db 1, QUICK_ATTACK
 	db 1, LEER
 	db 7, FURY_CUTTER
@@ -2768,7 +2768,7 @@ UmbreonLearnset:
 	db 12, DOUBLE_KICK
 	db 15, CHARM
 	db 18, CONFUSE_RAY
-;	db 21, SNARL
+	db 21, SNARL
 	db 24, HEALINGLIGHT
 	db 27, TAKE_DOWN
 	db 28, TAUNT
@@ -2821,7 +2821,7 @@ GlaceonLearnset:
 	db 35, BLIZZARD
 	db 0 ; no more level-up moves
 SylveonLearnset:
-;	db $FF, FAIRY_WIND
+	db $FF, FAIRY_WIND
 	db 1, YAWN
 	db 1, CHARM
 	db 1, SWIFT
@@ -3314,7 +3314,7 @@ TogepiLearnset:
 	db 40, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 TogeticLearnset:
-;	db $FF, FAIRY_WIND
+	db $FF, FAIRY_WIND
 	db 1, GROWL
 	db 1, STRIKE
 	db 6, METRONOME
@@ -3329,7 +3329,7 @@ TogeticLearnset:
 	db 0 ; no more level-up moves
 TogekissLearnset:
 	db $FF, AIR_SLASH
-;	db 1, FAIRY_WIND
+	db 1, FAIRY_WIND
 	db 1, NASTY_PLOT
 	db 1, SKY_ATTACK
 	db 1, TRI_ATTACK
@@ -3449,7 +3449,7 @@ AzumarillLearnset:
 HoppipLearnset:
 	db 1, STRIKE
 	db 4, LEER
-;	db 8, FAIRY_WIND
+	db 8, FAIRY_WIND
 	db 12, POISONPOWDER
 	db 12, STUN_SPORE
 	db 12, SLEEP_POWDER
@@ -3463,7 +3463,7 @@ HoppipLearnset:
 SkiploomLearnset:
 	db 1, STRIKE
 	db 4, LEER
-;	db 8, FAIRY_WIND
+	db 8, FAIRY_WIND
 	db 12, POISONPOWDER
 	db 12, STUN_SPORE
 	db 12, SLEEP_POWDER
@@ -3477,7 +3477,7 @@ SkiploomLearnset:
 JumpluffLearnset:
 	db 1, STRIKE
 	db 4, LEER
-;	db 8, FAIRY_WIND
+	db 8, FAIRY_WIND
 	db 12, POISONPOWDER
 	db 12, STUN_SPORE
 	db 12, SLEEP_POWDER
@@ -3596,13 +3596,13 @@ HonchkrowLearnset:
 	db $FF, NIGHT_SLASH
 MurkrowLearnset:
 	db 1, PECK
-;	db 1, ASTONISH
+	db 1, ASTONISH
 	db 6, GUST
 	db 11, HAZE
 	db 16, PURSUIT
 	db 21, WING_ATTACK
 	db 26, NIGHT_SHADE
-;	db 31, SNARL
+	db 31, SNARL
 	db 36, TAUNT
 	db 41, FOUL_PLAY
 	db 46, SUCKER_PUNCH
@@ -3611,7 +3611,7 @@ MisdreavusLearnset:
 MismagiusLearnset:
 	db 1, GROWL
 	db 1, CONFUSION
-;	db 8, ASTONISH
+	db 8, ASTONISH
 	db 16, HYPNOSIS
 	db 24, CONFUSE_RAY
 	db 32, PSYBEAM

@@ -89,21 +89,21 @@ EvolveAfterBattle_MasterLoop:
 
 	ld a, b
 	cp EVOLVE_CRIT
-	jmp z, .crit
+	jmp z, .crit			; branch to checking number of critical hits
 	cp EVOLVE_HOLDING
-	jmp z, .holding
+	jmp z, .holding			; branch to checking held item
 	cp EVOLVE_LOCATION
-	jmp z, .location
+	jmp z, .location		; branch to checking current map
 	cp EVOLVE_MOVE
-	jmp z, .move
+	jmp z, .move			; branch to checking mon's moveset
 	cp EVOLVE_EVS
-	jmp z, .evs
+	jmp z, .evs				; branch to checking mon's EVs
 	cp EVOLVE_LEVEL
-	jmp z, .level
+	jmp z, .level			; branch to checking mon's level
 	cp EVOLVE_HAPPINESS
-	jr z, .happiness
+	jr z, .happiness		; branch to checking mon's happiness
 
-; EVOLVE_STAT
+; EVOLVE_STAT (Tyrogue)
 	ld a, [wTempMonLevel]
 	cp [hl]
 	jmp c, .dont_evolve_1

@@ -3,12 +3,10 @@ BattleAnimations::
 	table_width 2, BattleAnimations
 	dw BattleAnim_0
 	dw BattleAnim_Scratch ; Variable (Pound, Scratch, Tackle)
-	dw BattleAnim_PayDay
 	dw BattleAnim_FirePunch
 	dw BattleAnim_IcePunch
 	dw BattleAnim_Thunderpunch
 	dw BattleAnim_ViseGrip
-	dw BattleAnim_RazorWind
 	dw BattleAnim_SwordsDance
 	dw BattleAnim_Gust
 	dw BattleAnim_WingAttack
@@ -97,18 +95,15 @@ BattleAnimations::
 	dw BattleAnim_FireBlast
 	dw BattleAnim_Waterfall
 	dw BattleAnim_Swift
-	dw BattleAnim_SkullBash
 	dw BattleAnim_Amnesia
 	dw BattleAnim_HiJumpKick
 	dw BattleAnim_Glare
 	dw BattleAnim_DreamEater
 	dw BattleAnim_PoisonGas
 	dw BattleAnim_LeechLife
-	dw BattleAnim_LovelyKiss
 	dw BattleAnim_SkyAttack
 	dw BattleAnim_Transform
 	dw BattleAnim_Spore
-	dw BattleAnim_Splash
 	dw BattleAnim_AcidArmor
 	dw BattleAnim_Crabhammer
 	dw BattleAnim_Explosion
@@ -171,6 +166,7 @@ BattleAnimations::
 	dw BattleAnim_HyperVoice
 	dw BattleAnim_PoisonFang ; Currently uses Bug Bite. Need to edit
 	dw BattleAnim_MeteorMash ; Currently uses Mega Punch
+	dw BattleAnim_Astonish
 	dw BattleAnim_WeatherBall
 	dw BattleAnim_SignalBeam ; Currently uses Ice Beam
 	dw BattleAnim_AerialAce
@@ -241,11 +237,13 @@ BattleAnimations::
 	dw BattleAnim_WildCharge
 	dw BattleAnim_DrillRun ; DRILL_RUN - Need new animation
 	dw BattleAnim_Hurricane
+	dw BattleAnim_Growl ; SNARL
 	dw BattleAnim_IcicleCrash
 	dw BattleAnim_FellStinger ; Uses Twineedle. Need to change
 	dw BattleAnim_FreezeDry ; Uses Hail. Need to change
 	dw BattleAnim_DisarmVoice
 	dw BattleAnim_PlayRough
+	dw BattleAnim_Gust ; FAIRY_WIND
 	dw BattleAnim_DrainKiss
 	dw BattleAnim_Moonblast
 	dw BattleAnim_DazzlinGleam
@@ -255,6 +253,8 @@ BattleAnimations::
 	dw BattleAnim_Liquidation ; Uses Waterfall. Need to change
 	dw BattleAnim_DuoIronBash ; Uses Comet Punch. Need to edit.
 	dw BattleAnim_StrangeSteam ; Uses Smokescreen. Need to edit.
+	dw BattleAnim_StoneEdge ; Stone Axe
+	dw BattleAnim_Explosion ; Chloroblast
 	dw BattleAnim_RageFist ; Currently uses Rage
 	dw BattleAnim_Struggle
 	assert_table_length NUM_ATTACKS + 1
@@ -1385,7 +1385,6 @@ BattleAnim_Thunder:
 	anim_ret
 
 BattleAnim_AirSlash:
-BattleAnim_RazorWind:
 	anim_1gfx ANIM_GFX_WHIP
 	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $1, $0
 .loop
@@ -2903,6 +2902,7 @@ BattleAnim_Flash:
 	anim_ret
 
 ; Astonish animation from Pokémon Prism
+BattleAnim_Astonish:
 BattleAnim_FakeOut:
 	anim_1gfx ANIM_GFX_HIT
 	anim_call BattleAnim_FollowEnemyFeet_0

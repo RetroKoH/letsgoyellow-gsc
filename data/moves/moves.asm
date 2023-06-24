@@ -13,12 +13,10 @@ Moves::
 ; entries correspond to move ids (see constants/move_constants.asm)
 	table_width MOVE_LENGTH, Moves
 	move STRIKE,       EFFECT_NORMAL_HIT,         40, NORMAL,    100, 35,   0, PHYSICAL ; POUND, SCRATCH, TACKLE - Animation depends on user
-	move PAY_DAY,      EFFECT_PAY_DAY,            40, NORMAL,    100, 20,   0, PHYSICAL ; Replace with Stone Axe
 	move FIRE_PUNCH,   EFFECT_BURN_HIT,           75, FIRE,      100, 15,  10, PHYSICAL
 	move ICE_PUNCH,    EFFECT_FREEZE_HIT,         75, ICE,       100, 15,  10, PHYSICAL
 	move THUNDERPUNCH, EFFECT_PARALYZE_HIT,       75, ELECTRIC,  100, 15,  10, PHYSICAL
 	move VISE_GRIP,    EFFECT_SPEED_DOWN_HIT,     65, NORMAL,    100, 20,   0, PHYSICAL ; Mirrors Bubble Beam and Low Sweep
-	move RAZOR_WIND,   EFFECT_RAZOR_WIND,        130, NORMAL,    100, 10,   0, SPECIAL ; Replace with Astonish
 	move SWORDS_DANCE, EFFECT_ATTACK_UP_2,         0, NORMAL,    100, 20,   0, STATUS
 	move GUST,         EFFECT_GUST,               40, FLYING,    100, 35,   0, SPECIAL
 	move WING_ATTACK,  EFFECT_NORMAL_HIT,         60, FLYING,    100, 35,   0, PHYSICAL
@@ -107,18 +105,15 @@ Moves::
 	move FIRE_BLAST,   EFFECT_BURN_HIT,          110, FIRE,       85,  5,  10, SPECIAL
 	move WATERFALL,    EFFECT_FLINCH_HIT,         80, WATER,     100, 15,  20, PHYSICAL
 	move SWIFT,        EFFECT_ALWAYS_HIT,         60, NORMAL,    100, 20,   0, SPECIAL
-	move SKULL_BASH,   EFFECT_SKULL_BASH,        130, NORMAL,    100, 10,   0, PHYSICAL ; Replace with Chloroblast
 	move AMNESIA,      EFFECT_SP_DEF_UP_2,         0, PSYCHIC,   100, 20,   0, STATUS
 	move HI_JUMP_KICK, EFFECT_JUMP_KICK,         120, FIGHTING,   90, 10,   0, PHYSICAL
 	move GLARE,        EFFECT_PARALYZE,            0, NORMAL,    100, 30,   0, STATUS
 	move DREAM_EATER,  EFFECT_DREAM_EATER,       100, PSYCHIC,   100, 15,   0, SPECIAL
 	move POISON_GAS,   EFFECT_POISON,              0, POISON,    100, 40,   0, STATUS
 	move LEECH_LIFE,   EFFECT_LEECH_HIT,          80, BUG,       100, 10,   0, PHYSICAL
-	move LOVELY_KISS,  EFFECT_SLEEP,               0, NORMAL,     75, 10,   0, STATUS
 	move SKY_ATTACK,   EFFECT_SOLAR_BEAM,        160, FLYING,     90, 5,    0, PHYSICAL ; Charge up, Crit Hit, 30% Flinch
 	move TRANSFORM,    EFFECT_TRANSFORM,           0, NORMAL,    100, 10,   0, STATUS
 	move SPORE,        EFFECT_SLEEP,               0, GRASS,     100, 15,   0, STATUS
-	move SPLASH,       EFFECT_SPLASH,              0, NORMAL,    100, 40,   0, STATUS ; Replace with Fairy Wind
 	move ACID_ARMOR,   EFFECT_DEFENSE_UP_2,        0, POISON,    100, 40,   0, STATUS
 	move CRABHAMMER,   EFFECT_NORMAL_HIT,        100, WATER,      90, 10,   0, PHYSICAL
 	move EXPLOSION,    EFFECT_EXPLOSION,         250, NORMAL,    100,  5,   0, PHYSICAL
@@ -181,6 +176,7 @@ Moves::
 	move HYPER_VOICE,  EFFECT_NORMAL_HIT,         90, NORMAL,    100, 10,   0, SPECIAL
 	move POISON_FANG,  EFFECT_POISON_HIT,         60, POISON,    100, 15, 100, PHYSICAL
 	move METEOR_MASH,  EFFECT_ATTACK_UP_HIT,      90, STEEL,      90, 10,  20, PHYSICAL
+	move ASTONISH,     EFFECT_FLINCH_HIT,         40, GHOST,     100, 15,  30, PHYSICAL ; < NEW MOVE
 	move WEATHER_BALL, EFFECT_WEATHER_BALL,       50, NORMAL,    100, 15,   0, SPECIAL
 	move SIGNAL_BEAM,  EFFECT_CONFUSE_HIT,        75, BUG,       100, 15,  10, SPECIAL
 	move AERIAL_ACE,   EFFECT_ALWAYS_HIT,         60, FLYING,    100, 20,   0, PHYSICAL
@@ -251,11 +247,13 @@ Moves::
 	move WILD_CHARGE,  EFFECT_RECOIL_HIT,         90, ELECTRIC,  100, 15,   0, PHYSICAL
 	move DRILL_RUN,    EFFECT_NORMAL_HIT,         80, GROUND,     95, 10,   0, PHYSICAL
 	move HURRICANE,    EFFECT_CONFUSE_HIT,       110, FLYING,     70, 10,  30, SPECIAL
+	move SNARL,        EFFECT_SP_ATK_DOWN_HIT,    55, DARK,       95, 10, 100, SPECIAL ; < NEW MOVE
 	move ICICLE_CRASH, EFFECT_FLINCH_HIT,         85, ICE,        90, 10,  30, PHYSICAL
 	move FELL_STINGER, EFFECT_NORMAL_HIT,         50, BUG,       100, 25,   0, PHYSICAL
 	move FREEZE_DRY,   EFFECT_FREEZE_HIT,         75, ICE,       100, 20,  10, SPECIAL
 	move DISARM_VOICE, EFFECT_ALWAYS_HIT,         60, FAIRY,     100, 15,   0, SPECIAL
 	move PLAY_ROUGH,   EFFECT_ATTACK_DOWN_HIT,    90, FAIRY,      90, 10,  10, PHYSICAL
+	move FAIRY_WIND,   EFFECT_NORMAL_HIT,         40, FAIRY,     100, 30,   0, SPECIAL ; < NEW MOVE
 	move DRAIN_KISS,   EFFECT_LEECH_HIT,          50, FAIRY,     100, 10,   0, SPECIAL
 	move MOONBLAST,    EFFECT_SP_ATK_DOWN_HIT,    95, FAIRY,     100, 15,  30, SPECIAL
 	move DAZZLINGLEAM, EFFECT_ACCURACY_DOWN_HIT,  65, FAIRY,     100, 10,  50, SPECIAL
@@ -265,9 +263,8 @@ Moves::
 	move LIQUIDATION,  EFFECT_DEFENSE_DOWN_HIT,   85, WATER,     100, 10,  20, PHYSICAL
 	move DUOIRONBASH,  EFFECT_DUO_IRON_BASH,      60, STEEL,     100,  5,  30, PHYSICAL
 	move STRANGESTEAM, EFFECT_CONFUSE_HIT,        90, FAIRY,      95, 10,  20, SPECIAL
+	move STONE_AXE,    EFFECT_NORMAL_HIT,         65, ROCK,       90, 10,   0, PHYSICAL ; < NEW MOVE
+	move CHLOROBLAST,  EFFECT_RECOIL_HIT,        150, GRASS,      95,  5,   0, SPECIAL  ; < NEW MOVE
 	move RAGE_FIST,    EFFECT_RAGE_FIST,          20, GHOST,     100, 10,   0, PHYSICAL ; Further test scaling effect.
 	move STRUGGLE,     EFFECT_RECOIL_HIT,         50, UNKNOWN_T, 100,  1,   0, PHYSICAL
 	assert_table_length NUM_ATTACKS
-
-; Add Stone Axe, Fairy Wind, Chloroblast, Astonish, Snarl.
-; Remove Razor Wind, Skull Bash, Pay Day, Splash. Possibly Supersonic

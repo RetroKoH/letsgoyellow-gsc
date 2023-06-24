@@ -7,5 +7,6 @@ SoundMoves::
 	db ROAR
 	db SCREECH
 	db SING
+	db SNARL
 	db SUPERSONIC
 	db -1

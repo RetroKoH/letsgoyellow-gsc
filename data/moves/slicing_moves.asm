@@ -8,6 +8,6 @@ SlicingMoves:
 	db PSYCHO_CUT
 	db RAZOR_LEAF
 	db SLASH
-;	db STONE_AXE
+	db STONE_AXE
 	db X_SCISSOR
 	db -1

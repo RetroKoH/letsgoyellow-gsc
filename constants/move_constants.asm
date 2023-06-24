@@ -7,12 +7,10 @@
 	const_def
 	const NO_MOVE      ; $00
 	const STRIKE       ; $01 - POUND, SCRATCH, TACKLE
-	const PAY_DAY      ; $02
 	const FIRE_PUNCH   ; $03
 	const ICE_PUNCH    ; $04
 	const THUNDERPUNCH ; $05
 	const VISE_GRIP    ; $06
-	const RAZOR_WIND   ; $07
 	const SWORDS_DANCE ; $08
 	const GUST         ; $09
 	const WING_ATTACK  ; $0a
@@ -101,18 +99,15 @@
 	const FIRE_BLAST   ; $5d
 	const WATERFALL    ; $5e
 	const SWIFT        ; $5f
-	const SKULL_BASH   ; $60
 	const AMNESIA      ; $61
 	const HI_JUMP_KICK ; $62
 	const GLARE        ; $63
 	const DREAM_EATER  ; $64
 	const POISON_GAS   ; $65
 	const LEECH_LIFE   ; $66
-	const LOVELY_KISS  ; $67
 	const SKY_ATTACK   ; $68
 	const TRANSFORM    ; $69
 	const SPORE        ; $6a
-	const SPLASH       ; $6b
 	const ACID_ARMOR   ; $6c
 	const CRABHAMMER   ; $6d
 	const EXPLOSION    ; $6e
@@ -175,6 +170,7 @@
 	const HYPER_VOICE  ; $a7
 	const POISON_FANG  ; $a8
 	const METEOR_MASH  ; $a9
+	const ASTONISH     ; NEW MOVE
 	const WEATHER_BALL ; $aa
 	const SIGNAL_BEAM  ; $ab
 	const AERIAL_ACE   ; $ac
@@ -245,11 +241,13 @@
 	const WILD_CHARGE  ; $ed
 	const DRILL_RUN    ; $ee
 	const HURRICANE    ; $ef
+	const SNARL        ; NEW MOVE
 	const ICICLE_CRASH ; $f0
 	const FELL_STINGER ; $f1
 	const FREEZE_DRY   ; $f2
 	const DISARM_VOICE ; $f3
 	const PLAY_ROUGH   ; $f4
+	const FAIRY_WIND   ; NEW MOVE
 	const DRAIN_KISS   ; $f5 - Replace with FAIRY_WIND (Or not?)
 	const MOONBLAST    ; $f6
 	const DAZZLINGLEAM ; $f7
@@ -259,6 +257,8 @@
 	const LIQUIDATION  ; $fb
 	const DUOIRONBASH  ; $fc
 	const STRANGESTEAM ; $fd
+	const STONE_AXE    ; NEW MOVE
+	const CHLOROBLAST  ; NEW MOVE
 	const RAGE_FIST    ; $fe
 	const STRUGGLE     ; $ff
 NUM_ATTACKS EQU const_value - 1

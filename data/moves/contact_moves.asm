@@ -1,6 +1,7 @@
 ContactMoves:
 	db ACROBATICS
 	db AERIAL_ACE
+	db ASTONISH
 	db AQUA_JET
 	db AQUA_TAIL
 	db AVALANCHE
@@ -70,7 +71,6 @@ ContactMoves:
 	db POISON_FANG
 	db POISON_JAB
 	db POWER_WHIP
-;	db PSYCHO_CUT
 	db PURSUIT
 	db QUICK_ATTACK
 	db RAGE_FIST
@@ -82,7 +82,7 @@ ContactMoves:
 	db SLASH
 	db SMART_STRIKE
 	db STOMP
-;	db STONE_AXE
+	db STONE_AXE
 	db STRIKE ; POUND, SCRATCH, TACKLE
 	db SUCKER_PUNCH
 	db SUPER_FANG

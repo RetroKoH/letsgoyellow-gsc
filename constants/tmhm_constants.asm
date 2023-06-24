@@ -91,7 +91,7 @@ ENDM
 	add_tm LOW_SWEEP    ; $46
 	add_tm ACROBATICS   ; $47
 	add_tm BULLDOZE     ; $48
-	add_tm SMART_STRIKE ; $49 - RECONSIDER???
+	add_tm SMART_STRIKE ; $49
 	add_tm AURORA_VEIL  ; $4a
 NUM_TMS = __tm_value__ - 1
 

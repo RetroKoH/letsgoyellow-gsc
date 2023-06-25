@@ -1,5 +1,5 @@
 	db "Bird@" ; species name
-	dw 307, 660 ; height, width
+	dw 307, 660 ; height, weight
 
 	db   "It slowly flies in"
 	next "a circular pat-"

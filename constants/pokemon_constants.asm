@@ -172,15 +172,15 @@
 	const MEWTWO     ; 96
 	const MEW        ; 97
 
-	const CHIKORITA  ; 98 - REPLACE with Hoppip
-	const BAYLEEF    ; 99 - REPLACE with Skiploom
-	const MEGANIUM   ; 9a - REPLACE with Jumpluff
-	const CYNDAQUIL  ; 9b - REPLACE with Ledyba
-	const QUILAVA    ; 9c - REPLACE with Ledian
-	const TYPHLOSION ; 9d - REPLACE with Skarmory
-	const TOTODILE   ; 9e - REPLACE with Azurill
-	const CROCONAW   ; 9f - REPLACE with Marill
-	const FERALIGATR ; a0 - REPLACE with Azumarill
+	const HOPPIP     ; 98 - REPLACE with Hoppip
+	const SKIPLOOM   ; 99 - REPLACE with Skiploom
+	const JUMPLUFF   ; 9a - REPLACE with Jumpluff
+	const LEDYBA     ; 9b - REPLACE with Ledyba
+	const LEDIAN     ; 9c - REPLACE with Ledian
+	const SKARMORY   ; 9d - REPLACE with Skarmory
+	const AZURILL    ; 9e - REPLACE with Azurill
+	const MARILL     ; 9f - REPLACE with Marill
+	const AZUMARILL  ; a0 - REPLACE with Azumarill
 	const SENTRET    ; a1 - keep
 	const FURRET     ; a2 - keep
 	const HOOTHOOT   ; a3 - keep

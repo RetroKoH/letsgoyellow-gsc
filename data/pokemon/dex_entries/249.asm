@@ -1,5 +1,5 @@
 	db "Diving@" ; species name
-	dw 1701, 4760 ; height, width
+	dw 1701, 4760 ; height, weight
 
 	db   "It has an incred-"
 	next "ible ability to"

@@ -1,5 +1,5 @@
 	db "Blast@" ; species name
-	dw 503, 1499 ; height, width
+	dw 503, 1499 ; height, weight
 
 	db   "It blasts fire-"
 	next "balls of over 3600"

@@ -57,31 +57,31 @@ CheckPartyTechnique: ; c742
 TechniquePointers::
 	table_width 2, TechniquePointers
 	dw TechniqueChop		; BULBASAUR
-	dw IvysaurTechniques
+	dw IvysaurTechniques	; IVYSAUR
 	dw IvysaurTechniques	; VENUSAUR
 	dw TechniqueChop		; CHARMANDER
 	dw TechniqueChop		; CHARMELEON
-	dw CharizardTechniques
+	dw CharizardTechniques	; CHARIZARD
 	dw NoTechniques			; SQUIRTLE
 	dw NoTechniques			; WARTORTLE
-	dw BlastoiseTechniques
+	dw BlastoiseTechniques	; BLASTOISE
 	dw NoTechniques			; CATERPIE
 	dw NoTechniques			; METAPOD
-	dw ButterfreeTechniques
+	dw ButterfreeTechniques	; BUTTERFREE
 	dw NoTechniques			; WEEDLE
 	dw NoTechniques			; KAKUNA
-	dw BeedrillTechniques
+	dw BeedrillTechniques	; BEEDRILL
 	dw NoTechniques			; PIDGEY
 	dw TechniqueSoar		; PIDGEOTTO
 	dw TechniqueSoar		; PIDGEOT
 	dw NoTechniques			; RATTATA
-	dw RaticateTechniques
+	dw RaticateTechniques	; RATICATE
 	dw NoTechniques			; SPEAROW
 	dw TechniqueSoar		; FEAROW
 	dw NoTechniques			; EKANS
 	dw TechniquePush		; ARBOK
 	dw TechniqueGlow		; PIKACHU
-	dw RaichuTechniques
+	dw RaichuTechniques		; RAICHU
 	dw TechniqueChop		; SANDSHREW
 	dw RaticateTechniques	; SANDSLASH
 	dw NoTechniques			; NIDORAN-F
@@ -90,8 +90,8 @@ TechniquePointers::
 	dw NoTechniques			; NIDORAN-M
 	dw NoTechniques			; NIDORINO
 	dw TechniquePush		; NIDOKING
-	dw ClefairyTechniques
-	dw ClefableTechniques
+	dw ClefairyTechniques	; CLEFAIRY
+	dw ClefableTechniques	; CLEFABLE
 	dw NoTechniques			; VULPIX
 	dw NoTechniques			; NINETALES
 	dw ClefairyTechniques	; JIGGLYPUFF
@@ -99,7 +99,7 @@ TechniquePointers::
 	dw NoTechniques			; ZUBAT
 	dw NoTechniques			; GOLBAT
 	dw TechniqueChop		; ODDISH
-	dw GloomTechniques
+	dw GloomTechniques		; GLOOM
 	dw GloomTechniques		; VILEPLUME
 	dw BeedrillTechniques	; PARAS
 	dw GloomTechniques		; PARASECT
@@ -110,7 +110,7 @@ TechniquePointers::
 	dw TechniqueGlow		; MEOWTH
 	dw TechniqueGlow		; PERSIAN
 	dw TechniqueGlow		; PSYDUCK
-	dw GolduckTechniques
+	dw GolduckTechniques	; GOLDUCK
 	dw NoTechniques			; MANKEY
 	dw TechniquePush		; PRIMEAPE
 	dw NoTechniques			; GROWLITHE
@@ -118,7 +118,7 @@ TechniquePointers::
 	dw NoTechniques			; POLIWAG
 	dw TechniqueSwim		; POLIWHIRL
 	dw BlastoiseTechniques	; POLIWRATH
-	dw AbraTechniques
+	dw AbraTechniques		; ABRA
 	dw AbraTechniques		; KADABRA
 	dw AbraTechniques		; ALAKAZAM
 	dw TechniquePush		; MACHOP
@@ -128,14 +128,14 @@ TechniquePointers::
 	dw GloomTechniques		; WEEPINBELL
 	dw GloomTechniques		; VICTREEBEL
 	dw TechniqueChop		; TENTACOOL
-	dw TentacruelTechniques
+	dw TentacruelTechniques	; TENTACRUEL
 	dw NoTechniques			; GEODUDE
 	dw TechniquePush		; GRAVELER
 	dw TechniquePush		; GOLEM
 	dw NoTechniques			; PONYTA
 	dw NoTechniques			; RAPIDASH
 	dw AbraTechniques		; SLOWPOKE
-	dw SlowbroTechniques
+	dw SlowbroTechniques	; SLOWBRO
 	dw AbraTechniques		; MAGNEMITE
 	dw AbraTechniques		; MAGNETON
 	dw TechniqueChop		; FARFETCHD
@@ -154,11 +154,11 @@ TechniquePointers::
 	dw AbraTechniques		; DROWZEE
 	dw AbraTechniques		; HYPNO
 	dw TechniqueChop		; KRABBY
-	dw KinglerTechniques
+	dw KinglerTechniques	; KINGLER
 	dw AbraTechniques		; VOLTORB
 	dw AbraTechniques		; ELECTRODE
 	dw NoTechniques			; EXEGGCUTE
-	dw ExeggutorTechniques
+	dw ExeggutorTechniques	; EXEGGUTOR
 	dw NoTechniques			; CUBONE
 	dw TechniquePush		; MAROWAK
 	dw TechniquePush		; HITMONLEE
@@ -167,7 +167,7 @@ TechniquePointers::
 	dw TechniqueGlow		; WEEZING
 	dw TechniquePush		; RHYHORN
 	dw BlastoiseTechniques	; RHYDON
-	dw ChanseyTechniques
+	dw ChanseyTechniques	; CHANSEY
 	dw GloomTechniques		; TANGELA
 	dw TechniquePush		; KANGASKHAN
 	dw NoTechniques			; HORSEA
@@ -176,7 +176,7 @@ TechniquePointers::
 	dw NoTechniques			; TOGETIC
 	dw TechniqueSoar		; TOGEKISS
 	dw AbraTechniques		; STARYU
-	dw StarmieTechniques
+	dw StarmieTechniques	; STARMIE
 	dw AbraTechniques		; MR MIME
 	dw TechniqueSwim		; SCYTHER
 	dw ButterfreeTechniques	; JYNX
@@ -186,7 +186,7 @@ TechniquePointers::
 	dw TechniquePush		; TAUROS
 	dw NoTechniques			; MAGIKARP
 	dw BlastoiseTechniques	; GYARADOS
-	dw LaprasTechniques
+	dw LaprasTechniques		; LAPRAS
 	dw NoTechniques			; DIITO
 	dw NoTechniques			; EEVEE
 	dw NoTechniques			; VAPOREON
@@ -197,25 +197,26 @@ TechniquePointers::
 	dw TechniqueSwim		; OMASTAR
 	dw NoTechniques			; KABUTO
 	dw TentacruelTechniques	; KABUTOPS
-	dw AerodactylTechniques
+	dw AerodactylTechniques	; AERODACTYL
 	dw BlastoiseTechniques	; SNORLAX
 	dw TechniqueSoar		; ARTICUNO
-	dw ZapdosTechniques
+	dw ZapdosTechniques		; ZAPDOS
 	dw TechniqueSoar		; MOLTRES
 	dw NoTechniques			; DRATINI
 	dw TechniqueSwim		; DRAGONAIR
-	dw DragoniteTechniques
-	dw MewtwoTechniques
+	dw DragoniteTechniques	; DRAGONITE
+	dw MewtwoTechniques		; MEWTWO
 	dw AbraTechniques		; MEW
-	dw TechniqueChop		; CHIKORITA
-	dw TechniqueChop		; BAYLEEF
-	dw TechniqueChop		; MEGANIUM
-	dw TechniqueChop		; CYNDAQUIL
-	dw TechniqueChop		; QUILAVA
-	dw RaticateTechniques	; TYPHLOSION
-	dw NoTechniques			; TOTODILE
-	dw NoTechniques			; CROCONAW
-	dw BlastoiseTechniques	; FERALIGATR
+
+	dw NoTechniques			; HOPPIP
+	dw NoTechniques			; SKIPLOOM
+	dw NoTechniques			; JUMPLUFF
+	dw NoTechniques			; LEDYBA
+	dw NoTechniques			; LEDIAN
+	dw NoTechniques			; SKARMORY
+	dw NoTechniques			; AZURILL
+	dw NoTechniques			; MARILL
+	dw NoTechniques			; AZUMARILL
 	dw NoTechniques			; SENTRET
 	dw TechniqueChop		; FURRET
 	dw NoTechniques			; HOOTHOOT
@@ -296,7 +297,7 @@ TechniquePointers::
 	dw ExeggutorTechniques	; ELECTIVIRE
 	dw NoTechniques			; MAGBY
 	dw ExeggutorTechniques	; MAGMORTAR
-	dw MiltankTechniques
+	dw MiltankTechniques	; MILTANK
 	dw ChanseyTechniques	; BLISSEY
 	dw NoTechniques			; KANGASKID
 	dw NoTechniques			; MELTAN

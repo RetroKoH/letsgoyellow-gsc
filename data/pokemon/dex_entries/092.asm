@@ -1,5 +1,5 @@
 	db "Gas@" ; species name
-	dw 403, 2 ; height, width
+	dw 403, 2 ; height, weight
 
 	db   "It wraps its op-"
 	next "ponent in its gas-"

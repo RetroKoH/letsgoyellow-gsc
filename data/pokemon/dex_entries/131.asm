@@ -1,5 +1,5 @@
 	db "Transport@" ; species name
-	dw 802, 4850 ; height, width
+	dw 802, 4850 ; height, weight
 
 	db   "This gentle"
 	next "#mon loves to"

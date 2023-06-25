@@ -1,5 +1,5 @@
 	db "Vine@" ; species name
-	dw 607, 2835 ; height, width
+	dw 607, 2835 ; height, weight
 
 	db   "Its vines grow so"
 	next "profusely that, in"

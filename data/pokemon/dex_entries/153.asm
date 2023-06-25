@@ -1,9 +1,9 @@
-	db "Leaf@" ; species name
-	dw 311, 350 ; height, width
+	db "Cottonweed@" ; species name
+	dw 200, 22 ; height, weight
 
-	db   "The scent that"
-	next "wafts from the"
-	next "leaves on its neck"
-	page "causes anyone who"
-	next "smells it to"
-	next "become energetic.@"
+	db   "As soon as it"
+	next "rains, it closes"
+	next "its flower and"
+	page "hides in the shade"
+	next "of a tree to avoid"
+	next "getting wet.@"

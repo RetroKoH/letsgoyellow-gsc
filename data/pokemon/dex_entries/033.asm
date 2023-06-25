@@ -1,5 +1,5 @@
 	db "Poison Pin@" ; species name
-	dw 211, 430 ; height, width
+	dw 211, 430 ; height, weight
 
 	db   "It is easily"
 	next "agitated and uses"

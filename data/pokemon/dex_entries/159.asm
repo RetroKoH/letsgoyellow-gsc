@@ -1,9 +1,9 @@
-	db "Big Jaw@" ; species name
-	dw 307, 550 ; height, width
+	db "Aqua Mouse@" ; species name
+	dw 104, 187 ; height, weight
 
-	db   "The tips of its"
-	next "fangs are slanted"
-	next "backward. Once"
-	page "those fangs clamp"
-	next "down, the prey has"
-	next "no hope of escape.@"
+	db   "The fur on its"
+	next "body naturally"
+	next "repels water. It"
+	page "can stay dry, even"
+	next "when it plays in"
+	next "the water.@"

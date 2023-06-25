@@ -1,5 +1,5 @@
 	db "Hypnosis@" ; species name
-	dw 503, 1670 ; height, width
+	dw 503, 1670 ; height, weight
 
 	db   "The longer it"
 	next "swings its"

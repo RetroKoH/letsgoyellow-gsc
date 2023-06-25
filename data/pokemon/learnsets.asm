@@ -151,15 +151,15 @@ LearnsetPointers::
 	dw DragoniteLearnset
 	dw MewtwoLearnset
 	dw MewLearnset
-	dw ChikoritaLearnset
-	dw BayleefLearnset
-	dw MeganiumLearnset
-	dw CyndaquilLearnset
-	dw QuilavaLearnset
-	dw TyphlosionLearnset
-	dw TotodileLearnset
-	dw CroconawLearnset
-	dw FeraligatrLearnset
+	dw HoppipLearnset
+	dw SkiploomLearnset
+	dw JumpluffLearnset
+	dw LedybaLearnset
+	dw LedianLearnset
+	dw SkarmoryLearnset
+	dw AzurillLearnset
+	dw MarillLearnset
+	dw AzumarillLearnset
 	dw SentretLearnset
 	dw FurretLearnset
 	dw HoothootLearnset
@@ -3955,23 +3955,7 @@ CorruptionMoveset:
 	db 1, SCREECH;LEECH_LIFE
 	db 0 ; no more level-up moves
 
-ChikoritaLearnset:
-BayleefLearnset:
-MeganiumLearnset:
-CyndaquilLearnset:
-QuilavaLearnset:
-TyphlosionLearnset:
-TotodileLearnset:
-CroconawLearnset:
-FeraligatrLearnset:
-QwilfishLearnset:
-RaikouLearnset:
-EnteiLearnset:
-SuicuneLearnset:
-LugiaLearnset:
-HoOhLearnset:
-CelebiLearnset:
 DittoLearnset:
-NoLearnset::
 	db 1, TRANSFORM
+NoLearnset::
 	db 0 ; no more level-up moves

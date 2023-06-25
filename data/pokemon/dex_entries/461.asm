@@ -1,5 +1,5 @@
 	db "Sharp Claw@" ; species name
-	dw 307, 750 ; height, width
+	dw 307, 750 ; height, weight
 
 	db   "Evolution made it"
 	next "even more devious."

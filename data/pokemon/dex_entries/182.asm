@@ -1,5 +1,5 @@
 	db "Flower@" ; species name
-	dw 104, 130 ; height, width
+	dw 104, 130 ; height, weight
 
 	db   "When these dance"
 	next "together, their"

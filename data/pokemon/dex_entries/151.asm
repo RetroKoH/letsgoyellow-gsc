@@ -1,5 +1,5 @@
 	db "New Species@" ; species name
-	dw 104, 90 ; height, width
+	dw 104, 88 ; height, weight
 
 	db   "Because it can"
 	next "learn any move,"

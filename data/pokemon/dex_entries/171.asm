@@ -1,5 +1,5 @@
 	db "Light@" ; species name
-	dw 311, 500 ; height, width
+	dw 311, 500 ; height, weight
 
 	db   "This #mon uses"
 	next "the bright part of"

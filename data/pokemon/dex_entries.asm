@@ -605,40 +605,40 @@ SECTION "MewPokedexEntry", ROMX
 MewPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/151.asm"
 
-SECTION "ChikoritaPokedexEntry", ROMX
-ChikoritaPokedexEntry::
+SECTION "HoppipPokedexEntry", ROMX
+HoppipPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/152.asm"
 
-SECTION "BayleefPokedexEntry", ROMX
-BayleefPokedexEntry::
+SECTION "SkiploomPokedexEntry", ROMX
+SkiploomPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/153.asm"
 
-SECTION "MeganiumPokedexEntry", ROMX
-MeganiumPokedexEntry::
+SECTION "JumpluffPokedexEntry", ROMX
+JumpluffPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/154.asm"
 
-SECTION "CyndaquilPokedexEntry", ROMX
-CyndaquilPokedexEntry::
+SECTION "LedybaPokedexEntry", ROMX
+LedybaPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/155.asm"
 
-SECTION "QuilavaPokedexEntry", ROMX
-QuilavaPokedexEntry::
+SECTION "LedianPokedexEntry", ROMX
+LedianPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/156.asm"
 
-SECTION "TyphlosionPokedexEntry", ROMX
-TyphlosionPokedexEntry::
+SECTION "SkarmoryPokedexEntry", ROMX
+SkarmoryPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/157.asm"
 
-SECTION "TotodilePokedexEntry", ROMX
-TotodilePokedexEntry::
+SECTION "AzurillPokedexEntry", ROMX
+AzurillPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/158.asm"
 
-SECTION "CroconawPokedexEntry", ROMX
-CroconawPokedexEntry::
+SECTION "MarillPokedexEntry", ROMX
+MarillPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/159.asm"
 
-SECTION "FeraligatrPokedexEntry", ROMX
-FeraligatrPokedexEntry::
+SECTION "AzumarillPokedexEntry", ROMX
+AzumarillPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/160.asm"
 
 SECTION "SentretPokedexEntry", ROMX

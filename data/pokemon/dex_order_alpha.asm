@@ -11,7 +11,8 @@ AlphabeticalPokedexOrder:
 	db ARCANINE
 	db ARIADOS
 	db ARTICUNO
-	db BAYLEEF
+	db AZUMARILL
+	db AZURILL
 	db BEEDRILL
 	db BELLOSSOM
 	db BELLSPROUT
@@ -24,7 +25,6 @@ AlphabeticalPokedexOrder:
 	db CHARIZARD
 	db CHARMANDER
 	db CHARMELEON
-	db CHIKORITA
 	db CHINCHOU
 	db CLEFABLE
 	db CLEFAIRY
@@ -32,9 +32,7 @@ AlphabeticalPokedexOrder:
 	db CLODSIRE
 	db CLOYSTER
 	db CROBAT
-	db CROCONAW
 	db CUBONE
-	db CYNDAQUIL
 	db DEWGONG
 	db DIGLETT
 	db DITTO
@@ -57,7 +55,6 @@ AlphabeticalPokedexOrder:
 	db EXEGGUTOR
 	db FARFETCH_D
 	db FEAROW
-	db FERALIGATR
 	db FLAAFFY
 	db FLAREON
 	db FORRETRESS
@@ -86,6 +83,7 @@ AlphabeticalPokedexOrder:
 	db HITMONTOP
 	db HONCHKROW
 	db HOOTHOOT
+	db HOPPIP
 	db HORSEA
 	db HOUNDOOM
 	db HOUNDOUR
@@ -94,6 +92,7 @@ AlphabeticalPokedexOrder:
 	db IVYSAUR
 	db JIGGLYPUFF
 	db JOLTEON
+	db JUMPLUFF
 	db JYNX
 	db KABUTO
 	db KABUTOPS
@@ -110,6 +109,8 @@ AlphabeticalPokedexOrder:
 	db LAPRAS
 	db LARVITAR
 	db LEAFEON
+	db LEDIAN
+	db LEDYBA
 	db LICKILICKY
 	db LICKITUNG
 	db MACHAMP
@@ -126,8 +127,8 @@ AlphabeticalPokedexOrder:
 	db MAMOSWINE
 	db MANKEY
 	db MAREEP
+	db MARILL
 	db MAROWAK
-	db MEGANIUM
 	db MELMETAL
 	db MELTAN
 	db MEOWTH
@@ -182,7 +183,6 @@ AlphabeticalPokedexOrder:
 	db PSYDUCK
 	db PUPITAR
 	db QUAGSIRE
-	db QUILAVA
 	db RAICHU
 	db RAPIDASH
 	db RATICATE
@@ -201,6 +201,8 @@ AlphabeticalPokedexOrder:
 	db SHELLDER
 	db SHUCKLE
 	db SIRFETCH_D
+	db SKARMORY
+	db SKIPLOOM
 	db SLOWBRO
 	db SLOWKING
 	db SLOWPOKE
@@ -229,8 +231,6 @@ AlphabeticalPokedexOrder:
 	db TOGEKISS
 	db TOGEPI
 	db TOGETIC
-	db TOTODILE
-	db TYPHLOSION
 	db TYRANITAR
 	db TYROGUE
 	db UMBREON

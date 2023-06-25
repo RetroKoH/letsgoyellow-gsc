@@ -1,5 +1,5 @@
 	db "Superpower@" ; species name
-	dw 503, 2870 ; height, width
+	dw 503, 2870 ; height, weight
 
 	db   "With four arms"
 	next "that react more"

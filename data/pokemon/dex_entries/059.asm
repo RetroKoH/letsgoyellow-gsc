@@ -1,5 +1,5 @@
 	db "Legendary@" ; species name
-	dw 603, 3420 ; height, width
+	dw 603, 3420 ; height, weight
 
 	db   "An ancient picture"
 	next "scroll shows that"

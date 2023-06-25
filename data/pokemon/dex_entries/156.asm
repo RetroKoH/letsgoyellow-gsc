@@ -1,9 +1,9 @@
-	db "Volcano@" ; species name
-	dw 211, 420 ; height, width
+	db "Five Star@" ; species name
+	dw 407, 785 ; height, weight
 
-	db   "Before battle, it"
-	next "turns its back on"
-	next "its opponent to"
-	page "demonstrate how"
-	next "ferociously its"
-	next "fire blazes.@"
+	db   "In the daytime"
+	next "when it gets warm,"
+	next "it curls up inside"
+	page "a big leaf and"
+	next "drifts off into"
+	next "a deep slumber.@"

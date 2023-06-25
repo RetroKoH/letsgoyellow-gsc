@@ -165,15 +165,15 @@ EvolutionPointers::
 	dw NoEvolutions ; Dragonite
 	dw NoEvolutions ; Mewtwo
 	dw NoEvolutions ; Mew
-	dw ChikoritaEvolutions
-	dw BayleefEvolutions
-	dw NoEvolutions ; Meganium
-	dw CyndaquilEvolutions
-	dw QuilavaEvolutions
-	dw NoEvolutions
-	dw TotodileEvolutions
-	dw CroconawEvolutions
-	dw NoEvolutions
+	dw HoppipEvolutions
+	dw SkiploomEvolutions
+	dw NoEvolutions ; Jumpluff
+	dw LedybaEvolutions
+	dw NoEvolutions ; Ledian
+	dw NoEvolutions ; Skarmory
+	dw AzurillEvolutions
+	dw MarillEvolutions
+	dw NoEvolutions ; Azumarill
 	dw SentretEvolutions
 	dw NoEvolutions
 	dw HoothootEvolutions
@@ -713,28 +713,24 @@ DragonairEvolutions:
 	evo_data EVOLVE_LEVEL, 55, DRAGONITE
 	db 0 ; no more evolutions
 
-ChikoritaEvolutions:
-	evo_data EVOLVE_LEVEL, 16, BAYLEEF
+HoppipEvolutions:
+	evo_data EVOLVE_LEVEL, 18, SKIPLOOM
 	db 0 ; no more evolutions
 
-BayleefEvolutions:
-	evo_data EVOLVE_LEVEL, 32, MEGANIUM
+SkiploomEvolutions:
+	evo_data EVOLVE_LEVEL, 27, JUMPLUFF
 	db 0 ; no more evolutions
 
-CyndaquilEvolutions:
-	evo_data EVOLVE_LEVEL, 14, QUILAVA
+LedybaEvolutions:
+	evo_data EVOLVE_LEVEL, 18, LEDIAN
 	db 0 ; no more evolutions
 
-QuilavaEvolutions:
-	evo_data EVOLVE_LEVEL, 36, TYPHLOSION
+AzurillEvolutions:
+	evo_data EVOLVE_HAPPINESS, TR_ANYTIME, MARILL
 	db 0 ; no more evolutions
 
-TotodileEvolutions:
-	evo_data EVOLVE_LEVEL, 18, CROCONAW
-	db 0 ; no more evolutions
-
-CroconawEvolutions:
-	evo_data EVOLVE_LEVEL, 30, FERALIGATR
+MarillEvolutions:
+	evo_data EVOLVE_LEVEL, 18, AZUMARILL
 	db 0 ; no more evolutions
 
 SentretEvolutions:

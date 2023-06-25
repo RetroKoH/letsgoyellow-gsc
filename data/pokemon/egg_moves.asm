@@ -487,7 +487,7 @@ DratiniEggMoves:
 	db AQUA_JET
 	db $ff
 
-ChikoritaEggMoves:
+HoppipEggMoves:
 	db LEECH_SEED
 	db VINE_WHIP
 	db ANCIENTPOWER
@@ -497,7 +497,7 @@ ChikoritaEggMoves:
 	db HEAL_BELL
 	db $ff
 
-CyndaquilEggMoves:
+LedybaEggMoves:
 	db DOUBLE_KICK
 	db FLARE_BLITZ
 	db FURY_STRIKES
@@ -506,7 +506,11 @@ CyndaquilEggMoves:
 	db QUICK_ATTACK
 	db $ff
 
-TotodileEggMoves:
+SkarmoryEggMoves:
+	db THRASH
+	db $ff
+
+AzurillEggMoves:
 	db DRAGON_DANCE
 	db METAL_CLAW
 	db CRUNCH

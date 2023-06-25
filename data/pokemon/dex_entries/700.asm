@@ -1,5 +1,5 @@
 	db "Intertwined@" ; species name
-	dw 303, 518 ; height, width
+	dw 303, 518 ; height, weight
 
 	db   "It sends a"
 	next "soothing aura"

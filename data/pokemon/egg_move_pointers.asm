@@ -151,13 +151,13 @@ EggMovePointers::
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw ChikoritaEggMoves
+	dw HoppipEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw CyndaquilEggMoves
+	dw LedybaEggMoves
 	dw NoEggMoves
-	dw NoEggMoves
-	dw TotodileEggMoves
+	dw SkarmoryEggMoves
+	dw AzurillEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw SentretEggMoves

@@ -1,9 +1,9 @@
-	db "Herb@" ; species name
-	dw 511, 2220 ; height, width
+	db "Cottonweed@" ; species name
+	dw 207, 66 ; height, weight
 
-	db   "Anyone who stands"
-	next "beside it becomes"
-	next "refreshed, just as"
-	page "if they were"
-	next "relaxing in a"
-	next "sunny forest.@"
+	db   "Even in the fierc-"
+	next "est wind, it can"
+	next "control its fluff"
+	page "to make its way to"
+	next "any place in the"
+	next "world it wants.@"

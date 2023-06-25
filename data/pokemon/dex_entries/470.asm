@@ -1,5 +1,5 @@
 	db "Verdant@" ; species name
-	dw 303, 562 ; height, width
+	dw 303, 562 ; height, weight
 
 	db   "Just like a plant,"
 	next "it uses photosyn-"

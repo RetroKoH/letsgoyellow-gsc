@@ -1,5 +1,5 @@
 	db "Triple Bird@" ; species name
-	dw 511, 1880 ; height, width
+	dw 511, 1880 ; height, weight
 
 	db   "An enemy that"
 	next "takes its eyes off"

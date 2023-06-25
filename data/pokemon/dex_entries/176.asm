@@ -1,5 +1,5 @@
 	db "Happiness@" ; species name
-	dw 200, 70 ; height, width
+	dw 200, 70 ; height, weight
 
 	db   "Although it does"
 	next "not flap its wings"

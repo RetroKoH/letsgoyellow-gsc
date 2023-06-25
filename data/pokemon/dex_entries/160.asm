@@ -1,9 +1,9 @@
-	db "Big Jaw@" ; species name
-	dw 707, 1960 ; height, width
+	db "Aqua Rabbit@" ; species name
+	dw 207, 628 ; height, weight
 
-	db   "Although it has a"
-	next "massive body, its"
-	next "powerful hind legs"
-	page "enable it to move"
-	next "quickly, even on"
-	next "the ground.@"
+	db   "The bubble-like"
+	next "pattern on its"
+	next "stomach helps it"
+	page "camouflage itself"
+	next "when it's in the"
+	next "water.@"

@@ -1,5 +1,5 @@
 	db "Bone Keeper@" ; species name
-	dw 303, 990 ; height, width
+	dw 303, 990 ; height, weight
 
 	db   "Somewhere in the"
 	next "world is a ceme-"

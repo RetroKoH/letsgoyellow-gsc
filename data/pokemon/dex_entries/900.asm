@@ -1,5 +1,5 @@
 	db "Axe@" ; species name
-	dw 511, 1962 ; height, width
+	dw 511, 1962 ; height, weight
 
 	db   "A violent creature"
 	next "that fells tower-"

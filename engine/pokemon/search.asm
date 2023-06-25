@@ -3,17 +3,17 @@ SpecialBeastsCheck:
 ; They must exist in either party or PC, and have the player's OT and ID.
 ; Return the result in hScriptVar.
 
-	ld a, MEGANIUM
+	ld a, BULBASAUR
 	ldh [hScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, SpecialMonCheckFailed
 
-	ld a, TYPHLOSION
+	ld a, CHARMANDER
 	ldh [hScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, SpecialMonCheckFailed
 
-	ld a, FERALIGATR
+	ld a, SQUIRTLE
 	ldh [hScriptVar], a
 	call CheckOwnMonAnywhere
 	jr nc, SpecialMonCheckFailed

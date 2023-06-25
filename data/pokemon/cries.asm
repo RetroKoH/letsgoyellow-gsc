@@ -157,15 +157,15 @@ PokemonCries::
 	mon_cry CRY_BULBASAUR,   $03c,  $140 ; Dragonite
 	mon_cry CRY_PARAS,       $099,  $17f ; Mewtwo
 	mon_cry CRY_PARAS,       $0ee,  $17f ; Mew
-	mon_cry CRY_CHIKORITA,  -$010,  $0b0 ; Chikorita
-	mon_cry CRY_CHIKORITA,  -$022,  $120 ; Bayleef
-	mon_cry CRY_CHIKORITA,  -$0b7,  $200 ; Meganium
-	mon_cry CRY_CYNDAQUIL,   $347,  $080 ; Cyndaquil
-	mon_cry CRY_CYNDAQUIL,   $321,  $120 ; Quilava
-	mon_cry CRY_TYPHLOSION,  $f00,  $0d4 ; Typhlosion
-	mon_cry CRY_TOTODILE,    $46c,  $0e8 ; Totodile
-	mon_cry CRY_TOTODILE,    $440,  $110 ; Croconaw
-	mon_cry CRY_TOTODILE,    $3fc,  $180 ; Feraligatr
+	mon_cry CRY_BELLOSSOM,   $03b,  $0c8 ; Hoppip
+	mon_cry CRY_BELLOSSOM,   $027,  $138 ; Skiploom
+	mon_cry CRY_BELLOSSOM,   $000,  $180 ; Jumpluff
+	mon_cry CRY_LEDYBA,      $000,  $0de ; Ledyba
+	mon_cry CRY_LEDYBA,     -$096,  $138 ; Ledian
+	mon_cry CRY_AMPHAROS,    $8a9,  $180 ; Skarmory
+	mon_cry CRY_MARILL,      $11b,  $120 ; Azurill
+	mon_cry CRY_MARILL,      $11b,  $120 ; Marill
+	mon_cry CRY_MARILL,      $0b6,  $180 ; Azumarill
 	mon_cry CRY_SENTRET,     $08a,  $0b8 ; Sentret
 	mon_cry CRY_SENTRET,     $06b,  $102 ; Furret
 	mon_cry CRY_HOOTHOOT,    $091,  $0d8 ; Hoothoot

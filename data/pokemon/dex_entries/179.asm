@@ -1,5 +1,5 @@
 	db "Wool@" ; species name
-	dw 200, 170 ; height, width
+	dw 200, 170 ; height, weight
 
 	db   "It stores lots of"
 	next "air in its soft"

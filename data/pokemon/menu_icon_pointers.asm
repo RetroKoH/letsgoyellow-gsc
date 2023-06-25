@@ -152,15 +152,15 @@ IconPointers:
 	dba DragoniteIcon
 	dba MewtwoIcon
 	dba MewIcon
-	dba ChikoritaIcon
-	dba BayleefIcon
-	dba MeganiumIcon
-	dba CyndaquilIcon
-	dba QuilavaIcon
-	dba TyphlosionIcon
-	dba TotodileIcon
-	dba CroconawIcon
-	dba FeraligatrIcon
+	dba HoppipIcon
+	dba SkiploomIcon
+	dba JumpluffIcon
+	dba LedybaIcon
+	dba LedianIcon
+	dba SkarmoryIcon
+	dba AzurillIcon
+	dba MarillIcon
+	dba AzumarillIcon
 	dba SentretIcon
 	dba FurretIcon
 	dba HoothootIcon

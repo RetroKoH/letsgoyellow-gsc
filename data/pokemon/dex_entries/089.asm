@@ -1,5 +1,5 @@
 	db "Sludge@" ; species name
-	dw 311, 660 ; height, width
+	dw 311, 660 ; height, weight
 
 	db   "As it moves, a"
 	next "very strong poison"

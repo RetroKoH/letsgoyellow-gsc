@@ -155,15 +155,15 @@ MenuMonIconColors::
 	iconpal RED, BLUE ; DRAGONITE
 	iconpal PURPLE, GREEN ; MEWTWO
 	iconpal PINK, BLUE ; MEW
-	iconpal GREEN, RED ; CHIKORITA
-	iconpal GREEN, RED ; BAYLEEF
-	iconpal GREEN, RED ; MEGANIUM
-	iconpal RED, PINK ; CYNDAQUIL
-	iconpal RED, PINK ; QUILAVA
-	iconpal RED, PINK ; TYPHLOSION
-	iconpal BLUE, TEAL ; TOTODILE
-	iconpal BLUE, TEAL ; CROCONAW
-	iconpal BLUE, TEAL ; FERALIGATR
+	iconpal RED, GREEN ; HOPPIP
+	iconpal GREEN, PURPLE ; SKIPLOOM
+	iconpal BLUE, PINK ; JUMPLUFF
+	iconpal RED, PINK ; LEDYBA
+	iconpal RED, PINK ; LEDIAN
+	iconpal GRAY, GREEN ; SKARMORY
+	iconpal BLUE, GREEN ; AZURILL
+	iconpal BLUE, GREEN ; MARILL
+	iconpal BLUE, BROWN ; AZUMARILL
 	iconpal BROWN, PURPLE ; SENTRET
 	iconpal BROWN, RED ; FURRET
 	iconpal BROWN, RED ; HOOTHOOT

@@ -1,9 +1,9 @@
-	db "Fire Mouse@" ; species name
-	dw 108, 170 ; height, width
+	db "Five Star@" ; species name
+	dw 303, 238 ; height, weight
 
-	db   "The fire that"
-	next "spouts from its"
-	next "back burns hottest"
-	page "when it is angry."
-	next "The flaring flames"
-	next "intimidate foes.@"
+	db   "It is timid and"
+	next "clusters together"
+	next "with others. The"
+	page "fluid secreted by"
+	next "its feet indicates"
+	next "its location.@"

@@ -151,15 +151,15 @@ BackPicPointers::
 	dba DragoniteBackpic
 	dba MewtwoPlainBackpic
 	dba MewBackpic
-	dba ChikoritaBackpic
-	dba BayleefBackpic
-	dba MeganiumBackpic
-	dba CyndaquilBackpic
-	dba QuilavaBackpic
-	dba TyphlosionBackpic
-	dba TotodileBackpic
-	dba CroconawBackpic
-	dba FeraligatrBackpic
+	dba HoppipBackpic
+	dba SkiploomBackpic
+	dba JumpluffBackpic
+	dba LedybaBackpic
+	dba LedianBackpic
+	dba SkarmoryBackpic
+	dba AzurillBackpic
+	dba MarillBackpic
+	dba AzumarillBackpic
 	dba SentretBackpic
 	dba FurretBackpic
 	dba HoothootBackpic

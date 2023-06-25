@@ -1,5 +1,5 @@
 	db "Goldfish@" ; species name
-	dw 303, 240 ; height, width
+	dw 303, 240 ; height, weight
 
 	db   "During spawning"
 	next "season, they swim"

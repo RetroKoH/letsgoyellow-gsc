@@ -1,5 +1,5 @@
 	db "Thunderbolt@" ; species name
-	dw 511, 3056 ; height, width
+	dw 511, 3056 ; height, weight
 
 	db   "As its electric"
 	next "charge amplifies,"

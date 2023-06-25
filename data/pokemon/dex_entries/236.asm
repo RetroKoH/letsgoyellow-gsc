@@ -1,5 +1,5 @@
 	db "Scuffle@" ; species name
-	dw 204, 460 ; height, width
+	dw 204, 460 ; height, weight
 
 	db   "To brush up on its"
 	next "fighting skills,"

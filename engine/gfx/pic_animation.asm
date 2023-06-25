@@ -854,7 +854,7 @@ GetMonFramesPointer:
 	ld a, h
 	ld [wPokeAnimFramesAddr + 1], a
 	ld a, [wPokeAnimSpecies]
-	cp CHIKORITA
+	cp HOPPIP
 	; a = carry ? BANK(KantoFrames) : BANK(JohtoFrames)
 	assert BANK(KantoFrames) + 1 == BANK(JohtoFrames)
 	sbc a

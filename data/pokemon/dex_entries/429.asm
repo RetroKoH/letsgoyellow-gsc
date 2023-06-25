@@ -1,5 +1,5 @@
 	db "Magical@" ; species name
-	dw 211, 97 ; height, width
+	dw 211, 97 ; height, weight
 
 	db   "Its cries sound"
 	next "like incantations"

@@ -1,5 +1,5 @@
 	db "Fresh Snow@" ; species name
-	dw 207, 571 ; height, width
+	dw 207, 571 ; height, weight
 
 	db   "It causes small"
 	next "ice crystals to"

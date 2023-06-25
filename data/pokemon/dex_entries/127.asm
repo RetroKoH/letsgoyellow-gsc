@@ -1,5 +1,5 @@
 	db "Stag Beetle@" ; species name
-	dw 411, 1210 ; height, width
+	dw 411, 1210 ; height, weight
 
 	db   "When the tempera-"
 	next "ture drops at"

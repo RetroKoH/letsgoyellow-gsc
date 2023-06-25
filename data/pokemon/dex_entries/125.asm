@@ -1,5 +1,5 @@
 	db "Electric@" ; species name
-	dw 307, 660 ; height, width
+	dw 307, 660 ; height, weight
 
 	db   "When two"
 	next "Electabuzz touch,"

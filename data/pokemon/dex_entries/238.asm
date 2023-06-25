@@ -1,5 +1,5 @@
 	db "Kiss@" ; species name
-	dw 311, 1280 ; height, width
+	dw 311, 1280 ; height, weight
 
 	db   "The sensitivity of"
 	next "its lips develops"

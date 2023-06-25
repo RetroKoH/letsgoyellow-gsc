@@ -1,5 +1,5 @@
 	db "Atrocious@" ; species name
-	dw 2104, 5180 ; height, width
+	dw 2104, 5180 ; height, weight
 
 	db   "It appears when-"
 	next "ever there is"

@@ -1,5 +1,5 @@
 	db "Poison Moth@" ; species name
-	dw 411, 280 ; height, width
+	dw 411, 280 ; height, weight
 
 	db   "The scales it"
 	next "scatters will"

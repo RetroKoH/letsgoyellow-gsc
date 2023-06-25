@@ -151,15 +151,15 @@ FrontPicPointers::
 	dba DragoniteFrontpic
 	dba MewtwoPlainFrontpic
 	dba MewFrontpic
-	dba ChikoritaFrontpic
-	dba BayleefFrontpic
-	dba MeganiumFrontpic
-	dba CyndaquilFrontpic
-	dba QuilavaFrontpic
-	dba TyphlosionFrontpic
-	dba TotodileFrontpic
-	dba CroconawFrontpic
-	dba FeraligatrFrontpic
+	dba HoppipFrontpic
+	dba SkiploomFrontpic
+	dba JumpluffFrontpic
+	dba LedybaFrontpic
+	dba LedianFrontpic
+	dba SkarmoryFrontpic
+	dba AzurillFrontpic
+	dba MarillFrontpic
+	dba AzumarillFrontpic
 	dba SentretFrontpic
 	dba FurretFrontpic
 	dba HoothootFrontpic

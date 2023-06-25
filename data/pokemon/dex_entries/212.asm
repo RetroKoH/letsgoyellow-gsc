@@ -1,5 +1,5 @@
 	db "Scissors@" ; species name
-	dw 511, 2600 ; height, width
+	dw 511, 2600 ; height, weight
 
 	db   "This #mon's"
 	next "pincers, which"

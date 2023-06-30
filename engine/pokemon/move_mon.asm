@@ -1157,21 +1157,20 @@ CalcPkmnStats:
 ; 'c' counts from 1-6 and points with 'wBaseStats' to the base value
 ; hl is the path to the EVs - 1
 ; de is a pointer where the 6 stats are placed
-
 	ld c, 0
 .loop
-	inc c
-	call CalcPkmnStatC
+	inc c						; Advance to the next stat
+	call CalcPkmnStatC			; Calculate stat
 	ldh a, [hMultiplicand + 1]
 	ld [de], a
 	inc de
 	ldh a, [hMultiplicand + 2]
-	ld [de], a
+	ld [de], a					; Load calculated stat to [de]
 	inc de
 	ld a, c
-	cp STAT_SDEF
-	jr nz, .loop
-	ret
+	cp STAT_SDEF				; was this the last stat?
+	jr nz, .loop				; if not, loop and run again
+	ret							; if yes, exit
 
 CalcPkmnStatC:
 ; 'c' is 1-6 and points to the BaseStat
@@ -1385,7 +1384,75 @@ CalcPkmnStatC:
 	ldh [hMultiplicand + 1], a
 	ldh a, [hQuotient + 2]
 	ldh [hMultiplicand + 2], a
+
+	; do shadows here
+	xor a
+	ldh [hMultiplicand + 0], a
+	push hl
+	push bc
+	ld bc, MON_SHADOW - MON_DVS
+	add hl, bc ; hl points to Shadow
+	ld a, [hl]
+	and a
+	jr z, .notshadow
+	pop bc
+	push bc
+	call GetShadowStatMultiplier
+	pop bc
+	pop hl
+	ldh [hMultiplier], a
+	call Multiply
+	ldh a, [hProduct + 1]
+	ldh [hDividend + 0], a
+	ldh a, [hProduct + 2]
+	ldh [hDividend + 1], a
+	ldh a, [hProduct + 3]
+	ldh [hDividend + 2], a
+	ld a, 10
+	ldh [hDivisor], a
+	ld a, 3
+	ld b, a
+	call Divide
+	ldh a, [hQuotient + 1]
+	ldh [hMultiplicand + 1], a
+	ldh a, [hQuotient + 2]
+	ldh [hMultiplicand + 2], a
 	jmp PopBCDEHL
+
+.notshadow
+	pop bc
+	pop hl
+	jmp PopBCDEHL
+; End of CalcPkmnStats; Result loaded to [de]
+
+GetShadowStatMultiplier::
+; a is the shadow flag (non-zero means Shadow)
+; c is 1-6 according to the stat (STAT_HP to STAT_SDEF)
+; returns 8 if c is lowered, 12 if raised.
+; (to be used in calculations in CalcPkmnStatC)
+	ld a, c
+	cp STAT_HP
+	jr z, .Unaffected
+	cp STAT_ATK
+	jr z, .BuffPower
+	cp STAT_DEF
+	jr z, .NerfDefense
+	cp STAT_SPD
+	jr z, .Unaffected
+	cp STAT_SATK
+	jr z, .BuffPower
+	cp STAT_SDEF
+	jr z, .NerfDefense
+
+.BuffPower
+	ld a, 12
+	ret
+.NerfDefense
+	ld a, 8
+	ret
+.Unaffected
+	ld a, 10
+	ret
 
 GetNatureStatMultiplier::
 ; a points to Nature

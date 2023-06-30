@@ -1,4 +1,5 @@
 CopyDVsToColorVaryDVs: ; Change this to discolor SHADOW Pokemon
+	ret
 ; e = HPAtkDV
 	ld a, [hli]
 	ld e, a

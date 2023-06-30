@@ -293,7 +293,10 @@ _CGB_StatsScreenHPPals:
 
 	ld a, [wCurPartySpecies]
 	ld bc, wTempMonPersonality
+	push de
+	ld de, wTempMonShadow
 	call GetPlayerOrMonPalettePointer
+	pop de
 	call LoadPalette_White_Col1_Col2_Black
 	push de
 	call VaryBGPal1ForShadows

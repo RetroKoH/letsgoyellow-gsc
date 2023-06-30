@@ -13,6 +13,19 @@ CheckShininess:
 	and a
 	ret
 
+CheckShadow:
+; Check if a mon is shadow w/ byte at de.
+; Return carry if shadow.
+	ld a, [de]
+	and a
+	jr z, .NotShadow
+	scf
+	ret
+
+.NotShadow:
+	and a
+	ret
+
 InitPartyMenuPalettes:
 	ld de, wBGPals1
 	ld hl, PartyMenuBGPals
@@ -448,6 +461,9 @@ GetBattlemonBackpicPalettePointer:
 	farcall GetPartyMonPersonality
 	ld c, l
 	ld b, h
+	farcall GetPartyMonShadow
+	ld e, l
+	ld d, h
 	ld a, [wTempBattleMonSpecies]
 	call GetPlayerOrMonPalettePointer
 	pop de
@@ -458,6 +474,9 @@ GetEnemyFrontpicPalettePointer:
 	farcall GetEnemyMonPersonality
 	ld c, l
 	ld b, h
+	farcall GetEnemyMonShadow
+	ld e, l
+	ld d, h
 	ld a, [wTempEnemyMonSpecies]
 	call GetFrontpicPalettePointer
 	pop de
@@ -532,15 +551,29 @@ GetMonPalettePointer:
 
 GetMonNormalOrShinyPalettePointer:
 	push bc
+;	push de
 	call GetMonPalettePointer
+;	pop de
 	pop bc
 	push hl
 	call CheckShininess
 	pop hl
-	ret nc
+	jr nc, .not_shiny ; return if not shiny
 rept 4
-	inc hl
+	inc hl ; jump to shiny palette
 endr
+
+.not_shiny
+	push hl
+	call CheckShadow
+	pop hl
+	ret nc ; return if not shadow
+
+	ld hl, ShadowPalette ; Temp solution
+;rept 8
+;	inc hl ; jump to shiny palette
+;endr
+
 	ret
 
 LoadPokemonPalette:
@@ -560,6 +593,12 @@ LoadPartyMonPalette:
 	call GetPartyLocation
 	ld c, l
 	ld b, h
+	; de = shadow
+	ld hl, wPartyMon1Shadow
+	ld a, [wCurPartyMon]
+	call GetPartyLocation
+	ld e, l
+	ld d, h
 	; a = species
 	ld a, [wCurPartySpecies]
 	; hl = palette

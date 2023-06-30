@@ -1101,6 +1101,7 @@ _GetCursorMon:
 
 	; Colors
 	ld bc, wTempMonPersonality
+	ld de, wTempMonShadow
 	ld a, [wTempMonIsEgg]
 	bit MON_IS_EGG_F, a
 	ld a, EGG

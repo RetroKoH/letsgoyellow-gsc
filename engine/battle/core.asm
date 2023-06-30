@@ -2946,6 +2946,16 @@ GetEnemyMonPersonality:
 	ld a, [wCurOTMon]
 	jmp GetPartyLocation
 
+GetPartyMonShadow:
+	ld hl, wPartyMon1Shadow
+	ld a, [wCurBattleMon]
+	jmp GetPartyLocation
+
+GetEnemyMonShadow:
+	ld hl, wOTPartyMon1Shadow
+	ld a, [wCurOTMon]
+	jmp GetPartyLocation
+
 SendOutPlayerMon:
 	call GetBattleMonVariant
 	hlcoord 1, 5
@@ -3624,7 +3634,7 @@ endr
 	pop hl
 	dec hl
 
-;	ld bc, wBattleMonShiny
+	ld bc, wBattleMonShiny
 	farcall CheckShininess
 	jr nc, .not_own_shiny
 	ld a, "<STAR>"
@@ -3702,7 +3712,7 @@ endr
 	ld a, [hl]
 	ld [de], a
 
-;	ld bc, wEnemyMonShiny
+	ld bc, wEnemyMonShiny
 	farcall CheckShininess
 	jr nc, .not_shiny
 	ld a, "<STAR>"

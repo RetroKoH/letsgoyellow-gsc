@@ -54,7 +54,7 @@ LoadStandardFontPointer::
 
 _LoadFontsBattleExtra::
 	ld hl, BattleExtrasGFX
-	ld de, vTiles2 tile BATTLEEXTRA_GFX_START
+	ld de, vTiles2 tile BATTLEEXTRA_GFX_START ; charmap.asm
 	lb bc, BANK(BattleExtrasGFX), 32
 	call DecompressRequest2bpp
 

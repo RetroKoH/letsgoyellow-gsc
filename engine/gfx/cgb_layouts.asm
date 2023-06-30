@@ -296,7 +296,7 @@ _CGB_StatsScreenHPPals:
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	push de
-	call VaryBGPal1ByTempMonDVs
+	call VaryBGPal1ForShadows
 	pop de
 
 	ld hl, GenderAndExpBarPals
@@ -1169,7 +1169,7 @@ _CGB_IntroPals:
 	call GetFrontpicPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	push de
-	call VaryBGPal0ByTempMonDVs
+	call VaryBGPal0ForShadows
 	pop de
 
 	ld hl, .IntroGradientPalette
@@ -1201,7 +1201,7 @@ _CGB_PlayerOrMonFrontpicPals:
 	ld bc, wTempMonPersonality
 	call GetPlayerOrMonPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-	call VaryBGPal0ByTempMonDVs
+	call VaryBGPal0ForShadows
 	call WipeAttrMap
 	call ApplyAttrMap
 	jmp ApplyPals
@@ -1212,7 +1212,7 @@ _CGB_TrainerOrMonFrontpicPals:
 	ld bc, wTempMonPersonality
 	call GetFrontpicPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
-	call VaryBGPal0ByTempMonDVs
+	call VaryBGPal0ForShadows
 	call WipeAttrMap
 	call ApplyAttrMap
 	jmp ApplyPals
@@ -1228,7 +1228,7 @@ _CGB_JudgeSystem:
 	call GetFrontpicPalettePointer
 	call LoadPalette_White_Col1_Col2_Black
 	ld hl, wBGPals1 palette 7 + 2
-	call VaryBGPalByTempMonDVs
+	call VaryBGPalForShadows
 	; max stat sparkle and bottle cap
 	ld de, wOBPals1 palette 0
 	ld hl, .SparkleAndBottleCapPalette

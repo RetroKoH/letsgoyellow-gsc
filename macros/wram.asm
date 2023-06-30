@@ -42,7 +42,7 @@ ENDM
 party_struct: MACRO
 	breed_struct \1
 \1Status::         db
-\1Unused::         db ; USE FOR SHADOW STATUS
+\1Shadow::         db ; NEW FLAG FOR SHADOW STATUS
 \1HP::             dw
 \1MaxHP::          dw
 \1Stats:: ; big endian
@@ -75,7 +75,7 @@ battle_struct: MACRO
 \1Happiness::      db
 \1Level::          db
 \1Status::         db
-\1Unused::         db ; USE FOR SHADOW STATUS
+\1Shadow::         db ; NEW FLAG FOR SHADOW STATUS
 \1HP::             dw
 \1MaxHP::          dw
 \1Stats:: ; big endian
@@ -126,7 +126,8 @@ savemon_struct: MACRO
 \1CaughtLevel::    db
 \1CaughtLocation:: db
 \1Level::          db
-\1Extra::          ds 3 ; superfluous OT name bytes
+\1Shadow::         db ; NEW FLAG FOR SHADOW STATUS
+\1Extra::          ds 2 ; superfluous OT name bytes
 \1Nickname::       ds MON_NAME_LENGTH - 1
 \1OT::             ds PLAYER_NAME_LENGTH - 1
 \1End::

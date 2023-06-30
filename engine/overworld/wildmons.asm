@@ -1205,6 +1205,11 @@ RandomPhoneMon:
 	inc c
 	inc c
 .no_moves
+	; TRAINERTYPE_SHADOW uses 1 more byte
+	bit TRNTYPE_SHADOW, b
+	jr z, .no_shadow
+	inc c
+.no_shadow	
 	; bc == size of mon sub-struct
 	xor a
 	ld b, a

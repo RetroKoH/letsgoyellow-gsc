@@ -58,7 +58,7 @@ ReadTrainerParty:
 	pop hl
 
 	call GetNextTrainerDataByte
-	ld [de], a
+	ld [de], a ; wOTPartyMon1Item = item value stored in a
 
 .not_item
 ; EVs?
@@ -80,7 +80,7 @@ ReadTrainerParty:
 	ld h, d
 	ld l, e
 rept 6
-	ld [hli], a
+	ld [hli], a ; load EV values to 6 bytes starting at wOTPartyMon1EVs
 endr
 	pop hl
 
@@ -106,21 +106,21 @@ endr
 	jr nz, .dv1_ok
 	ld a, $ff
 .dv1_ok
-	ld [de], a
+	ld [de], a ; load DV byte #1
 	inc de
 	call GetNextTrainerDataByte
 	and a
 	jr nz, .dv2_ok
 	ld a, $ff
 .dv2_ok
-	ld [de], a
+	ld [de], a ; load DV byte #2
 	inc de
 	call GetNextTrainerDataByte
 	and a
 	jr nz, .dv3_ok
 	ld a, $ff
 .dv3_ok
-	ld [de], a
+	ld [de], a ; load DV byte #3
 
 .not_dvs
 ; personality?
@@ -139,10 +139,10 @@ endr
 	pop hl
 
 	call GetNextTrainerDataByte
-	ld [de], a
+	ld [de], a ; load personality byte #1 (Ability, Shiny Flag, Nature)
 	inc de
 	call GetNextTrainerDataByte
-	ld [de], a
+	ld [de], a ; load personality byte #2 (Gender, Form)
 
 .not_personality
 ; nickname?
@@ -269,6 +269,25 @@ endr
 	pop hl
 
 .not_moves
+	ld a, [wOtherTrainerType]
+	bit TRNTYPE_SHADOW, a
+	jr z, .not_shadow
+
+	push hl
+	ld a, [wOTPartyCount]
+	dec a
+	ld hl, wOTPartyMon1Shadow
+	ld bc, PARTYMON_STRUCT_LENGTH
+	rst AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+
+	call GetNextTrainerDataByte
+	ld [de], a ; wOTPartyMon1Shadow = a
+	; If zero, normal. If nonzero, shadow.
+
+.not_shadow
 	; custom DVs or nature may alter stats
 	ld a, [wOtherTrainerType]
 	and TRAINERTYPE_EVS | TRAINERTYPE_DVS | TRAINERTYPE_PERSONALITY

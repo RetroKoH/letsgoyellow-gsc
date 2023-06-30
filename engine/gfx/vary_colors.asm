@@ -1,7 +1,4 @@
-; Change this to discolor SHADOW Pokemon
-; For the time being, disable this completely
-CopyDVsToColorVaryDVs:
-	ret
+CopyDVsToColorVaryDVs: ; Change this to discolor SHADOW Pokemon
 ; e = HPAtkDV
 	ld a, [hli]
 	ld e, a
@@ -175,9 +172,9 @@ VaryColorsByDVs::
 ; [wColorVarySpecies] = species
 ; [wColorVaryShiny] = shiny
 
-if DEF(MONOCHROME) || DEF(NOIR)
-	ret
-endc
+;if DEF(MONOCHROME) || DEF(NOIR)
+;	ret
+;endc
 
 	ldh a, [rSVBK]
 	push af
@@ -252,16 +249,22 @@ endc
 	ldh [rSVBK], a
 	ret
 
-VaryBGPal0ByTempMonDVs:
+VaryBGPal0ForShadows:
 	ld hl, wBGPals1 palette 0 + 2
-	jr VaryBGPalByTempMonDVs
-VaryBGPal1ByTempMonDVs:
+	jr VaryBGPalForShadows
+VaryBGPal1ForShadows:
 	ld hl, wBGPals1 palette 1 + 2
-VaryBGPalByTempMonDVs:
+VaryBGPalForShadows:
 	push hl
+;	ld a, [wTempMonShadow]
+;	and a
+;	jr nz, .notShadow
 	ld hl, wTempMonDVs
 	ld a, [wTempMonSpecies]
 	ld b, a
 	call CopyDVsToColorVaryDVs
 	pop hl
-	jmp VaryColorsByDVs
+	jr VaryColorsByDVs
+;.notShadow
+;	pop hl
+;	ret

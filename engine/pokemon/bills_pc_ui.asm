@@ -148,10 +148,10 @@ BillsPC_LoadUI:
 	pop hl
 	dec [hl]
 
-	; Gender symbols and shiny star
+	; Gender symbols, shiny star (+ Shadow icon)
 	ld hl, BattleExtrasGFX
 	ld de, vTiles2 tile $40
-	lb bc, BANK(BattleExtrasGFX), 4
+	lb bc, BANK(BattleExtrasGFX), 4 ; Add shadow icon later
 	call DecompressRequest2bpp
 
 	; Box frame tiles and Pokérus symbol (overwrites first tile of BattleExtrasGFX)
@@ -1121,7 +1121,7 @@ _GetCursorMon:
 	jr nz, .loop
 
 	pop hl
-	farcall VaryBGPalByTempMonDVs
+	farcall VaryBGPalForShadows
 
 	; Show or hide item icon
 	ld hl, wVirtualOAMSprite30

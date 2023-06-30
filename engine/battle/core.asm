@@ -3624,7 +3624,7 @@ endr
 	pop hl
 	dec hl
 
-	ld bc, wBattleMonShiny
+;	ld bc, wBattleMonShiny
 	farcall CheckShininess
 	jr nc, .not_own_shiny
 	ld a, "<STAR>"
@@ -3645,6 +3645,15 @@ endr
 	hlcoord 18, 8
 	ld [hl], a
 
+; shadow check
+	ld a, [wBattleMonShadow]
+	and a
+	jr z, .not_shadow
+	ld a, "♥" ; "<SHADOW>"
+	hlcoord 14, 8
+	ld [hl], a
+
+.not_shadow
 	hlcoord 15, 8
 	ld a, [wBattleMonLevel]
 	ld [wTempMonLevel], a
@@ -3693,7 +3702,7 @@ endr
 	ld a, [hl]
 	ld [de], a
 
-	ld bc, wEnemyMonShiny
+;	ld bc, wEnemyMonShiny
 	farcall CheckShininess
 	jr nc, .not_shiny
 	ld a, "<STAR>"
@@ -3714,6 +3723,15 @@ endr
 	hlcoord 8, 1
 	ld [hl], a
 
+;insert shadow check here
+	ld a, [wEnemyMonShadow]
+	and a
+	jr z, .not_shadow
+	ld a, "♥" ; "<SHADOW>"
+	hlcoord 4, 1
+	ld [hl], a
+
+.not_shadow
 	hlcoord 5, 1
 	ld a, [wEnemyMonLevel]
 	ld [wTempMonLevel], a

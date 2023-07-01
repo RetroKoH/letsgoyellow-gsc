@@ -134,9 +134,7 @@ PikaBallScript:
 	writetext TrainerHouseBlueConfirm
 	promptbutton
 	waitsfx
-	givepoke PIKACHU, PARTNER, 50
-	givepoke KLEAVOR, 50
-	givepoke ELECTRODE, HISUIAN_FORM, 50
+	givepoke PIKACHU, PARTNER, 5
 	closetext
 	applymovement STARTHOUSE_TRACE, Movement_TracePicksEevee
 	opentext
@@ -170,7 +168,7 @@ EeveeBallScript:
 	writetext TrainerHouseBlueConfirm
 	promptbutton
 	waitsfx
-	givepoke EEVEE, PARTNER, 15
+	givepoke EEVEE, PARTNER, 5
 	closetext
 	applymovement STARTHOUSE_TRACE, Movement_TracePicksPikachu
 	opentext

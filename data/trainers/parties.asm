@@ -1407,7 +1407,7 @@ Rival0Group:
 	db "<RIVAL>@"
 	db TRAINERTYPE_NORMAL | TRAINERTYPE_PERSONALITY
 	; party
-	db 10, PIDGEY, ABILITY_2 | NAT_NEUTRAL, FEMALE
+	db 5, PIKACHU, ABILITY_1 | NAT_NEUTRAL, FEMALE | PARTNER
 	db -1 ; end
 
 ; ================
@@ -1865,9 +1865,9 @@ YoungsterGroup:
 
 ; YOUNGSTER - Route 1
 	db "Danny@"
-	db TRAINERTYPE_SHADOW
+	db TRAINERTYPE_NORMAL
 	; party
-	db 05, RATTATA, SHADOW
+	db 05, RATTATA
 	db -1 ; end
 
 ; YOUNGSTER - Route 3

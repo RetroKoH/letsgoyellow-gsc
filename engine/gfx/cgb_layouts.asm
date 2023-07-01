@@ -366,8 +366,9 @@ _CGB_Pokedex:
 	call LoadHLPaletteIntoDE
 	jr .got_palette
 .is_pokemon
+	; TODO: Fix erroneous shadow coloring
 	ld bc, wDexMonShiny
-	call GetMonNormalOrShinyPalettePointer
+	call GetMonNormalOrShinyPalettePointer ; Use modified version that doesnt account for Shadow
 	call LoadPalette_White_Col1_Col2_Black
 .got_palette
 

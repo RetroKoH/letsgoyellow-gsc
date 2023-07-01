@@ -169,6 +169,42 @@ endr
 	ld b, a
 	predef FillMoves
 	pop de
+
+	; Check for Shadow (Add Frustration)
+	; Unused unless we have Shadow Pokemon NOT tied to trainers
+	ld hl, wPartyMon1Shadow
+	ld a, [wMonType]
+	and $f
+	jr z, .checkShadow
+	ld hl, wOTPartyMon1Shadow
+
+.checkShadow
+	ld a, [hl]
+	and a
+	jr z, .notShadow
+	push de            ; push address of first moveslot
+	ld a, NUM_MOVES
+	ld b, a
+
+.loop
+	ld a, [de]         ; is there a move?
+	and a              ; is there a move here?
+	jr z, .found       ; if no, we found our moveslot.
+	inc de             ; otherwise, skip to next moveslot
+	dec b
+	jr z, .backtofirst
+	jr .loop
+
+.backtofirst
+	pop de             ; restore address of first moveslot
+	push de
+.found
+	ld a, FRUSTRATION
+	ld [de], a         ; set Frustration in this moveslot
+; Need to set PP as well (Will do later)
+	pop de
+
+.notShadow
 rept NUM_MOVES
 	inc de
 endr

@@ -665,8 +665,7 @@ LearnLevelMoves:
 	jr .find_move
 
 FillMoves:
-; Fill in moves at de for species c form b at wCurPartyLevel
-
+; Fill in moves at de for species c form b at wCurPartyLevel (Wild and Trainers)
 	push hl
 	push de
 	push bc
@@ -687,7 +686,7 @@ FillMoves:
 .GetLevel:
 	ld a, [hli]
 	cp $FF
-	jr z, .GetMove	; skip evolution moves
+	jr z, .GetMove	; skip evolution moves (Change this)
 	and a
 	jr z, .done
 	ld b, a

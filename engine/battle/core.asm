@@ -5021,7 +5021,7 @@ SetDisableEncoreMoves:
 	ld bc, wEnemyDisableCount
 	ld hl, wEnemyEncoreCount
 .got_disable_count
-	; If the move no longer exist in learnset, remove encore/disable status
+	; If the move no longer exist in moveset, remove encore/disable status
 	ld a, d
 	and a
 	jr z, .reset_disable

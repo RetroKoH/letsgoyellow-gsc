@@ -179,6 +179,26 @@ endr
 	pop de
 
 .not_nickname
+; shadow? (Check before moves so we can add Frustration easily.)
+	ld a, [wOtherTrainerType]
+	bit TRNTYPE_SHADOW, a
+	jr z, .not_shadow
+
+	push hl
+	ld a, [wOTPartyCount]
+	dec a
+	ld hl, wOTPartyMon1Shadow
+	ld bc, PARTYMON_STRUCT_LENGTH
+	rst AddNTimes
+	ld d, h
+	ld e, l
+	pop hl
+
+	call GetNextTrainerDataByte
+	ld [de], a ; wOTPartyMon1Shadow = a
+	; If zero, normal. If nonzero, shadow.
+
+.not_shadow
 ; moves?
 	ld a, [wOtherTrainerType]
 	bit TRNTYPE_MOVES, a
@@ -204,7 +224,7 @@ endr
 	cp GYRO_BALL
 	jr nz, .done_special_moves
 
-	; Set speed EVs and IVs to 0
+	; Set speed EVs and IVs to 0 if GYRO BALL is present.
 	push hl
 	push de
 	push bc
@@ -247,6 +267,7 @@ endr
 	dec b
 	jr nz, .copy_moves
 
+.fill_movePP
 	push hl
 
 	ld a, [wOTPartyCount]
@@ -267,27 +288,49 @@ endr
 	predef FillPP
 
 	pop hl
+	jr .skip_frustration
 
 .not_moves
-	ld a, [wOtherTrainerType]
-	bit TRNTYPE_SHADOW, a
-	jr z, .not_shadow
+	; BEFORE moving onto stat related matters, let's check to add Frustration
+	push hl
+	ld hl, wOTPartyMon1Shadow
+	ld a, [hl]
+	pop hl
+	and a
+	jr z, .skip_frustration   ; skip ahead if this is not a shadow mon
 
 	push hl
 	ld a, [wOTPartyCount]
 	dec a
-	ld hl, wOTPartyMon1Shadow
+	ld hl, wOTPartyMon1Moves
 	ld bc, PARTYMON_STRUCT_LENGTH
 	rst AddNTimes
 	ld d, h
 	ld e, l
 	pop hl
 
-	call GetNextTrainerDataByte
-	ld [de], a ; wOTPartyMon1Shadow = a
-	; If zero, normal. If nonzero, shadow.
+	push de            ; push address of first moveslot
+	ld a, NUM_MOVES
+	ld b, a
+.loop
+	ld a, [de]         ; is there a move?
+	and a              ; is there a move here?
+	jr z, .found       ; if no, we found our moveslot.
+	inc de             ; otherwise, skip to next moveslot
+	dec b
+	jr z, .backtofirst
+	jr .loop
 
-.not_shadow
+.backtofirst
+	pop de             ; restore address of first moveslot
+	push de
+.found
+	ld a, FRUSTRATION
+	ld [de], a         ; set Frustration in this moveslot
+	pop de
+	jr .fill_movePP    ; Need to set PP as well
+
+.skip_frustration
 	; custom DVs or nature may alter stats
 	ld a, [wOtherTrainerType]
 	and TRAINERTYPE_EVS | TRAINERTYPE_DVS | TRAINERTYPE_PERSONALITY

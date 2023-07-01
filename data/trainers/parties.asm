@@ -1865,9 +1865,9 @@ YoungsterGroup:
 
 ; YOUNGSTER - Route 1
 	db "Danny@"
-	db TRAINERTYPE_NORMAL
+	db TRAINERTYPE_SHADOW
 	; party
-	db 05, RATTATA
+	db 05, RATTATA, SHADOW
 	db -1 ; end
 
 ; YOUNGSTER - Route 3

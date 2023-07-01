@@ -732,13 +732,13 @@ EncodeTempMon:
 	; Shift everything after PP Ups backwards.
 	ld hl, wTempMonHappiness
 	ld de, wEncodedTempMonHappiness
-	ld bc, wEncodedTempMonExtra - wEncodedTempMonHappiness
+	ld bc, wEncodedTempMonExtra2 - wEncodedTempMonHappiness
 	rst CopyBytes
 
-	; Move Extra bytes.
-	; de == wEncodedTempMonExtra
-	ld hl, wTempMonExtra
-	ld bc, 3
+	; Move Extra bytes. (This is where we need to fix storing the Shadow status)
+	; de == wEncodedTempMonExtra1
+	ld hl, wTempMonExtra + 2
+	ld bc, 1
 	rst CopyBytes
 
 	; Move name-related bytes.
@@ -846,10 +846,10 @@ DecodeTempMon:
 	call ChecksumTempMon
 	push af
 
-	; Move extra data back
-	ld hl, wEncodedTempMonExtra
-	ld de, wTempMonExtra
-	ld bc, 3
+	; Move extra data back (This is where we need to fix recovering the Shadow status)
+	ld hl, wEncodedTempMonExtra2
+	ld de, wTempMonExtra + 2
+	ld bc, 1
 	rst CopyBytes
 
 	; Reverse the 7bit character encoding back to its original state.
@@ -901,9 +901,9 @@ DecodeTempMon:
 	jr nz, .outer_loop
 
 	; Shift data past PP to leave room for PP data.
-	ld hl, wEncodedTempMonLevel
-	ld de, wTempMonLevel
-	lb bc, NUM_MOVES, wEncodedTempMonLevel - wEncodedTempMonPPUps
+	ld hl, wEncodedTempMonShadow
+	ld de, wTempMonShadow
+	lb bc, NUM_MOVES, wEncodedTempMonShadow - wEncodedTempMonPPUps
 .reverse_copybytes_loop
 	ld a, [hld]
 	ld [de], a

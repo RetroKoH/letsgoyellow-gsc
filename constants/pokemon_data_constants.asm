@@ -171,7 +171,9 @@ SAVEMON_CAUGHTLEVEL        rb
 SAVEMON_CAUGHTLOCATION     rb
 SAVEMON_LEVEL              rb
 ; savemon_struct is different from party_struct beyond this point
-SAVEMON_EXTRA              rb 3
+SAVEMON_EXTRA1             rb
+SAVEMON_SHADOW             rb
+SAVEMON_EXTRA2             rb
 SAVEMON_NICKNAME           rb MON_NAME_LENGTH - 1
 SAVEMON_OT                 rb PLAYER_NAME_LENGTH - 1
 SAVEMON_STRUCT_LENGTH EQU _RS

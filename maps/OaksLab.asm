@@ -97,6 +97,7 @@ OaksLab_AutowalkUpToOak:
 	promptbutton
 	writetext OaksLabRequestText
 	verbosegiveitem POKE_BALL, 10
+	verbosegiveitem SNAG_BALL, 10
 	faceobject OAKSLAB_TRACE, PLAYER
 	writetext OaksLabLeaveItToUsText
 	promptbutton

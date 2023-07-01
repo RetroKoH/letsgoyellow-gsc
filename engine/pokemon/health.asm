@@ -54,8 +54,7 @@ HealPartyMon:
 	ld hl, MON_STATUS
 	add hl, de
 	xor a
-	ld [hli], a
-	ld [hl], a
+	ld [hl], a ; removed increment, so Shadow status isn't overwritten.
 
 	ld hl, MON_MAXHP
 	add hl, de

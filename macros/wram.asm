@@ -126,8 +126,9 @@ savemon_struct: MACRO
 \1CaughtLevel::    db
 \1CaughtLocation:: db
 \1Level::          db
+\1Extra1::         db ; superfluous OT name bytes
 \1Shadow::         db ; NEW FLAG FOR SHADOW STATUS
-\1Extra::          ds 2 ; superfluous OT name bytes
+\1Extra2::         db ; superfluous OT name bytes
 \1Nickname::       ds MON_NAME_LENGTH - 1
 \1OT::             ds PLAYER_NAME_LENGTH - 1
 \1End::

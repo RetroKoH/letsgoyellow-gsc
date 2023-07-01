@@ -12,18 +12,19 @@ Route22_MapScriptHeader:
 	bg_event  6,  6, BGEVENT_JUMPTEXT, VictoryRoadEntranceSignText
 
 	def_object_events
-	object_event 20,  2, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route22CooltrainerfText, -1
+	object_event  18,  4, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route22Snorlax, EVENT_ROUTE_22_SNORLAX
 
 	object_const_def
 
-Route22CooltrainerfText:
-	text "The name “Kanto”"
-	line "means “east of the"
-	cont "barrier.”"
+Route22Snorlax:
+	opentext
+	jumpopenedtext .AsleepText
 
-	para "I suppose the"
-	line "barrier must be"
-	cont "Mt.Silver."
+.AsleepText:
+	text "Snorlax is asleep."
+	
+	para "But something is"
+	line "unusual about it."
 	done
 
 VictoryRoadEntranceSignText:

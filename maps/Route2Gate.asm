@@ -15,6 +15,7 @@ Route2Gate_MapScriptHeader:
 
 	def_object_events
 	object_event  6,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route2GateScientistText, -1
+	object_event  7,  1, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, trade, NPC_TRADE_MIKE, -1
 
 Route2GateScientistText:
 	text "Are you <PLAYER>?"

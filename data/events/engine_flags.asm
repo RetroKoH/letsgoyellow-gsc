@@ -26,7 +26,7 @@ EngineFlags:
 	engine_flag wMomSavingMoney, 7 ; dst
 
 	engine_flag wStatusFlags, 0 ; pokedex
-	engine_flag wStatusFlags, 1 ; unown dex
+	engine_flag wStatusFlags, 1 ; regional dex
 	                            ; flash
 	engine_flag wStatusFlags, 3 ; pokerus
 	engine_flag wStatusFlags, 4 ; rocket signal on ch20
@@ -118,7 +118,7 @@ EngineFlags:
 	engine_flag wDailyFlags, 1 ; daily bug contest?
 	engine_flag wDailyFlags, 2 ; special wilddata?
 	engine_flag wDailyFlags, 3 ; valeries morning walk
-	engine_flag wDailyFlags, 4 ; daily unused
+	engine_flag wDailyFlags, 4 ; pewter city lady's slowpoke sitting
 	engine_flag wDailyFlags, 5 ; shuckle given
 	engine_flag wDailyFlags, 6 ; goldenrod underground merchant closed
 	engine_flag wDailyFlags, 7 ; fought in trainer hall today

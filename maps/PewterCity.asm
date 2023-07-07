@@ -23,6 +23,8 @@ PewterCity_MapScriptHeader:
 	bg_event 19, 29, BGEVENT_JUMPTEXT, PewterCityTrainerTipsText
 
 	def_object_events
+	object_event  8,  4, SPRITE_LADY, SPRITEMOVEDATA_STANDING_LEFT, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeLadyScript, -1
+	object_event  6,  4, SPRITE_MON_ICON, SPRITEMOVEDATA_STILL, 0, SLOWPOKE, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeScript, -1
 	object_event 22, 11, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainerFText, -1
 	object_event 19, 10, SPRITE_COOL_DUDE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 2, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainermText, -1
 	object_event 14, 29, SPRITE_CHILD, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityBugCatcherText, -1
@@ -30,6 +32,9 @@ PewterCity_MapScriptHeader:
 	object_event  7, 17, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCityYoungsterScript, -1
 	fruittree_event 32,  3, FRUITTREE_PEWTER_CITY_1, PETAYA_BERRY, PAL_NPC_RED
 	fruittree_event 30,  3, FRUITTREE_PEWTER_CITY_2, APICOT_BERRY, PAL_NPC_BLUE
+
+	object_const_def
+	const PEWTER_LADY
 
 PewterCityFlyPoint:
 	setflag ENGINE_FLYPOINT_PEWTER
@@ -55,6 +60,109 @@ PewterCityYoungsterScript:
 	checkflag ENGINE_BOULDERBADGE
 	iffalse_endtext
 	jumpopenedtext PewterCityYoungsterText2
+
+PewterCitySlowpokeLadyScript:
+;	sdefer .MuseumEvent
+;	end
+	opentext
+	checkflag ENGINE_PEWTER_SLOWPOKE_SITTING
+	iftrue_jumptextfaceplayer .ComeBackText
+	checkflag EVENT_WATCHED_POKEY
+	iffalse .FirstTime
+	faceobject STARTHOUSE_TRACE, PLAYER ;faceplayer
+	writetext .WatchPokeyAgain1
+	yesorno
+	iffalse_jumpopenedtext .WatchPokeyFirstTime_No
+	writetext .WatchPokeyFirstTime3
+	waitbutton
+	setflag ENGINE_PEWTER_SLOWPOKE_SITTING
+	verbosegiveitem BIG_PEARL
+	end
+
+.FirstTime
+	writetext .WatchPokeyFirstTime1
+	showemote EMOTE_SHOCK, PEWTER_LADY, 15
+	faceobject STARTHOUSE_TRACE, PLAYER ;faceplayer
+	writetext .WatchPokeyFirstTime2
+	yesorno
+	iffalse_jumpopenedtext .WatchPokeyFirstTime_No
+	writetext .WatchPokeyFirstTime_Yes
+	yesorno
+	iffalse_jumpopenedtext .WatchPokeyFirstTime_No
+	writetext .WatchPokeyFirstTime3
+	waitbutton
+	setflag EVENT_WATCHED_POKEY ; Triggers the first time
+	setflag ENGINE_PEWTER_SLOWPOKE_SITTING
+	verbosegiveitem BIG_PEARL
+	end
+
+.WatchPokeyAgain1:
+	text "Why, hello!"
+
+	para "Do you think you"
+	line "could watch Pokey"
+	cont "again?"
+	done
+
+.WatchPokeyFirstTime1:
+	text "Oh dear, what am I"
+	line "going to do with"
+	cont "you, Pokey?"
+	done
+
+.WatchPokeyFirstTime2:
+	text "Oh, Hello there."
+	line "Do you think you"
+	cont "could do me a"
+	cont "favor?"
+	done
+
+.WatchPokeyFirstTime3:
+	text "Oh, Thank you so"
+	line "much!"
+
+	para "I'll be back in"
+	line "a little while."
+	done
+
+.WatchPokeyFirstTime_Yes:
+	text "I want to go to"
+	line "the Museum, but my"
+	cont "dear Pokey refuses"
+	cont "to budge!"
+
+	para "Do you think you"
+	line "could watch him"
+	cont "for a little"
+	cont "while?"
+	done
+
+.WatchPokeyFirstTime_No:
+	text "Oh, that's too"
+	line "bad. Maybe another"
+	cont "time then."
+	done
+
+.ComeBackText:
+	text "I would love if"
+	line "you could come"
+	cont "see Pokey again"
+	cont "sometime."
+	done
+
+PewterCitySlowpokeScript:
+	opentext
+	writethistext
+		text "Slowpoke: …"
+
+		para "…… …… ……"
+		done
+	pause 45
+	writethistext
+		text "…… ……Yawn?"
+		done
+	cry SLOWPOKE
+	waitendtext
 
 PewterCityCooltrainerFText:
 	text "#mon can only"

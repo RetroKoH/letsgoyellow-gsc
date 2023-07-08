@@ -68,7 +68,7 @@ TechniquePointers::
 	dw NoTechniques			; CATERPIE
 	dw NoTechniques			; METAPOD
 	dw ButterfreeTechniques	; BUTTERFREE
-	dw NoTechniques			; WEEDLE
+	dw TechniqueChop			; WEEDLE
 	dw NoTechniques			; KAKUNA
 	dw BeedrillTechniques	; BEEDRILL
 	dw NoTechniques			; PIDGEY

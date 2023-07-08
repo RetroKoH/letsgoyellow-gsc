@@ -50,13 +50,13 @@ OaksLab_MapScriptHeader:
 	const OAKSLAB_GIRL
 	const OAKSLAB_AIDE
 
+OaksLabTrigger1:
+	sdefer OaksLab_AutowalkUpToOak
 OaksLabTrigger0:
 OaksLabTrigger2:
 OaksLabTrigger3:
 OaksLabTrigger4:
 	end
-OaksLabTrigger1:
-	sdefer OaksLab_AutowalkUpToOak
 
 OaksLab_AutowalkUpToOak:
 	applymovement PLAYER, Movement_WalkUpToProfOak
@@ -117,7 +117,6 @@ OaksLab_AutowalkUpToOak:
 	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
 	setmapscene VIRIDIAN_CITY, $1
 	setmapscene ROUTE_22, $1
-	special RestartMapMusic
 	setscene $2
 	end
 

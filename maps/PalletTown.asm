@@ -134,11 +134,11 @@ Movement_OakWalksToLab1:
 	step_end
 
 Text_OakAppears::
-	text "OAK: Hey! Wait!"
+	text "Oak: Hey! Wait!"
 	line "Don't move!@@"
 
 Text_OakArrives::
-	text "OAK: That was"
+	text "Oak: That was"
 	line "close!"
 
 	para "It's unsafe!"
@@ -149,7 +149,7 @@ Text_OakArrives::
 	done
 
 Text_OakBringsYouToLab::
-	text "OAK: What? You"
+	text "Oak: What? You"
 	line "already have a"
 	cont "#mon partner?"
 

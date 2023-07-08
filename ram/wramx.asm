@@ -1064,6 +1064,7 @@ wHallOfFameSceneID:: db
 wIlexForestSceneID:: db
 wKarensRoomSceneID:: db
 wKogasRoomSceneID:: db
+wPewterCitySceneID:: db
 wPlayersHouse1FSceneID:: db
 wLancesRoomSceneID:: db
 wLavenderTownSceneID:: db
@@ -1114,7 +1115,6 @@ wVermilionPortSceneID:: db
 wVictoryRoad2FSceneID:: db
 wViridianCitySceneID:: db
 wViridianForestSceneID:: db
-wViridianMartSceneID:: db ; Unused
 wWillsRoomSceneID:: db
 wYellowForestSceneID:: db
 

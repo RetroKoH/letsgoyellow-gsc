@@ -58,6 +58,7 @@ MapScenes::
 	scene_var NEW_BARK_TOWN,                          wNewBarkTownSceneID
 	scene_var OAKS_LAB,                               wOaksLabSceneID
 	scene_var PALLET_TOWN,                            wPalletTownSceneID
+	scene_var PEWTER_CITY,                            wPewterCitySceneID
 	scene_var POKECENTER_2F,                          wPokecenter2FSceneID
 	scene_var POKEMON_LEAGUE_GATE,                    wPokemonLeagueGateSceneID
 	scene_var POWER_PLANT,                            wPowerPlantSceneID

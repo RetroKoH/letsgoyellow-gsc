@@ -14,6 +14,8 @@ PewterCity_MapScriptHeader:
 	warp_event 19,  5, PEWTER_MUSEUM_OF_SCIENCE_1F, 3
 
 	def_coord_events
+	coord_event 18, 33, 0, PewterCity_BlueStopsYouScene
+	coord_event 19, 33, 0, PewterCity_BlueStopsYouScene
 
 	def_bg_events
 	bg_event 25, 23, BGEVENT_JUMPTEXT, PewterCitySignText
@@ -23,6 +25,8 @@ PewterCity_MapScriptHeader:
 	bg_event 19, 29, BGEVENT_JUMPTEXT, PewterCityTrainerTipsText
 
 	def_object_events
+	object_event 18, 30, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
+	object_event 19, 30, SPRITE_KRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
 	object_event  8,  4, SPRITE_LADY, SPRITEMOVEDATA_STANDING_LEFT, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeLadyScript, -1
 	object_event  6,  4, SPRITE_MON_ICON, SPRITEMOVEDATA_STILL, 0, SLOWPOKE, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeScript, -1
 	object_event 22, 11, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainerFText, -1
@@ -34,11 +38,65 @@ PewterCity_MapScriptHeader:
 	fruittree_event 30,  3, FRUITTREE_PEWTER_CITY_2, APICOT_BERRY, PAL_NPC_BLUE
 
 	object_const_def
+	const PEWTER_BLUE
+	const PEWTER_ALTPLAYER
 	const PEWTER_LADY
 
 PewterCityFlyPoint:
 	setflag ENGINE_FLYPOINT_PEWTER
 	endcallback
+
+PewterCity_BlueStopsYouScene:
+	playmusic MUSIC_RIVAL_ENCOUNTER
+	showemote EMOTE_SHOCK, PEWTER_BLUE, 15
+	turnobject PEWTER_BLUE, DOWN
+	opentext
+	writetext PewterBlueText_GreetsPlayer
+	waitbutton
+	closetext
+	turnobject PEWTER_ALTPLAYER, DOWN
+	applymovement PEWTER_BLUE, Movement_BlueWalksToYou
+	turnobject PEWTER_BLUE, UP
+	opentext
+	writetext PewterBlueText_GreetsPlayer
+	waitbutton
+	closetext
+	applymovement PEWTER_ALTPLAYER, Movement_BlueWalksToYou
+	turnobject PEWTER_BLUE, DOWN
+	special RestartMapMusic
+	showtext PewterAltText_Greeting
+	showtext PewterBlueText_Important
+	showemote EMOTE_SHOCK, PEWTER_BLUE, 15
+	showtext PewterBlueText_AboutShadow
+	turnobject PEWTER_ALTPLAYER, LEFT
+	showtext PewterAltText_AboutShadow
+	turnobject PEWTER_BLUE, RIGHT
+	showtext PewterBlueText_Affirm
+	turnobject PEWTER_BLUE, DOWN
+	turnobject PEWTER_ALTPLAYER, DOWN
+	showtext PewterBlueText_Direct
+	applymovement PEWTER_BLUE, Movement_PewterBlueLeaves
+	disappear PEWTER_BLUE
+	showtext PewterAltText_Farewell
+	applymovement PEWTER_ALTPLAYER, Movement_PewterAltLeaves
+	disappear PEWTER_ALTPLAYER
+	setscene $1
+	end
+
+Movement_BlueWalksToYou:
+	step_down
+	step_down
+	step_end
+
+Movement_PewterAltLeaves:
+	step_left
+Movement_PewterBlueLeaves:
+	step_up
+	step_up
+	step_up
+	step_up
+	step_up
+	step_end
 
 PewterCityGrampsScript:
 	checkevent EVENT_GOT_OLD_AMBER
@@ -62,8 +120,6 @@ PewterCityYoungsterScript:
 	jumpopenedtext PewterCityYoungsterText2
 
 PewterCitySlowpokeLadyScript:
-;	sdefer .MuseumEvent
-;	end
 	opentext
 	checkflag ENGINE_PEWTER_SLOWPOKE_SITTING
 	iftrue_jumptextfaceplayer .ComeBackText
@@ -163,6 +219,93 @@ PewterCitySlowpokeScript:
 		done
 	cry SLOWPOKE
 	waitendtext
+
+PewterBlueText_GreetsPlayer:
+	text "Blue: Oh, hey,"
+	line "<PLAYER>!"
+
+	para "About time. I was"
+	line "expecting you!"
+	done
+
+PewterBlueText_CallFriend:
+	text "Blue: Hey,"
+	line "<BACKUP>!"
+
+	para "Don't be shy, come"
+	line "say hello!"
+	done
+
+PewterAltText_Greeting:
+	text "<BACKUP>: Hello"
+	line "<PLAYER>. Nice"
+	cont "to meet you."
+	done
+
+PewterBlueText_Important:
+	text "Blue: I'll give"
+	line "you time to get"
+	cont "to know each other"
+	cont "later."
+
+	para "For now, I have to"
+	line "ask. Did you see"
+	cont "anything odd in"
+	cont "Viridian Forest?"
+	done
+
+PewterBlueText_AboutShadow:
+	text "Blue: So it WAS"
+	line "true!"
+
+	para "I heard about two"
+	line "odd trainers with"
+	cont "a strange looking"
+	cont "Bulbasaur."
+
+	para "Apparently this is"
+	line "not the first time"
+	cont "this kind of thing"
+	cont "has been seen."
+	done
+
+PewterAltText_AboutShadow:
+	text "<BACKUP>: You're"
+	line "talking about the"
+	cont "#mon that's at"
+	cont "the museum, right?"
+
+	para "The one with the"
+	line "shadowy aura?"
+	done
+
+PewterBlueText_Affirm:
+	text "Blue: Yes, that's"
+	line "right."
+	done
+
+PewterBlueText_Direct:
+	text "Blue: <PLAYER>,"
+	line "I need you to go"
+	cont "meet Brock."
+
+	para "He's the leader of"
+	line "the Pewter Gym."
+	cont "You should be able"
+	cont "to find him there."
+
+	para "<BACKUP> and I"
+	line "will catch up with"
+	cont "you when we figure"
+	cont "out more."
+
+	para "See ya!"
+	done
+
+PewterAltText_Farewell:
+	text "<BACKUP>: Hope to"
+	line "see you around!"
+	done
 
 PewterCityCooltrainerFText:
 	text "#mon can only"

@@ -46,9 +46,10 @@ ViridianForest_MapScriptHeader:
 	const VFOREST_JESSIE_2
 
 ViridianForest_MeetJessieJames:
-	showemote EMOTE_WAIT, VFOREST_JESSIE, 15
-	turnobject VFOREST_JESSIE, LEFT
 	showtext Text_JessieJames1
+	showemote EMOTE_WAIT, VFOREST_JESSIE, 15 ; The new emote's color palette is off...
+	turnobject VFOREST_JESSIE, LEFT
+	showtext Text_JessieJames2
 	showemote EMOTE_SHOCK, VFOREST_JESSIE, 15
 	turnobject VFOREST_JESSIE, DOWN
 	showtext Text_JessieSeesPlayer
@@ -81,8 +82,10 @@ Text_JessieJames1:
 	text "???: Looks like"
 	line "there's nothing"
 	cont "in here."
+	done
 
-	para "???: Then let's"
+Text_JessieJames2:
+	text "???: Then let's"
 	line "just search a bit"
 	cont "farther in."
 	done

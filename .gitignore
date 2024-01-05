@@ -22,6 +22,7 @@ gfx/pokemon/*/*.animated.tilemap
 gfx/pokemon/*/bitmask.asm
 gfx/pokemon/*/frames.asm
 data/tilesets/*_collision.bin
+Planned/
 bank_ends.txt
 
 # for any of the poor souls with save game files in their working directory

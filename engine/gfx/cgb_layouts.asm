@@ -1192,9 +1192,9 @@ _CGB_IntroPals:
 .IntroGradientPalette:
 if !DEF(MONOCHROME)
 	RGB 31, 31, 31
-	RGB 27, 31, 31
-	RGB 19, 31, 31
-	RGB 09, 30, 31
+	RGB 30, 30, 22
+	RGB 28, 28, 13
+	RGB 26, 26, 05
 else
 	MONOCHROME_RGB_FOUR
 endc

@@ -128,8 +128,8 @@ SetInitialOptions:
 .BGPalette:
 if !DEF(MONOCHROME)
 	RGB 31, 31, 31
-	RGB 29, 26, 05
-	RGB 17, 10, 08
+	RGB 30, 29, 09
+	RGB 22, 15, 13
 	RGB 00, 00, 00
 else
 	MONOCHROME_RGB_FOUR

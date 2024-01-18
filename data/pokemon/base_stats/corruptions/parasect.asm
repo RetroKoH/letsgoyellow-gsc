@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/parasect/front.dimensions"
 	abilities_for PARASECT_CORRUPT, SOLID_ROCK, SOLID_ROCK, SOLID_ROCK
 	db GROWTH_MEDIUM_FAST ; growth rate
-	dn EGG_BUG, EGG_PLANT ; egg groups
+	dn EGG_NONE, EGG_NONE ; egg groups
 
 	ev_yield   0,   2,   1,   0,   0,   0
 	;         hp  atk  def  spd  sat  sdf

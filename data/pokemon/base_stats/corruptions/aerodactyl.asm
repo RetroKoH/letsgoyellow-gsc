@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/aerodactyl/front.dimensions"
 	abilities_for AERODACTYL_CORRUPT, TOUGH_CLAWS, TOUGH_CLAWS, TOUGH_CLAWS
 	db GROWTH_SLOW ; growth rate
-	dn EGG_FLYING, EGG_FLYING ; egg groups
+	dn EGG_NONE, EGG_NONE ; egg groups
 
 	ev_yield   0,   0,   0,   2,   0,   0
 	;         hp  atk  def  spd  sat  sdf

@@ -429,6 +429,10 @@ SECTION "HitmonchanPokedexEntry", ROMX
 HitmonchanPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/107.asm"
 
+SECTION "LickitungPokedexEntry", ROMX
+LickitungPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/108.asm"
+
 SECTION "KoffingPokedexEntry", ROMX
 KoffingPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/109.asm"
@@ -465,17 +469,13 @@ SECTION "SeadraPokedexEntry", ROMX
 SeadraPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/117.asm"
 
-SECTION "TogepiPokedexEntry", ROMX
-TogepiPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/175.asm"
+SECTION "GoldeenPokedexEntry", ROMX
+GoldeenPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/118.asm"
 
-SECTION "TogeticPokedexEntry", ROMX
-TogeticPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/176.asm"
-
-SECTION "TogekissPokedexEntry", ROMX
-TogekissPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/468.asm"
+SECTION "SeakingPokedexEntry", ROMX
+SeakingPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/119.asm"
 
 SECTION "StaryuPokedexEntry", ROMX
 StaryuPokedexEntry::
@@ -657,13 +657,13 @@ SECTION "NoctowlPokedexEntry", ROMX
 NoctowlPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/164.asm"
 
-SECTION "GoldeenPokedexEntry", ROMX
-GoldeenPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/118.asm"
+SECTION "TogepiPokedexEntry", ROMX
+TogepiPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/175.asm"
 
-SECTION "SeakingPokedexEntry", ROMX
-SeakingPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/119.asm"
+SECTION "TogeticPokedexEntry", ROMX
+TogeticPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/176.asm"
 
 SECTION "SpinarakPokedexEntry", ROMX
 SpinarakPokedexEntry::
@@ -897,9 +897,9 @@ SECTION "MimeJrPokedexEntry", ROMX
 MimeJrPokedexEntry::
 INCLUDE "data/pokemon/dex_entries/439.asm"
 
-SECTION "LickitungPokedexEntry", ROMX
-LickitungPokedexEntry::
-INCLUDE "data/pokemon/dex_entries/108.asm"
+SECTION "TogekissPokedexEntry", ROMX
+TogekissPokedexEntry::
+INCLUDE "data/pokemon/dex_entries/468.asm"
 
 SECTION "IgglybuffPokedexEntry", ROMX
 IgglybuffPokedexEntry::

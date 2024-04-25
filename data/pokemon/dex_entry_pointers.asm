@@ -108,6 +108,7 @@ PokedexDataPointerTable:
 	dba MarowakPokedexEntry
 	dba HitmonleePokedexEntry
 	dba HitmonchanPokedexEntry
+	dba LickitungPokedexEntry
 	dba KoffingPokedexEntry
 	dba WeezingPokedexEntry
 	dba RhyhornPokedexEntry
@@ -117,9 +118,8 @@ PokedexDataPointerTable:
 	dba KangaskhanPokedexEntry
 	dba HorseaPokedexEntry
 	dba SeadraPokedexEntry
-	dba TogepiPokedexEntry
-	dba TogeticPokedexEntry
-	dba TogekissPokedexEntry
+	dba GoldeenPokedexEntry
+	dba SeakingPokedexEntry
 	dba StaryuPokedexEntry
 	dba StarmiePokedexEntry
 	dba MrMimePokedexEntry
@@ -165,8 +165,8 @@ PokedexDataPointerTable:
 	dba FurretPokedexEntry
 	dba HoothootPokedexEntry
 	dba NoctowlPokedexEntry
-	dba GoldeenPokedexEntry
-	dba SeakingPokedexEntry
+	dba TogepiPokedexEntry
+	dba TogeticPokedexEntry
 	dba SpinarakPokedexEntry
 	dba AriadosPokedexEntry
 	dba CrobatPokedexEntry
@@ -225,7 +225,7 @@ PokedexDataPointerTable:
 	dba HappinyPokedexEntry
 	dba SmoochumPokedexEntry
 	dba MimeJrPokedexEntry
-	dba LickitungPokedexEntry
+	dba TogekissPokedexEntry
 	dba IgglybuffPokedexEntry
 	dba HoundourPokedexEntry
 	dba HoundoomPokedexEntry

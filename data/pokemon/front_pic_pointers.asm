@@ -107,6 +107,7 @@ FrontPicPointers::
 	dba MarowakPlainFrontpic
 	dba HitmonleeFrontpic
 	dba HitmonchanFrontpic
+	dba LickitungFrontpic
 	dba KoffingFrontpic
 	dba WeezingPlainFrontpic
 	dba RhyhornFrontpic
@@ -116,9 +117,8 @@ FrontPicPointers::
 	dba KangaskhanFrontpic
 	dba HorseaFrontpic
 	dba SeadraFrontpic
-	dba TogepiFrontpic
-	dba TogeticFrontpic
-	dba TogekissFrontpic
+	dba GoldeenFrontpic
+	dba SeakingFrontpic
 	dba StaryuFrontpic
 	dba StarmieFrontpic
 	dba MrMimePlainFrontpic
@@ -164,8 +164,8 @@ FrontPicPointers::
 	dba FurretFrontpic
 	dba HoothootFrontpic
 	dba NoctowlFrontpic
-	dba GoldeenFrontpic
-	dba SeakingFrontpic
+	dba TogepiFrontpic
+	dba TogeticFrontpic
 	dba SpinarakFrontpic
 	dba AriadosFrontpic
 	dba CrobatFrontpic
@@ -224,7 +224,7 @@ FrontPicPointers::
 	dba HappinyFrontpic
 	dba SmoochumFrontpic
 	dba MimeJrFrontpic
-	dba LickitungFrontpic
+	dba TogekissFrontpic
 	dba IgglybuffFrontpic
 	dba HoundourFrontpic
 	dba HoundoomFrontpic

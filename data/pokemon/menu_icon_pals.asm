@@ -111,6 +111,7 @@ MenuMonIconColors::
 	iconpal BROWN, TEAL ; MAROWAK
 	iconpal BROWN, GREEN ; HITMONLEE
 	iconpal BROWN, BLUE ; HITMONCHAN
+	iconpal PINK, BROWN ; LICKITUNG
 	iconpal PURPLE, BLUE ; KOFFING
 	iconpal PURPLE, BLUE ; WEEZING
 	iconpal GRAY, RED ; RHYHORN
@@ -120,9 +121,8 @@ MenuMonIconColors::
 	iconpal BROWN, GRAY ; KANGASKHAN
 	iconpal BLUE, RED ; HORSEA
 	iconpal BLUE, PURPLE ; SEADRA
-	iconpal RED, BLUE ; TOGEPI
-	iconpal RED, BLUE ; TOGETIC
-	iconpal RED, BLUE ; TOGEKISS
+	iconpal RED, BROWN ; GOLDEEN
+	iconpal RED, BROWN ; SEAKING
 	iconpal BROWN, BLUE ; STARYU
 	iconpal PURPLE, BLUE ; STARMIE
 	iconpal PINK, GREEN ; MR__MIME
@@ -168,8 +168,8 @@ MenuMonIconColors::
 	iconpal BROWN, RED ; FURRET
 	iconpal BROWN, RED ; HOOTHOOT
 	iconpal BROWN, GREEN ; NOCTOWL
-	iconpal RED, BROWN ; GOLDEEN
-	iconpal RED, BROWN ; SEAKING
+	iconpal RED, BLUE ; TOGEPI
+	iconpal RED, BLUE ; TOGETIC
 	iconpal GREEN, PURPLE ; SPINARAK
 	iconpal PURPLE, BLUE ; ARIADOS
 	iconpal PURPLE, RED ; CROBAT
@@ -228,7 +228,7 @@ MenuMonIconColors::
 	iconpal RED, PINK ; HAPPINY
 	iconpal PURPLE, PINK ; SMOOCHUM
 	iconpal BLUE, GREEN ; MIME_JR_
-	iconpal PINK, BROWN ; LICKITUNG
+	iconpal RED, BLUE ; TOGEKISS
 	iconpal RED, PINK ; IGGLYBUFF
 	iconpal RED, GRAY ; HOUNDOUR
 	iconpal RED, GRAY ; HOUNDOOM

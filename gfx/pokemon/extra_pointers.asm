@@ -107,6 +107,7 @@ AnimationExtraPointers:
 	dw MarowakPlainAnimationExtra
 	dw HitmonleeAnimationExtra
 	dw HitmonchanAnimationExtra
+	dw LickitungAnimationExtra
 	dw KoffingAnimationExtra
 	dw WeezingPlainAnimationExtra
 	dw RhyhornAnimationExtra
@@ -116,9 +117,8 @@ AnimationExtraPointers:
 	dw KangaskhanAnimationExtra
 	dw HorseaAnimationExtra
 	dw SeadraAnimationExtra
-	dw TogepiAnimationExtra
-	dw TogeticAnimationExtra
-	dw TogekissAnimationExtra
+	dw GoldeenAnimationExtra
+	dw SeakingAnimationExtra
 	dw StaryuAnimationExtra
 	dw StarmieAnimationExtra
 	dw MrMimePlainAnimationExtra
@@ -164,8 +164,8 @@ AnimationExtraPointers:
 	dw FurretAnimationExtra
 	dw HoothootAnimationExtra
 	dw NoctowlAnimationExtra
-	dw GoldeenAnimationExtra
-	dw SeakingAnimationExtra
+	dw TogepiAnimationExtra
+	dw TogeticAnimationExtra
 	dw SpinarakAnimationExtra
 	dw AriadosAnimationExtra
 	dw CrobatAnimationExtra
@@ -224,7 +224,7 @@ AnimationExtraPointers:
 	dw HappinyAnimationExtra
 	dw SmoochumAnimationExtra
 	dw MimeJrAnimationExtra
-	dw LickitungAnimationExtra
+	dw TogekissAnimationExtra
 	dw IgglybuffAnimationExtra
 	dw HoundourAnimationExtra
 	dw HoundoomAnimationExtra

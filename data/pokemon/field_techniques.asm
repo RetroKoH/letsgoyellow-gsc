@@ -163,6 +163,7 @@ TechniquePointers::
 	dw TechniquePush		; MAROWAK
 	dw TechniquePush		; HITMONLEE
 	dw TechniquePush		; HITMONCHAN
+	dw RaticateTechniques	; LICKITUNG
 	dw TechniqueGlow		; KOFFING
 	dw TechniqueGlow		; WEEZING
 	dw TechniquePush		; RHYHORN
@@ -172,9 +173,8 @@ TechniquePointers::
 	dw TechniquePush		; KANGASKHAN
 	dw NoTechniques			; HORSEA
 	dw TechniqueSwim		; SEADRA
-	dw NoTechniques			; TOGEPI
-	dw NoTechniques			; TOGETIC
-	dw TechniqueSoar		; TOGEKISS
+	dw NoTechniques			; GOLDEEN
+	dw TechniqueSwim		; SEAKING
 	dw AbraTechniques		; STARYU
 	dw StarmieTechniques	; STARMIE
 	dw AbraTechniques		; MR MIME
@@ -221,8 +221,8 @@ TechniquePointers::
 	dw TechniqueChop		; FURRET
 	dw NoTechniques			; HOOTHOOT
 	dw TechniqueSoar		; NOCTOWL
-	dw NoTechniques			; GOLDEEN
-	dw TechniqueSwim		; SEAKING
+	dw NoTechniques			; TOGEPI
+	dw NoTechniques			; TOGETIC
 	dw NoTechniques			; SPINARAK
 	dw BeedrillTechniques	; ARIADOS
 	dw TechniqueSoar		; CROBAT
@@ -281,7 +281,7 @@ TechniquePointers::
 	dw NoTechniques			; HAPPINY
 	dw NoTechniques			; SMOOCHUM
 	dw NoTechniques			; MIME_JR_
-	dw RaticateTechniques	; LICKITUNG
+	dw TechniqueSoar		; TOGEKISS
 	dw NoTechniques			; IGGLYBUFF
 	dw NoTechniques			; HOUNDOUR
 	dw NoTechniques			; HOUNDOOM

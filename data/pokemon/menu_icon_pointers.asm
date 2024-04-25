@@ -108,6 +108,7 @@ IconPointers:
 	dba MarowakIcon
 	dba HitmonleeIcon
 	dba HitmonchanIcon
+	dba LickitungIcon
 	dba KoffingIcon
 	dba WeezingIcon
 	dba RhyhornIcon
@@ -117,9 +118,8 @@ IconPointers:
 	dba KangaskhanIcon
 	dba HorseaIcon
 	dba SeadraIcon
-	dba TogepiIcon
-	dba TogeticIcon
-	dba TogekissIcon
+	dba GoldeenIcon
+	dba SeakingIcon
 	dba StaryuIcon
 	dba StarmieIcon
 	dba MrMimeIcon
@@ -165,8 +165,8 @@ IconPointers:
 	dba FurretIcon
 	dba HoothootIcon
 	dba NoctowlIcon
-	dba GoldeenIcon
-	dba SeakingIcon
+	dba TogepiIcon
+	dba TogeticIcon
 	dba SpinarakIcon
 	dba AriadosIcon
 	dba CrobatIcon
@@ -225,7 +225,7 @@ IconPointers:
 	dba HappinyIcon
 	dba SmoochumIcon
 	dba MimeJrIcon
-	dba LickitungIcon
+	dba TogekissIcon
 	dba IgglybuffIcon
 	dba HoundourIcon
 	dba HoundoomIcon

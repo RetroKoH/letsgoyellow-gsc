@@ -107,6 +107,10 @@ OaksLab_AutowalkUpToOak:
 	closetext
 	applymovement OAKSLAB_TRACE, Movement_TraceRunsOut
 	disappear OAKSLAB_TRACE
+
+	; Set all original 150 to seen/caught
+	callasm FillKantoPokedex
+
 	setflag ENGINE_POKEDEX
 	setflag ENGINE_POKEGEAR
 	setflag ENGINE_MAP_CARD
@@ -119,6 +123,17 @@ OaksLab_AutowalkUpToOak:
 	setmapscene ROUTE_22, $1
 	setscene $2
 	end
+
+FillKantoPokedex:
+	ld hl, wPokedexSeen
+	call .Fill
+	ld hl, wPokedexCaught
+.Fill:
+	ld a, %11111111
+	ld bc, 18 ; 001-144
+	rst ByteFill
+	ld [hl], %00111111 ; 145-150
+	ret
 
 Movement_WalkUpToProfOak:
 	step_up
@@ -319,7 +334,7 @@ OaksLabRequestText:
 	cont "world…"
 
 	para "That was my dream!"
-	line "But..."
+	line "But…"
 
 	para "It's already been"
 	line "done! My dream"
@@ -329,24 +344,14 @@ OaksLabRequestText:
 	line "exactly do we"
 	cont "need to do?"
 
-	para "Oak: I need you to"
-	line "find the boy who"
-	cont "completed it."
-
-	para "His name is Red,"
-	line "and he's been"
-	cont "missing for quite"
-	cont "some time now."
-
-	para "Not long after he"
-	line "became Champion,"
-	cont "he vanished, and"
-	cont "left this behind."
-
-	para "I need you to go"
-	line "out and find him."
-	cont "Use these as your"
-	cont "#mon guide."
+	para "Oak: I need you"
+	line "to take these and"
+	cont "report to Blue"
+	cont "in Pewter City."
+	
+	para "He will explain"
+	line "more once you get"
+	cont "there."
 
 	para "Oh, take these"
 	line "# Balls too!"
@@ -363,7 +368,7 @@ OaksLabLeaveItToUsText:
 	line "use the #dex"
 	cont "to find really"
 	cont "strong #mon to"
-	cont "help find Red!"
+	cont "help us out!"
 
 	para "Oh, and I got new"
 	line "# Gears for us!"

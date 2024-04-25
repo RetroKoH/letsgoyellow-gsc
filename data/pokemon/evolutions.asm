@@ -121,6 +121,7 @@ EvolutionPointers::
 	dw NoEvolutions
 	dw NoEvolutions ; Hitmonlee
 	dw NoEvolutions ; Hitmonchan
+	dw LickitungEvolutions
 	dw KoffingEvolutions
 	dw NoEvolutions
 	dw RhyhornEvolutions
@@ -130,9 +131,8 @@ EvolutionPointers::
 	dw NoEvolutions ; Kangaskhan
 	dw HorseaEvolutions
 	dw SeadraEvolutions
-	dw TogepiEvolutions
-	dw TogeticEvolutions
-	dw NoEvolutions ; Togekiss
+	dw GoldeenEvolutions
+	dw NoEvolutions ; Seaking
 	dw StaryuEvolutions
 	dw NoEvolutions
 	dw NoEvolutions ; Mr Mime
@@ -178,8 +178,8 @@ EvolutionPointers::
 	dw NoEvolutions
 	dw HoothootEvolutions
 	dw NoEvolutions
-	dw GoldeenEvolutions
-	dw NoEvolutions ; Seaking
+	dw TogepiEvolutions
+	dw TogeticEvolutions
 	dw SpinarakEvolutions
 	dw NoEvolutions
 	dw NoEvolutions ; Crobat
@@ -238,7 +238,7 @@ EvolutionPointers::
 	dw HappinyEvolutions
 	dw SmoochumEvolutions
 	dw MimeJrEvolutions
-	dw LickitungEvolutions
+	dw NoEvolutions ; Togekiss
 	dw IgglybuffEvolutions
 	dw HoundourEvolutions
 	dw NoEvolutions

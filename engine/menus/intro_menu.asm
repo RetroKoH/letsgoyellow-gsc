@@ -87,6 +87,8 @@ ResetWRAM_NotPlus:
 ResetWRAM:
 	ld hl, wVirtualOAM
 	ld bc, wOptions3 - wVirtualOAM
+	; Test instruction here
+
 	xor a
 	rst ByteFill
 

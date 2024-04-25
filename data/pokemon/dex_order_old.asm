@@ -109,7 +109,7 @@ OldPokedexOrder:
 	db MAROWAK
 	db HITMONLEE
 	db HITMONCHAN
-	db LICKITUNG
+	db LICKITUNG ; NOT DISPLAYING at start
 	db KOFFING
 	db WEEZING
 	db RHYHORN
@@ -119,8 +119,8 @@ OldPokedexOrder:
 	db KANGASKHAN
 	db HORSEA
 	db SEADRA
-	db GOLDEEN
-	db SEAKING
+	db GOLDEEN ; NOT DISPLAYING at start
+	db SEAKING ; NOT DISPLAYING at start
 	db STARYU
 	db STARMIE
 	db MR__MIME
@@ -152,5 +152,4 @@ OldPokedexOrder:
 	db DRAGONAIR
 	db DRAGONITE
 	db MEWTWO
-	db MEW
 ;	assert_table_length NUM_POKEMON

@@ -107,6 +107,7 @@ FramesPointers:
 	dw MarowakPlainFrames
 	dw HitmonleeFrames
 	dw HitmonchanFrames
+	dw LickitungFrames
 	dw KoffingFrames
 	dw WeezingPlainFrames
 	dw RhyhornFrames
@@ -116,9 +117,8 @@ FramesPointers:
 	dw KangaskhanFrames
 	dw HorseaFrames
 	dw SeadraFrames
-	dw TogepiFrames
-	dw TogeticFrames
-	dw TogekissFrames
+	dw GoldeenFrames
+	dw SeakingFrames
 	dw StaryuFrames
 	dw StarmieFrames
 	dw MrMimePlainFrames
@@ -164,8 +164,8 @@ FramesPointers:
 	dw FurretFrames
 	dw HoothootFrames
 	dw NoctowlFrames
-	dw GoldeenFrames
-	dw SeakingFrames
+	dw TogepiFrames
+	dw TogeticFrames
 	dw SpinarakFrames
 	dw AriadosFrames
 	dw CrobatFrames
@@ -224,7 +224,7 @@ FramesPointers:
 	dw HappinyFrames
 	dw SmoochumFrames
 	dw MimeJrFrames
-	dw LickitungFrames
+	dw TogekissFrames
 	dw IgglybuffFrames
 	dw HoundourFrames
 	dw HoundoomFrames

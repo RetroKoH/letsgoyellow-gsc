@@ -107,6 +107,7 @@ LearnsetPointers::
 	dw MarowakPlainLearnset
 	dw HitmonleeLearnset
 	dw HitmonchanLearnset
+	dw LickitungLearnset
 	dw KoffingLearnset
 	dw WeezingPlainLearnset
 	dw RhyhornLearnset
@@ -116,9 +117,8 @@ LearnsetPointers::
 	dw KangaskhanLearnset
 	dw HorseaLearnset
 	dw SeadraLearnset
-	dw TogepiLearnset
-	dw TogeticLearnset
-	dw TogekissLearnset
+	dw GoldeenLearnset
+	dw SeakingLearnset
 	dw StaryuLearnset
 	dw StarmieLearnset
 	dw MrMimePlainLearnset
@@ -164,8 +164,8 @@ LearnsetPointers::
 	dw FurretLearnset
 	dw HoothootLearnset
 	dw NoctowlLearnset
-	dw GoldeenLearnset
-	dw SeakingLearnset
+	dw TogepiLearnset
+	dw TogeticLearnset
 	dw SpinarakLearnset
 	dw AriadosLearnset
 	dw CrobatLearnset
@@ -224,7 +224,7 @@ LearnsetPointers::
 	dw HappinyLearnset
 	dw SmoochumLearnset
 	dw MimeJrLearnset
-	dw LickitungLearnset
+	dw TogekissLearnset
 	dw IgglybuffLearnset
 	dw HoundourLearnset
 	dw HoundoomLearnset

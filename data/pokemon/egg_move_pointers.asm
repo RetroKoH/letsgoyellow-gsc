@@ -107,6 +107,7 @@ EggMovePointers::
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
+	dw LickitungEggMoves
 	dw KoffingEggMoves
 	dw NoEggMoves
 	dw RhyhornEggMoves
@@ -116,8 +117,7 @@ EggMovePointers::
 	dw KangaskhanEggMoves
 	dw HorseaEggMoves
 	dw NoEggMoves
-	dw TogepiEggMoves
-	dw NoEggMoves
+	dw GoldeenEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
@@ -164,7 +164,7 @@ EggMovePointers::
 	dw NoEggMoves
 	dw HoothootEggMoves
 	dw NoEggMoves
-	dw GoldeenEggMoves
+	dw TogepiEggMoves
 	dw NoEggMoves
 	dw SpinarakEggMoves
 	dw NoEggMoves
@@ -224,7 +224,7 @@ EggMovePointers::
 	dw NoEggMoves
 	dw NoEggMoves
 	dw NoEggMoves
-	dw LickitungEggMoves
+	dw NoEggMoves ; TOGEKISS
 	dw NoEggMoves
 	dw HoundourEggMoves
 	dw NoEggMoves

@@ -1127,7 +1127,7 @@ MoveScreenLoop:
 	ret z
 	xor a
 	ld [wMoveSwapBuffer], a
-	jmp .outer_loop
+	jr .outer_loop
 .pressed_select
 	ld a, [wMoveScreenMode]
 	and a

@@ -376,6 +376,13 @@ CuboneEggMoves:
 	db IRON_HEAD
 	db $ff
 
+LickitungEggMoves:
+	db HAZE
+	db MIRROR_COAT
+	db HYDRO_PUMP
+	db GUNK_SHOT
+	db $ff
+
 KoffingEggMoves:
 	db PSYBEAM
 	db SCREECH
@@ -414,10 +421,13 @@ HorseaEggMoves:
 	db WATER_PULSE
 	db $ff
 
-TogepiEggMoves:
-	db HEALINGLIGHT
-	db NASTY_PLOT
-	db PECK
+GoldeenEggMoves:
+	db ENCORE ; requires Shuckle
+	db PSYBEAM
+	db SCREECH
+	db LIGHT_SCREEN
+	db KNOCK_OFF
+	db DRAIN_PUNCH
 	db $ff
 
 MrMimeEggMoves:
@@ -538,13 +548,10 @@ HoothootEggMoves:
 	db HURRICANE
 	db $ff
 
-GoldeenEggMoves:
-	db ENCORE ; requires Shuckle
-	db PSYBEAM
-	db SCREECH
-	db LIGHT_SCREEN
-	db KNOCK_OFF
-	db DRAIN_PUNCH
+TogepiEggMoves:
+	db HEALINGLIGHT
+	db NASTY_PLOT
+	db PECK
 	db $ff
 
 SpinarakEggMoves:
@@ -707,13 +714,6 @@ SwinubEggMoves:
 	db ANCIENTPOWER
 	db ICICLE_CRASH
 	db ICICLE_SPEAR
-	db $ff
-
-LickitungEggMoves:
-	db HAZE
-	db MIRROR_COAT
-	db HYDRO_PUMP
-	db GUNK_SHOT
 	db $ff
 
 HoundourEggMoves:

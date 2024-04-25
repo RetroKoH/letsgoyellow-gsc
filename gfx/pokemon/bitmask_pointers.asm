@@ -107,6 +107,7 @@ BitmasksPointers:
 	dw MarowakPlainBitmasks
 	dw HitmonleeBitmasks
 	dw HitmonchanBitmasks
+	dw LickitungBitmasks
 	dw KoffingBitmasks
 	dw WeezingPlainBitmasks
 	dw RhyhornBitmasks
@@ -116,9 +117,8 @@ BitmasksPointers:
 	dw KangaskhanBitmasks
 	dw HorseaBitmasks
 	dw SeadraBitmasks
-	dw TogepiBitmasks
-	dw TogeticBitmasks
-	dw TogekissBitmasks
+	dw GoldeenBitmasks
+	dw SeakingBitmasks
 	dw StaryuBitmasks
 	dw StarmieBitmasks
 	dw MrMimePlainBitmasks
@@ -164,8 +164,8 @@ BitmasksPointers:
 	dw FurretBitmasks
 	dw HoothootBitmasks
 	dw NoctowlBitmasks
-	dw GoldeenBitmasks
-	dw SeakingBitmasks
+	dw TogepiBitmasks
+	dw TogeticBitmasks
 	dw SpinarakBitmasks
 	dw AriadosBitmasks
 	dw CrobatBitmasks
@@ -224,7 +224,7 @@ BitmasksPointers:
 	dw HappinyBitmasks
 	dw SmoochumBitmasks
 	dw MimeJrBitmasks
-	dw LickitungBitmasks
+	dw TogekissBitmasks
 	dw IgglybuffBitmasks
 	dw HoundourBitmasks
 	dw HoundoomBitmasks

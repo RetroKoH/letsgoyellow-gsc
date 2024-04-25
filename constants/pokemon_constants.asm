@@ -127,6 +127,7 @@
 	const MAROWAK    ; 69
 	const HITMONLEE  ; 6a
 	const HITMONCHAN ; 6b
+	const LICKITUNG
 	const KOFFING    ; 6c
 	const WEEZING    ; 6d
 	const RHYHORN    ; 6e
@@ -136,9 +137,11 @@
 	const KANGASKHAN ; 72
 	const HORSEA     ; 73
 	const SEADRA     ; 74
-	const TOGEPI     ; 75
-	const TOGETIC    ; 76
-	const TOGEKISS   ; 77
+	const GOLDEEN
+	const SEAKING
+	;const TOGEPI     ; 75
+	;const TOGETIC    ; 76
+	;const TOGEKISS   ; 77
 	const STARYU     ; 78
 	const STARMIE    ; 79
 	const MR__MIME   ; 7a
@@ -185,8 +188,10 @@
 	const FURRET     ; a2 - keep
 	const HOOTHOOT   ; a3 - keep
 	const NOCTOWL    ; a4 - keep
-	const GOLDEEN    ; a5 - shift up
-	const SEAKING    ; a6 - shift up
+	;const GOLDEEN    ; a5 - shift up
+	;const SEAKING    ; a6 - shift up
+	const TOGEPI
+	const TOGETIC
 	const SPINARAK   ; a7 - keep
 	const ARIADOS    ; a8 - keep
 	const CROBAT     ; a9 - related
@@ -245,7 +250,8 @@
 	const HAPPINY    ; de - related
 	const SMOOCHUM   ; df - related
 	const MIME_JR_   ; e0 - related
-	const LICKITUNG  ; e1 - shift up
+	;const LICKITUNG  ; e1 - shift up
+	const TOGEKISS
 	const IGGLYBUFF  ; e2 - related
 	const HOUNDOUR   ; e3 - keep
 	const HOUNDOOM   ; e4 - keep

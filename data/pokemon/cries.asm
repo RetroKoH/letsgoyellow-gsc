@@ -113,6 +113,7 @@ PokemonCries::
 	mon_cry CRY_ODDISH,      $04f,  $0e0 ; Marowak
 	mon_cry CRY_GOLEM,       $080,  $140 ; Hitmonlee
 	mon_cry CRY_SEEL,        $0ee,  $140 ; Hitmonchan
+	mon_cry CRY_SEEL,        $000,  $100 ; Lickitung
 	mon_cry CRY_GOLEM,       $0e6,  $15d ; Koffing
 	mon_cry CRY_GOLEM,       $0ff,  $17f ; Weezing
 	mon_cry CRY_CHARMANDER,  $000,  $100 ; Rhyhorn
@@ -122,9 +123,8 @@ PokemonCries::
 	mon_cry CRY_KANGASKHAN,  $000,  $100 ; Kangaskhan
 	mon_cry CRY_CLEFAIRY,    $099,  $090 ; Horsea
 	mon_cry CRY_CLEFAIRY,    $03c,  $081 ; Seadra
-	mon_cry CRY_TOGEPI,      $010,  $100 ; Togepi
-	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togetic
-	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togekiss
+	mon_cry CRY_CATERPIE,    $080,  $0c0 ; Goldeen
+	mon_cry CRY_CATERPIE,    $010,  $17f ; Seaking
 	mon_cry CRY_PARAS,       $002,  $0a0 ; Staryu
 	mon_cry CRY_PARAS,       $000,  $100 ; Starmie
 	mon_cry CRY_KRABBY,      $008,  $0c0 ; MrMime
@@ -170,8 +170,8 @@ PokemonCries::
 	mon_cry CRY_SENTRET,     $06b,  $102 ; Furret
 	mon_cry CRY_HOOTHOOT,    $091,  $0d8 ; Hoothoot
 	mon_cry CRY_HOOTHOOT,    $000,  $1a0 ; Noctowl
-	mon_cry CRY_CATERPIE,    $080,  $0c0 ; Goldeen
-	mon_cry CRY_CATERPIE,    $010,  $17f ; Seaking
+	mon_cry CRY_TOGEPI,      $010,  $100 ; Togepi
+	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togetic
 	mon_cry CRY_SPINARAK,    $011,  $200 ; Spinarak
 	mon_cry CRY_SPINARAK,   -$0ae,  $1e2 ; Ariados
 	mon_cry CRY_SQUIRTLE,   -$010,  $140 ; Crobat
@@ -230,7 +230,7 @@ PokemonCries::
 	mon_cry CRY_PIDGEOTTO,   $00a,  $140 ; Happiny
 	mon_cry CRY_MARILL,      $068,  $100 ; Smoochum
 	mon_cry CRY_KRABBY,      $008,  $0c0 ; Mime Jr.
-	mon_cry CRY_SEEL,        $000,  $100 ; Lickitung
+	mon_cry CRY_TOGETIC,     $03b,  $038 ; Togekiss
 	mon_cry CRY_CHIKORITA,   $0e8,  $0e8 ; Igglybuff
 	mon_cry CRY_CYNDAQUIL,   $039,  $140 ; Houndour
 	mon_cry CRY_TOTODILE,   -$10a,  $100 ; Houndoom

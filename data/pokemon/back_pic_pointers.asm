@@ -107,6 +107,7 @@ BackPicPointers::
 	dba MarowakPlainBackpic
 	dba HitmonleeBackpic
 	dba HitmonchanBackpic
+	dba LickitungBackpic
 	dba KoffingBackpic
 	dba WeezingPlainBackpic
 	dba RhyhornBackpic
@@ -116,9 +117,8 @@ BackPicPointers::
 	dba KangaskhanBackpic
 	dba HorseaBackpic
 	dba SeadraBackpic
-	dba TogepiBackpic
-	dba TogeticBackpic
-	dba TogekissBackpic
+	dba GoldeenBackpic
+	dba SeakingBackpic
 	dba StaryuBackpic
 	dba StarmieBackpic
 	dba MrMimePlainBackpic
@@ -164,8 +164,8 @@ BackPicPointers::
 	dba FurretBackpic
 	dba HoothootBackpic
 	dba NoctowlBackpic
-	dba GoldeenBackpic
-	dba SeakingBackpic
+	dba TogepiBackpic
+	dba TogeticBackpic
 	dba SpinarakBackpic
 	dba AriadosBackpic
 	dba CrobatBackpic
@@ -224,7 +224,7 @@ BackPicPointers::
 	dba HappinyBackpic
 	dba SmoochumBackpic
 	dba MimeJrBackpic
-	dba LickitungBackpic
+	dba TogekissBackpic
 	dba IgglybuffBackpic
 	dba HoundourBackpic
 	dba HoundoomBackpic

@@ -109,6 +109,7 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  28, 100 ; Marowak
 	db  20, 100 ; Hitmonlee
 	db  20, 100 ; Hitmonchan
+	db   1, 100 ; Lickitung
 	db   1,  34 ; Koffing
 	db  35, 100 ; Weezing
 	db   1,  41 ; Rhyhorn
@@ -118,9 +119,8 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  20, 100 ; Kangaskhan
 	db   1,  31 ; Horsea
 	db  32,  54 ; Seadra
-	db   1,  19 ; Togepi
-	db  20,  39 ; Togetic
-	db  40, 100 ; Togekiss
+	db   1,  32 ; Goldeen
+	db  33, 100 ; Seaking
 	db   1,  32 ; Staryu
 	db  33, 100 ; Starmie
 	db  20, 100 ; Mr. Mime
@@ -166,8 +166,8 @@ ValidPokemonLevels: ; for Wonder Trade
 	db  15, 100 ; Furret
 	db   1,  19 ; Hoothoot
 	db  20, 100 ; Noctowl
-	db   1,  32 ; Goldeen
-	db  33, 100 ; Seaking
+	db   1,  19 ; Togepi
+	db  20,  39 ; Togetic
 	db   1,  21 ; Spinarak
 	db  22, 100 ; Ariados
 	db  32, 100 ; Crobat
@@ -226,7 +226,7 @@ ValidPokemonLevels: ; for Wonder Trade
 	db   1,  19 ; Happiny
 	db   1,  19 ; Smoochum
 	db   1,  19 ; Mime Jr
-	db   1, 100 ; Lickitung
+	db  40, 100 ; Togekiss
 	db   1,  19 ; Igglybuff
 	db   1,  23 ; Houndour
 	db  24, 100 ; Houndoom

@@ -347,7 +347,7 @@ _ChooseWildEncounter:	; Called if we DO want to force a type (via ability field 
 	ld a, [wOverworldLevel]
 
 ; find correct level range based on current overworld level
-.getLevelRange:
+.getLevelRange
 	cp 0
 	jr z, .gotLevelRange
 	inc hl
@@ -355,23 +355,32 @@ _ChooseWildEncounter:	; Called if we DO want to force a type (via ability field 
 	dec a
 	jr .getLevelRange
 
-.gotLevelRange:
+.gotLevelRange
+	xor a
+	ld e, a				; start addend at 0
+
 	ld a, [wLureEffect]
 	and a
 	jr z, .noLure
-
-	ld a, [hli]
-	add a, 2		; increase this by 2
-	ld d, a			; d = Min level
-
-	ld a, [hli]		; Max level
-	add a, 2		; increase this by 2
-	jr .GotLevel
+	ld e, 2				; set addend to 2
 
 .noLure
+	; Check level of highest party member (To be added)
+
+.noCap
+	ld a, [wTimeOfDay]
+	cp NITE
+	jr nz, .notNite
+	ld a, e
+	inc a
+	ld e, a				; +1 to addend
+
+.notNite
 	ld a, [hli]
-	ld d, a			; d = Min level
+	add a, e
+	ld d, a			; d = Min level + addend
 	ld a, [hli]		; Max level
+	add a, e		; a = Max level + addend
 	sub d
 	jr nz, .RandomLevel
 	ld a, d
@@ -388,7 +397,7 @@ _ChooseWildEncounter:	; Called if we DO want to force a type (via ability field 
 	add d
 	pop bc
 
-.GotLevel:
+.GotLevel
 	pop hl 						; hl is set back to the encounter rates
 	ld [wCurPartyLevel], a		; store wild mon's level
 	inc hl 						; SKIP FIRST ENCOUNTER RATE

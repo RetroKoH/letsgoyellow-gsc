@@ -502,6 +502,10 @@ _ChooseWildEncounter:	; Called if we DO want to force a type (via ability field 
 	sub l
 	ld h, a
 
+	; Recall level to check for surf boost
+	ld a, [wCurPartyLevel]
+	ld b, a
+
 	; Mons encountered while surfing sometimes get a minor level boost.
 	push bc
 	call CheckOnWater
@@ -523,10 +527,11 @@ _ChooseWildEncounter:	; Called if we DO want to force a type (via ability field 
 
 
 .ok
-;	ld a, b
-;	ld [wCurPartyLevel], a	; Store the level (Now done earlier)
+	ld a, b
+	ld [wCurPartyLevel], a	; Store the boosted level
 	ld a, [hli]				; Get species
 	ld b, [hl]				; Get form
+	; Evo Check function here
 	pop hl
 
 	; Check if we're forcing type

@@ -276,7 +276,9 @@ ENDU
 
 ENDU
 
-	ds 3 ; unused
+wOverworldLevel:: db ; Only least significant nybble is used. (Range $0-$F)
+
+	ds 2 ; unused
 
 wLastBattlePocket:: db
 wBattleItemsPocketCursor:: db

@@ -303,9 +303,27 @@ endr
 	ld c, [hl]
 	ret
 
+ScalingEncounterLevels:
+	db 2, 6		; Start
+	db 4, 8		; After meeting Prof. Oak
+	db 6, 10	; After meeting Blue in Pewter City
+	db 8, 12	; After meeting Jessie and James at Mt. Moon entrance
+	db 12, 16	; After defeating Corruption #1
+	db 17, 21	; After defeating Corruption #2
+	db 22, 27	; After defeating Corruption #3
+	db 26, 31	; After defeating Corruption #4
+	db 29, 35	; After defeating Corruption #5
+	db 32, 38	; After defeating Corruption #6
+	db 34, 40	; After defeating Corruption #7
+	db 38, 44	; After defeating Corruption #8 (Lapras?)
+	db 44, 50	; After defeating Jessie/James in Viridian City (Corrupted Arbok & Weezing)
+	db 48, 56	; After defeating Corrupted Snorlax and unlocking Victory Road
+	db 54, 60	; After Defeating Shadow Mewtwo
+	db 64, 70	; Cerulean Cave/Mt. Silver Exclusive level
+
 ChooseWildEncounter:	; Called if we DON'T want to force a type
 	ld c, $ff
-_ChooseWildEncounter:	; Called if we DO want to force a type
+_ChooseWildEncounter:	; Called if we DO want to force a type (via ability field effect, etc)
 	push bc
 	call LoadWildMonDataPointer
 	pop bc
@@ -321,26 +339,44 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 .found_wild_data
 	inc hl ; SKIP MAP GROUP
 	inc hl ; SKIP MAP ID
+	; Next byte will be map's minimum overworld level
 
-; Min level
-	ld a, [hli]
-	ld d, a
+	; hl now points to the first encounter rate.
+	push hl
+	ld hl, ScalingEncounterLevels
+	ld a, [wOverworldLevel]
 
+; find correct level range based on current overworld level
+.getLevelRange:
+	cp 0
+	jr z, .gotLevelRange
+	inc hl
+	inc hl
+	dec a
+	jr .getLevelRange
+
+.gotLevelRange:
 	ld a, [wLureEffect]
 	and a
 	jr z, .noLure
+
+	ld a, [hli]
+	add a, 2		; increase this by 2
+	ld d, a			; d = Min level
+
 	ld a, [hli]		; Max level
 	add a, 2		; increase this by 2
 	jr .GotLevel
 
 .noLure
-; Max level
 	ld a, [hli]
+	ld d, a			; d = Min level
+	ld a, [hli]		; Max level
 	sub d
 	jr nz, .RandomLevel
-; If min and max are the same.
 	ld a, d
-	jr .GotLevel
+	jr .GotLevel	; If min and max are the same, skip ahead
+
 ; Get a random level between the min and max.
 .RandomLevel
 	push bc
@@ -353,8 +389,9 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	pop bc
 
 .GotLevel:
-	ld [wCurPartyLevel], a
-	inc hl ; SKIP FIRST ENCOUNTER RATE
+	pop hl 						; hl is set back to the encounter rates
+	ld [wCurPartyLevel], a		; store wild mon's level
+	inc hl 						; SKIP FIRST ENCOUNTER RATE
 	push bc
 	call CheckOnWater
 	pop bc
@@ -369,7 +406,7 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 
 .notWater
 	inc hl
-	inc hl						; if not on water, skip remaining encounter rate bytes
+	inc hl						; if not on water, SKIP REMAINING ENCOUNTER RATE BYTES
 	call GetTimeOfDayNotEve
 	push bc
 	ld bc, NUM_GRASSMON * 2
@@ -383,10 +420,9 @@ _ChooseWildEncounter:	; Called if we DO want to force a type
 	ld de, GrassMonProbTable_Lure
 
 .got_table
-	; Check if we want to force a type
-	inc c
-	jr z, .get_random_mon
-	dec c
+	inc c					; Check if we want to force a type
+	jr z, .get_random_mon	; if c = $00, we will NOT force a type, and skip ahead
+	dec c					; otherwise, we will try to do so below...
 
 	; Check if we can actually encounter a valid species of the given type
 	push de

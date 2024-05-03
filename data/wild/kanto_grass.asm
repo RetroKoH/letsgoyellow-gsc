@@ -1,7 +1,7 @@
 ; Kanto Pokémon in grass
 ; KantoGrassWildMons:
 
-	def_grass_wildmons DIGLETTS_CAVE, 13, 18 ; Level range 13-18
+	def_grass_wildmons DIGLETTS_CAVE
 	db 8 percent, 10 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon DIGLETT
@@ -32,7 +32,7 @@
 	wildmon CHANSEY ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons MOUNT_MOON_1F, 6, 11
+	def_grass_wildmons MOUNT_MOON_1F
 	db 3 percent, 3 percent, 2 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -63,7 +63,7 @@
 	wildmon ONIX ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons MOUNT_MOON_B1F, 6, 11
+	def_grass_wildmons MOUNT_MOON_B1F
 	db 3 percent, 3 percent, 3 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PARAS
@@ -94,7 +94,7 @@
 	wildmon SHUCKLE ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons MOUNT_MOON_B2F, 6, 11
+	def_grass_wildmons MOUNT_MOON_B2F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -125,7 +125,7 @@
 	wildmon ONIX ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROCK_TUNNEL_1F, 18, 23 ; Level range 18-23
+	def_grass_wildmons ROCK_TUNNEL_1F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon GEODUDE
@@ -156,7 +156,7 @@
 	wildmon CHARMANDER ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROCK_TUNNEL_B1F, 18, 23 ; Level range 18-23
+	def_grass_wildmons ROCK_TUNNEL_B1F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon GEODUDE
@@ -188,7 +188,7 @@
 	end_grass_wildmons
 
 ;ROCK_TUNNEL_2F - Omitted
-	def_grass_wildmons VICTORY_ROAD_1F, 40, 46 ; Level range 40-46
+	def_grass_wildmons VICTORY_ROAD_1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -219,7 +219,7 @@
 	wildmon DITTO ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons VICTORY_ROAD_2F, 40, 46 ; Level range 40-46
+	def_grass_wildmons VICTORY_ROAD_2F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -250,7 +250,7 @@
 	wildmon DITTO ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons VICTORY_ROAD_3F, 40, 46 ; Level range 40-46
+	def_grass_wildmons VICTORY_ROAD_3F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -281,7 +281,7 @@
 	wildmon DITTO ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_1, 2, 6 ; Level range 2-6
+	def_grass_wildmons ROUTE_1
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -312,7 +312,7 @@
 	wildmon MEOWTH ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_2_NORTH, 2, 6 ; Level range 2-6
+	def_grass_wildmons ROUTE_2_NORTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon RATTATA
@@ -343,7 +343,7 @@
 	wildmon MEOWTH ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_2_SOUTH, 2, 6 ; Level range 2-6
+	def_grass_wildmons ROUTE_2_SOUTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon RATTATA
@@ -374,7 +374,7 @@
 	wildmon MEOWTH ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons VIRIDIAN_FOREST, 3, 7 ; Level range 3-7
+	def_grass_wildmons VIRIDIAN_FOREST
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon CATERPIE
@@ -405,7 +405,7 @@
 	wildmon BULBASAUR ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_3, 4, 8 ; Level range 4-8
+	def_grass_wildmons ROUTE_3
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon SPEAROW
@@ -436,7 +436,7 @@
 	wildmon CLEFAIRY ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_4, 7, 12 ; Level range 7-12
+	def_grass_wildmons ROUTE_4
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon SPEAROW
@@ -467,7 +467,7 @@
 	wildmon CLEFAIRY ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_5, 10, 16 ; Level range 10-16
+	def_grass_wildmons ROUTE_5
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -498,7 +498,7 @@
 	wildmon SNUBBULL ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_6, 10, 16 ; Level range 10-16
+	def_grass_wildmons ROUTE_6
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -529,7 +529,7 @@
 	wildmon SNUBBULL ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_7, 19, 25 ; Level range 19-25
+	def_grass_wildmons ROUTE_7
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -560,7 +560,7 @@
 	wildmon SNUBBULL ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_8, 19, 25 ; Level range 19-25
+	def_grass_wildmons ROUTE_8
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -591,7 +591,7 @@
 	wildmon SNUBBULL ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_9, 17, 22 ; Level range 17-22
+	def_grass_wildmons ROUTE_9
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon RATTATA
@@ -622,7 +622,7 @@
 	wildmon CUBONE ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_10_NORTH, 18, 23 ; Level range 18-23
+	def_grass_wildmons ROUTE_10_NORTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon RATTATA
@@ -653,7 +653,7 @@
 	wildmon WOOPER ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_11, 13, 18 ; Level range 13-18
+	def_grass_wildmons ROUTE_11
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon RATTATA
@@ -684,7 +684,7 @@
 	wildmon MR__MIME ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_12_SOUTH, 25, 31 ; Level range 25-31
+	def_grass_wildmons ROUTE_12_SOUTH
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -715,7 +715,7 @@
 	wildmon FARFETCH_D ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_13_EAST, 29, 36 ; Level range 29-36
+	def_grass_wildmons ROUTE_13_EAST
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -746,7 +746,7 @@
 	wildmon FARFETCH_D ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_14, 29, 36 ; Level range 29-36
+	def_grass_wildmons ROUTE_14
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -777,7 +777,7 @@
 	wildmon CHANSEY ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_15, 29, 36 ; Level range 29-36
+	def_grass_wildmons ROUTE_15
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -808,7 +808,7 @@
 	wildmon CHANSEY ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_16_NORTHWEST, 27, 34 ; Level range 27-34
+	def_grass_wildmons ROUTE_16_NORTHWEST
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -839,7 +839,7 @@
 	wildmon SLUGMA ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_17, 29, 36 ; Level range 29-36
+	def_grass_wildmons ROUTE_17
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon RATTATA
@@ -870,7 +870,7 @@
 	wildmon EEVEE ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_18_EAST, 29, 36 ; Level range 29-36
+	def_grass_wildmons ROUTE_18_EAST
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -901,7 +901,7 @@
 	wildmon CHANSEY ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_18_WEST, 29, 36 ; Level range 29-36
+	def_grass_wildmons ROUTE_18_WEST
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -932,7 +932,7 @@
 	wildmon CHANSEY ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_21, 37, 42 ; Level range 37-42
+	def_grass_wildmons ROUTE_21
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon TANGELA
@@ -963,7 +963,7 @@
 	wildmon CHANSEY ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_22, 2, 6 ; Level range 2-6 (Late-game will bump to 40-46)
+	def_grass_wildmons ROUTE_22
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon SPEAROW
@@ -994,7 +994,7 @@
 	wildmon HOUNDOUR ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_23, 40, 46 ; Level range 40-46 (Late game Rt 22)
+	def_grass_wildmons ROUTE_23
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon SPEAROW
@@ -1025,7 +1025,7 @@
 	wildmon HOUNDOUR ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_24, 7, 12 ; Level range 7-12
+	def_grass_wildmons ROUTE_24
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -1056,7 +1056,7 @@
 	wildmon SQUIRTLE ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons ROUTE_25, 9, 14 ; Level range 9-14
+	def_grass_wildmons ROUTE_25
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -1090,7 +1090,7 @@
 ; Routes 26 and 27 omitted temporarily
 ; Route 28 omitted temporarily
 
-	def_grass_wildmons CERULEAN_CAPE, 9, 14 ; Level range 9-14
+	def_grass_wildmons CERULEAN_CAPE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon PIDGEY
@@ -1121,7 +1121,7 @@
 	wildmon SQUIRTLE ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons CERULEAN_CAVE_1F, 51, 60 ; Level range 51-60
+	def_grass_wildmons CERULEAN_CAVE_1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -1152,7 +1152,7 @@
 	wildmon SNORLAX ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons CERULEAN_CAVE_2F, 51, 60 ; Level range 51-60
+	def_grass_wildmons CERULEAN_CAVE_2F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -1183,7 +1183,7 @@
 	wildmon SNORLAX ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons CERULEAN_CAVE_B1F, 55, 65 ; Level range 55-65
+	def_grass_wildmons CERULEAN_CAVE_B1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -1214,7 +1214,7 @@
 	wildmon SNORLAX ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons POWER_PLANT, 32, 38 ; Level range 32-38
+	def_grass_wildmons POWER_PLANT
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon VOLTORB
@@ -1245,7 +1245,7 @@
 	wildmon PIKACHU ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons SEAFOAM_ISLANDS_1F, 35, 39 ; Level range 35-39
+	def_grass_wildmons SEAFOAM_ISLANDS_1F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -1276,7 +1276,7 @@
 	wildmon SQUIRTLE ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons SEAFOAM_ISLANDS_B1F, 37, 43 ; Level range 37-43
+	def_grass_wildmons SEAFOAM_ISLANDS_B1F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -1307,7 +1307,7 @@
 	wildmon SQUIRTLE ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons SEAFOAM_ISLANDS_B2F, 39, 45 ; Level range 39-45
+	def_grass_wildmons SEAFOAM_ISLANDS_B2F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -1338,7 +1338,7 @@
 	wildmon SQUIRTLE ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons SEAFOAM_ISLANDS_B3F, 41, 45 ; Level range 41-45
+	def_grass_wildmons SEAFOAM_ISLANDS_B3F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT
@@ -1369,7 +1369,7 @@
 	wildmon SQUIRTLE ; RARE
 	end_grass_wildmons
 
-	def_grass_wildmons SEAFOAM_ISLANDS_B4F, 41, 45 ; Level range 41-45
+	def_grass_wildmons SEAFOAM_ISLANDS_B4F
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	wildmon ZUBAT

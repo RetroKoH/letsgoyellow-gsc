@@ -279,14 +279,14 @@ NUM_WATERMON_ACTUAL EQU NUM_WATERMON - 1 ; This will remain 3
 ; 2. each mon entry is 3 bytes (level, mon, form), with 7 mon entries, and 1 byte for encounter rate.
 ; 3. #2 is repeated 3 times, once for each time period (Morn, Noon, Eve/Nite)
 
-GRASS_WILDDATA_LENGTH EQU 4 + (1 + NUM_GRASSMON * 2) * 3 ; Each grass data table is 49 bytes in length
+GRASS_WILDDATA_LENGTH EQU 2 + (1 + NUM_GRASSMON * 2) * 3 ; Each grass data table is 49 bytes in length
 ; With 8 mons, this is only 55 bytes in length, still less than 68
-; 1. each data table has a 4-byte header: Map Group and ID, Min Level and Max Level
+; 1. each data table has a 2-byte header: Map Group and ID (Will add min overworld level later)
 ; 2. each mon entry is 2 bytes (mon, form), with 7 mon entries, and 1 byte for encounter rate.
 ; 3. #2 is repeated 3 times, once for each time period (Morn, Noon, Eve/Nite)
 
-WATER_WILDDATA_LENGTH EQU 4 + (1 + NUM_WATERMON * 2) * 1
-; 3. *1 at the end, as there's one rate for each time period
+WATER_WILDDATA_LENGTH EQU 2 + (1 + NUM_WATERMON * 2) * 1
+; 3. *1 at the end, as there's one rate for each time period (Will add min overworld level later)
 
 ; We don't need to touch anything below for the moment
 FISHGROUP_DATA_LENGTH EQU 2 + 2 * 3

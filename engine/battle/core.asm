@@ -5572,8 +5572,8 @@ LinkBattleSendReceiveAction:
 	add BATTLEACTION_SWITCH1 - 1
 	jr .use_move
 
+; Subroutine to initialize wildmon data
 LoadEnemyMon:
-; Initialize wildmon data
 	xor a
 	ld [wOTPartyCount], a
 	ld [wCurOTMon], a
@@ -5610,7 +5610,6 @@ LoadEnemyMon:
 	jr z, .UpdateItem
 
 	; Failing that, it's all up to chance
-
 	call GetLeadAbility
 	cp SUPER_LUCK
 	jr z, .compound_eyes

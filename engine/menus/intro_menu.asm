@@ -187,6 +187,8 @@ endr
 	xor a
 	ld [wMonType], a
 
+	ld [wOverworldLevel], a
+
 	ld [wJohtoBadges], a
 	ld [wKantoBadges], a
 

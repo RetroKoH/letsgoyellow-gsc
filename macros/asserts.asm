@@ -44,7 +44,7 @@ def_grass_wildmons: MACRO
 	REDEF CURRENT_GRASS_WILDMONS_LABEL EQUS "._def_grass_wildmons_\1"
 	{CURRENT_GRASS_WILDMONS_LABEL}:
 	map_id \1 ; db GROUP_\1, MAP_\1
-	db \2, \3
+	;db \2, \3 ; <- This will be set to a minimum overworld level
 ENDM
 
 end_grass_wildmons: MACRO
@@ -58,7 +58,7 @@ def_water_wildmons: MACRO
 	REDEF CURRENT_WATER_WILDMONS_LABEL EQUS "._def_water_wildmons_\1"
 	{CURRENT_WATER_WILDMONS_LABEL}:
 	map_id \1 ; db GROUP_\1, MAP_\1
-	db \2, \3
+	;db \2, \3 ; <- This will be set to a minimum overworld level
 ENDM
 
 end_water_wildmons: MACRO

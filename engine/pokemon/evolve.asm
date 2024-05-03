@@ -537,6 +537,7 @@ Text_WhatEvolving:
 	text_far _EvolvingText
 	text_end
 
+; NEW Subroutine for learning moves upon levelup.
 LearnEvolutionMove:
 	; c = species
 	ld a, [wTempSpecies]
@@ -555,7 +556,8 @@ LearnEvolutionMove:
 	ld h, [hl]
 	ld l, a
 
-.find_move	; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
+; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
+.find_move
 	ld a, [hli]
 	and a		; have we reached the end of the learn set?
 	ret z		; if we've reached the end of the learn set, jump (If no moves present in set)
@@ -573,7 +575,9 @@ LearnEvolutionMove:
 	rst AddNTimes
 
 	ld b, NUM_MOVES
-.check_move ; check if the move to learn is already known
+
+; check if the move to learn is already known
+.check_move
 	ld a, [hli]
 	cp d
 	jr z, .has_move		; if already known, jump
@@ -596,6 +600,7 @@ LearnEvolutionMove:
 	pop hl
 	jr .find_move
 
+; Subroutine for learning moves upon levelup.
 LearnLevelMoves:
 	ld a, [wTempSpecies]
 	ld [wCurPartySpecies], a
@@ -617,7 +622,8 @@ LearnLevelMoves:
 .nextMove
 	inc hl
 
-.find_move ; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
+; loop over the learn set until we reach a move that is learnt at the current level or the end of the list
+.find_move
 	ld a, [hli]
 	and a		; have we reached the end of the learn set?
 	ret z		; if we've reached the end of the learn set, jump (If no moves present in set)
@@ -664,8 +670,8 @@ LearnLevelMoves:
 	pop hl
 	jr .find_move
 
+; Subroutine to fill in moves at de for species c form b at wCurPartyLevel (Wild and Trainers)
 FillMoves:
-; Fill in moves at de for species c form b at wCurPartyLevel (Wild and Trainers)
 	push hl
 	push de
 	push bc
@@ -685,8 +691,10 @@ FillMoves:
 	inc hl
 .GetLevel:
 	ld a, [hli]
-	cp $FF
-	jr z, .GetMove	; skip evolution moves (Change this)
+	cp $FF			; $FF = evolution move
+	jr nz, .Skip	; skip ahead if not an evolution move
+	ld a, 01		; hardset evolution moves to Lv 1 moves
+.Skip
 	and a
 	jr z, .done
 	ld b, a

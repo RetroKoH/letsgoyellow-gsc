@@ -579,35 +579,35 @@ NUM_APRICORNS EQU const_value - 1
 ; - KeyItemDescriptions (see data/items/descriptions.asm)
 ; - KeyItemAttributes (see data/items/attributes.asm)
 ; - KeyItemEffects (see engine/items/item_effects.asm)
-	const_def
-	const BICYCLE      ; 00
-	const OLD_ROD      ; 01
-	const GOOD_ROD     ; 02
-	const SUPER_ROD    ; 03
-	const COIN_CASE    ; 04 - Replace with Candy Jar
-	const ITEMFINDER   ; 05
-	const MYSTERY_EGG  ; 06
-	const TOWN_MAP     ; 07
-	const RED_SCALE    ; 08 - Unlocks Shiny Pokemon
-	const CARD_KEY     ; 09
-	const BASEMENT_KEY ; 0a
-	const S_S_TICKET   ; 0b
-	const PASS         ; 0c
-	const MACHINE_PART ; 0d
-	const LOST_ITEM    ; 0e
-	const ESCAPE_ROPE  ; 0f - Formerly RAINBOW_WING
-	const POKE_DOLL    ; 10 - Formerly SILVER_WING
-	const CLEAR_BELL   ; 11 - UNUSED
-	const GS_BALL      ; 12 - UNUSED
-	const BLUE_CARD    ; 13 - UNUSED
-	const ORANGETICKET ; 14 - UNUSED
-	const MYSTICTICKET ; 15 - UNUSED
-	const OLD_SEA_MAP  ; 16
-	const SHINY_CHARM  ; 17
-	const OVAL_CHARM   ; 18
-	const CATCH_CHARM  ; 19
-	const SILPHSCOPE2  ; 1a - UNUSED???
-	const APRICORN_BOX ; 1b
-	const CANDY_JAR    ; 1c - NEW
-	const TYPE_CHART   ; 1d
-NUM_KEY_ITEMS EQU const_value
+	const_def 1
+	const BICYCLE      ; 01
+	const OLD_ROD      ; 02
+	const GOOD_ROD     ; 03
+	const SUPER_ROD    ; 04
+	const COIN_CASE    ; 05 - REMOVE??? maybe
+	const ITEMFINDER   ; 06
+	const MYSTERY_EGG  ; 07
+	const TOWN_MAP     ; 08
+	const RED_SCALE    ; 09 - REMOVE???
+	const CARD_KEY     ; 0a
+	const BASEMENT_KEY ; 0b
+	const S_S_TICKET   ; 0c
+	const PASS         ; 0d
+	const MACHINE_PART ; 0e
+	const LOST_ITEM    ; 0f
+	const ESCAPE_ROPE  ; 10 - Formerly RAINBOW_WING
+	const POKE_DOLL    ; 11 - Formerly SILVER_WING
+	const CLEAR_BELL   ; 12 - UNUSED
+	const GS_BALL      ; 13 - UNUSED
+	const BLUE_CARD    ; 14 - UNUSED
+	const ORANGETICKET ; 15 - UNUSED
+	const MYSTICTICKET ; 16 - UNUSED
+	const OLD_SEA_MAP  ; 17
+	const SHINY_CHARM  ; 18
+	const OVAL_CHARM   ; 19
+	const CATCH_CHARM  ; 1a
+	const SILPHSCOPE2  ; 1b - UNUSED???
+	const APRICORN_BOX ; 1c
+	const CANDY_JAR    ; 1d - NEW
+	const TYPE_CHART   ; 1e
+NUM_KEY_ITEMS EQU const_value - 1

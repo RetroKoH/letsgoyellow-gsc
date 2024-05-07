@@ -3315,8 +3315,8 @@ _OakText2::
 	text "This world is in-"
 	line "habited by crea-"
 	cont "tures that we call"
-	cont "#mon."
-	done
+	cont "#mon.@"
+	text_end
 
 SECTION "_OakText4", ROMX
 _OakText4::

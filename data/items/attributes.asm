@@ -541,8 +541,6 @@ KeyItemAttributes:
 	key_item_attribute 0, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 ; OAKS_PARCEL
 	key_item_attribute 0, ITEMMENU_CLOSE, ITEMMENU_NOUSE
-; SECRETPOTION
-	key_item_attribute 0, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 ; RED SCALE
 	key_item_attribute 0, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 ; CARD KEY
@@ -583,6 +581,8 @@ KeyItemAttributes:
 	key_item_attribute 0, ITEMMENU_CURRENT, ITEMMENU_NOUSE
 ; APRICORN BOX
 	key_item_attribute 0, ITEMMENU_CURRENT, ITEMMENU_NOUSE
+; CANDY JAR
+	key_item_attribute 0, ITEMMENU_PARTY, ITEMMENU_NOUSE
 ; TYPE CHART
 	key_item_attribute 0, ITEMMENU_CURRENT, ITEMMENU_CURRENT
 	assert_table_length NUM_KEY_ITEMS

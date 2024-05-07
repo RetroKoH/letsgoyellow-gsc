@@ -290,7 +290,6 @@ KeyItemEffects:
 	dw Itemfinder          ; ITEMFINDER
 	dw IsntTheTimeMessage  ; MYSTERY_EGG
 	dw IsntMyParcelMessage ; OAKS_PARCEL
-	dw IsntTheTimeMessage  ; SECRETPOTION
 	dw IsntTheTimeMessage  ; RED_SCALE
 	dw CardKey             ; CARD_KEY
 	dw BasementKey         ; BASEMENT_KEY
@@ -311,6 +310,7 @@ KeyItemEffects:
 	dw IsntTheTimeMessage  ; CATCH_CHARM
 	dw IsntTheTimeMessage  ; SILPHSCOPE2
 	dw ApricornBox         ; APRICORN_BOX
+	dw IsntTheTimeMessage  ; CANDY_JAR
 	dw TypeChart           ; TYPE_CHART
 	assert_table_length NUM_KEY_ITEMS
 
@@ -322,7 +322,7 @@ PokeBallEffect:
 
 	; Using balls in trainer battles
 	dec a
-	jmp z, .notBlocked ; nz = trainer battle
+	jr z, .notBlocked ; nz = trainer battle
 	ld a, [wCurItem]
 	cp SNAG_BALL
 	jp nz, UseBallInTrainerBattle ; block if not snag ball

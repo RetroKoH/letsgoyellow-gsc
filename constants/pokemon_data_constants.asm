@@ -196,10 +196,15 @@ MON_GENDER_F     EQU 7
 MON_IS_EGG_F     EQU 6
 MON_EXTSPECIES_F EQU 5
 
+; Adjust to 63
+DEF MODERN_MAX_EV EQU 252
+; modern EV limit (Adjust down to 127; 63 in 2 stats, 1 pt in a 3rd stat)
+MODERN_EV_LIMIT EQU 510
+
 ; shiny probability values (Denominator of 1024 instead of 4096)
 ;SHINY_NUMERATOR					; 1/1024
-LURE_SHINY_NUMERATOR    EQU 2		; 2/1024 (1/512)
-CHARMED_SHINY_NUMERATOR EQU 3		; 3/1024 (1/341 approx)
+LURE_SHINY_NUMERATOR         EQU 2	; 2/1024 (1/512)
+CHARMED_SHINY_NUMERATOR      EQU 3	; 3/1024 (1/341 approx)
 CHARMED_LURE_SHINY_NUMERATOR EQU 4	; 4/1024 (1/256)
 
 ; ability values

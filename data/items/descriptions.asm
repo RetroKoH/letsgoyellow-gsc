@@ -265,7 +265,6 @@ KeyItemDescriptions:
 	dw ItemfinderDesc
 	dw MysteryEggDesc
 	dw OaksParcelDesc
-	dw SecretPotionDesc
 	dw RedScaleDesc
 	dw CardKeyDesc
 	dw BasementKeyDesc
@@ -286,6 +285,7 @@ KeyItemDescriptions:
 	dw CatchCharmDesc
 	dw SilphScope2Desc
 	dw ApricornBoxDesc
+	dw CandyJarDesc
 	dw TypeChartDesc
 
 PokeBallDesc:
@@ -1297,10 +1297,6 @@ OaksParcelDesc:
 	db   "A parcel belonging"
 	next "to Prof. Oak.@"
 
-SecretPotionDesc:
-	db   "Fully heals any"
-	next "#mon.@"
-
 RedScaleDesc:
 	db   "A scale from the"
 	next "red Gyarados.@"
@@ -1376,6 +1372,10 @@ SilphScope2Desc:
 ApricornBoxDesc:
 	db   "Holds up to 99 of"
 	next "each Apricorn.@"
+
+CandyJarDesc:
+	db   "Holds all Effort"
+	next "and Exp. Candies.@"
 
 TypeChartDesc:
 	db   "Summarizes all"

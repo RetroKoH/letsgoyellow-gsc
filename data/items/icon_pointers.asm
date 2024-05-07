@@ -266,7 +266,6 @@ KeyItemIconPointers:
 	dba ItemfinderIcon
 	dba MysteryEggIcon
 	dba OaksParcelIcon
-	dba SecretPotionIcon
 	dba RedScaleIcon
 	dba CardKeyIcon
 	dba BasementKeyIcon
@@ -287,4 +286,5 @@ KeyItemIconPointers:
 	dba CatchCharmIcon
 	dba SilphScope2Icon
 	dba ApricornBoxIcon
+	dba CandyJarIcon
 	dba TypeChartIcon

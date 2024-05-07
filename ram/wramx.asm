@@ -1154,7 +1154,21 @@ wEventFlags:: flag_array NUM_EVENTS
 
 wCurBox:: db
 
-	ds 126 ; unused
+	ds 109 ; unused
+	
+wCandyAmounts::
+	wExpCandyXSAmount:: db
+	wExpCandySAmount:: db
+	wExpCandyMAmount:: db
+	wExpCandyLAmount:: db
+	wExpCandyXLAmount:: db
+
+	wHealthCandyAmount:: dw ; +4 HP
+	wMightyCandyAmount:: dw ; +4 ATK
+	wToughCandyAmount:: dw ; +4 DEF
+	wQuickCandyAmount:: dw ; +4 SPD
+	wSmartCandyAmount:: dw ; +4 SpA
+	wCourageCandyAmount:: dw ; +4 SpD
 
 wCelebiEvent:: db
 

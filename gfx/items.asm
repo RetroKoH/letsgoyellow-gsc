@@ -323,7 +323,7 @@ CoinCaseIcon::     INCBIN "gfx/items/coin_case.2bpp.lz"
 ItemfinderIcon::   INCBIN "gfx/items/itemfinder.2bpp.lz"
 OaksParcelIcon::
 MysteryEggIcon::   INCBIN "gfx/items/mystery_egg.2bpp.lz"
-SecretPotionIcon:: INCBIN "gfx/items/secretpotion.2bpp.lz"
+CandyJarIcon::     INCBIN "gfx/items/candy_jar.2bpp.lz"
 RedScaleIcon::     INCBIN "gfx/items/red_scale.2bpp.lz"
 CardKeyIcon::      INCBIN "gfx/items/card_key.2bpp.lz"
 BasementKeyIcon::  INCBIN "gfx/items/basement_key.2bpp.lz"

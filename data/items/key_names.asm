@@ -9,7 +9,6 @@ KeyItemNames::
 	li "Itemfinder"
 	li "Mystery Egg"
 	li "Town Map"
-	li "SecretPotion"
 	li "Red Scale"
 	li "Card Key"
 	li "Basement Key"
@@ -30,5 +29,6 @@ KeyItemNames::
 	li "Catch Charm"
 	li "SilphScope2"
 	li "Apricorn Box"
+	li "Candy Jar"
 	li "Type Chart"
 	assert_list_length NUM_KEY_ITEMS + 1

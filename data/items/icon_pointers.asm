@@ -74,8 +74,8 @@ ItemIconPointers:
 	dba SuperRepelIcon
 	dba MaxRepelIcon
 	dba LureIcon ; LURE
-	dba EscapeRopeIcon
-	dba PokeDollIcon
+	dba LureIcon
+	dba LureIcon
 	dba AbilityCapIcon
 	dba AbilityPatchIcon
 	dba LeafStoneIcon
@@ -274,8 +274,8 @@ KeyItemIconPointers:
 	dba PassIcon
 	dba MachinePartIcon
 	dba LostItemIcon
-	dba RainbowWingIcon
-	dba SilverWingIcon
+	dba EscapeRopeIcon
+	dba PokeDollIcon
 	dba ClearBellIcon
 	dba GSBallIcon
 	dba BlueCardIcon

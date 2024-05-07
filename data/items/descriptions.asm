@@ -73,8 +73,8 @@ ItemDescriptions:
 	dw SuperRepelDesc
 	dw MaxRepelDesc
 	dw LureDesc
-	dw EscapeRopeDesc
-	dw PokeDollDesc
+	dw SuperLureDesc
+	dw MaxLureDesc
 	dw AbilityCapDesc
 	dw AbilityPatchDesc
 	dw LeafStoneDesc
@@ -273,8 +273,8 @@ KeyItemDescriptions:
 	dw PassDesc
 	dw MachinePartDesc
 	dw LostItemDesc
-	dw RainbowWingDesc
-	dw SilverWingDesc
+	dw EscapeRopeDesc
+	dw PokeDollDesc
 	dw ClearBellDesc
 	dw GSBallDesc
 	dw BlueCardDesc
@@ -580,14 +580,14 @@ MaxRepelDesc:
 LureDesc:
 	db   "Lures rare #-"
 	next "mon for 100 steps.@"
+	
+SuperLureDesc:
+	db   "Lures rare #-"
+	next "mon for 200 steps.@"
 
-EscapeRopeDesc:
-	db   "Use for escaping"
-	next "from caves, etc.@"
-
-PokeDollDesc:
-	db   "Use to escape from"
-	next "a wild #mon.@"
+MaxLureDesc:
+	db   "Lures rare #-"
+	next "mon for 250 steps.@"
 
 AbilityCapDesc:
 	db   "Switches a #-"
@@ -1328,13 +1328,13 @@ LostItemDesc:
 	db   "The # Doll lost"
 	next "by the Copycat.@"
 
-RainbowWingDesc:
-	db   "A mystical feather"
-	next "of rainbow colors.@"
+EscapeRopeDesc:
+	db   "Use for escaping"
+	next "from caves, etc.@"
 
-SilverWingDesc:
-	db   "A strange, silver-"
-	next "colored feather.@"
+PokeDollDesc:
+	db   "Use to escape from"
+	next "a wild #mon.@"
 
 ClearBellDesc:
 	db   "Makes a gentle"

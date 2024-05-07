@@ -85,8 +85,8 @@ ItemEffects:
 	dw RepelEffect        ; SUPER_REPEL
 	dw RepelEffect        ; MAX_REPEL
 	dw LureEffect         ; LURE
-	dw EscapeRope         ; ESCAPE_ROPE
-	dw PokeDoll           ; POKE_DOLL
+	dw LureEffect         ; SUPER_LURE
+	dw LureEffect         ; MAX_LURE
 	dw AbilityCap         ; ABILITY_CAP
 	dw AbilityPatch       ; ABILITYPATCH
 	dw EvoStoneEffect     ; LEAF_STONE
@@ -298,8 +298,8 @@ KeyItemEffects:
 	dw IsntTheTimeMessage  ; PASS
 	dw IsntTheTimeMessage  ; MACHINE_PART
 	dw IsntTheTimeMessage  ; LOST_ITEM
-	dw IsntTheTimeMessage  ; RAINBOW_WING
-	dw IsntTheTimeMessage  ; SILVER_WING
+	dw EscapeRope          ; ESCAPE_ROPE
+	dw PokeDoll            ; POKE_DOLL
 	dw IsntTheTimeMessage  ; CLEAR_BELL
 	dw IsntTheTimeMessage  ; GS_BALL
 	dw BlueCard            ; BLUE_CARD

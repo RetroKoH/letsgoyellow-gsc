@@ -9,7 +9,7 @@ MomItems_1:
 	momitem      0,   630, MOM_ITEM, SUPER_POTION
 	momitem      0,    90, MOM_ITEM, ANTIDOTE
 	momitem      0,   180, MOM_ITEM, POKE_BALL
-	momitem      0,   450, MOM_ITEM, ESCAPE_ROPE
+	momitem      0,   450, MOM_ITEM, LURE
 	momitem      0,   540, MOM_ITEM, GREAT_BALL
 .End
 

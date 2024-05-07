@@ -37,7 +37,7 @@
 	const DREAM_BALL   ; 16
 	const PREMIER_BALL ; 17
 	const CHERISH_BALL ; 18
-	const SNAG_BALL    ; 19 - REPLACED BRICK PIECE
+	const SNAG_BALL    ; 19
 
 	const POTION       ; 1a
 	const SUPER_POTION ; 1b
@@ -95,8 +95,8 @@
 	const SUPER_REPEL  ; 47
 	const MAX_REPEL    ; 48
 	const LURE_ITEM    ; 49 ; Formerly the RAGECANDYBAR
-	const ESCAPE_ROPE  ; 4a ; Make key item, replace with SUPER_LURE
-	const POKE_DOLL    ; 4b ; Make key item, replace with MAX_LURE
+	const SUPER_LURE   ; 4a ; Replaced ESCAPE_ROPE (Now a key item)
+	const MAX_LURE     ; 4b ; Replaced POKE_DOLL (Now a key item)
 
 	const ABILITY_CAP  ; 4c
 	const ABILITYPATCH ; 4d
@@ -366,7 +366,6 @@ ALWAYS_ITEM_2  EQU $ff
 	const NAM_ENERGYPOWDER
 	const NAM_ENIGMA_BERRY
 	const NAM_EON_MAIL
-	const NAM_ESCAPE_ROPE
 	const NAM_ETHER
 	const NAM_EVERSTONE
 	const NAM_EVIOLITE
@@ -436,6 +435,7 @@ ALWAYS_ITEM_2  EQU $ff
 	const NAM_MASTER_BALL
 	const NAM_MAX_ELIXIR
 	const NAM_MAX_ETHER
+	const NAM_MAX_LURE
 	const NAM_MAX_POTION
 	const NAM_MAX_REPEL
 	const NAM_MAX_REVIVE
@@ -471,7 +471,6 @@ ALWAYS_ITEM_2  EQU $ff
 	const NAM_PINK_BOW
 	const NAM_POISON_BARB
 	const NAM_POKE_BALL
-	const NAM_POKE_DOLL
 	const NAM_POMEG_BERRY
 	const NAM_PORTRAITMAIL
 	const NAM_POTION
@@ -533,6 +532,7 @@ ALWAYS_ITEM_2  EQU $ff
 	const NAM_STARF_BERRY
 	const NAM_STICK
 	const NAM_SUN_STONE
+	const NAM_SUPER_LURE
 	const NAM_SUPER_POTION
 	const NAM_SUPER_REPEL
 	const NAM_SURF_MAIL
@@ -596,8 +596,8 @@ NUM_APRICORNS EQU const_value - 1
 	const PASS         ; 0d
 	const MACHINE_PART ; 0e
 	const LOST_ITEM    ; 0f
-	const RAINBOW_WING ; 10 - UNUSED
-	const SILVER_WING  ; 11 - UNUSED
+	const ESCAPE_ROPE  ; 10 - Formerly RAINBOW_WING
+	const POKE_DOLL    ; 11 - Formerly SILVER_WING
 	const CLEAR_BELL   ; 12 - UNUSED
 	const GS_BALL      ; 13 - UNUSED
 	const BLUE_CARD    ; 14 - UNUSED

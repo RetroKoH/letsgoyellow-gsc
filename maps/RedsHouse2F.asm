@@ -144,6 +144,8 @@ endr
 	giveitem PP_MAX, 99
 	giveitem MAX_REPEL, 99
 	giveitem LURE_ITEM, 99
+	giveitem SUPER_LURE, 99
+	giveitem MAX_LURE, 99
 	giveitem ABILITY_CAP, 99
 	giveitem ABILITYPATCH, 99
 	giveitem LEAF_STONE, 99

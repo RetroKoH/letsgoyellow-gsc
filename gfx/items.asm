@@ -335,8 +335,7 @@ LostItemIcon::     INCBIN "gfx/items/lost_item.2bpp.lz"
 
 SECTION "Key Item Icons 2", ROMX
 
-RainbowWingIcon::  INCBIN "gfx/items/rainbow_wing.2bpp.lz"
-SilverWingIcon::   INCBIN "gfx/items/silver_wing.2bpp.lz"
+; Rainbow and Silver Wing removed
 ClearBellIcon::    INCBIN "gfx/items/clear_bell.2bpp.lz"
 GSBallIcon::       INCBIN "gfx/items/gs_ball.2bpp.lz"
 BlueCardIcon::     INCBIN "gfx/items/blue_card.2bpp.lz"

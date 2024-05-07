@@ -26,9 +26,6 @@ DimCave3F_MapScriptHeader:
 	object_event 22, 11, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBlackbeltTakeo, -1
 	object_event 10, 27, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerHikerFloyd, -1
 	object_event 25, 22, SPRITE_HIKER, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DimCave3FPokefanmScript, -1
-	itemball_event 18,  3, METAL_COAT, 1, EVENT_DIM_CAVE_3F_METAL_COAT
-	itemball_event 10, 29, ESCAPE_ROPE, 1, EVENT_DIM_CAVE_3F_ESCAPE_ROPE
-	tmhmball_event 20,  9, TM_REST, EVENT_DIM_CAVE_3F_TM_REST
 
 	object_const_def
 	const DIMCAVE3F_BOULDER

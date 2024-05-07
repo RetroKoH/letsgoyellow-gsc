@@ -61,11 +61,10 @@ CherrygroveMartAfterDex:
 	db -1
 
 VioletMart:
-	db 11 ; # items
+	db 10 ; # items
 	db POKE_BALL
 	db REPEAT_BALL
 	db POTION
-	db ESCAPE_ROPE
 	db ANTIDOTE
 	db PARALYZEHEAL
 	db AWAKENING
@@ -82,7 +81,7 @@ AzaleaMart:
 	db NET_BALL
 	db POTION
 	db SUPER_POTION
-	db ESCAPE_ROPE
+	db LURE
 	db REPEL
 	db ANTIDOTE
 	db PARALYZEHEAL
@@ -103,29 +102,27 @@ Goldenrod2FMart1:
 	db -1
 
 Goldenrod2FMart2:
+	db 9 ; # items
+	db POKE_BALL
+	db GREAT_BALL
+	db LUXURY_BALL
+	db TIMER_BALL
+	db QUICK_BALL
+	db LURE
+	db REPEL
+	db BLUESKY_MAIL
+	db MORPH_MAIL
+	db -1
+
+Goldenrod2FMart2Eevee:
 	db 10 ; # items
 	db POKE_BALL
 	db GREAT_BALL
 	db LUXURY_BALL
 	db TIMER_BALL
 	db QUICK_BALL
-	db ESCAPE_ROPE
+	db LURE
 	db REPEL
-	db POKE_DOLL
-	db BLUESKY_MAIL
-	db MORPH_MAIL
-	db -1
-
-Goldenrod2FMart2Eevee:
-	db 11 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db LUXURY_BALL
-	db TIMER_BALL
-	db QUICK_BALL
-	db ESCAPE_ROPE
-	db REPEL
-	db POKE_DOLL
 	db BLUESKY_MAIL
 	db MORPH_MAIL
 	db EON_MAIL
@@ -303,8 +300,7 @@ PewterMart:
 	db -1
 
 MtMoonMart:
-	db 8 ; # items
-	db POKE_DOLL
+	db 7 ; # items
 	db FRESH_WATER
 	db SODA_POP
 	db LEMONADE
@@ -377,7 +373,7 @@ Celadon2FMart2:
 	db ULTRA_BALL
 	db QUICK_BALL
 	db TIMER_BALL
-	db ESCAPE_ROPE
+	db LURE
 	db REPEL
 	db SUPER_REPEL
 	db MAX_REPEL
@@ -392,8 +388,7 @@ Celadon3FTMMart:
 	db -1
 
 Celadon4FMart:
-	db 9 ; # items
-	db POKE_DOLL
+	db 8 ; # items
 	db FIRE_STONE
 	db WATER_STONE
 	db THUNDERSTONE

@@ -258,9 +258,9 @@ ItemDescriptions:
 
 KeyItemDescriptions:
 	dw BicycleDesc
-	dw OldRodDesc
-	dw GoodRodDesc
-	dw SuperRodDesc
+	dw FishingRodDesc
+	dw UnkDesc
+	dw UnkDesc
 	dw CoinCaseDesc
 	dw ItemfinderDesc
 	dw MysteryEggDesc
@@ -1269,17 +1269,13 @@ BicycleDesc:
 	db   "A collapsible bike"
 	next "for fast movement.@"
 
-OldRodDesc:
+FishingRodDesc:
 	db   "Use by water to"
 	next "fish for #mon.@"
 
-GoodRodDesc:
-	db   "A good Rod for"
-	next "catching #mon.@"
-
-SuperRodDesc:
-	db   "The best Rod for"
-	next "catching #mon.@"
+UnkDesc:
+	db   "No description"
+	next "available.@"
 
 CoinCaseDesc:
 	db   "Holds up to 50K"

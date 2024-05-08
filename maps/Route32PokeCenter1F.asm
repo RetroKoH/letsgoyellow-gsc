@@ -39,7 +39,7 @@ PokemonJournalKurtScript:
 	done
 
 Route32Pokecenter1FFishingGuruScript:
-	checkevent EVENT_GOT_OLD_ROD
+	checkevent EVENT_GOT_FISHING_ROD
 	iftrue_jumptextfaceplayer .DoneText
 	faceplayer
 	opentext
@@ -48,11 +48,11 @@ Route32Pokecenter1FFishingGuruScript:
 	iffalse_jumpopenedtext .NoText
 	writetext .YesText
 	promptbutton
-	verbosegivekeyitem OLD_ROD
+	verbosegivekeyitem FISHING_ROD
 	writetext .AfterText
 	waitbutton
 	closetext
-	setevent EVENT_GOT_OLD_ROD
+	setevent EVENT_GOT_FISHING_ROD
 	end
 
 .IntroText:

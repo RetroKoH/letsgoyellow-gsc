@@ -294,7 +294,7 @@ WATER_WILDDATA_LENGTH EQU 2 + (1 + NUM_WATERMON * 2) * 1
 ; 3. *1 at the end, as there's one rate for each time period (Will add min overworld level later)
 
 ; We don't need to touch anything below for the moment
-FISHGROUP_DATA_LENGTH EQU 2 + 2 * 3
+FISHGROUP_DATA_LENGTH EQU 2 + 2 * 1 ; Instead of *3, due to only one rod
 
 NUM_ROAMMON_MAPS EQU 16 ; RoamMaps table size (see data/wild/roammon_maps.asm)
 

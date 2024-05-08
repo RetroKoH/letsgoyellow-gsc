@@ -29,7 +29,7 @@
 	const EVENT_GOT_TM70_FLASH
 	const EVENT_GOT_TM50_ROCK_SMASH
 ; Rods (Condense to one rod?)
-	const EVENT_GOT_OLD_ROD
+	const EVENT_GOT_FISHING_ROD
 	const EVENT_GOT_GOOD_ROD
 	const EVENT_GOT_SUPER_ROD
 ; Hide/Show Events

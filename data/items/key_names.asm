@@ -2,9 +2,9 @@ KeyItemNames::
 	list_start KeyItemNames
 	li "Cancel"
 	li "Bicycle"
-	li "Old Rod"
-	li "Good Rod"
-	li "Super Rod"
+	li "Fishing Rod"
+	li "???" ; ???
+	li "???" ; ???
 	li "Coin Case"
 	li "Itemfinder"
 	li "Mystery Egg"

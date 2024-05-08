@@ -259,9 +259,9 @@ ItemIconPointers:
 
 KeyItemIconPointers:
 	dba BicycleIcon
-	dba OldRodIcon
-	dba GoodRodIcon
 	dba SuperRodIcon
+	dba MysteryEggIcon
+	dba MysteryEggIcon
 	dba CoinCaseIcon
 	dba ItemfinderIcon
 	dba MysteryEggIcon

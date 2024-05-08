@@ -581,9 +581,9 @@ NUM_APRICORNS EQU const_value - 1
 ; - KeyItemEffects (see engine/items/item_effects.asm)
 	const_def 1
 	const BICYCLE      ; 01
-	const OLD_ROD      ; 02
-	const GOOD_ROD     ; 03
-	const SUPER_ROD    ; 04
+	const FISHING_ROD  ; 02
+	const GOOD_ROD     ; 03 - REMOVE
+	const SUPER_ROD    ; 04 - REMOVE
 	const COIN_CASE    ; 05 - REMOVE??? maybe
 	const ITEMFINDER   ; 06
 	const MYSTERY_EGG  ; 07

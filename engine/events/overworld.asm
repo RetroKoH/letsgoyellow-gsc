@@ -1438,11 +1438,10 @@ HasRockSmash:
 	ret
 
 FishFunction:
-	ld a, e
+; Fishing function w/ 1 rod (no rod value loaded from e register to [wBuffer2]
 	push af
 	call FieldMoveJumptableReset
 	pop af
-	ld [wBuffer2], a
 .loop
 	ld hl, .FishTable
 	call FieldMoveJumptable
@@ -1474,7 +1473,7 @@ FishFunction:
 	ret
 
 .facingwater
-	call GetFishingGroup
+	call GetFishingGroup ; Get fish group for current map
 	and a
 	jr nz, .goodtofish
 	ld a, $4
@@ -1482,8 +1481,7 @@ FishFunction:
 
 .goodtofish
 	ld d, a
-	ld a, [wBuffer2]
-	ld e, a
+	ld e, 0 ; WAS rod value
 
 	; Suction Cups and Sticky Hold boost bite rate. This is done
 	; by having these abilities result in 2 attempts being made

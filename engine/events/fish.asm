@@ -1,13 +1,13 @@
 Fish:
 ; Using a fishing rod.
-; Fish for monsters with rod e in encounter group d.
+; Fish for monsters in encounter group d. (Removed rod variable in rod e, as there is only 1 rod now)
 ; Return monster e at level d.
 
 	push hl
 	push bc
 	push af
 
-	ld b, e
+	; rod variable no longer moved from e to b
 	call GetFishGroupIndex
 
 	ld hl, FishGroups
@@ -22,7 +22,7 @@ endr
 	ret
 
 .Fish:
-; Fish for monsters with rod b from encounter data in FishGroup at hl.
+; Fish for monsters from encounter data in FishGroup at hl.
 ; Return monster e at level d; or item e if d = 0; or nothing if de = 0.
 
 	call Random
@@ -32,29 +32,18 @@ endr
 	cp [hl]
 	jr nc, .no_bite
 
-	; Get item by rod
-	; 0: Old
-	; 1: Good
-	; 2: Super
+	; Get item
 	ld hl, FishItems
-	ld e, b
-	ld d, 0
-	add hl, de
+	; no longer check for rod
 	ld a, [hl]
 	ld e, a
 	ret
 
 .bite
-	; Get encounter data by rod:
-	; 0: Old
-	; 1: Good
-	; 2: Super
+	; Get encounter data
 	inc hl
 	inc hl
-	ld e, b
-	ld d, 0
-	add hl, de
-	add hl, de
+	; no longer check for rod
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -116,10 +105,9 @@ GetFishGroupIndex:
 	jr z, .done
 
 	ld a, d
-	cp FISHGROUP_QWILFISH
-	jr z, .qwilfish
-	cp FISHGROUP_REMORAID
-	jr z, .remoraid
+	cp FISHGROUP_GOLDEEN
+	jr z, .goldeen
+	; Removed Remoraid Swarm (Add new one?)
 
 .done
 	dec d
@@ -127,18 +115,11 @@ GetFishGroupIndex:
 	ld d, 0
 	ret
 
-.qwilfish
+.goldeen
 	ld a, [wFishingSwarmFlag]
-	cp FISHSWARM_QWILFISH
+	cp FISHGROUP_GOLDEEN
 	jr nz, .done
-	ld d, FISHGROUP_QWILFISH_SWARM
-	jr .done
-
-.remoraid
-	ld a, [wFishingSwarmFlag]
-	cp FISHSWARM_REMORAID
-	jr nz, .done
-	ld d, FISHGROUP_REMORAID_SWARM
+	ld d, FISHGROUP_GOLDEEN_SWARM
 	jr .done
 
 INCLUDE "data/wild/fish.asm"

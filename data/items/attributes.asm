@@ -527,12 +527,12 @@ KeyItemAttributes:
 	table_width KEYITEMATTR_STRUCT_LENGTH, KeyItemAttributes
 ; BICYCLE
 	key_item_attribute 1, ITEMMENU_CLOSE, ITEMMENU_NOUSE
-; OLD ROD
+; FISHING ROD
 	key_item_attribute 1, ITEMMENU_CLOSE, ITEMMENU_NOUSE
-; GOOD ROD
-	key_item_attribute 1, ITEMMENU_CLOSE, ITEMMENU_NOUSE
-; SUPER ROD
-	key_item_attribute 1, ITEMMENU_CLOSE, ITEMMENU_NOUSE
+; ???
+	key_item_attribute 0, ITEMMENU_NOUSE, ITEMMENU_NOUSE
+; ???
+	key_item_attribute 0, ITEMMENU_NOUSE, ITEMMENU_NOUSE
 ; COIN CASE
 	key_item_attribute 0, ITEMMENU_CURRENT, ITEMMENU_NOUSE
 ; ITEMFINDER

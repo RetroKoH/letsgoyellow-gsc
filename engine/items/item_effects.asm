@@ -283,9 +283,9 @@ KeyItemEffects:
 ; entries correspond to key item ids (see constants/item_constants.asm)
 	table_width 2, KeyItemEffects
 	dw BikeFunction        ; BICYCLE
-	dw OldRod              ; OLD_ROD
-	dw GoodRod             ; GOOD_ROD
-	dw SuperRod            ; SUPER_ROD
+	dw UseRod              ; FISHING_ROD
+	dw IsntTheTimeMessage  ; UNK
+	dw IsntTheTimeMessage  ; UNK
 	dw CoinCase            ; COIN_CASE
 	dw Itemfinder          ; ITEMFINDER
 	dw IsntTheTimeMessage  ; MYSTERY_EGG
@@ -1933,18 +1933,7 @@ TypeChart:
 	farcall WaitBGMap_DrawPackGFX
 	farjp Pack_InitColors
 
-OldRod:
-	ld e, $0
-	jr UseRod
-
-GoodRod:
-	ld e, $1
-	jr UseRod
-
-SuperRod:
-	ld e, $2
-	; fallthrough
-
+; no longer use a rod value in e register
 UseRod:
 	jmp FishFunction
 

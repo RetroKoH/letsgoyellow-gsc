@@ -316,31 +316,20 @@ ParkBallIcon::     INCBIN "gfx/items/park_ball.2bpp.lz"
 SECTION "Key Item Icons 1", ROMX
 
 BicycleIcon::      INCBIN "gfx/items/bicycle.2bpp.lz"
-OldRodIcon::       INCBIN "gfx/items/old_rod.2bpp.lz"
-GoodRodIcon::      INCBIN "gfx/items/good_rod.2bpp.lz"
-SuperRodIcon::     INCBIN "gfx/items/super_rod.2bpp.lz"
+FishingRodIcon::   INCBIN "gfx/items/fishing_rod.2bpp.lz"
 CoinCaseIcon::     INCBIN "gfx/items/coin_case.2bpp.lz"
 ItemfinderIcon::   INCBIN "gfx/items/itemfinder.2bpp.lz"
-OaksParcelIcon::
+TownMapIcon::
 MysteryEggIcon::   INCBIN "gfx/items/mystery_egg.2bpp.lz"
 CandyJarIcon::     INCBIN "gfx/items/candy_jar.2bpp.lz"
 RedScaleIcon::     INCBIN "gfx/items/red_scale.2bpp.lz"
 CardKeyIcon::      INCBIN "gfx/items/card_key.2bpp.lz"
-BasementKeyIcon::  INCBIN "gfx/items/basement_key.2bpp.lz"
 SSTicketIcon::     INCBIN "gfx/items/s_s_ticket.2bpp.lz"
-PassIcon::         INCBIN "gfx/items/pass.2bpp.lz"
-MachinePartIcon::  INCBIN "gfx/items/machine_part.2bpp.lz"
-LostItemIcon::     INCBIN "gfx/items/lost_item.2bpp.lz"
 
 
 SECTION "Key Item Icons 2", ROMX
 
-; Rainbow and Silver Wing removed
-ClearBellIcon::    INCBIN "gfx/items/clear_bell.2bpp.lz"
-GSBallIcon::       INCBIN "gfx/items/gs_ball.2bpp.lz"
-BlueCardIcon::     INCBIN "gfx/items/blue_card.2bpp.lz"
-OrangeTicketIcon:: INCBIN "gfx/items/orangeticket.2bpp.lz"
-MysticTicketIcon:: INCBIN "gfx/items/mysticticket.2bpp.lz"
+
 OldSeaMapIcon::    INCBIN "gfx/items/old_sea_map.2bpp.lz"
 ShinyCharmIcon::   INCBIN "gfx/items/shiny_charm.2bpp.lz"
 OvalCharmIcon::    INCBIN "gfx/items/oval_charm.2bpp.lz"

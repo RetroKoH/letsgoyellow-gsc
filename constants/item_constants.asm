@@ -582,32 +582,25 @@ NUM_APRICORNS EQU const_value - 1
 	const_def
 	const BICYCLE      ; 00
 	const FISHING_ROD  ; 01
-	const GOOD_ROD     ; 02
-	const SUPER_ROD    ; 03
-	const COIN_CASE    ; 04 - Replace with Candy Jar
-	const ITEMFINDER   ; 05
-	const MYSTERY_EGG  ; 06
-	const TOWN_MAP     ; 07
-	const RED_SCALE    ; 08 - Unlocks Shiny Pokemon
-	const CARD_KEY     ; 09
-	const BASEMENT_KEY ; 0a
-	const S_S_TICKET   ; 0b
-	const PASS         ; 0c
-	const MACHINE_PART ; 0d
-	const LOST_ITEM    ; 0e
-	const ESCAPE_ROPE  ; 0f - Formerly RAINBOW_WING
-	const POKE_DOLL    ; 10 - Formerly SILVER_WING
-	const CLEAR_BELL   ; 11 - UNUSED
-	const GS_BALL      ; 12 - UNUSED
-	const BLUE_CARD    ; 13 - UNUSED
-	const ORANGETICKET ; 14 - UNUSED
-	const MYSTICTICKET ; 15 - UNUSED
-	const OLD_SEA_MAP  ; 16
-	const SHINY_CHARM  ; 17
-	const OVAL_CHARM   ; 18
-	const CATCH_CHARM  ; 19
-	const SILPHSCOPE2  ; 1a - UNUSED???
-	const APRICORN_BOX ; 1b
-	const CANDY_JAR    ; 1c - NEW
-	const TYPE_CHART   ; 1d
+	; Removed Good and Super Rods
+	const COIN_CASE    ; 02
+	const ITEMFINDER   ; 03
+	const MYSTERY_EGG  ; 04
+	const TOWN_MAP     ; 05
+	const RED_SCALE    ; 06 - Unlocks Shiny Pokemon
+	const CARD_KEY     ; 07 - Silph Co
+	; Removed Basement Key
+	const S_S_TICKET   ; 08
+	; Removed Lost Item, Machine Part, and Pass
+	const ESCAPE_ROPE  ; 09
+	const POKE_DOLL    ; 0a
+	; Removed Clear Bell, GS Ball, Blue Card, Orange Ticket, Mystic Ticket
+	const OLD_SEA_MAP  ; 0b
+	const SHINY_CHARM  ; 0c
+	const OVAL_CHARM   ; 0d
+	const CATCH_CHARM  ; 0e
+	const SILPHSCOPE2  ; 0f - UNUSED???
+	const APRICORN_BOX ; 10
+	const CANDY_JAR    ; 11
+	const TYPE_CHART   ; 12
 NUM_KEY_ITEMS EQU const_value

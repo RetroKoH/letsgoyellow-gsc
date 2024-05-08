@@ -258,28 +258,18 @@ ItemIconPointers:
 	assert_table_length NUM_ITEMS + 1
 
 KeyItemIconPointers:
+	table_width 3, KeyItemIconPointers
 	dba BicycleIcon
-	dba SuperRodIcon
-	dba MysteryEggIcon
-	dba MysteryEggIcon
+	dba FishingRodIcon
 	dba CoinCaseIcon
 	dba ItemfinderIcon
 	dba MysteryEggIcon
-	dba OaksParcelIcon
+	dba TownMapIcon
 	dba RedScaleIcon
 	dba CardKeyIcon
-	dba BasementKeyIcon
 	dba SSTicketIcon
-	dba PassIcon
-	dba MachinePartIcon
-	dba LostItemIcon
 	dba EscapeRopeIcon
 	dba PokeDollIcon
-	dba ClearBellIcon
-	dba GSBallIcon
-	dba BlueCardIcon
-	dba OrangeTicketIcon
-	dba MysticTicketIcon
 	dba OldSeaMapIcon
 	dba ShinyCharmIcon
 	dba OvalCharmIcon
@@ -288,3 +278,4 @@ KeyItemIconPointers:
 	dba ApricornBoxIcon
 	dba CandyJarIcon
 	dba TypeChartIcon
+	assert_table_length NUM_KEY_ITEMS

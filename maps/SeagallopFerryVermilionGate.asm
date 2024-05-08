@@ -36,57 +36,9 @@ SeagallopFerryVermilionGateSailorScript:
 	opentext
 	writetext SeagallopFerryWelcomeText
 	waitbutton
-	checkevent EVENT_GOT_ORANGE_TICKET
-	iftrue .got_orangeticket
-	writetext SeagallopFerryGiveOrangeTicketText
-	waitbutton
-	verbosegivekeyitem ORANGETICKET
-	setevent EVENT_GOT_ORANGE_TICKET
-.got_orangeticket
-	checkkeyitem ORANGETICKET
-	iftrue .have_orangeticket
-	checkkeyitem MYSTICTICKET
-	iftrue .have_mysticticket_no_orangeticket
 	checkkeyitem OLD_SEA_MAP
 	iftrue .use_old_sea_map
 	jumpopenedtext SeagallopFerryClosedText
-
-.have_orangeticket
-	checkkeyitem MYSTICTICKET
-	iftrue .have_orangeticket_and_mysticticket
-	checkkeyitem OLD_SEA_MAP
-	iftrue .use_orangeticket_or_old_sea_map
-.use_orangeticket
-	writetext SeagallopFerryOrangeTicketQuestionText
-	yesorno
-	iffalse .no_ferry
-	scall SeagallopFerryDepartureScript
-	setmapscene SEAGALLOP_FERRY_SHAMOUTI_GATE, $1
-	warp SEAGALLOP_FERRY_SHAMOUTI_GATE, 6, 5
-	end
-
-.have_mysticticket_no_orangeticket
-	checkkeyitem OLD_SEA_MAP
-	iftrue .use_mysticticket_or_old_sea_map
-.use_mysticticket
-	writetext SeagallopFerryMysticTicketQuestionText
-	yesorno
-	iffalse .no_ferry
-	scall SeagallopFerryDepartureScript
-	setmapscene SEAGALLOP_FERRY_NAVEL_GATE, $1
-	warp SEAGALLOP_FERRY_NAVEL_GATE, 6, 5
-	end
-
-.have_orangeticket_and_mysticticket
-	checkkeyitem OLD_SEA_MAP
-	iftrue .have_three_tickets
-	writetext SeagallopFerryWhichTicketText
-	loadmenu OrangeMysticMenuDataHeader
-	verticalmenu
-	closewindow
-	ifequal $1, .use_orangeticket
-	ifequal $2, .use_mysticticket
-	sjump .no_ferry
 
 .use_old_sea_map
 	writetext SeagallopFerryOldSeaMapQuestionText
@@ -97,32 +49,6 @@ SeagallopFerryVermilionGateSailorScript:
 	warp FARAWAY_ISLAND, 12, 42
 	end
 
-.use_mysticticket_or_old_sea_map
-	writetext SeagallopFerryWhichTicketText
-	loadmenu MysticOldSeaMapMenuDataHeader
-	verticalmenu
-	closewindow
-	ifequal $1, .use_mysticticket
-	ifequal $2, .use_old_sea_map
-	sjump .no_ferry
-
-.use_orangeticket_or_old_sea_map
-	writetext SeagallopFerryWhichTicketText
-	loadmenu OrangeOldSeaMapMenuDataHeader
-	verticalmenu
-	closewindow
-	ifequal $1, .use_orangeticket
-	ifequal $2, .use_old_sea_map
-	sjump .no_ferry
-
-.have_three_tickets
-	writetext SeagallopFerryWhichTicketText
-	loadmenu ThreeTicketsMenuDataHeader
-	verticalmenu
-	closewindow
-	ifequal $1, .use_orangeticket
-	ifequal $2, .use_mysticticket
-	ifequal $3, .use_old_sea_map
 .no_ferry:
 	jumpopenedtext SeagallopFerryVermilionCityRefusedText
 

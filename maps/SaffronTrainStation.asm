@@ -31,7 +31,7 @@ SaffronMagnetTrainStationOfficerScript:
 	writetext SaffronMagnetTrainStationOfficerAreYouComingOnBoardText
 	yesorno
 	iffalse_jumpopenedtext SaffronMagnetTrainStationOfficerHopeToSeeYouAgainText
-	checkkeyitem PASS
+	checkkeyitem TOWN_MAP
 	iffalse_jumpopenedtext SaffronMagnetTrainStationOfficerYouDontHaveAPassText
 	writetext SaffronMagnetTrainStationOfficerRightThisWayText
 	waitbutton

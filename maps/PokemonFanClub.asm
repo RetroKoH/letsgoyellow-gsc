@@ -62,7 +62,7 @@ UnknownScript_0x191844:
 	promptbutton
 	waitsfx
 	disappear POKEMONFANCLUB_CLEFAIRY_DOLL
-	verbosegivekeyitem LOST_ITEM
+	verbosegivekeyitem RED_SCALE
 	setevent EVENT_GOT_LOST_ITEM_FROM_FAN_CLUB
 	endtext
 

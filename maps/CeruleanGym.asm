@@ -167,7 +167,6 @@ CeruleanGymHiddenMachinePart:
 	dw EVENT_FOUND_MACHINE_PART_IN_CERULEAN_GYM
 	checkevent EVENT_LEARNED_ABOUT_MACHINE_PART
 	iffalse_jumptext CeruleanGymSomethingUnderwaterText
-	givekeyitem MACHINE_PART
 	opentext
 	writetext CeruleanGymFoundMachinePartText
 	playsound SFX_ITEM

@@ -106,8 +106,6 @@ Kurt1:
 	iftrue .GiveHeavyBall
 	checkevent EVENT_GAVE_KURT_PNK_APRICORN
 	iftrue .GiveLoveBall
-	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
-	iftrue .CanGiveGSBallToKurt
 .NoGSBall:
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue .CheckApricorns
@@ -266,26 +264,6 @@ endr
 	iffalse_endtext
 	clearevent EVENT_GAVE_KURT_PNK_APRICORN
 	sjump .ThatTurnedOutGreat
-
-.CanGiveGSBallToKurt:
-	checkevent EVENT_GAVE_GS_BALL_TO_KURT
-	iftrue .GaveGSBallToKurt
-	checkkeyitem GS_BALL
-	iffalse .NoGSBall
-	writetext KurtsHouseKurtWhatIsThatText
-	waitbutton
-	closetext
-	setevent EVENT_GAVE_GS_BALL_TO_KURT
-	takekeyitem GS_BALL
-	setflag ENGINE_KURT_MAKING_BALLS
-	end
-
-.GaveGSBallToKurt:
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iffalse .NotMakingBalls
-	writetext KurtsHouseKurtImCheckingItNowText
-	waitbutton
-	jumpopenedtext KurtsHouseKurtAhHaISeeText
 
 .NotMakingBalls:
 	writetext KurtsHouseKurtThisBallStartedToShakeText

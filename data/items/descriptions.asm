@@ -257,28 +257,18 @@ ItemDescriptions:
 	assert_table_length NUM_ITEMS
 
 KeyItemDescriptions:
+	table_width 2, KeyItemDescriptions
 	dw BicycleDesc
 	dw FishingRodDesc
-	dw UnkDesc
-	dw UnkDesc
 	dw CoinCaseDesc
 	dw ItemfinderDesc
 	dw MysteryEggDesc
-	dw OaksParcelDesc
+	dw TownMapDesc
 	dw RedScaleDesc
 	dw CardKeyDesc
-	dw BasementKeyDesc
 	dw SSTicketDesc
-	dw PassDesc
-	dw MachinePartDesc
-	dw LostItemDesc
 	dw EscapeRopeDesc
 	dw PokeDollDesc
-	dw ClearBellDesc
-	dw GSBallDesc
-	dw BlueCardDesc
-	dw OrangeTicketDesc
-	dw MysticTicketDesc
 	dw OldSeaMapDesc
 	dw ShinyCharmDesc
 	dw OvalCharmDesc
@@ -287,6 +277,7 @@ KeyItemDescriptions:
 	dw ApricornBoxDesc
 	dw CandyJarDesc
 	dw TypeChartDesc
+	assert_table_length NUM_KEY_ITEMS
 
 PokeBallDesc:
 	db   "An item for catch-"
@@ -1273,10 +1264,6 @@ FishingRodDesc:
 	db   "Use by water to"
 	next "fish for #mon.@"
 
-UnkDesc:
-	db   "No description"
-	next "available.@"
-
 CoinCaseDesc:
 	db   "Holds up to 50K"
 	next "game coins.@"
@@ -1289,36 +1276,21 @@ MysteryEggDesc:
 	db   "An Egg obtained"
 	next "from Mr.#mon.@"
 
-OaksParcelDesc:
-	db   "A parcel belonging"
-	next "to Prof. Oak.@"
+TownMapDesc:
+	db   "A map of the"
+	next "Kanto region.@"
 
 RedScaleDesc:
-	db   "A scale from the"
+	db   "A scale from a"
 	next "red Gyarados.@"
 
 CardKeyDesc:
-	db   "Opens shutters in"
-	next "the Radio Tower.@"
-
-BasementKeyDesc:
-	db   "Opens doors.@"
+	db   "Opens doors at"
+	next "Silph Co.@"
 
 SSTicketDesc:
 	db   "A ticket for the"
 	next "S.S.Aqua.@"
-
-PassDesc:
-	db   "A ticket for the"
-	next "Magnet Train.@"
-
-MachinePartDesc:
-	db   "A machine part for"
-	next "the Power Plant.@"
-
-LostItemDesc:
-	db   "The # Doll lost"
-	next "by the Copycat.@"
 
 EscapeRopeDesc:
 	db   "Use for escaping"
@@ -1327,23 +1299,6 @@ EscapeRopeDesc:
 PokeDollDesc:
 	db   "Use to escape from"
 	next "a wild #mon.@"
-
-ClearBellDesc:
-	db   "Makes a gentle"
-	next "ringing.@"
-
-GSBallDesc:
-	db   "The mysterious"
-	next "Ball.@"
-
-BlueCardDesc:
-	db   "Card to save"
-	next "points.@"
-
-OrangeTicketDesc:
-MysticTicketDesc:
-	db   "A ticket for the"
-	next "Seagallop Ferry.@"
 
 OldSeaMapDesc:
 	db   "A faded sea chart"

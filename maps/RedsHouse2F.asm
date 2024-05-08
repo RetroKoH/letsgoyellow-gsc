@@ -115,7 +115,7 @@ RedsHouse2FSNESText:
 ;	setflag ENGINE_JUDGE_MACHINE
 	; all key items
 for x, NUM_KEY_ITEMS
-if x != MACHINE_PART
+if x != MYSTERY_EGG
 	givekeyitem x
 endc
 endr

@@ -284,26 +284,15 @@ KeyItemEffects:
 	table_width 2, KeyItemEffects
 	dw BikeFunction        ; BICYCLE
 	dw UseRod              ; FISHING_ROD
-	dw IsntTheTimeMessage  ; UNK
-	dw IsntTheTimeMessage  ; UNK
 	dw CoinCase            ; COIN_CASE
 	dw Itemfinder          ; ITEMFINDER
 	dw IsntTheTimeMessage  ; MYSTERY_EGG
-	dw IsntMyParcelMessage ; OAKS_PARCEL
+	dw IsntMyParcelMessage ; TOWN_MAP
 	dw IsntTheTimeMessage  ; RED_SCALE
 	dw CardKey             ; CARD_KEY
-	dw BasementKey         ; BASEMENT_KEY
 	dw IsntTheTimeMessage  ; S_S_TICKET
-	dw IsntTheTimeMessage  ; PASS
-	dw IsntTheTimeMessage  ; MACHINE_PART
-	dw IsntTheTimeMessage  ; LOST_ITEM
 	dw EscapeRope          ; ESCAPE_ROPE
 	dw PokeDoll            ; POKE_DOLL
-	dw IsntTheTimeMessage  ; CLEAR_BELL
-	dw IsntTheTimeMessage  ; GS_BALL
-	dw BlueCard            ; BLUE_CARD
-	dw IsntTheTimeMessage  ; ORANGETICKET
-	dw IsntTheTimeMessage  ; MYSTICTICKET
 	dw IsntTheTimeMessage  ; OLD_SEA_MAP
 	dw IsntTheTimeMessage  ; SHINY_CHARM
 	dw IsntTheTimeMessage  ; OVAL_CHARM

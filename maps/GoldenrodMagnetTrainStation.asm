@@ -33,7 +33,7 @@ GoldenrodMagnetTrainStationOfficerScript:
 	writetext GoldenrodMagnetTrainStationOfficerAreYouComingAboardText
 	yesorno
 	iffalse_jumpopenedtext GoldenrodMagnetTrainStationOfficerHopeToSeeYouAgainText
-	checkkeyitem PASS
+	checkkeyitem TOWN_MAP
 	iffalse_jumpopenedtext GoldenrodMagnetTrainStationOfficerYouDontHaveARailPassText
 	writetext GoldenrodMagnetTrainStationOfficerRightThisWayText
 	waitbutton

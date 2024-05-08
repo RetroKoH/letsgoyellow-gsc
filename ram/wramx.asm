@@ -979,10 +979,8 @@ wTMsHMsEnd::
 
 ; At least 5 bytes have been freed here.
 
-wKeyItems:: ds NUM_KEY_ITEMS + 1
+wKeyItems:: flag_array NUM_KEY_ITEMS
 wKeyItemsEnd::
-
-	ds 6 ; unused
 
 wNumItems:: db
 wItems:: ds MAX_ITEMS * 2 + 1
@@ -1156,7 +1154,7 @@ wEventFlags:: flag_array NUM_EVENTS
 
 wCurBox:: db
 
-	ds 76 ; unused (-33 from 109 to 76)
+	ds 109 ; unused
 	
 wCandyAmounts::
 	wExpCandyXSAmount:: db

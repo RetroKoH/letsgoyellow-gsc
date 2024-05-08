@@ -26,7 +26,7 @@ CheckRegisteredItem::
 	push bc
 	push af
 	call CheckKeyItem
-	jr nc, .next
+	jr nc, .registration_ok ; ???
 
 .registration_ok
 	pop af

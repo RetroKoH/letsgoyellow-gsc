@@ -315,6 +315,9 @@ PokeBallEffect:
 	ld a, [wCurItem]
 	cp SNAG_BALL
 	jp nz, UseBallInTrainerBattle ; block if not snag ball
+	
+	; Non-Grunt Rockets should have a special event where they block Balls.
+	; Jessie and James should have a special event where Meowth blocks Balls.
 
 .notBlocked
 	; Battling ghosts
@@ -327,6 +330,7 @@ PokeBallEffect:
 	jmp c, Ball_NuzlockeFailureMessage
 
 .NoNuzlockeCheck
+	; Check if mon can't be caught due to FLY or DIG
 	ld a, [wEnemySubStatus3] ; BATTLE_VARS_SUBSTATUS3_OPP
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	jmp nz, Ball_MonIsHiddenMessage
@@ -497,8 +501,8 @@ PokeBallEffect:
 	jr nz, .not_celebi ; false positive for other legendaries, but that's okay
 	ld hl, wBattleResult
 	set 6, [hl]
-.not_celebi
 
+.not_celebi
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jmp z, .SendToPC
@@ -507,44 +511,76 @@ PokeBallEffect:
 	ld [wMonType], a
 	call ClearSprites
 
-	; Copy to player party
+.copy_mon
+	; Copy to player party (Amend for Shadow mons)
+	; use wCurOTMon to jump to the mon being caught
 	ld hl, wPartyCount
-	ld a, [hl]
-	inc [hl]
-	ld hl, wPartyMon1
+	ld a, [hl]						; load player's party count to a
+
+; General mon struct data
+	inc [hl]						; increment party count +1
+	ld hl, wPartyMon1				; hl = wPartyMon1Species (The species of your lead mon)
 	push af
-	call GetPartyLocation
+	call GetPartyLocation			; get location of next empty space in your party
 	ld d, h
-	ld e, l
-	ld hl, wOTPartyMon1
+	ld e, l							; de = next empty space in your party
+	ld hl, wOTPartyMon1				; hl = wOTPartyMon1Species (The species of the enemy's lead mon -- usually just the wild Pokemon) < Change?
+	; -------------------
+	push hl
+	ld hl, wCurOTMon
+	ld a, [hl]						; load enemy party's active mon index to b
+	pop hl
+	call GetPartyLocation			; get party location of enemy mon caught.
+	; -------------------
 	ld bc, PARTYMON_STRUCT_LENGTH
-	rst CopyBytes
-	pop af
+	rst CopyBytes					; Copy target Pokemon's data to the player's party
+	pop af							; pop initial party count (pre-increment) back from the stack
+
+; Mon OT data
 	push af
-	ld hl, wPartyMonOTs
-	call SkipNames
+	ld hl, wPartyMonOTs				; hl = wPartyMon1OT (The OT of your lead mon)
+	call SkipNames					; get location of next empty OT space
 	ld d, h
-	ld e, l
-	ld hl, wOTPartyMonOTs
+	ld e, l							; de = next empty OT space
+	ld hl, wOTPartyMonOTs			; hl = wOTPartyMonOTs (in wild battles, this is just your OT copied. What about trainer battles?)
+	; -------------------
+	push hl
+	ld hl, wCurOTMon
+	ld a, [hl]						; load enemy party's active mon index to b
+	pop hl
+	call SkipNames					; get location of next empty OT space
+	; -------------------
 	ld bc, NAME_LENGTH
-	rst CopyBytes
-	pop af
+	rst CopyBytes					; Copy target Pokemon's OT to the player party's OT data
+	pop af							; pop initial party count (pre-increment) back from the stack
+
+; Mon nickname data
 	push af
-	ld hl, wPartyMonNicknames
-	call SkipNames
+	ld hl, wPartyMonNicknames		; hl = wPartyMon1Nickname (The nickname of your lead mon)
+	call SkipNames					; get location of next empty nickname space
 	ld d, h
-	ld e, l
-	ld hl, wOTPartyMonNicknames
+	ld e, l							; de = next empty nickname space
+	ld hl, wOTPartyMonNicknames		; hl = wOTPartyMon1Nickname (This will likely always be the Pokemon's name)
+	; -------------------
+	push hl
+	ld hl, wCurOTMon
+	ld a, [hl]						; load enemy party's active mon index to b
+	pop hl
+	call SkipNames					; get location of next empty OT space
+	; -------------------
 	ld bc, MON_NAME_LENGTH
-	rst CopyBytes
-	pop af
+	rst CopyBytes					; Copy target Pokemon's nickname to the player party's nickname space
+	pop af							; pop initial party count (pre-increment) back from the stack
+
 	ld b, 0
-	ld c, a
-	ld hl, wPartySpecies
-	add hl, bc
-	ld a, [wOTPartyMon1Species]
-	ld [hli], a
-	ld [hl], $ff
+	ld c, a							; bc = pre-incremented party count in 2-byte format 02 > 0002
+	ld hl, wPartySpecies			; hl = wPartySpecies (Array of player party's species IDs, just after wPartyCount, just before wPartyMon1Species)
+	add hl, bc						; Go to the next $FF value in wPartySpecies.
+
+; In Trainer Battles w/ snagged mons, this erroneously loaded the first mon of the enemy party. (Was wOTPartyMon1Species)
+	ld a, [wEnemyMonSpecies]
+	ld [hli], a						; Load the species of the caught mon to the array.
+	ld [hl], $ff					; Follow up with a null terminator $FF.
 
 	farcall SetCaughtData
 
@@ -559,8 +595,8 @@ PokeBallEffect:
 	rst AddNTimes
 
 	ld [hl], FRIEND_BALL_HAPPINESS
-.SkipPartyMonFriendBall:
 
+.SkipPartyMonFriendBall:
 	ld a, [wCurItem]
 	cp HEAL_BALL
 	jr nz, .SkipPartyMonHealBall
@@ -569,8 +605,8 @@ PokeBallEffect:
 	dec a
 	ld [wCurPartyMon], a
 	call HealPartyMonEvenForNuzlocke
-.SkipPartyMonHealBall:
 
+.SkipPartyMonHealBall:
 	ld a, [wInitialOptions]
 	bit NUZLOCKE_MODE, a
 	jr nz, .AlwaysNickname
@@ -623,6 +659,7 @@ PokeBallEffect:
 	jr nc, .BoxNotFullYet
 	ld hl, wBattleResult
 	set 7, [hl]
+	
 .BoxNotFullYet:
 	ld a, [wCurItem]
 	cp FRIEND_BALL
@@ -630,8 +667,8 @@ PokeBallEffect:
 	; caught Pokemon become the first Pokemon in the box
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [wTempMonHappiness], a
-.SkipBoxMonFriendBall:
 
+.SkipBoxMonFriendBall:
 	ld a, [wInitialOptions]
 	bit NUZLOCKE_MODE, a
 	jr nz, .AlwaysNicknameBox
@@ -716,8 +753,8 @@ PokeBallEffect:
 	ld de, ANIM_SEND_OUT_MON
 	farcall Call_PlayBattleAnim
 	call SetPlayerTurn
-.not_shiny
 
+.not_shiny
 	ld bc, wTempMonSpecies
 	farcall CheckFaintedFrzSlp
 	jr c, .skip_cry

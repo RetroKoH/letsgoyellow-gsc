@@ -16,6 +16,7 @@ GetModifiedCaptureRate:
 	ret z
 	ld a, [wCurItem]
 	cp SNAG_BALL
+	; Check for Shadow Pokemon. Snag balls can only capture Shadows.
 	ld a, 255
 	ret z
 

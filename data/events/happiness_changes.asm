@@ -19,7 +19,7 @@ HappinessChanges:
 	db  -5,  -5, -10 ; Used Heal Powder or Energypowder (bitter)
 	db -10, -10, -15 ; Used Energy Root (bitter)
 	db -15, -15, -20 ; Used Revival Herb (bitter)
-	db  +3,  +3,  +1 ; Grooming
+	db  +5,  +3,  +1 ; Grooming (Slightly buffed for lower-tier happiness)
 	db +10,  +8,  +6 ; Gained a level in the place where it was caught
 	db  +5,  +3,  +2 ; Took a photograph
 	db  +5,  +3,  +2 ; Received a blessing

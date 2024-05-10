@@ -19,18 +19,19 @@ BluesHouse1F_MapScriptHeader:
 DaisyScript:
 	readvar VAR_HOUR
 	ifequal 15, .Massage
-	checkflag ENGINE_TEA_IN_BLUES_HOUSE
-	iftrue .After
 	jumpthistextfaceplayer
 
+; DaisyHelloText:
 	text "Daisy: Hi! My kid"
 	line "brother is the Gym"
 
 	para "Leader in Viridian"
 	line "City."
 
-	para "But he goes out"
-	line "of town so often,"
+	para "He's been really"
+	line "busy with Grandpa"
+	cont "lately, so he has"
+	cont "been away often."
 
 	para "it causes problems"
 	line "for the trainers."
@@ -39,7 +40,9 @@ DaisyScript:
 .Massage:
 	faceplayer
 	opentext
-	writetext .IntroText
+	checkflag ENGINE_DAISYS_GROOMING
+	iftrue .After
+	writetext .DaisyOfferGroomingText
 	yesorno
 	iffalse .NoMassage
 	writetext .QuestionText
@@ -47,7 +50,7 @@ DaisyScript:
 	special Special_DaisyMassage
 	ifequal 0, .NoMassage
 	ifequal 1, .EggMassage
-	setflag ENGINE_TEA_IN_BLUES_HOUSE
+	setflag ENGINE_DAISYS_GROOMING
 	writetext .OkayText
 	waitbutton
 	closetext
@@ -73,8 +76,9 @@ DaisyScript:
 	para "It's such a cute"
 	line "#mon."
 	done
+	
 
-.IntroText:
+.DaisyOfferGroomingText:
 	text "Daisy: Hi! Good"
 	line "timing. I'm about"
 	cont "to have some tea."

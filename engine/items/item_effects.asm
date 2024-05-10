@@ -516,28 +516,28 @@ PokeBallEffect:
 	; use wCurOTMon to jump to the mon being caught
 	ld hl, wPartyCount
 	ld a, [hl]						; load player's party count to a
+	inc [hl]						; increment party count +1
 
 ; General mon struct data
-	inc [hl]						; increment party count +1
 	ld hl, wPartyMon1				; hl = wPartyMon1Species (The species of your lead mon)
 	push af
 	call GetPartyLocation			; get location of next empty space in your party
 	ld d, h
 	ld e, l							; de = next empty space in your party
-	ld hl, wOTPartyMon1				; hl = wOTPartyMon1Species (The species of the enemy's lead mon -- usually just the wild Pokemon) < Change?
+	ld hl, wOTPartyMon1				; hl = wOTPartyMon1Species (The species of the enemy's lead mon -- usually just the wild Pokemon)
 	; -------------------
 	push hl
 	ld hl, wCurOTMon
-	ld a, [hl]						; load enemy party's active mon index to b
+	ld a, [hl]						; load enemy party's active mon index
 	pop hl
 	call GetPartyLocation			; get party location of enemy mon caught.
 	; -------------------
 	ld bc, PARTYMON_STRUCT_LENGTH
 	rst CopyBytes					; Copy target Pokemon's data to the player's party
 	pop af							; pop initial party count (pre-increment) back from the stack
+	push af
 
 ; Mon OT data
-	push af
 	ld hl, wPartyMonOTs				; hl = wPartyMon1OT (The OT of your lead mon)
 	call SkipNames					; get location of next empty OT space
 	ld d, h
@@ -546,16 +546,16 @@ PokeBallEffect:
 	; -------------------
 	push hl
 	ld hl, wCurOTMon
-	ld a, [hl]						; load enemy party's active mon index to b
+	ld a, [hl]						; load enemy party's active mon index
 	pop hl
 	call SkipNames					; get location of next empty OT space
 	; -------------------
 	ld bc, NAME_LENGTH
 	rst CopyBytes					; Copy target Pokemon's OT to the player party's OT data
 	pop af							; pop initial party count (pre-increment) back from the stack
+	push af
 
 ; Mon nickname data
-	push af
 	ld hl, wPartyMonNicknames		; hl = wPartyMon1Nickname (The nickname of your lead mon)
 	call SkipNames					; get location of next empty nickname space
 	ld d, h
@@ -564,7 +564,7 @@ PokeBallEffect:
 	; -------------------
 	push hl
 	ld hl, wCurOTMon
-	ld a, [hl]						; load enemy party's active mon index to b
+	ld a, [hl]						; load enemy party's active mon index
 	pop hl
 	call SkipNames					; get location of next empty OT space
 	; -------------------
@@ -572,6 +572,7 @@ PokeBallEffect:
 	rst CopyBytes					; Copy target Pokemon's nickname to the player party's nickname space
 	pop af							; pop initial party count (pre-increment) back from the stack
 
+; Continued
 	ld b, 0
 	ld c, a							; bc = pre-incremented party count in 2-byte format 02 > 0002
 	ld hl, wPartySpecies			; hl = wPartySpecies (Array of player party's species IDs, just after wPartyCount, just before wPartyMon1Species)
@@ -648,6 +649,7 @@ PokeBallEffect:
 
 	jmp .return_from_capture
 
+; ABOVE portion is skipped if the party is full.
 .SendToPC:
 	call ClearSprites
 

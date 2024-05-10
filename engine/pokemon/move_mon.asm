@@ -1006,12 +1006,12 @@ _DepositBreedmon:
 
 SentPkmnIntoBox:
 ; Sents the Pkmn into one of Bills Boxes
-; the data comes mainly from wOTPartyMon1
+; the data comes mainly from wOTPartyMon1 (Changed to adapt wCurOTMon for snagging Shadow Pokemon)
 	farcall NewStorageBoxPointer
 	jr c, .full
 
 	push bc
-	lb bc, $81, 1
+	lb bc, $81, 1					; copies from wOTPartyMons, to wTempMon
 	farcall CopyBetweenPartyAndTemp
 
 	ld a, [wCurPartySpecies]

@@ -615,24 +615,24 @@ CopyBetweenPartyAndTemp:
 ; If bit 7 of b is set, copies between wOTPartyMons instead of wPartyMons.
 ; If bit 0 of b is set, copies from party to temp, otherwise the reverse.
 	dec c
-	ld hl, wPartySpecies
-	ld de, wTempMonSpecies
-	ld a, 1
+	ld hl, wPartySpecies			; hl = [0xDCCC]: wPartySpecies (Array of player party's species IDs, just after wPartyCount, just before wPartyMon1Species)
+	ld de, wTempMonSpecies			; de = [0xD128]: wTempMonSpecies (in a wild battle, wTempMon appears to be the party's lead mon.)
+	ld a, 1							; Copy 1 byte
 	call .Copy
 
-	ld hl, wPartyMon1
-	ld de, wTempMon
-	ld a, PARTYMON_STRUCT_LENGTH
+	ld hl, wPartyMon1				; hl = [0xDCD3]: wPartyMon1 (Data structure for your lead mon)
+	ld de, wTempMon					; de = [0xD128]: wTempMon (We've already moved the species of the caught mon to this byte. Now, the rest!)
+	ld a, PARTYMON_STRUCT_LENGTH	; Copy 0x30 bytes
 	call .Copy
 
-	ld hl, wPartyMonNicknames
-	ld de, wTempMonNickname
-	ld a, MON_NAME_LENGTH
+	ld hl, wPartyMonNicknames		; hl = [0xDE35]: wPartyMon1Nickname (Nickname array for your lead mon)
+	ld de, wTempMonNickname			; de = [0xD158]: wTempMonNickname (Nickname array in the buffer mon data, where we left off last time) 
+	ld a, MON_NAME_LENGTH			; Copy 0x0B bytes
 	call .Copy
 
-	ld hl, wPartyMonOTs
-	ld de, wTempMonOT
-	ld a, NAME_LENGTH
+	ld hl, wPartyMonOTs				; hl = [0xDDF3]: wPartyMon1OT (OT array for your lead mon)
+	ld de, wTempMonOT				; de = [0xD163]: wTempMonOT (OT array in the buffer mon data, where we left off last time) 
+	ld a, NAME_LENGTH				; Copy 0x0B bytes
 	call .Copy
 
 .Copy:
@@ -645,7 +645,21 @@ CopyBetweenPartyAndTemp:
 	push bc
 	ld bc, wOTPartyMons - wPartyMons
 	add hl, bc
+	; Adjustment due to wCurOTMon (Allows for proper snagging when party is full)
+	ld b, 0
+	ld c, a								; bc = a in word-length format
+	push af
+	ld a, [wCurOTMon]					; load enemy party's active mon index
+.loop
+	cp a, 0
+	jr z, .skip
+	dec a
+	add hl, bc
+	jr .loop
+.skip
+	pop af
 	pop bc
+
 .got_party
 	ld b, 0
 	push af

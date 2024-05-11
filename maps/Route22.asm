@@ -107,6 +107,7 @@ Route22_TraceBeckonsYouScene:
 	closetext
 	applymovement ROUTE22_TRACE, Movement_TraceExitsRoute22
 	disappear ROUTE22_TRACE
+	; Do I need to set the event to hide the rival?
 	special HealPartyEvenForNuzlocke
 	setscene $2
 	end

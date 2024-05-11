@@ -9,24 +9,33 @@
 OpenMartDialog::
 	ld a, c
 	ld [wMartType], a
+	cp MARTTYPE_STANDARD
+	jr nz, .specialMart
 	call GetMart
+	jr .cont
+
+.specialMart
+	ld hl, SpecialMarts
+	call GetSpecialMart
+
+.cont
 	call LoadMartPointer
 	ld a, [wMartType]
 	call StackJumpTable
 
 .dialogs
-	dw MartDialog
-	dw HerbShop
-	dw BargainShop
-	dw Pharmacist
-	dw RooftopSale
-	dw SilphMart
-	dw AdventurerMart
-	dw InformalMart
-	dw BazaarMart
-	dw TMMart
-	dw BlueCardMart
-	dw BTMart
+	dw MartDialog 		; MARTTYPE_STANDARD (Scaling)
+	dw HerbShop			; MARTTYPE_BITTER (Either unused, or sell mints)
+	dw BargainShop		; MARTTYPE_BARGAIN (Maybe use)
+	dw Pharmacist		; Remove
+	dw RooftopSale		; Use in Celadon
+	dw SilphMart		; Use in Silph
+	dw AdventurerMart	; Maybe unused
+	dw InformalMart		; Maybe unused
+	dw BazaarMart		; Unused
+	dw TMMart			; TMs
+	dw BlueCardMart		; Unused
+	dw BTMart			; Battle Tower (Maybe unused)
 
 MartDialog:
 	xor a ; MARTTYPE_STANDARD, STANDARDMART_HOWMAYIHELPYOU
@@ -179,13 +188,20 @@ LoadMartPointer:
 	ret
 
 GetMart:
+; de contains the overworld level
 	ld hl, Marts
+	ld a, [wOverworldLevel]
+	ld d, 0
+	ld e, a
+
+GetSpecialMart:
+; de contains the Special Mart index (final byte of mart_clerk_event)
 	add hl, de
 	add hl, de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld b, BANK(Marts)
+	ld b, BANK(Marts) ; Make sure this works for special marts
 	ret
 
 StandardMart:

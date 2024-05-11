@@ -12,4 +12,3 @@ AzaleaMart_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	mart_clerk_event  1,  3, MARTTYPE_STANDARD, MART_AZALEA

@@ -669,9 +669,9 @@ Script_pokemart:
 	call Script_faceplayer
 	call Script_opentext
 	call GetScriptByte
-	ld c, a
+	ld c, a				; c = dialog id
 	call GetScriptByte
-	ld e, a
+	ld e, a				; de = mart ID
 	ld d, 0
 	ld a, [wScriptBank]
 	ld b, a

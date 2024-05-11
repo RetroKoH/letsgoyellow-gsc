@@ -1083,12 +1083,12 @@ wPokemonLeagueGateSceneID:: db
 wPowerPlantSceneID:: db
 wRadioTower5FSceneID:: db
 wRoute10NorthSceneID:: db
+wRoute22SceneID:: db
 wRoute23SceneID:: db
 wRoute24SceneID:: db
 wRoute27SceneID:: db
 wRoute29SceneID:: db
 wRoute32SceneID:: db
-wRoute34SceneID:: db
 wRoute35NationalParkGateSceneID:: db
 wRoute36NationalParkGateSceneID:: db
 wRoute36SceneID:: db

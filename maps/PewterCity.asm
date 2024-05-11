@@ -58,7 +58,7 @@ PewterCity_BlueStopsYouScene:
 	applymovement PEWTER_BLUE, Movement_BlueWalksToYou
 	turnobject PEWTER_BLUE, UP
 	opentext
-	writetext PewterBlueText_GreetsPlayer
+	writetext PewterBlueText_CallFriend
 	waitbutton
 	closetext
 	applymovement PEWTER_ALTPLAYER, Movement_BlueWalksToYou

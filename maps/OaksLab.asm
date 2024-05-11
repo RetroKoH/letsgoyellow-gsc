@@ -121,6 +121,7 @@ OaksLab_AutowalkUpToOak:
 	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
 	setmapscene VIRIDIAN_CITY, $1
 	setmapscene ROUTE_22, $1
+	clearevent EVENT_HIDE_ROUTE_22_TRACE
 	setscene $2
 	end
 

@@ -302,7 +302,7 @@ Movement_BlueLeaves:
 Text_BlueSendsOff:
 	text "Blue: OK, now"
 	line "that that's taken"
-	cont "care of..."
+	cont "care of…"
 
 	para "I need your help."
 	line "Please head south"

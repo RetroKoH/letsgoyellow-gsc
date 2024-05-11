@@ -67,13 +67,12 @@ MapScenes::
 	scene_var ROUTE_16_17_GATE,                       wAlways0SceneID
 	scene_var ROUTE_18_GATE,                          wAlways0SceneID
 	scene_var ROUTE_18_WEST,                          wAlways0SceneID
-	scene_var ROUTE_22_PAST,                          wAlways0SceneID
+	scene_var ROUTE_22,                               wRoute22SceneID
 	scene_var ROUTE_23,                               wRoute23SceneID
 	scene_var ROUTE_24,                               wRoute24SceneID
 	scene_var ROUTE_27,                               wRoute27SceneID
 	scene_var ROUTE_29,                               wRoute29SceneID
 	scene_var ROUTE_32,                               wRoute32SceneID
-	scene_var ROUTE_34,                               wRoute34SceneID
 	scene_var ROUTE_34_ILEX_FOREST_GATE,              wAlways0SceneID
 	scene_var ROUTE_35_NATIONAL_PARK_GATE,            wRoute35NationalParkGateSceneID
 	scene_var ROUTE_36,                               wRoute36SceneID

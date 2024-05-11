@@ -116,33 +116,45 @@ ViridianPokeCenter1FCooltrainermScript:
 	iftrue_jumptextfaceplayer .BlueText
 	jumpthistextfaceplayer
 
-	text "Where in the world"
-	line "is Viridian's Gym"
+	text "When is our Gym"
+	line "finally going to"
+	cont "have a new Leader?"
 
-	para "Leader? I wanted"
-	line "to challenge him."
+	para "They said a new"
+	line "Leader will be"
+	cont "appointed months"
+	cont "ago!"
 	done
 
+; After other Corruptions are defeated and Blue is back in Viridian
 .BlueText:
-	text "There are strong"
-	line "Gym Trainers at"
-	cont "the Viridian Gym."
+	text "Isn't this great?"
+	line "We finally have a"
+	cont "Gym Leader! But…"
 
-	para "Someday I'm going"
-	line "to join them!"
+	para "I still can't go"
+	line "challenge him!"
+	cont "Something bad's"
+	cont "happened!"
 	done
+
+; Post-game. He'll challenge you before leaving to fight Blue.
+; When he leaves, The player will not see him again.
 
 ViridianPokeCenter1FCooltrainerfText:
-	text "I heard that the"
-	line "Gym in Cinnabar is"
-	cont "gone."
+	text "I heard about an"
+	line "eruption out on"
+	cont "Cinnabar Island."
 
-	para "I wonder what be-"
-	line "came of Blaine,"
-	cont "the Gym Leader."
+	para "I hope everyone"
+	line "there is ok."
 	done
 
 ViridianPokeCenter1FBugCatcherText:
 	text "My dream is to be-"
 	line "come a Gym Leader."
+	
+	para "I wanna use Bugs!"
+	line "Just like Bugsy in"
+	cont "Johto!"
 	done

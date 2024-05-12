@@ -233,12 +233,15 @@ MartTierFifteen:
 	db MAX_LURE
 	db -1
 
+; ===============================================================
+; ===============================================================
+
 SpecialMarts:
-	dw MtMoonMart
-	dw BitterMart		; MARTTYPE_BITTER (Add Mint?)
-	dw Celadon2FMart1
-	dw Celadon2FMart2
-	dw Celadon3FTMMart
+	dw MtMoonMart		; MT MOON MART (Available once passage opens)
+	dw HerbMart			; Possibly in CERULEAN? (Add Mint?)
+	dw Celadon2FMart1	; 2nd Floor general store. Fixed Standard Inventory.
+	dw Celadon2FMart2	; TM SHOP
+	dw Celadon3FTMMart	; ???
 	dw Celadon4FMart
 	dw Celadon5FMart1
 	dw Celadon5FMart2
@@ -256,6 +259,14 @@ MtMoonMart:
 	db SUPER_REPEL
 	db LURE_ITEM
 	db SUPER_LURE
+	db -1
+
+HerbMart:
+	db 4 ; # items
+	db HEAL_POWDER
+	db ENERGYPOWDER
+	db ENERGY_ROOT
+	db REVIVAL_HERB
 	db -1
 
 Celadon2FMart1:
@@ -361,12 +372,4 @@ BattleTowerMart3:
 	db PROTECT_PADS, 16
 	db ROCKY_HELMET, 48
 	db SAFE_GOGGLES, 32
-	db -1
-
-BitterMart:
-	db 4 ; # items
-	db ENERGYPOWDER
-	db ENERGY_ROOT
-	db HEAL_POWDER
-	db REVIVAL_HERB
 	db -1

@@ -3592,6 +3592,49 @@ _MartFinalPriceText::
 	text "."
 	done
 
+SECTION "_MtMoonShopManIntroText", ROMX
+_MtMoonShopManIntroText::
+	text "Hello!"
+
+	para "Welcome to the"
+	line "all-new shop on"
+	cont "Mt. Moon Square!"
+
+	para "Have a look"
+	line "around!"
+	done
+
+SECTION "_MtMoonShopManFinalPriceText", ROMX
+_MtMoonShopManFinalPriceText::
+	text "That'll be ¥"
+	text_decimal hMoneyTemp, 3, 7
+	text "."
+	done
+
+SECTION "_MtMoonShopManThanksText", ROMX
+_MtMoonShopManThanksText::
+	text "Thank you!"
+	line "Anything else?"
+	done
+
+SECTION "_MtMoonShopManPackFullText", ROMX
+_MtMoonShopManPackFullText::
+	text "Oh my, your Bag"
+	line "is full."
+	done
+
+SECTION "_MtMoonShopManNoMoneyText", ROMX
+_MtMoonShopManNoMoneyText::
+	text "It seems you don't"
+	line "have enough money."
+	done
+
+SECTION "_MtMoonShopManComeAgainText", ROMX
+_MtMoonShopManComeAgainText::
+	text "Thanks! Come back"
+	line "soon!"
+	done
+
 SECTION "_HerbShopLadyIntroText", ROMX
 _HerbShopLadyIntroText::
 	text "Hello, dear."
@@ -3699,19 +3742,13 @@ _BargainShopComeAgainText::
 	line "sometime."
 	done
 
-SECTION "_PharmacyIntroText", ROMX
-_PharmacyIntroText::
-	text "What's up? Need"
-	line "some medicine?"
-	done
-
-SECTION "_PharmacyHowManyText", ROMX
-_PharmacyHowManyText::
+SECTION "_InformalHowManyText", ROMX
+_InformalHowManyText::
 	text "How many?"
 	done
 
-SECTION "_PharmacyFinalPriceText", ROMX
-_PharmacyFinalPriceText::
+SECTION "_InformalFinalPriceText", ROMX
+_InformalFinalPriceText::
 	text_decimal wItemQuantityChangeBuffer, 1, 2
 	text " "
 	text_ram wStringBuffer2
@@ -3721,25 +3758,25 @@ _PharmacyFinalPriceText::
 	text "."
 	done
 
-SECTION "_PharmacyThanksText", ROMX
-_PharmacyThanksText::
+SECTION "_InformalThanksText", ROMX
+_InformalThanksText::
 	text "Thanks much!"
 	done
 
-SECTION "_PharmacyPackFullText", ROMX
-_PharmacyPackFullText::
+SECTION "_InformalPackFullText", ROMX
+_InformalPackFullText::
 	text "You don't have any"
 	line "more space."
 	done
 
-SECTION "_PharmacyNoMoneyText", ROMX
-_PharmacyNoMoneyText::
+SECTION "_InformalNoMoneyText", ROMX
+_InformalNoMoneyText::
 	text "Huh? That's not"
 	line "enough money."
 	done
 
-SECTION "_PharmacyComeAgainText", ROMX
-_PharmacyComeAgainText::
+SECTION "_InformalComeAgainText", ROMX
+_InformalComeAgainText::
 	text "All right."
 	line "See you around."
 	done

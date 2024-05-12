@@ -25,9 +25,9 @@ OpenMartDialog::
 
 .dialogs
 	dw MartDialog 		; MARTTYPE_STANDARD (Scaling)
-	dw HerbShop			; MARTTYPE_BITTER (Either unused, or sell mints)
+	dw MtMoonShop		; MARTTYPE_MTMOON (New, unique dialogue)
 	dw BargainShop		; MARTTYPE_BARGAIN (Maybe use)
-	dw Pharmacist		; Remove
+	dw HerbShop			; MARTTYPE_HERBSHOP (Add mints?)
 	dw RooftopSale		; Use in Celadon
 	dw SilphMart		; Use in Silph
 	dw AdventurerMart	; Maybe unused
@@ -43,13 +43,13 @@ MartDialog:
 	ld [wMartJumptableIndex], a
 	jmp StandardMart
 
-HerbShop:
+MtMoonShop:
 	call FarReadMart
 	call LoadStandardMenuHeader
-	ld hl, Text_HerbShop_Intro
+	ld hl, Text_MtMoonShop_Intro
 	call MartTextbox
 	call BuyMenu
-	ld hl, Text_HerbShop_ComeAgain
+	ld hl, Text_MtMoonShop_ComeAgain
 	jmp MartTextbox
 
 BargainShop:
@@ -74,13 +74,13 @@ BargainShop:
 
 INCLUDE "data/items/bargain_shop.asm"
 
-Pharmacist:
+HerbShop:
 	call FarReadMart
 	call LoadStandardMenuHeader
-	ld hl, Text_Pharmacist_Intro
+	ld hl, Text_HerbShop_Intro
 	call MartTextbox
 	call BuyMenu
-	ld hl, Text_Pharmacist_ComeAgain
+	ld hl, Text_HerbShop_ComeAgain
 	jmp MartTextbox
 
 RooftopSale:
@@ -585,9 +585,9 @@ GetMartDialogGroup:
 
 .MartTextFunctionPointers:
 	dwb .StandardMartPointers, 0
-	dwb .HerbShopPointers, 0
+	dwb .MtMoonShopPointers, 0
 	dwb .BargainShopPointers, 1
-	dwb .PharmacyPointers, 0
+	dwb .HerbShopPointers, 0
 	dwb .StandardMartPointers, 2
 	dwb .SilphMartPointers, 0
 	dwb .AdventurerMartPointers, 0
@@ -605,12 +605,12 @@ GetMartDialogGroup:
 	dw Text_Mart_HereYouGo
 	dw BuyMenuLoop
 
-.HerbShopPointers:
-	dw Text_HerbShop_HowMany
-	dw Text_HerbShop_CostsThisMuch
-	dw Text_HerbShop_InsufficientFunds
-	dw Text_HerbShop_BagFull
-	dw Text_HerbShop_HereYouGo
+.MtMoonShopPointers:
+	dw Text_MtMoonShop_HowMany
+	dw Text_MtMoonShop_CostsThisMuch
+	dw Text_MtMoonShop_InsufficientFunds
+	dw Text_MtMoonShop_BagFull
+	dw Text_MtMoonShop_HereYouGo
 	dw BuyMenuLoop
 
 .BargainShopPointers:
@@ -621,12 +621,12 @@ GetMartDialogGroup:
 	dw Text_BargainShop_HereYouGo
 	dw Text_BargainShop_SoldOut
 
-.PharmacyPointers:
-	dw Text_Pharmacy_HowMany
-	dw Text_Pharmacy_CostsThisMuch
-	dw Text_Pharmacy_InsufficientFunds
-	dw Text_Pharmacy_BagFull
-	dw Text_Pharmacy_HereYouGo
+.HerbShopPointers:
+	dw Text_HerbShop_HowMany
+	dw Text_HerbShop_CostsThisMuch
+	dw Text_HerbShop_InsufficientFunds
+	dw Text_HerbShop_BagFull
+	dw Text_HerbShop_HereYouGo
 	dw BuyMenuLoop
 
 .SilphMartPointers:
@@ -1186,6 +1186,39 @@ GetCursorItemPointCost:
 	add hl, bc
 	jmp SwapHLDE
 
+Text_MtMoonShop_Intro:
+	; Hello! Welcome to the all-new shop on Mt. Moon Square! Have a look around!
+	text_far _MtMoonShopManIntroText
+	text_end
+
+Text_MtMoonShop_CostsThisMuch:
+	; That'll be ¥@ .
+	text_far _MtMoonShopManFinalPriceText
+	text_end
+
+Text_MtMoonShop_HereYouGo:
+	; Thank you! Anything else?
+	text_far _MtMoonShopManThanksText
+	text_end
+
+Text_MtMoonShop_BagFull:
+	; Oh my, Your PACK is full.
+	text_far _MtMoonShopManPackFullText
+	text_end
+
+Text_MtMoonShop_InsufficientFunds:
+	; It seems you don't have enough money.
+	text_far _MtMoonShopManNoMoneyText
+	text_end
+
+Text_MtMoonShop_ComeAgain:
+	; Thanks! Come back soon!
+	text_far _MtMoonShopManComeAgainText
+	text_end
+
+; =================================================================
+; =================================================================
+
 Text_HerbShop_Intro:
 	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe…
 	text_far _HerbShopLadyIntroText
@@ -1256,55 +1289,45 @@ Text_BargainShop_ComeAgain:
 	text_far _BargainShopComeAgainText
 	text_end
 
-Text_Pharmacist_Intro:
-	; What's up? Need some medicine?
-	text_far _PharmacyIntroText
-	text_end
-
+Text_MtMoonShop_HowMany:
 Text_HerbShop_HowMany:
-Text_Pharmacy_HowMany:
 Text_SilphMart_HowMany:
 Text_AdventurerMart_HowMany:
 Text_InformalMart_HowMany:
 Text_BazaarMart_HowMany:
 	; How many?
-	text_far _PharmacyHowManyText
+	text_far _InformalHowManyText
 	text_end
 
-Text_Pharmacy_CostsThisMuch:
 Text_SilphMart_CostsThisMuch:
 Text_InformalMart_CostsThisMuch:
 Text_BazaarMart_CostsThisMuch:
 	; @ (S) will cost ¥@ .
-	text_far _PharmacyFinalPriceText
+	text_far _InformalFinalPriceText
 	text_end
 
-Text_Pharmacy_HereYouGo:
 Text_InformalMart_HereYouGo:
 	; Thanks much!
-	text_far _PharmacyThanksText
+	text_far _InformalThanksText
 	text_end
 
-Text_Pharmacy_BagFull:
 Text_SilphMart_BagFull:
 Text_InformalMart_BagFull:
 Text_BazaarMart_BagFull:
 	; You don't have any more space.
-	text_far _PharmacyPackFullText
+	text_far _InformalPackFullText
 	text_end
 
-Text_Pharmacy_InsufficientFunds:
 Text_SilphMart_InsufficientFunds:
 Text_InformalMart_InsufficientFunds:
 Text_BazaarMart_InsufficientFunds:
 	; Huh? That's not enough money.
-	text_far _PharmacyNoMoneyText
+	text_far _InformalNoMoneyText
 	text_end
 
-Text_Pharmacist_ComeAgain:
 Text_InformalMart_ComeAgain:
 	; All right. See you around.
-	text_far _PharmacyComeAgainText
+	text_far _InformalComeAgainText
 	text_end
 
 Text_SilphMart_Intro:

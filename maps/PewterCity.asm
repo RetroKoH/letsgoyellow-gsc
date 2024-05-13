@@ -25,17 +25,17 @@ PewterCity_MapScriptHeader:
 	bg_event 19, 29, BGEVENT_JUMPTEXT, PewterCityTrainerTipsText
 
 	def_object_events
-	object_event 18, 30, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
-	object_event 19, 30, SPRITE_KRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
-	object_event  8,  4, SPRITE_LADY, SPRITEMOVEDATA_STANDING_LEFT, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeLadyScript, -1
-	object_event  6,  4, SPRITE_MON_ICON, SPRITEMOVEDATA_STILL, 0, SLOWPOKE, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeScript, -1
-	object_event 22, 11, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainerFText, -1
-	object_event 19, 10, SPRITE_COOL_DUDE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 2, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainermText, -1
-	object_event 14, 29, SPRITE_CHILD, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityBugCatcherText, -1
-	object_event 29, 17, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
-	object_event  7, 17, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCityYoungsterScript, -1
-	fruittree_event 32,  3, FRUITTREE_PEWTER_CITY_1, PETAYA_BERRY, PAL_NPC_RED
-	fruittree_event 30,  3, FRUITTREE_PEWTER_CITY_2, APICOT_BERRY, PAL_NPC_BLUE
+	object_event 	18, 30, SPRITE_BLUE,				SPRITEMOVEDATA_STANDING_UP,		0, 0, -1, -1,			0,				OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
+	object_event 	19, 30, SPRITE_KRIS,				SPRITEMOVEDATA_STANDING_UP,		0, 0, -1, -1,			0,				OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
+	object_event 	 8,  4, SPRITE_LADY,				SPRITEMOVEDATA_STANDING_LEFT,	2, 2, -1, -1,			PAL_NPC_RED,	OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeLadyScript, -1
+	object_event 	 6,  4, SPRITE_MON_ICON,			SPRITEMOVEDATA_STILL,			0, SLOWPOKE, -1, -1,	PAL_NPC_RED,	OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeScript, -1
+	object_event 	22, 11, SPRITE_BATTLE_GIRL,			SPRITEMOVEDATA_STANDING_DOWN,	2, 2, -1, -1,			PAL_NPC_GREEN,	OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainerFText, -1
+	object_event 	19, 10, SPRITE_COOL_DUDE,			SPRITEMOVEDATA_SPINRANDOM_SLOW,	2, 2, -1, -1,			0,				OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainermText, -1
+	object_event 	14, 29, SPRITE_CHILD,				SPRITEMOVEDATA_WANDER,			2, 2, -1, -1,			PAL_NPC_PURPLE,	OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityBugCatcherText, -1
+	object_event 	29, 17, SPRITE_GRAMPS,				SPRITEMOVEDATA_WALK_LEFT_RIGHT,	0, 2, -1, -1,			PAL_NPC_BLUE,	OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
+	object_event	 7, 17, SPRITE_SCHOOLBOY,			SPRITEMOVEDATA_WANDER,			2, 2, -1, -1,			PAL_NPC_RED,	OBJECTTYPE_SCRIPT, 0, PewterCityYoungsterScript, -1
+	fruittree_event 32,  3, FRUITTREE_PEWTER_CITY_1,	PETAYA_BERRY, PAL_NPC_RED
+	fruittree_event 30,  3, FRUITTREE_PEWTER_CITY_2,	APICOT_BERRY, PAL_NPC_BLUE
 
 	object_const_def
 	const PEWTER_BLUE
@@ -125,31 +125,43 @@ PewterCitySlowpokeLadyScript:
 	iftrue_jumptextfaceplayer .ComeBackText
 	checkflag EVENT_WATCHED_POKEY
 	iffalse .FirstTime
-	faceobject STARTHOUSE_TRACE, PLAYER ;faceplayer
+	faceplayer
 	writetext .WatchPokeyAgain1
 	yesorno
 	iffalse_jumpopenedtext .WatchPokeyFirstTime_No
-	writetext .WatchPokeyFirstTime3
-	waitbutton
-	setflag ENGINE_PEWTER_SLOWPOKE_SITTING
-	verbosegiveitem BIG_PEARL
-	end
+	sjump .WatchPokey
 
 .FirstTime
 	writetext .WatchPokeyFirstTime1
 	showemote EMOTE_SHOCK, PEWTER_LADY, 15
-	faceobject STARTHOUSE_TRACE, PLAYER ;faceplayer
+	faceplayer
 	writetext .WatchPokeyFirstTime2
 	yesorno
 	iffalse_jumpopenedtext .WatchPokeyFirstTime_No
 	writetext .WatchPokeyFirstTime_Yes
 	yesorno
 	iffalse_jumpopenedtext .WatchPokeyFirstTime_No
+
+.WatchPokey
 	writetext .WatchPokeyFirstTime3
 	waitbutton
+	closetext
+	special FadeOutPalettes
+	special LoadMapPalettes
+	special SaveMusic
+	playmusic MUSIC_HEAL
+	pause 60
+	special FadeInPalettes
+	special RestoreMusic
+	opentext
+	writetext .WatchPokeyThanks
+	promptbutton
+	verbosegiveitem BIG_PEARL
+	writetext .ComeBackText
+	waitbutton
+	closetext
 	setflag EVENT_WATCHED_POKEY ; Triggers the first time
 	setflag ENGINE_PEWTER_SLOWPOKE_SITTING
-	verbosegiveitem BIG_PEARL
 	end
 
 .WatchPokeyAgain1:
@@ -197,6 +209,12 @@ PewterCitySlowpokeLadyScript:
 	text "Oh, that's too"
 	line "bad. Maybe another"
 	cont "time then."
+	done
+
+.WatchPokeyThanks:
+	text "Thank you! Here's"
+	line "something for your"
+	cont "troubles!"
 	done
 
 .ComeBackText:

@@ -239,9 +239,9 @@ MartTierFifteen:
 SpecialMarts:
 	dw MtMoonMart		; MT MOON MART (Available once passage opens)
 	dw HerbMart			; Possibly in CERULEAN? (Add Mint?)
-	dw Celadon2FMart1	; 2nd Floor general store. Fixed Standard Inventory.
-	dw Celadon2FMart2	; TM SHOP
-	dw Celadon3FTMMart	; ???
+	dw Celadon2FMart	; 2nd Floor general store. Fixed Standard Inventory.
+	; 2F Daily Sales
+	dw Celadon3FTMMart	; TM SHOP
 	dw Celadon4FMart
 	dw Celadon5FMart1
 	dw Celadon5FMart2
@@ -269,9 +269,11 @@ HerbMart:
 	db REVIVAL_HERB
 	db -1
 
-Celadon2FMart1:
-	db 10 ; # items
+Celadon2FMart:
+	db 14 ; # items
+	db POKE_BALL
 	db GREAT_BALL
+	db POTION
 	db SUPER_POTION
 	db REVIVE
 	db ANTIDOTE
@@ -279,23 +281,18 @@ Celadon2FMart1:
 	db AWAKENING
 	db BURN_HEAL
 	db ICE_HEAL
+	db FULL_HEAL
+	db REPEL
 	db SUPER_REPEL
-	db SUPER_LURE
+	db LURE_ITEM
 	db -1
 
-Celadon2FMart2:
+Celadon3FTMMart:
 	db 4 ; # items
 	dbw TM_SUNNY_DAY,     40000
 	dbw TM_RAIN_DANCE,    40000
 	dbw TM_SANDSTORM,     40000
 	dbw TM_HAIL,          40000
-	db -1
-
-Celadon3FTMMart:
-	db 3 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
 	db -1
 
 Celadon4FMart:

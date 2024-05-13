@@ -8,9 +8,9 @@
 
 OpenMartDialog::
 	ld a, c
-	ld [wMartType], a
+	ld [wMartType], a		; load Mart type from c
 	cp MARTTYPE_STANDARD
-	jr nz, .specialMart
+	jr nz, .specialMart		; jump ahead if this is a non-standard Mart
 	call GetMart
 	jr .cont
 
@@ -21,18 +21,19 @@ OpenMartDialog::
 .cont
 	call LoadMartPointer
 	ld a, [wMartType]
-	call StackJumpTable
+	call StackJumpTable	; load .dialogs to the stack, and use wMartType to redirect to the correct code.
 
 .dialogs
 	dw MartDialog 		; MARTTYPE_STANDARD (Scaling)
 	dw MtMoonShop		; MARTTYPE_MTMOON (New, unique dialogue)
-	dw BargainShop		; MARTTYPE_BARGAIN (Maybe use)
+	dw BargainShop		; MARTTYPE_BARGAIN (Near docks south of Lavender)
 	dw HerbShop			; MARTTYPE_HERBSHOP (Add mints?)
+	dw Dept2FDialog		; MARTTYPE_CELADON2F (In Celadon. Standard dialog, non-scaling inventory)
 	dw RooftopSale		; Use in Celadon
 	dw SilphMart		; Use in Silph
-	dw AdventurerMart	; Maybe unused
-	dw InformalMart		; Maybe unused
-	dw BazaarMart		; Unused
+	dw AdventurerMart	; Use in/around dungeons
+	dw InformalMart		; Use for fossil seller (Second bargainer)
+	dw BazaarMart		; Berry Bazaar
 	dw TMMart			; TMs
 	dw BlueCardMart		; Unused
 	dw BTMart			; Battle Tower (Maybe unused)
@@ -55,6 +56,7 @@ MtMoonShop:
 BargainShop:
 	ld b, BANK(BargainShopData)
 	ld de, BargainShopData
+	; Check current map and load correct Bargain Shop Data
 	call LoadMartPointer
 	call ReadMart
 	call LoadStandardMenuHeader
@@ -81,6 +83,15 @@ HerbShop:
 	call MartTextbox
 	call BuyMenu
 	ld hl, Text_HerbShop_ComeAgain
+	jmp MartTextbox
+
+Dept2FDialog:
+	call FarReadMart
+	call LoadStandardMenuHeader
+	ld hl, Text_Mart_HowMayIHelpYou
+	call MartTextbox
+	call BuyMenu
+	ld hl, Text_Mart_ComeAgain
 	jmp MartTextbox
 
 RooftopSale:
@@ -201,7 +212,7 @@ GetSpecialMart:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld b, BANK(Marts) ; Make sure this works for special marts
+	ld b, BANK(Marts) ; Marts and Special Marts are in the same bank
 	ret
 
 StandardMart:

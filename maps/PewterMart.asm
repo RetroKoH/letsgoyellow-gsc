@@ -28,13 +28,13 @@ PewterMartYoungsterText:
 	done
 
 PewterMartSuperNerdText:
-	text "There once was a"
-	line "weird old man who"
-	cont "sold Magikarp."
+	text "There's a weird"
+	line "old man who sells"
+	cont "Magikarp."
 
-	para "He was saying the"
+	para "He says the"
 	line "Magikarp from the"
 
-	para "Lake of Rage were"
+	para "Lake of Rage are"
 	line "excellent."
 	done

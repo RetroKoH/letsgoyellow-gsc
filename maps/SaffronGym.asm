@@ -181,11 +181,7 @@ SaffronGymGuyScript:
 
 SaffronGymStatue:
 	gettrainername SABRINA, 1, $1
-	checkflag ENGINE_SOULBADGE
-	iftrue .Beaten
-	jumpstd gymstatue1
-.Beaten:
-	jumpstd gymstatue2
+	jumpstd gymstatue
 
 SabrinaIntroText:
 	text "Sabrina: I knew"

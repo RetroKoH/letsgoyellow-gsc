@@ -123,11 +123,7 @@ GenericTrainerTwinsJoandzoe2:
 
 CeladonGymStatue:
 	gettrainername ERIKA, 1, $1
-	checkflag ENGINE_RAINBOWBADGE
-	iftrue .Beaten
-	jumpstd gymstatue1
-.Beaten:
-	jumpstd gymstatue2
+	jumpstd gymstatue
 
 ErikaBeforeBattleText:
 	text "Erika: Hello…"

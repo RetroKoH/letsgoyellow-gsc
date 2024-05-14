@@ -40,10 +40,7 @@ StdScripts::
 	dba GiftFScript
 	dba PackFullFScript
 	dba RematchGiftFScript
-	dba GymStatue0Script
-	dba GymStatue1Script
-	dba GymStatue2Script
-	dba GymStatue3Script
+	dba GymStatueScript
 	dba ReceiveItemScript
 	dba PCScript
 	dba GameCornerCoinVendorScript
@@ -1491,34 +1488,10 @@ RematchGiftFScript:
 	promptbutton
 	end
 
-GymStatue0Script:
+GymStatueScript:
 	getcurlandmarkname $0
 	opentext
 	farwritetext GymStatue_CityGymText
-	waitendtext
-
-GymStatue1Script:
-	getcurlandmarkname $0
-	opentext
-	farwritetext GymStatue_CityGymText
-	promptbutton
-	farwritetext GymStatue_WinningTrainersText
-	waitendtext
-
-GymStatue2Script:
-	getcurlandmarkname $0
-	opentext
-	farwritetext GymStatue_CityGymText
-	promptbutton
-	farwritetext GymStatue_TwoWinningTrainersText
-	waitendtext
-
-GymStatue3Script:
-	getcurlandmarkname $0
-	opentext
-	farwritetext GymStatue_CityGymText
-	promptbutton
-	farwritetext GymStatue_ThreeWinningTrainersText
 	waitendtext
 
 ReceiveItemScript:

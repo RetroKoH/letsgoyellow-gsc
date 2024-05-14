@@ -25,15 +25,16 @@ PewterCity_MapScriptHeader:
 	bg_event 19, 29, BGEVENT_JUMPTEXT, PewterCityTrainerTipsText
 
 	def_object_events
-	object_event 	18, 30, SPRITE_BLUE,				SPRITEMOVEDATA_STANDING_UP,		0, 0, -1, -1,			0,				OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
-	object_event 	19, 30, SPRITE_KRIS,				SPRITEMOVEDATA_STANDING_UP,		0, 0, -1, -1,			0,				OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
-	object_event 	 8,  4, SPRITE_LADY,				SPRITEMOVEDATA_STANDING_LEFT,	2, 2, -1, -1,			PAL_NPC_RED,	OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeLadyScript, -1
-	object_event 	 6,  4, SPRITE_MON_ICON,			SPRITEMOVEDATA_STILL,			0, SLOWPOKE, -1, -1,	PAL_NPC_RED,	OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeScript, -1
-	object_event 	22, 11, SPRITE_BATTLE_GIRL,			SPRITEMOVEDATA_STANDING_DOWN,	2, 2, -1, -1,			PAL_NPC_GREEN,	OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainerFText, -1
-	object_event 	19, 10, SPRITE_COOL_DUDE,			SPRITEMOVEDATA_SPINRANDOM_SLOW,	2, 2, -1, -1,			0,				OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainermText, -1
-	object_event 	14, 29, SPRITE_CHILD,				SPRITEMOVEDATA_WANDER,			2, 2, -1, -1,			PAL_NPC_PURPLE,	OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityBugCatcherText, -1
-	object_event 	29, 17, SPRITE_GRAMPS,				SPRITEMOVEDATA_WALK_LEFT_RIGHT,	0, 2, -1, -1,			PAL_NPC_BLUE,	OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
-	object_event	 7, 17, SPRITE_SCHOOLBOY,			SPRITEMOVEDATA_WANDER,			2, 2, -1, -1,			PAL_NPC_RED,	OBJECTTYPE_SCRIPT, 0, PewterCityYoungsterScript, -1
+	object_event 	18, 30, SPRITE_BLUE,		SPRITEMOVEDATA_STANDING_UP,		0, 0, -1, -1,		0,				OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
+	object_event 	19, 30, SPRITE_KRIS,		SPRITEMOVEDATA_STANDING_UP,		0, 0, -1, -1,		0,				OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PEWTERCITY_BLUE
+	object_event 	 8,  4, SPRITE_LADY,		SPRITEMOVEDATA_STANDING_LEFT,	2, 2, -1, -1,		PAL_NPC_RED,	OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeLadyScript, -1
+	object_event 	 6,  4, SPRITE_MON_ICON,	SPRITEMOVEDATA_STILL,			0, SLOWPOKE, -1, -1, PAL_NPC_RED,	OBJECTTYPE_SCRIPT, 0, PewterCitySlowpokeScript, -1
+	object_event 	22, 11, SPRITE_BATTLE_GIRL,	SPRITEMOVEDATA_STANDING_DOWN,	2, 2, -1, -1,		PAL_NPC_GREEN,	OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainerFText, -1
+	object_event 	19, 10, SPRITE_COOL_DUDE,	SPRITEMOVEDATA_SPINRANDOM_SLOW,	2, 2, -1, -1,		0,				OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityCooltrainermText, -1
+	object_event 	14, 29, SPRITE_CHILD,		SPRITEMOVEDATA_WANDER,			2, 2, -1, -1,		PAL_NPC_PURPLE,	OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityBugCatcherText, -1
+	object_event 	29, 17, SPRITE_GRAMPS,		SPRITEMOVEDATA_WALK_LEFT_RIGHT,	0, 2, -1, -1,		PAL_NPC_BLUE,	OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
+	object_event	 7, 17, SPRITE_SCHOOLBOY,	SPRITEMOVEDATA_WANDER,			2, 2, -1, -1,		PAL_NPC_RED,	OBJECTTYPE_SCRIPT, 0, PewterCityYoungsterScript, -1
+	object_event  	15, 18, SPRITE_GYM_GUY,		SPRITEMOVEDATA_STANDING_DOWN,	0, 0, -1, -1,		PAL_NPC_BLUE,	OBJECTTYPE_COMMAND, jumptextfaceplayer, PewterCityGymGuyText, EVENT_HIDE_PEWTERCITY_GYMGUY
 	fruittree_event 32,  3, FRUITTREE_PEWTER_CITY_1,	PETAYA_BERRY, PAL_NPC_RED
 	fruittree_event 30,  3, FRUITTREE_PEWTER_CITY_2,	APICOT_BERRY, PAL_NPC_BLUE
 
@@ -410,6 +411,15 @@ PewterCityYoungsterText2:
 	text "You beat the Gym?"
 	line "Then you're tough"
 	cont "as rock too!"
+	done
+
+PewterCityGymGuyText:
+	text "Yo! Trainer!"
+	line "Brock's not here!"
+	
+	para "He said something"
+	line "urgent came up at"
+	cont "the Pewter Museum!"
 	done
 
 PewterCitySignText:

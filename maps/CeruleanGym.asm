@@ -188,11 +188,7 @@ CeruleanGymStatue2:
 
 CeruleanGymStatue:
 	gettrainername MISTY, 1, $1
-	checkflag ENGINE_CASCADEBADGE
-	iftrue .Beaten
-	jumpstd gymstatue1
-.Beaten:
-	jumpstd gymstatue2
+	jumpstd gymstatue
 
 CeruleanGymGruntRunsDownMovement:
 	run_step_down

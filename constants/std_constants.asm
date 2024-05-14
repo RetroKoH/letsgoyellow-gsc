@@ -40,10 +40,7 @@
 	const giftf
 	const packfullf
 	const rematchgiftf
-	const gymstatue0
-	const gymstatue1
-	const gymstatue2
-	const gymstatue3
+	const gymstatue
 	const receiveitem
 	const pcscript
 	const gamecornercoinvendor

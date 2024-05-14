@@ -326,24 +326,6 @@ GymStatue_CityGymText:
 	text_ram wStringBuffer4
 	done
 
-GymStatue_WinningTrainersText:
-	text "Winning Trainers:"
-	line "<RIVAL>"
-	done
-
-GymStatue_TwoWinningTrainersText:
-	text "Winning Trainers:"
-	line "<RIVAL>"
-	cont "<PLAYER>"
-	done
-
-GymStatue_ThreeWinningTrainersText:
-	text "Winning Trainers:"
-	line "<RIVAL>"
-	cont "<PLAYER>"
-	cont "Lyra"
-	done
-
 CoinVendor_WelcomeText:
 	text "Welcome to the"
 	line "Game Corner."

@@ -95,11 +95,7 @@ PewterGymGuyScript:
 
 PewterGymStatue:
 	gettrainername BROCK, 1, $1
-	checkflag ENGINE_BOULDERBADGE
-	iftrue .Beaten
-	jumpstd gymstatue1
-.Beaten:
-	jumpstd gymstatue2
+	jumpstd gymstatue
 
 BrockIntroText:
 	text "Brock: Wow, it's"
@@ -199,32 +195,47 @@ HikerEdwinBeatenText:
 	done
 
 PewterGymGuyText:
-	text "Yo! Champ in"
-	line "making! You're"
+	text "Yo! You're that"
+	line "same guy from"
+	cont "earlier!"
 
-	para "really rocking."
-	line "Are you battling"
+	para "Brock just came"
+	line "back. He said he"
+	cont "was waiting for"
+	cont "a certain trainer."
 
-	para "the Gym Leaders of"
-	line "Kanto?"
+	para "That must be you!"
+	line "Right?"
 
-	para "They're strong and"
-	line "dedicated people,"
+	para "Brock needs your"
+	line "help, but he wants"
+	cont "to test you first!"
 
-	para "just like Johto's"
-	line "Gym Leaders."
+	para "If you can beat"
+	line "him in battle, he"
+	cont "will know that"
+	cont "you're ready!"
 	done
 
 PewterGymGuyWinText:
-	text "Yo! Champ in"
-	line "making! That Gym"
+	text "Yo! You really"
+	line "brought the fight"
+	cont "to Brock!"
 
-	para "didn't give you"
-	line "much trouble."
+	para "I'm sure you'll"
+	line "have no trouble if"
+	cont "you go to the"
+	cont "other gyms."
 
-	para "The way you took"
-	line "charge was really"
+	para "I've been told the"
+	line "#mon League has"
+	cont "been suspended for"
+	cont "now."
 
-	para "inspiring. I mean"
-	line "that seriously."
+	para "But I think you"
+	line "should still seek"
+	cont "out the other Gym"
+	cont "Leaders!"
 	done
+
+; Add text relevant to post-game rematches

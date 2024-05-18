@@ -1,5 +1,5 @@
 InitClock:
-; Ask the player to set the time.
+; Ask the player to set the time. (Now unused)
 	ldh a, [hInMenu]
 	push af
 	ld a, $1

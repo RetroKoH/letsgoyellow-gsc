@@ -60,13 +60,11 @@ UpdateGameTimer::
 
 ; kroc - no-RTC patch
 ; the game timer has increased by 1 second; increase the "fake" RTC by 6 seconds
-; (24 in-game hours will pass in 4 real-world hours)
+; (24 in-game hours will pass in 4 real-world hours) < NOTE: Change to 24 mins per PLA
 ; this does not affect the rate of the "hours played", which remains real-time
-if DEF(NO_RTC)
 rept NO_RTC_SPEEDUP
 	call UpdateNoRTC
 endr
-endc
 
 ; +1 second
 	ld hl, wGameTimeSeconds
@@ -129,8 +127,7 @@ endc
 	ld [wGameTimeHours + 1], a
 	ret
 
-;; add a second to the no-RTC fake real-time clock
-if DEF(NO_RTC)
+;; add a second to the no-RTC fake real-time clock (NO_RTC)
 UpdateNoRTC::
 	; set our modulus
 	ld a, 60
@@ -165,4 +162,3 @@ UpdateNoRTC::
 ; RTC hardware limit of 512 days!
 	inc [hl]
 	ret
-endc

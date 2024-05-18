@@ -20,9 +20,6 @@ RGBFIX_FLAGS = -csjv -t $(TITLE) -i $(MCODE) -n $(ROMVERSION) -p $(FILLER) -k 01
 ifeq ($(filter faithful,$(MAKECMDGOALS)),faithful)
 RGBASM_FLAGS += -DFAITHFUL
 endif
-ifeq ($(filter nortc,$(MAKECMDGOALS)),nortc)
-RGBASM_FLAGS += -DNO_RTC
-endif
 ifeq ($(filter monochrome,$(MAKECMDGOALS)),monochrome)
 RGBASM_FLAGS += -DMONOCHROME
 endif
@@ -58,7 +55,7 @@ gfx/misc.o
 
 
 .SUFFIXES:
-.PHONY: clean tidy lgyellow faithful nortc debug monochrome freespace tools bsp
+.PHONY: clean tidy lgyellow faithful debug monochrome freespace tools bsp
 .SECONDEXPANSION:
 .PRECIOUS: %.2bpp %.1bpp
 .SECONDARY:
@@ -68,7 +65,6 @@ lgyellow: ROM_NAME = $(NAME)-$(VERSION)
 lgyellow: $(NAME)-$(VERSION).gbc
 
 faithful: lgyellow
-nortc: lgyellow
 monochrome: lgyellow
 noir: lgyellow
 hgss: lgyellow

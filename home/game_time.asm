@@ -59,13 +59,19 @@ UpdateGameTimer::
 	ld [hl], a
 
 ; kroc - no-RTC patch
-; the game timer has increased by 1 second; increase the "fake" RTC by 6 seconds
+; the game timer has increased by 1 second; increase the "fake" RTC by 12 seconds
 ; (24 in-game hours will pass in 4 real-world hours) < NOTE: Change to 24 mins per PLA
 ; this does not affect the rate of the "hours played", which remains real-time
+.checkOWLevel
+	ld a, [wOverworldLevel]
+	cp 2					; Have we reached the Pewter cutscene yet?
+	jr c, .skip				; if not, skip in-world time advancement
+
 rept NO_RTC_SPEEDUP
 	call UpdateNoRTC
 endr
 
+.skip
 ; +1 second
 	ld hl, wGameTimeSeconds
 	ld a, [hl]

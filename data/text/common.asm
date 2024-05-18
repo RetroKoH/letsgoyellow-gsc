@@ -2224,11 +2224,7 @@ SECTION "_UseRockSmashText", ROMX
 _UseRockSmashText::
 	text_ram wStringBuffer2
 	text " used"
-if DEF(FAITHFUL)
 	line "Rock Smash!"
-else
-	line "Brick Break!"
-endc
 	prompt
 
 SECTION "_MaySmashText", ROMX
@@ -2242,13 +2238,8 @@ _AskRockSmashText::
 	text "This rock looks"
 	line "breakable."
 
-if DEF(FAITHFUL)
 	para "Want to use Rock"
 	line "Smash?"
-else
-	para "Want to use Brick"
-	line "Break?"
-endc
 	done
 
 SECTION "_RodBiteText", ROMX

@@ -232,21 +232,13 @@ JanineText_ToughOne:
 	line "tough one. You"
 	cont "definitely won…"
 
-if DEF(FAITHFUL)
 	para "Here's the Soul"
-else
-	para "Here's the Marsh"
-endc
 	line "Badge. Take it."
 	done
 
 Text_ReceivedSoulBadge:
 	text "<PLAYER> received"
-if DEF(FAITHFUL)
 	line "the Soul Badge."
-else
-	line "the Marsh Badge."
-endc
 	done
 
 JanineText_ToxicSpeech:

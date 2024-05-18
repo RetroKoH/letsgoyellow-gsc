@@ -192,13 +192,6 @@ DiglettsCaveCooltrainerfText:
 	done
 
 DiglettsCavePokefanMText:
-if DEF(FAITHFUL)
-	text "A bunch of Diglett"
-	line "popped out of the"
-
-	para "ground! That was"
-	line "shocking."
-else
 	text "When the volcano"
 	line "on Cinnabar Island"
 	cont "erupted, it radic-"
@@ -219,5 +212,4 @@ else
 	para "It's made them even"
 	line "tougher. Good luck"
 	cont "in the caves!"
-endc
 	done

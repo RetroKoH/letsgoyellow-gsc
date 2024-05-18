@@ -90,11 +90,7 @@ MountMortarB1FKiyoGotTyrogueText:
 
 MountMortarB1FHikerText:
 	text "My #mon used"
-if DEF(FAITHFUL)
 	line "Rock Smash on a"
-else
-	line "Brick Break on a"
-endc
 
 	para "boulder, but it"
 	line "was undamaged."

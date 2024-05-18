@@ -224,20 +224,12 @@ SabrinaWinLossText:
 
 	para "OK, you win. You"
 	line "earned yourself"
-if DEF(FAITHFUL)
 	cont "the Marsh Badge."
-else
-	cont "the Soul Badge."
-endc
 	done
 
 ReceivedMarshBadgeText:
 	text "<PLAYER> received"
-if DEF(FAITHFUL)
 	line "the Marsh Badge."
-else
-	line "the Soul Badge."
-endc
 	done
 
 SabrinaMarshBadgeText:

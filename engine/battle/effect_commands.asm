@@ -3421,18 +3421,10 @@ RaiseStatWithItem:
 	jmp ConsumeUserItem
 
 DittoMetalPowder:
-if !DEF(FAITHFUL)
 	; grabs true species -- works even if transformed to non-Ditto
 	ld a, MON_SPECIES
 	call OpponentPartyAttr
-else
-	; only works if current species is Ditto
-	push hl
-	ld hl, wBattleMonSpecies
-	call GetOpponentMonAttr
-	ld a, [hl]
-	pop hl
-endc
+
 	cp DITTO
 	ret nz
 

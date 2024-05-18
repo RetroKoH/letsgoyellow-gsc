@@ -30,7 +30,6 @@
 	const EVENT_GOT_HM_UNK_7
 ; Rods (Condense to one rod?)
 	const EVENT_GOT_FISHING_ROD
-	const EVENT_GOT_ROD_UNK_1
 ; Hide/Show Events
 	const EVENT_HIDE_STARTHOUSE_BLUE
 	const EVENT_HIDE_STARTHOUSE_TRACE
@@ -45,6 +44,7 @@
 	const EVENT_HIDE_VIRIDIAN_FOREST_JAMES
 	const EVENT_HIDE_PEWTERCITY_BLUE
 	const EVENT_HIDE_PEWTERCITY_GYMGUY
+	const EVENT_HIDE_PEWTERGYM_BROCK ; Applies to everyone in Brock's gym
 ; Story Events
 	const EVENT_GOT_STARTER
 	const EVENT_PLAYER_CHOSE_PIKACHU

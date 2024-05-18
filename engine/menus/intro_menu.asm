@@ -547,9 +547,14 @@ ProfOakSpeech:
 	ld hl, wNumPCItems
 	call ReceiveItem
 
-	farcall InitClock
-	ld c, 31
-	call FadeToBlack
+; REMOVE. Game will start at 9 AM on Monday morning. (InitClock no longer called here)
+; Temporarily pause RTC time until we finish the Oak's Lab cutscene.
+	ld hl, wStartHour
+	ld [hl], 9
+	ld hl, wStartDay
+	ld [hl], MONDAY
+	ld c, 15
+	call FadeToWhite
 	call ClearTileMap
 
 	ld de, MUSIC_NUGGET_BRIDGE

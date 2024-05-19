@@ -75,14 +75,36 @@ PewterCity_BlueStopsYouScene:
 	showtext PewterBlueText_Affirm
 	turnobject PEWTER_BLUE, DOWN
 	turnobject PEWTER_ALTPLAYER, DOWN
-	showtext PewterBlueText_Direct
+	opentext
+	writetext PewterBlueText_Direct
+	promptbutton
+	writetext PewterReceivedGearText
+	playsound SFX_KEY_ITEM
+	waitsfx
+	promptbutton
+	writetext PewterBlueText_Farewell
+	waitbutton
+	closetext
 	applymovement PEWTER_BLUE, Movement_PewterBlueLeaves
 	disappear PEWTER_BLUE
 	showtext PewterAltText_Farewell
 	applymovement PEWTER_ALTPLAYER, Movement_PewterAltLeaves
 	disappear PEWTER_ALTPLAYER
+
+	; You'll now get a prototype PokeGear here
+	setflag ENGINE_POKEGEAR
+	setflag ENGINE_MAP_CARD
+	setflag ENGINE_PHONE_CARD
+	addcellnum PHONE_TRACE		; Change to Blue
+	addcellnum PHONE_OAK
+	callasm AdvanceOverworld2
 	setscene $1
 	end
+
+AdvanceOverworld2:
+	ld hl, wOverworldLevel
+	ld [hl], 2
+	ret
 
 Movement_BlueWalksToYou:
 	step_down
@@ -312,13 +334,25 @@ PewterBlueText_Direct:
 	line "the Pewter Gym."
 	cont "You should be able"
 	cont "to find him there."
-
-	para "<BACKUP> and I"
-	line "will catch up with"
-	cont "you when we figure"
+	
+	para "Also, take this!"
+	line "It's a brand new"
+	cont "#Gear! It's got a"
+	cont "phone and a map!"
+	done
+	
+PewterBlueText_Farewell:
+	text "Blue: We will"
+	line "catch up with you"
+	cont "when we figure"
 	cont "out more."
 
 	para "See ya!"
+	done
+
+PewterReceivedGearText:
+	text "<PLAYER> got"
+	line "the # Gear!"
 	done
 
 PewterAltText_Farewell:

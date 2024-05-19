@@ -112,18 +112,19 @@ OaksLab_AutowalkUpToOak:
 	callasm FillKantoPokedex
 
 	setflag ENGINE_POKEDEX
-	setflag ENGINE_POKEGEAR
-	setflag ENGINE_MAP_CARD
-	setflag ENGINE_PHONE_CARD
-	addcellnum PHONE_TRACE
-	addcellnum PHONE_OAK
 	setevent EVENT_GOT_POKEDEX_FROM_OAK
 	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
 	setmapscene VIRIDIAN_CITY, $1
 	setmapscene ROUTE_22, $1
 	clearevent EVENT_HIDE_ROUTE_22_TRACE
+	callasm AdvanceOverworld1
 	setscene $2
 	end
+
+AdvanceOverworld1:
+	ld hl, wOverworldLevel
+	ld [hl], 1
+	ret
 
 FillKantoPokedex:
 	ld hl, wPokedexSeen
@@ -323,11 +324,6 @@ OaksLabReceivedPokedexText:
 	line "the #dex!"
 	done
 
-OaksLabReceivedGearText:
-	text "<PLAYER> got"
-	line "the # Gear!"
-	done
-
 OaksLabRequestText:
 	text "To make a complete"
 	line "guide on all the"
@@ -370,14 +366,6 @@ OaksLabLeaveItToUsText:
 	cont "to find really"
 	cont "strong #mon to"
 	cont "help us out!"
-
-	para "Oh, and I got new"
-	line "# Gears for us!"
-	cont "They have a Town"
-	cont "Map and a Phone."
-
-	para "Take one, you're"
-	line "gonna need it!"
 	done
 
 OaksLabDexCheckText:

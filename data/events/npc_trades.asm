@@ -1,15 +1,18 @@
+; Need to add a check for the player Pokemon's form
+; Also add hard-coded level for traded mons
+
 NPCTrades:
 	table_width NPCTRADE_STRUCT_LENGTH, NPCTrades
 ; NPC_TRADE_MIKE on Route 2
-	rawchar 0, MR__MIME,   MR__MIME,   "Chaplin@@@@"
+	rawchar 0, MR__MIME,   MR__MIME,   "Charlie@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_ATK_UP_SATK_DOWN,  MALE | GALARIAN_FORM, PREMIER_BALL, SITRUS_BERRY
 	dw 37460
 	rawchar "Mike@@@@", $00
-; NPC_TRADE_KYLE in Viridian Forest
+; NPC_TRADE_JOANA in Viridian Forest
 	rawchar 3, PIKACHU,    BUTTERFREE, "Buttercup@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPD_UP_DEF_DOWN,   FEMALE, POKE_BALL, PERSIM_BERRY
 	dw 48926
-	rawchar "Kylie@@@", $00
+	rawchar "Joana@@@", $00
 ; NPC_TRADE_TIM in Pewter City
 	rawchar 1, RATTATA,    RATTATA,    "Pepper@@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_ATK_UP_SPD_DOWN,   MALE | ALOLAN_FORM,   PREMIER_BALL,   SILK_SCARF

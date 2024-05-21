@@ -16,7 +16,7 @@ NPCTRADE_STRUCT_LENGTH EQU _RS
 ; NPCTrades indexes (see data/events/npc_trades.asm)
 	const_def
 	const NPC_TRADE_MIKE    ; 0 - Route 2: Mr Mime for Mr Mime-G
-	const NPC_TRADE_KYLE    ; 1
+	const NPC_TRADE_JOANA   ; 1 - Viridian Forest: Pikachu for Butterfree
 	const NPC_TRADE_TIM     ; 2
 	const NPC_TRADE_EMY     ; 3
 	const NPC_TRADE_CHRIS   ; 4 - Pewter Pokecenter: Geodude for Geodude-A

@@ -100,10 +100,6 @@ OaksLab_AutowalkUpToOak:
 	faceobject OAKSLAB_TRACE, PLAYER
 	writetext OaksLabLeaveItToUsText
 	promptbutton
-	writetext OaksLabReceivedGearText
-	playsound SFX_KEY_ITEM
-	waitsfx
-	promptbutton
 	closetext
 	applymovement OAKSLAB_TRACE, Movement_TraceRunsOut
 	disappear OAKSLAB_TRACE
@@ -366,6 +362,10 @@ OaksLabLeaveItToUsText:
 	cont "to find really"
 	cont "strong #mon to"
 	cont "help us out!"
+	
+	para "Anyway, I'm out!"
+	line "See you in Pewter"
+	cont "City!"
 	done
 
 OaksLabDexCheckText:

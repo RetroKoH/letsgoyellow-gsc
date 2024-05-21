@@ -104,7 +104,7 @@ Route29FinishTutorial:
 	end
 
 Route29RefusedTutorial:
-	setevent EVENT_NEVER_LEARNED_TO_CATCH_POKEMON
+	; Removed this event flag: EVENT_NEVER_LEARNED_TO_CATCH_POKEMON
 	writetext CatchingTutorialRefusedText
 	sjump Route29FinishTutorial
 

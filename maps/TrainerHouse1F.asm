@@ -40,69 +40,49 @@ TrainerHouseTrigger0:
 	end
 
 .StartGameEvent
-	showemote EMOTE_SHOCK, STARTHOUSE_BLUE, 15
+;	showemote EMOTE_SHOCK, STARTHOUSE_BLUE, 15
 	turnobject PLAYER, UP
-	opentext
-	writetext Text_BlueScoldsPlayer
-	waitbutton
-	closetext
-	turnobject STARTHOUSE_TRACE, LEFT
-	turnobject PLAYER, RIGHT
-	opentext
-	writetext Text_TraceExcited
-	waitbutton
-	closetext
-	showemote EMOTE_SHOCK, STARTHOUSE_BLUE, 15
-	turnobject STARTHOUSE_TRACE, UP
-	turnobject PLAYER, UP
-	opentext
-	writetext Text_BlueChoosePokemon
-	waitbutton
-	closetext
-	turnobject STARTHOUSE_TRACE, LEFT
-	turnobject PLAYER, RIGHT
-	opentext
+;	opentext
+;	writetext Text_BlueScoldsPlayer
+;	waitbutton
+;	closetext
+;	turnobject STARTHOUSE_TRACE, LEFT
+;	turnobject PLAYER, RIGHT
+;	opentext
+;	writetext Text_TraceExcited
+;	waitbutton
+;	closetext
+;	showemote EMOTE_SHOCK, STARTHOUSE_BLUE, 15
+;	turnobject STARTHOUSE_TRACE, UP
+;	turnobject PLAYER, UP
+;	showtext Text_BlueChoosePokemon
+;	opentext
+;	writetext Text_BlueChoosePokemon
+;	waitbutton
+;	closetext
+;	turnobject STARTHOUSE_TRACE, LEFT
+;	turnobject PLAYER, RIGHT
+;	opentext
 	writetext Text_TraceYouPickFirst
-	waitbutton
-	closetext
+;	waitbutton
+;	closetext
 	setscene $1
 TrainerHouseTrigger1:
 	end
 
 TrainerHouseBlueScript:
-	faceplayer
-	opentext
-	checkevent EVENT_GOT_STARTER
-	iftrue_jumpopenedtext TrainerHouseYourPokemonCanBattleText
-	jumpthisopenedtext
+	jumpthistextfaceplayer
 	text "Blue: Now, <PLAYER>,"
 	line "which #mon do"
 	cont "you want?"
 	done
 
-TrainerHouseYourPokemonCanBattleText:
-	text "Blue: Your new"
-	line "partner will"
-	cont "help ward off"
-	cont "wild #mon!"
-	done
-
 TrainerHouseTraceScript:
-	faceplayer
-	opentext
-	checkevent EVENT_GOT_STARTER
-	iftrue_jumpopenedtext MineLooksStrongerText
-	jumpthisopenedtext
+	jumpthistextfaceplayer
 ; Speaking to Rival when choosing a mon
 	text "<RIVAL>: Go ahead"
 	line "and choose first,"
 	cont "<PLAYER>!"
-	done
-
-MineLooksStrongerText:
-	text "<RIVAL>: My"
-	line "#mon looks a"
-	cont "bit stronger."
 	done
 
 TrainerHouseTryToLeaveScript:

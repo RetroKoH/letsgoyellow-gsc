@@ -79,17 +79,17 @@ TechniquePointers::
 	dw NoTechniques			; SPEAROW
 	dw TechniqueSoar		; FEAROW
 	dw NoTechniques			; EKANS
-	dw TechniquePush		; ARBOK
+	dw TechniqueSlam		; ARBOK
 	dw TechniqueGlow		; PIKACHU
 	dw RaichuTechniques		; RAICHU
 	dw TechniqueChop		; SANDSHREW
 	dw RaticateTechniques	; SANDSLASH
 	dw NoTechniques			; NIDORAN-F
 	dw NoTechniques			; NIDORINA
-	dw TechniquePush		; NIDOQUEEN
+	dw TechniqueSlam		; NIDOQUEEN
 	dw NoTechniques			; NIDORAN-M
 	dw NoTechniques			; NIDORINO
-	dw TechniquePush		; NIDOKING
+	dw TechniqueSlam		; NIDOKING
 	dw ClefairyTechniques	; CLEFAIRY
 	dw ClefableTechniques	; CLEFABLE
 	dw NoTechniques			; VULPIX
@@ -112,26 +112,26 @@ TechniquePointers::
 	dw TechniqueGlow		; PSYDUCK
 	dw GolduckTechniques	; GOLDUCK
 	dw NoTechniques			; MANKEY
-	dw TechniquePush		; PRIMEAPE
+	dw TechniqueSlam		; PRIMEAPE
 	dw NoTechniques			; GROWLITHE
-	dw TechniquePush		; ARCANINE
+	dw TechniqueSlam		; ARCANINE
 	dw NoTechniques			; POLIWAG
 	dw TechniqueSwim		; POLIWHIRL
 	dw BlastoiseTechniques	; POLIWRATH
 	dw AbraTechniques		; ABRA
 	dw AbraTechniques		; KADABRA
 	dw AbraTechniques		; ALAKAZAM
-	dw TechniquePush		; MACHOP
-	dw TechniquePush		; MACHOKE
-	dw TechniquePush		; MACHAMP
+	dw TechniqueSlam		; MACHOP
+	dw TechniqueSlam		; MACHOKE
+	dw TechniqueSlam		; MACHAMP
 	dw BeedrillTechniques	; BELLSPROUT
 	dw GloomTechniques		; WEEPINBELL
 	dw GloomTechniques		; VICTREEBEL
 	dw TechniqueChop		; TENTACOOL
 	dw TentacruelTechniques	; TENTACRUEL
 	dw NoTechniques			; GEODUDE
-	dw TechniquePush		; GRAVELER
-	dw TechniquePush		; GOLEM
+	dw TechniqueSlam		; GRAVELER
+	dw TechniqueSlam		; GOLEM
 	dw NoTechniques			; PONYTA
 	dw NoTechniques			; RAPIDASH
 	dw AbraTechniques		; SLOWPOKE
@@ -149,8 +149,8 @@ TechniquePointers::
 	dw TechniqueSwim		; CLOYSTER
 	dw NoTechniques			; GASTLY
 	dw NoTechniques			; HAUNTER
-	dw TechniquePush		; GENGAR
-	dw TechniquePush		; ONIX
+	dw TechniqueSlam		; GENGAR
+	dw TechniqueSlam		; ONIX
 	dw AbraTechniques		; DROWZEE
 	dw AbraTechniques		; HYPNO
 	dw TechniqueChop		; KRABBY
@@ -160,17 +160,17 @@ TechniquePointers::
 	dw NoTechniques			; EXEGGCUTE
 	dw ExeggutorTechniques	; EXEGGUTOR
 	dw NoTechniques			; CUBONE
-	dw TechniquePush		; MAROWAK
-	dw TechniquePush		; HITMONLEE
-	dw TechniquePush		; HITMONCHAN
+	dw TechniqueSlam		; MAROWAK
+	dw TechniqueSlam		; HITMONLEE
+	dw TechniqueSlam		; HITMONCHAN
 	dw RaticateTechniques	; LICKITUNG
 	dw TechniqueGlow		; KOFFING
 	dw TechniqueGlow		; WEEZING
-	dw TechniquePush		; RHYHORN
+	dw TechniqueSlam		; RHYHORN
 	dw BlastoiseTechniques	; RHYDON
 	dw ChanseyTechniques	; CHANSEY
 	dw GloomTechniques		; TANGELA
-	dw TechniquePush		; KANGASKHAN
+	dw TechniqueSlam		; KANGASKHAN
 	dw NoTechniques			; HORSEA
 	dw TechniqueSwim		; SEADRA
 	dw NoTechniques			; GOLDEEN
@@ -183,7 +183,7 @@ TechniquePointers::
 	dw ExeggutorTechniques	; ELECTABUZZ
 	dw ExeggutorTechniques	; MAGMAR
 	dw RaticateTechniques	; PINSIR
-	dw TechniquePush		; TAUROS
+	dw TechniqueSlam		; TAUROS
 	dw NoTechniques			; MAGIKARP
 	dw BlastoiseTechniques	; GYARADOS
 	dw LaprasTechniques		; LAPRAS
@@ -262,22 +262,22 @@ TechniquePointers::
 	dw TechniqueGlow		; PERRSERKER
 	dw NoTechniques			; GLIGAR
 	dw TechniqueChop		; GLISCOR
-	dw TechniquePush		; STEELIX
+	dw TechniqueSlam		; STEELIX
 	dw ClefairyTechniques	; SNUBBULL
 	dw ClefableTechniques	; GRANBULL
-	dw TechniquePush		; ANNIHILAPE
+	dw TechniqueSlam		; ANNIHILAPE
 	dw RaticateTechniques	; SCIZOR
 	dw NoTechniques			; SHUCKLE
 	dw RaticateTechniques	; HERACROSS
 	dw TechniqueChop		; SNEASEL
 	dw TechniqueChop		; WEAVILE
 	dw NoTechniques			; TEDDIURSA
-	dw TechniquePush		; URSARING
+	dw TechniqueSlam		; URSARING
 	dw TechniqueGlow		; SLUGMA
 	dw TechniqueGlow		; MAGCARGO
 	dw NoTechniques			; SWINUB
 	dw NoTechniques			; PILOSWINE
-	dw TechniquePush		; MAMOSWINE
+	dw TechniqueSlam		; MAMOSWINE
 	dw NoTechniques			; HAPPINY
 	dw NoTechniques			; SMOOCHUM
 	dw NoTechniques			; MIME_JR_
@@ -287,12 +287,12 @@ TechniquePointers::
 	dw NoTechniques			; HOUNDOOM
 	dw TechniqueSwim		; KINGDRA
 	dw NoTechniques			; PHANPY
-	dw TechniquePush		; DONPHAN
+	dw TechniqueSlam		; DONPHAN
 	dw AbraTechniques		; PORYGON2
 	dw AbraTechniques		; PORYGONZ
 	dw NoTechniques			; CLEFFA
-	dw TechniquePush		; TYROGUE
-	dw TechniquePush		; HITMONTOP
+	dw TechniqueSlam		; TYROGUE
+	dw TechniqueSlam		; HITMONTOP
 	dw NoTechniques			; ELEKID
 	dw ExeggutorTechniques	; ELECTIVIRE
 	dw NoTechniques			; MAGBY
@@ -301,13 +301,13 @@ TechniquePointers::
 	dw ChanseyTechniques	; BLISSEY
 	dw NoTechniques			; KANGASKID
 	dw NoTechniques			; MELTAN
-	dw TechniquePush		; MELMETAL
+	dw TechniqueSlam		; MELMETAL
 	dw NoTechniques			; LARVITAR
 	dw NoTechniques			; PUPITAR
-	dw TechniquePush		; TYRANITAR
+	dw TechniqueSlam		; TYRANITAR
 	dw TechniqueChop		; SNEASLER
-	dw TechniquePush		; URSALUNA
-	dw TechniquePush		; CLODSIRE
+	dw TechniqueSlam		; URSALUNA
+	dw TechniqueSlam		; CLODSIRE
 	dw NoTechniques			; LEAFEON
 	dw NoTechniques			; GLACEON
 	dw NoTechniques			; SYLVEON
@@ -330,13 +330,13 @@ TechniquePointers::
 	dw TechniqueGlow		; MEOWTH
 	dw TechniqueGlow		; PERSIAN
 	dw NoTechniques			; GEODUDE ; ADD FLASH TO THIS LINE???
-	dw TechniquePush		; GRAVELER
-	dw TechniquePush		; GOLEM
+	dw TechniqueSlam		; GRAVELER
+	dw TechniqueSlam		; GOLEM
 	dw NoTechniques			; GRIMER
 	dw NoTechniques			; MUK
 	dw RaichuTechniques
 	dw ExeggutorTechniques
-	dw TechniquePush		; MAROWAK
+	dw TechniqueSlam		; MAROWAK
 
 	dw TechniqueGlow		; MEOWTH
 	dw NoTechniques			; PONYTA
@@ -352,15 +352,15 @@ TechniquePointers::
 	dw TechniqueSoar		; MOLTRES
 
 	dw NoTechniques			; GROWLITHE
-	dw TechniquePush		; ARCANINE
+	dw TechniqueSlam		; ARCANINE
 	dw AbraTechniques		; VOLTORB
 	dw AbraTechniques		; ELECTRODE
 	dw TechniqueChop		; SNEASEL
 
 	dw NoTechniques			; WOOPER
-	dw TechniquePush		; TAUROS
-	dw TechniquePush		; TAUROS_F
-	dw TechniquePush		; TAUROS_W
+	dw TechniqueSlam		; TAUROS
+	dw TechniqueSlam		; TAUROS_F
+	dw TechniqueSlam		; TAUROS_W
 	assert_table_length NUM_EXT_POKEMON
 
 Techniques::
@@ -377,8 +377,8 @@ TechniqueSwim:
 	db SWIM
 	db 0
 
-TechniquePush:
-	db PUSH_T
+TechniqueSlam:
+	db SLAM
 	db 0
 
 TechniqueGlow:
@@ -393,12 +393,12 @@ IvysaurTechniques:
 CharizardTechniques:
 	db CHOP
 	db SOAR
-	db PUSH_T
+	db SLAM
 	db 0
 
 BlastoiseTechniques:
 	db SWIM
-	db PUSH_T
+	db SLAM
 	db 0
 
 ButterfreeTechniques:
@@ -414,11 +414,11 @@ BeedrillTechniques:
 
 RaticateTechniques:
 	db CHOP
-	db PUSH_T
+	db SLAM
 	db 0
 
 RaichuTechniques:
-	db PUSH_T
+	db SLAM
 	db GLOW
 	db 0
 
@@ -429,7 +429,7 @@ ClefairyTechniques:
 	db 0
 
 ClefableTechniques:
-	db PUSH_T
+	db SLAM
 	db GLOW
 	db WARP
 	db LULL
@@ -443,7 +443,7 @@ GloomTechniques:
 
 GolduckTechniques:
 	db SWIM
-	db PUSH_T
+	db SLAM
 	db GLOW
 	db 0
 
@@ -459,7 +459,7 @@ TentacruelTechniques:
 
 SlowbroTechniques:
 	db SWIM
-	db PUSH_T
+	db SLAM
 	db GLOW
 	db WARP
 	db 0
@@ -467,17 +467,17 @@ SlowbroTechniques:
 KinglerTechniques:
 	db CHOP
 	db SWIM
-	db PUSH_T
+	db SLAM
 	db 0
 
 ExeggutorTechniques:
-	db PUSH_T
+	db SLAM
 	db GLOW
 	db WARP
 	db 0
 
 ChanseyTechniques:
-	db PUSH_T
+	db SLAM
 	db GLOW
 	db WARP
 	db HEAL
@@ -490,13 +490,13 @@ StarmieTechniques:
 	db 0
 
 MiltankTechniques:
-	db PUSH_T
+	db SLAM
 	db HEAL
 	db 0
 
 LaprasTechniques:
 	db SWIM
-	db PUSH_T
+	db SLAM
 	db LULL
 	db 0
 
@@ -513,12 +513,12 @@ ZapdosTechniques:
 DragoniteTechniques:
 	db SOAR
 	db SWIM
-	db PUSH_T
+	db SLAM
 	db 0
 
 MewtwoTechniques:
 	db CHOP
-	db PUSH_T
+	db SLAM
 	db GLOW
 	db WARP
 NoTechniques:

@@ -310,7 +310,7 @@ NUM_BATTLE_ANIMS EQU const_value - 1
 	const CHOP
 	const SOAR
 	const SWIM
-	const PUSH_T
+	const SLAM
 	const GLOW
 	const WARP
 	const LURE

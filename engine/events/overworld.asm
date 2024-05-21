@@ -1069,7 +1069,7 @@ AskStrengthScript:
 	endtext
 
 TryStrengthOW:
-	ld d, PUSH_T
+	ld d, SLAM
 	farcall CheckPartyTechnique
 	jr c, .nope
 
@@ -1307,7 +1307,7 @@ AutoHeadbuttScript:
 	farjumptext _HeadbuttNothingText
 
 TryHeadbuttOW::
-	ld d, PUSH_T
+	ld d, SLAM
 	farcall CheckPartyTechnique
 	jr c, .no
 
@@ -1429,7 +1429,7 @@ AskRockSmashScript:
 	farjumptext _MaySmashText
 
 HasRockSmash:
-	ld d, PUSH_T
+	ld d, SLAM
 	farcall CheckPartyTechnique
 	; a = carry ? 1 : 0
 	sbc a

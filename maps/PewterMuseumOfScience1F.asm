@@ -11,6 +11,8 @@ PewterMuseumOfScience1F_MapScriptHeader:
 	warp_event  7,  7, PEWTER_MUSEUM_OF_SCIENCE_2F, 1
 
 	def_coord_events
+	coord_event 16, 7, 0, PewterMuseum_MeetBrockScene
+	coord_event 17, 7, 0, PewterMuseum_MeetBrockScene
 
 	def_bg_events
 	bg_event  2,  3, BGEVENT_READ, KabutopsFossilSignpostScript
@@ -24,28 +26,63 @@ PewterMuseumOfScience1F_MapScriptHeader:
 	bg_event 18,  1, BGEVENT_JUMPTEXT, Museum1FBookshelfSignpostText
 
 	def_object_events
-	object_event 18,  3, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Museum1FFossilScientistScript, -1
-	object_event 12,  4, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Museum1FReceptionistScript, -1
+	object_event 16,  3, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_GYMUNLOCK_BROCK	; Hide after unlocking the gym
 	object_event 16,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, Museum1FScientistText, -1
-	object_event 16,  3, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Museum1FBrockScript, -1 ;EVENT_GYMUNLOCK_BROCK	; Hide after unlocking the gym
+	object_event 18,  3, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Museum1FFossilScientistScript, -1	; Hide until Route 3 quest finished
+	object_event 12,  4, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Museum1FReceptionistScript, -1
 	object_event  1,  7, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Museum1FGrampsText, -1
 	object_event  4,  3, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Museum1FYoungsterText, -1
 
 	object_const_def
-	const PEWTERMUSEUMOFSCIENCE1F_SCIENTIST2
+	const MUSEUM_BROCK
+	const MUSEUM_SCIENTIST1
+	const MUSEUM_SCIENTIST2
 
-Museum1FBrockScript:
-	jumpthistextfaceplayer
-	text "Hi!"
+PewterMuseum_BrockWelcomesYou:
+	showtext MuseumBrockText_TalksToScientist	; Sth about equipment being stolen
+	showemote EMOTE_SHOCK, MUSEUM_BROCK, 15
+	turnobject MUSEUM_BROCK, DOWN
+	opentext
+	writetext MuseumBrockText_GreetsPlayer		; Oh hey Player...
+	waitbutton
+	closetext
+	end
 
-	para "I'm Brock."
-	line "I'll be telling"
-	cont "you what to do."
+PewterMuseum_MeetBrockScene1:
+	scall PewterMuseum_BrockWelcomesYou
+	applymovement PLAYER, Movement_WalkUpToBrock1
+	sjump PewterMuseum_MeetBrockScene_Cont
 
-	para "Make me happy,"
-	line "and I'll open the"
-	cont "gym for you."
-	done
+PewterMuseum_MeetBrockScene2:
+	scall PewterMuseum_BrockWelcomesYou
+	applymovement PLAYER, Movement_WalkUpToBrock2
+
+PewterMuseum_MeetBrockScene_Cont:
+	showtext PewterMuseum_BrockExplains			; Tells Player what's going on
+	turnobject MUSEUM_BROCK, UP
+	showtext PewterMuseum_BrockReassures		; Brock assures Scientist they will solve the problem
+	turnobject MUSEUM_BROCK, DOWN
+	showtext PewterMuseum_BrockAsksForHelp		; Asks you to meet Fossil Dude on Rt 3. There are fossil remains.
+	;addcellnum PHONE_BROCK
+	;setevent EVENT_START_BROCK_QUEST
+	setscene $1
+	end
+
+Movement_WalkUpToBrock2:
+	step_left
+Movement_WalkUpToBrock1:
+	step_up
+	step_up
+	step_up
+	step_end
+
+Movement_BrockLeaves:
+	step_right
+	step_down
+	step_down
+	step_down
+	step_down
+	step_end
 
 Museum1FFossilScientistScript:
 	faceplayer
@@ -201,7 +238,7 @@ ResurrectAFossilScript:
 	writetext ResurrectingPokemonText
 	waitbutton
 	closetext
-	turnobject PEWTERMUSEUMOFSCIENCE1F_SCIENTIST2, RIGHT
+	turnobject MUSEUM_SCIENTIST2, RIGHT
 	pause 15
 	playsound SFX_BOOT_PC
 	waitsfx

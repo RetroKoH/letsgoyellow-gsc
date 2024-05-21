@@ -19,15 +19,16 @@
 	const EVENT_GOT_TM_CALM_MIND
 	const EVENT_GOT_TM_FIRE_BLAST
 	const EVENT_GOT_TM_EARTHQUAKE
-; HMs (Replace with one Field Tech flag)
+; Replaced the 8 HM flags w/ this one flag
 	const EVENT_LEARNED_FIELD_TECH
-	const EVENT_GOT_HM_UNK_1
-	const EVENT_GOT_HM_UNK_2
-	const EVENT_GOT_HM_UNK_3
-	const EVENT_GOT_HM_UNK_4
-	const EVENT_GOT_HM_UNK_5
-	const EVENT_GOT_HM_UNK_6
-	const EVENT_GOT_HM_UNK_7
+; Gym Unlock Flags
+	const EVENT_GYMUNLOCK_BROCK
+	const EVENT_GYMUNLOCK_MISTY
+	const EVENT_GYMUNLOCK_SURGE
+	const EVENT_GYMUNLOCK_ERIKA
+	const EVENT_GYMUNLOCK_JANINE
+	const EVENT_GYMUNLOCK_SABRINA
+	const EVENT_GYMUNLOCK_BLAINE
 ; Rods (Condense to one rod?)
 	const EVENT_GOT_FISHING_ROD
 ; Hide/Show Events

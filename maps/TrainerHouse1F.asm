@@ -63,7 +63,7 @@ TrainerHouseTrigger0:
 ;	turnobject STARTHOUSE_TRACE, LEFT
 ;	turnobject PLAYER, RIGHT
 ;	opentext
-	writetext Text_TraceYouPickFirst
+;	writetext Text_TraceYouPickFirst
 ;	waitbutton
 ;	closetext
 	setscene $1

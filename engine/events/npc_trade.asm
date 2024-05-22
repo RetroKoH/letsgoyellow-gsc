@@ -136,10 +136,21 @@ DoNPCTrade:
 	xor a
 	ld [wOTTrademonCaughtData], a
 
+
+; Set hard-coded level
+	ld e, NPCTRADE_LEVEL
+	call GetTradeAttribute
+	ld a, [hl]
+	cp $FF
+	jr nz, .gotLevel
+
+; Copy level of given mon to received mon.
 	ld hl, wPartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon
 	ld a, [hl]
+
+.gotLevel
 	ld [wCurPartyLevel], a
 	ld a, [wOTTrademonSpecies]
 	ld [wCurPartySpecies], a
@@ -257,6 +268,7 @@ GetTradeAttribute:
 	ld hl, NPCTrades
 	add hl, de
 	add hl, de
+	inc hl
 	pop de
 	add hl, de
 	ret

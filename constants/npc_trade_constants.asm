@@ -1,16 +1,17 @@
 ; npctrade struct members (see data/events/npc_trades.asm)
 rsreset
-NPCTRADE_DIALOG      rb
-NPCTRADE_GIVEMON     rb
-NPCTRADE_GETMON      rb
-NPCTRADE_NICKNAME    rb MON_NAME_LENGTH
-NPCTRADE_DVS         rb 3
-NPCTRADE_PERSONALITY rw
-NPCTRADE_BALL        rb
-NPCTRADE_ITEM        rb
-NPCTRADE_OT_ID       rw
-NPCTRADE_OT_NAME     rb PLAYER_NAME_LENGTH
-                     rb_skip
+NPCTRADE_DIALOG      rb ; 00
+NPCTRADE_GIVEMON     rb ; 01
+NPCTRADE_GETMON      rb ; 02
+NPCTRADE_LEVEL       rb ; 03 NEW
+NPCTRADE_NICKNAME    rb MON_NAME_LENGTH ; 04 (+$B)
+NPCTRADE_DVS         rb 3 ; 0F
+NPCTRADE_PERSONALITY rw ; 10
+NPCTRADE_BALL        rb ; 12
+NPCTRADE_ITEM        rb ; 13
+NPCTRADE_OT_ID       rw ; 14
+NPCTRADE_OT_NAME     rb PLAYER_NAME_LENGTH ; 16
+                     rb_skip ; 1E
 NPCTRADE_STRUCT_LENGTH EQU _RS
 
 ; NPCTrades indexes (see data/events/npc_trades.asm)

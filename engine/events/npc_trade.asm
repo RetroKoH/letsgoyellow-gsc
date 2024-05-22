@@ -268,7 +268,6 @@ GetTradeAttribute:
 	ld hl, NPCTrades
 	add hl, de
 	add hl, de
-	inc hl
 	pop de
 	add hl, de
 	ret

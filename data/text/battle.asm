@@ -1923,10 +1923,10 @@ PalmerFinalPkmnText:
 	text "Bravo!"
 	prompt
 
+; Before unveiling their Shadow Pokemon.
 JessieJamesFinalPkmnText:
-	text "We have a proud"
-	line "tradition of fail-"
-	cont "ure to uphold!"
+	text "Time to unleash"
+	line "our secret weapon!"
 	prompt
 
 LoreleiFinalPkmnText:

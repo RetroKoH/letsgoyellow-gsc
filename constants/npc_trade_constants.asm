@@ -11,7 +11,6 @@ NPCTRADE_BALL        rb ; 12
 NPCTRADE_ITEM        rb ; 13
 NPCTRADE_OT_ID       rw ; 14
 NPCTRADE_OT_NAME     rb PLAYER_NAME_LENGTH ; 16
-                     rb_skip ; 1E
 NPCTRADE_STRUCT_LENGTH EQU _RS
 
 ; NPCTrades indexes (see data/events/npc_trades.asm)

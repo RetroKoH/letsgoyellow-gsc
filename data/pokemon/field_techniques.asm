@@ -111,7 +111,7 @@ TechniquePointers::
 	dw TechniqueGlow		; PERSIAN
 	dw TechniqueGlow		; PSYDUCK
 	dw GolduckTechniques	; GOLDUCK
-	dw NoTechniques			; MANKEY
+	dw TechniqueSlam		; MANKEY
 	dw TechniqueSlam		; PRIMEAPE
 	dw NoTechniques			; GROWLITHE
 	dw TechniqueSlam		; ARCANINE
@@ -129,7 +129,7 @@ TechniquePointers::
 	dw GloomTechniques		; VICTREEBEL
 	dw TechniqueChop		; TENTACOOL
 	dw TentacruelTechniques	; TENTACRUEL
-	dw NoTechniques			; GEODUDE
+	dw TechniqueSlam		; GEODUDE
 	dw TechniqueSlam		; GRAVELER
 	dw TechniqueSlam		; GOLEM
 	dw NoTechniques			; PONYTA
@@ -329,7 +329,7 @@ TechniquePointers::
 	dw NoTechniques			; DUGTRIO
 	dw TechniqueGlow		; MEOWTH
 	dw TechniqueGlow		; PERSIAN
-	dw NoTechniques			; GEODUDE ; ADD FLASH TO THIS LINE???
+	dw TechniqueSlam		; GEODUDE ; ADD GLOW TO THIS LINE???
 	dw TechniqueSlam		; GRAVELER
 	dw TechniqueSlam		; GOLEM
 	dw NoTechniques			; GRIMER

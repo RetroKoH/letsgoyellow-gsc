@@ -402,7 +402,7 @@ BlastoiseTechniques:
 	db 0
 
 ButterfreeTechniques:
-	db SOAR
+	db SOAR ; TEMP
 	db GLOW
 	db WARP
 	db LURE

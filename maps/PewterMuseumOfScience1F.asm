@@ -11,8 +11,9 @@ PewterMuseumOfScience1F_MapScriptHeader:
 	warp_event  7,  7, PEWTER_MUSEUM_OF_SCIENCE_2F, 1
 
 	def_coord_events
-	coord_event 16, 7, 0, PewterMuseum_MeetBrockScene1
-	coord_event 17, 7, 0, PewterMuseum_MeetBrockScene2
+	coord_event 15, 6, 0, PewterMuseum_MeetBrockScene1
+	coord_event 16, 6, 0, PewterMuseum_MeetBrockScene2
+	coord_event 17, 6, 0, PewterMuseum_MeetBrockScene3
 
 	def_bg_events
 	bg_event  2,  3, BGEVENT_READ, KabutopsFossilSignpostScript
@@ -26,7 +27,7 @@ PewterMuseumOfScience1F_MapScriptHeader:
 	bg_event 18,  1, BGEVENT_JUMPTEXT, Museum1FBookshelfSignpostText
 
 	def_object_events
-	object_event 16,  3, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_GYMUNLOCK_BROCK									; Hide after unlocking the gym
+	object_event 16,  3, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Museum1FBrockScript, EVENT_GYMUNLOCK_BROCK									; Hide after unlocking the gym
 	object_event 16,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, Museum1FScientistText, -1
 	object_event 18,  3, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Museum1FFossilScientistScript, EVENT_HIDE_MUSEUM_FOSSIL_GUY	; Hide until Route 3 quest finished
 	object_event 12,  4, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Museum1FReceptionistScript, -1
@@ -56,6 +57,11 @@ PewterMuseum_MeetBrockScene1:
 PewterMuseum_MeetBrockScene2:
 	scall PewterMuseum_BrockWelcomesYou
 	applymovement PLAYER, Movement_WalkUpToBrock2
+	sjump PewterMuseum_MeetBrockScene_Cont
+
+PewterMuseum_MeetBrockScene3:
+	scall PewterMuseum_BrockWelcomesYou
+	applymovement PLAYER, Movement_WalkUpToBrock3
 
 PewterMuseum_MeetBrockScene_Cont:
 	showtext PewterMuseum_BrockExplains
@@ -70,10 +76,15 @@ PewterMuseum_MeetBrockScene_Cont:
 	setscene $1
 	end
 
-Movement_WalkUpToBrock2:
-	step_left
 Movement_WalkUpToBrock1:
+	step_right
+Movement_WalkUpToBrock2:
 	step_up
+	step_up
+	step_end
+
+Movement_WalkUpToBrock3:
+	step_left
 	step_up
 	step_up
 	step_end
@@ -85,6 +96,14 @@ Movement_BrockLeaves:
 	step_down
 	step_down
 	step_end
+
+Museum1FBrockScript:
+	faceplayer
+	opentext
+	writetext Museum1FBrockText
+	waitbutton
+	closetext
+	end
 
 Museum1FFossilScientistScript:
 	faceplayer
@@ -386,7 +405,7 @@ PewterMuseum_BrockReassures:
 	cont "three prospect"
 	cont "trainers!"
 	
-	para "And he's a former"
+	para "Blue's a former"
 	line "Champion. I trust"
 	cont "his eye for"
 	cont "potential!"
@@ -408,6 +427,16 @@ PewterMuseum_BrockAsksForHelp:
 	
 	para "Meet me back here"
 	line "afterward!"
+	done
+
+Museum1FBrockText:
+	text "You can find my"
+	line "assistant on"
+	cont "Route 3."
+	
+	para "He's near a set"
+	line "of rocks toward"
+	cont "the south."
 	done
 
 Museum1FScientistText:

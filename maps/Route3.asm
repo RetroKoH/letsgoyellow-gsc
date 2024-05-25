@@ -16,11 +16,12 @@ Route3_MapScriptHeader:
 	bg_event  8, 15, BGEVENT_JUMPTEXT, Route3MeteoriteText
 	bg_event  8, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
 	bg_event  9, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
-	bg_event 12, 15, BGEVENT_JUMPTEXT, Route3MeteoriteText
 	bg_event 14, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
 	bg_event 15, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
 
 	def_object_events
+	object_event 13,  15, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	smashrock_event  12, 15
 	object_event 12,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterRegis, -1
 	object_event 17,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterJimmy, -1
 	object_event 25,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterWarren, -1

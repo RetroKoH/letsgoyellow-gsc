@@ -157,6 +157,8 @@ GetSprite::
 
 GetMonSprite:
 ; Return carry if a monster sprite was loaded.
+	cp SPRITE_PLAYER_UNUSED
+	jr z, .UnusedPlayerSprite
 	cp SPRITE_MON_ICON
 	jr z, .MonIcon
 	cp SPRITE_MON_DOLL_1
@@ -187,6 +189,16 @@ GetMonSprite:
 	lb hl, 0, MON_SPRITE
 .Normal:
 	and a
+	ret
+
+.UnusedPlayerSprite:
+	ld a, SPRITE_KRIS
+	ld a, [wPlayerGender]
+	and a
+	jr z, .boy
+	ld a, SPRITE_CHRIS
+
+.boy
 	ret
 
 .MonIcon:

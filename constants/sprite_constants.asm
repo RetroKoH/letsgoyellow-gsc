@@ -11,7 +11,7 @@
 	const SPRITE_MOM ; 07
 	const SPRITE_DAD ; 08
 	const SPRITE_LYRA ; 09
-	const SPRITE_SILVER ; 0a
+	const SPRITE_SILVER ; 0a  ; Replace with Trace
 	const SPRITE_FALKNER ; 0b
 	const SPRITE_BUGSY ; 0c
 	const SPRITE_WHITNEY ; 0d
@@ -195,10 +195,13 @@
 	const SPRITE_ICE_BOULDER ; bf
 NUM_OVERWORLD_SPRITES EQU const_value - 1
 
-	; c0-ef = 48 unused
+	; c0-ee = 47 unused
+
+; special alt Player Sprite value (see engine/overworld/overworld.asm)
+	const_next $ef
+	const SPRITE_PLAYER_UNUSED ; ef
 
 ; special GetMonSprite values (see engine/overworld/overworld.asm)
-	const_next $f0
 SPRITE_POKEMON EQU const_value
 	const SPRITE_MON_ICON ; f0
 	const SPRITE_MON_DOLL_1 ; f1

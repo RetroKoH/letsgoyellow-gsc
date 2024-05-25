@@ -264,17 +264,17 @@ ReadMapScripts::
 ReadObjectEvents::
 	push hl
 	call ClearObjectStructs
-	pop de
-	ld hl, wMap1Object
-	ld a, [de]
-	inc de
-	ld [wCurMapObjectEventCount], a
+	pop de									; de = # of object events on this map
+	ld hl, wMap1Object						; RAM where map's object events are stored???
+	ld a, [de]								; a = # of object events on this map
+	inc de									; de = assumed location of first map object's data
+	ld [wCurMapObjectEventCount], a			; store # of map objects
 	ld a, e
 	ld [wCurMapObjectEventsPointer], a
 	ld a, d
-	ld [wCurMapObjectEventsPointer + 1], a
+	ld [wCurMapObjectEventsPointer + 1], a	; store pointer to the first map object into wRAM
 
-	ld a, [wCurMapObjectEventCount]
+	ld a, [wCurMapObjectEventCount]			; a = # of object events on this map
 	call CopyMapObjectHeaders
 
 ; get NUM_OBJECTS - 1 - [wCurMapObjectEventCount]
@@ -364,16 +364,16 @@ GetMapConnection::
 	ret
 
 ReadMapSceneScripts::
-	ld a, [hli] ; scene_script count
+	ld a, [hli] 							; current map's scene_script count
 	ld c, a
 	ld [wCurMapSceneScriptCount], a
 	ld a, l
-	ld [wCurMapSceneScriptsPointer], a
+	ld [wCurMapSceneScriptsPointer], a		; lower byte of current map's scene script pointer location
 	ld a, h
-	ld [wCurMapSceneScriptsPointer + 1], a
+	ld [wCurMapSceneScriptsPointer + 1], a	; upepr byte of current map's scene script pointer location
 	ld a, c
 	and a
-	ret z
+	ret z									; if this map has no scene scripts, return
 
 	ld bc, SCENE_SCRIPT_SIZE
 	rst AddNTimes
@@ -445,20 +445,20 @@ ReadBGEvents::
 	ret
 
 CopyMapObjectHeaders::
-	and a
-	ret z
+	and a					; are there any objects on this map?
+	ret z					; if not, return
 
-	ld c, a
+	ld c, a					; c = number of objects in the current map.
 .loop
 	push bc
-	push hl
+	push hl					; push location of wMap1Object to stack
 	ld a, $ff
-	ld [hli], a
-	ld b, OBJECT_EVENT_SIZE
+	ld [hli], a				; first byte is $FF
+	ld b, OBJECT_EVENT_SIZE	; Every map object is $0B bytes in size
 .loop2
-	ld a, [de]
+	ld a, [de]				; a = object's sprite ID
 	inc de
-	ld [hli], a
+	ld [hli], a				; load current object's sprite ID to wMap1Object
 	dec b
 	jr nz, .loop2
 

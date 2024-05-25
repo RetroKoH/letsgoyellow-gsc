@@ -6,7 +6,6 @@ scene_var: MACRO
 ENDM
 
 MapScenes::
-	scene_var AZALEA_TOWN,                            wAzaleaTownSceneID
 	scene_var BATTLE_TOWER_1F,                        wBattleFacilitySceneID
 	scene_var BATTLE_TOWER_BATTLE_ROOM,               wAlways0SceneID
 	scene_var BATTLE_TOWER_ELEVATOR,                  wAlways0SceneID
@@ -59,6 +58,7 @@ MapScenes::
 	scene_var OAKS_LAB,                               wOaksLabSceneID
 	scene_var PALLET_TOWN,                            wPalletTownSceneID
 	scene_var PEWTER_CITY,                            wPewterCitySceneID
+	scene_var PEWTER_MUSEUM_OF_SCIENCE_1F,            wPewterMuseum1FSceneID
 	scene_var POKECENTER_2F,                          wPokecenter2FSceneID
 	scene_var POKEMON_LEAGUE_GATE,                    wPokemonLeagueGateSceneID
 	scene_var POWER_PLANT,                            wPowerPlantSceneID

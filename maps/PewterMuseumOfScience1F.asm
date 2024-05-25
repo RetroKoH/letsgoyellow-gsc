@@ -325,8 +325,8 @@ AerodactylFossilSignpostScript:
 
 PewterMuseum_BrockTalksToScientist:
 	text "Brock: And you"
-	line "think the abnormal"
-	cont "#mon are"
+	line "believe that"
+	cont "Aerodactyl is"
 	cont "connected, right?"
 	done
 	
@@ -347,7 +347,7 @@ PewterMuseum_BrockExplains:
 	para "A bizarre group of"
 	line "people broke in"
 	cont "and stole some of"
-	cont "our equipment"
+	cont "our equipment."
 	
 	para "The equipment is"
 	line "for digging up the"

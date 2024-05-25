@@ -1027,7 +1027,6 @@ wFarfetchdPosition:: db
 
 ; map triggers
 wAlways0SceneID:: db
-wAzaleaTownSceneID:: db
 wBattleFacilitySceneID:: db
 	ds 3 ; unused
 wBattleTowerOutsideSceneID:: db
@@ -1061,8 +1060,6 @@ wHallOfFameSceneID:: db
 wIlexForestSceneID:: db
 wKarensRoomSceneID:: db
 wKogasRoomSceneID:: db
-wPewterCitySceneID:: db
-wPlayersHouse1FSceneID:: db
 wLancesRoomSceneID:: db
 wLavenderTownSceneID:: db
 wMahoganyMart1FSceneID:: db
@@ -1073,6 +1070,9 @@ wMystriStageSceneID:: db
 wNewBarkTownSceneID:: db
 wOaksLabSceneID:: db
 wPalletTownSceneID:: db
+wPewterCitySceneID:: db
+wPewterMuseum1FSceneID:: db
+wPlayersHouse1FSceneID:: db
 wPokecenter2FSceneID:: db
 wPokemonLeagueGateSceneID:: db
 wPowerPlantSceneID:: db

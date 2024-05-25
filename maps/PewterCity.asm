@@ -323,6 +323,10 @@ PewterAltText_AboutShadow:
 PewterBlueText_Affirm:
 	text "Blue: Yes, that's"
 	line "right."
+	
+	para "The Aerodactyl"
+	line "they are observing"
+	cont "right now."
 	done
 
 PewterBlueText_Direct:

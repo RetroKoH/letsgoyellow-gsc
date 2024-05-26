@@ -46,22 +46,6 @@ CheckEngineFlag:
 	xor a
 	ret
 
-CheckBadge:
-; Check engine flag a (ENGINE_ZEPHYRBADGE thru ENGINE_EARTHBADGE)
-; Display "Badge required" text and return carry if the badge is not owned
-	call CheckEngineFlag
-	ret nc
-	ld hl, .BadgeRequiredText
-	call MenuTextboxBackup ; push text to queue
-	scf
-	ret
-
-.BadgeRequiredText:
-	; Sorry! A new BADGE
-	; is required.
-	text_far _BadgeRequiredText
-	text_end
-
 CheckForSurfingPikachu: ; Called by Rte 19 Beach House
 .no:
 	xor a ; FALSE
@@ -370,9 +354,6 @@ SurfFunction:
 	dw .AlreadySurfing
 
 .TrySurf:
-;	ld de, ENGINE_FOGBADGE
-;	call CheckBadge
-;	jr c, .asm_c956
 	ld hl, wOWState
 	bit OWSTATE_BIKING_FORCED, [hl]
 	jr nz, .cannotsurf
@@ -390,9 +371,6 @@ SurfFunction:
 	farcall CheckFacingObject
 	jr c, .cannotsurf
 	ld a, $1
-	ret
-.asm_c956
-	ld a, $80
 	ret
 .alreadyfail
 	ld a, $3
@@ -690,11 +668,6 @@ WaterfallFunction:
 	ret
 
 .TryWaterfall:
-; Waterfall
-;	ld de, ENGINE_RISINGBADGE
-;	call CheckBadge
-;	ld a, $80
-;	ret c
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld hl, Script_WaterfallFromMenu
@@ -988,25 +961,11 @@ TeleportFunction:
 	step_end
 
 StrengthFunction:
-	call .TryStrength
-	and $7f
-	ld [wFieldMoveSucceeded], a
-	ret
-
-.TryStrength:
-; Strength
-;	ld de, ENGINE_PLAINBADGE
-;	call CheckBadge
-;	jr nc, .UseStrength
-
-;.Failed:
-;	ld a, $80
-;	ret
-
-.UseStrength:
 	ld hl, Script_StrengthFromMenu
 	call QueueScript
 	ld a, $81
+	and $7f
+	ld [wFieldMoveSucceeded], a		; Without badge check, this will always succeed.
 	ret
 
 SetStrengthFlag:
@@ -1097,9 +1056,6 @@ Jumptable_cdae:
 	dw .FailWhirlpool
 
 .TryWhirlpool:
-;	ld de, ENGINE_GLACIERBADGE
-;	call CheckBadge
-;	jr c, .noglacierbadge
 	call TryWhirlpoolMenu
 	jr c, .failed
 	ld a, $1
@@ -1107,10 +1063,6 @@ Jumptable_cdae:
 
 .failed
 	ld a, $2
-	ret
-
-.noglacierbadge
-	ld a, $80
 	ret
 
 .DoWhirlpool:

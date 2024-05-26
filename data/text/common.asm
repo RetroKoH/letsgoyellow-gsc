@@ -2030,12 +2030,6 @@ _TMHMNotCompatibleText::
 	text "."
 	prompt
 
-SECTION "_BadgeRequiredText", ROMX
-_BadgeRequiredText::
-	text "Sorry! A new Badge"
-	line "is required."
-	prompt
-
 SECTION "_CantUseItemText", ROMX
 _CantUseItemText::
 	text "Can't use that"

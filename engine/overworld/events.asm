@@ -1096,6 +1096,7 @@ LoadScriptBDE::
 	scf
 	ret
 
+; Add autocutting grass
 TryTileCollisionEvent:
 	ld de, ENGINE_LEARNED_FIELD_TECH	; We must unlock field tech first
 	farcall CheckEngineFlag

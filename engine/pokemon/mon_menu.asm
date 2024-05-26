@@ -103,7 +103,7 @@ PokemonActionSubmenu:
 
 .Actions:
 	dbw MONMENUITEM_CHOP,    MonMenu_ChopDown
-	dbw MONMENUITEM_SOAR,    MonMenu_Fly
+	dbw MONMENUITEM_SOAR,    MonMenu_SkySoar
 	dbw MONMENUITEM_SWIM,    MonMenu_Surf
 	dbw MONMENUITEM_PUSH,    MonMenu_Strength
 	dbw MONMENUITEM_GLOW,    MonMenu_Flash
@@ -721,8 +721,8 @@ _MonMenu_StandardSuccess:
 	ld a, $2
 	ret
 
-MonMenu_Fly:
-	farcall FlyFunction
+MonMenu_SkySoar:
+	farcall SkySoarFunction
 	ld a, [wFieldMoveSucceeded]
 	and a
 	ret z

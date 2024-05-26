@@ -114,7 +114,7 @@ Route10NorthLawrenceEncounter1Script:
 	waitsfx
 	turnobject ROUTE10_LAWRENCE, DOWN
 	showtext Route10NorthLawrenceFlyText
-	playsound SFX_FLY
+	playsound SFX_SKY_SOAR
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	disappear ROUTE10_LAWRENCE
@@ -173,7 +173,7 @@ Route10NorthLawrenceEncounter2Script:
 	waitsfx
 	turnobject ROUTE10_LAWRENCE, DOWN
 	showtext Route10NorthLawrenceFlyText
-	playsound SFX_FLY
+	playsound SFX_SKY_SOAR
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	disappear ROUTE10_LAWRENCE

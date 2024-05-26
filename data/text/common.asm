@@ -2068,6 +2068,13 @@ _BlindingFlashText::
 	text_promptbutton
 	text_end
 
+SECTION "_UsedSkySoarText", ROMX
+_UsedSkySoarText::
+	text_ram wStringBuffer2
+	text " used"
+	line "Sky Soar!"
+	done
+
 SECTION "_UsedSurfText", ROMX
 _UsedSurfText::
 	text_ram wStringBuffer2

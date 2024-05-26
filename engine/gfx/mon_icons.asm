@@ -35,7 +35,7 @@ SetMenuMonIconColor:
 	call GetMenuMonIconPalette
 	jr ProcessMenuMonIconColor
 
-LoadFlyMonColor:
+LoadSkySoarMonColor:
 	push hl
 	push de
 	push bc
@@ -335,7 +335,7 @@ SetPartyMonIconAnimSpeed:
 .speeds
 	db $00, $40, $80
 
-Fly_PrepMonIcon:
+SkySoar_PrepMonIcon:
 	push de
 	ld a, MON_FORM
 	call GetPartyParamLocation
@@ -353,13 +353,13 @@ Fly_PrepMonIcon:
 	ld a, e
 	ret
 
-PokegearFlyMap_GetMonIcon:
+PokegearSkySoarMap_GetMonIcon:
 ; Load species icon into VRAM at tile a
-	call Fly_PrepMonIcon
+	call SkySoar_PrepMonIcon
 	jr GetIconGFX
 
-FlyFunction_GetMonIcon:
-	call Fly_PrepMonIcon
+SkySoarFunction_GetMonIcon:
+	call SkySoar_PrepMonIcon
 	jr GetIcon_a
 
 LoadTradeAnimationMonIcon:

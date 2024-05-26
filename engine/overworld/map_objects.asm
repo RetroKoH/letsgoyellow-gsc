@@ -2168,7 +2168,7 @@ BattleStart_HideAllSpritesExceptBattleParticipants:
 .ok
 	jmp _UpdateSprites
 
-ReturnFromFly_SpawnOnlyPlayer:
+ReturnFromSkySoar_SpawnOnlyPlayer:
 	call MaskAllObjectStructs ; clear sprites
 	ld a, PLAYER
 	call RespawnObject ; respawn player

@@ -12,7 +12,7 @@
 	const MAPSETUP_TRAIN      ; f9
 	const MAPSETUP_SUBMENU    ; fa
 	const MAPSETUP_BADWARP    ; fb
-	const MAPSETUP_FLY        ; fc
+	const MAPSETUP_SKYSOAR    ; fc
 NUM_MAPSETUP_SCRIPTS EQU const_value - $f1
 
 ; callback types

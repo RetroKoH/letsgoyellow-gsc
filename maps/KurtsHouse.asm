@@ -68,7 +68,7 @@ Kurt1:
 	readvar VAR_FACING
 	ifequal UP, .RunAround
 	turnobject PLAYER, DOWN
-	playsound SFX_FLY
+	playsound SFX_SKY_SOAR
 	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtExitHouseMovement
 	playsound SFX_EXIT_BUILDING
 	disappear KURTSHOUSE_KURT1
@@ -78,7 +78,7 @@ Kurt1:
 
 .RunAround:
 	turnobject PLAYER, DOWN
-	playsound SFX_FLY
+	playsound SFX_SKY_SOAR
 	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtGoAroundPlayerThenExitHouseMovement
 	playsound SFX_EXIT_BUILDING
 	disappear KURTSHOUSE_KURT1
@@ -278,13 +278,13 @@ endr
 	readvar VAR_FACING
 	ifequal UP, .GSBallRunAround
 	turnobject PLAYER, DOWN
-	playsound SFX_FLY
+	playsound SFX_SKY_SOAR
 	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtExitHouseMovement
 	sjump .KurtHasLeftTheBuilding
 
 .GSBallRunAround:
 	turnobject PLAYER, DOWN
-	playsound SFX_FLY
+	playsound SFX_SKY_SOAR
 	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtGoAroundPlayerThenExitHouseMovement
 .KurtHasLeftTheBuilding:
 	playsound SFX_EXIT_BUILDING

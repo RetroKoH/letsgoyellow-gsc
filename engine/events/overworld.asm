@@ -506,7 +506,7 @@ TrySurfOW::
 ; Checking a tile in the overworld.
 ; Return carry if fail is allowed.
 
-; Don't ask to surf if already fail.
+; Don't ask to surf if already surfing.
 	ld a, [wPlayerState]
 	cp PLAYER_SURF_PIKA
 	jr z, .quit
@@ -555,8 +555,8 @@ AskSurfScript:
 	iftrue UsedSurfScript
 	endtext
 
-CheckFlyAllowedOnMap:
-; returns z is fly is allowed
+CheckSkySoarAllowedOnMap:
+; returns z if Sky Soar is allowed
 	call GetMapEnvironment
 	call CheckOutdoorMap
 	ret z
@@ -586,7 +586,7 @@ CheckFlyAllowedOnMap:
 	cp MAP_TIN_TOWER_ROOF
 	ret
 
-FlyFunction:
+SkySoarFunction:
 	call FieldMoveJumptableReset
 .loop
 	ld hl, .Jumptable
@@ -597,16 +597,13 @@ FlyFunction:
 	ret
 
 .Jumptable:
-	dw .TryFly
-	dw .DoFly
-	dw .FailFly
+	dw .TrySkySoar
+	dw .DoSkySoar
+	dw .FailSkySoar
 
-.TryFly:
-; Fly
-;	ld de, ENGINE_STORMBADGE
-;	call CheckBadge
-;	jr c, .nostormbadge
-	call CheckFlyAllowedOnMap
+.TrySkySoar:
+; Sky Soar
+	call CheckSkySoarAllowedOnMap
 	jr nz, .indoors
 
 	ld a, [wMapGroup]
@@ -625,7 +622,7 @@ FlyFunction:
 	ldh [hMapAnims], a
 	call LoadStandardMenuHeader
 	call ClearSprites
-	farcall _FlyMap
+	farcall _SkySoarMap
 	ld a, e
 	cp -1
 	jr z, .illegal
@@ -635,10 +632,6 @@ FlyFunction:
 	ld [wDefaultSpawnpoint], a
 	call CloseWindow
 	ld a, $1
-	ret
-
-.nostormbadge
-	ld a, $82
 	ret
 
 .indoors
@@ -651,36 +644,42 @@ FlyFunction:
 	ld a, $80
 	ret
 
-.DoFly:
-	ld hl, .FlyScript
+.DoSkySoar:
+	call GetPartyNickname
+	ld hl, .SkySoarScript
 	call QueueScript
 	ld a, $81
 	ret
 
-.FailFly:
+.FailSkySoar:
 	call FieldMoveFailed
 	ld a, $82
 	ret
 
-.FlyScript:
+.SkySoarScript:
 	reloadmappart
 	callasm HideSprites
 	special UpdateTimePals
 	callasm PrepareOverworldMove
+
+	farwritetext _UsedSkySoarText
+	waitbutton
+	closetext
+
 	scall FieldMovePokepicScript
-	callasm FlyFromAnim
+	callasm SkySoarFromAnim
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
 	callasm SkipUpdateMapSprites
 	loadvar VAR_MOVEMENT, PLAYER_NORMAL
-	newloadmap MAPSETUP_FLY
-	callasm FlyToAnim
+	newloadmap MAPSETUP_SKYSOAR
+	callasm SkySoarToAnim
 	special WaitSFX
-	callasm .ReturnFromFly
+	callasm .ReturnFromSkySoar
 	end
 
-.ReturnFromFly:
-	farcall ReturnFromFly_SpawnOnlyPlayer
+.ReturnFromSkySoar:
+	farcall ReturnFromSkySoar_SpawnOnlyPlayer
 	call DelayFrame
 	jmp UpdatePlayerSprite
 
@@ -932,7 +931,7 @@ TeleportFunction:
 	dw .FailTeleport
 
 .TryTeleport:
-	call CheckFlyAllowedOnMap
+	call CheckSkySoarAllowedOnMap
 	jr nz, .nope
 	ld a, [wLastSpawnMapGroup]
 	ld d, a

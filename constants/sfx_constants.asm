@@ -24,7 +24,7 @@
 	const SFX_CHANGE_DEX_MODE             ; 15
 	const SFX_JUMP_OVER_LEDGE             ; 16
 	const SFX_GRASS_RUSTLE                ; 17
-	const SFX_FLY                         ; 18
+	const SFX_SKY_SOAR                    ; 18
 	const SFX_WRONG                       ; 19
 	const SFX_SQUEAK                      ; 1a
 	const SFX_STRENGTH                    ; 1b

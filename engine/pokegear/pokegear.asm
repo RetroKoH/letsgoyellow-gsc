@@ -1865,7 +1865,7 @@ PokegearMap:
 ;	jmp FillJohtoMap
 	jmp FillKantoMap
 
-_FlyMap:
+_SkySoarMap:
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
@@ -1877,7 +1877,7 @@ _FlyMap:
 	ldh [hBGMapMode], a
 	call ClearSpriteAnims
 	call LoadTownMapGFX
-	call FlyMap
+	call SkySoarMap
 	ld a, CGB_POKEGEAR_PALS
 	call GetCGBLayout
 	call SetPalettes
@@ -1890,7 +1890,7 @@ _FlyMap:
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .pressedA
-	call FlyMapScroll
+	call SkySoarMapScroll
 	call GetMapCursorCoordinates
 	farcall PlaySpriteAnimations
 	call DelayFrame
@@ -1923,7 +1923,7 @@ _FlyMap:
 	ld e, a
 	ret
 
-FlyMapScroll:
+SkySoarMapScroll:
 	ld a, [wStartFlypoint]
 	ld e, a
 	ld a, [wEndFlypoint]
@@ -2080,7 +2080,7 @@ HasVisitedSpawn:
 
 INCLUDE "data/maps/flypoints.asm"
 
-FlyMap:
+SkySoarMap:
 	call GetCurrentLandmark
 ; No longer run Johto Maps. Only Kanto
 ;.KantoFlyMap:
@@ -2608,10 +2608,10 @@ TownMapFlips:
 TownMapMon:
 ; Draw the FlyMon icon at town map location in
 
-	farcall LoadFlyMonColor
+	farcall LoadSkySoarMonColor
 ; Get FlyMon icon
 	ld e, 8 ; starting tile in VRAM
-	farcall PokegearFlyMap_GetMonIcon
+	farcall PokegearSkySoarMap_GetMonIcon
 ; Animation/palette
 	depixel 0, 0
 	ld a, SPRITE_ANIM_INDEX_PARTY_MON

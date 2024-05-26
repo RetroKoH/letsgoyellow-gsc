@@ -1097,6 +1097,8 @@ LoadScriptBDE::
 	ret
 
 TryTileCollisionEvent:
+	checkflag ENGINE_LEARNED_FIELD_TECH		; We must unlock field tech first
+	iffalse .noevent
 	call GetFacingTileCoord
 	ld [wFacingTileID], a
 	ld c, a

@@ -11,7 +11,6 @@ InitialEvents:
 	dw -1
 
 InitialEngineFlags:
-	dw ENGINE_ROCKET_SIGNAL_ON_CH20
 	dw ENGINE_ROCKETS_IN_MAHOGANY
 	dw -1
 

@@ -123,6 +123,11 @@ GetMonSubmenuItems:
 	and a
 	jr nz, .skip_field         ; if we are in link mode, skip field moves
 
+; Check if field tech is unlocked yet
+	ld de, ENGINE_LEARNED_FIELD_TECH
+	farcall CheckEngineFlag
+	jr c, .skip_field
+
 ; GET MENU ITEMS BASED ON THE HARDCODED DATA
 	ld a, MON_SPECIES
 	call GetPartyParamLocation

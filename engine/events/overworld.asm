@@ -286,6 +286,7 @@ CutDownTree:
 	call DelayFrame
 	jmp LoadStandardFont
 
+; Only triggers if field tech is unlocked (engine/overworld/events.asm)
 TryFlashOW::
 	ld a, [wTimeOfDayPalset]
 	cp DARKNESS_PALSET
@@ -508,6 +509,7 @@ CheckDirection:
 	db FACE_LEFT
 	db FACE_RIGHT
 
+; Only triggers if field tech is unlocked (engine/overworld/events.asm)
 TrySurfOW::
 ; Checking a tile in the overworld.
 ; Return carry if fail is allowed.
@@ -528,10 +530,6 @@ TrySurfOW::
 ; Check tile permissions.
 	call CheckDirection
 	jr c, .quit
-
-;	ld de, ENGINE_FOGBADGE
-;	call CheckEngineFlag
-;	jr c, .quit
 
 	ld d, SWIM
 	farcall CheckPartyTechnique
@@ -769,13 +767,11 @@ Script_AutoWaterfall:
 	turn_waterfall_up
 	step_end
 
+; Only triggers if field tech is unlocked (engine/overworld/events.asm)
 TryWaterfallOW::
 	ld d, SWIM
 	farcall CheckPartyTechnique
 	jr c, .failed
-;	ld de, ENGINE_RISINGBADGE
-;	call CheckEngineFlag
-;	jr c, .failed
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld a, BANK(Script_AskWaterfall)
@@ -1050,6 +1046,8 @@ Script_UsedStrength:
 	endtext
 
 AskStrengthScript:
+	checkflag ENGINE_LEARNED_FIELD_TECH		; We must unlock field tech first
+	iffalse .DontMeetRequirements
 	callasm TryStrengthOW
 	iffalse .AskStrength
 	ifequal $1, .DontMeetRequirements
@@ -1072,10 +1070,6 @@ TryStrengthOW:
 	ld d, SLAM
 	farcall CheckPartyTechnique
 	jr c, .nope
-
-;	ld de, ENGINE_PLAINBADGE
-;	call CheckEngineFlag
-;	jr c, .nope
 
 	ld hl, wOWState
 	bit OWSTATE_STRENGTH, [hl]
@@ -1218,13 +1212,11 @@ Script_AutoWhirlpool:
 	slow_step_left
 	step_end
 
+; Only triggers if field tech is unlocked (engine/overworld/events.asm)
 TryWhirlpoolOW::
 	ld d, SWIM
 	farcall CheckPartyTechnique
 	jr c, .failed
-;	ld de, ENGINE_GLACIERBADGE
-;	call CheckEngineFlag
-;	jr c, .failed
 	call TryWhirlpoolMenu
 	jr c, .failed
 	ld a, BANK(Script_AskWhirlpoolOW)
@@ -1306,6 +1298,7 @@ AutoHeadbuttScript:
 .no_item
 	farjumptext _HeadbuttNothingText
 
+; Only triggers if field tech is unlocked (engine/overworld/events.asm)
 TryHeadbuttOW::
 	ld d, SLAM
 	farcall CheckPartyTechnique
@@ -1328,6 +1321,7 @@ AskHeadbuttScript:
 	farwritetext _AskHeadbuttText
 	yesorno
 	iftrue HeadbuttScript
+.no
 	endtext
 
 RockSmashFunction:
@@ -1414,6 +1408,8 @@ MovementData_RockSmash:
 	step_end
 
 AskRockSmashScript:
+	checkflag ENGINE_LEARNED_FIELD_TECH		; We must unlock field tech first
+	iffalse .no
 	callasm HasRockSmash
 	ifequal 1, .no
 
@@ -1788,10 +1784,6 @@ HasCutAvailable::
 	farcall CheckPartyTechnique
 	jr c, .no
 
-;	ld de, ENGINE_HIVEBADGE
-;	call CheckEngineFlag
-;	jr c, .no
-
 .yes
 	xor a
 	jr .done
@@ -1803,6 +1795,8 @@ HasCutAvailable::
 	ret
 
 AskCutTreeScript:
+	checkflag ENGINE_LEARNED_FIELD_TECH		; We must unlock field tech first
+	iffalse .no
 	callasm HasCutAvailable
 	ifequal 1, .no
 

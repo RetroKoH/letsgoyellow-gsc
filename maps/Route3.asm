@@ -20,7 +20,7 @@ Route3_MapScriptHeader:
 	bg_event 15, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
 
 	def_object_events
-	object_event 13,  15, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event 13,  15, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route3ScientistScript, -1
 	smashrock_event  12, 15
 	object_event 12,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterRegis, -1
 	object_event 17,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterJimmy, -1
@@ -32,6 +32,23 @@ Route3_MapScriptHeader:
 Route3FlyPoint:
 	setflag ENGINE_FLYPOINT_MT_MOON
 	endcallback
+
+Route3ScientistScript:
+	faceplayer
+	showtext Route3_ScientistGreetsPlayer
+	setflag ENGINE_LEARNED_FIELD_TECH
+	end
+
+Route3_ScientistGreetsPlayer:
+	text "Hi there!"
+	
+	para "You can now use"
+	line "Field Techniques!"
+	
+	para "Go speak to Brock"
+	line "and continue the"
+	cont "game!"
+	done
 
 GenericTrainerYoungsterRegis:
 	generictrainer YOUNGSTER, REGIS, EVENT_BEAT_YOUNGSTER_REGIS, .SeenText, .BeatenText

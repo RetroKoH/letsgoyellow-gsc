@@ -1097,8 +1097,10 @@ LoadScriptBDE::
 	ret
 
 TryTileCollisionEvent:
-	checkflag ENGINE_LEARNED_FIELD_TECH		; We must unlock field tech first
-	iffalse .noevent
+	ld de, ENGINE_LEARNED_FIELD_TECH	; We must unlock field tech first
+	farcall CheckEngineFlag
+	jr c, .noevent
+
 	call GetFacingTileCoord
 	ld [wFacingTileID], a
 	ld c, a
@@ -1112,9 +1114,9 @@ TryTileCollisionEvent:
 	jr z, .waterfall
 	cp COLL_HEADBUTT_TREE
 	jr z, .headbutt
-	farcall TrySurfOW
+	farcall TrySurfOW		; Try to trigger Surf w/ A button if next to the water
 	jr c, .done
-	farcall TryFlashOW
+	farcall TryFlashOW		; Try to trigger Flash w/ A button if in the dark
 	jr nc, .noevent
 .done
 	call PlayClickSFX

@@ -27,10 +27,10 @@ Route10North_MapScriptHeader:
 	object_event 12, 52, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CHRIS_IN_NAVEL_ROCK
 	object_event 12, 52, SPRITE_KRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_KRIS_IN_NAVEL_ROCK
 	itemball_event 11,  3, FULL_RESTORE, 1, EVENT_ROUTE_10_FULL_RESTORE
-	cuttree_event  7, 21, EVENT_ROUTE_10_CUT_TREE_1
-	cuttree_event  9, 21, EVENT_ROUTE_10_CUT_TREE_2
-	cuttree_event 11, 21, EVENT_ROUTE_10_CUT_TREE_3
-	cuttree_event 13, 21, EVENT_ROUTE_10_CUT_TREE_4
+	choptree_event  7, 21, EVENT_ROUTE_10_CHOP_TREE_1
+	choptree_event  9, 21, EVENT_ROUTE_10_CHOP_TREE_2
+	choptree_event 11, 21, EVENT_ROUTE_10_CHOP_TREE_3
+	choptree_event 13, 21, EVENT_ROUTE_10_CHOP_TREE_4
 
 ; SPRITE_MOM is not in this map's overworld sprite set, so it default to the
 ; player sprite, whatever gender they are.

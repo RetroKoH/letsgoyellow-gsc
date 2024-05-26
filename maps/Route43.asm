@@ -30,7 +30,6 @@ Route43_MapScriptHeader:
 	object_event  8, 32, SPRITE_BREEDER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBreederJody, -1
 	object_event 11, 24, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerSrandjrIvyandamy1, -1
 	object_event 11, 25, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerSrandjrIvyandamy2, -1
-	cuttree_event  2, 28, EVENT_ROUTE_43_CUT_TREE
 	fruittree_event  1, 26, FRUITTREE_ROUTE_43, PERSIM_BERRY, PAL_NPC_RED
 	itemball_event 12, 32, MAX_ETHER, 1, EVENT_ROUTE_43_MAX_ETHER
 
@@ -50,7 +49,7 @@ Route43RainScript:
 	endcallback
 
 .flood
-	changemapblocks Route43Raining_BlockData
+	changemapblocks Route43Raining_BlockData	; retain this code for use in Kanto
 	endcallback
 
 Route43NoRocketsScript:

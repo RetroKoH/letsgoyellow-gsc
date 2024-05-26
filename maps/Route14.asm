@@ -19,9 +19,9 @@ Route14_MapScriptHeader:
 	object_event  4, 13, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerSchoolboyTravis, -1
 	object_event  9, 15, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerTeacherClarice, -1
 	object_event  7,  7, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_COMMAND, trade, NPC_TRADE_KIM, -1
-	cuttree_event  5, 10, EVENT_ROUTE_14_CUT_TREE_1
-	cuttree_event 11, 16, EVENT_ROUTE_14_CUT_TREE_2
-	cuttree_event  3, 26, EVENT_ROUTE_14_CUT_TREE_3
+	choptree_event  5, 10, EVENT_ROUTE_14_CHOP_TREE_1
+	choptree_event 11, 16, EVENT_ROUTE_14_CHOP_TREE_2
+	choptree_event  3, 26, EVENT_ROUTE_14_CHOP_TREE_3
 
 GenericTrainerPokefanmTrevor:
 	generictrainer POKEFANM, TREVOR, EVENT_BEAT_POKEFANM_TREVOR, PokefanmTrevorSeenText, PokefanmTrevorBeatenText

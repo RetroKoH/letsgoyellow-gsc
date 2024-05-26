@@ -45,7 +45,7 @@ StdScripts::
 	dba PCScript
 	dba GameCornerCoinVendorScript
 	dba HappinessCheckScript
-	dba CutTreeScript
+	dba ChopDownTreeScript
 	dba RefrigeratorScript
 	dba SinkScript
 	dba StoveScript
@@ -1598,8 +1598,8 @@ Movement_ContestResults_WalkAfterWarp:
 	turn_head_up
 	step_end
 
-CutTreeScript:
-	farsjump AskCutTreeScript
+ChopDownTreeScript:
+	farsjump AskChopDownTreeScript
 
 VendingMachineScript:
 	opentext

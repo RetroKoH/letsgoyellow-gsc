@@ -21,8 +21,8 @@ Route16West_MapScriptHeader:
 	itemball_event 42, 14, METRONOME_I, 1, EVENT_ROUTE_16_WEST_METRONOME
 	itemball_event 51,  2, PP_UP, 1, EVENT_ROUTE_16_WEST_PP_UP
 	itemball_event 21,  2, MAX_REVIVE, 1, EVENT_ROUTE_16_WEST_MAX_REVIVE
-	cuttree_event  3,  7, EVENT_ROUTE_16_WEST_CUT_TREE_1
-	cuttree_event 57,  2, EVENT_ROUTE_16_WEST_CUT_TREE_2
+	choptree_event  3,  7, EVENT_ROUTE_16_WEST_CHOP_TREE_1
+	choptree_event 57,  2, EVENT_ROUTE_16_WEST_CHOP_TREE_2
 
 GenericTrainerLassGina:
 	generictrainer LASS, GINA, EVENT_BEAT_LASS_GINA, .SeenText, .BeatenText

@@ -2042,17 +2042,17 @@ _CantUseItemText::
 	line "here."
 	prompt
 
-SECTION "_UseCutText", ROMX
-_UseCutText::
+SECTION "_UseChopDownText", ROMX
+_UseChopDownText::
 	text_ram wStringBuffer2
 	text " used"
-	line "Cut!"
+	line "Chop Down!"
 	prompt
 
-SECTION "_CutNothingText", ROMX
-_CutNothingText::
+SECTION "_ChopDownNothingText", ROMX
+_ChopDownNothingText::
 	text "There's nothing to"
-	line "Cut here."
+	line "Chop Down here."
 	prompt
 
 SECTION "_AskFlashText", ROMX
@@ -2275,18 +2275,19 @@ _GotOffBikeText::
 	text "."
 	done
 
-SECTION "_AskCutText", ROMX
-_AskCutText::
+SECTION "_AskChopDownText", ROMX
+_AskChopDownText::
 	text "This tree can be"
-	line "Cut!"
+	line "Chopped Down!"
 
-	para "Want to use Cut?"
+	para "Do you want to"
+	line "use Chop Down?"
 	done
 
-SECTION "_CanCutText", ROMX
-_CanCutText::
+SECTION "_CanChopDownText", ROMX
+_CanChopDownText::
 	text "This tree can be"
-	line "Cut!"
+	line "Chopped Down!"
 	done
 
 SECTION "_FoundItemText", ROMX

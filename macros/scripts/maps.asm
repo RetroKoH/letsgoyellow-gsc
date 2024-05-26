@@ -122,8 +122,8 @@ tmhmball_event: MACRO
 	object_event \1, \2, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_ITEMBALL, PLAYEREVENT_TMHMBALL, \3, \4
 ENDM
 
-cuttree_event: MACRO
-	object_event \1, \2, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_CUTTABLE_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumpstd, cuttree, \3
+choptree_event: MACRO
+	object_event \1, \2, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_CHOPPABLE_TREE, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumpstd, cuttree, \3
 ENDM
 
 fruittree_event: MACRO

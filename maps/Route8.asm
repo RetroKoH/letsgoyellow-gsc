@@ -18,8 +18,8 @@ Route8_MapScriptHeader:
 	object_event 32,  9, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerSupernerdTom, -1
 	object_event 43, 14, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerGentlemanMilton, -1
 	object_event 29,  4, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerLassMeadow, -1
-	cuttree_event 21, 14, EVENT_ROUTE_8_CUT_TREE_1
-	cuttree_event 32, 12, EVENT_ROUTE_8_CUT_TREE_2
+	choptree_event 21, 14, EVENT_ROUTE_8_CHOP_TREE_1
+	choptree_event 32, 12, EVENT_ROUTE_8_CHOP_TREE_2
 	fruittree_event 45,  7, FRUITTREE_ROUTE_8, SALAC_BERRY, PAL_NPC_GREEN
 
 GenericTrainerSupernerdSam:

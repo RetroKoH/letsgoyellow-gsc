@@ -40,7 +40,7 @@ FuchsiaCity_MapScriptHeader:
 	object_event 28,  8, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, FuchsiaCityPokefanFText, -1
 	object_event 22, 13, SPRITE_RATTATA_BACK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptext, SafariZoneOfficeClosedSignText, -1
 	object_event 31, 27, SPRITE_RATTATA_BACK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptext, HouseForSaleSignText, -1
-	cuttree_event 16, 19, EVENT_FUCHSIA_CITY_CUT_TREE
+	choptree_event 16, 19, EVENT_FUCHSIA_CITY_CHOP_TREE
 	fruittree_event 14, 17, FRUITTREE_FUCHSIA_CITY, LIECHI_BERRY, PAL_NPC_RED
 
 FuchsiaCityFlyPoint:

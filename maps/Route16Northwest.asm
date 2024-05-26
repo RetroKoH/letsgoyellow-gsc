@@ -13,4 +13,4 @@ Route16Northwest_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	cuttree_event 17,  4, EVENT_ROUTE_16_CUT_TREE
+	choptree_event 17,  4, EVENT_ROUTE_16_CHOP_TREE

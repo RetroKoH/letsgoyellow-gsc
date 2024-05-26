@@ -15,7 +15,7 @@ ShakeHeadbuttTree:
 	ld de, vTiles0 tile $64
 	lb bc, BANK(HeadbuttTreeGFX), 8
 	call DecompressRequest2bpp
-	call Cut_Headbutt_GetPixelFacing
+	call ChopDown_Headbutt_GetPixelFacing
 	ld a, SPRITE_ANIM_INDEX_HEADBUTT
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
@@ -90,7 +90,7 @@ TreeRelativeLocationTable:
 	dwcoord 8 - 2, 8     ; DOWN
 	dwcoord 8 + 2, 8     ; UP
 
-OWCutAnimation:
+OWChopDownAnimation:
 	; Animation index in a
 	; 0: Split tree in half
 	; 1: Mow the lawn
@@ -106,59 +106,59 @@ OWCutAnimation:
 	ld a, 36 * 4
 	ld [wCurSpriteOAMAddr], a
 	call DoNextFrameForAllSprites
-	call OWCutJumptable
+	call OWChopDownJumptable
 	call DelayFrame
 	jr .loop
 
-OWCutJumptable:
+OWChopDownJumptable:
 	call StandardStackJumpTable
 
 .Jumptable:
-	dw Cut_SpawnAnimateTree
-	dw Cut_SpawnAnimateLeaves
-	dw Cut_StartWaiting
-	dw Cut_WaitAnimSFX
+	dw ChopDown_SpawnAnimateTree
+	dw ChopDown_SpawnAnimateLeaves
+	dw ChopDown_StartWaiting
+	dw ChopDown_WaitAnimSFX
 
-Cut_SpawnAnimateTree:
-	call Cut_Headbutt_GetPixelFacing
-	ld a, SPRITE_ANIM_INDEX_CUT_TREE ; cut tree
+ChopDown_SpawnAnimateTree:
+	call ChopDown_Headbutt_GetPixelFacing
+	ld a, SPRITE_ANIM_INDEX_CHOP_TREE ; chop tree
 	call _InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $74
 	ld a, 32
 	ld [wFrameCounter], a
-; Cut_StartWaiting
+; ChopDown_StartWaiting
 	ld hl, wJumptableIndex
 	inc [hl]
 	inc [hl]
 	ret
 
-Cut_SpawnAnimateLeaves:
-	call Cut_GetLeafSpawnCoords
+ChopDown_SpawnAnimateLeaves:
+	call ChopDown_GetLeafSpawnCoords
 	xor a
-	call Cut_SpawnLeaf
+	call ChopDown_SpawnLeaf
 	ld a, $10
-	call Cut_SpawnLeaf
+	call ChopDown_SpawnLeaf
 	ld a, $20
-	call Cut_SpawnLeaf
+	call ChopDown_SpawnLeaf
 	ld a, $30
-	call Cut_SpawnLeaf
+	call ChopDown_SpawnLeaf
 	ld a, 32 ; frames
 	ld [wFrameCounter], a
-; Cut_StartWaiting
+; ChopDown_StartWaiting
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-Cut_StartWaiting:
+ChopDown_StartWaiting:
 	ld a, $1
 	ldh [hBGMapMode], a
-; Cut_WaitAnimSFX
+; ChopDown_WaitAnimSFX
 	ld hl, wJumptableIndex
 	inc [hl]
 
-Cut_WaitAnimSFX:
+ChopDown_WaitAnimSFX:
 	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
@@ -171,7 +171,7 @@ Cut_WaitAnimSFX:
 	set 7, [hl]
 	ret
 
-Cut_SpawnLeaf:
+ChopDown_SpawnLeaf:
 	push de
 	push af
 	ld a, SPRITE_ANIM_INDEX_LEAF ; leaf
@@ -189,7 +189,7 @@ Cut_SpawnLeaf:
 	pop de
 	ret
 
-Cut_GetLeafSpawnCoords:
+ChopDown_GetLeafSpawnCoords:
 	ld de, 0
 	ld a, [wMetatileStandingX]
 	bit 0, a
@@ -234,7 +234,7 @@ Cut_GetLeafSpawnCoords:
 	dbpixel 11, 10 ; facing right, bottom left
 	dbpixel 13, 10 ; facing right, bottom right
 
-Cut_Headbutt_GetPixelFacing:
+ChopDown_Headbutt_GetPixelFacing:
 	ld a, [wPlayerDirection]
 	and %00001100
 	srl a

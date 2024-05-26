@@ -1,4 +1,4 @@
-CutGrassBlockPointers:
+ChopDownGrassBlockPointers:
 ; Which tileset are we in?
 	dbw TILESET_JOHTO_TRADITIONAL, .johto_traditional
 	dbw TILESET_JOHTO_MODERN, .johto_modern

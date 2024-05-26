@@ -31,8 +31,8 @@ ViridianCity_MapScriptHeader:
 	object_event 17, 21, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 3, 3, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianCityYoungsterText, -1
 	object_event 31, 23, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WANDER, 1, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianCityYoungster2Text, -1
 	object_event 13, 22, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_ROOFTOP, MART_HERB, -1
-	cuttree_event 14,  4, EVENT_VIRIDIAN_CITY_CUT_TREE_1
-	cuttree_event  8, 22, EVENT_VIRIDIAN_CITY_CUT_TREE_2
+	choptree_event 14,  4, EVENT_VIRIDIAN_CITY_CHOP_TREE_1
+	choptree_event  8, 22, EVENT_VIRIDIAN_CITY_CHOP_TREE_2
 
 ViridianCityFlyPoint:
 	setflag ENGINE_FLYPOINT_VIRIDIAN

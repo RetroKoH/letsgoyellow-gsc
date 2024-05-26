@@ -55,7 +55,7 @@ CheckGrassCollision::
 	db COLL_WATER
 	db -1
 
-CheckCutCollision:
+CheckChopDownCollision:
 	ld a, c
 	ld hl, .blocks
 	jmp IsInByteArray

@@ -52,7 +52,7 @@ CeladonCity_MapScriptHeader:
 	object_event 10, 22, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityLassText_PCC, -1
 	object_event 35, 23, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityLassText, -1
 	itemball_event 39,  7, MAX_ETHER, 1, EVENT_CELADON_CITY_MAX_ETHER
-	cuttree_event 32, 34, EVENT_CELADON_CITY_CUT_TREE
+	choptree_event 32, 34, EVENT_CELADON_CITY_CHOP_TREE
 
 CeladonCityFlyPoint:
 	setflag ENGINE_FLYPOINT_CELADON

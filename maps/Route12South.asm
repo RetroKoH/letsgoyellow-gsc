@@ -25,8 +25,8 @@ Route12South_MapScriptHeader:
 	object_event 14, 89, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 	itemball_event  5, 68, CALCIUM, 1, EVENT_ROUTE_12_CALCIUM
 	itemball_event  5, 82, NUGGET, 1, EVENT_ROUTE_12_NUGGET
-	cuttree_event  6, 71, EVENT_ROUTE_12_CUT_TREE_1
-	cuttree_event  9, 79, EVENT_ROUTE_12_CUT_TREE_2
+	choptree_event  6, 71, EVENT_ROUTE_12_CHOP_TREE_1
+	choptree_event  9, 79, EVENT_ROUTE_12_CHOP_TREE_2
 
 GenericTrainerFisherMartin:
 	generictrainer FISHER, MARTIN, EVENT_BEAT_FISHER_MARTIN, FisherMartinSeenText, FisherMartinBeatenText

@@ -102,7 +102,7 @@ PokemonActionSubmenu:
 	ret
 
 .Actions:
-	dbw MONMENUITEM_CHOP,    MonMenu_Cut
+	dbw MONMENUITEM_CHOP,    MonMenu_ChopDown
 	dbw MONMENUITEM_SOAR,    MonMenu_Fly
 	dbw MONMENUITEM_SWIM,    MonMenu_Surf
 	dbw MONMENUITEM_PUSH,    MonMenu_Strength
@@ -710,8 +710,8 @@ _OpenPartyStats:
 	xor a
 	ret
 
-MonMenu_Cut:
-	farcall CutFunction
+MonMenu_ChopDown:
+	farcall ChopDownFunction
 _MonMenu_StandardCheck:
 	ld a, [wFieldMoveSucceeded]
 	cp $1

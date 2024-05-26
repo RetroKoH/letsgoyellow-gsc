@@ -87,7 +87,7 @@ FieldMoveFailed:
 	text_far _CantUseItemText
 	text_end
 
-CutFunction:
+ChopDownFunction:
 	call FieldMoveJumptableReset
 .loop
 	ld hl, .Jumptable
@@ -98,65 +98,57 @@ CutFunction:
 	ret
 
 .Jumptable:
-
 	dw .CheckAble
-	dw .DoCut
-	dw .FailCut
+	dw .DoChopDown
+	dw .FailChopDown
 
 .CheckAble:
-;	ld de, ENGINE_HIVEBADGE
-;	call CheckBadge
-;	jr c, .nohivebadge
-	call CheckMapForSomethingToCut
-	jr c, .nothingtocut
+	call CheckMapForSomethingToChopDown
+	jr c, .nothingtochopdown
 	ld a, $1
 	ret
 
-.nohivebadge
-	ld a, $80
-	ret
-
-.nothingtocut
+.nothingtochopdown
 	ld a, $2
 	ret
 
-.DoCut:
-	ld hl, Script_CutFromMenu
+.DoChopDown:
+	ld hl, Script_ChopDownFromMenu
 	call QueueScript
 	ld a, $81
 	ret
 
-.FailCut:
-	ld hl, Text_NothingToCut
+.FailChopDown:
+	ld hl, Text_NothingToChopDown
 	call MenuTextboxBackup
 	ld a, $80
 	ret
 
-Text_NothingToCut:
-	; There's nothing to CUT here.
-	text_far _CutNothingText
+Text_NothingToChopDown:
+	; There's nothing to CHOP DOWN here.
+	text_far _ChopDownNothingText
 	text_end
 
-CheckMapForSomethingToCut:
+CheckMapForSomethingToChopDown:
 	call GetFacingObject
 	jr c, .no_tree
 	ld a, d
-	cp SPRITEMOVEDATA_CUTTABLE_TREE
+	cp SPRITEMOVEDATA_CHOPPABLE_TREE
 	jr z, .tree
 .no_tree
-	; Does the collision data of the facing tile permit cutting?
+	; Does the collision data of the facing tile permit chopping?
 	call GetFacingTileCoord
 	ld c, a
 	push de
-	farcall CheckCutCollision
+	farcall CheckChopDownCollision
 	pop de
 	jr nc, .fail
 	; Get the location of the current block in wOverworldMapBlocks.
 	call GetBlockLocation
 	ld c, [hl]
-	; See if that block contains something that can be cut.
+	; See if that block contains something that can be chopped down.
 	push hl
-	ld hl, CutGrassBlockPointers
+	ld hl, ChopDownGrassBlockPointers
 	call CheckOverworldTileArrays
 	pop hl
 	jr nc, .fail
@@ -183,17 +175,17 @@ CheckMapForSomethingToCut:
 	scf
 	ret
 
-Script_CutFromMenu:
+Script_ChopDownFromMenu:
 	reloadmappart
 	special UpdateTimePals
 	callasm GetBuffer6
-	ifequal $0, Script_CutTree
-;Script_CutGrass:
+	ifequal $0, Script_ChopDownTree
+;Script_ChopDownGrass:
 	callasm PrepareOverworldMove
-	farwritetext _UseCutText
+	farwritetext _UseChopDownText
 	closetext
 	scall FieldMovePokepicScript
-	callasm CutDownGrass
+	callasm ChopDownGrass
 	endtext
 
 GetBuffer6:
@@ -201,7 +193,7 @@ GetBuffer6:
 	ldh [hScriptVar], a
 	ret
 
-CutDownGrass:
+ChopDownGrass:
 	ld hl, wBuffer3 ; OverworldMapTile
 	ld a, [hli]
 	ld h, [hl]
@@ -214,7 +206,7 @@ CutDownGrass:
 	call UpdateSprites
 	call DelayFrame
 	ld a, 1 ; Animation type
-	farcall OWCutAnimation
+	farcall OWChopDownAnimation
 	call BufferScreen
 	call GetMovementPermissions
 	call UpdateSprites
@@ -255,31 +247,31 @@ CheckOverworldTileArrays:
 
 INCLUDE "data/collision/field_move_blocks.asm"
 
-Script_CutTree:
+Script_ChopDownTree:
 	callasm PrepareOverworldMove
-	farwritetext _UseCutText
+	farwritetext _UseChopDownText
 	closetext
 	waitsfx
 	scall FieldMovePokepicScript
-	setflag ENGINE_AUTOCUT_ACTIVE
+	setflag ENGINE_AUTOCHOP_ACTIVE
 	disappear -2
-	callasm CutDownTree
+	callasm ChopDownTree
 	endtext
 
-AutoCutTreeScript:
+AutoChopTreeScript:
 	callasm RefreshScreenFast
 	disappear -2
-	callasm CutDownTree
+	callasm ChopDownTree
 	endtext
 
-CutDownTree:
+ChopDownTree:
 	xor a
 	ldh [hBGMapMode], a
 	call LoadMapPart
 	call UpdateSprites
 	call DelayFrame
 	xor a ; Animation type
-	farcall OWCutAnimation
+	farcall OWChopDownAnimation
 	call BufferScreen
 	call GetMovementPermissions
 	call UpdateSprites
@@ -1779,7 +1771,7 @@ Script_CantGetOffBike:
 	farwritetext _CantGetOffBikeText
 	waitendtext
 
-HasCutAvailable::
+HasChopDownAvailable::
 	ld d, CHOP
 	farcall CheckPartyTechnique
 	jr c, .no
@@ -1794,19 +1786,19 @@ HasCutAvailable::
 	ldh [hScriptVar], a
 	ret
 
-AskCutTreeScript:
+AskChopDownTreeScript:
 	checkflag ENGINE_LEARNED_FIELD_TECH		; We must unlock field tech first
 	iffalse .no
-	callasm HasCutAvailable
+	callasm HasChopDownAvailable
 	ifequal 1, .no
 
-	checkflag ENGINE_AUTOCUT_ACTIVE
-	iftrue AutoCutTreeScript
+	checkflag ENGINE_AUTOCHOP_ACTIVE
+	iftrue AutoChopTreeScript
 	opentext
-	farwritetext _AskCutText
+	farwritetext _AskChopDownText
 	yesorno
-	iftrue Script_CutTree
+	iftrue Script_ChopDownTree
 	endtext
 
 .no
-	farjumptext _CanCutText
+	farjumptext _CanChopDownText

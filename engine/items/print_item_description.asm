@@ -14,12 +14,17 @@ PrintDescription:
 	add hl, bc
 	add hl, bc
 	push de
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
+	ld e, a
 	pop hl
 	rst PlaceString
 	ret
+
+PrintExpCandyDescription:
+	ld hl, ExpCandyDescriptions
+	ld a, [wCurSpecies]
+	jr PrintDescription
 
 PrintTMHMDescription:
 ; Print the description for TM/HM [wCurMove] at de.

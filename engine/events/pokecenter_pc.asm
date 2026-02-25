@@ -26,9 +26,8 @@ PokemonCenterPC:
 	jmp CloseWindow
 
 .TopMenu:
-	db $48 ; flags
-	db 00, 00 ; start coords
-	db 12, 15 ; end coords
+	db MENU_BACKUP_TILES | MENU_NO_CLICK_SFX
+	menu_coords 0, 0, 15, 12
 	dw .MenuData2
 	db 1 ; default option
 
@@ -168,7 +167,7 @@ _PlayersHousePC:
 	ld b, $1
 	call _PlayersPC
 	and a
-	jr nz, .asm_156f9
+	jr nz, .changed_deco_tiles
 	call LoadMapPart
 	call ApplyTilemap
 	call UpdateSprites
@@ -176,7 +175,7 @@ _PlayersHousePC:
 	ld c, $0
 	ret
 
-.asm_156f9
+.changed_deco_tiles
 	call ClearBGPalettes
 	ld c, $1
 	ret
@@ -200,18 +199,18 @@ _PlayersPC:
 	ld [wPCItemsScrollPosition], a
 	ld hl, PlayersPCMenuData
 	call LoadMenuHeader
-.asm_15722
+.loop
 	call UpdateTimePals
 	call DoNthMenu
-	jr c, .asm_15731
+	jr c, .turn_off
 	call MenuJumptable
-	jr nc, .asm_15722
-	jr .asm_15732
+	jr nc, .loop
+	jr .done
 
-.asm_15731
+.turn_off
 	xor a
 
-.asm_15732
+.done
 	jmp ExitMenu
 
 PlayersPCMenuData:
@@ -245,13 +244,13 @@ PlayersPCMenuData:
 .TurnOff:      db "Turn Off@"
 .LogOff:       db "Log Off@"
 
-WITHDRAW_ITEM EQU 0
-DEPOSIT_ITEM  EQU 1
-TOSS_ITEM     EQU 2
-MAIL_BOX      EQU 3
-DECORATION    EQU 4
-TURN_OFF      EQU 5
-LOG_OFF       EQU 6
+DEF WITHDRAW_ITEM EQU 0
+DEF DEPOSIT_ITEM  EQU 1
+DEF TOSS_ITEM     EQU 2
+DEF MAIL_BOX      EQU 3
+DEF DECORATION    EQU 4
+DEF TURN_OFF      EQU 5
+DEF LOG_OFF       EQU 6
 
 .PlayersPCMenuList1:
 	db 5
@@ -293,8 +292,8 @@ ClearPCItemScreen:
 	call ClearBGPalettes
 	call ClearSprites
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
-	ld a, " "
+	ld bc, SCREEN_AREA
+	ld a, ' '
 	rst ByteFill
 	hlcoord 0, 0
 	lb bc, 10, 18
@@ -303,7 +302,7 @@ ClearPCItemScreen:
 	lb bc, 4, 18
 	call Textbox
 	call ApplyAttrAndTilemapInVBlank
-	jmp SetPalettes ; load regular palettes?
+	jmp SetDefaultBGPAndOBP ; load regular palettes?
 
 PlayerWithdrawItemMenu:
 	call LoadStandardMenuHeader
@@ -328,15 +327,15 @@ PlayerWithdrawItemMenu:
 	ret c
 
 	ld a, [wItemQuantityChangeBuffer]
-	ld [wBuffer1], a ; quantity
+	ld [wPCItemQuantityChange], a ; quantity
 	ld a, [wCurItemQuantity]
-	ld [wBuffer2], a
+	ld [wPCItemQuantity], a
 	ld hl, wNumItems
 	call ReceiveItem
 	jr nc, .PackFull
-	ld a, [wBuffer1]
+	ld a, [wPCItemQuantityChange]
 	ld [wItemQuantityChangeBuffer], a
-	ld a, [wBuffer2]
+	ld a, [wPCItemQuantity]
 	ld [wCurItemQuantity], a
 	ld hl, wNumPCItems
 	call TossItem
@@ -457,15 +456,15 @@ PlayerDepositItemMenu:
 	dw .tossable
 
 .tossable
-	ld a, [wBuffer1]
+	ld a, [wPCItemQuantityChange]
 	push af
-	ld a, [wBuffer2]
+	ld a, [wPCItemQuantity]
 	push af
 	call .DepositItem_
 	pop af
-	ld [wBuffer2], a
+	ld [wPCItemQuantity], a
 	pop af
-	ld [wBuffer1], a
+	ld [wPCItemQuantityChange], a
 	ret
 
 .DepositItem_:
@@ -479,15 +478,15 @@ PlayerDepositItemMenu:
 	jr c, .DeclinedToDeposit
 
 	ld a, [wItemQuantityChangeBuffer]
-	ld [wBuffer1], a
+	ld [wPCItemQuantityChange], a
 	ld a, [wCurItemQuantity]
-	ld [wBuffer2], a
+	ld [wPCItemQuantity], a
 	ld hl, wNumPCItems
 	call ReceiveItem
 	jr nc, .NoRoomInPC
-	ld a, [wBuffer1]
+	ld a, [wPCItemQuantityChange]
 	ld [wItemQuantityChangeBuffer], a
-	ld a, [wBuffer2]
+	ld a, [wPCItemQuantity]
 	ld [wCurItemQuantity], a
 	ld hl, wNumItems
 	call TossItem
@@ -552,21 +551,21 @@ PCItemsJoypad:
 	and a
 	jr nz, .moving_stuff_around
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .b_1
-	cp A_BUTTON
+	cp PAD_A
 	jr z, .a_1
-	cp SELECT
+	cp PAD_SELECT
 	jr z, .select_1
 	jr .loop
 
 .moving_stuff_around
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .b_2
-	cp A_BUTTON
+	cp PAD_A
 	jr z, .a_select_2
-	cp SELECT
+	cp PAD_SELECT
 	jr z, .a_select_2
 	jr .loop
 
@@ -592,9 +591,8 @@ PCItemsJoypad:
 	ret
 
 .PCItemsMenuData:
-	db %01000000
-	db  1,  4 ; start coords
-	db 10, 18 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 4, 1, 18, 10
 	dw .MenuData2
 	db 1 ; default option
 
@@ -603,7 +601,7 @@ PCItemsJoypad:
 	db 4, 8 ; rows/cols?
 	db 2 ; horizontal spacing?
 	dbw 0, wNumPCItems
-	dba PlaceMartItemName
+	dba PlaceMenuItemName
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 

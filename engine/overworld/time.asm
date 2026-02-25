@@ -18,7 +18,12 @@ NextCallReceiveDelay:
 .okay
 	ld e, a
 	ld d, 0
+	ld a, [wInitialOptions2]
+	and 1 << RTC_OPT
 	ld hl, .ReceiveCallDelays
+	jr nz, .using_rtc
+	ld hl, .ReceiveCallDelaysNoRTC
+.using_rtc
 	add hl, de
 	ld a, [hl]
 	ld hl, wReceiveCallDelay_MinsRemaining
@@ -34,8 +39,9 @@ NextCallReceiveDelay:
 	ret
 
 .ReceiveCallDelays:
+	db 20, 10, 5, 3
+.ReceiveCallDelaysNoRTC:
 	db 20 * NO_RTC_SPEEDUP, 10 * NO_RTC_SPEEDUP, 5 * NO_RTC_SPEEDUP, 3 * NO_RTC_SPEEDUP
-;	WAS: db 20, 10, 5, 3 (NO_RTC)
 
 CheckReceiveCallTimer:
 	call CheckReceiveCallDelay ; check timer
@@ -51,8 +57,6 @@ CheckReceiveCallTimer:
 	scf
 	ret
 
-CheckLuckyNumberShowFlag:
-	ld hl, wLuckyNumberDayBuffer
 CheckDayDependentEventHL:
 	inc hl
 	push hl
@@ -108,14 +112,10 @@ UpdateTimeRemaining:
 RestartDailyResetTimer:
 	ld hl, wDailyResetTimer
 	ld a, 1
-	; fallthrough
-
-InitNDaysCountdown:
-	ld [hl], a
+	ld [hli], a
 	push hl
 	call UpdateTime
 	pop hl
-	inc hl
 	jr CopyDayToHL
 
 InitializeStartDay:
@@ -124,22 +124,6 @@ InitializeStartDay:
 CopyDayToHL:
 	ld a, [wCurDay]
 	ld [hl], a
-	ret
-
-RestartLuckyNumberCountdown:
-	call .GetDaysUntilNextFriday
-	ld hl, wLuckyNumberDayBuffer
-	jr InitNDaysCountdown
-
-.GetDaysUntilNextFriday:
-	call GetWeekday
-	cpl
-	add FRIDAY + 1 ; a = FRIDAY - a
-	jr z, .friday_saturday
-	ret nc
-
-.friday_saturday
-	add 7
 	ret
 
 CheckDailyResetTimer::
@@ -155,6 +139,7 @@ CheckDailyResetTimer::
 	ld [hli], a ; wWeeklyFlags
 	ld [hli], a ; wWeeklyFlags2
 	ld [hl], a ; wSwarmFlags
+	ld [wLuckyNumberShowFlag], a
 	ld hl, wFruitTreeFlags
 rept (NUM_FRUIT_TREES + 7) / 8 - 1
 	ld [hli], a
@@ -175,6 +160,7 @@ rept 4 - 1
 	ld [hli], a
 endr
 	ld [hl], a
+	ld [wDailyTrainerHouseOpponent], a
 	ld hl, wKenjiBreakTimer
 	ld a, [hl]
 	and a
@@ -194,7 +180,12 @@ Special_SampleKenjiBreakCountdown:
 	ret
 
 StartBugContestTimer:
+	ld a, [wInitialOptions2]
+	and 1 << RTC_OPT
 	ld a, BUG_CONTEST_MINUTES
+	jr nz, .using_rtc
+	ld a, BUG_CONTEST_MINUTES * NO_RTC_SPEEDUP
+.using_rtc
 	ld [wBugContestMinsRemaining], a
 	xor a ; BUG_CONTEST_SECONDS
 	ld [wBugContestSecsRemaining], a
@@ -249,11 +240,41 @@ CheckPokerusTick::
 	call CalcDaysSince
 	ld a, [wDaysSince]
 	and a
-	jr z, .done ; not even a day has passed since game start
+	ret z ; not even a day has passed since game start
 	ld b, a
-	farcall ApplyPokerusTick
-.done
-	xor a
+
+	ld a, [wPartyCount]
+	and a
+	ret z ; don't waste time if we don't have any party members
+
+; shift all partymon pokerus values to the left b times
+; if this overflows the pokerus nybble, the infection no longer spreads
+	ld c, a
+	ld hl, wPartyMon1PokerusStatus
+.loop
+	ld a, [hl]
+	and POKERUS_MASK
+	jr z, .next
+	assert POKERUS_CURED & %1000
+	ld d, POKERUS_CURED ; no need to check if pokerus status = POKERUS_CURED, bit 3 is already set
+	ld e, b
+.inner_loop
+	rlca
+	cp POKERUS_MASK + 1
+	jr nc, .cured
+	dec e
+	jr nz, .inner_loop
+	ld d, a
+.cured
+	ld a, [hl]
+	and ~POKERUS_MASK
+	or d
+	ld [hl], a
+.next
+	ld de, PARTYMON_STRUCT_LENGTH
+	add hl, de
+	dec c
+	jr nz, .loop
 	ret
 
 GetMinutesSinceIfLessThan60:
@@ -274,11 +295,6 @@ CalcDaysSince:
 	xor a
 	jr _CalcDaysSince
 
-CalcHoursDaysSince:
-	inc hl
-	xor a
-	jr _CalcHoursDaysSince
-
 CalcMinsHoursDaysSince:
 	inc hl
 	inc hl
@@ -292,11 +308,11 @@ CalcSecsMinsHoursDaysSince:
 	ldh a, [hSeconds]
 	ld c, a
 	sub [hl]
-	jr nc, .skip
+	jr nc, .skip_seconds
 	add 60
-.skip
+.skip_seconds
 	ld [hl], c ; current seconds
-	dec hl
+	dec hl ; no-optimize *hl++|*hl-- = b|c|d|e
 	ld [wSecondsSince], a ; seconds since
 	; fallthrough
 
@@ -304,23 +320,22 @@ _CalcMinsHoursDaysSince:
 	ldh a, [hMinutes]
 	ld c, a
 	sbc [hl]
-	jr nc, .skip
+	jr nc, .skip_minutes
 	add 60
-.skip
+.skip_minutes
 	ld [hl], c ; current minutes
-	dec hl
+	dec hl ; no-optimize *hl++|*hl-- = b|c|d|e
 	ld [wMinutesSince], a ; minutes since
-	; fallthrough
 
-_CalcHoursDaysSince:
+; calc hours+days since
 	ldh a, [hHours]
 	ld c, a
 	sbc [hl]
-	jr nc, .skip
+	jr nc, .skip_hours
 	add 24
-.skip
+.skip_hours
 	ld [hl], c ; current hours
-	dec hl
+	dec hl ; no-optimize *hl++|*hl-- = b|c|d|e
 	ld [wHoursSince], a ; hours since
 	; fallthrough
 
@@ -328,9 +343,9 @@ _CalcDaysSince:
 	ld a, [wCurDay]
 	ld c, a
 	sbc [hl]
-	jr nc, .skip
+	jr nc, .skip_days
 	add 20 * 7
-.skip
+.skip_days
 	ld [hl], c ; current days
 	ld [wDaysSince], a ; days since
 	ret

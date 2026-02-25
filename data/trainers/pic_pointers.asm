@@ -1,8 +1,10 @@
 TrainerPicPointers::
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
-	table_width 3, TrainerPicPointers
-	dba ElainePic
-	dba ChasePic
+	table_width 3
+	dba CalPic
+	dba CarriePic
+	dba JackyPic
+	dba EunaPic
 	dba FalknerPic
 	dba BugsyPic
 	dba WhitneyPic
@@ -61,11 +63,7 @@ TrainerPicPointers::
 	dba HexManiacPic
 	dba SagePic
 	dba MediumPic
-	dba KimonoGirl1Pic
-	dba KimonoGirl2Pic
-	dba KimonoGirl3Pic
-	dba KimonoGirl4Pic
-	dba KimonoGirl5Pic
+	dba KimonoGirlPic
 	dba ElderPic
 	dba SrAndJrPic
 	dba CouplePic
@@ -88,7 +86,8 @@ TrainerPicPointers::
 	dba BattleGirlPic
 	dba DragonTamerPic
 	dba EngineerPic
-	dba TeacherPic
+	dba TeacherFPic
+	dba TeacherMPic
 	dba GuitaristmPic
 	dba GuitaristfPic
 	dba BikerPic
@@ -96,6 +95,7 @@ TrainerPicPointers::
 	dba TamerPic
 	dba ArtistPic
 	dba AromaLadyPic
+	dba SoldierPic
 	dba WaiterPic
 	dba WaitressPic
 	dba SightseermPic
@@ -117,6 +117,7 @@ TrainerPicPointers::
 	dba MysticalmanPic
 	dba KarateKingPic
 	dba TowerTycoonPic
+	dba FactoryHeadPic
 	dba JessieJamesPic
 	dba LoreleiPic
 	dba AgathaPic
@@ -136,9 +137,11 @@ TrainerPicPointers::
 	dba SparkPic
 	dba FlanneryPic
 	dba MaylenePic
-	dba SkylaPic
+	dba MarlonPic
 	dba ValeriePic
 	dba KukuiPic
+	dba PiersPic
+	dba KatyPic
 	dba VictorPic
 	dba BillPic
 	dba YellowPic

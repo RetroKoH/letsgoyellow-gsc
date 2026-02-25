@@ -33,9 +33,9 @@ Special_BankOfMom:
 
 .CheckIfBankInitialized:
 	ld a, [wMomSavingMoney]
-	bit 7, a
+	bit MOM_ACTIVE_F, a
 	jr nz, .savingmoneyalready
-	set 7, a
+	set MOM_ACTIVE_F, a
 	ld [wMomSavingMoney], a
 	ld a, $1
 	jr .done_0
@@ -54,11 +54,11 @@ Special_BankOfMom:
 	jr c, .DontSaveMoney
 	ld hl, MomLeavingText2
 	call PrintText
-	ld a, %10000001
+	ld a, (1 << MOM_ACTIVE_F) | (1 << MOM_SAVING_SOME_MONEY_F)
 	jr .done_1
 
 .DontSaveMoney:
-	ld a, %10000000
+	ld a, 1 << MOM_ACTIVE_F
 
 .done_1
 	ld [wMomSavingMoney], a
@@ -94,11 +94,11 @@ Special_BankOfMom:
 	call CloseWindow
 	jr c, .cancel
 	ld a, [wMenuCursorY]
-	cp $1
+	dec a ; 1?
 	jr z, .withdraw
-	cp $2
+	dec a ; 2?
 	jr z, .deposit
-	cp $3
+	dec a ; 3?
 	jr z, .stopsaving
 
 .cancel
@@ -253,7 +253,7 @@ Special_BankOfMom:
 	call PrintText
 	call YesNoBox
 	jr c, .StopSavingMoney
-	ld a, $81
+	ld a, (1 << MOM_ACTIVE_F) | (1 << MOM_SAVING_SOME_MONEY_F)
 	ld [wMomSavingMoney], a
 	ld hl, MomStartSavingMoneyText
 	call PrintText
@@ -262,7 +262,7 @@ Special_BankOfMom:
 	ret
 
 .StopSavingMoney:
-	ld a, $80
+	ld a, 1 << MOM_ACTIVE_F
 	ld [wMomSavingMoney], a
 	ld a, $7
 	ld [wJumptableIndex], a
@@ -444,17 +444,17 @@ Mom_WithdrawDepositMenuJoypad:
 	call JoyTextDelay
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .pressedB
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .pressedA
 	call .dpadaction
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 11, 6
 	ld bc, 8
-	ld a, " "
+	ld a, ' '
 	rst ByteFill
 	hlcoord 11, 6
 	ld de, wStringBuffer2
@@ -468,7 +468,7 @@ Mom_WithdrawDepositMenuJoypad:
 	ld c, a
 	ld b, 0
 	add hl, bc
-	ld [hl], " "
+	ld [hl], ' '
 
 .skip
 	call ApplyTilemapInVBlank
@@ -485,16 +485,16 @@ Mom_WithdrawDepositMenuJoypad:
 .dpadaction
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .incrementdigit
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .decrementdigit
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .movecursorleft
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .movecursorright
 	and a
 	ret
@@ -660,9 +660,8 @@ Mom_HeldString:
 	db "Held@"
 
 BankOfMom_MenuHeader:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 10, 10 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 10, 10
 	dw .MenuData
 	db 1 ; default option
 

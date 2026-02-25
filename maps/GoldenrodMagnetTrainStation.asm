@@ -1,5 +1,6 @@
 GoldenrodMagnetTrainStation_MapScriptHeader:
 	def_scene_scripts
+	scene_const SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_SAFFRON
 
 	def_callbacks
 
@@ -10,14 +11,14 @@ GoldenrodMagnetTrainStation_MapScriptHeader:
 	warp_event 11,  5, SAFFRON_TRAIN_STATION, 3
 
 	def_coord_events
-	coord_event 11,  6, 0, Script_ArriveFromSaffron
+	coord_event 11,  6, SCENE_GOLDENRODMAGNETTRAINSTATION_ARRIVE_FROM_SAFFRON, Script_ArriveFromSaffron
 
 	def_bg_events
 
 	def_object_events
-	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationOfficerScript, -1
-	object_event 11, 14, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, GoldenrodMagnetTrainStationGentlemanText, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
-	object_event  6, 12, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationCooltrainerfScript, -1
+	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationOfficerScript, -1
+	object_event 11, 14, SPRITE_GENTLEMAN, SPRITEMOVEDATA_WANDER, 2, 2, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, GoldenrodMagnetTrainStationGentlemanText, EVENT_GOLDENROD_TRAIN_STATION_GENTLEMAN
+	object_event  6, 12, SPRITE_LASS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, GoldenrodMagnetTrainStationCooltrainerfScript, -1
 
 	object_const_def
 	const GOLDENRODMAGNETTRAINSTATION_OFFICER
@@ -26,14 +27,24 @@ GoldenrodMagnetTrainStationOfficerScript:
 	faceplayer
 	opentext
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue .MagnetTrainToSaffron
-	jumpopenedtext GoldenrodMagnetTrainStationOfficerTheTrainHasntComeInText
+	iftruefwd .MagnetTrainToSaffron
+	jumpthisopenedtext
+
+	text "The train hasn't"
+	line "come in…"
+
+	para "I know! I'll carry"
+	line "the passengers on"
+	cont "my back!"
+
+	para "That won't work."
+	done
 
 .MagnetTrainToSaffron:
 	writetext GoldenrodMagnetTrainStationOfficerAreYouComingAboardText
 	yesorno
 	iffalse_jumpopenedtext GoldenrodMagnetTrainStationOfficerHopeToSeeYouAgainText
-	checkkeyitem TOWN_MAP
+	checkkeyitem PASS
 	iffalse_jumpopenedtext GoldenrodMagnetTrainStationOfficerYouDontHaveARailPassText
 	writetext GoldenrodMagnetTrainStationOfficerRightThisWayText
 	waitbutton
@@ -45,22 +56,39 @@ GoldenrodMagnetTrainStationOfficerScript:
 	warpcheck
 	newloadmap MAPSETUP_TRAIN
 	applyonemovement PLAYER, turn_head_down
-	wait 36
+	wait 2
 	end
 
 Script_ArriveFromSaffron:
 	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, GoldenrodMagnetTrainStationOfficerApproachTrainDoorMovement
 	applymovement PLAYER, GoldenrodMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement
 	applymovement GOLDENRODMAGNETTRAINSTATION_OFFICER, GoldenrodMagnetTrainStationOfficerReturnToBoardingGateMovement
-	jumptext GoldenrodMagnetTrainStationOfficerArrivedInGoldenrodText
+	showtext GoldenrodMagnetTrainStationOfficerArrivedInGoldenrodText
+	turnobject PLAYER, DOWN
+	end
 
 GoldenrodMagnetTrainStationCooltrainerfScript:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue .PowerRestored
-	jumptextfaceplayer GoldenrodMagnetTrainStationCooltrainerfText1
+	iftruefwd .PowerRestored
+	jumpthistextfaceplayer
+
+	text "The Magnet Train"
+	line "is like, zoooom,"
+	cont "byun! Shuuu!"
+
+	para "At least when"
+	line "it's running…"
+	done
 
 .PowerRestored
-	jumptextfaceplayer GoldenrodMagnetTrainStationCooltrainerfText2
+	jumpthistextfaceplayer
+
+	text "The Magnet Train"
+	line "is like, zoooom,"
+	cont "byun! Shuuu!"
+
+	para "It's so cool!"
+	done
 
 GoldenrodMagnetTrainStationOfficerApproachTrainDoorMovement:
 	step_up
@@ -96,16 +124,6 @@ GoldenrodMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement:
 	turn_head_up
 	step_end
 
-GoldenrodMagnetTrainStationOfficerTheTrainHasntComeInText:
-	text "The train hasn't"
-	line "come in…"
-
-	para "I know! I'll carry"
-	line "the passengers on"
-	cont "my back!"
-
-	para "That won't work."
-	done
 
 GoldenrodMagnetTrainStationOfficerAreYouComingAboardText:
 	text "We'll soon depart"
@@ -155,19 +173,4 @@ GoldenrodMagnetTrainStationGentlemanText:
 	cont "to Kanto."
 	done
 
-GoldenrodMagnetTrainStationCooltrainerfText1:
-	text "The Magnet Train"
-	line "is like, zoooom,"
-	cont "byun! Shuuu!"
 
-	para "At least when"
-	line "it's running…"
-	done
-
-GoldenrodMagnetTrainStationCooltrainerfText2:
-	text "The Magnet Train"
-	line "is like, zoooom,"
-	cont "byun! Shuuu!"
-
-	para "It's so cool!"
-	done

@@ -35,24 +35,92 @@ ResetOWMapState:
 
 EnterMapConnection:
 ; Return carry if a connection has been entered.
+
+	ld hl, wPalFlags
+	set MAP_CONNECTION_PAL_F, [hl]
+
+	ld hl, DualMapConnections
+.dual_loop
+; check end
+	ld a, [hli]
+	and a
+	jr z, .not_dual
+; check map group
+	ld b, a
+	ld a, [wMapGroup]
+	cp b
+	jr nz, .skip31
+; check map number
+	ld a, [hli]
+	ld b, a
+	ld a, [wMapNumber]
+	cp b
+	jr nz, .skip30
+; check step direction
+	ld a, [hli]
+	ld b, a
+	ld a, [wPlayerStepDirection]
+	cp b
+	jr nz, .skip29
+; check coordinate
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld b, a
+	ld a, [de]
+	cp b
+; de = map connection struct
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+; hl = connection data
+	jr c, .lesser
+	ld bc, 12 ; size of connection
+	add hl, bc
+.lesser
+	call GetMapConnection
+	; fallthrough
+
+.not_dual
+	xor a
+	ld hl, wFollowedWarpData
+	ld bc, wFollowedWarpDataEnd - wFollowedWarpData
+	rst ByteFill
+
 	ld a, [wPlayerStepDirection]
 	and a
 	jmp z, EnterSouthConnection
 	dec a
-	jr z, EnterNorthConnection
+	jmp z, EnterNorthConnection
 	dec a
 	jr z, EnterWestConnection
 	dec a
 	jr z, EnterEastConnection
 	ret
 
+.skip31
+	inc hl
+.skip30
+	inc hl
+.skip29
+	ld bc, 8 + 12 * 2 - 3 ; size of dual_connection, minus 3 bytes passed already
+	add hl, bc
+	jr .dual_loop
+
 EnterWestConnection:
 	ld a, [wWestConnectedMapGroup]
 	ld [wMapGroup], a
 	ld a, [wWestConnectedMapNumber]
 	ld [wMapNumber], a
+	ld a, [wXCoord]
+	ld [wLastMapXCoord], a
 	ld a, [wWestConnectionStripXOffset]
 	ld [wXCoord], a
+	ld a, [wYCoord]
+	ld [wLastMapYCoord], a
 	ld a, [wWestConnectionStripYOffset]
 	ld hl, wYCoord
 	add [hl]
@@ -88,8 +156,12 @@ EnterEastConnection:
 	ld [wMapGroup], a
 	ld a, [wEastConnectedMapNumber]
 	ld [wMapNumber], a
+	ld a, [wXCoord]
+	ld [wLastMapXCoord], a
 	ld a, [wEastConnectionStripXOffset]
 	ld [wXCoord], a
+	ld a, [wYCoord]
+	ld [wLastMapYCoord], a
 	ld a, [wEastConnectionStripYOffset]
 	ld hl, wYCoord
 	add [hl]
@@ -108,8 +180,12 @@ EnterNorthConnection:
 	ld [wMapGroup], a
 	ld a, [wNorthConnectedMapNumber]
 	ld [wMapNumber], a
+	ld a, [wYCoord]
+	ld [wLastMapYCoord], a
 	ld a, [wNorthConnectionStripYOffset]
 	ld [wYCoord], a
+	ld a, [wXCoord]
+	ld [wLastMapXCoord], a
 	ld a, [wNorthConnectionStripXOffset]
 	ld hl, wXCoord
 	add [hl]
@@ -122,8 +198,12 @@ EnterSouthConnection:
 	ld [wMapGroup], a
 	ld a, [wSouthConnectedMapNumber]
 	ld [wMapNumber], a
+	ld a, [wYCoord]
+	ld [wLastMapYCoord], a
 	ld a, [wSouthConnectionStripYOffset]
 	ld [wYCoord], a
+	ld a, [wXCoord]
+	ld [wLastMapXCoord], a
 	ld a, [wSouthConnectionStripXOffset]
 	ld hl, wXCoord
 	add [hl]
@@ -203,9 +283,9 @@ EnterMapWarp:
 	ret
 
 LoadMapTimeOfDay:
-	ld hl, wVramState
-	res 6, [hl]
-	ld a, $1
+	ld hl, wStateFlags
+	res TEXT_STATE_F, [hl]
+	ld a, TRUE
 	ld [wSpriteUpdatesEnabled], a
 	farcall ReplaceTimeOfDayPals
 	farcall UpdateTimeOfDayPal
@@ -213,7 +293,7 @@ LoadMapTimeOfDay:
 	call .ClearBGMap
 	decoord 0, 0
 	call .copy
-	decoord 0, 0, wAttrMap
+	decoord 0, 0, wAttrmap
 	ld a, $1
 	ldh [rVBK], a
 .copy
@@ -227,7 +307,7 @@ LoadMapTimeOfDay:
 	ld [hli], a
 	dec c
 	jr nz, .column
-	ld bc, BG_MAP_WIDTH - SCREEN_WIDTH
+	ld bc, TILEMAP_WIDTH - SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	dec b
@@ -254,7 +334,7 @@ LoadMapTimeOfDay:
 	rst ByteFill
 	pop af
 	ldh [rVBK], a
-	ld a, "<BLACK>"
+	ld a, '<BLACK>'
 	ld bc, vBGMap1 - vBGMap0
 	hlbgcoord 0, 0
 	rst ByteFill
@@ -272,12 +352,16 @@ DeferredLoadMapGraphics:
 	ldh [hTileAnimFrame], a
 	ret
 
-LoadMapGraphics:
+LoadMapTilesetGFX:
 	call LoadMapTileset
 	call LoadTilesetGFX
 	xor a
 	ldh [hMapAnims], a
 	ldh [hTileAnimFrame], a
+	ret
+
+LoadMapGraphics:
+	call LoadMapTilesetGFX
 	farjp RefreshSprites
 
 LoadMapPalettes:
@@ -296,8 +380,8 @@ RefreshMapSprites:
 	ld hl, wPlayerSpriteSetupFlags
 	bit 6, [hl]
 	jr nz, .skip
-	ld hl, wVramState
-	set 0, [hl]
+	ld hl, wStateFlags
+	set SPRITE_UPDATES_DISABLED_F, [hl]
 	call SafeUpdateSprites
 .skip
 	ld a, [wPlayerSpriteSetupFlags]
@@ -321,7 +405,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .down
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerMapY]
 	sub 4
 	ld b, a
 	ld a, [wMapHeight]
@@ -332,7 +416,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .up
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerMapY]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -340,7 +424,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .left
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerMapX]
 	sub $4
 	cp -1
 	jr z, .ok
@@ -348,7 +432,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .right
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerMapX]
 	sub 4
 	ld b, a
 	ld a, [wMapWidth]
@@ -407,3 +491,5 @@ GetMapScreenCoords::
 	and $1
 	ld [wMetatileStandingX], a
 	ret
+
+INCLUDE "data/maps/dual_connections.asm"

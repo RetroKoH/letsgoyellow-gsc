@@ -1,5 +1,6 @@
 Route18West_MapScriptHeader:
 	def_scene_scripts
+	scene_const SCENE_ROUTE18WEST_BICYCLE_CHECK
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, Route18WestAlwaysOnBike
@@ -9,13 +10,13 @@ Route18West_MapScriptHeader:
 	warp_event 17,  7, ROUTE_18_GATE, 2
 
 	def_coord_events
-	coord_event 12,  0, 0, Route18WestBikeCheckScript
+	coord_event 12,  0, SCENE_ROUTE18WEST_BICYCLE_CHECK, Route18WestBikeCheckScript
 
 	def_bg_events
 	bg_event -1,  5, BGEVENT_JUMPTEXT, UragaChannelSignText
 
 	def_object_events
-	object_event  6,  2, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBikerCharles, -1
+	object_event  6,  2, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBikerCharles, -1
 
 Route18WestAlwaysOnBike:
 	setflag ENGINE_ALWAYS_ON_BIKE
@@ -23,7 +24,7 @@ Route18WestAlwaysOnBike:
 
 Route18WestBikeCheckScript:
 	readmem wPlayerState
-	ifequal PLAYER_BIKE, .done
+	ifequalfwd PLAYER_BIKE, .done
 	showtext Route18WestBikeWarningText
 	applyonemovement PLAYER, step_down
 .done

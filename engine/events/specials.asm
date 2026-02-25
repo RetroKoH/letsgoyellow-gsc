@@ -4,8 +4,8 @@ Special::
 	add hl, de
 	add hl, de
 	add hl, de
-	ld b, [hl]
-	inc hl
+	ld a, [hli]
+	ld b, a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -14,46 +14,51 @@ Special::
 
 INCLUDE "data/events/special_pointers.asm"
 
-Special_SetPlayerPalette:
-	ldh a, [hScriptVar]
-	ld d, a
-	farjp SetPlayerPalette
-
-Special_SetCopycatPalette:
-	ldh a, [hScriptVar]
-	ld d, a
-	farjp SetCopycatPalette
-
 Special_GameCornerPrizeMonCheckDex:
 	ldh a, [hScriptVar]
-	dec a
-	call CheckCaughtMon
+	ld c, a
+	ldh a, [hScriptVar+1]
+	ld b, a
+	push bc
+	call CheckCosmeticCaughtMon
+	pop bc
 	ret nz
-	ldh a, [hScriptVar]
-	dec a
 	call SetSeenAndCaughtMon
-	call FadeToMenu
+	call FadeToMenu_BackupSprites
+	ld hl, wNamedObjectIndex
 	ldh a, [hScriptVar]
-	ld [wNamedObjectIndex], a
+	ld [hli], a
+	ldh a, [hScriptVar+1]
+	ld [hl], a
 	farcall NewPokedexEntry
 	jmp ExitAllMenus
 
 SpecialSeenMon:
 	ldh a, [hScriptVar]
-	dec a
+	ld c, a
+	ldh a, [hScriptVar+1]
+	ld b, a
 	jmp SetSeenMon
 
 Special_FindThatSpecies:
 	ldh a, [hScriptVar]
+	ld c, a
+	ldh a, [hScriptVar+1]
 	ld b, a
-	farcall _FindThatSpecies
+	push de ; being cautious
+	farcall FindThatSpecies
+	pop de
 	jr z, FoundNone
 	jr FoundOne
 
 Special_FindThatSpeciesYourTrainerID:
 	ldh a, [hScriptVar]
+	ld c, a
+	ldh a, [hScriptVar+1]
 	ld b, a
+	push de
 	farcall _FindThatSpeciesYourTrainerID
+	pop de
 	jr z, FoundNone
 	; fallthrough
 
@@ -77,7 +82,7 @@ SpecialNameRival:
 	jmp InitName
 
 .DefaultRivalName:
-	db "Silver@"
+	rawchar "Silver@"
 
 SpecialTrendyPhrase:
 	ld b, $3 ; trendy phrase
@@ -89,18 +94,18 @@ SpecialTrendyPhrase:
 	jmp InitName
 
 .DefaultTrendyPhrase:
-	db "Nothing@"
+	rawchar "Nothing@"
 
 SpecialNameRater:
 	farjp NameRater
 
 Special_TownMap:
-	call FadeToMenu
+	call FadeToMenu_BackupSprites
 	farcall _TownMap
 	jmp ExitAllMenus
 
 Special_DisplayLinkRecord:
-	call FadeToMenu
+	call FadeToMenu_BackupSprites
 	farcall DisplayLinkRecord
 	jmp ExitAllMenus
 
@@ -126,7 +131,7 @@ BugContestJudging:
 	jr .finish
 .firstplace
 	ld hl, .FirstPlacePrizes
-	call GetHourIntervalValue
+	call GetValueByTimeOfDay
 	jr .finish
 .secondplace
 	ld a, EVERSTONE
@@ -138,11 +143,10 @@ BugContestJudging:
 	ret
 
 .FirstPlacePrizes:
-	db MORN_HOUR, MOON_STONE
-	db DAY_HOUR,  DAWN_STONE
-	db EVE_HOUR,  SUN_STONE
-	db NITE_HOUR, DUSK_STONE
-	db -1,        MOON_STONE
+	db SHINY_STONE ; morn
+	db SUN_STONE   ; day
+	db DUSK_STONE  ; eve
+	db MOON_STONE  ; nite
 
 MapRadio:
 	ldh a, [hScriptVar]
@@ -150,7 +154,7 @@ MapRadio:
 	farjp PlayRadio
 
 Special_UnownPuzzle:
-	call FadeToMenu
+	call FadeToMenu_BackupSprites
 	farcall UnownPuzzle
 	ld a, [wSolvedUnownPuzzle]
 	ldh [hScriptVar], a
@@ -180,7 +184,7 @@ Special_CardFlip:
 
 Special_StartGameCornerGame:
 	call FarQueueScript
-	call FadeToMenu
+	call FadeToMenu_BackupSprites
 	ld hl, wQueuedScriptBank
 	ld a, [hli]
 	push af
@@ -225,22 +229,17 @@ Special_CheckCoins:
 	text_far _NoCoinCaseText
 	text_end
 
+Special_CheckLuckyNumberShowFlag:
+	ld hl, wLuckyNumberShowFlag
+	bit LUCKYNUMBERSHOW_GAME_OVER_F, [hl]
+	ret
+
 SpecialCheckPokerus:
 ; Check if a monster in your party has Pokerus
 	farcall CheckPokerus
-	jr ScriptReturnCarry
-
-Special_CheckLuckyNumberShowFlag:
-	farcall CheckLuckyNumberShowFlag
-	; fallthrough
-
-ScriptReturnCarry:
-	jr c, .carry
-	xor a
-	ldh [hScriptVar], a
-	ret
-.carry
-	ld a, 1
+	; a = carry ? TRUE : FALSE
+	sbc a
+	and TRUE
 	ldh [hScriptVar], a
 	ret
 
@@ -268,9 +267,6 @@ StoreSwarmMapIndices::
 	ret
 
 Special_ResetLuckyNumberShowFlag:
-	farcall RestartLuckyNumberCountdown
-	ld hl, wLuckyNumberShowFlag
-	res 0, [hl]
 	farjp LoadOrRegenerateLuckyIDNumber
 
 SpecialSnorlaxAwake:
@@ -291,7 +287,10 @@ SpecialSnorlaxAwake:
 
 PlayCurMonCry:
 	ld a, [wCurPartySpecies]
-	jmp PlayCry
+	ld c, a
+	ld a, [wCurForm]
+	ld b, a
+	jmp PlayMonCry
 
 Special_FadeOutMusic:
 	xor a ; MUSIC_NONE
@@ -302,8 +301,13 @@ Special_FadeOutMusic:
 	ret
 
 Diploma:
-	call FadeToMenu
+	call FadeToMenu_BackupSprites
 	farcall _Diploma
+	jmp ExitAllMenus
+
+PrintDiploma:
+	call FadeToMenu_BackupSprites
+	farcall _PrintDiploma
 	jmp ExitAllMenus
 
 Special_GetOvercastIndex::
@@ -331,14 +335,16 @@ CheckIfTrendyPhraseIsLucky:
 	ret
 
 .KeyPhrase:
-	db "Lucky@"
+	rawchar "Lucky@"
 
 RespawnOneOffs:
-	eventflagreset EVENT_BEAT_LAWRENCE
 	eventflagreset EVENT_BEAT_FLANNERY
-	eventflagreset EVENT_BEAT_MAYLENE
-	eventflagreset EVENT_BEAT_SKYLA_AGAIN
+	eventflagreset EVENT_BEAT_KATY
 	eventflagreset EVENT_BEAT_KUKUI
+	eventflagreset EVENT_BEAT_LAWRENCE
+	eventflagreset EVENT_BEAT_MARLON_AGAIN
+	eventflagreset EVENT_BEAT_MAYLENE
+	eventflagreset EVENT_BEAT_PIERS_AGAIN
 
 	eventflagcheck EVENT_GOT_MUSCLE_BAND_FROM_STEVEN
 	jr z, .SkipSteven
@@ -354,39 +360,53 @@ RespawnOneOffs:
 	eventflagreset EVENT_BEAT_CYNTHIA
 .SkipCynthia
 
-	ld a, ARTICUNO - 1
-	call CheckCaughtMon
+	; Set CHECK_FLAG once to be used multiple times
+	ld b, CHECK_FLAG
+	ld de, ENGINE_PLAYER_CAUGHT_SUDOWOODO
+	farcall EngineFlagAction
+	jr nz, .CaughtSudowoodo
+	eventflagreset EVENT_ROUTE_36_SUDOWOODO
+.CaughtSudowoodo
+
+	ld de, ENGINE_PLAYER_CAUGHT_BLOODMOON_URSALUNA
+	farcall EngineFlagAction
+	jr nz, .CaughtBloodmoonUrsaluna
+	eventflagreset EVENT_MURKY_SWAMP_BLOODMOON_URSALUNA
+.CaughtBloodmoonUrsaluna
+
+	ld de, ENGINE_PLAYER_CAUGHT_ARTICUNO
+	farcall EngineFlagAction
 	jr nz, .CaughtArticuno
 	eventflagreset EVENT_SEAFOAM_ISLANDS_ARTICUNO
 .CaughtArticuno
 
-	ld a, ZAPDOS - 1
-	call CheckCaughtMon
+	ld de, ENGINE_PLAYER_CAUGHT_ZAPDOS
+	farcall EngineFlagAction
 	jr nz, .CaughtZapdos
 	eventflagreset EVENT_ROUTE_10_ZAPDOS
 	eventflagreset EVENT_ZAPDOS_GONE
 .CaughtZapdos
 
-	ld a, MOLTRES - 1
-	call CheckCaughtMon
+	ld de, ENGINE_PLAYER_CAUGHT_MOLTRES
+	farcall EngineFlagAction
 	jr nz, .CaughtMoltres
 	eventflagreset EVENT_CINNABAR_VOLCANO_MOLTRES
 .CaughtMoltres
 
-	ld a, MEWTWO - 1
-	call CheckCaughtMon
+	ld de, ENGINE_PLAYER_CAUGHT_MEWTWO
+	farcall EngineFlagAction
 	jr nz, .CaughtMewtwo
 	eventflagreset EVENT_CERULEAN_CAVE_MEWTWO
 .CaughtMewtwo
 
-	ld a, MEW - 1
-	call CheckCaughtMon
+	ld de, ENGINE_PLAYER_CAUGHT_MEW
+	farcall EngineFlagAction
 	jr nz, .CaughtMew
 	eventflagreset EVENT_FARAWAY_JUNGLE_MEW
 .CaughtMew
 
-	ld a, ARTICUNO - 1
-	call CheckCaughtMon
+	ld de, ENGINE_PLAYER_CAUGHT_RAIKOU
+	farcall EngineFlagAction
 	jr nz, .CaughtRaikou
 	ld hl, wRoamMon1Species
 	ld a, [hl]
@@ -394,8 +414,8 @@ RespawnOneOffs:
 	call z, RespawnRoamingRaikou
 .CaughtRaikou
 
-	ld a, ZAPDOS - 1
-	call CheckCaughtMon
+	ld de, ENGINE_PLAYER_CAUGHT_ENTEI
+	farcall EngineFlagAction
 	jr nz, .CaughtEntei
 	ld hl, wRoamMon2Species
 	ld a, [hl]
@@ -404,35 +424,57 @@ RespawnOneOffs:
 .CaughtEntei
 
 	eventflagcheck EVENT_FOUGHT_SUICUNE
-	jr z, .CaughtSuicune
-	ld a, MOLTRES - 1
-	call CheckCaughtMon
-	jr nz, .CaughtSuicune
+	jr z, .CaughtOrNeverFoughtSuicune
+	ld de, ENGINE_PLAYER_CAUGHT_SUICUNE
+	farcall EngineFlagAction
+	jr nz, .CaughtOrNeverFoughtSuicune
 	ld hl, wRoamMon3Species
 	ld a, [hl]
 	and a
 	call z, RespawnRoamingSuicune
-.CaughtSuicune
+.CaughtOrNeverFoughtSuicune
 
-	ld a, MELTAN - 1
-	call CheckCaughtMon
+	ld de, ENGINE_PLAYER_CAUGHT_LUGIA
+	farcall EngineFlagAction
 	jr nz, .CaughtLugia
 	eventflagreset EVENT_WHIRL_ISLAND_LUGIA_CHAMBER_LUGIA
 	eventflagreset EVENT_FOUGHT_LUGIA
 .CaughtLugia
 
-	ld a, MELMETAL - 1
-	call CheckCaughtMon
-	ret nz
+	ld de, ENGINE_PLAYER_CAUGHT_HO_OH
+	farcall EngineFlagAction
+	jr nz, .CaughtHoOh
 	eventflagreset EVENT_TIN_TOWER_ROOF_HO_OH
 	eventflagreset EVENT_FOUGHT_HO_OH
+	eventflagreset EVENT_EUSINES_HOUSE_EUSINE
+.CaughtHoOh
+
+	ld de, ENGINE_PLAYER_CAUGHT_GALARIAN_ARTICUNO
+	farcall EngineFlagAction
+	jr nz, .CaughtGalarianArticuno
+	eventflagreset EVENT_CHERRYGROVE_BAY_FOUGHT_GALARIAN_ARTICUNO
+.CaughtGalarianArticuno
+
+	ld de, ENGINE_PLAYER_CAUGHT_GALARIAN_ZAPDOS
+	farcall EngineFlagAction
+	jr nz, .CaughtGalarianZapdos
+	eventflagreset EVENT_CHERRYGROVE_BAY_FOUGHT_GALARIAN_ZAPDOS
+.CaughtGalarianZapdos
+
+	ld de, ENGINE_PLAYER_CAUGHT_GALARIAN_MOLTRES
+	farcall EngineFlagAction
+	ret nz
+	eventflagreset EVENT_CHERRYGROVE_BAY_FOUGHT_GALARIAN_MOLTRES
 	ret
 
 RespawnRoamingRaikou:
-	ld a, ARTICUNO
+	ld a, RAIKOU
 	ld [wRoamMon1Species], a
 	ld a, 50
 	ld [wRoamMon1Level], a
+	assert HIGH(RAIKOU) == 0
+	ld a, PLAIN_FORM
+	ld [wRoamMon1Form], a
 	ld a, GROUP_ROUTE_42
 	ld [wRoamMon1MapGroup], a
 	ld a, MAP_ROUTE_42
@@ -442,10 +484,13 @@ RespawnRoamingRaikou:
 	ret
 
 RespawnRoamingEntei:
-	ld a, ZAPDOS
+	ld a, ENTEI
 	ld [wRoamMon2Species], a
 	ld a, 50
 	ld [wRoamMon2Level], a
+	assert HIGH(ENTEI) == 0
+	ld a, PLAIN_FORM
+	ld [wRoamMon2Form], a
 	ld a, GROUP_ROUTE_37
 	ld [wRoamMon2MapGroup], a
 	ld a, MAP_ROUTE_37
@@ -455,10 +500,13 @@ RespawnRoamingEntei:
 	ret
 
 RespawnRoamingSuicune:
-	ld a, MOLTRES
+	ld a, SUICUNE
 	ld [wRoamMon3Species], a
 	ld a, 50
 	ld [wRoamMon3Level], a
+	assert HIGH(SUICUNE) == 0
+	ld a, PLAIN_FORM
+	ld [wRoamMon3Form], a
 	ld a, GROUP_ROUTE_38
 	ld [wRoamMon3MapGroup], a
 	ld a, MAP_ROUTE_38

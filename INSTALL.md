@@ -12,7 +12,7 @@ If you just want to play Polished Crystal, use one of the .ips patches as descri
 
 To build on Windows, install [**Cygwin**](http://cygwin.com/install.html) with the default settings.
 
-In the installer, select the following packages: `git`, `python`, `make`, and `gcc-core`.
+In the installer, select the following packages: `git`, `make`, and `gcc-core`.
 
 In the **Cygwin terminal**:
 
@@ -22,7 +22,7 @@ cd polishedcrystal
 mkdir rgbds
 ```
 
-Then download [**rgbds**](https://rgbds.gbdev.io/). If you're building Polished Crystal 2.2.0, get rgbds version 0.3.9. If you're building the 3.0.0 beta, you'll need version **0.5.2**. Extract the archive and put all the .exe and .dll files in polishedcrystal/rgbds.
+Then download [**rgbds 1.0.1**](https://rgbds.gbdev.io/). (If you're building an older release of Polished Crystal, you may need an older version of RGBDS.) Extract the archive and put all the .exe and .dll files in polishedcrystal/rgbds.
 
 To build **polishedcrystal.gbc**:
 
@@ -33,7 +33,7 @@ make
 To build other versions:
 
 ```bash
-make [faithful] [nortc] [hgss|monochrome|noir] [debug]
+make [faithful] [hgss|monochrome|noir] [debug]
 ```
 
 For example, to build a mononchrome faithful version:
@@ -45,10 +45,8 @@ make faithful monochrome
 
 ## Linux
 
-Python 2.7 is required.
-
 ```bash
-sudo apt-get install make python gcc git bison
+sudo apt-get install make gcc git bison
 
 git clone https://github.com/gbdev/rgbds.git
 cd rgbds
@@ -68,7 +66,7 @@ make
 To build other versions:
 
 ```bash
-make [faithful] [nortc] [hgss|monochrome|noir] [debug]
+make [faithful] [hgss|monochrome|noir] [debug]
 ```
 
 
@@ -82,10 +80,7 @@ In **Terminal**, run:
 ```bash
 xcode-select --install
 
-git clone https://github.com/gbdev/rgbds.git
-cd rgbds
-sudo make install
-cd ..
+brew install rgbds
 
 git clone https://github.com/Rangi42/polishedcrystal.git
 cd polishedcrystal
@@ -100,5 +95,5 @@ make
 To build other versions:
 
 ```bash
-make [faithful] [nortc] [hgss|monochrome|noir] [debug]
+make [faithful] [hgss|monochrome|noir] [debug]
 ```

@@ -14,13 +14,13 @@ CeladonCafe_MapScriptHeader:
 	bg_event  7,  1, BGEVENT_JUMPTEXT, EatathonContestTrashCanText
 
 	def_object_events
-	object_event  7,  4, SPRITE_MAYLENE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MayleneScript, -1
-	object_event  4,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonCafeTeacher, -1
-	object_event  4,  6, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher1, -1
-	object_event  1,  7, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher2, -1
-	object_event  1,  2, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher3, -1
-	object_event  9,  3, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, ChefText_Eatathon, -1
-	object_event 11,  4, SPRITE_BAKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCafeBakerText, -1
+	object_event  7,  4, SPRITE_MAYLENE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, MayleneScript, -1
+	object_event  4,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonCafeTeacher, -1
+	object_event  4,  6, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher1, -1
+	object_event  1,  7, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher2, -1
+	object_event  1,  2, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonCafeFisher3, -1
+	object_event  9,  3, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, ChefText_Eatathon, -1
+	object_event 11,  4, SPRITE_BAKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCafeBakerText, -1
 
 	object_const_def
 	const CELADONCAFE_MAYLENE
@@ -33,19 +33,19 @@ MayleneScript:
 	writetext MayleneText2
 	waitbutton
 	checkevent EVENT_BEAT_MAYLENE
-	iftrue .Done
+	iftruefwd .Done
 	writetext MayleneText3
 	yesorno
-	iffalse .Refused
+	iffalsefwd .Refused
 	writetext MayleneSeenText
 	waitbutton
 	closetext
 	winlosstext MayleneBeatenText, 0
 	setlasttalked CELADONCAFE_MAYLENE
 	checkevent EVENT_BEAT_ELITE_FOUR_AGAIN
-	iftrue .Rematch
+	iftruefwd .Rematch
 	loadtrainer MAYLENE, 1
-	sjump .StartBattle
+	sjumpfwd .StartBattle
 .Rematch
 	loadtrainer MAYLENE, 2
 .StartBattle
@@ -69,7 +69,7 @@ MayleneScript:
 
 CeladonCafeTeacher:
 	checkkeyitem COIN_CASE
-	iftrue .NoCoinCase
+	iftruefwd .NoCoinCase
 	showtext TeacherText_CrunchCrunch
 	showtextfaceplayer TeacherText_NoCoinCase
 	turnobject LAST_TALKED, LEFT

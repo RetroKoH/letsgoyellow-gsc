@@ -1,11 +1,11 @@
 StatNames:
 ; entries correspond to stat ids
-	list_start StatNames
+	list_start
 	li "Attack"
 	li "Defense"
 	li "Speed"
-	li "Spcl.Atk"
-	li "Spcl.Def"
+	li "Sp.Atk"
+	li "Sp.Def"
 	li "Accuracy"
 	li "Evasion"
 	li "stats" ; used for Curse

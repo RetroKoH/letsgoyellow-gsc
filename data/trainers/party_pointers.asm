@@ -2,9 +2,11 @@
 
 TrainerGroups:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
-	table_width 3, TrainerGroups
-	dba ElaineGroup
-	dba ChaseGroup
+	table_width 3
+	dba CalGroup
+	dba CarrieGroup
+	dba JackyGroup
+	dba EunaGroup
 	dba FalknerGroup
 	dba BugsyGroup
 	dba WhitneyGroup
@@ -63,11 +65,7 @@ TrainerGroups:
 	dba HexManiacGroup
 	dba SageGroup
 	dba MediumGroup
-	dba KimonoGirl1Group
-	dba KimonoGirl2Group
-	dba KimonoGirl3Group
-	dba KimonoGirl4Group
-	dba KimonoGirl5Group
+	dba KimonoGirlGroup
 	dba ElderGroup
 	dba SrAndJrGroup
 	dba CoupleGroup
@@ -90,7 +88,8 @@ TrainerGroups:
 	dba BattleGirlGroup
 	dba DragonTamerGroup
 	dba EngineerGroup
-	dba TeacherGroup
+	dba TeacherFGroup
+	dba TeacherMGroup
 	dba GuitaristMGroup
 	dba GuitaristFGroup
 	dba BikerGroup
@@ -98,6 +97,7 @@ TrainerGroups:
 	dba TamerGroup
 	dba ArtistGroup
 	dba AromaLadyGroup
+	dba SoldierGroup
 	dba WaiterGroup
 	dba WaitressGroup
 	dba SightseerMGroup
@@ -119,12 +119,13 @@ TrainerGroups:
 	dba MysticalmanGroup
 	dba KarateKingGroup
 	dba TowerTycoonGroup
+	dba FactoryHeadGroup
 	dba JessieJamesGroup
 	dba LoreleiGroup
 	dba AgathaGroup
 	dba StevenGroup
 	dba CynthiaGroup
-	dba InverGroup
+	dbw BANK(@), wInverGroup
 	dba CherylGroup
 	dba RileyGroup
 	dba BuckGroup
@@ -138,9 +139,11 @@ TrainerGroups:
 	dba SparkGroup
 	dba FlanneryGroup
 	dba MayleneGroup
-	dba SkylaGroup
+	dba MarlonGroup
 	dba ValerieGroup
 	dba KukuiGroup
+	dba PiersGroup
+	dba KatyGroup
 	dba VictorGroup
 	dba BillGroup
 	dba YellowGroup

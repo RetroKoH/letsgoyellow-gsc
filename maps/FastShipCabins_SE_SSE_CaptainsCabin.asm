@@ -16,17 +16,17 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  2, 17, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, SSAquaGrandpa, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
-	object_event  3, 17, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, SSAquaGranddaughterHadFunText, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
-	object_event  2, 25, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SSAquaGranddaughterBefore, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
-	object_event  3, 25, SPRITE_CAPTAIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SSAquaCaptain, -1
-	object_event  5,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	object_event  2,  4, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	object_event  3,  4, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
-	object_event  5,  5, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
-	object_event  2,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	object_event  5,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
-	object_event  1, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	object_event  2, 17, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, SSAquaGrandpa, EVENT_FAST_SHIP_CABINS_SE_SSE_GENTLEMAN
+	object_event  3, 17, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, SSAquaGranddaughterHadFunText, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_1
+	object_event  2, 25, SPRITE_TWIN, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SSAquaGranddaughterBefore, EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
+	object_event  3, 25, SPRITE_CAPTAIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, SSAquaCaptain, -1
+	object_event  5,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerPokefanmColin, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	object_event  2,  4, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsMegandpeg1, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	object_event  3,  4, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsMegandpeg2, EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	object_event  5,  5, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerPsychicRodney, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
+	object_event  2,  3, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPokefanmJeremy, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	object_event  5,  5, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerPokefanfGeorgia, EVENT_FAST_SHIP_PASSENGERS_WESTBOUND
+	object_event  1, 15, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerSupernerdShawn, EVENT_FAST_SHIP_PASSENGERS_EASTBOUND
 
 	object_const_def
 	const FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN
@@ -36,7 +36,15 @@ FastShipCabins_SE_SSE_CaptainsCabin_MapScriptHeader:
 SSAquaCaptain:
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue_jumptextfaceplayer SSAquaCaptainHowDoYouLikeText
-	jumptextfaceplayer SSAquaCaptainExhaustingText
+	jumpthistextfaceplayer
+
+	text "Whew! Thanks for"
+	line "coming along."
+
+	para "Keeping that lit-"
+	line "tle girl amused"
+	cont "was exhausting."
+	done
 
 SSAquaGranddaughterBefore:
 	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, RIGHT
@@ -44,33 +52,30 @@ SSAquaGranddaughterBefore:
 	showtextfaceplayer SSAquaGranddaughterHasToFindGrandpaText
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
+	callasm DisableDynPalUpdates
 	disappear FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2
 	applymovement PLAYER, SSAquaCaptainsCabinWarpsToGrandpasCabinMovement
 	moveobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, 3, 19
 	appear FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1
 	turnobject PLAYER, UP
 	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, UP
-	special Special_FadeInQuickly
+	loadmem wObject1Palette, 1
+	callasm SetBlackObjectPals
+	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, RIGHT
+	callasm FadeInPalettes_EnableDynNoApply
 	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, DOWN
 	showemote EMOTE_SHOCK, FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, 15
 	applymovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN1, SSAquaGranddaughterEntersCabinMovement
 	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, RIGHT
-	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue UnknownScript_0x75f03
-	showtext SSAquaGranddaughterWasPlayingMText
-	sjump UnknownScript_0x75f09
-
-UnknownScript_0x75f03:
-	showtext SSAquaGranddaughterWasPlayingFText
-UnknownScript_0x75f09:
+	showtext SSAquaGranddaughterWasPlayingText
 	turnobject FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_TWIN2, DOWN
 	applyonemovement FASTSHIPCABINS_SE_SSE_CAPTAINSCABIN_GENTLEMAN, step_down
 	opentext
 	writetext SSAquaEntertainedGranddaughterText
 	promptbutton
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	setmapscene FAST_SHIP_1F, $0
-	sjump SSAquaMetalCoatAndDocking
+	setmapscene FAST_SHIP_1F, SCENE_FASTSHIP1F_NOOP
+	sjumpfwd SSAquaMachoBraceAndDocking
 
 SSAquaGrandpa:
 	checkevent EVENT_GOT_MACHO_BRACE_FROM_GRANDPA_ON_SS_AQUA
@@ -78,18 +83,24 @@ SSAquaGrandpa:
 	faceplayer
 	opentext
 	checkevent EVENT_FAST_SHIP_CABINS_SE_SSE_CAPTAINS_CABIN_TWIN_2
-	iftrue SSAquaFoundGranddaughter
+	iftruefwd SSAquaFoundGranddaughter
 	writetext SSAquaCantFindGranddaughterText
 	waitbutton
 	closetext
-	setmapscene FAST_SHIP_1F, $0
+	setmapscene FAST_SHIP_1F, SCENE_FASTSHIP1F_NOOP
 	end
 
-SSAquaMetalCoatAndDocking:
+SSAquaMachoBraceAndDocking:
 	writetext SSAquaGrandpaHaveThisText
 	promptbutton
 	verbosegiveitem MACHO_BRACE
+	iffalsefwd .FailedMachoBrace
 	setevent EVENT_GOT_MACHO_BRACE_FROM_GRANDPA_ON_SS_AQUA
+	sjumpfwd .ContinueDocking
+.FailedMachoBrace:
+	writetext .NoRoomForMachoBrace
+	waitbutton
+.ContinueDocking:
 	closetext
 	waitsfx
 	playsound SFX_ELEVATOR_END
@@ -100,6 +111,12 @@ SSAquaMetalCoatAndDocking:
 	setevent EVENT_FAST_SHIP_HAS_ARRIVED
 	setevent EVENT_FAST_SHIP_FOUND_GIRL
 	endtext
+
+.NoRoomForMachoBrace:
+	text "But you can't carry"
+	line "it! I'll keep it"
+	cont "for another trip."
+	done
 
 SSAquaFoundGranddaughter:
 	writetext SSAquaGrandpaHaveThisText
@@ -183,14 +200,6 @@ SSAquaGranddaughterEntersCabinMovement:
 	turn_head_left
 	step_end
 
-SSAquaCaptainExhaustingText:
-	text "Whew! Thanks for"
-	line "coming along."
-
-	para "Keeping that lit-"
-	line "tle girl amused"
-	cont "was exhausting."
-	done
 
 SSAquaCaptainHowDoYouLikeText:
 	text "How do you like"
@@ -260,20 +269,12 @@ SSAquaGranddaughterHasToFindGrandpaText:
 	line "Grandpa!"
 	done
 
-SSAquaGranddaughterWasPlayingMText:
+SSAquaGranddaughterWasPlayingText:
 	text "Grandpa, here I"
 	line "am! I was playing"
 
 	para "with the Captain"
-	line "and this guy!"
-	done
-
-SSAquaGranddaughterWasPlayingFText:
-	text "Grandpa, here I"
-	line "am! I was playing"
-
-	para "with the Captain"
-	line "and this big girl!"
+	line "and this big kid!"
 	done
 
 SSAquaGranddaughterHadFunText:

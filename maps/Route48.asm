@@ -1,5 +1,7 @@
 Route48_MapScriptHeader:
 	def_scene_scripts
+	scene_const SCENE_ROUTE48_JESSIE_AND_JAMES
+	scene_const SCENE_ROUTE48_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, Route48JessieJamesCallback
@@ -8,17 +10,17 @@ Route48_MapScriptHeader:
 	warp_event 11,  5, YELLOW_FOREST_GATE, 3
 
 	def_coord_events
-	coord_event 20, 12, 0, Route48JessieJamesScript1
-	coord_event 20, 13, 0, Route48JessieJamesScript2
+	coord_event 20, 12, SCENE_ROUTE48_JESSIE_AND_JAMES, Route48JessieJamesScript1
+	coord_event 20, 13, SCENE_ROUTE48_JESSIE_AND_JAMES, Route48JessieJamesScript2
 
 	def_bg_events
 	bg_event 27, 11, BGEVENT_JUMPTEXT, Route48YellowForestSignText
 
 	def_object_events
-	object_event 11,  6, SPRITE_ARCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerArcher2, EVENT_CLEARED_YELLOW_FOREST
-	object_event 15, 12, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_48_JESSIE
-	object_event 26, 12, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_48_JAMES
-	object_event 11,  5, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_48_NURSE
+	object_event 11,  6, SPRITE_ARCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerArcher2, EVENT_CLEARED_YELLOW_FOREST
+	object_event 15, 12, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_48_JESSIE
+	object_event 26, 12, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_48_JAMES
+	object_event 11,  5, SPRITE_NURSE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_48_NURSE
 	itemball_event  4, 13, NUGGET, 1, EVENT_ROUTE_48_NUGGET
 
 	object_const_def
@@ -43,11 +45,11 @@ Route48JessieJamesScript1:
 	appear ROUTE48_JESSIE
 	appear ROUTE48_JAMES
 	playmusic MUSIC_JESSIE_JAMES_ENCOUNTER
+	applyonemovement ROUTE48_JAMES, step_left
+	follow ROUTE48_JESSIE, ROUTE48_JAMES
 	applymovement ROUTE48_JESSIE, JessieEnterMovementData
-	applymovement ROUTE48_JAMES, JamesEnterMovementData
+	stopfollow
 	showtext Route48JessieJamesSeenText
-	setscene $1
-	setevent EVENT_BEAT_JESSIE_AND_JAMES
 	setevent EVENT_ROUTE_48_JESSIE
 	setevent EVENT_ROUTE_48_JAMES
 	winlosstext Route48JessieJamesBeatenText, 0
@@ -56,45 +58,24 @@ Route48JessieJamesScript1:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
+	setscene SCENE_ROUTE48_NOOP
 	special DeleteSavedMusic
 	playmusic MUSIC_JESSIE_JAMES_ENCOUNTER
 	showtext Route48JessieJamesAfterText
-	applymovement ROUTE48_JESSIE, JessieLeaveMovementData
-	applymovement ROUTE48_JAMES, JamesLeaveMovementData
+	follow ROUTE48_JESSIE, ROUTE48_JAMES
+	loadmem wFollowMovementQueue, movement_teleport_from
+	applyonemovement ROUTE48_JESSIE, teleport_from
+	stopfollow
 	disappear ROUTE48_JESSIE
 	disappear ROUTE48_JAMES
 	playmapmusic
-Route48JessieJamesScript_End:
 	end
 
 JessieEnterMovementData:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_end
-
-JamesEnterMovementData:
-	step_left
-	step_left
-	step_left
-	step_left
-	step_left
-	step_end
-
-JessieLeaveMovementData:
-	run_step_left
-	run_step_left
-	run_step_left
-	run_step_left
-	step_end
-
-JamesLeaveMovementData:
-	run_step_right
-	run_step_right
-	run_step_right
-	run_step_right
-	run_step_right
+	paired_step_right
+	paired_step_right
+	paired_step_right
+	paired_step_right
 	step_end
 
 TrainerArcher2:
@@ -199,16 +180,14 @@ Route48NurseText1:
 	line "from the window!"
 
 	para "You drove away"
-	line "Team Rocket"
-	cont "and saved the"
-	cont "Pikachu!"
+	line "Team Rocket and"
+	cont "saved the Pikachu!"
 
-	para "Thank you so"
-	line "much!"
+	para "Thank you so much!"
 
 	para "Your #mon de-"
-	line "serve a rest"
-	cont "after all that."
+	line "serve a rest after"
+	cont "all that."
 	done
 
 Route48NurseText2:

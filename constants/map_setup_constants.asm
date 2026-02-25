@@ -12,14 +12,13 @@
 	const MAPSETUP_TRAIN      ; f9
 	const MAPSETUP_SUBMENU    ; fa
 	const MAPSETUP_BADWARP    ; fb
-	const MAPSETUP_SKYSOAR    ; fc
-NUM_MAPSETUP_SCRIPTS EQU const_value - $f1
+	const MAPSETUP_FLY        ; fc
+DEF NUM_MAPSETUP_SCRIPTS EQU const_value - $f1
 
 ; callback types
 	const_def 1
 	const MAPCALLBACK_TILES
 	const MAPCALLBACK_OBJECTS
 	const MAPCALLBACK_STONETABLE
-	const MAPCALLBACK_SPRITES
+	const_skip ; unused
 	const MAPCALLBACK_NEWMAP
-	const MAPCALLBACK_BLOCKS

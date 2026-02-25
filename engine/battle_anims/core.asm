@@ -23,12 +23,10 @@ QueueBattleAnimation:
 	ld b, h
 	ld hl, wLastAnimObjectIndex
 	inc [hl]
-	; fallthrough
 
-InitBattleAnimation:
-	ld a, [wBattleAnimTemp0]
-	ld e, a
-	ld d, 0
+	ld hl, wBattleAnimTemp0
+	ld e, [hl]
+	; d was set to 0 or 1 previously
 	ld hl, BattleAnimObjects
 rept 6
 	add hl, de
@@ -79,17 +77,21 @@ endr
 BattleAnimOAMUpdate:
 	call InitBattleAnimBuffer
 	call GetBattleAnimFrame
-	cp -3
+	ld a, h
+	cp HIGH(battleoamwait_command)
 	jmp z, .done
-	cp -4
+	cp HIGH(battleoamdelete_command)
 	jmp z, .delete
-	push af
+
+	push hl
 	ld hl, wBattleAnimTempOAMFlags
 	ld a, [wBattleAnimTemp7]
 	xor [hl]
 	and $e0
 	ld [hl], a
-	pop af
+	call .SetDynamicTileData
+	pop hl
+
 	push bc
 	call GetBattleAnimOAMPointer
 	ld a, [wBattleAnimTempTileID]
@@ -103,7 +105,7 @@ BattleAnimOAMUpdate:
 	ld l, a
 	ld a, [wBattleAnimOAMPointerLo]
 	ld e, a
-	ld d, HIGH(wVirtualOAM)
+	ld d, HIGH(wShadowOAM)
 .loop
 	ld a, [wBattleAnimTempYCoord]
 	ld b, a
@@ -113,7 +115,7 @@ BattleAnimOAMUpdate:
 	push hl
 	ld a, [hl]
 	ld hl, wBattleAnimTempOAMFlags
-	bit 6, [hl]
+	bit B_OAM_YFLIP, [hl]
 	jr z, .no_yflip
 	add $8
 	cpl
@@ -133,7 +135,7 @@ BattleAnimOAMUpdate:
 	push hl
 	ld a, [hl]
 	ld hl, wBattleAnimTempOAMFlags
-	bit 5, [hl]
+	bit B_OAM_XFLIP, [hl]
 	jr z, .no_xflip
 	add $8
 	cpl
@@ -157,7 +159,7 @@ BattleAnimOAMUpdate:
 	xor b
 	and $e0
 	ld b, a
-	ld a, [hl]
+	ld a, [hli]
 	and $10
 	or b
 	ld b, a
@@ -165,7 +167,6 @@ BattleAnimOAMUpdate:
 	and $f
 	or b
 	ld [de], a
-	inc hl
 	inc de
 	ld a, e
 	ld [wBattleAnimOAMPointerLo], a
@@ -187,6 +188,59 @@ BattleAnimOAMUpdate:
 	pop bc
 	scf
 	ret
+
+.SetDynamicTileData:
+	; If frameset ID is dynamic, var3 may adjust XY flip.
+	ld hl, BATTLEANIMSTRUCT_FRAMESET_ID
+	add hl, bc
+	ld a, [hl]
+	cp FIRST_DYNAMIC_FRAMESET
+	ret c
+
+	; Graphics are ordered in E S NE order.
+	ld hl, BATTLEANIMSTRUCT_VAR3
+	add hl, bc
+	ld a, [hl]
+
+	; Perhaps set priority
+	bit 3, a
+	push af
+	and $7
+	add a
+	add LOW(.tile_data)
+	ld l, a
+	adc HIGH(.tile_data)
+	sub l
+	ld h, a
+	pop af
+
+	; First, set XY flip.
+	ld a, [hli]
+	jr z, .no_priority
+	or OAM_PRIO
+.no_priority
+	push hl
+	ld hl, wBattleAnimTempOAMFlags
+	xor [hl]
+	ld [hl], a
+	pop hl
+	ld a, [hl]
+
+	; Then, adjust tile ID
+	ld hl, wBattleAnimTempTileID
+	add [hl]
+	ld [hl], a
+	ret
+
+.tile_data
+	db OAM_XFLIP, $00 ; W
+	db OAM_XFLIP, $08 ; NW
+	db OAM_YFLIP, $04 ; N
+	db 0, $08 ; NE
+	db OAM_YFLIP, $00 ; E
+	db OAM_YFLIP, $08 ; SE
+	db OAM_XFLIP, $04 ; S
+	db OAM_XFLIP | OAM_YFLIP, $08 ; SW
 
 InitBattleAnimBuffer:
 	ld hl, BATTLEANIMSTRUCT_OAMFLAGS
@@ -247,6 +301,14 @@ InitBattleAnimBuffer:
 	or a
 	jr nz, .no_sub
 	ld a, [wFXAnimIDLo]
+	cp PSYSTRIKE
+	jr z, .sub_8
+	cp FRESH_SNACK
+	jr nz, .no_sub
+.sub_8
+	pop af
+	sub 1 * 8
+	jr .done
 .no_sub
 	pop af
 .done

@@ -1,35 +1,35 @@
 Script_BattleWhiteout::
 	callasm BattleBGMap
-	sjump Script_Whiteout
+	sjumpfwd Script_Whiteout
 
 Script_OverworldWhiteout::
-	refreshscreen
+	reanchormap
 	callasm OverworldWhiteoutFade
 
 Script_Whiteout:
 	callasm LoseMoney
-	iffalse .whiteout_text
+	iffalsefwd .whiteout_text
 	readmem wBattlePlayerAction
-	ifequal BATTLEACTION_FORFEIT, .forfeit_text
+	ifequalfwd BATTLEACTION_FORFEIT, .forfeit_text
 	callasm DetermineWildBattlePanic
-	iffalse .whiteout_wild_text
+	iffalsefwd .whiteout_wild_text
 	farwritetext WhiteoutToTrainerText
-	sjump .text_done
+	sjumpfwd .text_done
 .forfeit_text
 	farwritetext ForfeitToTrainerText
-	sjump .text_done
+	sjumpfwd .text_done
 .whiteout_wild_text
 	farwritetext WhiteoutToWildText
-	sjump .text_done
+	sjumpfwd .text_done
 .whiteout_text
 	farwritetext WhiteoutText
 .text_done
 	waitbutton
 	special FadeOutPalettes
 	pause 40
-	special HealPartyEvenForNuzlocke
+	special HealParty
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue .bug_contest
+	iftruefwd .bug_contest
 	callasm GetWhiteoutSpawn
 	farscall Script_AbortBugContest
 	special WarpToSpawnPoint
@@ -43,14 +43,14 @@ OverworldWhiteoutFade:
 	farcall FadeOutPalettes
 	call ClearTileMap
 	call ClearSprites
-	ld a, CGB_DIPLOMA
+	ld a, CGB_PLAIN
 	call GetCGBLayout
-	jmp SetPalettes
+	jmp SetDefaultBGPAndOBP
 
 BattleBGMap:
 	ld a, CGB_BATTLE_GRAYSCALE
 	call GetCGBLayout
-	jmp SetPalettes
+	jmp SetDefaultBGPAndOBP
 
 ; Gen VI money loss code by TPP Anniversary Crystal 251
 ; https://github.com/TwitchPlaysPokemon/tppcrystal251pub/blob/public/main.asm
@@ -62,10 +62,10 @@ LoseMoney:
 	or [hl]
 	inc hl
 	or [hl]
-	ld a, FALSE
+	ld a, FALSE ; no-optimize a = 0
 	jr z, .load
 	ld hl, wBadges
-	ld b, 2
+	ld b, wBadgesEnd - wBadges
 	call CountSetBits
 	cp 9
 	jr c, .okay
@@ -95,7 +95,7 @@ LoseMoney:
 	ldh [hMultiplicand + 1], a
 	ld a, b
 	ldh [hMultiplicand + 2], a
-	call Multiply
+	farcall Multiply
 	ld de, hMoneyTemp
 	ld hl, hProduct + 1
 	call .copy
@@ -154,10 +154,8 @@ GetWhiteoutSpawn:
 	ld a, [wLastSpawnMapNumber]
 	ld e, a
 	farcall IsSpawnPoint
-	ld a, c
-	jr c, .yes
-	xor a ; SPAWN_HOME
-
-.yes
+	; a = carry ? c : SPAWN_HOME (0)
+	sbc a
+	and c
 	ld [wDefaultSpawnpoint], a
 	ret

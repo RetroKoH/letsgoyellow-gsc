@@ -1,6 +1,7 @@
 BrunosRoom_MapScriptHeader:
 	def_scene_scripts
-	scene_script BrunosRoomEntranceTrigger
+	scene_script BrunosRoomLockDoorScene, SCENE_BRUNOSROOM_LOCK_DOOR
+	scene_const SCENE_BRUNOSROOM_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, BrunosRoomDoorCallback
@@ -16,39 +17,39 @@ BrunosRoom_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  7, SPRITE_BRUNO, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BrunoScript, -1
+	object_event  5,  7, SPRITE_BRUNO, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BrunoScript, -1
 
-BrunosRoomEntranceTrigger:
+BrunosRoomLockDoorScene:
 	sdefer .Script
 	end
 
 .Script:
 	applymovement PLAYER, WalkIntoEliteFourRoomMovement
-	refreshscreen
+	reanchormap
 	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock 4, 14, $2a
-	reloadmappart
+	refreshmap
 	closetext
-	setscene $1
+	setscene SCENE_BRUNOSROOM_NOOP
 	setevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
 
 BrunosRoomDoorCallback:
 	checkevent EVENT_BRUNOS_ROOM_ENTRANCE_CLOSED
-	iffalse .KeepDoorClosed
+	iffalsefwd .KeepDoorClosed
 	changeblock 4, 14, $2a
 .KeepDoorClosed:
 	checkevent EVENT_BRUNOS_ROOM_EXIT_OPEN
-	iffalse .OpenDoor
+	iffalsefwd .OpenDoor
 	changeblock 4, 2, $16
 .OpenDoor:
 	endcallback
 
 BrunoScript:
 	readvar VAR_BADGES
-	ifequal 16, .Rematch
+	ifequalfwd 16, .Rematch
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
 	iftrue_jumptextfaceplayer .AfterText
 	showtextfaceplayer .SeenText
@@ -57,7 +58,7 @@ BrunoScript:
 	startbattle
 	reloadmapafterbattle
 	showtext .AfterText
-	sjump .EndBattle
+	sjumpfwd .EndBattle
 
 .Rematch:
 	checkevent EVENT_BEAT_ELITE_4_BRUNO
@@ -71,7 +72,7 @@ BrunoScript:
 .EndBattle:
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16
-	reloadmappart
+	refreshmap
 	setevent EVENT_BRUNOS_ROOM_EXIT_OPEN
 	setevent EVENT_BEAT_ELITE_4_BRUNO
 	waitsfx

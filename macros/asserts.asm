@@ -1,85 +1,148 @@
 ; Macros to verify assumptions about the data or code
 
-table_width: MACRO
+MACRO? dbas
+	db BANK(\1)
+	dw \#
+	for x, 1, _NARG
+		for y, x + 1, _NARG + 1
+			assert BANK(\<x>) == BANK(\<y>) || !BANK(\<x>) || !BANK(\<y>), \
+				"\<x> and \<y> must be in the same bank"
+		endr
+	endr
+ENDM
+
+MACRO? farbank
+	REDEF CURRENT_FAR_BANK EQUS "\1"
+ENDM
+
+MACRO? fardw
+	rept _NARG
+		dw \1
+		assert BANK(\1) == BANK({CURRENT_FAR_BANK}) || !BANK(\1), \
+			"\1 must be in the bank of {CURRENT_FAR_BANK}"
+		shift
+	endr
+ENDM
+
+MACRO? _redef_current_label
+	if DEF(\1)
+		PURGE \1
+	endc
+	if _NARG == 3 + (\3)
+		DEF \1 EQUS "\<_NARG>"
+	elif STRLEN(#__SCOPE__)
+		if {{__SCOPE__}} - @ == 0
+			DEF \1 EQUS #{__SCOPE__}
+		endc
+	endc
+	if !DEF(\1)
+		DEF \1 EQUS \2
+		{\1}:
+	endc
+ENDM
+
+MACRO? table_width
 	def CURRENT_TABLE_WIDTH = \1
-	if _NARG == 2
-		REDEF CURRENT_TABLE_START EQUS "\2"
-	else
-		REDEF CURRENT_TABLE_START EQUS "._table_width\@"
-		{CURRENT_TABLE_START}:
-	endc
+	_redef_current_label CURRENT_TABLE_START, "._table_width\@", 2, \#
 ENDM
 
-assert_table_length: MACRO
-	def x = \1
-	assert x * CURRENT_TABLE_WIDTH == @ - {CURRENT_TABLE_START}, \
-		"{CURRENT_TABLE_START}: expected {d:x} entries, each {d:CURRENT_TABLE_WIDTH} bytes"
+MACRO? assert_table_length
+	def v = \1
+	def x = v * CURRENT_TABLE_WIDTH
+	def y = @ - {CURRENT_TABLE_START}
+	assert x == y, "{CURRENT_TABLE_START}: expected {d:v} entries, each {d:CURRENT_TABLE_WIDTH} " ++ \
+		"bytes, for {d:x} total; but got {d:y} bytes"
 ENDM
 
-list_start: MACRO
+MACRO? list_start
 	def list_index = 0
-	if _NARG == 1
-		REDEF CURRENT_LIST_START EQUS "\1"
-	else
-		REDEF CURRENT_LIST_START EQUS "._list_start\@"
-		{CURRENT_LIST_START}:
-	endc
+	_redef_current_label CURRENT_LIST_START, "._list_start\@", 1, \#
 ENDM
 
-li: MACRO
-	assert !STRIN(\1, "@"), STRCAT("String terminator \"@\" in list entry: ", \1)
+MACRO? li
+	assert STRFIND(\1, "@") == -1, "String terminator \"@\" in list entry: \1"
 	db \1, "@"
 	redef list_index += 1
 ENDM
 
-assert_list_length: MACRO
+MACRO? assert_list_length
 	def x = \1
 	assert x == list_index, \
 		"{CURRENT_LIST_START}: expected {d:x} entries, got {d:list_index}"
 ENDM
 
-def_grass_wildmons: MACRO
+MACRO? def_grass_wildmons
 ;\1: map id
 	REDEF CURRENT_GRASS_WILDMONS_MAP EQUS "\1"
 	REDEF CURRENT_GRASS_WILDMONS_LABEL EQUS "._def_grass_wildmons_\1"
-	{CURRENT_GRASS_WILDMONS_LABEL}:
-	map_id \1 ; db GROUP_\1, MAP_\1
-	;db \2, \3 ; <- This will be set to a minimum overworld level
+{CURRENT_GRASS_WILDMONS_LABEL}:
+	map_id \1
 ENDM
 
-end_grass_wildmons: MACRO
-	assert GRASS_WILDDATA_LENGTH == @ - {CURRENT_GRASS_WILDMONS_LABEL}, \
-		"def_grass_wildmons {CURRENT_GRASS_WILDMONS_MAP}: expected {d:GRASS_WILDDATA_LENGTH} bytes"
+MACRO? end_grass_wildmons
+	def x = @ - {CURRENT_GRASS_WILDMONS_LABEL}
+	assert GRASS_WILDDATA_LENGTH == x, \
+		"def_grass_wildmons {CURRENT_GRASS_WILDMONS_MAP}: expected {d:GRASS_WILDDATA_LENGTH} bytes, got {d:x}"
 ENDM
 
-def_water_wildmons: MACRO
+MACRO? def_water_wildmons
 ;\1: map id
 	REDEF CURRENT_WATER_WILDMONS_MAP EQUS "\1"
 	REDEF CURRENT_WATER_WILDMONS_LABEL EQUS "._def_water_wildmons_\1"
-	{CURRENT_WATER_WILDMONS_LABEL}:
-	map_id \1 ; db GROUP_\1, MAP_\1
-	;db \2, \3 ; <- This will be set to a minimum overworld level
+{CURRENT_WATER_WILDMONS_LABEL}:
+	map_id \1
 ENDM
 
-end_water_wildmons: MACRO
-	assert WATER_WILDDATA_LENGTH == @ - CURRENT_WATER_WILDMONS_LABEL, \
-		"def_water_wildmons {CURRENT_WATER_WILDMONS_MAP}: expected {d:WATER_WILDDATA_LENGTH} bytes"
+MACRO? end_water_wildmons
+	def x = @ - {CURRENT_WATER_WILDMONS_LABEL}
+	assert WATER_WILDDATA_LENGTH == x, \
+		"def_water_wildmons {CURRENT_WATER_WILDMONS_MAP}: expected {d:WATER_WILDDATA_LENGTH} bytes, got {d:x}"
 ENDM
 
-wildmon: MACRO
-	if _NARG == 2
-		dp \1, \2
-	else
-		dp \1
+MACRO? wildmon
+	db (\1)
+	shift
+	dp \#
+ENDM
+
+MACRO? jmp
+	jp \#
+	if DEF(DEBUG)
+		assert warn, (\<_NARG>) - @ > 127 || (\<_NARG>) - @ < -129, "jp can be jr"
 	endc
 ENDM
 
-jmp: MACRO
+MACRO? bit_array
+	DEF CURRENT_BIT_ARRAY_VALUE = 0
+	DEF CURRENT_BIT_ARRAY_LENGTH = 0
 	if _NARG == 1
-		jp \1
-	else
-		jp \1, \2
-		shift
+		REDEF CURRENT_BIT_ARRAY_START EQUS "\1"
+	ELSE
+		REDEF CURRENT_BIT_ARRAY_START EQUS "._bit_array\@"
+	{CURRENT_BIT_ARRAY_START}:
 	endc
-	assert warn, (\1) - @ > 127 || (\1) - @ < -129, "jp can be jr"
+ENDM
+
+MACRO? dbit
+	assert (\1) == 0 || (\1) == 1, "bits must be 0 or 1"
+	DEF CURRENT_BIT_ARRAY_VALUE |= (\1) << (CURRENT_BIT_ARRAY_LENGTH % 8)
+	DEF CURRENT_BIT_ARRAY_LENGTH += 1
+	if CURRENT_BIT_ARRAY_LENGTH % 8 == 0
+		db CURRENT_BIT_ARRAY_VALUE
+		DEF CURRENT_BIT_ARRAY_VALUE = 0
+	endc
+ENDM
+
+MACRO? end_bit_array
+	if CURRENT_BIT_ARRAY_LENGTH % 8
+		db CURRENT_BIT_ARRAY_VALUE
+	endc
+	if _NARG == 1
+		DEF x = \1
+		assert x == CURRENT_BIT_ARRAY_LENGTH, \
+			"{CURRENT_BIT_ARRAY_START}: expected {d:x} bits, got {d:CURRENT_BIT_ARRAY_LENGTH}"
+		DEF x = (x + 7) / 8
+		assert x == @ - {CURRENT_BIT_ARRAY_START}, \
+			"{CURRENT_BIT_ARRAY_START}: expected {d:x} bytes"
+	endc
 ENDM

@@ -1,10 +1,8 @@
-TRAINERCARD_BORDERGFX_START EQU $f4
-
 TrainerCard:
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
+	ld [wStateFlags], a
 	ld hl, wOptions1
 	ld a, [hl]
 	push af
@@ -17,7 +15,7 @@ TrainerCard:
 	bit 7, a
 	jr nz, .quit
 	ldh a, [hJoyLast]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .quit
 	ld a, [wJumptableIndex]
 	ld hl, .Jumptable
@@ -29,7 +27,7 @@ TrainerCard:
 	pop af
 	ld [wOptions1], a
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	ret
 
 .InitRAM:
@@ -41,7 +39,7 @@ TrainerCard:
 	farcall GetCardPic
 
 	ld hl, CardBorderGFX
-	ld de, vTiles1 tile (TRAINERCARD_BORDERGFX_START - $80)
+	ld de, vTiles0 tile ('┌' - 4)
 	lb bc, BANK(CardBorderGFX), 12
 	call DecompressRequest2bpp
 
@@ -58,14 +56,13 @@ TrainerCard:
 	call ApplyTilemapInVBlank
 	ld a, CGB_TRAINER_CARD
 	call GetCGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call ApplyTilemapInVBlank
 	ld hl, wJumptableIndex
 	xor a
 	ld [hli], a ; wJumptableIndex
 	ld [hli], a ; wTrainerCardBadgeFrameCounter
-	ld [hli], a ; wTrainerCardBadgeTileID
-	ld [hl], a  ; TODO: check if this is still needed
+	ld [hl], a  ; wTrainerCardBadgeTileID
 	ret
 
 .Jumptable:
@@ -89,7 +86,7 @@ TrainerCard_Page1_LoadGFX:
 
 	ld a, CGB_TRAINER_CARD
 	call GetCGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call ApplyTilemapInVBlank
 
 	ld de, CardStatusGFX
@@ -107,7 +104,7 @@ TrainerCard_Page1_Joypad:
 	call TrainerCard_Page1_PrintGameTime
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_RIGHT | A_BUTTON
+	and PAD_RIGHT | PAD_A
 	ret z
 
 ; pressed_right_or_a
@@ -122,7 +119,7 @@ TrainerCard_Page2_LoadGFX:
 
 	ld a, CGB_TRAINER_CARD_2
 	call GetCGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call ApplyTilemapInVBlank
 
 	ld de, CardBadgesGFX
@@ -147,13 +144,13 @@ TrainerCard_Page2_Joypad:
 	call TrainerCard_Page2_3_AnimateBadges
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .pressed_right
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .pressed_a
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	ret z
 
 ; pressed_left
@@ -189,7 +186,7 @@ TrainerCard_Page3_LoadGFX:
 
 	ld a, CGB_TRAINER_CARD_3
 	call GetCGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call ApplyTilemapInVBlank
 
 	ld de, CardBadgesGFX
@@ -214,10 +211,10 @@ TrainerCard_Page3_Joypad:
 	call TrainerCard_Page2_3_AnimateBadges
 	ld hl, hJoyLast
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .quit
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	ret z
 
 ; pressed_left
@@ -238,7 +235,7 @@ TrainerCard_LoadHeaderGFX:
 TrainerCard_PrintBorder:
 	hlcoord 0, 0
 
-	ld a, TRAINERCARD_BORDERGFX_START
+	ld a, '┌'
 	ld [hli], a
 	ld e, SCREEN_WIDTH - 2
 	inc a ; top border
@@ -320,29 +317,32 @@ TrainerCard_PrintTopHalfOfCard:
 	ldh [hGraphicStartTile], a
 	predef PlaceGraphic
 
-	hlcoord 7, 6
 	lb bc, PRINTNUM_MONEY | 3, 7
-	ld a, [wMoney]
-	cp $f
+	ld hl, wMoney
+	ld a, [hli]
+	cp 1000000 >> 16
 	jr c, .not_seven_digits
-	ld a, [wMoney + 1]
-	cp $42
+	ld a, [hli]
+	cp HIGH(1000000)
 	jr c, .not_seven_digits
-	ld a, [wMoney + 2]
-	cp $40
+	ld a, [hl]
+	cp LOW(1000000)
 	jr nc, .print_money
 .not_seven_digits
 	dec c
 .print_money
+	hlcoord 7, 6
 	ld de, wMoney
 	jmp PrintNum
 
 .Top_Headings:
-	db "┐Name/<LNBRK>"
-	db "┐<ID>№.<LNBRK>"
-	db "│└└└└└└└└└└└┘<LNBRK>"
-	db "<LNBRK>"
-	db " Money@"
+	db     '┌' - 4, "Name/<LNBRK>"
+	db     '┌' - 4, "<ID>№.<LNBRK>"
+	db     '┌' - 3
+	ds 11, '┌' - 2
+	db     '┌' - 1, "<LNBRK>"
+	db     "<LNBRK>"
+	db     " Money@"
 
 TrainerCardSetup_ClearBottomHalf:
 	hlcoord 1, 10
@@ -354,13 +354,20 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	ld de, .Dex_PlayTime_BP
 	rst PlaceString
 
-	ld hl, wPokedexCaught
-	ld b, wEndPokedexCaught - wPokedexCaught
-	call CountSetBits
-	ld de, wNumSetBits
+	hlcoord 18, 16
+	ld [hl], '▶'
+
+	ldh a, [hBGMapMode]
+	push af
+	xor a
+	ldh [hBGMapMode], a
+	farcall Pokedex_CountSeenOwn
+	ld de, wTempDexOwn
 	hlcoord 15, 10
-	lb bc, 1, 3
+	lb bc, 2, 3
 	call PrintNum
+	pop af
+	ldh [hBGMapMode], a
 
 	ld de, wBattlePoints
 	hlcoord 13, 14
@@ -400,10 +407,11 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	jr .star_loop
 
 .Dex_PlayTime_BP:
-	db   "#dex"
+	text "#dex"
 	next "Play Time"
 	next "Battle Pts"
-	next "          Badges▶@"
+	next "          Badges"
+	done
 
 TrainerCard_Page1_PrintGameTime:
 	hlcoord 11, 12
@@ -419,10 +427,10 @@ TrainerCard_Page1_PrintGameTime:
 	ret nz
 	hlcoord 15, 12
 	ld a, [hl]
-	cp ":"
-	ld a, ":"
+	cp ':'
+	ld a, ':'
 	jr nz, .ok
-	ld a, " "
+	ld a, ' '
 .ok
 	ld [hl], a
 	ret
@@ -495,7 +503,7 @@ TrainerCard_Page2_3_OAMUpdate:
 	ld d, a
 	ld a, [de]
 	ld c, a
-	ld de, wVirtualOAM
+	ld de, wShadowOAM
 	ld b, 8
 .loop
 	srl c
@@ -535,16 +543,14 @@ endr
 .PrepOAM:
 	ld a, [wTrainerCardBadgeTileID]
 	and $80
-	jr nz, .xflip
 	ld hl, .facing1
-	jr .loop2
-
-.xflip
+	jr z, .loop2
 	ld hl, .facing2
 .loop2
 	ld a, [hli]
-	cp $ff
+	inc a
 	ret z
+	dec a
 	add b
 	ld [de], a
 	inc de
@@ -560,6 +566,7 @@ endr
 	ld [de], a
 	inc hl
 	inc de
+
 	push hl
 	push bc
 	ld hl, wTrainerCardBadgePaletteAddr + 1
@@ -575,6 +582,7 @@ endr
 	ld a, b
 	pop bc
 	pop hl
+
 	add [hl]
 	ld [de], a
 	inc hl
@@ -590,10 +598,10 @@ endr
 	db -1
 
 .facing2
-	db 0, 0, 1, X_FLIP
-	db 0, 8, 0, X_FLIP
-	db 8, 0, 3, X_FLIP
-	db 8, 8, 2, X_FLIP
+	db 0, 0, 1, OAM_XFLIP
+	db 0, 8, 0, OAM_XFLIP
+	db 8, 0, 3, OAM_XFLIP
+	db 8, 8, 2, OAM_XFLIP
 	db -1
 
 TrainerCard_JohtoBadgesOAM:
@@ -626,12 +634,12 @@ TrainerCard_JohtoBadgesOAM:
 	db $0c | $80, $20, $24, $20 | $80
 
 	; Mineral Badge
-	db $80, $38, 5, 5, 5, 5
+	db $80, $38, 4, 4, 4, 4
 	db $10, $20, $24, $20 | $80
 	db $10, $20, $24, $20 | $80
 
 	; Storm Badge
-	db $80, $18, 4, 4, 4, 4
+	db $80, $18, 5, 5, 5, 5
 	db $14, $20, $24, $20 | $80
 	db $14 | $80, $20, $24, $20 | $80
 
@@ -694,12 +702,12 @@ TrainerCard_KantoBadgesOAM:
 	db $1c, $20, $24, $20 | $80
 	db $1c | $80, $20, $24, $20 | $80
 
-CardBorderGFX:  INCBIN "gfx/trainer_card/border.2bpp.lz"
+CardBorderGFX:  INCBIN "gfx/trainer_card/border.2bpp.lzp"
 CardDividerGFX: INCBIN "gfx/trainer_card/divider.2bpp"
 CardStatusGFX:  INCBIN "gfx/trainer_card/status.2bpp" ; must come after CardDividerGFX
 CardBadgesGFX:  INCBIN "gfx/trainer_card/badges.2bpp"
 
-LeaderGFX:  INCBIN "gfx/trainer_card/johto_leaders.2bpp.lz"
-LeaderGFX2: INCBIN "gfx/trainer_card/kanto_leaders.2bpp.lz"
-BadgeGFX:   INCBIN "gfx/trainer_card/johto_badges.2bpp.lz"
-BadgeGFX2:  INCBIN "gfx/trainer_card/kanto_badges.2bpp.lz"
+LeaderGFX:  INCBIN "gfx/trainer_card/johto_leaders.2bpp.lzp"
+LeaderGFX2: INCBIN "gfx/trainer_card/kanto_leaders.2bpp.lzp"
+BadgeGFX:   INCBIN "gfx/trainer_card/johto_badges.2bpp.lzp"
+BadgeGFX2:  INCBIN "gfx/trainer_card/kanto_badges.2bpp.lzp"

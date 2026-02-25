@@ -1,22 +1,27 @@
+if DEF(FAITHFUL)
 	db  60,  80, 110,  45,  50,  80 ; 425 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
+else
+	db  60,  80, 110,  70,  50,  80 ; 450 BST
+	;   hp  atk  def  spe  sat  sdf
+endc
 
 	db GROUND, GROUND ; type
 	db 75 ; catch rate
+if DEF(FAITHFUL)
 	db 124 ; base exp
-	db NO_ITEM ; item 1
-	db THICK_CLUB ; item 2
-	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/marowak_plain/front.dimensions"
+else
+	db 140 ; base exp
+endc
+	db NO_ITEM, THICK_CLUB ; held items
+	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
+
 	abilities_for MAROWAK, ROCK_HEAD, LIGHTNING_ROD, BATTLE_ARMOR
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
 
-	ev_yield   0,   0,   2,   0,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 2 Def
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, DIG, FACADE, BRICK_BREAK, SEISMIC_TOSS, IRON_TAIL, ROCK_SLIDE, THUNDERPUNCH, FIRE_PUNCH, FLAMETHROWER, OUTRAGE, EARTHQUAKE, FIRE_BLAST, HYPER_BEAM, BLIZZARD, ICE_BEAM, STEALTH_ROCK, SUNNY_DAY, SANDSTORM, FALSE_SWIPE, BULLDOZE
-
-	;tutors FOCUS_BLAST, AERIAL_ACE, EARTH_POWER, STONE_EDGE, KNOCK_OFF
+	; tm/hm learnset
+	tmhm DYNAMICPUNCH, CURSE, TOXIC, HIDDEN_POWER, SUNNY_DAY, ICE_BEAM, BLIZZARD, HYPER_BEAM, PROTECT, BULLDOZE, IRON_TAIL, EARTHQUAKE, RETURN, DIG, ROCK_SMASH, DOUBLE_TEAM, FLAMETHROWER, SANDSTORM, FIRE_BLAST, AERIAL_ACE, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, ROCK_SLIDE, FOCUS_BLAST, FALSE_SWIPE, GIGA_IMPACT, STONE_EDGE, SWORDS_DANCE, STRENGTH, BODY_SLAM, COUNTER, DOUBLE_EDGE, EARTH_POWER, ENDURE, FIRE_PUNCH, HEADBUTT, ICE_PUNCH, ICY_WIND, IRON_HEAD, KNOCK_OFF, SEISMIC_TOSS, SLEEP_TALK, SWAGGER, THUNDERPUNCH
 	; end

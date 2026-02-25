@@ -4,8 +4,7 @@ RuinsOfAlphSinjohChamber_MapScriptHeader:
 	def_callbacks
 
 	def_warp_events
-	warp_event  5,  9, RUINS_OF_ALPH_OUTSIDE, 12
-	warp_event  4,  9, RUINS_OF_ALPH_OUTSIDE, 12
+	warp_event  5,  9, RUINS_OF_ALPH_OUTSIDE, 13
 
 	def_coord_events
 
@@ -15,10 +14,10 @@ RuinsOfAlphSinjohChamber_MapScriptHeader:
 	bg_event  6,  3, BGEVENT_JUMPTEXT, RuinsofAlphStatueText
 
 	def_object_events
-	object_event  3,  1, SPRITE_WII, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MYSTRI_UNOWN_W
-	object_event  7,  1, SPRITE_GAMECUBE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MYSTRI_UNOWN_A
-	object_event  3,  5, SPRITE_GOLD_TROPHY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MYSTRI_UNOWN_R
-	object_event  7,  5, SPRITE_SILVER_TROPHY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MYSTRI_UNOWN_P
+	object_event  3,  1, SPRITE_WII, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MYSTRI_UNOWN_W
+	object_event  7,  1, SPRITE_GAMECUBE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MYSTRI_UNOWN_A
+	object_event  3,  5, SPRITE_GOLD_TROPHY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MYSTRI_UNOWN_R
+	object_event  7,  5, SPRITE_SILVER_TROPHY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MYSTRI_UNOWN_P
 
 	object_const_def
 	const RUINSOFALPHSINJOHCHAMBER_UNOWN_W
@@ -27,8 +26,11 @@ RuinsOfAlphSinjohChamber_MapScriptHeader:
 	const RUINSOFALPHSINJOHCHAMBER_UNOWN_P
 
 RuinsofAlphSinjohChamberSignpost:
+	opentext
 	unowntypeface
-	showtext RuinsofAlphSinjohChamberMystriText
+	writetext RuinsofAlphSinjohChamberMystriText
+	waitbutton
+	closetext
 	restoretypeface
 	showtext RuinsofAlphSinjohChamberSurpriseText
 	special Special_FadeOutMusic
@@ -77,11 +79,12 @@ RuinsofAlphSinjohChamberSignpost:
 	disappear RUINSOFALPHSINJOHCHAMBER_UNOWN_R
 	disappear RUINSOFALPHSINJOHCHAMBER_UNOWN_P
 	checkevent EVENT_LISTENED_TO_CYNTHIA_INTRO
-	iftrue .HeardIntro
-	setmapscene MYSTRI_STAGE, $1
+	iftruefwd .HeardIntro
+	setmapscene MYSTRI_STAGE, SCENE_MYSTRISTAGE_ARCEUS_EVENT
 	setevent EVENT_MYSTRI_STAGE_CYNTHIA
 	setevent EVENT_MYSTRI_STAGE_EGG
 .HeardIntro
+	digmod 1, SINJOH_RUINS
 	warp MYSTRI_STAGE, 6, 15
 	end
 
@@ -111,6 +114,6 @@ RuinsofAlphSinjohChamberMystriText:
 	cont "at last."
 	done
 
-RuinsofAlphSinjohChamberSurpriseText:
+RuinsofAlphSinjohChamberSurpriseText: ; text > text
 	text "…!"
 	done

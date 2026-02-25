@@ -1,22 +1,18 @@
 	db  60,  65,  70,  40,  85,  75 ; 395 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
 
 	db GRASS, POISON ; type
 	db 120 ; catch rate
 	db 132 ; base exp
-	db SILVER_LEAF ; item 1
-	db SILVER_LEAF ; item 2
-	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/gloom/front.dimensions"
+	db SILVER_LEAF, NO_ITEM ; held items
+	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
+
 	abilities_for GLOOM, CHLOROPHYLL, CHLOROPHYLL, STENCH
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_PLANT, EGG_PLANT ; egg groups
 
-	ev_yield   0,   0,   0,   0,   2,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 2 SAt
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, REFLECT, FACADE, TOXIC, DAZZLINGLEAM, SOLAR_BEAM, SLUDGE_BOMB, MEGA_DRAIN, SUNNY_DAY, BULLET_SEED, DRAIN_PUNCH, ENERGY_BALL
-
-	;tutors GRASS_KNOT
+	; tm/hm learnset
+	tmhm CURSE, TOXIC, VENOSHOCK, HIDDEN_POWER, SUNNY_DAY, PROTECT, GIGA_DRAIN, SOLAR_BEAM, RETURN, DOUBLE_TEAM, SLUDGE_BOMB, SUBSTITUTE, FACADE, REST, ATTRACT, DAZZLINGLEAM, ENERGY_BALL, DRAIN_PUNCH, FLASH, SWORDS_DANCE, CUT, CHARM, DOUBLE_EDGE, ENDURE, HYPER_VOICE, SEED_BOMB, SLEEP_TALK, SWAGGER
 	; end

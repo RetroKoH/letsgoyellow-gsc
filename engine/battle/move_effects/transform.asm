@@ -22,7 +22,7 @@ BattleCommand_transform:
 	jmp z, BattleEffect_ButItFailed
 .not_armored_mewtwo
 
-	call GetTrueUserAbility
+	call GetTrueUserIgnorableAbility
 	cp INFILTRATOR
 	jr z, .bypass_sub
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
@@ -39,7 +39,7 @@ BattleCommand_transform:
 	ld [wNumHits], a
 	ld [wFXAnimIDHi], a
 	ld a, $1
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVarAddr
 	bit SUBSTATUS_SUBSTITUTE, [hl]
@@ -113,14 +113,23 @@ BattleCommand_transform:
 	inc de
 	and a
 	jr z, .done_move
-	ld a, 5 ; Assign 5 PP to each copied move
+	cp SKETCH
+	ld a, 1
+	jr z, .done_move
+	ld a, 5
 .done_move
 	ld [hli], a
 	dec b
 	jr nz, .pp_loop
 	pop hl
 	ld a, [hl]
-	ld [wNamedObjectIndex], a
+	assert wBattleMonForm - wBattleMonSpecies == wEnemyMonForm - wEnemyMonSpecies
+	ld bc, wBattleMonForm - wBattleMonSpecies
+	add hl, bc
+	ld b, [hl]
+	ld hl, wNamedObjectIndex
+	ld [hli], a
+	ld [hl], b
 	call GetPokemonName
 	ld hl, wEnemyStatLevels
 	ld de, wPlayerStatLevels
@@ -128,10 +137,6 @@ BattleCommand_transform:
 	call BattleSideCopy
 	call _CheckBattleEffects
 	jr c, .mimic_anims
-	ld a, BATTLE_VARS_SUBSTATUS2
-	call GetBattleVar
-	bit SUBSTATUS_MINIMIZED, a
-	jr nz, .mimic_anims
 	; Animation is done "raw" to allow Imposter
 	; to use the correct animation
 	ld de, TRANSFORM
@@ -146,7 +151,7 @@ BattleCommand_transform:
 	ld [wNumHits], a
 	ld [wFXAnimIDHi], a
 	ld a, $2
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	pop af
 	ld a, SUBSTITUTE
 	call nz, LoadAnim
@@ -179,4 +184,4 @@ BattleCommand_transform:
 	cp IMPOSTER
 	ret z ; avoid infinite loop
 
-	farjp RunActivationAbilitiesInner
+	farjp RunEntryAbilitiesInner

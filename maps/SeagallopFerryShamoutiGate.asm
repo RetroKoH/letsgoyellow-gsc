@@ -1,7 +1,7 @@
 SeagallopFerryShamoutiGate_MapScriptHeader:
 	def_scene_scripts
-	scene_script SeagallopFerryShamoutiGateTrigger0
-	scene_script SeagallopFerryShamoutiGateTrigger1
+	scene_script SeagallopFerryShamoutiGateAskEnterScene, SCENE_SEAGALLOPFERRYSHAMOUTIGATE_ASK_ENTER
+	scene_script SeagallopFerryShamoutiGateLeaveScene, SCENE_SEAGALLOPFERRYSHAMOUTIGATE_LEAVE
 
 	def_callbacks
 
@@ -13,15 +13,15 @@ SeagallopFerryShamoutiGate_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  6,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SeagallopFerryShamoutiGateSailorScript, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	object_event  4,  1, SPRITE_SCHOOLGIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, SeagallopFerryShamoutiGateTwinText, -1
+	object_event  6,  4, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, SeagallopFerryShamoutiGateSailorScript, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
+	object_event  4,  1, SPRITE_SCHOOLGIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, SeagallopFerryShamoutiGateTwinText, -1
 
 	object_const_def
 	const SEAGALLOPFERRYSHAMOUTIGATE_SAILOR
 
-SeagallopFerryShamoutiGateTrigger1:
+SeagallopFerryShamoutiGateLeaveScene:
 	sdefer SeagallopFerryShamoutiGate_PlayerArrives
-SeagallopFerryShamoutiGateTrigger0:
+SeagallopFerryShamoutiGateAskEnterScene:
 	end
 
 SeagallopFerryShamoutiGate_PlayerArrives:
@@ -30,29 +30,29 @@ SeagallopFerryShamoutiGate_PlayerArrives:
 	applymovement PLAYER, SeagallopFerryShamoutiGatePlayerArriveMovementData
 	showtext SeagallopFerryShamoutiIslandRefusedText
 	applymovement SEAGALLOPFERRYSHAMOUTIGATE_SAILOR, SeagallopFerryShamoutiGateSailorArrive2MovementData
-	setscene $0
+	setscene SCENE_SEAGALLOPFERRYSHAMOUTIGATE_ASK_ENTER
 	end
 
 SeagallopFerryShamoutiGateSailorScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_A_POKEMON_FROM_IVY
-	iffalse .OnlyVermilion
+	iffalsefwd .OnlyVermilion
 	writetext SeagallopFerryShamoutiWhichIslandText
 	loadmenu VermilionValenciaMenuDataHeader
 	verticalmenu
 	closewindow
-	ifequal $1, .ToVermilion
-	ifequal $2, .ToValencia
-	sjump .RefuseFerry
+	ifequalfwd $1, .ToVermilion
+	ifequalfwd $2, .ToValencia
+	sjumpfwd .RefuseFerry
 
 .OnlyVermilion
 	writetext SeagallopFerryShamoutiToVermilionQuestionText
 	yesorno
-	iffalse .RefuseFerry
+	iffalsefwd .RefuseFerry
 .ToVermilion
 	scall SeagallopFerryShamoutiDepartureScript
-	setmapscene SEAGALLOP_FERRY_VERMILION_GATE, $1
+	setmapscene SEAGALLOP_FERRY_VERMILION_GATE, SCENE_SEAGALLOPFERRYVERMILIONGATE_LEAVE
 	warp SEAGALLOP_FERRY_VERMILION_GATE, 6, 5
 	end
 
@@ -82,9 +82,8 @@ SeagallopFerryShamoutiDepartureScript:
 	end
 
 VermilionValenciaMenuDataHeader:
-	db $40 ; flags
-	db 04, 00 ; start coords
-	db 11, 18 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 4, 18, 11
 	dw .MenuData2
 	db 1 ; default option
 

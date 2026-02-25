@@ -1,13 +1,12 @@
 MoveEffectsPointers:
 ; entries correspond to EFFECT_* constants
-	table_width 2, MoveEffectsPointers
+	table_width 2
 	dw NormalHit
-	dw NormalHit ; PRIORITY
-	dw NormalHit ; ALWAYS
+	dw NormalHit
+	dw NormalHit
 	dw LeechHit
-	dw MultiHit ; DOUBLE
-	dw MultiHit ; MULTI
-	dw TripleKick
+	dw MultiHit
+	dw MultiHit
 	dw RecoilHit
 	dw FlinchHit
 	dw PoisonHit
@@ -28,11 +27,11 @@ MoveEffectsPointers:
 	dw AccuracyDownHit
 	dw EvasionDownHit
 	dw StaticDamage
+	dw StaticDamage
 	dw DoPoison
 	dw DoBurn
 	dw DoParalyze
 	dw DoSleep
-	dw Yawn
 	dw DoFreeze
 	dw DoConfuse
 	dw Toxic
@@ -54,15 +53,14 @@ MoveEffectsPointers:
 	dw BulkUp
 	dw CalmMind
 	dw Growth
-	dw WorkUp
 	dw DragonDance
-	dw QuiverDance
+	dw HoneClaws
 	dw DefenseCurl
 	dw Minimize
 	dw ShellSmash
 	dw AttackDown
 	dw DefenseDown
-	dw StringShot
+	dw SpeedDown
 	dw SpecialAttackDown
 	dw SpecialDefenseDown
 	dw AccuracyDown
@@ -74,11 +72,10 @@ MoveEffectsPointers:
 	dw SpecialDefenseDown2
 	dw AccuracyDown2
 	dw EvasionDown2
-	dw ClearSmog
-	dw Haze
-	dw AuroraVeil
-	dw Reflect
-	dw LightScreen
+	dw ResetStats
+	dw Safeguard
+	dw Screen
+	dw Screen
 	dw Heal
 	dw Rampage
 	dw Trap
@@ -88,49 +85,51 @@ MoveEffectsPointers:
 	dw Conversion
 	dw PayDay
 	dw TriAttack
-	dw SuperFang
+	dw StaticDamage
 	dw Transform
 	dw Substitute
 	dw HyperBeam
-	dw RageFist
+	dw Rage
 	dw Metronome
 	dw LeechSeed
-	dw StoneAxe
+	dw Splash
 	dw Disable
 	dw Counter
 	dw Encore
-	dw Recycle
-	dw Mimic
-	dw Coil
+	dw PainSplit
+	dw Sketch
+	dw SleepTalk
 	dw DestinyBond
-	dw Flail
-	dw FuryCutter
-	dw FakeOut
+	dw Reversal
+	dw FalseSwipe
 	dw HealBell
 	dw Thief
 	dw MeanLook
 	dw Curse
 	dw Protect
-	dw StealthRock
+	dw Spikes
+	dw Foresight
+	dw PerishSong
 	dw Sandstorm
 	dw Hail
-	dw FalseSwipe
+	dw Endure
 	dw Rollout
-	dw Feint
+	dw Swagger
 	dw ConditionalBoostHit
-	dw Attract ; Do we need this code???
+	dw Attract
 	dw Return
-	dw HelpingHand
+	dw SacredFire
+	dw Magnitude
+	dw BatonPass
 	dw Pursuit
 	dw RapidSpin
 	dw HealingLight
-	dw WeatherBall
+	dw HiddenPower
 	dw RainDance
 	dw SunnyDay
 	dw BellyDrum
-	dw MirrorCoat
 	dw Earthquake
-	dw Wish
+	dw FutureSight
 	dw Gust
 	dw Stomp
 	dw SolarBeam
@@ -138,28 +137,20 @@ MoveEffectsPointers:
 	dw Teleport
 	dw Fly
 	dw FlareBlitz
-	dw NormalHit ; Psystrike
-	dw NormalHit ; Jump Kick
+	dw NormalHit
+	dw NormalHit
 	dw SwitchHit
 	dw SuckerPunch
-	dw OHKOHit
+	dw ToxicSpikes
 	dw Roost
 	dw CloseCombat
-	dw Superpower
-	dw LeafStorm
-	dw Taunt
+	dw SkillSwap
+	dw Trick
 	dw KnockOff
-	dw FuryStrikes
 	dw BugBite
 	dw GyroBall
 	dw BodySlam
 	dw LowKick
-	dw HeavySlam
 	dw BrickBreak
 	dw TrickRoom
-	dw VoltTackle
-	dw DuoIronBash
-	dw SkullBash
-	dw RazorWind
-	dw DragonTail
-	assert_table_length NUM_MOVE_EFFECTS
+	assert_table_length NUM_MOVE_EFECTS

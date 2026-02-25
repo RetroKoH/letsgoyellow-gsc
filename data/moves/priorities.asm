@@ -1,10 +1,9 @@
 MovePriorities:
 	; no move is for explicit switch-out
 	db NO_MOVE,       10
-	db HELPING_HAND,  5
+	db ENDURE,        4
 	db PROTECT,       4
 	db EXTREMESPEED,  2
-	db FEINT,         2
 	db AQUA_JET,      1
 	db BULLET_PUNCH,  1
 	db ICE_SHARD,     1
@@ -15,7 +14,6 @@ MovePriorities:
 	db AVALANCHE,    -4
 	db COUNTER,      -5
 	db MIRROR_COAT,  -5
-	db DRAGON_TAIL,  -6
 	db ROAR,         -6
 	db TELEPORT,     -6
 	db TRICK_ROOM,   -7

@@ -8,7 +8,7 @@ _MemoryGame:
 
 .LoadGFXAndPals:
 	call DisableLCD
-	ld a, CGB_DIPLOMA
+	ld a, CGB_PLAIN
 	call GetCGBLayout
 	call ClearSpriteAnims
 	ld hl, MemoryGameGFX
@@ -24,7 +24,7 @@ _MemoryGame:
 	ld [hli], a
 	ld [hl], $0
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	xor a
 	rst ByteFill
 	xor a
@@ -34,7 +34,7 @@ _MemoryGame:
 	ld [wJumptableIndex], a
 	ld a, $1
 	ldh [hBGMapMode], a
-	ld a, %11100011
+	ld a, rLCDC_DEFAULT
 	ldh [rLCDC], a
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -106,7 +106,7 @@ endr
 .spawn_object
 	depixel 6, 3, 4, 4
 	ld a, SPRITE_ANIM_INDEX_MEMORY_GAME
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld a, 5
 	ld [wMemoryGameNumberTriesRemaining], a
 	ld hl, wJumptableIndex
@@ -116,7 +116,7 @@ endr
 .CheckTriesRemaining:
 	ld a, [wMemoryGameNumberTriesRemaining]
 	hlcoord 17, 0
-	add "0"
+	add '0'
 	ld [hl], a
 	ld hl, wMemoryGameNumberTriesRemaining
 	ld a, [hl]
@@ -197,7 +197,7 @@ endr
 
 .RevealAll:
 	ldh a, [hJoypadPressed]
-	and A_BUTTON
+	and PAD_A
 	ret z
 	xor a
 	ld [wMemoryGameCounter], a
@@ -413,8 +413,8 @@ MemoryGame_GetDistributionOfTiles:
 
 MemoryGame_PlaceCard:
 	ld a, [wMemoryGameLastCardPicked]
-	sla a
-	sla a
+	add a
+	add a
 	add 4
 	ld [hli], a
 	inc a
@@ -441,7 +441,7 @@ MemoryGame_DeleteCard:
 
 MemoryGame_InitStrings:
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, $1
 	rst ByteFill
 	hlcoord 0, 0
@@ -491,19 +491,19 @@ MemoryGame_InterpretJoypad_AnimateCursor:
 	call JoyTextDelay
 	ld hl, hJoypadPressed
 	ld a, [hl]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .pressed_a
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .pressed_left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .pressed_right
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .pressed_up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .pressed_down
 	ret
 
@@ -578,7 +578,7 @@ MemoryGame_InterpretJoypad_AnimateCursor:
 	ret
 
 MemoryGameGFX:
-INCBIN "gfx/memory_game/memory_game.2bpp.lz"
+INCBIN "gfx/memory_game/memory_game.2bpp.lzp"
 
 MissingMemoryGameGFX:
 ; Graphics for an unused Game Corner

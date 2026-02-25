@@ -1,6 +1,7 @@
 Colosseum_MapScriptHeader:
 	def_scene_scripts
-	scene_script ColosseumTrigger0
+	scene_script ColosseumInitializeScene, SCENE_COLOSSEUM_INITIALIZE
+	scene_const SCENE_COLOSSEUM_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_OBJECTS, ColosseumScript_SetWhichChris
@@ -17,36 +18,36 @@ Colosseum_MapScriptHeader:
 	bg_event  5,  4, BGEVENT_LEFT, MapColosseumSignpost1Script
 
 	def_object_events
-	object_event  3,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	object_event  6,  4, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
+	object_event  3,  4, SPRITE_LINK_TRAINER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
+	object_event  6,  4, SPRITE_LINK_TRAINER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, CableClubFriendScript, EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 
 	object_const_def
-	const COLOSSEUM_CHRIS1
-	const COLOSSEUM_CHRIS2
+	const COLOSSEUM_LINK_TRAINER1
+	const COLOSSEUM_LINK_TRAINER2
 
-ColosseumTrigger0:
+ColosseumInitializeScene:
 	sdefer ColosseumScript_Initialize
 	end
 
 ColosseumScript_SetWhichChris:
 	special Special_CableClubCheckWhichChris
-	iffalse .Chris2
-	disappear COLOSSEUM_CHRIS2
-	appear COLOSSEUM_CHRIS1
+	iffalsefwd .Chris2
+	disappear COLOSSEUM_LINK_TRAINER2
+	appear COLOSSEUM_LINK_TRAINER1
 	endcallback
 
 .Chris2:
-	disappear COLOSSEUM_CHRIS1
-	appear COLOSSEUM_CHRIS2
+	disappear COLOSSEUM_LINK_TRAINER1
+	appear COLOSSEUM_LINK_TRAINER2
 	endcallback
 
 ColosseumScript_InitializeCB:
-	setmapscene POKECENTER_2F, $2
+	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_COLOSSEUM
 	endcallback
 
 ColosseumScript_Initialize:
-	setscene $1
-	setmapscene POKECENTER_2F, $2
+	setscene SCENE_COLOSSEUM_NOOP
+	setmapscene POKECENTER_2F, SCENE_POKECENTER2F_LEAVE_COLOSSEUM
 	end
 
 MapColosseumSignpost1Script:

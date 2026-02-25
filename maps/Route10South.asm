@@ -13,9 +13,10 @@ Route10South_MapScriptHeader:
 	bg_event 16,  3, BGEVENT_ITEM + MAX_ETHER, EVENT_ROUTE_10_HIDDEN_MAX_ETHER
 
 	def_object_events
-	object_event 17,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHikerJim, -1
-	object_event  4,  7, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerPokefanmRobert, -1
-	tmhmball_event  9,  7, TM_AURORA_VEIL, EVENT_ROUTE_10_TM_VOLT_SWITCH
+	object_event 17,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHikerJim, -1
+	object_event  4,  7, SPRITE_POKEFAN_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerPokefanmRobert, -1
+	object_event  8, 12, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerHexManiacAmy, -1
+	tmhmball_event  9,  7, TM_VOLT_SWITCH, EVENT_ROUTE_10_TM_VOLT_SWITCH
 
 GenericTrainerHikerJim:
 	generictrainer HIKER, JIM, EVENT_BEAT_HIKER_JIM, HikerJimSeenText, HikerJimBeatenText
@@ -33,6 +34,14 @@ GenericTrainerPokefanmRobert:
 
 	para "I won't forget"
 	line "this…"
+	done
+
+GenericTrainerHexManiacAmy:
+	generictrainer HEX_MANIAC, AMY, EVENT_BEAT_HEX_MANIAC_AMY, HexManiacAmySeenText, HexManiacAmyBeatenText
+
+	text "A Hex Maniac is"
+	line "at peace among"
+	cont "the spirits…"
 	done
 
 HikerJimSeenText:
@@ -53,6 +62,19 @@ PokefanmRobertSeenText:
 PokefanmRobertBeatenText:
 	text "I'd have to say"
 	line "that's my loss."
+	done
+
+HexManiacAmySeenText:
+	text "Lavender Town…"
+
+	para "Where the spirits"
+	line "of #mon sleep…"
+	done
+
+HexManiacAmyBeatenText:
+	text "Your #mon are"
+	line "overflowing with"
+	cont "vitality…"
 	done
 
 Route10SignText:

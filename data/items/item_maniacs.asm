@@ -34,9 +34,10 @@ GourmetManiacItemRewards:
 	dbw SODA_POP,     300
 	dbw LEMONADE,     350
 	dbw MOOMOO_MILK,  500
+	dbw RAGECANDYBAR, 300
 	dbw PEWTERCRUNCH, 300
 	dbw RARE_CANDY,   10000
-	dbw STICK,        2000
+	dbw LEEK,         2000
 	dbw LEFTOVERS,    4000
 	dbw LUCKY_EGG,    4000
 	dbw TINYMUSHROOM, 500
@@ -54,11 +55,11 @@ OreManiacItemRewards:
 	dbw MOON_STONE,    3000
 	dbw SUN_STONE,     3000
 	dbw DUSK_STONE,    3000
-	dbw DAWN_STONE,    3000
 	dbw SHINY_STONE,   3000
 	dbw ICE_STONE,     3000
 	dbw EVERSTONE,     3000
 	dbw HARD_STONE,    1000
+	dbw OVAL_STONE,    1500
 	dbw DAMP_ROCK,     4000
 	dbw HEAT_ROCK,     4000
 	dbw SMOOTH_ROCK,   4000
@@ -70,6 +71,7 @@ OreManiacItemRewards:
 	dbw PEARL_STRING, 16000
 	dbw STARDUST,      3000
 	dbw STAR_PIECE,   12000
+	dbw BRICK_PIECE,    100
 	db -1
 
 FossilManiacItemRewards:

@@ -1,6 +1,6 @@
-CARDFLIP_LIGHT_OFF EQU $f3
-CARDFLIP_LIGHT_ON  EQU $f4
-CARDFLIP_DECK_SIZE EQU 4 * 6
+DEF CARDFLIP_LIGHT_OFF EQU $f3
+DEF CARDFLIP_LIGHT_ON  EQU $f4
+DEF CARDFLIP_DECK_SIZE EQU 4 * 6
 
 _CardFlip:
 	ld hl, wOptions1
@@ -8,12 +8,10 @@ _CardFlip:
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
-;	ld de, MUSIC_NONE
-;	call PlayMusic
 	call DelayFrame
 	call DisableLCD
 	call LoadStandardFont
-	call LoadFontsExtra
+	call LoadFrame
 
 	ld hl, CardFlipLZ01
 	ld de, vTiles2 tile $00
@@ -47,17 +45,6 @@ _CardFlip:
 	ld a, $2
 	ld [wCardFlipCursorY], a
 	ld [wCardFlipCursorX], a
-
-;	ld de, MUSIC_GAME_CORNER
-;	ld a, [wMapGroup]
-;	cp GROUP_GOLDENROD_GAME_CORNER
-;	jr nz, .celadon_game_corner
-;	ld a, [wMapNumber]
-;	cp MAP_GOLDENROD_GAME_CORNER
-;	jr nz, .celadon_game_corner
-;	ld de, MUSIC_GAME_CORNER_DPPT
-;.celadon_game_corner
-;	call PlayMusic
 
 .MasterLoop:
 	ld a, [wJumptableIndex]
@@ -181,7 +168,7 @@ _CardFlip:
 .loop
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .next
 	ld de, SFX_KINESIS
 	call PlaySFX
@@ -233,7 +220,7 @@ _CardFlip:
 .betloop
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	and A_BUTTON
+	and PAD_A
 	jmp nz, .Increment
 	call ChooseCard_HandleJoypad
 	call CardFlip_UpdateCursorOAM
@@ -284,9 +271,9 @@ _CardFlip:
 	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
 	jmp c, .Increment
-	ld a, [wCardFlipNumCardsPlayed]
-	inc a
-	ld [wCardFlipNumCardsPlayed], a
+	ld hl, wCardFlipNumCardsPlayed
+	inc [hl]
+	ld a, [hl]
 	cp 12
 	jr c, .KeepTheCurrentDeck
 	call CardFlip_InitTilemap
@@ -321,32 +308,14 @@ _CardFlip:
 	ret
 
 CardFlip_ShuffleDeck:
-	ld hl, wDeck
-	ld bc, CARDFLIP_DECK_SIZE
-	xor a
-	rst ByteFill
-	ld de, wDeck
-	ld c, CARDFLIP_DECK_SIZE - 1
-.loop
-	call Random
-	and $1f
-	cp CARDFLIP_DECK_SIZE
-	jr nc, .loop
-	ld l, a
-	ld h, $0
-	add hl, de
-	ld a, [hl]
-	and a
-	jr nz, .loop
-	ld [hl], c
-	dec c
-	jr nz, .loop
 	xor a
 	ld [wCardFlipNumCardsPlayed], a
 	ld hl, wDiscardPile
 	ld bc, CARDFLIP_DECK_SIZE
 	rst ByteFill
-	ret
+	ld hl, wDeck
+	ld c, CARDFLIP_DECK_SIZE
+	farjp ShuffleRange
 
 CollapseCursorPosition:
 	ld hl, 0
@@ -435,7 +404,7 @@ CardFlip_DisplayCardFaceUp:
 	pop hl
 
 	; Set the attributes
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	ld a, [wCardFlipFaceUpCard]
 	and 3
@@ -488,7 +457,7 @@ CardFlip_InitTilemap:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 0, 0
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	ld bc, SCREEN_AREA
 	ld a, $29
 	rst ByteFill
 	hlcoord 9, 0
@@ -518,7 +487,7 @@ CardFlip_CopyToBox:
 	ret
 
 CardFlip_CopyOAM:
-	ld de, wVirtualOAM
+	ld de, wShadowOAM
 	ld a, [hli]
 .loop
 	push af
@@ -832,7 +801,7 @@ CardFlip_CheckWinCondition:
 .Jigglypuff:
 	ld a, [wCardFlipFaceUpCard]
 	and $3
-	cp $1
+	dec a ; $1?
 	jr z, .WinTwelve
 	jmp .Lose
 
@@ -845,8 +814,8 @@ CardFlip_CheckWinCondition:
 
 .Oddish:
 	ld a, [wCardFlipFaceUpCard]
-	and $3
-	cp $3
+	or ~$3
+	inc a
 	jmp nz, .Lose
 	; fallthrough
 
@@ -1084,39 +1053,39 @@ PlaceOAMCardBorder:
 	dsprite 0, 0, 1, 0, $06, $0
 	dsprite 0, 0, 2, 0, $06, $0
 	dsprite 0, 0, 3, 0, $06, $0
-	dsprite 0, 0, 4, 0, $04, $0 | X_FLIP
+	dsprite 0, 0, 4, 0, $04, $0 | OAM_XFLIP
 
 	dsprite 1, 0, 0, 0, $05, $0
-	dsprite 1, 0, 4, 0, $05, $0 | X_FLIP
+	dsprite 1, 0, 4, 0, $05, $0 | OAM_XFLIP
 
 	dsprite 2, 0, 0, 0, $05, $0
-	dsprite 2, 0, 4, 0, $05, $0 | X_FLIP
+	dsprite 2, 0, 4, 0, $05, $0 | OAM_XFLIP
 
 	dsprite 3, 0, 0, 0, $05, $0
-	dsprite 3, 0, 4, 0, $05, $0 | X_FLIP
+	dsprite 3, 0, 4, 0, $05, $0 | OAM_XFLIP
 
 	dsprite 4, 0, 0, 0, $05, $0
-	dsprite 4, 0, 4, 0, $05, $0 | X_FLIP
+	dsprite 4, 0, 4, 0, $05, $0 | OAM_XFLIP
 
-	dsprite 5, 0, 0, 0, $04, $0 | Y_FLIP
-	dsprite 5, 0, 1, 0, $06, $0 | Y_FLIP
-	dsprite 5, 0, 2, 0, $06, $0 | Y_FLIP
-	dsprite 5, 0, 3, 0, $06, $0 | Y_FLIP
-	dsprite 5, 0, 4, 0, $04, $0 | X_FLIP | Y_FLIP
+	dsprite 5, 0, 0, 0, $04, $0 | OAM_YFLIP
+	dsprite 5, 0, 1, 0, $06, $0 | OAM_YFLIP
+	dsprite 5, 0, 2, 0, $06, $0 | OAM_YFLIP
+	dsprite 5, 0, 3, 0, $06, $0 | OAM_YFLIP
+	dsprite 5, 0, 4, 0, $04, $0 | OAM_XFLIP | OAM_YFLIP
 
 ChooseCard_HandleJoypad:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .d_left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .d_right
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .d_up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jmp nz, .d_down
 	ret
 
@@ -1125,7 +1094,7 @@ ChooseCard_HandleJoypad:
 	ld a, [wCardFlipCursorY]
 	and a
 	jr z, .mon_pair_left
-	cp $1
+	dec a
 	jr z, .mon_group_left
 	ld a, [hl]
 	and a
@@ -1183,7 +1152,7 @@ ChooseCard_HandleJoypad:
 	ld a, [wCardFlipCursorX]
 	and a
 	jr z, .num_pair_up
-	cp $1
+	dec a
 	jr z, .num_gp_up
 	ld a, [hl]
 	and a
@@ -1257,14 +1226,14 @@ CardFlip_UpdateCursorOAM:
 	jmp CardFlip_CopyOAM
 
 .OAMData:
-cardflip_cursor: MACRO
-if _NARG >= 5
-	dbpixel \1, \2, \3, \4
-	dw \5
-else
-	dbpixel \1, \2
-	dw \3
-endc
+MACRO cardflip_cursor
+	if _NARG >= 5
+		dbpixel \1, \2, \3, \4
+		dw \5
+	else
+		dbpixel \1, \2
+		dw \3
+	endc
 ENDM
 
 	cardflip_cursor 11,  2,       .Impossible
@@ -1325,249 +1294,194 @@ ENDM
 
 .SingleTile:
 	db 6
-	dsprite   0, 0,  -1, 7, $00, $0 | PRIORITY
-	dsprite   0, 0,   0, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   0, 5,  -1, 7, $00, $0 | Y_FLIP | PRIORITY
-	dsprite   0, 5,   0, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite   0, 5,   1, 0, $03, $0 | PRIORITY
+	dsprite   0, 0,  -1, 7, $00, $0 | OAM_PRIO
+	dsprite   0, 0,   0, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 5,  -1, 7, $00, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   0, 5,   0, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   0, 5,   1, 0, $03, $0 | OAM_PRIO
 
 .PokeGroup:
 	db 26
-	dsprite   0, 0,  -1, 7, $00, $0 | PRIORITY
-	dsprite   0, 0,   0, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   1, 0, $00, $0 | X_FLIP | PRIORITY
-	dsprite   1, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   1, 0,   1, 0, $01, $0 | X_FLIP | PRIORITY
-	dsprite   2, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   2, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   3, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   3, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   4, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   4, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   5, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   5, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   6, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   6, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   7, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   7, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   8, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   8, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   9, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   9, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite  10, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite  10, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite  10, 1,  -1, 7, $00, $0 | Y_FLIP | PRIORITY
-	dsprite  10, 1,   0, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite  10, 1,   1, 0, $03, $0 | PRIORITY
+	dsprite   0, 0,  -1, 7, $00, $0 | OAM_PRIO
+	dsprite   0, 0,   0, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   1, 0, $00, $0 | OAM_XFLIP | OAM_PRIO
+	dsprite   1, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   1, 0,   1, 0, $01, $0 | OAM_XFLIP | OAM_PRIO
+	dsprite   2, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   2, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   3, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   3, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   4, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   4, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   5, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   5, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   6, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   6, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   7, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   7, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   8, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   8, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   9, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   9, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite  10, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite  10, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite  10, 1,  -1, 7, $00, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite  10, 1,   0, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite  10, 1,   1, 0, $03, $0 | OAM_PRIO
 
 .NumGroup:
 	db 20
-	dsprite   0, 0,  -1, 7, $00, $0 | PRIORITY
-	dsprite   0, 0,   0, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   1, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   2, 0, $03, $0 | PRIORITY
-	dsprite   0, 0,   3, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   4, 0, $03, $0 | PRIORITY
-	dsprite   0, 0,   5, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   6, 0, $03, $0 | PRIORITY
-	dsprite   0, 0,   7, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   8, 0, $03, $0 | PRIORITY
-	dsprite   0, 5,  -1, 7, $00, $0 | Y_FLIP | PRIORITY
-	dsprite   0, 5,   0, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite   0, 5,   1, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite   0, 5,   2, 0, $03, $0 | PRIORITY
-	dsprite   0, 5,   3, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite   0, 5,   4, 0, $03, $0 | PRIORITY
-	dsprite   0, 5,   5, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite   0, 5,   6, 0, $03, $0 | PRIORITY
-	dsprite   0, 5,   7, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite   0, 5,   8, 0, $03, $0 | PRIORITY
+	dsprite   0, 0,  -1, 7, $00, $0 | OAM_PRIO
+	dsprite   0, 0,   0, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   1, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   2, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 0,   3, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   4, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 0,   5, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   6, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 0,   7, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   8, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 5,  -1, 7, $00, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   0, 5,   0, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   0, 5,   1, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   0, 5,   2, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 5,   3, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   0, 5,   4, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 5,   5, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   0, 5,   6, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 5,   7, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   0, 5,   8, 0, $03, $0 | OAM_PRIO
 
 .NumGroupPair:
 	db 30
-	dsprite   0, 0,   0, 0, $00, $0 | PRIORITY
-	dsprite   0, 0,   1, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   2, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite   0, 0,   4, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   5, 0, $03, $0 | PRIORITY
-	dsprite   0, 0,   6, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   7, 0, $03, $0 | PRIORITY
-	dsprite   0, 0,   8, 0, $02, $0 | PRIORITY
-	dsprite   0, 0,   9, 0, $03, $0 | PRIORITY
-	dsprite   1, 0,   0, 0, $01, $0 | PRIORITY
-	dsprite   1, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite   1, 0,   5, 0, $03, $0 | PRIORITY
-	dsprite   1, 0,   7, 0, $03, $0 | PRIORITY
-	dsprite   1, 0,   9, 0, $03, $0 | PRIORITY
-	dsprite   2, 0,   0, 0, $01, $0 | PRIORITY
-	dsprite   2, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite   2, 0,   5, 0, $03, $0 | PRIORITY
-	dsprite   2, 0,   7, 0, $03, $0 | PRIORITY
-	dsprite   2, 0,   9, 0, $03, $0 | PRIORITY
-	dsprite   2, 1,   0, 0, $00, $0 | Y_FLIP | PRIORITY
-	dsprite   2, 1,   1, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite   2, 1,   2, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite   2, 1,   3, 0, $03, $0 | PRIORITY
-	dsprite   2, 1,   4, 0, $03, $0 | PRIORITY
-	dsprite   2, 1,   5, 0, $03, $0 | PRIORITY
-	dsprite   2, 1,   6, 0, $03, $0 | PRIORITY
-	dsprite   2, 1,   7, 0, $03, $0 | PRIORITY
-	dsprite   2, 1,   8, 0, $03, $0 | PRIORITY
-	dsprite   2, 1,   9, 0, $03, $0 | PRIORITY
+	dsprite   0, 0,   0, 0, $00, $0 | OAM_PRIO
+	dsprite   0, 0,   1, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   2, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 0,   4, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   5, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 0,   6, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   7, 0, $03, $0 | OAM_PRIO
+	dsprite   0, 0,   8, 0, $02, $0 | OAM_PRIO
+	dsprite   0, 0,   9, 0, $03, $0 | OAM_PRIO
+	dsprite   1, 0,   0, 0, $01, $0 | OAM_PRIO
+	dsprite   1, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   1, 0,   5, 0, $03, $0 | OAM_PRIO
+	dsprite   1, 0,   7, 0, $03, $0 | OAM_PRIO
+	dsprite   1, 0,   9, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 0,   0, 0, $01, $0 | OAM_PRIO
+	dsprite   2, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 0,   5, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 0,   7, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 0,   9, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 1,   0, 0, $00, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   2, 1,   1, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   2, 1,   2, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   2, 1,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 1,   4, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 1,   5, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 1,   6, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 1,   7, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 1,   8, 0, $03, $0 | OAM_PRIO
+	dsprite   2, 1,   9, 0, $03, $0 | OAM_PRIO
 
 .PokeGroupPair:
 	db 38
-	dsprite   0, 0,  -1, 7, $00, $0 | PRIORITY
-	dsprite   0, 0,   3, 0, $00, $0 | X_FLIP | PRIORITY
-	dsprite   1, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   1, 0,   3, 0, $01, $0 | X_FLIP | PRIORITY
-	dsprite   2, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   2, 0,   3, 0, $01, $0 | X_FLIP | PRIORITY
-	dsprite   3, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   3, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   3, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite   4, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   4, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   4, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite   5, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   5, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   5, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite   6, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   6, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   6, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite   7, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   7, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   7, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite   8, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   8, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   8, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite   9, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite   9, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite   9, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite  10, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite  10, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite  10, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite  11, 0,  -1, 7, $01, $0 | PRIORITY
-	dsprite  11, 0,   1, 0, $03, $0 | PRIORITY
-	dsprite  11, 0,   3, 0, $03, $0 | PRIORITY
-	dsprite  11, 1,  -1, 7, $00, $0 | Y_FLIP | PRIORITY
-	dsprite  11, 1,   0, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite  11, 1,   1, 0, $03, $0 | Y_FLIP | PRIORITY
-	dsprite  11, 1,   2, 0, $02, $0 | Y_FLIP | PRIORITY
-	dsprite  11, 1,   3, 0, $03, $0 | X_FLIP | Y_FLIP | PRIORITY
+	dsprite   0, 0,  -1, 7, $00, $0 | OAM_PRIO
+	dsprite   0, 0,   3, 0, $00, $0 | OAM_XFLIP | OAM_PRIO
+	dsprite   1, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   1, 0,   3, 0, $01, $0 | OAM_XFLIP | OAM_PRIO
+	dsprite   2, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   2, 0,   3, 0, $01, $0 | OAM_XFLIP | OAM_PRIO
+	dsprite   3, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   3, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   3, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   4, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   4, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   4, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   5, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   5, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   5, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   6, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   6, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   6, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   7, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   7, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   7, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   8, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   8, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   8, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite   9, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite   9, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite   9, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite  10, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite  10, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite  10, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite  11, 0,  -1, 7, $01, $0 | OAM_PRIO
+	dsprite  11, 0,   1, 0, $03, $0 | OAM_PRIO
+	dsprite  11, 0,   3, 0, $03, $0 | OAM_PRIO
+	dsprite  11, 1,  -1, 7, $00, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite  11, 1,   0, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite  11, 1,   1, 0, $03, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite  11, 1,   2, 0, $02, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite  11, 1,   3, 0, $03, $0 | OAM_XFLIP | OAM_YFLIP | OAM_PRIO
 
 .Impossible:
 	db 4
-	dsprite   0, 0,   0, 0, $00, $0 | PRIORITY
-	dsprite   0, 0,   1, 0, $00, $0 | X_FLIP | PRIORITY
-	dsprite   1, 0,   0, 0, $00, $0 | Y_FLIP | PRIORITY
-	dsprite   1, 0,   1, 0, $00, $0 | X_FLIP | Y_FLIP | PRIORITY
+	dsprite   0, 0,   0, 0, $00, $0 | OAM_PRIO
+	dsprite   0, 0,   1, 0, $00, $0 | OAM_XFLIP | OAM_PRIO
+	dsprite   1, 0,   0, 0, $00, $0 | OAM_YFLIP | OAM_PRIO
+	dsprite   1, 0,   1, 0, $00, $0 | OAM_XFLIP | OAM_YFLIP | OAM_PRIO
 
 CardFlip_InitAttrPals:
-	hlcoord 0, 0, wAttrMap
-	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
+	hlcoord 0, 0, wAttrmap
+	ld bc, SCREEN_AREA
 	xor a
 	rst ByteFill
 
-	hlcoord 12, 1, wAttrMap
+	hlcoord 12, 1, wAttrmap
 	lb bc, 2, 2
 	ld a, $1
 	call FillBoxWithByte
 
-	hlcoord 14, 1, wAttrMap
+	hlcoord 14, 1, wAttrmap
 	lb bc, 2, 2
 	ld a, $2
 	call FillBoxWithByte
 
-	hlcoord 16, 1, wAttrMap
+	hlcoord 16, 1, wAttrmap
 	lb bc, 2, 2
 	ld a, $3
 	call FillBoxWithByte
 
-	hlcoord 18, 1, wAttrMap
+	hlcoord 18, 1, wAttrmap
 	lb bc, 2, 2
 	ld a, $4
 	call FillBoxWithByte
 
-	hlcoord 9, 0, wAttrMap
+	hlcoord 9, 0, wAttrmap
 	lb bc, 12, 1
 	ld a, $1
 	call FillBoxWithByte
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, .palettes
 	ld de, wBGPals1
 	ld bc, 9 palettes
 	rst CopyBytes
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .palettes
-if !DEF(MONOCHROME)
-	RGB 31, 31, 31
-	RGB 17, 07, 31
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 29, 25, 00
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 13, 30
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 08, 17, 30
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 08, 31, 08
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 17, 07, 31
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 17, 07, 31
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 17, 07, 31
-	RGB 06, 19, 08
-	RGB 00, 00, 00
-
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 00, 00
-	RGB 31, 00, 00
-else
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR
-endc
+INCLUDE "gfx/card_flip/card_flip.pal"
 
 CardFlipLZ03:
-INCBIN "gfx/card_flip/card_flip_3.2bpp.lz"
+INCBIN "gfx/card_flip/card_flip_3.2bpp.lzp"
 
 CardFlipOffButtonGFX:
 INCBIN "gfx/card_flip/off_button.2bpp"
@@ -1576,10 +1490,10 @@ CardFlipOnButtonGFX:
 INCBIN "gfx/card_flip/on_button.2bpp"
 
 CardFlipLZ01:
-INCBIN "gfx/card_flip/card_flip_1.2bpp.lz"
+INCBIN "gfx/card_flip/card_flip_1.2bpp.lzp"
 
 CardFlipLZ02:
-INCBIN "gfx/card_flip/card_flip_2.2bpp.lz"
+INCBIN "gfx/card_flip/card_flip_2.2bpp.lzp"
 
 CardFlipTilemap:
 INCBIN "gfx/card_flip/card_flip.tilemap"

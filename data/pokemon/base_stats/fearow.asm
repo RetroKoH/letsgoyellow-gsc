@@ -1,22 +1,27 @@
+if DEF(FAITHFUL)
 	db  65,  90,  65, 100,  61,  61 ; 442 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
+else
+	db  75,  99,  65, 101,  66,  66 ; 472 BST
+	;   hp  atk  def  spe  sat  sdf
+endc
 
 	db NORMAL, FLYING ; type
 	db 90 ; catch rate
+if DEF(FAITHFUL)
 	db 162 ; base exp
-	db NO_ITEM ; item 1
-	db SHARP_BEAK ; item 2
-	dn GENDER_F50, 2 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/fearow/front.dimensions"
+else
+	db 169 ; base exp
+endc
+	db NO_ITEM, SHARP_BEAK ; held items
+	dn GENDER_F50, HATCH_FAST ; gender ratio, step cycles to hatch
+
 	abilities_for FEAROW, KEEN_EYE, KEEN_EYE, SNIPER
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_FLYING, EGG_FLYING ; egg groups
 
-	ev_yield   0,   0,   0,   2,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 2 Spe
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, FACADE, FLY, U_TURN, HYPER_BEAM, ROOST, WORK_UP, DRILL_RUN, SUNNY_DAY, FALSE_SWIPE
-
-	;tutors AERIAL_ACE
+	; tm/hm learnset
+	tmhm CURSE, TOXIC, HIDDEN_POWER, SUNNY_DAY, HYPER_BEAM, PROTECT, RAIN_DANCE, RETURN, DOUBLE_TEAM, SWIFT, AERIAL_ACE, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, STEEL_WING, ROOST, FALSE_SWIPE, GIGA_IMPACT, U_TURN, FLY, AGILITY, BATON_PASS, DOUBLE_EDGE, ENDURE, SLEEP_TALK, SWAGGER
 	; end

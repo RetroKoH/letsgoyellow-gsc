@@ -11,7 +11,8 @@ SoulHouseB3F_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  4, 13, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SoulHouseB3FMrFujiScript, EVENT_GOT_SILPHSCOPE2_FROM_MR_FUJI
+	object_event  4, 13, SPRITE_ELDER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SoulHouseB3FMrFujiScript, EVENT_GOT_SILPHSCOPE2_FROM_MR_FUJI
+	itemball_event  6,  9, ESCAPE_ROPE, 1, EVENT_SOUL_HOUSE_B3F_ESCAPE_ROPE
 
 	object_const_def
 	const SOULHOUSEB3F_MRFUJI
@@ -22,15 +23,14 @@ SoulHouseB3FMrFujiScript:
 	writetext .Text1
 	promptbutton
 	verbosegivekeyitem SILPHSCOPE2
-	setflag ENGINE_HAVE_SILPHSCOPE2
 	setevent EVENT_GOT_SILPHSCOPE2_FROM_MR_FUJI
 	writetext .Text2
 	waitbutton
 	closetext
 	readvar VAR_FACING
-	ifequal RIGHT, .GoAround
+	ifequalfwd RIGHT, .GoAround
 	applymovement SOULHOUSEB3F_MRFUJI, .LeaveMovement
-	sjump .Finish
+	sjumpfwd .Finish
 .GoAround
 	applymovement SOULHOUSEB3F_MRFUJI, .GoAroundMovement1
 	turnobject PLAYER, UP

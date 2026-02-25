@@ -4,19 +4,15 @@
 	db NORMAL, FAIRY ; type
 	db 150 ; catch rate
 	db 33 ; base exp
-	db NO_ITEM ; item 1
-	db NO_ITEM ; item 2
-	dn GENDER_F75, 1 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/azurill/front.dimensions"
+	db NO_ITEM, NO_ITEM ; held items
+	dn GENDER_F75, HATCH_FASTER ; gender ratio, step cycles to hatch
+
 	abilities_for AZURILL, THICK_FAT, HUGE_POWER, SAP_SIPPER
 	db GROWTH_FAST ; growth rate
 	dn EGG_NONE, EGG_NONE ; egg groups
 
-	ev_yield   1,   0,   0,   0,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 1 HP
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, LIGHT_SCREEN, PROTECT, SUBSTITUTE, DIG, FACADE, IRON_TAIL, WATERFALL, SURF, ICE_BEAM, WORK_UP
-
-	;tutors KNOCK_OFF
+	; tm/hm learnset
+	tmhm CURSE, TOXIC, HAIL, HIDDEN_POWER, ICE_BEAM, BLIZZARD, LIGHT_SCREEN, PROTECT, RAIN_DANCE, IRON_TAIL, RETURN, DOUBLE_TEAM, SWIFT, SUBSTITUTE, FACADE, REST, ATTRACT, SCALD, WATER_PULSE, SURF, WHIRLPOOL, WATERFALL, BODY_SLAM, CHARM, DEFENSE_CURL, DOUBLE_EDGE, ENDURE, HEADBUTT, HYPER_VOICE, ICY_WIND, KNOCK_OFF, ROLLOUT, SLEEP_TALK, SWAGGER
 	; end

@@ -23,9 +23,9 @@ BattleCommand_curse:
 
 	set SUBSTATUS_CURSE, [hl]
 	ld a, 1
-	ld [wKickCounter], a
+	ld [wBattleAnimParam], a
 	call AnimateCurrentMove
-	farcall GetHalfMaxHP
+	call GetHalfMaxHP
 	predef SubtractHPFromUser
 	call UpdateUserInParty
 	ld hl, PutACurseText

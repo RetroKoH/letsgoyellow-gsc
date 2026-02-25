@@ -15,9 +15,9 @@ Route32PokeCenter1F_MapScriptHeader:
 
 	def_object_events
 	pc_nurse_event  5, 1
-	object_event  3,  4, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FFishingGuruScript, -1
-	object_event  8,  2, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route32Pokecenter1FCooltrainerFText, -1
-	object_event  0,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, Route32PokeCenter1FPokefanMScript, -1
+	object_event  3,  4, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route32Pokecenter1FFishingGuruScript, -1
+	object_event  8,  2, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route32Pokecenter1FCooltrainerFText, -1
+	object_event  0,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, Route32PokeCenter1FPokefanMScript, -1
 
 PokemonJournalKurtScript:
 	setflag ENGINE_READ_KURT_JOURNAL
@@ -39,7 +39,7 @@ PokemonJournalKurtScript:
 	done
 
 Route32Pokecenter1FFishingGuruScript:
-	checkevent EVENT_GOT_FISHING_ROD
+	checkevent EVENT_GOT_OLD_ROD
 	iftrue_jumptextfaceplayer .DoneText
 	faceplayer
 	opentext
@@ -48,11 +48,11 @@ Route32Pokecenter1FFishingGuruScript:
 	iffalse_jumpopenedtext .NoText
 	writetext .YesText
 	promptbutton
-	verbosegivekeyitem FISHING_ROD
+	verbosegivekeyitem OLD_ROD
 	writetext .AfterText
 	waitbutton
 	closetext
-	setevent EVENT_GOT_FISHING_ROD
+	setevent EVENT_GOT_OLD_ROD
 	end
 
 .IntroText:
@@ -102,15 +102,15 @@ Route32PokeCenter1FPokefanMScript:
 	opentext
 	writetext .Text1
 	yesorno
-	iftrue .Yes
+	iftruefwd .Yes
 	writetext .Text2
-	sjump .Continue
+	sjumpfwd .Continue
 .Yes:
 	writetext .Text3
 .Continue
 	promptbutton
 	verbosegiveitem LURE_BALL
-	iffalse .NoRoom
+	iffalsefwd .NoRoom
 	setevent EVENT_GOT_LURE_BALL_FROM_FRENCHMAN
 	jumpthisopenedtext
 

@@ -6,20 +6,19 @@
 	dw .frame6
 .frame1
 	db $00 ; bitmask
-	db $31, $32, $33, $34, $35, $36, $37, $38
+	db $31, $32, $33, $34, $35
 .frame2
 	db $01 ; bitmask
-	db $00, $00, $00, $39, $3a, $3b, $3c, $3d, $3e
+	db $36, $37, $38, $39, $3a, $3b, $3c
 .frame3
 	db $02 ; bitmask
-	db $00, $00, $3f, $40, $00, $39, $3a, $3b, $41, $42, $3c, $3d
-	db $3e, $43
+	db $3d, $3e, $3f, $40, $36, $37, $38, $39, $3a, $3b, $3c
 .frame4
 	db $03 ; bitmask
-	db $44, $45, $46, $47
+	db $41, $42, $43, $44
 .frame5
 	db $04 ; bitmask
-	db $48
+	db $45, $46
 .frame6
 	db $05 ; bitmask
-	db $49, $4a
+	db $47, $48, $49, $4a

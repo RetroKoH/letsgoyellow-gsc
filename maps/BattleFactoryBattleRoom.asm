@@ -1,6 +1,7 @@
 BattleFactoryBattleRoom_MapScriptHeader:
 	def_scene_scripts
-	scene_script BattleFactoryBattleRoomEnterBattleRoom
+	scene_script BattleFactoryBattleRoomEnterScene, SCENE_BATTLEFACTORYBATTLEROOM_ENTER
+	scene_const SCENE_BATTLEFACTORYBATTLEROOM_NOOP
 
 	def_callbacks
 
@@ -13,14 +14,14 @@ BattleFactoryBattleRoom_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  3, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
-	object_event  1,  6, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event  5,  3, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
+	object_event  1,  6, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 
 	object_const_def
 	const BATTLEFACTORYBATTLEROOM_OPPONENT
 	const BATTLEFACTORYBATTLEROOM_RECEPTIONIST
 
-BattleFactoryBattleRoomEnterBattleRoom:
+BattleFactoryBattleRoomEnterScene:
 	disappear BATTLEFACTORYBATTLEROOM_OPPONENT
 	sdefer Script_BattleFloor
 	end
@@ -38,11 +39,12 @@ Script_BattleFloor:
 	closetext
 	special Special_BattleTower_Battle ; calls predef startbattle
 	special FadeOutPalettes
-	ifequal BTCHALLENGE_LOST, Script_LostBattleFactory
+	ifequalfwd BTCHALLENGE_LOST, Script_LostBattleFactory
 	reloadmap
 	applymovement BATTLEFACTORYBATTLEROOM_OPPONENT, MovementData_BattleFactoryBattleRoomOpponentWalksOut
 	warpsound
 	disappear BATTLEFACTORYBATTLEROOM_OPPONENT
+	pause 10
 	special FadeOutPalettes
 	warpfacing RIGHT, BATTLE_FACTORY_HALLWAY, 4, 8
 	end
@@ -50,7 +52,7 @@ Script_BattleFloor:
 Script_LostBattleFactory:
 	setval BATTLETOWER_LOST_CHALLENGE
 	special Special_BattleTower_SetChallengeState
-	sjump Script_ReturnToBattleFactoryLobby
+	sjumpfwd Script_ReturnToBattleFactoryLobby
 
 Script_BeatenAllFactoryTrainers:
 	special FadeOutPalettes
@@ -81,15 +83,4 @@ MovementData_BattleFactoryBattleRoomOpponentWalksOut:
 	slow_step_up
 	slow_step_up
 	slow_step_up
-	step_end
-
-MovementData_BattleFactoryBattleRoomReceptionistWalksToPlayer:
-	slow_step_right
-	slow_step_right
-	step_end
-
-MovementData_BattleFactoryBattleRoomReceptionistWalksAway:
-	slow_step_left
-	slow_step_left
-	turn_head_right
 	step_end

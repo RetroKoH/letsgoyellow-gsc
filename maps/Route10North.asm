@@ -1,7 +1,7 @@
 Route10North_MapScriptHeader:
 	def_scene_scripts
-	scene_script Route10NorthTrigger0
-	scene_script Route10NorthTrigger1
+	scene_script Route10NorthSuicuneScene, SCENE_ROUTE10NORTH_SUICUNE
+	scene_script Route10NorthNoopScene, SCENE_ROUTE10NORTH_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, Route10NorthFlyPoint
@@ -21,16 +21,16 @@ Route10North_MapScriptHeader:
 	bg_event  7, 35, BGEVENT_JUMPTEXT, RockTunnelSignText
 
 	def_object_events
-	object_event 13, 44, SPRITE_MON_ICON, SPRITEMOVEDATA_POKEMON, 0, ZAPDOS, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route10Zapdos, EVENT_ROUTE_10_ZAPDOS
-	object_event  6, 52, SPRITE_LAWRENCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LAWRENCE_ROUTE_10
-	object_event 14, 52, SPRITE_MON_ICON, SPRITEMOVEDATA_POKEMON, 0, ZAPDOS, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LAWRENCES_ZAPDOS_ROUTE_10
-	object_event 12, 52, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CHRIS_IN_NAVEL_ROCK
-	object_event 12, 52, SPRITE_KRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_KRIS_IN_NAVEL_ROCK
+	object_event 13, 44, SPRITE_MON_ICON, SPRITEMOVEDATA_POKEMON, 0, ZAPDOS, -1, PAL_MON_YELLOW_BROWN, OBJECTTYPE_SCRIPT, PLAIN_FORM, Route10Zapdos, EVENT_ROUTE_10_ZAPDOS
+	object_event  6, 52, SPRITE_LAWRENCE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LAWRENCE_ROUTE_10
+	object_event 14, 52, SPRITE_MON_ICON, SPRITEMOVEDATA_POKEMON, 0, ZAPDOS, -1, PAL_MON_YELLOW_BROWN, OBJECTTYPE_SCRIPT, PLAIN_FORM, ObjectEvent, EVENT_LAWRENCES_ZAPDOS_ROUTE_10
+	object_event 12, 52, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CHRIS_IN_NAVEL_ROCK
+	object_event 12, 52, SPRITE_KRIS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_KRIS_IN_NAVEL_ROCK
+	object_event 12, 52, SPRITE_CRYS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_CRYS_IN_NAVEL_ROCK
+	object_event 12, 52, SPRITE_BETA, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BETA_IN_NAVEL_ROCK
 	itemball_event 11,  3, FULL_RESTORE, 1, EVENT_ROUTE_10_FULL_RESTORE
-	choptree_event  7, 21, EVENT_ROUTE_10_CHOP_TREE_1
-	choptree_event  9, 21, EVENT_ROUTE_10_CHOP_TREE_2
-	choptree_event 11, 21, EVENT_ROUTE_10_CHOP_TREE_3
-	choptree_event 13, 21, EVENT_ROUTE_10_CHOP_TREE_4
+	cuttree_event 11, 21, EVENT_ROUTE_10_CUT_TREE_1
+	cuttree_event 14, 21, EVENT_ROUTE_10_CUT_TREE_2
 
 ; SPRITE_MOM is not in this map's overworld sprite set, so it default to the
 ; player sprite, whatever gender they are.
@@ -41,10 +41,12 @@ Route10North_MapScriptHeader:
 	const ROUTE10_LAWRENCES_ZAPDOS
 	const ROUTE10_CHRIS
 	const ROUTE10_KRIS
+	const ROUTE10_CRYS
+	const ROUTE10_BETA
 
-Route10NorthTrigger1:
+Route10NorthNoopScene:
 	sdefer Route10NorthLawrenceEncounter1Script
-Route10NorthTrigger0:
+Route10NorthSuicuneScene:
 	end
 
 Route10NorthFlyPoint:
@@ -53,9 +55,9 @@ Route10NorthFlyPoint:
 
 Route10NorthZapdos:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iffalse .NoAppear
+	iffalsefwd .NoAppear
 	checkevent EVENT_ZAPDOS_GONE
-	iffalse .Appear
+	iffalsefwd .Appear
 .NoAppear
 	disappear ROUTE10_ZAPDOS
 	endcallback
@@ -77,31 +79,8 @@ Route10NorthLawrenceEncounter1Script:
 	stopfollow
 	turnobject ROUTE10_LAWRENCE, UP
 	turnobject PLAYER, UP
-	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue .FemalePan
-	appear ROUTE10_CHRIS
-	applyonemovement PLAYER, hide_object
-	applymovement PLAYER, Route10NorthMovementData_PanUp
-	pause 40
-	disappear ROUTE10_LAWRENCE
-	moveobject ROUTE10_LAWRENCE, 13, 52
-	appear ROUTE10_LAWRENCE
-	applymovement PLAYER, Route10NorthMovementData_PanDown
-	applyonemovement PLAYER, show_object
-	disappear ROUTE10_CHRIS
-	sjump .Finish
-.FemalePan
-	appear ROUTE10_KRIS
-	applyonemovement PLAYER, hide_object
-	applymovement PLAYER, Route10NorthMovementData_PanUp
-	pause 40
-	disappear ROUTE10_LAWRENCE
-	moveobject ROUTE10_LAWRENCE, 13, 52
-	appear ROUTE10_LAWRENCE
-	applymovement PLAYER, Route10NorthMovementData_PanDown
-	applyonemovement PLAYER, show_object
-	disappear ROUTE10_KRIS
-.Finish
+	readvar VAR_PLAYERGENDER
+	scalltable Route10NorthPanTable
 	turnobject ROUTE10_LAWRENCE, LEFT
 	turnobject PLAYER, RIGHT
 	showtext Route10NorthLawrenceZapdosText
@@ -114,7 +93,7 @@ Route10NorthLawrenceEncounter1Script:
 	waitsfx
 	turnobject ROUTE10_LAWRENCE, DOWN
 	showtext Route10NorthLawrenceFlyText
-	playsound SFX_SKY_SOAR
+	playsound SFX_FLY
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	disappear ROUTE10_LAWRENCE
@@ -122,8 +101,51 @@ Route10NorthLawrenceEncounter1Script:
 	waitsfx
 	pause 15
 	special Special_FadeInQuickly
-	setscene $0
+	setscene SCENE_ROUTE10NORTH_SUICUNE
 	special RestartMapMusic
+	end
+
+Route10NorthPanTable:
+	table_width 2
+	dw .Male
+	dw .Female
+	dw .Enby
+	dw .Beta
+	assert_table_length NUM_PLAYER_GENDERS
+
+.Male:
+	appear ROUTE10_CHRIS
+	scall .PanUpAndDown
+	disappear ROUTE10_CHRIS
+	end
+
+.Female:
+	appear ROUTE10_KRIS
+	scall .PanUpAndDown
+	disappear ROUTE10_KRIS
+	end
+
+.Enby:
+	appear ROUTE10_CRYS
+	scall .PanUpAndDown
+	disappear ROUTE10_CRYS
+	end
+
+.Beta:
+	appear ROUTE10_BETA
+	scall .PanUpAndDown
+	disappear ROUTE10_BETA
+	end
+
+.PanUpAndDown:
+	applyonemovement PLAYER, hide_object
+	applymovement PLAYER, Route10NorthMovementData_PanUp
+	pause 40
+	disappear ROUTE10_LAWRENCE
+	moveobject ROUTE10_LAWRENCE, 13, 52
+	appear ROUTE10_LAWRENCE
+	applymovement PLAYER, Route10NorthMovementData_PanDown
+	applyonemovement PLAYER, show_object
 	end
 
 Route10NorthLawrenceEncounter2Script:
@@ -131,30 +153,30 @@ Route10NorthLawrenceEncounter2Script:
 	special Special_FadeOutMusic
 	pause 15
 	readvar VAR_FACING
-	ifequal UP, .up
-	ifequal DOWN, .down
-	ifequal LEFT, .left
+	ifequalfwd UP, .up
+	ifequalfwd DOWN, .down
+	ifequalfwd LEFT, .left
 .right
 	moveobject ROUTE10_LAWRENCE, 7, 44
 	moveobject ROUTE10_LAWRENCES_ZAPDOS, 10, 44
 	appear ROUTE10_LAWRENCE
 	applymovement ROUTE10_LAWRENCE, Route10NorthMovementData_LawrenceApproach2LeftRight
 	turnobject PLAYER, LEFT
-	sjump .continue
+	sjumpfwd .continue
 .up
 	moveobject ROUTE10_LAWRENCE, 8, 44
 	moveobject ROUTE10_LAWRENCES_ZAPDOS, 12, 44
 	appear ROUTE10_LAWRENCE
 	applymovement ROUTE10_LAWRENCE, Route10NorthMovementData_LawrenceApproach2UpDown
 	turnobject ROUTE10_LAWRENCE, DOWN
-	sjump .continue
+	sjumpfwd .continue
 .down
 	moveobject ROUTE10_LAWRENCE, 8, 44
 	moveobject ROUTE10_LAWRENCES_ZAPDOS, 12, 44
 	appear ROUTE10_LAWRENCE
 	applymovement ROUTE10_LAWRENCE, Route10NorthMovementData_LawrenceApproach2UpDown
 	turnobject ROUTE10_LAWRENCE, UP
-	sjump .continue
+	sjumpfwd .continue
 .left
 	moveobject ROUTE10_LAWRENCE, 9, 44
 	moveobject ROUTE10_LAWRENCES_ZAPDOS, 12, 44
@@ -173,7 +195,7 @@ Route10NorthLawrenceEncounter2Script:
 	waitsfx
 	turnobject ROUTE10_LAWRENCE, DOWN
 	showtext Route10NorthLawrenceFlyText
-	playsound SFX_SKY_SOAR
+	playsound SFX_FLY
 	special Special_FadeBlackQuickly
 	special Special_ReloadSpritesNoPalettes
 	disappear ROUTE10_LAWRENCE
@@ -200,18 +222,16 @@ Route10Zapdos:
 	setevent EVENT_ZAPDOS_GONE
 	setevent EVENT_ROUTE_10_ZAPDOS
 	reloadmapafterbattle
-	setval ZAPDOS
-	special SpecialMonCheck
-	iffalse .NoSpark
-	setevent EVENT_CELADON_UNIVERSITY_SPARK
-	clearevent EVENT_SHAMOUTI_COAST_SPARK
-.NoSpark
+	special CheckBattleCaughtResult
+	iffalsefwd .NoCatch
+	setflag ENGINE_PLAYER_CAUGHT_ZAPDOS
+.NoCatch
 	checkevent EVENT_SEAFOAM_ISLANDS_ARTICUNO
-	iffalse .end
+	iffalsefwd .end
 	checkevent EVENT_CINNABAR_VOLCANO_MOLTRES
-	iffalse .end
+	iffalsefwd .end
 	special SpecialBirdsCheck
-	iffalse .end
+	iffalsefwd .end
 	sjump Route10NorthLawrenceEncounter2Script
 .end
 	end

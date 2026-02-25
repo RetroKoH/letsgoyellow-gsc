@@ -1,25 +1,23 @@
 Music_SuccessfulCapture:
-	musicheader 3, 1, Music_SuccessfulCapture_Ch1
-	musicheader 1, 2, Music_SuccessfulCapture_Ch2
-	musicheader 1, 3, Music_SuccessfulCapture_Ch3
+	channel_count 3
+	channel 1, Music_SuccessfulCapture_Ch1
+	channel 2, Music_SuccessfulCapture_Ch2
+	channel 3, Music_SuccessfulCapture_Ch3
 
 Music_SuccessfulCapture_Ch1:
-	tempo 112
-	volume 119
-	dutycycle 3
-	vibrato 6, 52
-	notetype 12, 98
-	octave 3
-	jumpchannel Music_WildPokemonVictory_branch_23b8b
+	tempo 126
+	volume 7, 7
+	duty_cycle 3
+	pitch_offset 1
+	note_type 12, 10, 1
+	sound_jump Music_SuccessfulCapture_branch_f4536
 
 Music_SuccessfulCapture_Ch2:
-	vibrato $12, $24
-	dutycycle 2
-	notetype 12, 130
-	octave 3
-	jumpchannel Music_WildPokemonVictory_branch_23bce
+	vibrato 18, 2, 4
+	note_type 12, 12, 1
+	duty_cycle 2
+	sound_jump Music_SuccessfulCapture_branch_f4585
 
 Music_SuccessfulCapture_Ch3:
-	notetype 12, 32
-	octave 4
-	jumpchannel Music_WildPokemonVictory_branch_23c21
+	note_type 12, 2, 5
+	sound_jump Music_SuccessfulCapture_branch_f45cf

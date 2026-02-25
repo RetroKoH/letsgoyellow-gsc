@@ -1,6 +1,7 @@
 KarensRoom_MapScriptHeader:
 	def_scene_scripts
-	scene_script KarensRoomEntranceTrigger
+	scene_script KarensRoomLockDoorScene, SCENE_KARENSROOM_LOCK_DOOR
+	scene_const SCENE_KARENSROOM_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, KarensRoomDoorCallback
@@ -16,39 +17,39 @@ KarensRoom_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  7, SPRITE_KAREN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KarenScript, -1
+	object_event  5,  7, SPRITE_KAREN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, KarenScript, -1
 
-KarensRoomEntranceTrigger:
+KarensRoomLockDoorScene:
 	sdefer .Script
 	end
 
 .Script:
 	applymovement PLAYER, WalkIntoEliteFourRoomMovement
-	refreshscreen
+	reanchormap
 	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock 4, 14, $2a
-	reloadmappart
+	refreshmap
 	closetext
-	setscene $1
+	setscene SCENE_KARENSROOM_NOOP
 	setevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
 
 KarensRoomDoorCallback:
 	checkevent EVENT_KARENS_ROOM_ENTRANCE_CLOSED
-	iffalse .KeepDoorClosed
+	iffalsefwd .KeepDoorClosed
 	changeblock 4, 14, $2a
 .KeepDoorClosed:
 	checkevent EVENT_KARENS_ROOM_EXIT_OPEN
-	iffalse .OpenDoor
+	iffalsefwd .OpenDoor
 	changeblock 4, 2, $16
 .OpenDoor:
 	endcallback
 
 KarenScript:
 	readvar VAR_BADGES
-	ifequal 16, .Rematch
+	ifequalfwd 16, .Rematch
 	checkevent EVENT_BEAT_ELITE_4_KAREN
 	iftrue_jumptextfaceplayer .AfterText
 	showtextfaceplayer .SeenText
@@ -57,7 +58,7 @@ KarenScript:
 	startbattle
 	reloadmapafterbattle
 	showtext .AfterText
-	sjump .EndBattle
+	sjumpfwd .EndBattle
 
 .Rematch:
 	checkevent EVENT_BEAT_ELITE_4_KAREN
@@ -71,7 +72,7 @@ KarenScript:
 .EndBattle:
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16
-	reloadmappart
+	refreshmap
 	setevent EVENT_KARENS_ROOM_EXIT_OPEN
 	setevent EVENT_BEAT_ELITE_4_KAREN
 	waitsfx

@@ -53,7 +53,7 @@ PlayBattleMusic:
 	call SaveMusic
 	xor a
 	ld [wMusicFade], a
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	call MaxVolume
@@ -64,14 +64,18 @@ PlayBattleMusic:
 	jr nz, .trainermusic
 
 	ld a, [wTempEnemyMonSpecies]
+	ld c, a
+	ld a, [wTempEnemyMonForm]
+	and SPECIESFORM_MASK
+	ld b, a
 	ld hl, BattleMusic_Legendaries
-	call .loadfromarray
+	call .loadfromwordarray
 	jr c, .done
 
 	; Are we in the Safari Game?
 	ld a, [wBattleType]
 	cp BATTLETYPE_SAFARI
-	ld de, MUSIC_WILD_BATTLE_GO
+	ld e, MUSIC_WILD_BATTLE_GO
 	jr z, .done
 
 	ld hl, BattleMusic_RegionalWilds
@@ -85,7 +89,7 @@ PlayBattleMusic:
 	ld a, [wOtherTrainerID]
 	cp 4 ; Rival in Indigo Plateau
 	jr c, .not_rival2_4
-	ld de, MUSIC_CHAMPION_BATTLE
+	ld e, MUSIC_CHAMPION_BATTLE
 	jr .done
 
 .not_rival2_4
@@ -93,10 +97,9 @@ PlayBattleMusic:
 	cp GIOVANNI
 	jr nz, .othertrainer
 	ld a, [wOtherTrainerID]
-	cp 1 ; Armored Mewtwo
-	jr nz, .othertrainer
-	ld de, MUSIC_MOTHER_BEAST_BATTLE_SM
-	jr .done
+	dec a ; Armored Mewtwo = GIOVANNI 1
+	ld e, MUSIC_MOTHER_BEAST_BATTLE_SM
+	jr z, .done
 
 .othertrainer
 	ld a, [wOtherTrainerClass]
@@ -104,38 +107,50 @@ PlayBattleMusic:
 	call .loadfromarray
 	jr c, .done
 
-	ld de, MUSIC_TRAINER_BATTLE_BW
+	ld e, MUSIC_TRAINER_BATTLE_BW
 	ld a, [wInBattleTowerBattle]
 	and a
 	jr nz, .done
 
-	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
+	ld e, MUSIC_KANTO_GYM_LEADER_BATTLE
 	farcall IsKantoGymLeader
 	jr c, .done
 
-	ld de, MUSIC_JOHTO_GYM_LEADER_BATTLE
+	ld e, MUSIC_JOHTO_GYM_LEADER_BATTLE
 	farcall IsJohtoGymLeader
 	jr c, .done
 
 	ld a, [wLinkMode]
 	and a
-	ld de, MUSIC_JOHTO_TRAINER_BATTLE
+	ld e, MUSIC_JOHTO_TRAINER_BATTLE
 	jr nz, .done
 
 	ld hl, BattleMusic_RegionalTrainers
 	call .getregionmusicfromarray
 
 .done
+	ld a, e
+	ld [wMapMusic], a
 	call PlayMusic
 
 	jmp PopBCDEHL
 
 .loadfromarray
-	ld e, 3 ; d is already 0 from 'ld de, MUSIC_NONE'
+	ld de, 2
 	call IsInArray
 	ret nc
+	jr .foundinarray
+
+.loadfromwordarray
+	ld de, 3
+	call IsInWordArray
+	ret nc
 	inc hl
-	jr .found
+.foundinarray
+	inc hl
+	ld e, [hl]
+	ld d, 0
+	ret
 
 .getregionmusicfromarray
 	push hl
@@ -172,7 +187,7 @@ ClearBattleRAM:
 	ld [hl], a
 
 	ld [wMenuScrollPosition], a
-	ld [wCriticalHit], a
+	ld [wMoveHitState], a
 	ld [wBattleMonSpecies], a
 	ld [wCurBattleMon], a
 	ld [wTimeOfDayPal], a

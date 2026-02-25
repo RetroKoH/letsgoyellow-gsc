@@ -1,18 +1,21 @@
 BattleCommand_lowkick:
 	push bc
 	push de
-	ldh a, [hBattleTurn]		; get current turn
+	ldh a, [hBattleTurn]
 	and a
 	ld hl, wBattleMonSpecies
-	jr nz, .got_opp_species		; if it's the foe's turn, get the player mon's weight
-	ld hl, wEnemyMonSpecies		; otherwise, get the foe mon's weight.
+	jr nz, .got_opp_species
+	ld hl, wEnemyMonSpecies
 .got_opp_species
-	ld a, [hl]					; load mon species # to register a
-	farcall GetSpeciesWeight	; find species weight and load to hl
+	ld c, [hl]
+	ld de, wBattleMonForm - wBattleMonSpecies
+	add hl, de
+	ld b, [hl]
+	farcall GetSpeciesWeight
 	ld d, h
-	ld e, l						; de = species weight
+	ld e, l
 
-	call GetOpponentAbilityAfterMoldBreaker
+	call GetOpponentIgnorableAbility
 	cp LIGHT_METAL
 	jr nz, .not_light_metal
 	srl d

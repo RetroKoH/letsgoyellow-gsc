@@ -59,15 +59,14 @@ DoPoisonStep::
 .DamageMonIfPoisoned:
 ; check if mon is poisoned, return if not
 	ld a, MON_STATUS
-	call GetPartyParamLocation
-	ld a, [hl]
+	call GetPartyParamLocationAndValue
 	and 1 << PSN
 	ret z
 
 ; check if mon is fainted, return if so
 	ld a, MON_HP
-	call GetPartyParamLocation
-	ld a, [hli]
+	call GetPartyParamLocationAndValue
+	inc hl
 	ld b, a
 	ld c, [hl]
 	or c
@@ -77,10 +76,10 @@ DoPoisonStep::
 	push hl
 	push bc
 	ld a, MON_SPECIES
-	call GetPartyParamLocation
-	ld c, [hl]
+	call GetPartyParamLocationAndValue
+	ld c, a
 	ld a, MON_ABILITY
-	call GetPartyParamLocation
+	call GetPartyParamLocationAndValue
 	call GetAbility
 	ld a, b
 	pop bc
@@ -99,13 +98,13 @@ DoPoisonStep::
 	or a
 	jr nz, .DoPoisonDamage
 	ld a, c
-	cp 1
+	dec a
 	jr nz, .DoPoisonDamage
 
 ; if 1 HP, heal poison
 .heal_poison
 	ld a, MON_STATUS
-	call GetPartyParamLocation
+	call GetPartyParamLocationAndValue
 	ld [hl], 0
 ; set carry and return %10
 	ld c, %10
@@ -115,8 +114,8 @@ DoPoisonStep::
 .DoPoisonDamage
 ; do 1 HP damage
 	dec bc
-	ld [hl], c
-	dec hl
+	ld a, c
+	ld [hld], a
 	ld [hl], b
 ; set carry and return %01
 	ld c, %01
@@ -134,7 +133,7 @@ DoPoisonStep::
 	callasm .PlayPoisonSFX
 	opentext
 	callasm .CheckWhitedOut
-	iffalse .whiteout
+	iffalsefwd .whiteout
 	closetext
 	end
 
@@ -174,36 +173,8 @@ DoPoisonStep::
 	text_end
 
 LoadPoisonBGPals:
-	ldh a, [rSVBK]
-	push af
-	ld a, $5
-	ldh [rSVBK], a
-	ld hl, wBGPals2
-	ld c, 8 * 4
-.loop
-if DEF(NOIR)
-	ld a, LOW(palred 24 + palgreen 24 + palblue 24)
-	ld [hli], a
-	ld a, HIGH(palred 24 + palgreen 24 + palblue 24)
-	ld [hli], a
-elif !DEF(MONOCHROME)
-; RGB 28, 21, 31
-	ld a, LOW(palred 28 + palgreen 21 + palblue 31)
-	ld [hli], a
-	ld a, HIGH(palred 28 + palgreen 21 + palblue 31)
-	ld [hli], a
-else
-	ld a, LOW(PAL_MONOCHROME_WHITE)
-	ld [hli], a
-	ld a, HIGH(PAL_MONOCHROME_WHITE)
-	ld [hli], a
-endc
-	dec c
-	jr nz, .loop
-	pop af
-	ldh [rSVBK], a
-	ld a, $1
-	ldh [hCGBPalUpdate], a
+	ld c, 6
+	farcall UpdatePalFromC
 	ld c, 4
 	call DelayFrames
 	farjp _UpdateTimePals

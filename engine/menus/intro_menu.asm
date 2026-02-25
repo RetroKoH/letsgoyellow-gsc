@@ -24,23 +24,50 @@ InitIntroGradient::
 INCBIN "gfx/new_game/intro_gradient.2bpp"
 
 _MainMenu:
+	ld e, MUSIC_NONE
+	call PlayMusic
+	call DelayFrame
+	ld e, MUSIC_MAIN_MENU
+	ld a, e
+	ld [wMapMusic], a
+	call PlayMusic
 	farcall MainMenu
 	jmp StartTitleScreen
 
 NewGame_ClearTileMapEtc:
 	xor a
 	ldh [hMapAnims], a
-	call ClearTileMap
-	call LoadFontsExtra
+	ld a, '<BLACK>'
+	call FillTileMap
+	call LoadFrame
 	call LoadStandardFont
 	jmp ClearWindowData
 
 NewGamePlus:
+	ld hl, .text
+	call PrintText
+	call YesNoBox
+	jr c, _MainMenu
 	xor a
 	ldh [hBGMapMode], a
 	farcall TryLoadSaveFile
 	ret c
 	jr _NewGame_FinishSetup
+
+.text
+	text "New Game+ will"
+	line "keep your previous"
+
+	para "game's money,"
+	line "Battle Points, and"
+
+	para "any #mon stored"
+	line "in the PC!"
+
+	para "Are you sure you"
+	line "you want to start"
+	cont "New Game+?"
+	done
 
 NewGame:
 	xor a
@@ -48,10 +75,13 @@ NewGame:
 	call ResetWRAM_NotPlus
 _NewGame_FinishSetup:
 	call ResetWRAM
+	farcall ClearSavedObjPals
+	ld a, -1
+	ld [wOvercastRandomDay], a
 	call NewGame_ClearTileMapEtc
 	call WarnVBA
-	call SetInitialOptions
-	call ProfOakSpeech
+	farcall SetInitialOptions
+	call ProfElmSpeech
 	call InitializeWorld
 	ld a, 1
 	ld [wPrevLandmark], a
@@ -67,6 +97,10 @@ ResetWRAM_NotPlus:
 	xor a
 	ld [wSavedAtLeastOnce], a
 
+	; Key items are 0-terminated, just load 0 into the first entry.
+	xor a
+	ld [wKeyItems], a
+
 	ld [wBattlePoints], a
 	ld [wBattlePoints + 1], a
 
@@ -81,15 +115,23 @@ ResetWRAM_NotPlus:
 	ld [hli], a
 	ld a, HIGH(START_MONEY)
 	ld [hli], a
-	ld [hl], LOW(START_MONEY)
+	ld a, LOW(START_MONEY)
+	ld [hli], a
+	; clear mom's money
+	xor a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
 	ret
 
 ResetWRAM:
-	ld hl, wVirtualOAM
-	ld bc, wOptions3 - wVirtualOAM
-	; Test instruction here
-
+	ld hl, wShadowOAM
+	ld bc, wMusic - wShadowOAM
 	xor a
+	rst ByteFill
+
+	ld hl, wMusicEnd
+	ld bc, wOptions3 - wMusicEnd
 	rst ByteFill
 
 	ld hl, wRAM1Start
@@ -101,26 +143,19 @@ ResetWRAM:
 	ld bc, wMoney - wGameData
 	rst ByteFill
 	ld hl, wMoneyEnd
-	ld bc, wBattlePoints - wMoneyEnd
+	ld bc, wKeyItems - wMoneyEnd
+	rst ByteFill
+	ld hl, wKeyItemsEnd
+	ld bc, wBattlePoints - wKeyItemsEnd
 	rst ByteFill
 	ld hl, wBattlePointsEnd
 	ld bc, wGameDataEnd - wBattlePointsEnd
 	rst ByteFill
 
-	; Fill party species array with terminators.
-	ld hl, wPartySpecies
-	ld bc, PARTY_LENGTH + 1
-	dec a ; ld a, -1
-	rst ByteFill
-
 	call Random
-	ldh a, [rLY]
-	ldh [hSecondsBackup], a
 	call DelayFrame
 	ldh a, [hRandomSub]
 	ld [wPlayerID], a
-	ldh a, [rLY]
-	ldh [hSecondsBackup], a
 	call DelayFrame
 	ldh a, [hRandomAdd]
 	ld [wPlayerID + 1], a
@@ -131,12 +166,10 @@ ResetWRAM:
 	call Random
 	ld [wSecretID + 1], a
 
-	ld hl, wPartyCount
-	call _ResetWRAM_InitList
-
 	xor a
+	ld [wPartyCount], a
 	ld [wMonStatusFlags], a
-
+	inc a ; PLAYER_FEMALE
 	ld [wPlayerGender], a
 
 	ld hl, wNumItems
@@ -148,32 +181,44 @@ ResetWRAM:
 	ld hl, wNumBalls
 	call _ResetWRAM_InitList
 
+	; We want to preserve charms, so track those down and put on top.
+	ld hl, wKeyItems
+	push de
+	ld d, h
+	ld e, l
+.charms_loop
+	ld a, [hli]
+	and a
+	jr z, .charms_done
+	cp CHARMS_START
+	jr c, .charms_loop
+	ld [de], a
+	inc de
+	jr .charms_loop
+.charms_done
+	; Place a terminator after any charms, effectively deleting other items.
+	; xor a (implicit from the "jr z" above)
+	ld [de], a
+	pop de
+
 	ld hl, wNumBerries
 	call _ResetWRAM_InitList
-
-;	ld hl, wNumKeyItems
-;	call _ResetWRAM_InitList
 
 	ld hl, wNumPCItems
 	call _ResetWRAM_InitList
 
+	xor a
+
 	ld hl, wTMsHMs
-	xor a
-rept (NUM_TMS + 7) / 8
+rept ((NUM_TMS + NUM_HMS) + 7) / 8 - 1
 	ld [hli], a
 endr
+	ld [hl], a
 
-	ld hl, wKeyItems
-	xor a
-rept ((NUM_KEY_ITEMS) + 7) / 8
-	ld [hli], a
-endr
-
-	xor a
 	ld [wRoamMon1Species], a
 	ld [wRoamMon2Species], a
 	ld [wRoamMon3Species], a
-	ld a, -1
+	dec a ; -1
 	ld [wRoamMon1MapGroup], a
 	ld [wRoamMon2MapGroup], a
 	ld [wRoamMon3MapGroup], a
@@ -186,8 +231,6 @@ endr
 
 	xor a
 	ld [wMonType], a
-
-	ld [wOverworldLevel], a
 
 	ld [wJohtoBadges], a
 	ld [wKantoBadges], a
@@ -230,9 +273,9 @@ _ResetWRAM_InitList:
 
 InitializeMagikarpHouse:
 	ld hl, wBestMagikarpLengthMmHi
-	ld a, $3
+	ld a, HIGH(BEST_MAGIKARP_LENGTH)
 	ld [hli], a
-	ld a, $6
+	ld a, LOW(BEST_MAGIKARP_LENGTH)
 	ld [hli], a
 	ld de, .Ralph
 	jmp CopyName2
@@ -241,6 +284,14 @@ InitializeMagikarpHouse:
 	db "Ralph@"
 
 InitializeNPCNames:
+	ld hl, .Rival
+	ld de, wRivalName
+	call .Copy
+
+	ld hl, .Backup
+	ld de, wBackupName
+	call .Copy
+
 	ld hl, .Trendy
 	ld de, wTrendyPhrase
 
@@ -249,6 +300,8 @@ InitializeNPCNames:
 	rst CopyBytes
 	ret
 
+.Rival:
+.Backup: db "???@"
 .Trendy: db "Prism@"
 
 InitializeWorld:
@@ -307,8 +360,8 @@ Continue:
 	call ClearBGPalettes
 	call CloseWindow
 	call ClearTileMap
-	ld c, 20
-	call DelayFrames
+	farcall ClearSavedObjPals
+	farcall FixPlayerEVsAndStats
 	farcall JumpRoamMons
 	farcall ClockContinue ; time-related
 	ld a, [wSpawnAfterChampion]
@@ -319,7 +372,7 @@ Continue:
 	jr FinishContinueFunction
 
 .SpawnAfterE4:
-	ld a, SPAWN_PALLET
+	ld a, SPAWN_NEW_BARK
 	ld [wDefaultSpawnpoint], a
 	call PostCreditsSpawn
 	jr FinishContinueFunction
@@ -341,9 +394,9 @@ ConfirmContinue:
 	call DelayFrame
 	call GetJoypad
 	ld hl, hJoyPressed
-	bit A_BUTTON_F, [hl]
+	bit B_PAD_A, [hl]
 	ret nz
-	bit B_BUTTON_F, [hl]
+	bit B_PAD_B, [hl]
 	jr z, .loop
 	scf
 	ret
@@ -351,8 +404,19 @@ ConfirmContinue:
 WarnVBA:
 	call CheckVBA
 	ret z
+if !DEF(DEBUG)
 	ld hl, .WarnVBAText
 	jmp PrintText
+else
+	ld hl, wOptions1
+	push hl
+	set NO_TEXT_SCROLL, [hl]
+	ld hl, .WarnVBAText
+	call PrintText
+	pop hl
+	res NO_TEXT_SCROLL, [hl]
+	ret
+endc
 
 .WarnVBAText:
 	text_far _WarnVBAText
@@ -372,7 +436,9 @@ Continue_CheckRTC_RestartClock:
 Continue_CheckEGO_ResetInitialOptions:
 	ld a, [wInitialOptions2]
 	bit RESET_INIT_OPTS, a
-	call nz, SetInitialOptions
+	jr z, .skip_reset_initial_options
+	farcall SetInitialOptions
+.skip_reset_initial_options
 	; fallthrough
 Continue_FinishReset:
 	xor a
@@ -383,9 +449,8 @@ FinishContinueFunction:
 	xor a
 	ld [wDontPlayMapMusicOnReload], a
 	ld [wLinkMode], a
-	ld hl, wGameTimerPaused
-	set 0, [hl]
-	res 7, [hl]
+	inc a ; TRUE
+	ld [wGameTimerPaused], a
 	ld hl, wEnteredMapFromContinue
 	set 1, [hl]
 	farcall OverworldLoop
@@ -414,14 +479,14 @@ DisplayNormalContinueData:
 	call Continue_LoadMenuHeader
 	call Continue_DisplayBadgesDexPlayerName
 	call Continue_PrintGameTime
-	call LoadFontsExtra
+	call LoadFrame
 	jmp UpdateSprites
 
 DisplayContinueDataWithRTCError:
 	call Continue_LoadMenuHeader
 	call Continue_DisplayBadgesDexPlayerName
 	call Continue_UnknownGameTime
-	call LoadFontsExtra
+	call LoadFrame
 	jmp UpdateSprites
 
 Continue_LoadMenuHeader:
@@ -429,7 +494,7 @@ Continue_LoadMenuHeader:
 	ldh [hBGMapMode], a
 	ld hl, .MenuDataHeader_Dex
 	ld a, [wStatusFlags]
-	bit 0, a ; pokedex
+	bit STATUSFLAGS_POKEDEX_F, a
 	jr nz, .pokedex_header
 	ld hl, .MenuDataHeader_NoDex
 
@@ -439,9 +504,8 @@ Continue_LoadMenuHeader:
 	jmp PlaceVerticalMenuItems
 
 .MenuDataHeader_Dex:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 09, 15 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 15, 9
 	dw .MenuData2_Dex
 	db 1 ; default option
 
@@ -454,9 +518,8 @@ Continue_LoadMenuHeader:
 	db "Time@"
 
 .MenuDataHeader_NoDex:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 09, 15 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 15, 9
 	dw .MenuData2_NoDex
 	db 1 ; default option
 
@@ -508,8 +571,8 @@ Continue_UnknownGameTime:
 
 Continue_DisplayBadgeCount:
 	push hl
-	ld hl, wJohtoBadges
-	ld b, 2
+	ld hl, wBadges
+	ld b, wBadgesEnd - wBadges
 	call CountSetBits
 	pop hl
 	ld de, wNumSetBits
@@ -518,46 +581,30 @@ Continue_DisplayBadgeCount:
 
 Continue_DisplayPokedexNumCaught:
 	ld a, [wStatusFlags]
-	bit 0, a ; Pokedex
+	bit STATUSFLAGS_POKEDEX_F, a
 	ret z
-	push hl
-	ld hl, wPokedexCaught
-	ld b, (NUM_POKEMON + 7) / 8
-	call CountSetBits
-	pop hl
-	ld de, wNumSetBits
-	lb bc, 1, 3
+	farcall Pokedex_CountSeenOwn
+	ld de, wTempDexOwn
+	lb bc, 2, 3
 	jmp PrintNum
 
 Continue_DisplayGameTime:
 	ld de, wGameTimeHours
 	lb bc, 2, 3
 	call PrintNum
-	ld a, ":"
+	ld a, ':'
 	ld [hli], a
 	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jmp PrintNum
 
-ProfOakSpeech:
-	ld a, POTION
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantityChangeBuffer], a
-	ld hl, wNumPCItems
-	call ReceiveItem
-
-; REMOVE. Game will start at 9 AM on Monday morning. (InitClock no longer called here)
-; Temporarily pause RTC time until we finish the Oak's Lab cutscene.
-	ld hl, wStartHour
-	ld [hl], 9
-	ld hl, wStartDay
-	ld [hl], MONDAY
-	ld c, 15
-	call FadeToWhite
+ProfElmSpeech:
+	farcall InitClock
+	ld c, 31
+	call FadeToBlack
 	call ClearTileMap
 
-	ld de, MUSIC_NUGGET_BRIDGE
+	ld e, MUSIC_ROUTE_30
 	call PlayMusic
 
 	ld c, 31
@@ -565,7 +612,7 @@ ProfOakSpeech:
 
 	xor a
 	ld [wCurPartySpecies], a
-	ld a, PROF_OAK
+	ld a, PROF_ELM
 	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
@@ -574,17 +621,20 @@ ProfOakSpeech:
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, OakText1
+	ld hl, ElmText1
 	call PrintText
-
+if !DEF(DEBUG)
 	ld c, 15
 	call FadeToWhite
 	call ClearTileMap
 
-	ld a, NIDORINO
+	ld a, LOW(GLACEON)
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
-	call GetBaseData ; [wCurForm] doesn't matter for Sylveon
+	ld a, HIGH(GLACEON) << MON_EXTSPECIES_F
+	ld [wCurForm], a
+	ld [wTempMonForm], a
+	call GetBaseData
 
 	hlcoord 6, 4
 	call PrepMonFrontpic
@@ -599,9 +649,9 @@ ProfOakSpeech:
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, OakText2
+	ld hl, ElmText2
 	call PrintText
-	ld hl, OakText4
+	ld hl, ElmText4
 	call PrintText
 	ld c, 15
 	call FadeToWhite
@@ -609,7 +659,7 @@ ProfOakSpeech:
 
 	xor a
 	ld [wCurPartySpecies], a
-	ld a, PROF_OAK
+	ld a, PROF_ELM
 	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
@@ -618,22 +668,22 @@ ProfOakSpeech:
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, OakText5
+	ld hl, ElmText5
 	call PrintText
+endc
 
 	call InitGender
 
 	ld c, 10
 	call DelayFrames
 
-	ld hl, OakText6
+	ld hl, ElmText6
 	call PrintText
 
 	call NamePlayer
-	call NameSecond
 
 	call ClearTileMap
-	call LoadFontsExtra
+	call LoadFrame
 	call ApplyTilemapInVBlank
 	call DrawIntroPlayerPic
 
@@ -642,137 +692,64 @@ ProfOakSpeech:
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, OakText7
-	call PrintText
-;	ld c, 15
-;	call FadeToWhite
-	ld hl, WhitePal
-	ld de, wBGPals1 palette 0
-	ld bc, 1 palettes
-	ld a, 5
-	call FarCopyColorWRAM
-	ld c, 15
-	call FadePalettes
-
-	call ClearTileMap
-	call DrawIntroRivalPic
-
-	ld a, CGB_INTRO_PALS
-	call GetCGBLayout
-	call InitIntroGradient
-	call Intro_RotatePalettesLeftFrontpic
-	ld hl, OakText8
-	call PrintText
-	
-	call NameRival
-
-	call ClearTileMap
-	call LoadFontsExtra
-	call ApplyTilemapInVBlank
-	call DrawIntroRivalPic
-
-	ld a, CGB_INTRO_PALS
-	call GetCGBLayout
-	call InitIntroGradient
-	call Intro_RotatePalettesLeftFrontpic
-
-	ld hl, OakText9
-	call PrintText
-;	ld c, 15
-;	call FadeToWhite
-	ld hl, WhitePal
-	ld de, wBGPals1 palette 0
-	ld bc, 1 palettes
-	ld a, 5
-	call FarCopyColorWRAM
-	ld c, 15
-	call FadePalettes
-
-	call ClearTileMap
-	call DrawIntroPlayerPic
-
-	ld a, CGB_INTRO_PALS
-	call GetCGBLayout
-	call InitIntroGradient
-	call Intro_RotatePalettesLeftFrontpic
-	ld hl, OakText10
+	ld hl, ElmText7
 	jmp PrintText
 
-OakText1:
-	text_far _OakText1
+ElmText1:
+	text_far _ElmText1
 	text_end
 
-OakText2:
-	text_far _OakText2
+ElmText2:
+	text_far _ElmText2
 	text_asm
-	ld a, NIDORINO
-	call PlayCry
-	call WaitSFX
-	ld hl, OakText3
+	lp bc, GLACEON
+	call PlayMonCry
+	ld hl, ElmText3
 	ret
 
-OakText3:
+ElmText3:
 	text_far Text_Waitbutton_2
 	text_end
 
-OakText4:
-	text_far _OakText4
+ElmText4:
+	text_far _ElmText4
 	text_end
 
-OakText5:
-	text_far _OakText5
+ElmText5:
+	text_far _ElmText5
 	text_end
 
-OakText6:
-	text_far _OakText6
+ElmText6:
+	text_far _ElmText6
 	text_end
 
-OakText7:
-	text_far _OakText7
-	text_end
-
-OakText8:
-	text_far _OakText8
-	text_end
-
-OakText9:
-	text_far _OakText9
-	text_end
-
-OakText10:
-	text_far _OakText10
+ElmText7:
+	text_far _ElmText7
 	text_end
 
 InitGender:
-	ld hl, WhitePal
-	ld de, wBGPals1 palette 0
-	ld bc, 1 palettes
-	call FarCopyColorWRAM
 	ld c, 15
-	call FadePalettes
-
+	call FadeToWhite
 	call ClearTileMap
-	call ApplyAttrAndTilemapInVBlank
-	call SetPalettes
 
-	ld a, CGB_INTRO_PALS
+	call InitGenderGraphics
+
+	ld a, CGB_INTRO_GENDER_PALS
 	call GetCGBLayout
 	call InitIntroGradient
-	call SetPalettes
+	call Intro_RotatePalettesLeftFrontpic
 
 	ld hl, AreYouABoyOrAreYouAGirlText
 	call PrintText
 
-	ld hl, .MenuDataHeader
-	call LoadMenuHeader
 	call ApplyAttrAndTilemapInVBlank
-	call VerticalMenu
-	call CloseWindow
-	ld a, [wMenuCursorY]
-	dec a
-	ld [wPlayerGender], a
+	call GenderMenu
 
+	ld c, 15
+	call FadeToWhite
 	call ClearTileMap
+	call ClearTileMap
+
 	call DrawIntroPlayerPic
 
 	ld a, CGB_INTRO_PALS
@@ -780,97 +757,215 @@ InitGender:
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, SoYoureABoyText
-	ld a, [wPlayerGender]
-	and a
-	jr z, .boy
-	ld hl, SoYoureAGirlText
-.boy
+	ld hl, SoThisIsYouText
 	call PrintText
 
 	call YesNoBox
 	jr c, InitGender
 	ret
 
-.MenuDataHeader:
-	db $40 ; flags
-	db 7, 13 ; start coords
-	db 11, 19 ; end coords
-	dw .MenuData2
-	db 1 ; default option
+GenderMenu::
+	; erase previous cursors
+	ld a, ' '
+	ldcoord_a  2, 3
+	ldcoord_a  7, 3
+	ldcoord_a 12, 3
+	ldcoord_a 17, 3
 
-.MenuData2:
-	db $c1 ; flags
-	db 2 ; items
-	db "Boy@"
-	db "Girl@"
+	ld a, [wPlayerGender]
+	and a ; PLAYER_MALE
+	jr z, .male
+	dec a ; PLAYER_FEMALE
+	jr z, .female
+	dec a ; PLAYER_ENBY
+	jr z, .enby
 
-WhitePal:
-if !DEF(MONOCHROME)
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-else
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-endc
+; PLAYER_BETA
+	; place cursor
+	ld a, '▼'
+	ldcoord_a 17, 3
+	; load opaque palettes
+	call SetDefaultBGPAndOBP
+	; make other palettes transparent
+	ld hl, wBGPals2 palette 0 + 2 ; male
+	call .MakeTransparent
+	ld hl, wBGPals2 palette 2 + 2 ; female
+	call .MakeTransparent
+	ld hl, wBGPals2 palette 3 + 2 ; enby
+	call .MakeTransparent
+	jr .ready
+
+.male
+	; place cursor
+	ld a, '▼'
+	ldcoord_a 2, 3
+	; load opaque palettes
+	call SetDefaultBGPAndOBP
+	; make other palettes transparent
+	ld hl, wBGPals2 palette 2 + 2 ; female
+	call .MakeTransparent
+	ld hl, wBGPals2 palette 3 + 2 ; enby
+	call .MakeTransparent
+	ld hl, wBGPals2 palette 4 + 2 ; beta
+	call .MakeTransparent
+	jr .ready
+
+.female
+	; place cursor
+	ld a, '▼'
+	ldcoord_a 7, 3
+	; load opaque palettes
+	call SetDefaultBGPAndOBP
+	; make other paletees transparent
+	ld hl, wBGPals2 palette 0 + 2 ; male
+	call .MakeTransparent
+	ld hl, wBGPals2 palette 3 + 2 ; enby
+	call .MakeTransparent
+	ld hl, wBGPals2 palette 4 + 2 ; beta
+	call .MakeTransparent
+	jr .ready
+
+.enby
+	; place cursor
+	ld a, '▼'
+	ldcoord_a 12, 3
+	; load opaque palettes
+	call SetDefaultBGPAndOBP
+	; make other palettes transparent
+	ld hl, wBGPals2 palette 0 + 2 ; male
+	call .MakeTransparent
+	ld hl, wBGPals2 palette 2 + 2 ; female
+	call .MakeTransparent
+	ld hl, wBGPals2 palette 4 + 2 ; beta
+	call .MakeTransparent
+	; fallthrough
+
+.ready
+	ld a, BANK(wPlayerGender)
+	ldh [rWBK], a
+
+	ld b, 1
+	call SafeCopyTilemapAtOnce
+
+.loop
+	call DelayFrame
+	call GetJoypad
+	ldh a, [hJoyPressed]
+	bit B_PAD_A, a
+	ret nz
+	bit B_PAD_RIGHT, a
+	jr nz, .d_right
+	bit B_PAD_LEFT, a
+	jr z, .loop
+
+	ld a, [wPlayerGender]
+	and a ; first gender
+	jr z, .got_gender
+	dec a
+	jr .got_gender
+
+.d_right
+	ld a, [wPlayerGender]
+	cp NUM_PLAYER_GENDERS - 1 ; last gender
+	jr z, .got_gender
+	inc a
+.got_gender
+	ld [wPlayerGender], a
+	jmp GenderMenu
+
+.MakeTransparent:
+	ld a, BANK(wBGPals2)
+	ldh [rWBK], a
+	ld d, 3
+.transparency_loop
+	ld a, [hli]
+	ld c, a
+	ld a, [hld]
+	ld b, a
+	farcall ApplyWhiteTransparency
+	ld a, c
+	ld [hli], a
+	ld a, b
+	ld [hli], a
+	dec d
+	jr nz, .transparency_loop
+	ret
 
 AreYouABoyOrAreYouAGirlText:
 	; Are you a boy? Or are you a girl?
 	text_far Text_AreYouABoyOrAreYouAGirl
 	text_end
 
-SoYoureABoyText:
-	; So you're a boy?
-	text_far Text_SoYoureABoy
+SoThisIsYouText:
+	; So this is you?
+	text_far Text_SoThisIsYou
 	text_end
 
-SoYoureAGirlText:
-	; So you're a girl?
-	text_far Text_SoYoureAGirl
-	text_end
+InitGenderGraphics:
+	ld hl, ChrisCardPic
+	ld de, vTiles2 tile $00
+	lb bc, BANK(ChrisCardPic), 5 * 7
+	call DecompressRequest2bpp
+	ld hl, KrisCardPic
+	ld de, vTiles2 tile $23
+	lb bc, BANK(KrisCardPic), 5 * 7
+	call DecompressRequest2bpp
+	ld hl, CrysCardPic
+	ld de, vTiles2 tile $46
+	lb bc, BANK(CrysCardPic), 5 * 7
+	call DecompressRequest2bpp
+	ld a, 1
+	ldh [rVBK], a
+	ld hl, BetaCardPic
+	ld de, vTiles5 tile $00
+	lb bc, BANK(BetaCardPic), 5 * 7
+	call DecompressRequest2bpp
+	xor a
+	ldh [rVBK], a
+
+	xor a
+	ldh [hGraphicStartTile], a
+	hlcoord 0, 4
+	lb bc, 5, 7
+	predef PlaceGraphic
+	ld a, $23
+	ldh [hGraphicStartTile], a
+	hlcoord 5, 4
+	lb bc, 5, 7
+	predef PlaceGraphic
+	ld a, $46
+	ldh [hGraphicStartTile], a
+	hlcoord 10, 4
+	lb bc, 5, 7
+	predef PlaceGraphic
+	xor a
+	ldh [hGraphicStartTile], a
+	hlcoord 15, 4
+	lb bc, 5, 7
+	predef_jump PlaceGraphic
 
 NamePlayer:
 	ld b, $1 ; player
 	ld de, wPlayerName
 	farcall NamingScreen
-	ld hl, wPlayerName
-	ld de, DefaultMalePlayerName
 	ld a, [wPlayerGender]
-	bit 0, a
-	jr z, .Male
-	ld de, DefaultFemalePlayerName
-.Male:
+	assert NAME_LENGTH == 11
+	ld d, a
+	add a ; * 2
+	ld e, a
+	add a ; * 4
+	add a ; * 8
+	add e ; * 10
+	add d ; * 11
+	add LOW(DefaultPlayerNames)
+	ld e, a
+	adc HIGH(DefaultPlayerNames)
+	sub e
+	ld d, a
+	ld hl, wPlayerName
 	jmp InitName
 
-INCLUDE "data/default_player_names.asm"
-
-NameSecond:
-	ld de, wBackupName
-	ld hl, DefaultFemalePlayerName
-	ld a, [wPlayerGender]
-	bit 0, a
-	jr z, .Male
-	ld hl, DefaultMalePlayerName
-.Male:
-	ld bc, NAME_LENGTH
-	rst CopyBytes		; Assign unused name to second rival.
-	ret	
-
-NameRival:
-	ld b, $2 ; rival
-	ld de, wRivalName
-	farcall NamingScreen
-	; default to "Trace"
-	ld hl, wRivalName
-	ld de, .DefaultRivalName
-	jp InitName
-
-.DefaultRivalName:
-	db "Trace@"
+INCLUDE "data/player/default_names.asm"
 
 ShrinkPlayer:
 	ld a, 0 << 7 | 32 ; fade out
@@ -905,7 +1000,7 @@ ShrinkPlayer:
 	call DelayFrames
 
 	call Intro_PlacePlayerSprite
-	call LoadFontsExtra
+	call LoadFrame
 
 	ld c, 50
 	call DelayFrames
@@ -935,23 +1030,15 @@ IntroFadePalettes:
 	db %11100100
 IntroFadePalettesEnd:
 
-DrawIntroRivalPic:
-	xor a
-	ld [wCurPartySpecies], a
-	ld a, TRACE0
-	ld [wTrainerClass], a
-	jp Intro_PrepTrainerPic
-
 DrawIntroPlayerPic:
 	xor a
 	ld [wCurPartySpecies], a
 	ld a, [wPlayerGender]
-	bit 0, a
-	ld a, ELAINE
-	jr nz, .ok
-	assert ELAINE + 1 == CHASE
+	assert PLAYER_MALE + 1 == CAL
+	assert PLAYER_FEMALE + 1 == CARRIE
+	assert PLAYER_ENBY + 1 == JACKY
+	assert PLAYER_BETA + 1 == EUNA
 	inc a
-.ok
 	ld [wTrainerClass], a
 Intro_PrepTrainerPic:
 	ld de, vTiles2
@@ -975,7 +1062,7 @@ Intro_PlacePlayerSprite:
 	ld hl, vTiles0
 	call Request2bppInWRA6
 
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld de, .sprites
 	ld a, [de]
 	inc de
@@ -991,15 +1078,7 @@ Intro_PlacePlayerSprite:
 	ld a, [de]
 	inc de
 	ld [hli], a
-
-	ld b, 0
-	ld a, [wPlayerGender]
-	bit 0, a
-	jr z, .male
-	ld b, 1
-.male
-	ld a, b
-
+	ld a, [wPlayerGender] ; 0=male, 1=female, or 2=enby
 	ld [hli], a
 	dec c
 	jr nz, .loop
@@ -1018,12 +1097,10 @@ CrystalIntroSequence:
 	farcall CrystalIntro
 
 StartTitleScreen:
-	ld hl, rIE
-	set LCD_STAT, [hl]
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	farcall _TitleScreen
 	call DelayFrame
@@ -1035,14 +1112,14 @@ StartTitleScreen:
 	call ClearBGPalettes
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
-	ld hl, rIE
-	res LCD_STAT, [hl]
 	ld hl, rLCDC
-	res 2, [hl] ; 8x8 sprites
+	res B_LCDC_OBJ_SIZE, [hl]
 	call ClearScreen
 	call ApplyAttrAndTilemapInVBlank
+	ld hl, rIE
+	res B_IE_STAT, [hl]
 	xor a
 	ldh [hLCDCPointer], a
 	ldh [hSCX], a
@@ -1051,7 +1128,7 @@ StartTitleScreen:
 	ldh [hWX], a
 	ld a, $90
 	ldh [hWY], a
-	ld a, CGB_DIPLOMA
+	ld a, CGB_PLAIN
 	call GetCGBLayout
 	call UpdateTimePals
 	ld a, [wIntroSceneFrameCounter]
@@ -1074,6 +1151,7 @@ RunTitleScreen:
 	bit 7, a
 	jr nz, .done_title
 	call TitleScreenScene
+	farcall SuicuneFrameIterator
 	call DelayFrame
 	and a
 	ret
@@ -1104,7 +1182,7 @@ TitleScreenEntrance:
 ; Lay out a base (all lines scrolling together).
 	ld e, a
 	ld hl, wLYOverrides
-	ld bc, 8 * 11 ; logo height
+	ld bc, 8 * 10 ; logo height
 	rst ByteFill
 
 ; Reversed signage for every other line's position.
@@ -1113,7 +1191,7 @@ TitleScreenEntrance:
 	cpl
 	inc a
 
-	ld b, 8 * 11 / 2 ; logo height / 2
+	ld b, 8 * 10 / 2 ; logo height / 2
 	ld hl, wLYOverrides + 1
 .loop
 	ld [hli], a
@@ -1121,14 +1199,15 @@ TitleScreenEntrance:
 	dec b
 	jr nz, .loop
 
-	;farjp AnimateTitleLGY
-	ret
+	farjp AnimateTitleCrystal
 
 .done
 ; Next scene
 	ld hl, wJumptableIndex
 	inc [hl]
 
+	ld hl, rIE
+	res B_IE_STAT, [hl]
 	xor a
 	ldh [hLCDCPointer], a
 
@@ -1141,14 +1220,14 @@ TitleScreenEntrance:
 	call CloseSRAM
 
 ; Play the title screen music.
-	ld de, MUSIC_TITLE
+	ld e, MUSIC_TITLE
 	ld a, [wSaveFileExists]
 	and a
 	jr z, .ok
 	ld hl, wStatusFlags
 	bit 6, [hl] ; hall of fame
 	jr z, .ok
-	ld de, MUSIC_TITLE
+	ld e, MUSIC_TITLE_XY
 .ok
 	call PlayMusic
 
@@ -1157,6 +1236,7 @@ TitleScreenEntrance:
 	ret
 
 TitleScreenTimer:
+
 ; Next scene
 	ld hl, wJumptableIndex
 	inc [hl]
@@ -1180,51 +1260,49 @@ TitleScreenTimer:
 	ld de, 56 * 60
 .ok
 	ld hl, wTitleScreenTimer
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
 TitleScreenMain:
 ; Run the timer down.
 	ld hl, wTitleScreenTimer
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
-	ld a, e
+	ld e, a
 	or d
 	jr z, .end
 
 	dec de
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 
-; Save data can be deleted by pressing Up + B + Select.
 	call GetJoypad
 	ld hl, hJoyDown
 
+; Save data can be deleted by pressing Up + B + Select.
 	ld a, [hl]
-	and D_UP + B_BUTTON + SELECT
-	cp  D_UP + B_BUTTON + SELECT
+	or ~(PAD_UP + PAD_B + PAD_SELECT)
+	inc a
 	jr z, .delete_save_data
 
 ; The clock can be reset by pressing Down + B.
 	ld a, [hl]
-	and D_DOWN + B_BUTTON
-	cp  D_DOWN + B_BUTTON
+	or ~(PAD_DOWN + PAD_B)
+	inc a
 	jr z, .clock_reset
 
 ; The early game options can be reset by pressing Left + B.
 	ld a, [hl]
-	and D_LEFT + B_BUTTON
-	cp  D_LEFT + B_BUTTON
+	or ~(PAD_LEFT + PAD_B)
+	inc a
 	jr z, .early_option_reset
 
 ; Press Start or A to start the game.
-.check_start
 	ld a, [hl]
-	and START | A_BUTTON
+	and PAD_START | PAD_A
 	jr nz, .start_game
 	ret
 
@@ -1268,6 +1346,7 @@ TitleScreenMain:
 	jr .done
 
 TitleScreenEnd:
+
 ; Wait until the music is done fading.
 
 	ld hl, wTitleScreenTimer
@@ -1299,7 +1378,7 @@ ResetInitialOptions:
 
 Copyright:
 	call ClearTileMap
-	call LoadFontsExtra
+	call LoadFrame
 	ld hl, CopyrightGFX
 	ld de, vTiles2 tile $60
 	lb bc, BANK(CopyrightGFX), $1d
@@ -1311,30 +1390,15 @@ Copyright:
 
 CopyrightString:
 	; ©1995-2001 Nintendo
-	db   $60, $61, $62, $63, $64, $65, $66
-	db   $67, $68, $69, $6a, $6b, $6c
+	db $60, $61, $62, $63, $64, $65, $66
+	db $67, $68, $69, $6a, $6b, $6c
 
 	; ©1995-2001 Creatures inc.
-	next $60, $61, $62, $63, $64, $65, $66
-	db   $6d, $6e, $6f, $70, $71, $72, $7a, $7b, $7c
+	db "<NEXT>"
+	db $60, $61, $62, $63, $64, $65, $66
+	db $6d, $6e, $6f, $70, $71, $72, $7a, $7b, $7c
 
 	; ©1995-2001 GAME FREAK inc.
-	next $60, $61, $62, $63, $64, $65, $66
-	db   $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c, "@"
-
-GameInit::
-	farcall TryLoadSaveData
-	call ClearWindowData
-	call ClearBGPalettes
-	call ClearTileMap
-	ld a, HIGH(vBGMap0)
-	ldh [hBGMapAddress + 1], a
-	xor a
-	ldh [hBGMapAddress], a
-	ldh [hJoyDown], a
-	ldh [hSCX], a
-	ldh [hSCY], a
-	ld a, $90
-	ldh [hWY], a
-	call ApplyTilemapInVBlank
-	jmp CrystalIntroSequence
+	db "<NEXT>"
+	db $60, $61, $62, $63, $64, $65, $66
+	db $73, $74, $75, $76, $77, $78, $79, $7a, $7b, $7c, "@"

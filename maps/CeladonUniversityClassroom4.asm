@@ -17,13 +17,13 @@ CeladonUniversityClassroom4_MapScriptHeader:
 	bg_event  7,  1, BGEVENT_JUMPTEXT, CeladonUniversityClassroom4Bookshelf2Text
 
 	def_object_events
-	object_event  5,  2, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonUniversityClassroom4RaymondScript, -1
-	object_event  2,  1, SPRITE_CANDELA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4CandelaText, EVENT_CELADON_UNIVERSITY_CANDELA
-	object_event  2,  1, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4TeacherText, EVENT_SHAMOUTI_COAST_CANDELA
-	object_event  2,  5, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4Bug_catcherText, -1
-	object_event  3,  7, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4FisherText, -1
-	object_event  5,  7, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4LadyText, -1
-	object_event  4,  9, SPRITE_RICH_BOY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonUniversityClassroom4Rich_boyScript, -1
+	object_event  5,  2, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonUniversityClassroom4RaymondScript, -1
+	object_event  2,  1, SPRITE_CANDELA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, (1 << MORN) | (1 << DAY), 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4CandelaText, -1
+	object_event  2,  1, SPRITE_TEACHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, (1 << EVE) | (1 << NITE), PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4TeacherText, -1
+	object_event  2,  5, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4Bug_catcherText, -1
+	object_event  3,  7, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4FisherText, -1
+	object_event  5,  7, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonUniversityClassroom4LadyText, -1
+	object_event  4,  9, SPRITE_RICH_BOY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonUniversityClassroom4Rich_boyScript, -1
 
 	object_const_def
 	const CELADONUNIVERSITYCLASSROOM4_RAYMOND
@@ -31,12 +31,12 @@ CeladonUniversityClassroom4_MapScriptHeader:
 CeladonUniversityClassroom4RaymondScript:
 	faceplayer
 	checkevent EVENT_BEAT_COOLTRAINERM_RAYMOND
-	iftrue .Beaten
+	iftruefwd .Beaten
 	opentext
 	checkevent EVENT_INTRODUCED_CELADON_FOUR
-	iftrue .IntroducedCeladonFour1
+	iftruefwd .IntroducedCeladonFour1
 	writetext .IntroText1
-	sjump .AfterIntro
+	sjumpfwd .AfterIntro
 .IntroducedCeladonFour1
 	writetext .IntroText2
 .AfterIntro
@@ -162,15 +162,9 @@ CeladonUniversityClassroom4CandelaText:
 	done
 
 CeladonUniversityClassroom4TeacherText:
-	text "I'm just a sub-"
-	line "stitute."
-
-	para "The usual instruc-"
-	line "tor, Candela, went"
-
-	para "off to Shamouti"
-	line "Island for some"
-	cont "reason."
+	text "Candela? She only"
+	line "teaches during the"
+	cont "day."
 	done
 
 CeladonUniversityClassroom4Bug_catcherText:
@@ -208,7 +202,7 @@ CeladonUniversityClassroom4Rich_boyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_GOT_ABILITY_CAP_IN_UNIVERSITY
-	iftrue .GotItem
+	iftruefwd .GotItem
 	writetext .Text1
 	promptbutton
 	verbosegiveitem ABILITY_CAP
@@ -266,14 +260,14 @@ CeladonUniversityClassroom4BlackboardText:
 	done
 
 CeladonUniversityClassroom4Bookshelf1:
-	checkevent EVENT_GOT_X_SPCL_ATK_IN_UNIVERSITY
+	checkevent EVENT_GOT_X_SP_ATK_IN_UNIVERSITY
 	iftrue_jumptext .Text2
 	opentext
 	writetext .Text1
 	promptbutton
-	verbosegiveitem X_SPCL_ATK
+	verbosegiveitem X_SP_ATK
 	iffalse_endtext
-	setevent EVENT_GOT_X_SPCL_ATK_IN_UNIVERSITY
+	setevent EVENT_GOT_X_SP_ATK_IN_UNIVERSITY
 	endtext
 
 .Text1:

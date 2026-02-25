@@ -4,7 +4,7 @@ BasePickupTable:
 	db SUPER_POTION
 	db GREAT_BALL
 	db REPEL
-	db LURE
+	db ESCAPE_ROPE
 	db FULL_HEAL
 	db HYPER_POTION
 	db ULTRA_BALL

@@ -1,48 +1,52 @@
-CopyDVsToColorVaryDVs: ; Change this to discolor SHADOW Pokemon
-	ret
+CopyDVsToColorVaryDVs:
 ; e = HPAtkDV
 	ld a, [hli]
 	ld e, a
-; d = DefSpdDV
+; d = DefSpeDV
 	ld a, [hli]
 	ld d, a
 ; c = SatSdfDV
+	push bc
 	ld a, [hli]
 	ld c, a
 ; b = Shiny
-	push bc
 	ld a, [hl]
 	ld b, a
 
-	ldh a, [rSVBK]
-	ld c, a
+	ldh a, [rWBK]
+	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wColorVaryDVs
 ; wColorVaryDVs = HPAtkDV
 	ld a, e
 	ld [hli], a
-; wColorVaryDVs+1 = DefSpdDV
+; wColorVaryDVs+1 = DefSpeDV
 	ld a, d
+	ld [hli], a
+; wColorVaryDVs+2 = SatSdfDV
+	ld a, c
 	ld [hli], a
 	inc hl
 	inc hl
+	assert wColorVaryDVs + 5 == wColorVaryShiny
 ; wColorVaryShiny = Shiny
 	ld a, b
 	ld [hld], a
-	ld a, c
+	pop af
 	ld d, a
 	pop bc
-; wColorVarySpecies = Species
+	assert wColorVaryShiny - 1 == wColorVaryForm
+; wColorVaryForm = Form
 	ld a, b
 	ld [hld], a
-; wColorVaryDVs+2 = SatSdfDV
-	ld a, c
-	ld [hl], a
+	assert wColorVaryForm - 1 == wColorVarySpecies
+; wColorVarySpecies = Species
+	ld [hl], c
 
 	ld a, d
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 GetColorChannelVariedByDV:
@@ -117,7 +121,7 @@ VaryGreenByDV:
 ; vary d according to e
 	call GetColorChannelVariedByDV
 ; store a back in green
-	sla a
+	add a
 	swap a
 	ld d, a
 	and %11100000
@@ -158,12 +162,27 @@ VaryBlueByDV:
 	ld [hld], a
 	ret
 
+VaryBGPal0ByTempMonDVs:
+	ld hl, wBGPals1 palette 0 + 2
+	jr VaryBGPalByTempMonDVs
+VaryBGPal1ByTempMonDVs:
+	ld hl, wBGPals1 palette 1 + 2
+VaryBGPalByTempMonDVs:
+	push hl
+	ld hl, wTempMonDVs
+	ld a, [wTempMonSpecies]
+	ld c, a
+	ld a, [wTempMonForm]
+	ld b, a
+	call CopyDVsToColorVaryDVs
+	pop hl
 VaryColorsByDVs::
 ; hl = colors
 ; [hl+0] = gggr:rrrr
 ; [hl+1] = 0bbb:bbgg
 ; [hl+2] = GGGR:RRRR
 ; [hl+3] = 0BBB:BBGG
+; returns with hl += 4
 
 ; DVs in wColorVaryDVs
 ; [bc+0] = hhhh:aaaa
@@ -171,19 +190,38 @@ VaryColorsByDVs::
 ; [bc+2] = pppp:qqqq
 
 ; [wColorVarySpecies] = species
+; [wColorVaryForm] = form
 ; [wColorVaryShiny] = shiny
 
-;if DEF(MONOCHROME) || DEF(NOIR)
-;	ret
-;endc
+if !DEF(MONOCHROME) && !DEF(NOIR)
+	ld a, [wInitialOptions]
+	bit COLOR_VARY_OPT, a
+	jr nz, .continue
+endc
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	ret
 
-	ldh a, [rSVBK]
+.continue
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld bc, wColorVaryDVs
 
+	ld a, [wColorVarySpecies]
+	cp LOW(SMEARGLE)
+	jr nz, .VaryColors
+	ld a, [wColorVaryForm]
+	and EXTSPECIES_MASK
+	assert HIGH(SMEARGLE) << MON_EXTSPECIES_F == 0
+	and a
+	jr z, .Smeargle
+
+.VaryColors:
 ;;; LiteRed ~ HPDV, aka, rrrrr ~ hhhh
 ; store HPDV in e
 	ld a, [bc]
@@ -201,7 +239,7 @@ VaryColorsByDVs::
 ; vary LiteGrn by e
 	call VaryGreenByDV
 
-;;; advance from HP/Atk DV to Def/Spd DV
+;;; advance from HP/Atk DV to Def/Spe DV
 	inc bc
 
 ;;; LiteBlu ~ DefDV, aka, bbbbb ~ dddd
@@ -218,15 +256,15 @@ VaryColorsByDVs::
 	inc hl
 
 .Finish:
-;;; DarkRed ~ SpdDV, aka, RRRRR ~ ssss
-; store SpdDV in e
+;;; DarkRed ~ SpeDV, aka, RRRRR ~ ssss
+; store SpeDV in e
 	ld a, [bc]
 	and %1111
 	ld e, a
 ; vary DarkRed by e
 	call VaryRedByDV
 
-;;; move from Def/Spd DV to SAt/SDf DV
+;;; move from Def/Spe DV to SAt/SDf DV
 	inc bc
 
 ;;; DarkGrn ~ SAtDV, aka, GGGGG ~ pppp
@@ -246,26 +284,64 @@ VaryColorsByDVs::
 ; vary DarkBlu by e
 	call VaryBlueByDV
 
+;;; advance past Dark color
+	inc hl
+	inc hl
+
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
-VaryBGPal0ForShadows:
-	ld hl, wBGPals1 palette 0 + 2
-	jr VaryBGPalForShadows
-VaryBGPal1ForShadows:
-	ld hl, wBGPals1 palette 1 + 2
-VaryBGPalForShadows:
+; TODO: vary paint color with unused DV bits
+; * DarkRed' = DarkRed + (HPDV & %0100 >> 2) - (HPDV & %1000 >> 3)
+; * DarkGrn' = DarkGrn + (AtkDV & %0100 >> 2) - (AtkDV & %1000 >> 3)
+; * DarkBlu' = DarkBlu + (DefDV & %0100 >> 2) - (DefDV & %1000 >> 3)
+.Smeargle:
+; a = (AtkDV & %11) << 2 | (DefDV & %11)
+	ld a, [bc]
+	and %11
+	add a
+	add a
+	ld d, a
+	inc bc
+	ld a, [bc]
+	swap a
+	and %11
+	or d
+; d, e = base paint color
+	ld e, a
+	ld d, 0
 	push hl
-;	ld a, [wTempMonShadow]
-;	and a
-;	jr nz, .notShadow
-	ld hl, wTempMonDVs
-	ld a, [wTempMonSpecies]
-	ld b, a
-	call CopyDVsToColorVaryDVs
+	ld hl, .SmearglePals
+	ld a, [wColorVaryShiny]
+	and SHINY_MASK
+	jr z, .not_shiny
+	ld hl, .SmeargleShinyPals
+.not_shiny
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld d, a
+	ld a, [hl]
+	ld e, a
 	pop hl
-	jr VaryColorsByDVs
-;.notShadow
-;	pop hl
-;	ret
+;;; DarkRGB = base paint color
+	inc hl
+	inc hl
+	inc hl
+	ld a, e
+	ld [hld], a
+	ld a, d
+	ld [hl], a
+;;; LiteRGB ~ Spe,SAt,SDfDVs
+	jr .Finish
+
+; red and blue channels: no 0 or 31
+; green channel: no 0, 7, 8, 15, 16, 23, 24, or 31
+; need to be able to add or subtract 1 without overflow/underflow
+
+.SmearglePals:
+INCLUDE "gfx/pokemon/smeargle.pal"
+
+.SmeargleShinyPals: ; TODO
+INCLUDE "gfx/pokemon/smeargle_shiny.pal"

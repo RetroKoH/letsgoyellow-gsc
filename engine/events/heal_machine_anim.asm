@@ -8,18 +8,18 @@ HealMachineAnim:
 	; 1: Left (Elm's Lab)
 	; 2: Up (Hall of Fame)
 	ldh a, [hScriptVar]
-	ld [wBuffer1], a
+	ld [wHealMachineAnimType], a
 	ldh a, [rOBP1]
-	ld [wBuffer2], a
+	ld [wHealMachineTempOBP1], a
 	call .DoJumptableFunctions
-	ld a, [wBuffer2]
+	ld a, [wHealMachineTempOBP1]
 	jmp DmgToCgbObjPal1
 
 .DoJumptableFunctions:
 	xor a
-	ld [wBuffer3], a
+	ld [wHealMachineAnimState], a
 .jumptable_loop
-	ld a, [wBuffer1]
+	ld a, [wHealMachineAnimType]
 	ld e, a
 	ld d, 0
 	ld hl, .Pointers
@@ -28,10 +28,10 @@ HealMachineAnim:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wBuffer3]
+	ld a, [wHealMachineAnimState]
 	ld e, a
 	inc a
-	ld [wBuffer3], a
+	ld [wHealMachineAnimState], a
 	add hl, de
 	ld a, [hl]
 	cp 5
@@ -60,14 +60,14 @@ HealMachineAnim:
 	dw .HOF_PlaySFX
 
 .PC_LoadBallsOntoMachine:
-	ld hl, wVirtualOAM + $80
+	ld hl, wShadowOAM
 	ld de, .PC_ElmsLab_OAM
 	call .PlaceHealingMachineTile
 	call .PlaceHealingMachineTile
 	jr .LoadBallsOntoMachine
 
 .HOF_LoadBallsOntoMachine:
-	ld hl, wVirtualOAM + $80
+	ld hl, wShadowOAM
 	ld de, .HOF_OAM
 
 .LoadBallsOntoMachine:
@@ -86,7 +86,7 @@ HealMachineAnim:
 	ret
 
 .PlayHealMusic:
-	ld de, MUSIC_HEAL
+	ld e, MUSIC_HEAL
 	call PlayMusic
 	jr .FlashPalettes8Times
 
@@ -100,7 +100,7 @@ HealMachineAnim:
 
 .LoadPalettes:
 	ld hl, .palettes
-	ld de, wOBPals2 palette PAL_OW_TREE
+	ld de, wOBPals2 palette 7
 	ld bc, 1 palettes
 	call FarCopyColorWRAM
 	ld a, $1
@@ -120,12 +120,12 @@ HealMachineAnim:
 	ret
 
 .FlashPalettes:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
-	ld hl, wOBPals2 palette PAL_OW_TREE
+	ld hl, wOBPals2 palette 7
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -155,16 +155,16 @@ HealMachineAnim:
 	ld [hl], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	ret
 
 .PlaceHealingMachineTile:
 	push bc
-	ld a, [wBuffer1]
+	ld a, [wHealMachineAnimType]
 	bcpixel 2, 4
-	cp $1 ; ElmsLab
+	dec a ; ElmsLab = 1
 	jr z, .okay
 	bcpixel 0, 0
 
@@ -187,29 +187,22 @@ HealMachineAnim:
 	ret
 
 .PC_ElmsLab_OAM:
-	dsprite   4, 0,   4, 2, $78, PAL_OW_TREE
-	dsprite   4, 0,   4, 6, $78, PAL_OW_TREE
-	dsprite   4, 6,   4, 0, $79, PAL_OW_TREE
-	dsprite   4, 6,   5, 0, $79, PAL_OW_TREE | X_FLIP
-	dsprite   5, 3,   4, 0, $79, PAL_OW_TREE
-	dsprite   5, 3,   5, 0, $79, PAL_OW_TREE | X_FLIP
-	dsprite   6, 0,   4, 0, $79, PAL_OW_TREE
-	dsprite   6, 0,   5, 0, $79, PAL_OW_TREE | X_FLIP
+	dsprite   4, 0,   4, 2, $78, 7
+	dsprite   4, 0,   4, 6, $78, 7
+	dsprite   4, 6,   4, 0, $79, 7
+	dsprite   4, 6,   5, 0, $79, 7 | OAM_XFLIP
+	dsprite   5, 3,   4, 0, $79, 7
+	dsprite   5, 3,   5, 0, $79, 7 | OAM_XFLIP
+	dsprite   6, 0,   4, 0, $79, 7
+	dsprite   6, 0,   5, 0, $79, 7 | OAM_XFLIP
 
 .HOF_OAM:
-	dsprite   7, 4,  10, 1, $79, PAL_OW_TREE
-	dsprite   7, 4,  10, 6, $79, PAL_OW_TREE
-	dsprite   7, 3,   9, 5, $79, PAL_OW_TREE
-	dsprite   7, 3,  11, 2, $79, PAL_OW_TREE
-	dsprite   7, 1,   9, 1, $79, PAL_OW_TREE
-	dsprite   7, 1,  11, 5, $79, PAL_OW_TREE
+	dsprite   7, 4,  10, 1, $79, 7
+	dsprite   7, 4,  10, 6, $79, 7
+	dsprite   7, 3,   9, 5, $79, 7
+	dsprite   7, 3,  11, 2, $79, 7
+	dsprite   7, 1,   9, 1, $79, 7
+	dsprite   7, 1,  11, 5, $79, 7
 
 .palettes
-if !DEF(MONOCHROME)
-	RGB 31, 31, 31
-	RGB 31, 19, 10
-	RGB 31, 07, 01
-	RGB 00, 00, 00
-else
-	MONOCHROME_RGB_FOUR
-endc
+INCLUDE "gfx/overworld/heal_machine.pal"

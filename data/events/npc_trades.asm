@@ -1,55 +1,75 @@
-; Need to add a check for the player Pokemon's form
-; Also add hard-coded level for traded mons. $FF will match the level with yours.
-; Unsure about whether trade ID numbers work properly. (Doesn't seem like a huge deal)
-
 NPCTrades:
-	table_width NPCTRADE_STRUCT_LENGTH, NPCTrades
-; NPC_TRADE_MIKE on Route 2
-	rawchar 0, MR__MIME,   MR__MIME,   $FF,  "Charlie@@@@"
-	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_ATK_UP_SATK_DOWN,  MALE | GALARIAN_FORM, PREMIER_BALL, SITRUS_BERRY
+	table_width NPCTRADE_STRUCT_LENGTH
+; NPC_TRADE_MIKE in Goldenrod City
+	db TRADE_DIALOGSET_COLLECTOR
+	dp ABRA, NO_FORM  ; wants
+	dp MACHOP, FEMALE ; gives
+	rawchar "Muscle@@@@@"
+	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_ATK_UP_SATK_DOWN,  LEVEL_BALL,   SITRUS_BERRY
 	dw 37460
-	rawchar "Mike@@@@"
-; NPC_TRADE_JOANA in Viridian Forest
-	rawchar 3, PIKACHU,    BUTTERFREE, 10,   "Buttercup@@"
-	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPD_UP_DEF_DOWN,   FEMALE, POKE_BALL, PERSIM_BERRY
+	rawchar "Mike@@@@", $00
+; NPC_TRADE_KYLE in Violet City
+	db TRADE_DIALOGSET_COLLECTOR
+	dp POLIWAG, NO_FORM ; wants
+	dp VOLTORB, MALE    ; gives
+	rawchar "Mimic@@@@@@"
+	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPE_UP_DEF_DOWN,   PREMIER_BALL, PERSIM_BERRY
 	dw 48926
-	rawchar "Joana@@@"
-; NPC_TRADE_TIM in Pewter City
-	rawchar 1, RATTATA,    RATTATA,    $FF,  "Pepper@@@@@"
-	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_ATK_UP_SPD_DOWN,   MALE | ALOLAN_FORM,   PREMIER_BALL,   SILK_SCARF
+	rawchar "Kyle@@@@", $00
+; NPC_TRADE_TIM in Olivine City
+	db TRADE_DIALOGSET_HAPPY
+	dp STEELIX, NO_FORM ; wants
+	dp KANGASKHAN, MALE ; gives
+	rawchar "Joey@@@@@@@"
+	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_ATK_UP_SPE_DOWN,   HEAVY_BALL,   SILK_SCARF
 	dw 29189
-	rawchar "Tim@@@@@"
-; NPC_TRADE_EMY in Cerulean City
-	rawchar 3, PONYTA,     PONYTA,     $FF,  "Celeste@@@@"
-	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPD_UP_ATK_DOWN,   FEMALE | GALARIAN_FORM, LOVE_BALL,    PINK_BOW
+	rawchar "Tim@@@@@", $00
+; NPC_TRADE_EMY in Blackthorn City
+	db TRADE_DIALOGSET_GIRL
+	dp JYNX, NO_FORM    ; wants
+	dp MR__MIME, FEMALE ; gives
+	rawchar "Doris@@@@@@"
+	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPE_UP_ATK_DOWN,   LOVE_BALL,    FAIRYFEATHER
 	dw 00283
-	rawchar "Emy@@@@@"
-; NPC_TRADE_CHRIS in Vermilion City
-	rawchar 2, GEODUDE,    GEODUDE,    $FF,  "Rocky@@@@@@"
-	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPD_UP_SATK_DOWN,  MALE | ALOLAN_FORM,   GREAT_BALL,    SILVERPOWDER
+	rawchar "Emy@@@@@", $00
+; NPC_TRADE_CHRIS in Pewter City
+	db TRADE_DIALOGSET_NEWBIE
+	dp PINSIR, NO_FORM ; wants
+	dp HERACROSS, MALE ; gives
+	rawchar "Paul@@@@@@@"
+	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPE_UP_SATK_DOWN,  PARK_BALL,    SILVERPOWDER
 	dw 15616
-	rawchar "Chris@@@"
-; NPC_TRADE_KIM in Celadon City
-	rawchar 3, VULPIX,     VULPIX,     $FF,  "Tails@@@@@@"
-	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SDEF_UP_ATK_DOWN,  FEMALE | ALOLAN_FORM, HEAL_BALL,    LUCKY_EGG
+	rawchar "Chris@@@", $00
+; NPC_TRADE_KIM in Route 14
+	db TRADE_DIALOGSET_GIRL
+	dp WOBBUFFET, NO_FORM ; wants
+	dp CHANSEY, FEMALE    ; gives
+	rawchar "Chance@@@@@"
+	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SDEF_UP_ATK_DOWN,  HEAL_BALL,    LUCKY_EGG
 	dw 26491
-	rawchar "Kim@@@@@"
-; NPC_TRADE_JACQUES in Lavender Town
-	rawchar 1, SANDSHREW,  SANDSHREW,  $FF,  "Frosty@@@@@"
-	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SDEF_UP_SATK_DOWN, FEMALE | ALOLAN_FORM, QUICK_BALL,    EVIOLITE
+	rawchar "Kim@@@@@", $00
+; NPC_TRADE_JACQUES in Goldenrod Harbor
+	db TRADE_DIALOGSET_HAPPY
+	dp TENTACOOL, NO_FORM ; wants
+	dp GRIMER, FEMALE     ; gives
+	rawchar "Gail@@@@@@@"
+	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SDEF_UP_SATK_DOWN, LURE_BALL,    EVIOLITE
 	dw 50082
-	rawchar "Jacques@"
-; NPC_TRADE_HARI in Saffron City
-	rawchar 0, RAICHU,     RAICHU,     $FF,  "Storm@@@@@@"
-	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPD_UP_DEF_DOWN,   MALE | ALOLAN_FORM,   FAST_BALL,    GOLD_LEAF
+	rawchar "Jacques@", $00
+; NPC_TRADE_HARI in Ecruteak City
+	db TRADE_DIALOGSET_COLLECTOR
+	dp FARFETCH_D, NO_FORM ; wants
+	dp DODUO, MALE         ; gives
+	rawchar "Clarence@@@"
+	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPE_UP_DEF_DOWN,   FAST_BALL,    GOLD_LEAF
 	dw 43972
-	rawchar "Hari@@@@"
+	rawchar "Hari@@@@", $00
+; NPC_TRADE_JEEVES
+	db TRADE_DIALOGSET_COLLECTOR
+	dp PONYTA, NO_FORM               ; wants
+	dp WEEZING, GALARIAN_FORM | MALE ; gives
+	rawchar "Batty@@@@@@"
+	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_DEF_UP_ATK_DOWN,   DREAM_BALL,   CHARCOAL
+	dw 08922
+	rawchar "Jeeves@@", $00
 	assert_table_length NUM_NPC_TRADES
-
-; to add:
-; Diglett for Diglett-A in Vermilion after Diglett's cave can be explored again.
-; Farfetch'd for Farfetch'd-G in Fuchsia
-; Marowak for Marowak-A in Fuchsia
-; Grimer for Grimer-A in ???
-; Meowth for Meowth-A in ???
-; Exeggutor for Exeggutor-A in ???

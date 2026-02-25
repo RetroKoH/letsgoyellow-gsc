@@ -14,19 +14,19 @@ ManiasHouse_MapScriptHeader:
 	bg_event  7,  1, BGEVENT_JUMPSTD, picturebookshelf
 
 	def_object_events
-	object_event  2,  4, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ManiaScript, -1
+	object_event  2,  4, SPRITE_ROCKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ManiaScript, -1
 
 ManiaScript:
 	faceplayer
 	opentext
 	checkevent EVENT_MANIA_TOOK_SHUCKIE_OR_LET_YOU_KEEP_HIM
-	iftrue .default_postevent
+	iftruefwd .default_postevent
 	checkevent EVENT_GOT_SHUCKIE
-	iftrue .alreadyhaveshuckie
+	iftruefwd .alreadyhaveshuckie
 	writetext ManiaText_AskLookAfterShuckie
 	yesorno
-	iffalse .refusetotakeshuckie
-	givepoke SHUCKLE, MALE | NO_FORM, 25, BERRY_JUICE, NET_BALL, POISON_JAB, TRUE, ShuckieName, ShuckieOTName, ShuckieOTIDAndCaughtGender
+	iffalsefwd .refusetotakeshuckie
+	givepoke SHUCKLE, MALE | PLAIN_FORM, 25, BERRY_JUICE, NET_BALL, POISON_JAB, ShuckieName, ShuckieOTName, KIRK_SHUCKIE_ID
 	iffalse_jumpopenedtext ManiaText_PartyAndBoxFull
 	writetext ManiaText_TakeCareOfShuckie
 	promptbutton
@@ -34,9 +34,9 @@ ManiaScript:
 	writetext ManiaText_GotShuckie
 	playsound SFX_KEY_ITEM
 	waitsfx
-	ifequal 1, .shuckieinparty
+	ifequalfwd 1, .shuckieinparty
 	special Special_CurBoxFullCheck
-	iffalse .BoxNotFull
+	iffalsefwd .BoxNotFull
 	farwritetext _CurBoxFullText
 .BoxNotFull
 	special GetCurBoxName
@@ -50,21 +50,26 @@ ManiaScript:
 
 .alreadyhaveshuckie
 	checkflag ENGINE_GOT_SHUCKIE_TODAY
-	iffalse .returnshuckie
+	iffalsefwd .returnshuckie
 	jumpopenedtext ManiaText_TakeCareOfShuckie
 
 .refusetotakeshuckie
-	jumpopenedtext ManiaText_IfHeComesBack
+	jumpthisopenedtext
+
+	text "Oh, no… What'll"
+	line "I do if he comes"
+	cont "back?"
+	done
 
 .returnshuckie
 	writetext ManiaText_CanIHaveMyMonBack
 	yesorno
-	iffalse .refused
+	iffalsefwd .refused
 	special ReturnShuckie
-	ifequal $0, .wrong
-	ifequal $1, .refused
-	ifequal $3, .superhappy
-	ifequal $4, .default_postevent
+	ifequalfwd $0, .wrong
+	ifequalfwd $1, .refused
+	ifequalfwd $3, .superhappy
+	ifequalfwd $4, .default_postevent
 	writetext ManiaText_ThankYou
 	waitbutton
 	closetext
@@ -72,7 +77,12 @@ ManiaScript:
 	end
 
 .wrong
-	jumpopenedtext ManiaText_ShuckieNotThere
+	jumpthisopenedtext
+
+	text "Hey, you don't"
+	line "have my #mon"
+	cont "with you."
+	done
 
 .superhappy
 	writetext ManiaText_ShuckieLikesYou
@@ -82,23 +92,38 @@ ManiaScript:
 	end
 
 .refused
-	jumpopenedtext ManiaText_SameAsBeingRobbed
+	jumpthisopenedtext
+
+	text "Oh, no, no… That's"
+	line "the same as being"
+	cont "robbed."
+	done
 
 .nothingleft
-	jumpopenedtext ManiaText_ShuckieIsYourLastMon
+	jumpthisopenedtext
+
+	text "If I take my #-"
+	line "mon back, what are"
+
+	para "you going to use"
+	line "in battle?"
+	done
 
 .default_postevent
-	jumpopenedtext ManiaText_HappinessSpeech
+	jumpthisopenedtext
+
+	text "For #mon, hap-"
+	line "piness is being"
+
+	para "with a person who"
+	line "treats them well."
+	done
 
 ShuckieName:
 	rawchar "Shuckie@"
 
 ShuckieOTName:
 	rawchar "Kirk@"
-
-ShuckieOTIDAndCaughtGender:
-	bigdw KIRK_SHUCKIE_ID
-	db MALE
 
 ManiaText_AskLookAfterShuckie:
 	text "I, I'm in shock!"
@@ -145,14 +170,9 @@ ManiaText_ShuckieSentToPC:
 
 ManiaText_PartyAndBoxFull:
 	text "Your #mon party"
-	line "and box are full."
+	line "and Box are full."
 	done
 
-ManiaText_IfHeComesBack:
-	text "Oh, no… What'll"
-	line "I do if he comes"
-	cont "back?"
-	done
 
 ManiaText_CanIHaveMyMonBack:
 	text "Hi! How's my #-"
@@ -167,11 +187,6 @@ ManiaText_ThankYou:
 	text "Thank you!"
 	done
 
-ManiaText_ShuckieNotThere:
-	text "Hey, you don't"
-	line "have my #mon"
-	cont "with you."
-	done
 
 ManiaText_ShuckieLikesYou:
 	text "My #mon has"
@@ -184,24 +199,5 @@ ManiaText_ShuckieLikesYou:
 	line "be good to it!"
 	done
 
-ManiaText_SameAsBeingRobbed:
-	text "Oh, no, no… That's"
-	line "the same as being"
-	cont "robbed."
-	done
 
-ManiaText_HappinessSpeech:
-	text "For #mon, hap-"
-	line "piness is being"
 
-	para "with a person who"
-	line "treats them well."
-	done
-
-ManiaText_ShuckieIsYourLastMon:
-	text "If I take my #-"
-	line "mon back, what are"
-
-	para "you going to use"
-	line "in battle?"
-	done

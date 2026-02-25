@@ -1,22 +1,27 @@
+if DEF(FAITHFUL)
 	db  85,  76,  64,  90,  45,  55 ; 415 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
+else
+	db  85,  86,  64, 108,  45,  55 ; 443 BST
+	;   hp  atk  def  spe  sat  sdf
+endc
 
 	db NORMAL, NORMAL ; type
 	db 90 ; catch rate
+if DEF(FAITHFUL)
 	db 116 ; base exp
-	db ORAN_BERRY ; item 1
-	db SITRUS_BERRY ; item 2
-	dn GENDER_F50, 2 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/furret/front.dimensions"
+else
+	db 126 ; base exp
+endc
+	db ORAN_BERRY, SITRUS_BERRY ; held items
+	dn GENDER_F50, HATCH_FAST ; gender ratio, step cycles to hatch
+
 	abilities_for FURRET, RUN_AWAY, KEEN_EYE, FRISK
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
-	ev_yield   0,   0,   0,   2,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 2 Spe
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, DIG, FACADE, BRICK_BREAK, U_TURN, IRON_TAIL, THUNDERPUNCH, FIRE_PUNCH, ICE_PUNCH, THUNDERBOLT, FLAMETHROWER, THUNDER, SHADOW_BALL, SOLAR_BEAM, SURF, HYPER_BEAM, BLIZZARD, ICE_BEAM, WORK_UP
-
-	;tutors FOCUS_BLAST, GRASS_KNOT, KNOCK_OFF
+	; tm/hm learnset
+	tmhm DYNAMICPUNCH, CURSE, TOXIC, BULK_UP, HIDDEN_POWER, SUNNY_DAY, HONE_CLAWS, ICE_BEAM, BLIZZARD, HYPER_BEAM, PROTECT, RAIN_DANCE, SOLAR_BEAM, IRON_TAIL, THUNDERBOLT, THUNDER, RETURN, DIG, SHADOW_BALL, ROCK_SMASH, DOUBLE_TEAM, FLAMETHROWER, SWIFT, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, FOCUS_BLAST, WATER_PULSE, SHADOW_CLAW, GIGA_IMPACT, U_TURN, CUT, SURF, STRENGTH, WHIRLPOOL, AGILITY, AQUA_TAIL, BATON_PASS, BODY_SLAM, CHARM, DEFENSE_CURL, DOUBLE_EDGE, ENDURE, FIRE_PUNCH, HEADBUTT, HYPER_VOICE, ICE_PUNCH, KNOCK_OFF, ROLLOUT, SLEEP_TALK, SUCKER_PUNCH, SWAGGER, THUNDERPUNCH, TRICK
 	; end

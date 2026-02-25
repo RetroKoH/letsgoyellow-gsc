@@ -1,22 +1,22 @@
 	db  65,  65,  60, 110, 130,  95 ; 525 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
 
 	db PSYCHIC, PSYCHIC ; type
 	db 45 ; catch rate
 	db 197 ; base exp
-	db NO_ITEM ; item 1
-	db NO_ITEM ; item 2
-	dn GENDER_F12_5, 6 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/espeon/front.dimensions"
+	db NO_ITEM, NO_ITEM ; held items
+	dn GENDER_F12_5, HATCH_SLOWER ; gender ratio, step cycles to hatch
+
+if DEF(FAITHFUL)
 	abilities_for ESPEON, SYNCHRONIZE, SYNCHRONIZE, MAGIC_BOUNCE
+else
+	abilities_for ESPEON, SYNCHRONIZE, MAGIC_GUARD, MAGIC_BOUNCE
+endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
-	ev_yield   0,   0,   0,   0,   2,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 2 SAt
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, LIGHT_SCREEN, PROTECT, SUBSTITUTE, REFLECT, DIG, FACADE, IRON_TAIL, DAZZLINGLEAM, CALM_MIND, PSYCHIC, SHADOW_BALL, HYPER_BEAM, WORK_UP, DREAM_EATER, RAIN_DANCE, SUNNY_DAY, TRICK_ROOM
-
-	;tutors WEATHER_BALL, SIGNAL_BEAM, GRASS_KNOT, ZEN_HEADBUTT
+	; tm/hm learnset
+	tmhm CURSE, CALM_MIND, TOXIC, HIDDEN_POWER, SUNNY_DAY, HYPER_BEAM, LIGHT_SCREEN, PROTECT, RAIN_DANCE, IRON_TAIL, RETURN, DIG, PSYCHIC, SHADOW_BALL, DOUBLE_TEAM, REFLECT, SWIFT, SUBSTITUTE, FACADE, REST, ATTRACT, DAZZLINGLEAM, GIGA_IMPACT, FLASH, CUT, BATON_PASS, BODY_SLAM, CHARM, DOUBLE_EDGE, DREAM_EATER, ENDURE, HEADBUTT, HYPER_VOICE, PAY_DAY, SKILL_SWAP, SLEEP_TALK, SWAGGER, TRICK, TRICK_ROOM, ZAP_CANNON, ZEN_HEADBUTT
 	; end

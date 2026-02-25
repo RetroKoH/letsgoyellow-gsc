@@ -1,36 +1,37 @@
 MountMoonSquare_MapScriptHeader:
 	def_scene_scripts
+	scene_const SCENE_MOUNTMOONSQUARE_CLEFAIRY_DANCE
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, UnknownScript_0x77093
-	callback MAPCALLBACK_OBJECTS, UnknownScript_0x77097
+	callback MAPCALLBACK_NEWMAP, MountMoonSquareDisappearMoonStoneCallback
+	callback MAPCALLBACK_OBJECTS, MountMoonSquareDisappearRockCallback
 
 	def_warp_events
 	warp_event 21, 11, ROUTE_4, 2
 	warp_event 13,  7, MOUNT_MOON_GIFT_SHOP, 1
 
 	def_coord_events
-	coord_event  7, 11, 0, ClefairyDance
+	coord_event  7, 11, SCENE_MOUNTMOONSQUARE_CLEFAIRY_DANCE, ClefairyDance
 
 	def_bg_events
 	bg_event  7,  7, BGEVENT_ITEM + MOON_STONE, EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 	bg_event 17,  7, BGEVENT_JUMPTEXT, DontLitterSignText
 
 	def_object_events
-	object_event  6,  6, SPRITE_CLEFAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	object_event  7,  6, SPRITE_CLEFAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
-	object_event  7,  7, SPRITE_N64, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_COMMAND, jumpstd, smashrock, 0, EVENT_MT_MOON_SQUARE_ROCK
+	object_event  6,  6, SPRITE_CLEFAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	object_event  7,  6, SPRITE_CLEFAIRY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_SQUARE_CLEFAIRY
+	object_event  7,  7, SPRITE_N64, SPRITEMOVEDATA_SMASHABLE_ROCK, 0, 0, -1, PAL_NPC_COPY_BG_GRAY, OBJECTTYPE_COMMAND, jumpstd, smashrock, 0, EVENT_MT_MOON_SQUARE_ROCK
 
 	object_const_def
 	const MOUNTMOONSQUARE_CLEFAIRY1
 	const MOUNTMOONSQUARE_CLEFAIRY2
 	const MOUNTMOONSQUARE_ROCK
 
-UnknownScript_0x77093:
+MountMoonSquareDisappearMoonStoneCallback:
 	setevent EVENT_MOUNT_MOON_SQUARE_HIDDEN_MOON_STONE
 	endcallback
 
-UnknownScript_0x77097:
+MountMoonSquareDisappearRockCallback:
 	disappear MOUNTMOONSQUARE_ROCK
 	endcallback
 

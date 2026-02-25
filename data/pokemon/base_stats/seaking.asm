@@ -1,22 +1,27 @@
+if DEF(FAITHFUL)
 	db  80,  92,  65,  68,  65,  80 ; 450 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
+else
+	db  80, 102,  65,  88,  65,  80 ; 480 BST
+	;   hp  atk  def  spe  sat  sdf
+endc
 
 	db WATER, WATER ; type
 	db 60 ; catch rate
+if DEF(FAITHFUL)
 	db 170 ; base exp
-	db NO_ITEM ; item 1
-	db NO_ITEM ; item 2
-	dn GENDER_F50, 3 ; gender ratio
-	INCBIN "gfx/pokemon/seaking/front.dimensions"
+else
+	db 180 ; base exp
+endc
+	db NO_ITEM, NO_ITEM ; held items
+	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio
+
 	abilities_for SEAKING, SWIFT_SWIM, WATER_VEIL, LIGHTNING_ROD
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_WATER_2, EGG_WATER_2 ; egg groups
 
-	ev_yield   0,   2,   0,   0,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 2 Atk
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, FACADE, WATERFALL, POISON_JAB, SCALD, SURF, HYPER_BEAM, BLIZZARD, ICE_BEAM, DRILL_RUN, MEGAHORN, RAIN_DANCE, HAIL, SMART_STRIKE
-
-	;tutors SIGNAL_BEAM, KNOCK_OFF
+	; tm/hm learnset
+	tmhm CURSE, TOXIC, HAIL, HIDDEN_POWER, ICE_BEAM, BLIZZARD, HYPER_BEAM, PROTECT, RAIN_DANCE, RETURN, DOUBLE_TEAM, SWIFT, SUBSTITUTE, FACADE, REST, ATTRACT, SCALD, WATER_PULSE, POISON_JAB, GIGA_IMPACT, SWORDS_DANCE, SURF, WHIRLPOOL, WATERFALL, AGILITY, AQUA_TAIL, BODY_SLAM, DOUBLE_EDGE, ENDURE, HEADBUTT, ICY_WIND, KNOCK_OFF, SLEEP_TALK, SWAGGER
 	; end

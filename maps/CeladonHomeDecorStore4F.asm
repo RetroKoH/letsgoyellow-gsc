@@ -17,18 +17,22 @@ CeladonHomeDecorStore4F_MapScriptHeader:
 	bg_event  3,  6, BGEVENT_READ, BigOnixDollScript
 
 	def_object_events
-	object_event  9,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, BigDollClerkText, -1
-	object_event  1,  3, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigSnorlaxDollScript, -1
-	object_event  2,  3, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_STANDING_DOWN_FLIP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigSnorlaxDollScript, -1
-	object_event  1,  4, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigSnorlaxDollScript, -1
-	object_event  2,  4, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_STANDING_UP_FLIP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigSnorlaxDollScript, -1
-	object_event  4,  4, SPRITE_BIG_LAPRAS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigLaprasDollScript, -1
-	object_event  5,  4, SPRITE_BIG_LAPRAS, SPRITEMOVEDATA_STANDING_DOWN_FLIP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigLaprasDollScript, -1
-	object_event  4,  5, SPRITE_BIG_LAPRAS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigLaprasDollScript, -1
-	object_event  5,  5, SPRITE_BIG_LAPRAS, SPRITEMOVEDATA_STANDING_UP_FLIP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BigLaprasDollScript, -1
+	object_event  9,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, BigDollClerkText, -1
+	object_event  1,  3, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BigSnorlaxDollScript, -1
+	object_event  2,  3, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_STANDING_DOWN_FLIP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BigSnorlaxDollScript, -1
+	object_event  1,  4, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BigSnorlaxDollScript, -1
+	object_event  2,  4, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_STANDING_UP_FLIP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BigSnorlaxDollScript, -1
+	object_event  4,  4, SPRITE_BIG_LAPRAS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BigLaprasDollScript, -1
+	object_event  5,  4, SPRITE_BIG_LAPRAS, SPRITEMOVEDATA_STANDING_DOWN_FLIP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BigLaprasDollScript, -1
+	object_event  4,  5, SPRITE_BIG_LAPRAS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BigLaprasDollScript, -1
+	object_event  5,  5, SPRITE_BIG_LAPRAS, SPRITEMOVEDATA_STANDING_UP_FLIP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BigLaprasDollScript, -1
 
 BigDollClerkNoMoneyScript:
-	jumpopenedtext BigDollClerkNoMoneyText
+	jumpthisopenedtext
+
+	text "Clerk: You can't"
+	line "afford it!"
+	done
 
 BigLaprasDollScript:
 	checkevent EVENT_DECO_BIG_LAPRAS_DOLL
@@ -38,14 +42,19 @@ BigLaprasDollScript:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse_jumpopenedtext BigDollClerkNoSaleText
-	checkmoney $0, 300000
-	ifequal $2, BigDollClerkNoMoneyScript
-	takemoney $0, 300000
+	checkmoney YOUR_MONEY, 300000
+	ifequal HAVE_LESS, BigDollClerkNoMoneyScript
+	takemoney YOUR_MONEY, 300000
 	setevent EVENT_DECO_BIG_LAPRAS_DOLL
 	writetext BoughtBigLaprasDollText
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
-	jumpopenedtext BigLaprasDollSentText
+	jumpthisopenedtext
+
+	text "Big Lapras Doll"
+	line "was sent home."
+	done
 
 BigSnorlaxDollScript:
 	checkevent EVENT_DECO_BIG_SNORLAX_DOLL
@@ -55,14 +64,19 @@ BigSnorlaxDollScript:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse_jumpopenedtext BigDollClerkNoSaleText
-	checkmoney $0, 200000
-	ifequal $2, BigDollClerkNoMoneyScript
-	takemoney $0, 200000
+	checkmoney YOUR_MONEY, 200000
+	ifequal HAVE_LESS, BigDollClerkNoMoneyScript
+	takemoney YOUR_MONEY, 200000
 	setevent EVENT_DECO_BIG_SNORLAX_DOLL
 	writetext BoughtBigSnorlaxDollText
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
-	jumpopenedtext BigSnorlaxDollSentText
+	jumpthisopenedtext
+
+	text "Big Snorlax Doll"
+	line "was sent home."
+	done
 
 BigOnixDollScript:
 	checkevent EVENT_DECO_BIG_ONIX_DOLL
@@ -72,14 +86,19 @@ BigOnixDollScript:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse_jumpopenedtext BigDollClerkNoSaleText
-	checkmoney $0, 250000
-	ifequal $2, BigDollClerkNoMoneyScript
-	takemoney $0, 250000
+	checkmoney YOUR_MONEY, 250000
+	ifequal HAVE_LESS, BigDollClerkNoMoneyScript
+	takemoney YOUR_MONEY, 250000
 	setevent EVENT_DECO_BIG_ONIX_DOLL
 	writetext BoughtBigOnixDollText
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
-	jumpopenedtext BigOnixDollSentText
+	jumpthisopenedtext
+
+	text "Big Onix Doll"
+	line "was sent home."
+	done
 
 BigDollClerkText:
 	text "Aren't our jumbo"
@@ -95,10 +114,6 @@ BigDollClerkNoSaleText:
 	line "you say so."
 	done
 
-BigDollClerkNoMoneyText:
-	text "Clerk: You can't"
-	line "afford it!"
-	done
 
 BigDollClerkSellLaprasText:
 	text "Clerk: You like"
@@ -129,30 +144,18 @@ BoughtBigLaprasDollText:
 	line "Big Lapras Doll."
 	done
 
-BigLaprasDollSentText:
-	text "Big Lapras Doll"
-	line "was sent home."
-	done
 
 BoughtBigSnorlaxDollText:
 	text "<PLAYER> bought"
 	line "Big Snorlax Doll."
 	done
 
-BigSnorlaxDollSentText:
-	text "Big Snorlax Doll"
-	line "was sent home."
-	done
 
 BoughtBigOnixDollText:
 	text "<PLAYER> bought"
 	line "Big Onix Doll."
 	done
 
-BigOnixDollSentText:
-	text "Big Onix Doll"
-	line "was sent home."
-	done
 
 BigLaprasDollText:
 	text "It's a jumbo-size"

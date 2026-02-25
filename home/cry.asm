@@ -3,7 +3,7 @@ PlayStereoCry::
 	ld a, 1
 	ld [wStereoPanningMask], a
 	pop af
-	call _PlayCry
+	call _PlayMonCry
 	jmp WaitSFX
 
 PlayStereoCry2::
@@ -13,13 +13,13 @@ PlayStereoCry2::
 	ld a, 1
 	ld [wStereoPanningMask], a
 	pop af
-	jr _PlayCry
+	jr _PlayMonCry
 
-PlayCry::
-	call PlayCry2
+PlayMonCry::
+	call PlayMonCry2
 	jmp WaitSFX
 
-PlayCry2::
+PlayMonCry2::
 ; Don't wait for the cry to end.
 	push af
 	xor a
@@ -28,7 +28,7 @@ PlayCry2::
 	pop af
 	; fallthrough
 
-_PlayCry::
+_PlayMonCry::
 	push hl
 	push de
 	push bc
@@ -38,30 +38,29 @@ _PlayCry::
 
 	ld e, c
 	ld d, b
-	call PlayCryHeader
+	call PlayCry
 
 .done
 	jmp PopBCDEHL
 
-LoadCryHeader::
-; Load cry header bc.
+LoadCry::
+; Load cry bc.
 
 	call GetCryIndex
 	ret c
 
 	anonbankpush PokemonCries
 
-.Function:
+_LoadCry:
 	ld hl, PokemonCries
 rept 6
 	add hl, bc
 endr
 
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
 	ld a, [hli]
 	ld [wCryPitch], a
 	ld a, [hli]
@@ -75,17 +74,19 @@ endr
 	ret
 
 GetCryIndex::
+; input: c = species, b = form
+; output: bc = base species index
+	ld a, c
 	and a
 	jr z, .no
-	cp NUM_POKEMON + 1
-	jr nc, .no
+	inc c ; cp EGG
+	jr z, .no
 
-	ld c, a
-	ld a, [wCurForm]
+	dec c
+	dec c ; slightly faster than dec bc, since we know c != 0
+	ld a, b
+	call ConvertFormToExtendedSpecies
 	ld b, a
-	call GetExtendedSpeciesIndex
-	dec bc
-	ld a, c
 	and a
 	ret
 

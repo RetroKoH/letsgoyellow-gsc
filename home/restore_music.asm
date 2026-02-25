@@ -8,10 +8,13 @@ SaveMusic::
 	push bc
 	push af
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
-	ld a, BANK(wSoundEngineBackup)
-	ldh [rSVBK], a
+	ld a, BANK("Sound Stack")
+	ldh [rWBK], a
+
+	ld a, [wMapMusic]
+	ld [wBackupMapMusic], a
 
 	ld de, wSoundEngineBackup
 	ld a, [de]
@@ -27,7 +30,7 @@ SaveMusic::
 
 .skip
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	jmp PopAFBCDEHL
 
@@ -37,22 +40,25 @@ RestoreMusic::
 	push bc
 	push af
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
-	ld a, BANK(wSoundEngineBackup)
-	ldh [rSVBK], a
+	ld a, BANK("Sound Stack")
+	ldh [rWBK], a
+
+	ld a, [wBackupMapMusic]
+	ld [wMapMusic], a
 
 	ld hl, wSoundEngineBackup
 	ld a, [hl]
 	and a
 	jr nz, .copy
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call PlayMapMusic
 	jr .done
 
 .copy
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 
@@ -68,21 +74,21 @@ RestoreMusic::
 
 .done
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	jmp PopAFBCDEHL
 
 DeleteSavedMusic::
 	push af
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 
-	ld a, BANK(wSoundEngineBackup)
-	ldh [rSVBK], a
+	ld a, BANK("Sound Stack")
+	ldh [rWBK], a
 	xor a
 	ld [wSoundEngineBackup], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	pop af
 	ret

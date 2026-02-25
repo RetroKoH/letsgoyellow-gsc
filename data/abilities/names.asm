@@ -1,5 +1,5 @@
 AbilityNames:
-	table_width 2, AbilityNames
+	table_width 2
 	dw NoAbility
 	dw Stench
 	dw Drizzle
@@ -102,6 +102,7 @@ AbilityNames:
 	dw IceBody
 	dw SolidRock
 	dw SnowWarning
+	dw HoneyGather
 	dw Frisk
 	dw Reckless
 	dw Pickpocket
@@ -137,21 +138,25 @@ AbilityNames:
 	dw MegaLauncher
 	dw ToughClaws
 	dw Pixilate
-	dw Aerilate
 	dw ParentalBond
 	dw Berserk
 	dw SlushRush
 	dw Galvanize
-	dw SurgeSurfer
 	dw Corrosion
+	dw Fluffy
 	dw TanglingHair
+	dw ScreenCleaner
+	dw SteelySpirit
+	dw PerishBody
 	dw GorillaTactics
 	dw NeutralizingGas
 	dw PastelVeil
 	dw QuickDraw
-	dw ScreenCleaner
-	dw SteelySpirit
+	dw WindRider
+	dw CudChew
 	dw Sharpness
+	dw ArmorTail
+	dw MindsEye
 	assert_table_length NUM_ABILITIES
 
 NoAbility:       rawchar "---@"
@@ -256,6 +261,7 @@ Scrappy:         rawchar "Scrappy@"
 IceBody:         rawchar "Ice Body@"
 SolidRock:       rawchar "Solid Rock@"
 SnowWarning:     rawchar "Snow Warning@"
+HoneyGather:     rawchar "Honey Gather@"
 Frisk:           rawchar "Frisk@"
 Reckless:        rawchar "Reckless@"
 Pickpocket:      rawchar "Pickpocket@"
@@ -291,18 +297,22 @@ Competitive:     rawchar "Competitive@"
 MegaLauncher:    rawchar "Mega Launcher@"
 ToughClaws:      rawchar "Tough Claws@"
 Pixilate:        rawchar "Pixilate@"
-Aerilate:        rawchar "Aerilate@"
 ParentalBond:    rawchar "Parental Bond@"
 Berserk:         rawchar "Berserk@"
 SlushRush:       rawchar "Slush Rush@"
 Galvanize:       rawchar "Galvanize@"
-SurgeSurfer:     rawchar "Surge Surfer@"
 Corrosion:       rawchar "Corrosion@"
+Fluffy:          rawchar "Fluffy@"
 TanglingHair:    rawchar "Tangling Hair@"
+ScreenCleaner:   rawchar "Screen Cleaner@"
+SteelySpirit:    rawchar "Steely Spirit@"
+PerishBody:      rawchar "Perish Body@"
 GorillaTactics:  rawchar "Gorilla Tactics@"
 NeutralizingGas: rawchar "Neutralizing Gas@"
 PastelVeil:      rawchar "Pastel Veil@"
 QuickDraw:       rawchar "Quick Draw@"
-ScreenCleaner:   rawchar "Screen Cleaner@"
-SteelySpirit:    rawchar "Steely Spirit@"
+WindRider:       rawchar "Wind Rider@"
+CudChew:         rawchar "Cud Chew@"
 Sharpness:       rawchar "Sharpness@"
+ArmorTail:       rawchar "Armor Tail@"
+MindsEye:        rawchar "Mind's Eye@"

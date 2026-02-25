@@ -12,9 +12,9 @@ GoldenrodBillsHouse_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BillsGrandpa, -1
-	object_event  5,  3, SPRITE_MATRON, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BillsMom, -1
-	object_event  5,  4, SPRITE_SCHOOLGIRL, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsSister, -1
+	object_event  2,  3, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 2, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BillsGrandpa, -1
+	object_event  5,  3, SPRITE_MATRON, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BillsMom, -1
+	object_event  5,  4, SPRITE_SCHOOLGIRL, SPRITEMOVEDATA_WANDER, 1, 1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, BillsSister, -1
 
 BillsGrandpa:
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -24,7 +24,7 @@ BillsGrandpa:
 	faceplayer
 	opentext
 	checkevent EVENT_MET_BILLS_GRANDPA
-	iftrue .MetGrandpa
+	iftruefwd .MetGrandpa
 	writetext BillsGrandpaIntroText
 	promptbutton
 	setevent EVENT_MET_BILLS_GRANDPA
@@ -58,7 +58,7 @@ BillsGrandpa:
 	ifnotequal SNUBBULL, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_SNUBBULL_TO_BILLS_GRANDPA
-	sjump .ShowedSnubbull
+	sjumpfwd .ShowedSnubbull
 
 .GotEverstone:
 	writetext BillsGrandpaBellsproutText
@@ -72,7 +72,7 @@ BillsGrandpa:
 	ifnotequal BELLSPROUT, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_BELLSPROUT_TO_BILLS_GRANDPA
-	sjump .ShowedBellsprout
+	sjumpfwd .ShowedBellsprout
 
 .GotLeafStone:
 	writetext BillsGrandpaStaryuText
@@ -86,7 +86,7 @@ BillsGrandpa:
 	ifnotequal STARYU, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_STARYU_TO_BILLS_GRANDPA
-	sjump .ShowedStaryu
+	sjumpfwd .ShowedStaryu
 
 .GotWaterStone:
 	writetext BillsGrandpaGrowlitheText
@@ -100,7 +100,7 @@ BillsGrandpa:
 	ifnotequal GROWLITHE, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_GROWLITHE_TO_BILLS_GRANDPA
-	sjump .ShowedGrowlithe
+	sjumpfwd .ShowedGrowlithe
 
 .GotFireStone:
 	writetext BillsGrandpaPichuText
@@ -114,7 +114,7 @@ BillsGrandpa:
 	ifnotequal PICHU, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_PICHU_TO_BILLS_GRANDPA
-	sjump .ShowedPichu
+	sjumpfwd .ShowedPichu
 
 .GotThunderstone:
 	writetext BillsGrandpaJigglypuffText
@@ -128,7 +128,7 @@ BillsGrandpa:
 	ifnotequal JIGGLYPUFF, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_JIGGLYPUFF_TO_BILLS_GRANDPA
-	sjump .ShowedJigglypuff
+	sjumpfwd .ShowedJigglypuff
 
 .GotMoonStone:
 	writetext BillsGrandpaOddishText
@@ -142,7 +142,7 @@ BillsGrandpa:
 	ifnotequal ODDISH, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_ODDISH_TO_BILLS_GRANDPA
-	sjump .ShowedOddish
+	sjumpfwd .ShowedOddish
 
 .GotSunStone:
 	writetext BillsGrandpaMurkrowText
@@ -156,7 +156,7 @@ BillsGrandpa:
 	ifnotequal MURKROW, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_MURKROW_TO_BILLS_GRANDPA
-	sjump .ShowedMurkrow
+	sjumpfwd .ShowedMurkrow
 
 .GotDuskStone:
 	writetext BillsGrandpaTogepiText
@@ -170,7 +170,7 @@ BillsGrandpa:
 	ifnotequal TOGEPI, .WrongPokemon
 	scall .CorrectPokemon
 	setevent EVENT_SHOWED_TOGEPI_TO_BILLS_GRANDPA
-	sjump .ShowedTogepi
+	sjumpfwd .ShowedTogepi
 
 .ShowedSnubbull:
 	checkevent EVENT_GOT_EVERSTONE_FROM_BILLS_GRANDPA
@@ -287,17 +287,34 @@ BillsGrandpa:
 BillsMom:
 	checkevent EVENT_NEVER_MET_BILL
 	iffalse_jumptextfaceplayer BillsMomText_AfterEcruteak
-	jumptextfaceplayer BillsMomText_BeforeEcruteak
+	jumpthistextfaceplayer
+
+	text "Oh, you collect"
+	line "#mon? My son"
+	cont "Bill is an expert."
+
+	para "He just got called"
+	line "to the #mon"
+
+	para "Center in Ecruteak"
+	line "City."
+
+	para "My husband went"
+	line "off to the Game"
+
+	para "Corner without"
+	line "being called…"
+	done
 
 BillsSister:
 	faceplayer
 	opentext
 	checkcellnum PHONE_BILL
-	iftrue .GotBillsNumber
+	iftruefwd .GotBillsNumber
 	writetext BillsSisterUsefulNumberText
 	askforphonenumber PHONE_BILL
-	ifequal $1, .NoRoom
-	ifequal $2, .Refused
+	ifequalfwd $1, .NoRoom
+	ifequalfwd $2, .Refused
 	waitsfx
 	addcellnum PHONE_BILL
 	writetext RecordedBillsNumberText
@@ -305,7 +322,14 @@ BillsSister:
 	waitsfx
 	promptbutton
 .GotBillsNumber:
-	jumpopenedtext BillsSisterStorageSystemText
+	jumpthisopenedtext
+
+	text "My big brother"
+	line "Bill made the PC"
+
+	para "#mon storage"
+	line "system."
+	done
 
 .NoRoom:
 	writetext BillsSisterPhoneFullText
@@ -491,23 +515,6 @@ BillsGrandpaPichuText:
 	line "evolves."
 	done
 
-BillsMomText_BeforeEcruteak:
-	text "Oh, you collect"
-	line "#mon? My son"
-	cont "Bill is an expert."
-
-	para "He just got called"
-	line "to the #mon"
-
-	para "Center in Ecruteak"
-	line "City."
-
-	para "My husband went"
-	line "off to the Game"
-
-	para "Corner without"
-	line "being called…"
-	done
 
 BillsMomText_AfterEcruteak:
 	text "My husband was"
@@ -544,10 +551,3 @@ BillsSisterPhoneFullText:
 	line "any more numbers."
 	done
 
-BillsSisterStorageSystemText:
-	text "My big brother"
-	line "Bill made the PC"
-
-	para "#mon storage"
-	line "system."
-	done

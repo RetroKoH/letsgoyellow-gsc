@@ -1,39 +1,12 @@
-SLIDEOUT_WIDTH EQU 11 ; tiles
-SLIDEOUT_TEXT_WIDTH EQU (SLIDEOUT_WIDTH - 1) * TILE_WIDTH
-SLIDEOUT_OVERLAP EQU 10 ; pixels
-SLIDEOUT_START_TILE EQU $d4
+DEF SLIDEOUT_WIDTH EQU 11 ; tiles
+DEF SLIDEOUT_TEXT_WIDTH EQU (SLIDEOUT_WIDTH - 1) * TILE_WIDTH
+DEF SLIDEOUT_OVERLAP EQU 10 ; pixels
+DEF SLIDEOUT_START_TILE EQU $d4
 
 PerformAbilityGFX:
 	call RunFunctionInWRA6
 .Function:
-	; Get ability name
-	ld de, wAbilityName
-	farcall _BufferAbility
-
-	; Blank existing nickname
-	ld hl, wAbilityPkmn
-	ld bc, MON_NAME_LENGTH
-	ld a, "@"
-	rst ByteFill
-
-	; Get user nickname (post-processed with n-grams)
-	ldh a, [hBattleTurn]
-	and a
-	ld de, wBattleMonNickname
-	jr z, .got_pkmn_name
-	ld de, wEnemyMonNickname
-.got_pkmn_name
-	ld hl, wAbilityPkmn
-	rst PlaceString
-
-	; Append 's
-	ld hl, wAbilityPkmn
-.name_loop
-	ld a, [hli]
-	cp "@"
-	jr nz, .name_loop
-	ld [hld], a
-	ld [hl], "'s"
+	call GetAbilityNameAndPkmn
 
 	; Copy tile data to temporary WRAM
 	call .CopyTilesToWRAM
@@ -156,10 +129,10 @@ PerformAbilityGFX:
 	ld b, SLIDEOUT_START_TILE
 .got_tilemap_data
 	call SetAbilityTilemap
-	ld bc, wAttrMap - wTileMap - SLIDEOUT_WIDTH - SCREEN_WIDTH
+	ld bc, wAttrmap - wTilemap - SLIDEOUT_WIDTH - SCREEN_WIDTH
 	add hl, bc
 	ld b, -1 ; keep current palette
-	jr SetAbilityOverlayAttributes
+	jmp SetAbilityOverlayAttributes
 
 .CopyTilesToWRAM:
 	ldh a, [hBattleTurn]
@@ -211,19 +184,50 @@ PerformAbilityGFX:
 	jr nz, .outer_loop
 	ret
 
+GetAbilityNameAndPkmn:
+	; Get ability name
+	ld de, wAbilityName
+	farcall _BufferAbility
+
+	; Blank existing nickname
+	ld hl, wAbilityPkmn
+	ld bc, MON_NAME_LENGTH
+	ld a, '@'
+	rst ByteFill
+
+	; Get user nickname (post-processed with n-grams)
+	ldh a, [hBattleTurn]
+	and a
+	ld de, wBattleMonNickname
+	jr z, .got_pkmn_name
+	ld de, wEnemyMonNickname
+.got_pkmn_name
+	ld hl, wAbilityPkmn
+	rst PlaceString
+
+	; Append 's
+	ld hl, wAbilityPkmn
+.name_loop
+	ld a, [hli]
+	cp '@'
+	jr nz, .name_loop
+	ld [hld], a
+	ld [hl], '\'s'
+	ret
+
 ResetAbilityTilemap:
 ; Sets tilemap data depending on which overlays are active.
-	hlcoord 0, 8, wAttrMap
+	hlcoord 0, 8, wAttrmap
 	ld b, SLIDEOUT_START_TILE + SLIDEOUT_WIDTH * 2
-	bit OAM_TILE_BANK, [hl]
+	bit B_OAM_BANK1, [hl]
 	call nz, .SetTilemap
-	hlcoord 9, 3, wAttrMap
+	hlcoord 9, 3, wAttrmap
 	ld b, SLIDEOUT_START_TILE
-	bit OAM_TILE_BANK, [hl]
+	bit B_OAM_BANK1, [hl]
 	ret z
 .SetTilemap
 	push bc
-	ld bc, wTileMap - wAttrMap
+	ld bc, wTilemap - wAttrmap
 	add hl, bc
 	pop bc
 	; fallthrough
@@ -237,7 +241,7 @@ SetAbilityTilemap:
 .do_tilemap_loop
 	ld c, SLIDEOUT_WIDTH
 .tilemap_loop
-	ld [hl], b
+	ld [hl], b ; no-optimize *hl++|*hl-- = b|c|d|e
 	inc hl
 	inc b
 	dec c
@@ -247,9 +251,9 @@ SetAbilityTilemap:
 SetUserAbilityOverlayAttributes:
 	ldh a, [hBattleTurn]
 	and a
-	hlcoord 0, 8, wAttrMap
+	hlcoord 0, 8, wAttrmap
 	jr z, SetAbilityOverlayAttributes
-	hlcoord 9, 3, wAttrMap
+	hlcoord 9, 3, wAttrmap
 	; fallthrough
 
 SetAbilityOverlayAttributes:
@@ -268,19 +272,26 @@ SetAbilityOverlayAttributes:
 	inc a
 	jr z, .no_pal_change
 	ld a, [hl]
-	and ~PALETTE_MASK
+	and ~OAM_PALETTE
 	or b
 	ld [hl], b
 .no_pal_change
 	pop af
-	set OAM_TILE_BANK, [hl]
-	set OAM_PRIORITY, [hl]
+	set B_OAM_BANK1, [hl]
+	set B_OAM_PRIO, [hl]
 	inc hl
 	dec c
 	jr nz, .attrmap_loop
 	ret
 
 ApplyAbilityTiles:
+	ld b, 0
+	jr _ApplyAbilityTiles
+
+GetAbilityTiles:
+	ld b, 1
+	; fallthrough
+_ApplyAbilityTiles:
 	ldh a, [hBattleTurn]
 	and a
 	jr nz, .ApplyEnemyTiles
@@ -295,6 +306,8 @@ ApplyAbilityTiles:
 	ldh [rVBK], a
 	ld c, SLIDEOUT_WIDTH * 2
 	ld de, wAbilityTiles
+	dec b
+	call z, SwapHLDE
 	call Get2bpp
 	xor a
 	ldh [rVBK], a
@@ -307,10 +320,10 @@ DismissAbilityOverlays:
 	push bc
 
 	; Revert tilemap and attributes
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wTempTileMap)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld b, PAL_BATTLE_BG_PLAYER
 	hlcoord 0, 8
 	call .reset_tilemap
@@ -324,7 +337,7 @@ DismissAbilityOverlays:
 	hlcoord 9, 4
 	call .reset_tilemap
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	; Reload the graphics
 	ld b, 2
@@ -340,26 +353,59 @@ DismissAbilityOverlays:
 	ld d, h
 	ld e, l
 	push bc
-	ld bc, wTempTileMap - wTileMap
+	ld bc, wTempTileMap - wTilemap
 	add hl, bc
 	ld bc, SLIDEOUT_WIDTH
 	push hl
 	rst CopyBytes
 	pop hl
-	ld bc, wAttrMap - wTempTileMap
+	ld bc, wAttrmap - wTempTileMap
 	add hl, bc
 	pop bc
 	ld c, SLIDEOUT_WIDTH
 .attr_loop
 	ld a, [hl]
-	and ~(PALETTE_MASK | VRAM_BANK_1 | PRIORITY)
+	and ~(OAM_PALETTE | OAM_BANK1 | OAM_PRIO)
 	or b
 	ld [hli], a
 	dec c
 	jr nz, .attr_loop
 	ret
 
+PerformAbilityReplacementGFX:
+; Replace user's existing ability graphics from ability b to ability c.
+	call RunFunctionInWRA6
+.Function:
+	; Retrieve existing gfx, in case wAbilityTiles contains data for
+	; the opponent's ability rather than the user's.
+	push bc
+	ld de, SFX_SWEET_KISS
+	call PlaySFX
+	call GetAbilityTiles
+	pop bc
+	ld a, $11
+	ld [wAbilityDisplaySpeed], a
+
+	; Hide the existing graphics.
+	push bc
+	ld a, VWF_SINGLE | VWF_OPAQUE
+	call .update_gfx
+	pop bc
+	ld b, c
+	ld a, VWF_SINGLE | VWF_INVERT | VWF_OPAQUE
+.update_gfx
+	ld [wAbilityFlags], a
+	call GetAbilityNameAndPkmn
+	jr _AbilityVWF
+
 AbilityVWF:
+	ld a, VWF_SINGLE | VWF_INVERT | VWF_OPAQUE
+	ld [wAbilityFlags], a
+	xor a
+	ld [wAbilityDisplaySpeed], a
+	jr _AbilityVWF
+
+_AbilityVWF:
 ; Write variable-width names into ability graphics
 	; First, try to center the combined string with some overlap.
 	ld de, wAbilityPkmn
@@ -407,7 +453,8 @@ AbilityVWF:
 	ld hl, wAbilityTiles
 	push bc
 	ld c, b
-	ld b, VWF_SINGLE | VWF_INVERT | VWF_OPAQUE
+	ld a, [wAbilityFlags]
+	ld b, a
 	call PlaceAbilityVWFString
 	ld de, wAbilityName
 	call GetVWFLength
@@ -417,7 +464,8 @@ AbilityVWF:
 	ld a, c
 	sub h
 	ld c, a
-	ld b, VWF_SINGLE | VWF_INVERT | VWF_OPAQUE
+	ld a, [wAbilityFlags]
+	ld b, a
 	ld hl, wAbilityTiles + SLIDEOUT_WIDTH tiles
 	; fallthrough
 
@@ -426,12 +474,23 @@ PlaceAbilityVWFString:
 	call PlaceVWFString
 	ret z
 
-	push hl
 	push de
 	push bc
+	push hl
 	call ApplyAbilityTiles
+	ld hl, wAbilityDisplaySpeed
+	ld a, [hl]
+	sub $10
+	ld [hl], a
+	jr nc, .no_overflow
+
+	; $fx & $xf = $xx, x = characters until DelayFrame.
+	swap a
+	and [hl]
+	ld [hl], a
 	call DelayFrame
+.no_overflow
+	pop hl
 	pop bc
 	pop de
-	pop hl
 	jr PlaceAbilityVWFString

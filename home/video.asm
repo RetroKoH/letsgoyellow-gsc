@@ -6,8 +6,28 @@ PushOAM::
 	ret nz
 ForcePushOAM:
 	lb bc, 40 + 1, LOW(rDMA)
-	ld a, HIGH(wVirtualOAM)
+	ld a, HIGH(wShadowOAM)
 	jmp hPushOAM
+
+ContinueGDMACopy:
+	push hl
+	ld hl, rVDMA_DEST_HIGH
+	jr _GDMACopy
+GDMACopy:
+; Copy a+1 tiles from de to bc. Preserves all registers. Assumes GDMA is valid.
+	push hl
+	ld hl, rVDMA_SRC_HIGH
+	ld [hl], d ; no-optimize *hl++|*hl-- = b|c|d|e
+	inc hl
+	ld [hl], e ; no-optimize *hl++|*hl-- = b|c|d|e
+	inc hl
+_GDMACopy:
+	ld [hl], b ; no-optimize *hl++|*hl-- = b|c|d|e
+	inc hl
+	ld [hl], c
+	ldh [rVDMA_LEN], a
+	pop hl
+	ret
 
 DMATransfer::
 ; Return carry if the transfer is completed.
@@ -17,7 +37,7 @@ DMATransfer::
 	ret z
 
 ; Start transfer
-	ldh [rHDMA5], a
+	ldh [rVDMA_LEN], a
 
 ; Execution is halted until the transfer is complete.
 
@@ -47,38 +67,42 @@ UpdateBGMapBuffer::
 
 ; We can now pop the addresses of affected spots on the BG Map
 
-	ld hl, wBGMapPalBuffer
+	ld bc, wBGMapPalBuffer
 	ld de, wBGMapBuffer
+
+; We increment the low byte of a pointer, so ensure these buffers
+; dont cross a 256 byte boundary
+assert HIGH(wBGMapBuffer) == HIGH(wBGMapBufferEnd)
+assert HIGH(wBGMapPalBuffer) == HIGH(wBGMapPalBufferEnd)
 
 .next
 ; Copy a pair of 16x8 blocks (one 16x16 block)
 
 rept 2
 ; Get our BG Map address
-	pop bc
+	pop hl
 
 ; Palettes
 	ld a, 1
 	ldh [rVBK], a
 
-	ld a, [hli]
-	ld [bc], a
+	ld a, [bc]
+	ld [hli], a
 	inc c
-	ld a, [hli]
-	ld [bc], a
-	dec c
+	ld a, [bc]
+	ld [hld], a
+	inc c
 
 ; Tiles
 	xor a
 	ldh [rVBK], a
 
 	ld a, [de]
-	inc de
-	ld [bc], a
-	inc c
+	ld [hli], a
+	inc e
 	ld a, [de]
-	inc de
-	ld [bc], a
+	ld [hl], a
+	inc e
 endr
 
 ; We've done 2 16x8 blocks
@@ -119,10 +143,10 @@ WaitTop::
 	ldh [hBGMapMode], a
 	ret
 
-HALF_HEIGHT EQU SCREEN_HEIGHT / 2
+DEF HALF_HEIGHT EQU SCREEN_HEIGHT / 2
 
 UpdateBGMap::
-; Update the BG Map, in halves, from wTileMap and wAttrMap.
+; Update the BG Map, in halves, from wTilemap and wAttrmap.
 
 	ldh a, [hBGMapMode]
 	and $7f
@@ -147,7 +171,7 @@ UpdateBGMap::
 	jr z, .DoCustomSourceTiles
 	dec a
 	ret nz
-	bccoord 0, 0, wAttrMap
+	bccoord 0, 0, wAttrmap
 	ld a, 1
 	ldh [rVBK], a
 	call .DoCustomSourceTiles
@@ -206,14 +230,14 @@ UpdateBGMap::
 	and a ; 0
 	jr z, .AttributeMapTop
 ; bottom row
-	coord sp, 0, 9, wAttrMap
-	ld de, HALF_HEIGHT * BG_MAP_WIDTH
+	coord sp, 0, 9, wAttrmap
+	ld de, HALF_HEIGHT * TILEMAP_WIDTH
 	add hl, de
 ; Next time: top half
 	xor a
 	jr .startCopy
 .AttributeMapTop
-	coord sp, 0, 0, wAttrMap
+	coord sp, 0, 0, wAttrmap
 ; Next time: bottom half
 	jr .AttributeMapTopContinue
 
@@ -231,7 +255,7 @@ UpdateBGMap::
 	jr z, .TileMapTop
 ; bottom row
 	coord sp, 0, 9
-	ld de, HALF_HEIGHT * BG_MAP_WIDTH
+	ld de, HALF_HEIGHT * TILEMAP_WIDTH
 	add hl, de
 ; Next time: top half
 	xor a
@@ -247,8 +271,8 @@ UpdateBGMap::
 ; Rows of tiles in a half
 	ld a, SCREEN_HEIGHT / 2
 .startCustomCopy
-; Discrepancy between wTileMap and BGMap
-	ld bc, BG_MAP_WIDTH - (SCREEN_WIDTH - 1)
+; Discrepancy between wTilemap and BGMap
+	ld bc, TILEMAP_WIDTH - (SCREEN_WIDTH - 1)
 .row
 ; Copy a row of 20 tiles
 rept (SCREEN_WIDTH / 2) - 1
@@ -267,10 +291,8 @@ endr
 	dec a
 	jr nz, .row
 
-	ldh a, [hSPBuffer]
-	ld l, a
-	ldh a, [hSPBuffer + 1]
-	ld h, a
+	ld sp, hSPBuffer
+	pop hl
 	ld sp, hl
 	ret
 
@@ -302,9 +324,8 @@ _Serve1bppRequest::
 	ld a, [hli]
 	ld d, a
 ; Source
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
+	ld sp, hl
+	pop hl
 	ld sp, hl
 	ld h, d
 	ld l, e
@@ -382,9 +403,8 @@ _Serve2bppRequest::
 	ld a, [hli]
 	ld d, a
 ; Source
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
+	ld sp, hl
+	pop hl
 	ld sp, hl
 	ld h, d
 	ld l, e
@@ -405,10 +425,8 @@ WriteVTileSourceAndDestinationAndReturn:
 	ld sp, hl
 	ld [hRequestedVTileDest], sp
 
-	ldh a, [hSPBuffer]
-	ld l, a
-	ldh a, [hSPBuffer + 1]
-	ld h, a
+	ld sp, hSPBuffer
+	pop hl
 	ld sp, hl
 	ret
 
@@ -425,7 +443,7 @@ AnimateTileset::
 ;	cp 151
 ;	ret nc
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 
 	ldh a, [rVBK]
@@ -433,7 +451,7 @@ AnimateTileset::
 	xor a
 	ldh [rVBK], a
 	inc a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, BANK(_AnimateTileset)
 	rst Bankswitch
@@ -443,5 +461,5 @@ AnimateTileset::
 	pop af
 	ldh [rVBK], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret

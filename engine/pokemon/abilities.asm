@@ -1,5 +1,6 @@
 PrintAbility:
 ; Print ability b at hl.
+	push hl
 	ld l, b
 	ld h, 0
 	ld bc, AbilityNames
@@ -8,7 +9,7 @@ PrintAbility:
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-	hlcoord 3, 13
+	pop hl
 	rst PlaceString
 	ret
 
@@ -28,7 +29,7 @@ _BufferAbility:
 	ld a, [hli]
 	ld [de], a
 	inc de
-	cp "@"
+	cp '@'
 	ret z
 	jr .loop
 
@@ -47,22 +48,6 @@ PrintAbilityDescription:
 	rst PlaceString
 	ret
 
-PrintAbilityDescription2:
-; Print ability field description for b
-	ld l, b
-	ld h, 0
-	ld bc, AbilityFieldDescriptions
-	add hl, hl
-	add hl, bc
-	ld a, [hli]
-	ld d, [hl]
-	ld e, a
-	hlcoord 1, 15
-	rst PlaceString
-	ret
-
 INCLUDE "data/abilities/names.asm"
 
 INCLUDE "data/abilities/descriptions.asm"
-
-INCLUDE "data/abilities/descriptions_field.asm"

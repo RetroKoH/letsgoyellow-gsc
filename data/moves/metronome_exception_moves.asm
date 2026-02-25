@@ -3,9 +3,13 @@
 MetronomeExcepts:
 	db NO_MOVE
 	db COUNTER
+	db DESTINY_BOND
+	db ENDURE
 	db METRONOME
-	db MIMIC
 	db MIRROR_COAT
 	db PROTECT
+	db SKETCH
+	db SLEEP_TALK
+	db THIEF
 	db TRANSFORM
 	db STRUGGLE ; -1

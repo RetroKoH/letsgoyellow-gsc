@@ -14,39 +14,50 @@ IlexForestAzaleaGate_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, IlexForestAzaleaGateOfficerText, -1
-	object_event  1,  6, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, IlexForestAzaleaGateGrannyText, -1
-	object_event  8,  3, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ProfOaksAide1Script, -1
+	object_event  5,  2, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, IlexForestAzaleaGateOfficerText, -1
+	object_event  1,  6, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, IlexForestAzaleaGateGrannyText, -1
+	object_event  8,  3, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ProfOaksAide1Script, -1
 
 ProfOaksAide1Script:
 	faceplayer
 	opentext
-	checkevent EVENT_GOT_NEST_BALLS_FROM_PROF_OAKS_AIDE
-	iftrue .Explain
+	checkevent EVENT_GOT_EXP_SHARE_FROM_PROF_OAKS_AIDE
+	iftruefwd .Explain
 	writetext ProfOaksAide1HiText
 	waitbutton
-	countseencaught
-	readvar VAR_DEXCAUGHT
-	ifgreater 14, .HereYouGo
+	setval16 15
+	special CountCaught
+	iftruefwd .HereYouGo
 .UhOh
 	jumpopenedtext ProfOaksAide1UhOhText
 
 .HereYouGo
 	writetext ProfOaksAide1HereYouGoText
 	waitbutton
-	giveitem NEST_BALL, 5
-	waitsfx
-	iffalse .NoRoom
-	writetext ProfOaksAide1NestBallText
-	playsound SFX_ITEM
-	waitsfx
-	itemnotify
-	setevent EVENT_GOT_NEST_BALLS_FROM_PROF_OAKS_AIDE
+	verbosegiveitem EXP_SHARE
+	iffalsefwd .NoRoom
+	setevent EVENT_GOT_EXP_SHARE_FROM_PROF_OAKS_AIDE
 .Explain
-	jumpopenedtext ProfOaksAide1ExplainText
+	jumpthisopenedtext
+
+	text "That Exp.Share"
+	line "helps a #mon"
+
+	para "gain experience"
+	line "without even"
+	cont "battling."
+
+	para "Use it to com-"
+	line "plete the #dex!"
+	done
 
 .NoRoom
-	jumpopenedtext ProfOaksAide1NoRoomText
+	jumpthisopenedtext
+
+	text "Oh! I see you"
+	line "don't have any"
+	cont "room for this."
+	done
 
 IlexForestAzaleaGateOfficerText:
 	text "Ilex Forest is"
@@ -85,7 +96,7 @@ ProfOaksAide1UhOhText:
 	line "Uh-oh! You've only"
 
 	para "caught "
-	text_decimal wTempPokedexCaughtCount, 1, 3
+	text_decimal wTempDexOwn, 2, 3
 	text " kinds"
 	line "of #mon."
 
@@ -99,7 +110,7 @@ ProfOaksAide1HereYouGoText:
 	line "Great job! You've"
 
 	para "caught "
-	text_decimal wTempPokedexCaughtCount, 1, 3
+	text_decimal wTempDexOwn, 2, 3
 	text " kinds"
 	line "of #mon."
 
@@ -107,29 +118,4 @@ ProfOaksAide1HereYouGoText:
 	line "Here you go!"
 	done
 
-ProfOaksAide1NoRoomText:
-	text "Oh! I see you"
-	line "don't have any"
-	cont "room for this."
-	done
 
-ProfOaksAide1NestBallText:
-	text "<PLAYER> received"
-	line "5 Nest Balls."
-	done
-
-ProfOaksAide1ExplainText:
-	text "Those Nest Balls"
-	line "are like Apricorn"
-
-	para "Balls, but they're"
-	line "made by Silph Co."
-	cont "in Kanto."
-
-	para "They work best"
-	line "on low-leveled"
-	cont "#mon."
-
-	para "Use them to com-"
-	line "plete the #dex!"
-	done

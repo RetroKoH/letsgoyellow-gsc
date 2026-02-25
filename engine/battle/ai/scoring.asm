@@ -40,7 +40,7 @@ AI_Basic:
 	push hl
 	push de
 	push bc
-	ld hl, .statusonlyeffects
+	ld hl, StatusOnlyEffects
 	call IsInByteArray
 	pop bc
 	pop de
@@ -51,23 +51,16 @@ AI_Basic:
 	and a
 	jr nz, .discourage
 
-; Dismiss Aurora Veil if it's already active. (Maybe this isn't applicable here?)
+; Dismiss Safeguard if it's already active.
 	ld a, [wPlayerGuards]
-	and GUARD_AURORA_VEIL
+	and GUARD_SAFEGUARD
 	jr z, .checkmove
 
 .discourage
 	call AIDiscourageMove
 	jr .checkmove
 
-.statusonlyeffects
-	db EFFECT_SLEEP
-	db EFFECT_TOXIC
-	db EFFECT_POISON
-	db EFFECT_PARALYZE
-	db EFFECT_BURN
-	db EFFECT_FREEZE
-	db $ff
+INCLUDE "data/battle/ai/status_only_effects.asm"
 
 AI_Conversion:
 ; not a layer, called by Conversion to allow the AI to select a good move type
@@ -135,7 +128,7 @@ AI_Setup:
 
 .discourage
 	call Random
-	cp 30
+	cp 12 percent
 	jr c, .checkmove
 	inc [hl]
 	inc [hl]
@@ -175,13 +168,7 @@ AI_Types:
 	ld a, [wTypeMatchup]
 	and a
 	jr z, .immune
-
-	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	call AI_IsFixedDamageMove
-	jr c, .checkmove
-
-	ld a, [wTypeMatchup]
-	cp $10 ; 1.0
+	cp EFFECTIVE
 	jr z, .checkmove
 	jr c, .noteffective
 
@@ -204,11 +191,11 @@ AI_Types:
 	lb bc, (NUM_MOVES + 1), 0
 .checkmove2
 	dec b
-	jr z, .asm_38693
+	jr z, .movesdone
 
 	ld a, [hli]
 	and a
-	jr z, .asm_38693
+	jr z, .movesdone
 
 	call AIGetEnemyMove
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
@@ -219,7 +206,7 @@ AI_Types:
 	jr z, .checkmove2
 	ld c, a
 
-.asm_38693
+.movesdone
 	ld a, c
 	pop bc
 	pop de
@@ -232,22 +219,6 @@ AI_Types:
 .immune
 	call AIDiscourageMove
 	jr .checkmove
-
-AI_IsFixedDamageMove:
-; Returns c if move effect a does fixed damage (or is Counter/Mirror Coat)
-	push hl
-	push de
-	push bc
-	ld hl, .FixedDamageMoves
-	call IsInByteArray
-	jmp PopBCDEHL
-
-.FixedDamageMoves:
-	db EFFECT_COUNTER
-	db EFFECT_MIRROR_COAT
-	db EFFECT_LEVEL_DAMAGE
-	db EFFECT_SUPER_FANG
-	db -1
 
 AI_Offensive:
 ; Greatly discourage non-damaging moves.
@@ -296,7 +267,7 @@ AI_Smart:
 	call AIGetEnemyMove
 
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	ld hl, .smart_ai_table
+	ld hl, AI_Smart_EffectHandlers
 	ld de, 3
 	call IsInArray
 
@@ -323,7 +294,7 @@ AI_Smart:
 	inc hl
 	jr .checkmove
 
-.smart_ai_table
+AI_Smart_EffectHandlers:
 	dbw EFFECT_SLEEP,             AI_Smart_Sleep
 	dbw EFFECT_SPEED_UP,          AI_Smart_SpeedControl
 	dbw EFFECT_SPEED_UP_2,        AI_Smart_SpeedControl
@@ -348,20 +319,30 @@ AI_Smart:
 	dbw EFFECT_SPEED_DOWN_HIT,    AI_Smart_SpeedDownHit
 	dbw EFFECT_SUBSTITUTE,        AI_Smart_Substitute
 	dbw EFFECT_HYPER_BEAM,        AI_Smart_HyperBeam
-	dbw EFFECT_RAGE_FIST,         AI_Smart_RageFist
+	dbw EFFECT_RAGE,              AI_Smart_Rage
 	dbw EFFECT_LEECH_SEED,        AI_Smart_LeechSeed
 	dbw EFFECT_DISABLE,           AI_Smart_Disable
 	dbw EFFECT_COUNTER,           AI_Smart_Counter
 	dbw EFFECT_ENCORE,            AI_Smart_Encore
+	dbw EFFECT_PAIN_SPLIT,        AI_Smart_PainSplit
+	dbw EFFECT_SLEEP_TALK,        AI_Smart_SleepTalk
+	dbw EFFECT_DESTINY_BOND,      AI_Smart_DestinyBond
 	dbw EFFECT_HEAL_BELL,         AI_Smart_HealBell
 	dbw EFFECT_PRIORITY_HIT,      AI_Smart_PriorityHit
+	dbw EFFECT_MEAN_LOOK,         AI_Smart_MeanLook
 	dbw EFFECT_FLARE_BLITZ,       AI_Smart_Defrost
+	dbw EFFECT_SACRED_FIRE,       AI_Smart_Defrost
+	dbw EFFECT_CURSE,             AI_Smart_Curse
 	dbw EFFECT_PROTECT,           AI_Smart_Protect
+	dbw EFFECT_FORESIGHT,         AI_Smart_Foresight
+	dbw EFFECT_PERISH_SONG,       AI_Smart_PerishSong
+	dbw EFFECT_ENDURE,            AI_Smart_Endure
 	dbw EFFECT_ROLLOUT,           AI_Smart_Rollout
-	dbw EFFECT_FURY_CUTTER,       AI_Smart_FuryCutter
-	dbw EFFECT_FAKE_OUT,		  AI_Smart_FakeOut
-	dbw EFFECT_AURORA_VEIL,       AI_Smart_AuroraVeil
-	dbw EFFECT_HELPING_HAND,      AI_Smart_HelpingHand
+	dbw EFFECT_SWAGGER,           AI_Smart_Swagger
+	dbw EFFECT_ATTRACT,           AI_Smart_Attract
+	dbw EFFECT_SAFEGUARD,         AI_Smart_Safeguard
+	dbw EFFECT_MAGNITUDE,         AI_Smart_Magnitude
+	dbw EFFECT_BATON_PASS,        AI_Smart_BatonPass
 	dbw EFFECT_PURSUIT,           AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,        AI_Smart_RapidSpin
 	dbw EFFECT_HEALING_LIGHT,     AI_Smart_HealingLight
@@ -370,11 +351,8 @@ AI_Smart:
 	dbw EFFECT_SANDSTORM,         AI_Smart_Sandstorm
 	dbw EFFECT_HAIL,              AI_Smart_Hail
 	dbw EFFECT_BELLY_DRUM,        AI_Smart_BellyDrum
-	dbw EFFECT_MIRROR_COAT,       AI_Smart_MirrorCoat
-	dbw EFFECT_RAZOR_WIND,        AI_Smart_SkullBash
-	dbw EFFECT_SKULL_BASH,        AI_Smart_SkullBash
 	dbw EFFECT_EARTHQUAKE,        AI_Smart_Earthquake
-	dbw EFFECT_WISH,              AI_Smart_Wish
+	dbw EFFECT_FUTURE_SIGHT,      AI_Smart_FutureSight
 	dbw EFFECT_JUMP_KICK,         AI_Smart_JumpKick
 	dbw EFFECT_GUST,              AI_Smart_Gust
 	dbw EFFECT_STOMP,             AI_Smart_Stomp
@@ -384,7 +362,7 @@ AI_Smart:
 	dbw EFFECT_FLY,               AI_Smart_Fly
 	dbw EFFECT_ROOST,             AI_Smart_Roost
 	dbw EFFECT_TRICK_ROOM,        AI_Smart_TrickRoom
-	db $ff
+	db -1 ; end
 
 AI_Smart_Sleep:
 ; Greatly encourage sleep inducing moves if the enemy has Dream Eater.
@@ -428,7 +406,7 @@ AI_Smart_LeechHit:
 
 .discourage
 	call Random
-	cp 100
+	cp 39 percent + 1
 	ret c
 
 	inc [hl]
@@ -440,18 +418,18 @@ AI_Smart_Explosion:
 	push hl
 	farcall CheckAnyOtherAliveEnemyMons
 	pop hl
-	jr nz, .asm_388b7
+	jr nz, .notlastmon
 
 	; Then discourage the move unless the player also has 1 mon left
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
-	jr nz, .asm_388c6
+	jr nz, .discourage
 
-.asm_388b7
+.notlastmon
 	; Discourage if healthy (50%+)
 	call AICheckEnemyHalfHP
-	jr c, .asm_388c6
+	jr c, .discourage
 
 	; If <25%, don't discourage
 	call AICheckEnemyQuarterHP
@@ -459,10 +437,10 @@ AI_Smart_Explosion:
 
 	; If 25-50%, probably discourage (236/256 of the time)
 	call Random
-	cp 20
+	cp 8 percent
 	ret c
 
-.asm_388c6
+.discourage
 	inc [hl]
 	inc [hl]
 	inc [hl]
@@ -473,7 +451,7 @@ AI_Smart_DreamEater:
 ; The AI_Basic layer will make sure that
 ; Dream Eater is only used against sleeping targets.
 	call Random
-	cp 25
+	cp 10 percent
 	ret c
 	dec [hl]
 	dec [hl]
@@ -484,54 +462,54 @@ AI_Smart_EvasionUp:
 
 ; Dismiss this move if enemy's evasion can't raise anymore.
 	ld a, [wEnemyEvaLevel]
-	cp $d
+	cp MAX_STAT_LEVEL
 	jmp nc, AIDiscourageMove
 
 ; If enemy's HP is full...
 	call AICheckEnemyMaxHP
-	jr nc, .asm_388f2
+	jr nc, .hp_mismatch_1
 
 ; ...greatly encourage this move if player is badly poisoned.
 	ld a, [wBattleMonStatus]
 	bit TOX, a
-	jr nz, .asm_388ef
+	jr nz, .greatly_encourage
 
 ; ...70% chance to greatly encourage this move if player is not badly poisoned.
 	call Random
-	cp $b2
-	jr nc, .asm_38911
+	cp 70 percent
+	jr nc, .not_encouraged
 
-.asm_388ef
+.greatly_encourage
 	dec [hl]
 	dec [hl]
 	ret
 
-.asm_388f2
+.hp_mismatch_1
 
 ; Greatly discourage this move if enemy's HP is below 25%.
 	call AICheckEnemyQuarterHP
-	jr nc, .asm_3890f
+	jr nc, .hp_mismatch_2
 
 ; If enemy's HP is above 25% but not full, 4% chance to greatly encourage this move.
 	call Random
-	cp $a
-	jr c, .asm_388ef
+	cp 4 percent
+	jr c, .greatly_encourage
 
 ; If enemy's HP is between 25% and 50%,...
 	call AICheckEnemyHalfHP
-	jr nc, .asm_3890a
+	jr nc, .hp_mismatch_3
 
 ; If enemy's HP is above 50% but not full, 20% chance to greatly encourage this move.
 	call AI_80_20
-	jr c, .asm_388ef
-	jr .asm_38911
+	jr c, .greatly_encourage
+	jr .not_encouraged
 
-.asm_3890a
+.hp_mismatch_3
 ; ...50% chance to greatly discourage this move.
 	call AI_50_50
-	jr c, .asm_38911
+	jr c, .not_encouraged
 
-.asm_3890f
+.hp_mismatch_2
 	inc [hl]
 	inc [hl]
 
@@ -540,37 +518,37 @@ AI_Smart_EvasionUp:
 ; 96% chance to end up here if enemy's HP is between 25% and 50%.
 ; 100% chance to end up here if enemy's HP is below 25%.
 ; In other words, we only end up here if the move has not been encouraged or dismissed.
-.asm_38911
+.not_encouraged
 	ld a, [wBattleMonStatus]
 	bit TOX, a
-	jr nz, .asm_38938
+	jr nz, .maybe_greatly_encourage
 
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_LEECH_SEED, a
-	jr nz, .asm_38941
+	jr nz, .maybe_encourage
 
 ; Discourage this move if enemy's evasion level is higher than player's accuracy level.
 	ld a, [wEnemyEvaLevel]
 	ld b, a
 	ld a, [wPlayerAccLevel]
 	cp b
-	jr c, .asm_38936
+	jr c, .discourage
 
 ; Greatly encourage this move if the player is in the middle of Rollout.
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_ROLLOUT, a
-	jr nz, .asm_388ef
+	jr nz, .greatly_encourage
 
-.asm_38936
+.discourage
 	inc [hl]
 	ret
 
 ; Player is badly poisoned.
 ; 80% chance to greatly encourage this move.
 ; This would counter any previous discouragement.
-.asm_38938
+.maybe_greatly_encourage
 	call Random
-	cp $50
+	cp 31 percent + 1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -579,7 +557,7 @@ AI_Smart_EvasionUp:
 ; Player is seeded.
 ; 50% chance to encourage this move.
 ; This would partly counter any previous discouragement.
-.asm_38941
+.maybe_encourage
 	call AI_50_50
 	ret c
 
@@ -591,15 +569,15 @@ AI_Smart_AlwaysHit:
 
 ; ...enemy's accuracy level has been lowered three or more stages
 	ld a, [wEnemyAccLevel]
-	cp $5
-	jr c, .asm_38954
+	cp BASE_STAT_LEVEL - 2
+	jr c, .encourage
 
 ; ...or player's evasion level has been raised three or more stages.
 	ld a, [wPlayerEvaLevel]
-	cp $a
+	cp BASE_STAT_LEVEL + 3
 	ret c
 
-.asm_38954
+.encourage
 	call AI_80_20
 	ret c
 
@@ -611,88 +589,88 @@ AI_Smart_AccuracyDown:
 
 ; If player's HP is full...
 	call AICheckPlayerMaxHP
-	jr nc, .asm_389a0
+	jr nc, .hp_mismatch_1
 
 ; ...and enemy's HP is below 50%...
 	call AICheckEnemyHalfHP
-	jr nc, .asm_389a0
+	jr nc, .hp_mismatch_1
 
 ; ...greatly encourage this move if player is badly poisoned.
 	ld a, [wBattleMonStatus]
 	bit TOX, a
-	jr nz, .asm_3899d
+	jr nz, .greatly_encourage
 
 ; ...70% chance to greatly encourage this move if player is not badly poisoned.
 	call Random
-	cp $b2
-	jr nc, .asm_389bf
+	cp 70 percent
+	jr nc, .not_encouraged
 
-.asm_3899d
+.greatly_encourage
 	dec [hl]
 	dec [hl]
 	ret
 
-.asm_389a0
+.hp_mismatch_1
 
 ; Greatly discourage this move if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
-	jr nc, .asm_389bd
+	jr nc, .hp_mismatch_2
 
 ; If player's HP is above 25% but not full, 4% chance to greatly encourage this move.
 	call Random
-	cp $a
-	jr c, .asm_3899d
+	cp 4 percent
+	jr c, .greatly_encourage
 
 ; If player's HP is between 25% and 50%,...
 	call AICheckPlayerHalfHP
-	jr nc, .asm_389b8
+	jr nc, .hp_mismatch_3
 
 ; If player's HP is above 50% but not full, 20% chance to greatly encourage this move.
 	call AI_80_20
-	jr c, .asm_3899d
-	jr .asm_389bf
+	jr c, .greatly_encourage
+	jr .not_encouraged
 
 ; ...50% chance to greatly discourage this move.
-.asm_389b8
+.hp_mismatch_3
 	call AI_50_50
-	jr c, .asm_389bf
+	jr c, .not_encouraged
 
-.asm_389bd
+.hp_mismatch_2
 	inc [hl]
 	inc [hl]
 
 ; We only end up here if the move has not been already encouraged.
-.asm_389bf
+.not_encouraged
 	ld a, [wBattleMonStatus]
 	bit TOX, a
-	jr nz, .asm_389e6
+	jr nz, .maybe_greatly_encourage
 
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_LEECH_SEED, a
-	jr nz, .asm_389ef
+	jr nz, .encourage
 
 ; Discourage this move if enemy's evasion level is higher than player's accuracy level.
 	ld a, [wEnemyEvaLevel]
 	ld b, a
 	ld a, [wPlayerAccLevel]
 	cp b
-	jr c, .asm_389e4
+	jr c, .discourage
 
 ; Greatly encourage this move if the player is in the middle of Rollout.
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_ROLLOUT, a
-	jr nz, .asm_3899d
+	jr nz, .greatly_encourage
 
-.asm_389e4
+.discourage
 	inc [hl]
 	ret
 
 ; Player is badly poisoned.
 ; 80% chance to greatly encourage this move.
 ; This would counter any previous discouragement.
-.asm_389e6
+.maybe_greatly_encourage
 	call Random
-	cp $50
+	cp 31 percent + 1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -701,7 +679,7 @@ AI_Smart_AccuracyDown:
 ; Player is seeded.
 ; 50% chance to encourage this move.
 ; This would partly counter any previous discouragement.
-.asm_389ef
+.encourage
 	call AI_50_50
 	ret c
 
@@ -713,38 +691,38 @@ AI_Smart_Haze:
 ; 85% chance to encourage this move if any of enemy's stat levels is lower than -2.
 	push hl
 	ld hl, wEnemyAtkLevel
-	ld c, $8
-.asm_389fb
+	ld c, NUM_LEVEL_STATS
+.enemystatsloop
 	dec c
-	jr z, .asm_38a05
+	jr z, .enemystatsdone
 	ld a, [hli]
-	cp $5
-	jr c, .asm_38a12
-	jr .asm_389fb
+	cp BASE_STAT_LEVEL - 2
+	jr c, .encourage
+	jr .enemystatsloop
 
 ; 85% chance to encourage this move if any of player's stat levels is higher than +2.
-.asm_38a05
+.enemystatsdone
 	ld hl, wPlayerAtkLevel
-	ld c, $8
-.asm_38a0a
+	ld c, NUM_LEVEL_STATS
+.playerstatsloop
 	dec c
-	jr z, .asm_38a1b
+	jr z, .discourage
 	ld a, [hli]
-	cp $a
-	jr c, .asm_38a0a
+	cp BASE_STAT_LEVEL + 3
+	jr c, .playerstatsloop
 
-.asm_38a12
+.encourage
 	pop hl
 	call Random
-	cp $28
+	cp 16 percent
 	ret c
 	dec [hl]
 	ret
 
 ; Discourage this move if neither:
-; Any of enemy's stat levels is	lower than -2.
+; Any of enemy's stat levels is lower than -2.
 ; Any of player's stat levels is higher than +2.
-.asm_38a1b
+.discourage
 	pop hl
 	inc [hl]
 	ret
@@ -817,11 +795,6 @@ AI_Smart_LeechSeed:
 	inc [hl]
 	ret
 
-AI_Smart_AuroraVeil:
-	call GetWeatherAfterUserUmbrella
-	cp WEATHER_HAIL
-	jmp z, AIDiscourageMove
-
 AI_Smart_LightScreen:
 AI_Smart_Reflect:
 ; Over 90% chance to discourage this move unless enemy's HP is full.
@@ -829,7 +802,7 @@ AI_Smart_Reflect:
 	call AICheckEnemyMaxHP
 	ret c
 	call Random
-	cp $14
+	cp 8 percent
 	ret c
 	inc [hl]
 	ret
@@ -846,16 +819,16 @@ AI_Smart_Bind:
 
 	; 50% chance to greatly encourage this move if player is either
 	; badly poisoned, in love, identified, or stuck in Rollout, or first turn.
-	; Don't encourage it if we're at low HP. (Removed Identified check)
+	; Don't encourage it if we're at low HP.
 	ld a, [wBattleMonStatus]
 	bit TOX, a
 	jr nz, .coinflip_encourage
 
 	ld a, [wPlayerSubStatus1]
-	and 1<<SUBSTATUS_IN_LOVE; | 1<<SUBSTATUS_IDENTIFIED
+	and 1 << SUBSTATUS_IN_LOVE | 1 << SUBSTATUS_IDENTIFIED
 	jr nz, .coinflip_encourage
 	ld a, [wPlayerSubStatus3]
-	and 1<<SUBSTATUS_ROLLOUT
+	and 1 << SUBSTATUS_ROLLOUT
 	jr nz, .coinflip_encourage
 	ld a, [wPlayerTurnsTaken]
 	and a
@@ -882,11 +855,11 @@ AI_Smart_Confuse:
 	call AICheckPlayerHalfHP
 	ret c
 	call Random
-	cp $19
-	jr c, .asm_38ae7
+	cp 10 percent
+	jr c, .skipdiscourage
 	inc [hl]
 
-.asm_38ae7
+.skipdiscourage
 ; Discourage again if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
 	ret c
@@ -897,38 +870,36 @@ AI_Smart_SpDefenseUp2:
 
 ; Discourage this move if enemy's HP is lower than 50%.
 	call AICheckEnemyHalfHP
-	jr nc, .asm_38b10
+	jr nc, .discourage
 
 ; Discourage this move if enemy's special defense level is higher than +3.
 	ld a, [wEnemySDefLevel]
-	cp $b
-	jr nc, .asm_38b10
+	cp BASE_STAT_LEVEL + 4
+	jr nc, .discourage
 
 ; 80% chance to greatly encourage this move if
 ; enemy's Special Defense level is lower than +2.
-	cp $9
+	cp BASE_STAT_LEVEL + 2
 	ret nc
 
-.asm_38b09
+.encourage
 	call AI_80_20
 	ret c
 	dec [hl]
 	dec [hl]
 	ret
 
-.asm_38b10
+.discourage
 	inc [hl]
 	ret
 
 AI_Smart_Fly:
 ; Fly, Dig
-
-; Greatly encourage this move if the player is
-; flying or underground, and slower than the enemy.
-
+	; Greatly encourage this move if the player is
+	; flying or underground, and slower than the enemy.
 	ld a, [wPlayerSubStatus3]
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
-	ret z
+	jr z, AI_Smart_AvoidIfProtect
 
 	call AICompareSpeed
 	ret nc
@@ -937,6 +908,26 @@ AI_Smart_Fly:
 	dec [hl]
 	dec [hl]
 	ret
+
+AI_Smart_AvoidIfProtect:
+; Greatly discourage if the player has Protect. Used for 2-turn moves.
+	; Power Herb makes this a 1-turn move.
+	push hl
+	predef GetUserItemAfterUnnerve
+	pop hl
+	ld a, b
+	cp HELD_POWER_HERB
+	ret z
+
+	ld b, EFFECT_PROTECT
+	call PlayerHasMoveEffect
+	jr c, .discourage
+	ld b, EFFECT_ENDURE
+	call PlayerHasMoveEffect
+	ret nc
+
+.discourage
+	jmp AIDiscourageMove
 
 AI_Smart_TrickRoom:
 ; Greatly encourage this move if it would make us outspeed, discourage otherwise
@@ -957,7 +948,7 @@ AI_Smart_Paralyze:
 
 ; 50% chance to discourage this move if player's HP is below 25%.
 	call AICheckPlayerQuarterHP
-	jr nc, .asm_38b3a
+	jr nc, .discourage
 
 ; 80% chance to greatly encourage this move
 ; if enemy is slower than player and its HP is above 25%.
@@ -971,7 +962,7 @@ AI_Smart_Paralyze:
 	dec [hl]
 	ret
 
-.asm_38b3a
+.discourage
 	call AI_50_50
 	ret c
 	inc [hl]
@@ -996,7 +987,7 @@ AI_Smart_SpeedDownHit:
 	call AICompareSpeed
 	ret c
 	call Random
-	cp 30
+	cp 12 percent
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1011,7 +1002,7 @@ AI_Smart_Substitute:
 
 AI_Smart_HyperBeam:
 	call AICheckEnemyHalfHP
-	jr c, .asm_38b72
+	jr c, .discourage
 
 ; 50% chance to encourage this move if enemy's HP is below 25%.
 	call AICheckEnemyQuarterHP
@@ -1021,10 +1012,10 @@ AI_Smart_HyperBeam:
 	dec [hl]
 	ret
 
-.asm_38b72
+.discourage
 ; If enemy's HP is above 50%, discourage this move at random
 	call Random
-	cp 40
+	cp 16 percent
 	ret c
 	inc [hl]
 	call AI_50_50
@@ -1032,10 +1023,10 @@ AI_Smart_HyperBeam:
 	inc [hl]
 	ret
 
-AI_Smart_RageFist:
-	ld a, [wEnemyRageHitCount]
-	and a
-	jr z, .asm_38b9b
+AI_Smart_Rage:
+	ld a, [wEnemySubStatus4]
+	bit SUBSTATUS_RAGE, a
+	jr z, .notbuilding
 
 ; If enemy's Rage is building, 50% chance to encourage this move.
 	call AI_50_50
@@ -1044,10 +1035,10 @@ AI_Smart_RageFist:
 	dec [hl]
 	ret
 
-.asm_38b9b
+.notbuilding
 ; If enemy's Rage is not building, discourage this move if enemy's HP is below 50%.
 	call AICheckEnemyHalfHP
-	jr nc, .asm_38ba6
+	jr nc, .discourage
 
 ; 50% chance to encourage this move otherwise.
 	call AI_80_20
@@ -1055,67 +1046,75 @@ AI_Smart_RageFist:
 	dec [hl]
 	ret
 
-.asm_38ba6
+.discourage
 	inc [hl]
 	ret
 
 AI_Smart_Counter:
+	push de
 	push hl
+	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
+	ld d, a
 	ld hl, wPlayerUsedMoves
-	lb bc, 0, 4
+	lb bc, 0, NUM_MOVES
 
-.loop
+.playermoveloop
 	ld a, [hli]
 	and a
-	jr z, .next
+	jr z, .skipmove
 
 	call AIGetEnemyMove
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
-	jr z, .next
+	jr z, .skipmove
 
 	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
-	cp SPECIAL
-	jr nc, .next
+	cp d
+	jr nz, .skipmove
 
 	inc b
 
-.next
+.skipmove
 	dec c
-	jr nz, .loop
+	jr nz, .playermoveloop
 
 	pop hl
 	ld a, b
 	and a
-	jr z, .none
+	jr z, .discourage
 
-	cp $3
-	jr nc, .all
+	cp 3
+	jr nc, .encourage
 
 	ld a, [wPlayerSelectedMove]
 	and a
-	ret z
+	jr z, .done
 
 	call AIGetEnemyMove
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
-	ret z
+	jr z, .done
 
 	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
-	cp SPECIAL
-	ret nc
+	cp d
+	jr z, .encourage
+.done
+	pop de
+	ret
 
-.all
+.encourage
+	pop de
 	call Random
-	cp 100
+	cp 39 percent + 1
 	ret c
 
 	dec [hl]
 	ret
 
-.none
+.discourage
+	pop de
 	inc [hl]
 	ret
 
@@ -1140,7 +1139,7 @@ AI_Smart_Encore:
 
 	pop hl
 	ld a, [wTypeMatchup]
-	cp $a
+	cp EFFECTIVE
 	jr nc, .weakmove
 
 	and a
@@ -1150,14 +1149,14 @@ AI_Smart_Encore:
 .weakmove
 	push hl
 	ld a, [wPlayerSelectedMove]
-	ld hl, .EncoreMoves
+	ld hl, EncoreMoves
 	call IsInByteArray
 	pop hl
 	jr nc, .discourage
 
 .encourage
 	call Random
-	cp $46
+	cp 28 percent - 1
 	ret c
 	dec [hl]
 	dec [hl]
@@ -1169,29 +1168,51 @@ AI_Smart_Encore:
 	inc [hl]
 	ret
 
-.EncoreMoves:
-	db AGILITY
-	db CONVERSION
-	db DISABLE
-	db DREAM_EATER
-	db GROWTH
-	db HAZE
-	db LEECH_SEED
-	db LEER
-	db POISONPOWDER
-	db RECYCLE
-	db ROAR
-	db SCREECH
-	db STRING_SHOT
-	db SUBSTITUTE
-	db SUPER_FANG
-	db SWORDS_DANCE
-	db TELEPORT
-	db TAUNT
-	db $ff
+INCLUDE "data/battle/ai/encore_moves.asm"
 
-AI_Smart_RazorWind:
-AI_Smart_SkullBash:
+AI_Smart_PainSplit:
+; Discourage this move if [enemy's current HP * 2 > player's current HP].
+
+	push hl
+	ld hl, wEnemyMonHP
+	ld a, [hli]
+	ld c, [hl]
+	ld b, a
+	sla c
+	rl b
+	ld hl, wBattleMonHP + 1
+	ld a, [hld]
+	cp c
+	ld a, [hl]
+	sbc b
+	pop hl
+	ret nc
+	inc [hl]
+	ret
+
+AI_Smart_SleepTalk:
+; Greatly encourage this move if enemy is fast asleep.
+; Greatly discourage this move otherwise.
+; TODO: sleep talk is typically used with rest, but we shouldn't
+; know how long we sleep for if it's randomly 1-3 turns...
+	call GetTrueUserAbility
+	cp EARLY_BIRD
+	ld b, 3
+	jr z, .got_wakeup_time
+	dec b
+.got_wakeup_time
+	ld a, [wEnemyMonStatus]
+	and $7
+	cp b
+	jmp c, AIDiscourageMove
+
+	; encourage it a ton to override everything else
+	ld a, [hl]
+	sub 10
+	ld [hl], a
+	ret
+
+AI_Smart_DestinyBond:
 ; Discourage this move if enemy's HP is above 25%.
 
 	call AICheckEnemyQuarterHP
@@ -1241,7 +1262,7 @@ AI_Smart_HealBell:
 	jr z, .ok
 	dec [hl]
 .ok
-	and 1 << FRZ | SLP
+	and 1 << FRZ | SLP_MASK
 	ret z
 	call AI_50_50
 	ret c
@@ -1265,12 +1286,10 @@ AI_Smart_PriorityHit:
 	jmp nz, AIDiscourageMove
 
 ; Greatly encourage this move if it will KO the player.
-	ld a, $1
+	ld a, 1
 	ldh [hBattleTurn], a
 	push hl
-	farcall BattleCommand_damagestats
-	farcall BattleCommand_damagecalc
-	farcall BattleCommand_stab
+	call AIDamageCalc
 	pop hl
 	ld a, [wCurDamage + 1]
 	ld c, a
@@ -1288,7 +1307,7 @@ AI_Smart_PriorityHit:
 
 AI_Smart_Disable:
 	call AICompareSpeed
-	jr nc, .asm_38df3
+	jr nc, .discourage
 
 	push hl
 	ld a, [wPlayerSelectedMove]
@@ -1296,24 +1315,70 @@ AI_Smart_Disable:
 	call IsInByteArray
 
 	pop hl
-	jr nc, .asm_38dee
+	jr nc, .notencourage
 
 	call Random
-	cp 100
+	cp 39 percent + 1
 	ret c
 	dec [hl]
 	ret
 
-.asm_38dee
+.notencourage
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
 	ret nz
 
-.asm_38df3
+.discourage
 	call Random
-	cp 20
+	cp 8 percent
 	ret c
 	inc [hl]
+	ret
+
+AI_Smart_MeanLook:
+	call AICheckEnemyHalfHP
+	jr nc, .discourage
+
+	push hl
+	call AICheckLastPlayerMon
+	pop hl
+	jmp z, AIDiscourageMove
+
+	call CheckIfTargetIsGhostType
+	jmp z, AIDiscourageMove
+
+; 80% chance to greatly encourage this move if the player is badly poisoned
+	ld a, [wBattleMonStatus]
+	bit TOX, a
+	jr nz, .encourage
+
+; 80% chance to greatly encourage this move if the player is either
+; in love, identified, or stuck in Rollout.
+	ld a, [wPlayerSubStatus1]
+	and 1<<SUBSTATUS_IN_LOVE | 1<<SUBSTATUS_IDENTIFIED
+	jr nz, .encourage
+	ld a, [wPlayerSubStatus3]
+	and 1<<SUBSTATUS_ROLLOUT
+	jr nz, .encourage
+
+; Otherwise, discourage this move unless the player only has not very effective moves against the enemy.
+	push hl
+	farcall CheckPlayerMoveTypeMatchups
+	ld a, [wEnemyAISwitchScore]
+	cp BASE_AI_SWITCH_SCORE + 1
+	pop hl
+	ret nc
+
+.discourage
+	inc [hl]
+	ret
+
+.encourage
+	call AI_80_20
+	ret c
+	dec [hl]
+	dec [hl]
+	dec [hl]
 	ret
 
 AICheckLastPlayerMon:
@@ -1326,14 +1391,14 @@ AICheckLastPlayerMon:
 .loop
 	ld a, [wCurBattleMon]
 	cp c
-	jr z, .asm_38e44
+	jr z, .skip
 
 	ld a, [hli]
 	or [hl]
 	ret nz
 	dec hl
 
-.asm_38e44
+.skip
 	add hl, de
 	inc c
 	dec b
@@ -1352,113 +1417,274 @@ rept 5
 endr
 	ret
 
+AI_Smart_Curse:
+; Don't bother with the non-Ghost version, the setup layer takes care of it.
+	call CheckIfUserIsGhostType
+	ret nz
+
+	ld a, [wPlayerSubStatus1]
+	bit SUBSTATUS_CURSE, a
+	jmp nz, AIDiscourageMove
+
+	push hl
+	farcall CheckAnyOtherAliveEnemyMons
+	pop hl
+	jr z, .last_enemy
+
+	; Encourage the move a bit.
+	dec [hl]
+
+.last_enemy
+	push hl
+	farcall AI_OpponentCanSwitch
+	pop hl
+	jr nz, .player_cant_switch
+
+	; Discourage the move a bit.
+	inc [hl]
+
+.player_cant_switch
+	call AICheckEnemyQuarterHP
+	ret c
+
+	; AI has 1/4HP or less, so encourage the move.
+	dec [hl]
+	dec [hl]
+	ret
+
 AI_Smart_Protect:
 	ld a, [wEnemyProtectCount]
 	and a
-	jr nz, .asm_38f13
+	jr nz, .greatly_discourage
 
 	ld a, [wPlayerSubStatus2]
 	bit SUBSTATUS_LOCK_ON, a
-	jr nz, .asm_38f14
+	jr nz, .discourage
 
 	ld a, [wPlayerSubStatus3]
 	bit SUBSTATUS_CHARGED, a
-	jr nz, .asm_38f0d
+	jr nz, .encourage
 	bit SUBSTATUS_ROLLOUT, a
-	jr z, .asm_38f14
+	jr z, .discourage
 
 	ld a, [wBattleMonStatus]
 	bit TOX, a
-	jr nz, .asm_38f0d
+	jr nz, .encourage
 	ld a, [wPlayerSubStatus4]
 	bit SUBSTATUS_LEECH_SEED, a
-	jr nz, .asm_38f0d
+	jr nz, .encourage
 	ld a, [wPlayerSubStatus1]
 	bit SUBSTATUS_CURSE, a
-	jr nz, .asm_38f0d
+	jr nz, .encourage
 
 	ld a, [wPlayerRolloutCount]
 	cp 3
-	jr c, .asm_38f14
+	jr c, .discourage
 
-.asm_38f0d
+.encourage
 	call AI_80_20
 	ret c
 	dec [hl]
 	ret
 
-.asm_38f13
+.greatly_discourage
 	inc [hl]
 
-.asm_38f14
+.discourage
 	call Random
-	cp 20
+	cp 8 percent
 	ret c
 	inc [hl]
 	inc [hl]
 	ret
 
-AI_Smart_FuryCutter:
-; Encourage this move based on Fury Cutter's count.
-	ld a, [wEnemyFuryCutterCount]
+AI_Smart_Foresight:
+; 60% chance to encourage this move if the enemy's accuracy is sharply lowered.
+	ld a, [wEnemyAccLevel]
+	cp BASE_STAT_LEVEL - 2
+	jr c, .encourage
+
+; 60% chance to encourage this move if the player's evasion is sharply raised.
+	ld a, [wPlayerEvaLevel]
+	cp BASE_STAT_LEVEL + 3
+	jr nc, .encourage
+
+; 60% chance to encourage this move if the player is a Ghost type.
+	ld a, [wBattleMonType1]
+	cp GHOST
+	jr z, .encourage
+	ld a, [wBattleMonType2]
+	cp GHOST
+	jr z, .encourage
+
+; 92% chance to discourage this move otherwise.
+	call Random
+	cp 8 percent
+	ret c
+
+	inc [hl]
+	ret
+
+.encourage
+	call Random
+	cp 39 percent + 1
+	ret c
+	dec [hl]
+	dec [hl]
+	ret
+
+AI_Smart_PerishSong:
+	push hl
+
+	; Strongly discourage if useless or if we can't switch out
+	farcall CheckAnyOtherAliveEnemyMons
+	jr z, .no
+
+	ld a, [wPlayerPerishCount]
 	and a
-	jr z, AI_Smart_Rollout
-	dec [hl]
+	jr nz, .no
 
-	cp 2
-	jr c, AI_Smart_Rollout
-	dec [hl]
-	dec [hl]
+	call AIGetOpponentIgnorableAbility
+	cp SOUNDPROOF
+	jr z, .no
 
-	cp 3
-	jr c, AI_Smart_Rollout
+	farcall GetSwitchScores
+	ld a, [wEnemyAISwitchScore]
+	and a
+	jr z, .no
+
+	; Encourage if player can't switch out
+	farcall CheckAnyOtherAlivePartyMons
+	jr z, .yes
+
+	call CheckIfTargetIsGhostType
+	jr z, .neutral
+
+	farcall GetOpponentItemAfterUnnerve
+	ld a, b
+	cp HELD_SHED_SHELL
+	jr z, .neutral
+	call SwitchTurn
+	farcall CheckIfTrappedByAbility
+	call SwitchTurn
+	jr z, .yes
+
+	ld a, [wPlayerWrapCount]
+	and a
+	jr nz, .yes
+	ld a, [wEnemySubStatus2]
+	bit SUBSTATUS_CANT_RUN, a
+	jr nz, .yes
+
+.neutral
+	pop hl
+	ret
+
+.yes
+	pop hl
 	dec [hl]
 	dec [hl]
 	dec [hl]
-	; fallthrough
+	ret
+
+.no
+	pop hl
+	ld a, [hl]
+	add 5
+	ld [hl], a
+	ret
+
+
+AI_Smart_Endure:
+; Greatly discourage this move if the enemy already used Protect.
+	ld a, [wEnemyProtectCount]
+	and a
+	jr nz, .greatly_discourage
+
+; Greatly discourage this move if the enemy's HP is full.
+	call AICheckEnemyMaxHP
+	jr c, .greatly_discourage
+
+; Discourage this move if the enemy's HP is at least 25%.
+	call AICheckEnemyQuarterHP
+	jr c, .discourage
+
+; If the enemy has Reversal...
+	ld b, EFFECT_REVERSAL
+	call AIHasMoveEffect
+	jr nc, .no_reversal
+
+; ...80% chance to greatly encourage this move.
+	call AI_80_20
+	ret c
+
+	dec [hl]
+	dec [hl]
+	dec [hl]
+	ret
+
+.no_reversal
+; If the enemy is not locked on, do nothing.
+	ld a, [wEnemySubStatus2]
+	bit SUBSTATUS_LOCK_ON, a
+	ret z
+
+; 50% chance to greatly encourage this move.
+	call AI_50_50
+	ret c
+
+	dec [hl]
+	dec [hl]
+	ret
+
+.greatly_discourage
+	inc [hl]
+.discourage
+	inc [hl]
+	ret
 
 AI_Smart_Rollout:
-; Rollout, Fury Cutter
 ; 80% chance to discourage this move if the enemy is in love, confused, or paralyzed.
 	ld a, [wEnemySubStatus1]
 	bit SUBSTATUS_IN_LOVE, a
-	jr nz, .asm_39020
+	jr nz, .maybe_discourage
 
 	ld a, [wEnemySubStatus3]
 	bit SUBSTATUS_CONFUSED, a
-	jr nz, .asm_39020
+	jr nz, .maybe_discourage
 
 	ld a, [wEnemyMonStatus]
 	bit PAR, a
-	jr nz, .asm_39020
+	jr nz, .maybe_discourage
 
 ; 80% chance to discourage this move if the enemy's HP is below 25%,
 ; or if accuracy or evasion modifiers favour the player.
 	call AICheckEnemyQuarterHP
-	jr nc, .asm_39020
+	jr nc, .maybe_discourage
 
 	ld a, [wEnemyAccLevel]
-	cp 7
-	jr c, .asm_39020
+	cp BASE_STAT_LEVEL
+	jr c, .maybe_discourage
 	ld a, [wPlayerEvaLevel]
-	cp 8
-	jr nc, .asm_39020
+	cp BASE_STAT_LEVEL + 1
+	jr nc, .maybe_discourage
 
 ; Otherwise, 80% chance to greatly encourage this move.
 	call Random
-	cp 200
+	cp 79 percent - 1
 	ret nc
 	dec [hl]
 	dec [hl]
 	ret
 
-.asm_39020
+.maybe_discourage
 	call AI_80_20
 	ret c
 	inc [hl]
 	ret
 
-AI_Smart_FakeOut:
+AI_Smart_Swagger:
+AI_Smart_Attract:
 ; 80% chance to encourage this move during the first turn of player's Pokemon.
 ; 80% chance to discourage this move otherwise.
 
@@ -1473,12 +1699,24 @@ AI_Smart_FakeOut:
 
 .first_turn
 	call Random
-	cp 200
+	cp 79 percent - 1
 	ret nc
 	dec [hl]
 	ret
 
+AI_Smart_Safeguard:
+; 80% chance to discourage this move if player's HP is below 50%.
+
+	call AICheckPlayerHalfHP
+	ret c
+	call AI_80_20
+	ret c
+	inc [hl]
+	ret
+
+AI_Smart_Magnitude:
 AI_Smart_Earthquake:
+
 ; Greatly encourage this move if the player is underground and the enemy is faster.
 	ld a, [wPlayerSelectedMove]
 	cp DIG
@@ -1507,7 +1745,7 @@ AI_Smart_Earthquake:
 	dec [hl]
 	ret
 
-AI_Smart_HelpingHand: ; BatonPass
+AI_Smart_BatonPass:
 ; Check total net stat boost effect:
 ; <0: Discourage
 ; >2: Encourage
@@ -1540,13 +1778,13 @@ AI_Smart_Pursuit:
 ; 80% chance to discourage this move otherwise.
 
 	call AICheckPlayerQuarterHP
-	jr nc, .asm_3907d
+	jr nc, .encourage
 	call AI_80_20
 	ret c
 	inc [hl]
 	ret
 
-.asm_3907d
+.encourage
 	call AI_50_50
 	ret c
 	dec [hl]
@@ -1555,22 +1793,22 @@ AI_Smart_Pursuit:
 
 AI_Smart_RapidSpin:
 ; 80% chance to greatly encourage this move if the enemy is
-; trapped (Bind effect), seeded, or scattered with stealth rocks.
+; trapped (Bind effect), seeded, or scattered with spikes.
 
 	ld a, [wEnemyWrapCount]
 	and a
-	jr nz, .asm_39097
+	jr nz, .encourage
 
 	ld a, [wEnemySubStatus4]
 	bit SUBSTATUS_LEECH_SEED, a
-	jr nz, .asm_39097
+	jr nz, .encourage
 
 	ld a, [wEnemyHazards]
-	and HAZARDS_STEALTH_ROCK
-	cp HAZARDS_STEALTH_ROCK
+	or ~HAZARDS_SPIKES
+	inc a
 	ret nz
 
-.asm_39097
+.encourage
 	call AI_80_20
 	ret c
 
@@ -1620,8 +1858,8 @@ AI_Smart_BellyDrum:
 ; Else, discourage this move if enemy's HP is not full.
 
 	ld a, [wEnemyAtkLevel]
-	cp $a
-	jr nc, .asm_3914d
+	cp BASE_STAT_LEVEL + 3
+	jr nc, .discourage
 
 	call AICheckEnemyMaxHP
 	ret c
@@ -1631,77 +1869,17 @@ AI_Smart_BellyDrum:
 	call AICheckEnemyHalfHP
 	ret c
 
-.asm_3914d
+.discourage
 	ld a, [hl]
-	add $5
+	add 5
 	ld [hl], a
-	ret
-
-AI_Smart_MirrorCoat:
-	push hl
-	ld hl, wPlayerUsedMoves
-	lb bc, 0, 4
-
-.loop
-	ld a, [hli]
-	and a
-	jr z, .next
-
-	call AIGetEnemyMove
-
-	ld a, [wEnemyMoveStruct + MOVE_POWER]
-	and a
-	jr z, .next
-
-	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
-	cp SPECIAL
-	jr c, .next
-
-	inc b
-
-.next
-	dec c
-	jr nz, .loop
-
-	pop hl
-	ld a, b
-	and a
-	jr z, .none
-
-	cp $3
-	jr nc, .all
-
-	ld a, [wPlayerSelectedMove]
-	and a
-	ret z
-
-	call AIGetEnemyMove
-
-	ld a, [wEnemyMoveStruct + MOVE_POWER]
-	and a
-	ret z
-
-	ld a, [wEnemyMoveStruct + MOVE_CATEGORY]
-	cp SPECIAL
-	ret c
-
-.all
-	call Random
-	cp 100
-	ret c
-
-	dec [hl]
-	ret
-
-.none
-	inc [hl]
 	ret
 
 AI_Smart_JumpKick:
 ; Greatly discourage this move if the player is semi-invulnerable and the enemy
 ; is faster and neither Pokémon has No Guard.
 	; Do nothing if anyone has No Guard.
-	call GetOpponentAbilityAfterMoldBreaker
+	call AIGetOpponentIgnorableAbility
 	cp NO_GUARD
 	ret z
 	call GetTrueUserAbility
@@ -1746,7 +1924,7 @@ AI_Smart_Gust:
 	dec [hl]
 	ret
 
-AI_Smart_Wish:
+AI_Smart_FutureSight:
 ; Greatly encourage this move if the player is
 ; flying or underground, and slower than the enemy.
 ; Otherwise discourage.
@@ -1786,7 +1964,7 @@ AI_Smart_SolarBeam:
 
 	ld b, EFFECT_SUNNY_DAY
 	call AIHasMoveEffect
-	ret nc
+	jmp nc, AI_Smart_AvoidIfProtect
 
 	inc [hl]
 	inc [hl]
@@ -1800,7 +1978,7 @@ AI_Smart_Thunder:
 	ret nz
 
 	call Random
-	cp 25 ; 1/10
+	cp 10 percent
 	ret c
 
 	inc [hl]
@@ -1822,7 +2000,7 @@ AICheckPlayerMaxHP:
 	push bc
 	ld de, wBattleMonHP
 	ld hl, wBattleMonMaxHP
-	jr AICheckMaxHP
+	jr _AICheckMaxHP
 
 AICheckEnemyMaxHP:
 	push hl
@@ -1832,18 +2010,18 @@ AICheckEnemyMaxHP:
 	ld hl, wEnemyMonMaxHP
 	; fallthrough
 
-AICheckMaxHP:
+_AICheckMaxHP:
 ; Return carry if hp at de matches max hp at hl.
 
 	ld a, [de]
 	inc de
 	cp [hl]
-	jr nz, .asm_39269
+	jr nz, .not_max
 
 	inc hl
 	ld a, [de]
 	cp [hl]
-	jr nz, .asm_39269
+	jr nz, .not_max
 
 	pop bc
 	pop de
@@ -1851,7 +2029,7 @@ AICheckMaxHP:
 	scf
 	ret
 
-.asm_39269
+.not_max
 	pop bc
 	pop de
 	pop hl
@@ -1861,13 +2039,13 @@ AICheckMaxHP:
 AICheckPlayerHalfHP:
 	push hl
 	ld hl, wBattleMonHP
-	ld b, [hl]
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
 	inc hl
-	ld c, [hl]
 	sla c
 	rl b
-	inc hl
-	inc hl
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -1881,13 +2059,13 @@ AICheckEnemyHalfHP:
 	push de
 	push bc
 	ld hl, wEnemyMonHP
-	ld b, [hl]
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
 	inc hl
-	ld c, [hl]
 	sla c
 	rl b
-	inc hl
-	inc hl
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -1899,15 +2077,15 @@ AICheckEnemyQuarterHP:
 	push de
 	push bc
 	ld hl, wEnemyMonHP
-	ld b, [hl]
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
 	inc hl
-	ld c, [hl]
 	sla c
 	rl b
 	sla c
 	rl b
-	inc hl
-	inc hl
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -1917,15 +2095,15 @@ AICheckEnemyQuarterHP:
 AICheckPlayerQuarterHP:
 	push hl
 	ld hl, wBattleMonHP
-	ld b, [hl]
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
 	inc hl
-	ld c, [hl]
+	ld c, a
 	sla c
 	rl b
 	sla c
 	rl b
-	inc hl
-	inc hl
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -1933,11 +2111,17 @@ AICheckPlayerQuarterHP:
 	pop hl
 	ret
 
+PlayerHasMoveEffect:
+; Return carry if the player has move effect b.
+	push hl
+	ld hl, wPlayerUsedMoves
+	jr AnyHasMoveEffect
 AIHasMoveEffect:
-; Return carry if the enemy has move b.
-
+; Return carry if the enemy has move effect b.
 	push hl
 	ld hl, wAIMoves
+	; fallthrough
+AnyHasMoveEffect:
 	ld c, NUM_MOVES
 
 .checkmove
@@ -1964,62 +2148,7 @@ AIHasMoveEffect:
 	scf
 	ret
 
-AIHasMoveInArray:
-; Return carry if the enemy has a move in array hl.
-
-	push hl
-	push de
-	push bc
-
-.next
-	ld a, [hli]
-	cp $ff
-	jr z, .done
-
-	ld b, a
-	ld c, NUM_MOVES + 1
-	ld de, wAIMoves
-
-.check
-	dec c
-	jr z, .next
-
-	ld a, [de]
-	inc de
-	cp b
-	jr nz, .check
-
-	scf
-
-.done
-	jmp PopBCDEHL
-
-UsefulMoves:
-; Moves that are usable all-around.
-	db DOUBLE_EDGE
-	db SING
-	db FLAMETHROWER
-	db HYDRO_PUMP
-	db SURF
-	db ICE_BEAM
-	db BLIZZARD
-	db HYPER_BEAM
-	db SLEEP_POWDER
-	db THUNDERBOLT
-	db THUNDER
-	db EARTHQUAKE
-	db TOXIC
-	db PSYCHIC_M
-	db HYPNOSIS
-	db WILL_O_WISP
-	db RECOVER
-	db FIRE_BLAST
-	db SUPER_FANG
-	db MOONBLAST
-	db PLAY_ROUGH
-	db HURRICANE
-	db RAGE_FIST
-	db $ff
+INCLUDE "data/battle/ai/useful_moves.asm"
 
 AI_Opportunist:
 ; Discourage stall moves when the enemy's HP is low.
@@ -2030,13 +2159,13 @@ AI_Opportunist:
 
 ; Discourage stall moves if enemy's HP is below 25%.
 	call AICheckEnemyQuarterHP
-	jr nc, .asm_39322
+	jr nc, .lowhp
 
 ; 50% chance to discourage stall moves if enemy's HP is between 25% and 50%.
 	call AI_50_50
 	ret c
 
-.asm_39322
+.lowhp
 	ld hl, wAIMoveScore - 1
 	ld de, wAIMoves
 	ld c, NUM_MOVES + 1
@@ -2053,7 +2182,7 @@ AI_Opportunist:
 	push hl
 	push de
 	push bc
-	ld hl, .stallmoves
+	ld hl, StallMoves
 	call IsInByteArray
 
 	pop bc
@@ -2064,32 +2193,7 @@ AI_Opportunist:
 	inc [hl]
 	jr .checkmove
 
-.stallmoves
-	db ACID_ARMOR
-	db AGILITY
-	db BARRIER
-	db BULK_UP
-	db CALM_MIND
-	db CONVERSION
-	db COUNTER
-	db DEFENSE_CURL
-	db DISABLE
-	db DRAGON_DANCE
-	db GROWL
-	db GROWTH
-	db HAZE
-	db LEECH_SEED
-	db LEER
-	db LIGHT_SCREEN
-	db MIMIC
-	db REFLECT
-	db SCREECH
-	db STRING_SHOT
-	db SUBSTITUTE
-	db SWORDS_DANCE
-	db TRANSFORM
-	db TAUNT
-	db $ff
+INCLUDE "data/battle/ai/stall_moves.asm"
 
 AI_Aggressive:
 ; Use whatever does the most damage.
@@ -2124,8 +2228,6 @@ AI_Aggressive:
 	jr z, .nodamage
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_COUNTER
-	jr z, .nodamage
-	cp EFFECT_MIRROR_COAT
 	jr z, .nodamage
 	call AIDamageCalc
 	pop bc
@@ -2186,8 +2288,6 @@ AI_Aggressive:
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_COUNTER
 	jr z, .checkmove2
-	cp EFFECT_MIRROR_COAT
-	jr z, .checkmove2
 
 	; This routine overrides the type matchup AI layer, since it's typically
 	; superior to it. As a result, deal with ineffective moves here too which
@@ -2210,36 +2310,76 @@ AI_Aggressive:
 AIDamageCalc:
 	ld a, 1
 	ldh [hBattleTurn], a
+
+	; Run this twice in case of Parental Bond.
+	call .do_it
+	ld a, BATTLE_VARS_SUBSTATUS3
+	call GetBattleVarAddr
+	bit SUBSTATUS_IN_LOOP, [hl]
+	res SUBSTATUS_IN_LOOP, [hl] ; don't leave stray flags
+	ret nz
+	call GetTrueUserAbility
+	cp PARENTAL_BOND
+	ret nz
+	ld a, BATTLE_VARS_SUBSTATUS2
+	call GetBattleVarAddr
+	set SUBSTATUS_IN_ABILITY, [hl]
+	push hl
+	ld hl, wCurDamage
+	ld a, [hli]
+	ld e, [hl]
+	ld d, a
+	push hl
+	push de
+	call .do_it
+	pop de
+	pop hl
+	ld a, e
+	add [hl]
+	ld [hld], a
+	ld a, d
+	adc [hl]
+	jr c, .overflow ; If this happens, we deal more than enough damage anyway.
+	ld [hl], a
+.overflow
+	pop hl
+	res SUBSTATUS_IN_ABILITY, [hl]
+	ret
+
+.do_it
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	cp EFFECT_FURY_STRIKES
-	jr z, .multihit
 	cp EFFECT_MULTI_HIT
 	jr z, .multihit
 	cp EFFECT_DOUBLE_HIT
 	jr z, .doublehit
-	cp EFFECT_DUO_IRON_BASH
-	jr z, .doublehit
 	cp EFFECT_GYRO_BALL
 	jr z, .gyro_ball
-	cp EFFECT_WEATHER_BALL
-	jr z, .weather_ball
+	cp EFFECT_HIDDEN_POWER
+	jr z, .hidden_power
 	cp EFFECT_LOW_KICK
 	jr z, .low_kick
+	cp EFFECT_MAGNITUDE
+	jr z, .magnitude
 	cp EFFECT_RETURN
 	jr z, .return
-	cp EFFECT_FLAIL
-	jr z, .flail
-	ld hl, .ConstantDamageEffects
+	cp EFFECT_REVERSAL
+	jr z, .reversal
+	ld hl, ConstantDamageEffects
 	call IsInByteArray
 	jr nc, .regular_damage
 	farcall BattleCommand_constantdamage
 	farjp BattleCommand_resettypematchup
 
 .multihit
-	; Multiply base power by 5 if Skill Link, 3 otherwise
+	; Multiply base power by 5 for Skill Link, 4 for Loaded Dice, 3 otherwise
+	predef GetUserItemAfterUnnerve
+	ld a, b
+	cp HELD_LOADED_DICE
+	ld b, 4
+	jr z, .multihit_boost
 	call GetTrueUserAbility
 	cp SKILL_LINK
-	ld b, 5
+	inc b
 	jr z, .multihit_boost
 	ld b, 3
 	jr .multihit_boost
@@ -2247,6 +2387,9 @@ AIDamageCalc:
 	; Multiply base power by 2
 	ld b, 2
 .multihit_boost
+	push bc
+	farcall BattleCommand_startloop ; to notify Parental Bond to not kick in.
+	pop bc
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	ld c, a
 .multihit_loop
@@ -2259,9 +2402,9 @@ AIDamageCalc:
 	farcall BattleCommand_damagestats
 	farcall BattleCommand_gyroball
 	jr .damagecalc
-.weather_ball
-	farcall WeatherBallDamageStats
-	jr .damagecalc
+.hidden_power
+	farcall SetHiddenPowerType
+	jr .regular_damage
 .low_kick
 	farcall BattleCommand_damagestats
 	farcall BattleCommand_lowkick
@@ -2270,9 +2413,14 @@ AIDamageCalc:
 	farcall BattleCommand_damagestats
 	farcall BattleCommand_happinesspower
 	jr .damagecalc
-.flail
+.reversal
 	farcall BattleCommand_constantdamage
 	jr .stab
+.magnitude
+	; Pretend that the base power is 70
+	ld a, 70
+	ld [wEnemyMoveStruct + MOVE_POWER], a
+	; fallthrough
 .regular_damage
 	farcall BattleCommand_damagestats
 .damagecalc
@@ -2283,10 +2431,7 @@ AIDamageCalc:
 	; harmless even if move doesn't have a conditional boost
 	farjp BattleCommand_conditionalboost
 
-.ConstantDamageEffects:
-	db EFFECT_SUPER_FANG
-	db EFFECT_LEVEL_DAMAGE
-	db $ff
+INCLUDE "data/battle/ai/constant_damage_effects.asm"
 
 AI_Cautious:
 ; 90% chance to discourage moves with residual effects after the first turn.
@@ -2298,7 +2443,7 @@ AI_Cautious:
 	ld hl, wAIMoveScore - 1
 	ld de, wAIMoves
 	ld c, NUM_MOVES + 1
-.asm_39425
+.loop
 	inc hl
 	dec c
 	ret z
@@ -2311,31 +2456,22 @@ AI_Cautious:
 	push hl
 	push de
 	push bc
-	ld hl, .residualmoves
+	ld hl, ResidualMoves
 	call IsInByteArray
 
 	pop bc
 	pop de
 	pop hl
-	jr nc, .asm_39425
+	jr nc, .loop
 
 	call Random
-	cp 230
+	cp 90 percent + 1
 	ret nc
 
 	inc [hl]
-	jr .asm_39425
+	jr .loop
 
-.residualmoves
-	db CONVERSION
-	db LEECH_SEED
-	db POISONPOWDER
-	db STEALTH_ROCK
-	db STUN_SPORE
-	db SUBSTITUTE
-	db THUNDER_WAVE
-	db TRANSFORM
-	db $ff
+INCLUDE "data/battle/ai/residual_moves.asm"
 
 AI_Status:
 ; Dismiss status moves that don't affect the player.
@@ -2403,7 +2539,7 @@ AI_Status:
 	jr .checkstatus
 .sleep
 	; has 2 abilities, check one of them here
-	call GetOpponentAbilityAfterMoldBreaker
+	call AIGetOpponentIgnorableAbility
 	cp VITAL_SPIRIT
 	jr z, .pop_and_discourage
 
@@ -2457,7 +2593,7 @@ AI_Status:
 .checkstatus_after_items
 	; Check opponent ability
 	push bc
-	call GetOpponentAbilityAfterMoldBreaker
+	call AIGetOpponentIgnorableAbility
 	pop bc
 	cp b
 	jr z, .pop_and_discourage
@@ -2511,7 +2647,7 @@ AI_Risky:
 
 ; Don't use risky moves at 50%+ HP.
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
-	ld hl, .RiskyMoves
+	ld hl, RiskyEffects
 	call IsInByteArray
 	jr nc, .checkko
 
@@ -2520,7 +2656,7 @@ AI_Risky:
 
 ; Else, 80% chance to exclude them.
 	call Random
-	cp 200 ; 1/5
+	cp 79 percent - 1
 	jr c, .nextmove
 
 .checkko
@@ -2548,9 +2684,7 @@ endr
 	pop de
 	jr .checkmove
 
-.RiskyMoves:
-	db EFFECT_EXPLOSION
-	db $ff
+INCLUDE "data/battle/ai/risky_effects.asm"
 
 AI_Smart_SpeedControl:
 ; Discourage if we outspeed
@@ -2561,6 +2695,21 @@ AIDiscourageMove:
 	ld a, [hl]
 	add 10
 	ld [hl], a
+	ret
+
+AIGetOpponentIgnorableAbility:
+; Variant of GetOpponentIgnorableAbility that pretends that we're ignoring
+; Abilities if the AI has Mold Breaker.
+	call GetTrueUserAbility
+	cp MOLD_BREAKER
+	jmp nz, GetOpponentAbility
+
+	push hl
+	ld hl, wMoveState
+	set MOVESTATE_OPP_IGNOREABIL_F, [hl]
+	call GetOpponentIgnorableAbility
+	res MOVESTATE_OPP_IGNOREABIL_F, [hl]
+	pop hl
 	ret
 
 AIGetEnemyMove:
@@ -2574,10 +2723,10 @@ AIGetEnemyMove:
 
 AI_80_20:
 	call Random
-	cp 50 ; 1/5
+	cp 20 percent - 1
 	ret
 
 AI_50_50:
 	call Random
-	cp $80 ; 1/2
+	cp 50 percent + 1
 	ret

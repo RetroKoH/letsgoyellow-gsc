@@ -15,17 +15,17 @@ Route4_MapScriptHeader:
 	bg_event 15,  4, BGEVENT_ITEM + ULTRA_BALL, EVENT_ROUTE_4_HIDDEN_ULTRA_BALL
 
 	def_object_events
-	object_event 51,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerYoungsterOliver, -1
-	object_event 38, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerLassJennifer, -1
-	object_event 28,  6, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBird_keeperHank, -1
-	object_event 12, 10, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerPicnickerHope, -1
-	object_event 35,  8, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerPicnickerSharon, -1
-	object_event 26, 13, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route4SuperNerd1Script, -1
-	object_event 29, 13, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route4SuperNerd2Script, -1
-	object_event 19,  7, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route4EngineerScript, EVENT_MT_MOON_RIVAL
-	object_event 17,  5, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	object_event 51,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerYoungsterOliver, -1
+	object_event 38, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerLassJennifer, -1
+	object_event 28,  6, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBird_keeperHank, -1
+	object_event 12, 10, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerPicnickerHope, -1
+	object_event 35,  8, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerPicnickerSharon, -1
+	object_event 26, 13, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route4SuperNerd1Script, -1
+	object_event 29, 13, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route4SuperNerd2Script, -1
+	object_event 19,  7, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, Route4EngineerScript, EVENT_MT_MOON_RIVAL
+	object_event 17,  5, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
 	itemball_event 42,  5, HP_UP, 1, EVENT_ROUTE_4_HP_UP
-	object_event 68,  6, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BEAT_BLUE
+	object_event 68,  6, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BEAT_BLUE
 
 GenericTrainerYoungsterOliver:
 	generictrainer YOUNGSTER, OLIVER, EVENT_BEAT_YOUNGSTER_OLIVER, YoungsterOliverSeenText, YoungsterOliverBeatenText
@@ -83,7 +83,7 @@ Route4SuperNerd1Script:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_IRON_HEAD_INTRO
-	iftrue Route4TutorIronHeadScript
+	iftruefwd Route4TutorIronHeadScript
 	writetext Route4SuperNerd1Text
 	waitbutton
 	setevent EVENT_LISTENED_TO_IRON_HEAD_INTRO
@@ -91,29 +91,38 @@ Route4TutorIronHeadScript:
 	writetext Text_Route4TutorIronHead
 	waitbutton
 	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
+	iffalsefwd .NoSilverLeaf
 	writetext Text_Route4Tutor1Question
 	yesorno
-	iffalse .TutorRefused
+	iffalsefwd .TutorRefused
 	setval IRON_HEAD
 	writetext ClearText
 	special Special_MoveTutor
-	ifequal $0, .TeachMove
+	ifequalfwd $0, .TeachMove
 .TutorRefused
-	jumpopenedtext Text_Route4Tutor1Refused
+	jumpthisopenedtext
+
+	text "But it's better"
+	line "than Aqua Tail!"
+	done
 
 .NoSilverLeaf
 	jumpopenedtext Text_Route4TutorsNoSilverLeaf
 
 .TeachMove
 	takeitem SILVER_LEAF
-	jumpopenedtext Text_Route4Tutor1Taught
+	jumpthisopenedtext
+
+	text "Now your #mon"
+	line "knows how to use"
+	cont "Iron Head!"
+	done
 
 Route4SuperNerd2Script:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_AQUA_TAIL_INTRO
-	iftrue Route4TutorAquaTailScript
+	iftruefwd Route4TutorAquaTailScript
 	writetext Route4SuperNerd2Text
 	waitbutton
 	setevent EVENT_LISTENED_TO_AQUA_TAIL_INTRO
@@ -121,23 +130,32 @@ Route4TutorAquaTailScript:
 	writetext Text_Route4TutorAquaTail
 	waitbutton
 	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
+	iffalsefwd .NoSilverLeaf
 	writetext Text_Route4Tutor2Question
 	yesorno
-	iffalse .TutorRefused
+	iffalsefwd .TutorRefused
 	setval AQUA_TAIL
 	writetext ClearText
 	special Special_MoveTutor
-	ifequal $0, .TeachMove
+	ifequalfwd $0, .TeachMove
 .TutorRefused
-	jumpopenedtext Text_Route4Tutor2Refused
+	jumpthisopenedtext
+
+	text "But it's better"
+	line "than Iron Head!"
+	done
 
 .NoSilverLeaf
 	jumpopenedtext Text_Route4TutorsNoSilverLeaf
 
 .TeachMove
 	takeitem SILVER_LEAF
-	jumpopenedtext Text_Route4Tutor2Taught
+	jumpthisopenedtext
+
+	text "Now your #mon"
+	line "knows how to use"
+	cont "Aqua Tail!"
+	done
 
 Route4EngineerScript:
 	showtext Route4EngineerText1
@@ -192,12 +210,12 @@ PicnickerHopeBeatenText:
 	line "strong."
 	done
 
-PicnickerSharonSeenText:
+PicnickerSharonSeenText: ; text > text
 	text "Um…"
 	line "I…"
 	done
 
-PicnickerSharonBeatenText:
+PicnickerSharonBeatenText: ; text > text
 	text "…"
 	done
 
@@ -254,27 +272,9 @@ Text_Route4Tutor2Question:
 	cont "Aqua Tail?"
 	done
 
-Text_Route4Tutor1Refused:
-	text "But it's better"
-	line "than Aqua Tail!"
-	done
 
-Text_Route4Tutor2Refused:
-	text "But it's better"
-	line "than Iron Head!"
-	done
 
-Text_Route4Tutor1Taught:
-	text "Now your #mon"
-	line "knows how to use"
-	cont "Iron Head!"
-	done
 
-Text_Route4Tutor2Taught:
-	text "Now your #mon"
-	line "knows how to use"
-	cont "Aqua Tail!"
-	done
 
 Route4EngineerText1:
 	text "Get those bolts"

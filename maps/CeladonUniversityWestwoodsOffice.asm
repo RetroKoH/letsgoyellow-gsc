@@ -16,8 +16,8 @@ CeladonUniversityWestwoodsOffice_MapScriptHeader:
 	bg_event  5,  1, BGEVENT_JUMPTEXT, CeladonUniversityWestwoodsOfficeBookshelfText
 
 	def_object_events
-	object_event  4,  3, SPRITE_CHILD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonUniversityWestwoodsOfficeChildScript, -1
-	object_event  1,  4, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptext, CeladonUniversityWestwoodsOfficeBookText, -1
+	object_event  4,  3, SPRITE_CHILD, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonUniversityWestwoodsOfficeChildScript, -1
+	object_event  1,  4, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptext, CeladonUniversityWestwoodsOfficeBookText, -1
 
 CeladonUniversityWestwoodsOfficeChildScript:
 	checkevent EVENT_GOT_RAGECANDYBAR_IN_UNIVERSITY
@@ -26,7 +26,7 @@ CeladonUniversityWestwoodsOfficeChildScript:
 	opentext
 	writetext .Text1
 	promptbutton
-	verbosegiveitem PEWTERCRUNCH
+	verbosegiveitem RAGECANDYBAR
 	iffalse_endtext
 	setevent EVENT_GOT_RAGECANDYBAR_IN_UNIVERSITY
 	jumpthisopenedtext
@@ -48,7 +48,11 @@ CeladonUniversityWestwoodsOfficeChildScript:
 
 	para "…Maybe I should"
 	line "quit snacking on"
+if DEF(FAITHFUL)
 	cont "RageCandyBars."
+else
+	cont "Cakes of Rage."
+endc
 
 	para "You can have this"
 	line "one."

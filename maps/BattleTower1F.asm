@@ -1,6 +1,7 @@
 BattleTower1F_MapScriptHeader:
 	def_scene_scripts
-	scene_script BattleTower1FContinueChallenge
+	scene_script BattleTower1FContinueChallenge, SCENE_BATTLETOWER1F_CHECKSTATE
+	scene_const SCENE_BATTLETOWER1F_NOOP
 
 	def_callbacks
 
@@ -15,17 +16,18 @@ BattleTower1F_MapScriptHeader:
 	def_bg_events
 	bg_event 11,  7, BGEVENT_READ, BattleTower1FRulesScript
 	bg_event  9,  7, BGEVENT_JUMPTEXT, BattleTower1FStreakText
+	bg_event 21,  8, BGEVENT_READ, PokemonJournalPalmerScript
 
 	def_object_events
-	object_event 10,  7, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BattleTower1FReceptionistScript, -1
+	object_event 10,  7, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, BattleTower1FReceptionistScript, -1
 	pc_nurse_event  6,  8
-	object_event 14,  8, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_BP, MART_BT_1, -1
-	object_event 16,  8, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_BP, MART_BT_2, -1
-	object_event 18,  8, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_BP, MART_BT_3, -1
-	object_event  6, 14, SPRITE_BURGLAR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerPharmacistScript, -1
-	object_event 16, 13, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Text_BattleTowerCooltrainerF, -1
-	object_event  2, 12, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Text_BattleTowerBugCatcher, -1
-	object_event 20, 11, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Text_BattleTowerGranny, -1
+	object_event 14,  8, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_BP, MART_BATTLETOWER_1, -1
+	object_event 16,  8, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_BP, MART_BATTLETOWER_2, -1
+	object_event 18,  8, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_BP, MART_BATTLETOWER_3, -1
+	object_event  6, 14, SPRITE_BURGLAR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, BattleTowerPharmacistScript, -1
+	object_event 16, 13, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Text_BattleTowerCooltrainerF, -1
+	object_event  2, 12, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 1, 1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Text_BattleTowerBugCatcher, -1
+	object_event 20, 11, SPRITE_GRANNY, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Text_BattleTowerGranny, -1
 
 	object_const_def
 	const BATTLETOWER1F_RECEPTIONIST
@@ -33,14 +35,14 @@ BattleTower1F_MapScriptHeader:
 BattleTower1FContinueChallenge:
 ; Triggers (usefully) if we're in an ongoing Battle Tower run.
 	; Only trigger this once.
-	setscene 1
+	setscene SCENE_BATTLETOWER1F_NOOP
 
 	; Check current battle status to see if we need to resume or reset winstreak
 	special Special_BattleTower_GetChallengeState
-	ifequal BATTLETOWER_CHALLENGE_IN_PROGRESS, .LeftWithoutSaving
-	ifequal BATTLETOWER_SAVED_AND_LEFT, .ResumeChallenge
-	ifequal BATTLETOWER_LOST_CHALLENGE, .LostChallenge
-	ifequal BATTLETOWER_WON_CHALLENGE, .WonChallenge
+	ifequalfwd BATTLETOWER_CHALLENGE_IN_PROGRESS, .LeftWithoutSaving
+	ifequalfwd BATTLETOWER_SAVED_AND_LEFT, .ResumeChallenge
+	ifequalfwd BATTLETOWER_LOST_CHALLENGE, .LostChallenge
+	ifequalfwd BATTLETOWER_WON_CHALLENGE, .WonChallenge
 	end
 
 .ResumeChallenge:
@@ -76,7 +78,7 @@ BattleTower1FContinueChallenge:
 		line "invalid."
 		done
 	waitbutton
-	sjump Script_CommitBattleTowerResult
+	sjumpfwd Script_CommitBattleTowerResult
 
 .LostChallenge:
 	opentext
@@ -102,7 +104,7 @@ BattleTower1FContinueChallenge:
 	; fallthrough
 Script_CommitBattleTowerResult:
 	special Special_BattleTower_CommitChallengeResult
-	iffalse .WeHopeToServeYouAgain
+	iffalsefwd .WeHopeToServeYouAgain
 	setevent EVENT_BEAT_PALMER
 .WeHopeToServeYouAgain:
 	writethistext
@@ -159,7 +161,7 @@ BattleTower1FReceptionistScript:
 		done
 	promptbutton
 	checkevent EVENT_BATTLE_TOWER_INTRO
-	iftrue .BattleTowerMenu
+	iftruefwd .BattleTowerMenu
 
 	; only ask once, so set the flag regardless
 	setevent EVENT_BATTLE_TOWER_INTRO
@@ -169,7 +171,7 @@ BattleTower1FReceptionistScript:
 		cont "Battle Tower?"
 		done
 	yesorno
-	iffalse .BattleTowerMenu
+	iffalsefwd .BattleTowerMenu
 
 .Explanation:
 	writethistext
@@ -208,7 +210,7 @@ BattleTower1FReceptionistScript:
 	; fallthrough
 .BattleTowerMenu:
 	; Setscene here in case the player aborted a quicksave prompted by challenge
-	setscene 1
+	setscene SCENE_BATTLETOWER1F_NOOP
 	writethistext
 		text "Want to go into a"
 		line "Battle Room?"
@@ -216,7 +218,7 @@ BattleTower1FReceptionistScript:
 	loadmenu MenuDataHeader_BattleInfoCancel
 	verticalmenu
 	closewindow
-	ifequal $1, .Challenge
+	ifequalfwd $1, .Challenge
 	ifequal $2, .Explanation
 	writethistext
 		text "We hope to serve"
@@ -243,7 +245,7 @@ BattleTower1FReceptionistScript:
 	; Done here to ensure it's saved in case the player resets later.
 	; The scene script running after the player saves but before the
 	; challenge starts is harmless since there's no challenge prepared.
-	setscene 0
+	setscene SCENE_BATTLETOWER1F_CHECKSTATE
 	special Special_TryQuickSave
 	iffalse .BattleTowerMenu
 
@@ -252,7 +254,7 @@ BattleTower1FReceptionistScript:
 	; fallthrough
 Script_ReturnToBattleTowerChallenge:
 	; From this point onwards, resetting the game should count as a streak loss
-	setscene 0
+	setscene SCENE_BATTLETOWER1F_CHECKSTATE
 	setval BATTLETOWER_CHALLENGE_IN_PROGRESS
 	special Special_BattleTower_SetChallengeState
 
@@ -286,9 +288,8 @@ Script_ReturnToBattleTowerChallenge:
 	step_end
 
 MenuDataHeader_BattleInfoCancel:
-	db $40 ; flags
-	db  4, 11 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 11, 4, 19, 11
 	dw MenuData2_BattleInfoCancel
 	db 1 ; default option
 
@@ -303,44 +304,43 @@ BattleTowerPharmacistScript:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_TRICK_INTRO
-	iftrue BattleTowerTutorTauntScript
+	iftruefwd BattleTowerTutorTrickScript
 	writethistext
 		text "The trainers here"
 		line "strategically use"
 		cont "held items."
 
 		para "But I've got a"
-		line "taunt up my"
+		line "trick up my"
 		cont "sleeve--I'll swap"
 
 		para "their items for"
-		line "mine with Taunt!"
+		line "mine with Trick!"
 		done
 	waitbutton
 	setevent EVENT_LISTENED_TO_TRICK_INTRO
-
-BattleTowerTutorTauntScript:
+BattleTowerTutorTrickScript:
 	writethistext
 		text "I'll teach your"
 		line "#mon how to"
 
-		para "use Taunt…"
+		para "use Trick…"
 		line "for a Silver Leaf."
 		done
 	waitbutton
 	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
+	iffalsefwd .NoSilverLeaf
 	writethistext
 		text "Should I teach"
 		line "your #mon"
-		cont "Taunt?"
+		cont "Trick?"
 		done
 	yesorno
-	iffalse .TutorRefused
-	setval TAUNT
+	iffalsefwd .TutorRefused
+	setval TRICK
 	writetext ClearText
 	special Special_MoveTutor
-	ifequal $0, .TeachMove
+	ifequalfwd $0, .TeachMove
 .TutorRefused
 	jumpthisopenedtext
 		text "Talk to me if you"
@@ -357,7 +357,7 @@ BattleTowerTutorTauntScript:
 	takeitem SILVER_LEAF
 	jumpthisopenedtext
 		text "Now your #mon"
-		line "can use Taunt too!"
+		line "can use Trick too!"
 		cont "Isn't it devious?"
 		done
 
@@ -392,4 +392,22 @@ Text_BattleTowerBugCatcher:
 
 	para "Don't let there be"
 	line "any fire #mon…"
+	done
+
+PokemonJournalPalmerScript:
+	setflag ENGINE_READ_PALMER_JOURNAL
+	jumpthistext
+
+	text "#mon Journal"
+
+	para "Special Feature:"
+	line "Tower Tycoon"
+	cont "Palmer!"
+
+	para "Palmer is reported"
+	line "to have a son in"
+
+	para "the Sinnoh region"
+	line "who wants to be a"
+	cont "trainer like him."
 	done

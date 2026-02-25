@@ -1,6 +1,7 @@
 Random::
-	; just like the stock RNG, this exits with the value in [hRandomSub]
-	; it also stores a random value in [hRandomAdd]
+; just like the stock RNG, this exits with the value in [hRandomSub]
+; it also stores a random value in [hRandomAdd]
+; Returns z if the result was 0.
 	push hl
 	push de
 	push bc
@@ -172,6 +173,56 @@ RandomRange::
 	call SimpleDivide
 
 	pop bc
+	ret
+
+RandomRange16::
+; Return a random number between 0 and bc (non-inclusive)
+	ld a, b
+	and a
+	jr z, .8bit
+	push hl
+	push de
+	cpl
+	ld d, a
+	ld a, c
+	cpl
+	ld e, a
+	inc de
+
+; de = $10000 % bc
+	ld hl, 0
+	add hl, de
+.mod
+	add hl, de
+	jr c, .mod
+	add hl, bc
+	ld d, h
+	ld e, l
+	push bc
+
+	; get a random number
+	; from 0 to $ffff - de
+.loop
+	call Random
+	ldh a, [hRandomAdd]
+	ld h, a
+	ldh a, [hRandomSub]
+	ld l, a
+	add hl, de
+	jr c, .loop
+
+	pop de
+	ld b, h
+	ld c, l
+	homecall Divide16
+	pop de
+	pop hl
+	ret
+
+.8bit
+	ld a, c
+	call RandomRange
+	ld c, a
 	ret
 
 BattleRandomRange::

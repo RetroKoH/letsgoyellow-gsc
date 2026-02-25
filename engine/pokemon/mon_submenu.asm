@@ -18,15 +18,14 @@ MonSubmenu:
 	jmp ExitMenu
 
 .MenuDataHeader:
-	db $40 ; tile backup
-	db 00, 06 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 6, 0, 19, 17
 	dw 0
 	db 1 ; default option
 
 .GetTopCoord:
 ; TopCoord = 1 + BottomCoord - 2 * (NumSubmenuItems + 1)
-	ld a, [wBuffer1]
+	ld a, [wMonSubmenuCount]
 	inc a
 	add a
 	ld b, a
@@ -40,7 +39,7 @@ MonMenuLoop:
 .loop
 	ld a, $a0 ; flags
 	ld [wMenuDataFlags], a
-	ld a, [wBuffer1] ; items
+	ld a, [wMonSubmenuCount] ; items
 	ld [wMenuDataItems], a
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
@@ -61,7 +60,7 @@ MonMenuLoop:
 	dec a
 	ld c, a
 	ld b, 0
-	ld hl, wBuffer2
+	ld hl, wMonSubmenuItems
 	add hl, bc
 	ld a, [hl]
 	ret
@@ -70,7 +69,7 @@ PopulateMonMenu:
 	call MenuBoxCoord2Tile
 	ld bc, $2a ; 42
 	add hl, bc
-	ld de, wBuffer2
+	ld de, wMonSubmenuItems
 .loop
 	ld a, [de]
 	inc de
@@ -87,26 +86,22 @@ PopulateMonMenu:
 	jr .loop
 
 GetMonMenuString:
-	ld hl, MonMenuOptions + 1 ; Menu item constant
-	ld de, 3                  ; 3rd item is text reference
+	ld hl, MonMenuOptions + 1
+	ld de, 3
 	call IsInArray
 	dec hl
-	ld a, [hli]               ; a = menu option type (standard or field move)
+	ld a, [hli]
 	cp MONMENU_MENUOPTION
 	jr z, .NotMove
 	inc hl
 	ld a, [hl]
-	dec a                       ; a = zero-based index
-	ld hl, MonMenuFieldStrings
-	call GetNthString
-	ld d, h
-	ld e, l
-	ret
+	ld [wNamedObjectIndex], a
+	jmp GetMoveName
 
 .NotMove:
 	inc hl
 	ld a, [hl]
-	dec a                       ; a = zero-based index
+	dec a
 	ld hl, MonMenuOptionStrings
 	call GetNthString
 	ld d, h
@@ -116,43 +111,36 @@ GetMonMenuString:
 GetMonSubmenuItems:
 	call ResetMonSubmenu
 	ld a, MON_IS_EGG
-	call GetPartyParamLocation
-	bit MON_IS_EGG_F, [hl]
-	jr nz, .egg                ; if this mon is an egg, branch and skip
+	call GetPartyParamLocationAndValue
+	bit MON_IS_EGG_F, a
+	jr nz, .egg
 	ld a, [wLinkMode]
 	and a
-	jr nz, .skip_field         ; if we are in link mode, skip field moves
-
-; Check if field tech is unlocked yet
-	ld de, ENGINE_LEARNED_FIELD_TECH
-	farcall CheckEngineFlag
-	jr c, .skip_field
-
-; GET MENU ITEMS BASED ON THE HARDCODED DATA
-	ld a, MON_SPECIES
-	call GetPartyParamLocation
-	ld a, [hl] ; a = SPECIES of current mon
-
-	ld hl, TechniquePointers
-	ld b, 0
-	dec a       ; zero-based index
-	ld c, a
-	add hl, bc
-	add hl, bc	; hl points to the species' techniques list pointer
-	ld a, [hli]
-	ld d, [hl]
-	ld e, a     ; de now points to actual techniques list
-
+	jr nz, .skip_moves
+	ld a, MON_MOVES
+	call GetPartyParamLocationAndValue
+	ld d, h
+	ld e, l
+	ld c, NUM_MOVES
 .loop
-	ld a, [de]		    ; field technique ID
-	and a               ; is a == 0? (End of tech list)
-	jr z, .skip_field   ; if yes, branch and skip ahead
-	call AddMonMenuItem ; if a field move is detected, add the item to the menu
+	push bc
+	push de
+	ld a, [de]
+	and a
+	jr z, .next
+	push hl
+	call IsFieldMove
+	pop hl
+	call c, AddMonMenuItem
+.next
+	pop de
 	inc de
-	jr .loop
+	pop bc
+	dec c
+	jr nz, .loop
 
-.skip_field
-	ld a, MONMENUITEM_STATS
+.skip_moves
+	ld a, MONMENUITEM_SUMMARY
 	call AddMonMenuItem
 	ld a, MONMENUITEM_SWITCH
 	call AddMonMenuItem
@@ -161,8 +149,8 @@ GetMonSubmenuItems:
 	jr nz, .skip2
 	push hl
 	ld a, MON_ITEM
-	call GetPartyParamLocation
-	ld d, [hl]
+	call GetPartyParamLocationAndValue
+	ld d, a
 	call ItemIsMail ; set carry if mail
 	pop hl
 	; a = carry ? MONMENUITEM_MAIL : MONMENUITEM_ITEM
@@ -172,7 +160,7 @@ GetMonSubmenuItems:
 	call AddMonMenuItem
 
 .skip2
-	ld a, [wBuffer1]
+	ld a, [wMonSubmenuCount]
 	cp NUM_MONMENU_ITEMS
 	jr z, TerminateMonSubmenu
 	ld a, MONMENUITEM_CANCEL
@@ -180,7 +168,7 @@ GetMonSubmenuItems:
 	jr TerminateMonSubmenu
 
 .egg
-	ld a, MONMENUITEM_STATS
+	ld a, MONMENUITEM_SUMMARY
 	call AddMonMenuItem
 	ld a, MONMENUITEM_SWITCH
 	call AddMonMenuItem
@@ -188,19 +176,37 @@ GetMonSubmenuItems:
 	call AddMonMenuItem
 	jr TerminateMonSubmenu
 
+IsFieldMove:
+	ld b, a
+	ld hl, MonMenuOptions
+.next
+	ld a, [hli]
+	cp -1
+	ret z
+	cp MONMENU_MENUOPTION
+	ret z
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	cp b
+	jr nz, .next
+	ld a, d
+	scf
+	ret
+
 ResetMonSubmenu:
 	xor a
-	ld [wBuffer1], a
-	ld hl, wBuffer2
+	ld [wMonSubmenuCount], a
+	ld hl, wMonSubmenuItems
 	ld bc, NUM_MONMENU_ITEMS + 1
 	rst ByteFill
 	ret
 
 TerminateMonSubmenu:
-	ld a, [wBuffer1]
+	ld a, [wMonSubmenuCount]
 	ld e, a
 	ld d, $0
-	ld hl, wBuffer2
+	ld hl, wMonSubmenuItems
 	add hl, de
 	ld [hl], -1
 	ret
@@ -209,17 +215,15 @@ AddMonMenuItem:
 	push hl
 	push de
 	push af
-	ld a, [wBuffer1]
+	ld a, [wMonSubmenuCount]
 	ld e, a
 	inc a
-	ld [wBuffer1], a
+	ld [wMonSubmenuCount], a
 	ld d, $0
-	ld hl, wBuffer2
+	ld hl, wMonSubmenuItems
 	add hl, de
 	pop af
 	ld [hl], a
 	pop de
 	pop hl
 	ret
-
-INCLUDE "data/pokemon/field_techniques.asm"

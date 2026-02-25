@@ -13,7 +13,7 @@ Route26HealSpeechHouse_MapScriptHeader:
 	bg_event  7,  1, BGEVENT_JUMPSTD, picturebookshelf
 
 	def_object_events
-	object_event  2,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route26HealHouseTeacherScript, -1
+	object_event  2,  3, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route26HealHouseTeacherScript, -1
 
 Route26HealHouseTeacherScript:
 	showtextfaceplayer Route26HealHouseRestAWhileText
@@ -24,7 +24,15 @@ Route26HealHouseTeacherScript:
 	pause 60
 	special Special_FadeInQuickly
 	special RestartMapMusic
-	jumptext Route26HealHouseKeepAtItText
+	jumpthistext
+
+	text "There!"
+
+	para "Your #mon are"
+	line "looking good!"
+
+	para "Keep at it!"
+	done
 
 Route26HealHouseRestAWhileText:
 	text "Your #mon look"
@@ -34,11 +42,3 @@ Route26HealHouseRestAWhileText:
 	line "them a while."
 	done
 
-Route26HealHouseKeepAtItText:
-	text "There!"
-
-	para "Your #mon are"
-	line "looking good!"
-
-	para "Keep at it!"
-	done

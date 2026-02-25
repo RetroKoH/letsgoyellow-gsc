@@ -7,256 +7,145 @@ Route22_MapScriptHeader:
 	warp_event  3,  5, POKEMON_LEAGUE_GATE, 1
 
 	def_coord_events
-	coord_event 21, 7, 1, Route22_TraceBeckonsYouScene ; Scene 1 (After obtaining the Dex)
-	; Scene 2 (Idle Scene, w/ Snorlax)
-	; Scene 3 (Corrupted Snorlax boss battle)
-	; Scene 4 (Idle Scene, After Snorlax)
-	; Scene 5 (Post-game, Final Trace battle)
-	; Scene 6 (End, nothing special)
 
 	def_bg_events
 	bg_event  6,  6, BGEVENT_JUMPTEXT, VictoryRoadEntranceSignText
+	bg_event  5,  9, BGEVENT_JUMPTEXT, Route22AdvancedTipsSignText
 
 	def_object_events
-	object_event  20,  5, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouseTraceScript, EVENT_HIDE_ROUTE_22_TRACE
-	object_event  18,  4, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route22Snorlax, EVENT_ROUTE_22_SNORLAX
+	object_event 14, 11, SPRITE_KUKUI, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, KukuiScript, -1
+	object_event 20,  2, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route22CooltrainerfText, -1
 
 	object_const_def
-	const ROUTE22_TRACE
-	const ROUTE22_SNORLAX
+	const ROUTE22_KUKUI
 
-Route22_TraceBeckonsYouScene:
-	showemote EMOTE_SHOCK, ROUTE22_TRACE, 15
-	turnobject ROUTE22_TRACE, DOWN
+KukuiScript:
+	checkevent EVENT_BEAT_KUKUI
+	iftrue_jumptextfaceplayer .AfterText
+	faceplayer
 	opentext
-	writetext Route22Trace_GreetsPlayer
-	waitbutton
-	closetext
-	turnobject ROUTE22_TRACE, LEFT
-	applymovement PLAYER, Movement_PlayerGoesToSee
-	opentext
-	writetext Route22Trace_LookSnorlax
-	promptbutton
-	turnobject ROUTE22_TRACE, UP
-	turnobject PLAYER, DOWN
-	writetext Route22Trace_LookPlayer
+	checkevent EVENT_INTRODUCED_KUKUI
+	iftruefwd .Introduced
+	writetext .IntroText
+	sjumpfwd .Question
+.Introduced
+	writetext .RematchText
+.Question
 	yesorno
-	iffalse .NotScared
-	writetext Route22Trace_Agree
+	iffalse_jumpopenedtext .RefusedText
+	writetext .SeenText
 	waitbutton
 	closetext
-	applymovement TRACE, Movement_BackingAway
-	turnobject ROUTE22_TRACE, LEFT
-	applymovement PLAYER, Movement_BackingAway
-	turnobject PLAYER, DOWN
-	turnobject ROUTE22_TRACE, UP
-	opentext
-	writetext Route22Trace_ThatWasClose
-	promptbutton
-	writetext Route22_TraceChallengePlayer1
-	waitbutton
-	closetext
-	sjump .startBattle
-
-.NotScared:
-	writetext Route22Trace_Doubt
-	waitbutton
-	closetext
-	applymovement ROUTE22_TRACE, Movement_BackingAway
-	turnobject ROUTE22_TRACE, LEFT
-	applymovement PLAYER, Movement_BackingAway
-	turnobject PLAYER, DOWN
-	turnobject ROUTE22_TRACE, UP
-	opentext
-	writetext Route22Trace_ThatWasClose
-	promptbutton
-	writetext Route22_TraceChallengePlayer2
-	waitbutton
-	closetext
-	sjump .startBattle
-
-.startBattle:
-	winlosstext Route22TraceWinText, Route22TraceLossText
-	setlasttalked ROUTE22_TRACE
-	checkevent EVENT_PLAYER_CHOSE_EEVEE
-	iftrue .Eevee
-	loadtrainer TRACE0, 3
-	sjump .continueBattle
-.Eevee
-	loadtrainer TRACE0, 4
-
-.continueBattle
-	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
+	setevent EVENT_INTRODUCED_KUKUI
+	winlosstext .BeatenText, 0
+	setlasttalked ROUTE22_KUKUI
+	checkevent EVENT_BEAT_ELITE_FOUR_AGAIN
+	iftruefwd .Rematch
+	loadtrainer KUKUI, 1
+	sjumpfwd .StartBattle
+.Rematch
+	loadtrainer KUKUI, 2
+.StartBattle
 	startbattle
-;	dontrestartmapmusic
-	reloadmap
-	iffalse .AfterYouWin
-	sjump .AfterYouLose
+	reloadmapafterbattle
+	setevent EVENT_BEAT_KUKUI
+	jumpthistext
 
-.AfterYouWin:
-	showtext Route22Text_PlayerWon
-	sjump .FinishTrace
+.AfterText:
+	text "Amazing! I went"
+	line "right at you, and"
+	cont "you still won!"
 
-.AfterYouLose:
-	showtext Route22Text_TraceWon
-.FinishTrace
-	showemote EMOTE_HAPPY, ROUTE22_TRACE, 20
-	opentext
-	writetext Route22Text_TraceSaysBye
-	waitbutton
-	closetext
-	applymovement ROUTE22_TRACE, Movement_TraceExitsRoute22
-	disappear ROUTE22_TRACE
-	; Do I need to set the event to hide the rival?
-	special HealPartyEvenForNuzlocke
-	setscene $2
-	end
+	para "No wonder you're"
+	line "the Champion!"
 
-Movement_PlayerGoesToSee:
-	step_up
-	step_up
-	step_up
-	step_left
-	step_end
+	para "I need to train"
+	line "harder before I'm"
 
-Movement_BackingAway:
-	step_right
-	step_right
-	step_end
+	para "ready for the"
+	line "League."
 
-Movement_TraceExitsRoute22:
-	step_left
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_end
+	para "And when I do,"
+	line "I'll battle you"
+	cont "again! Woo!"
+	done
 
-Route22Trace_GreetsPlayer:
-	text "<RIVAL>: Hey,"
+.IntroText:
+	text "Hey there!"
+	line "The name's Kukui."
+
+	para "So, you go by"
+	line "<PLAYER>? 10-4,"
+	cont "good buddy!"
+
+	para "I'm from the far-"
+	line "off region of"
+	cont "Alola!"
+
+	para "But we don't have a"
+	line "#mon League, so"
+
+	para "I came to Kanto to"
+	line "battle the Elite"
+	cont "Four here, yeah!"
+
+	para "Huh? You're the"
+	line "new Champion?"
+
+	para "Woo, no wonder you"
+	line "look so stylin'!"
+
+	para "My team and I feel"
+	line "ready. How about"
+
+	para "we skip the League"
+	line "and challenge you"
+	cont "right now?"
+	done
+
+.RematchText:
+	text "Hey there,"
 	line "<PLAYER>!"
 
-	para "Come take a look"
-	line "at this!"
+	para "I've been training"
+	line "hard since our"
+	cont "last battle, yeah!"
+
+	para "You look like you"
+	line "got stronger too!"
+
+	para "Say, how about a"
+	line "rematch?"
 	done
 
-Route22Trace_LookSnorlax:
-	text "<RIVAL>: Look at"
-	line "this big #mon!"
-	
-	para "This #dex said"
-	line "it's a Snorlax!"
-	cont "Apparently it just"
-	cont "eats and sleeps!"
-	
-	para "But this one looks"
-	line "different. Look at"
-	cont "its demeanor and"
-	cont "aura."
+.SeenText:
+	text "Let's have a battle"
+	line "worthy of this"
+	cont "moment!"
 	done
 
-Route22Trace_LookPlayer:
-	text "<RIVAL>: <PLAYER>?"
-	line "What do you think?"
-	cont "Doesn't it give"
-	cont "you the creeps?"
+.BeatenText:
+	text "I couldn't win"
+	line "even though I"
+	cont "went all out…"
 	done
 
-Route22Trace_Agree:
-	text "Yea, same here!"
-	line "Let's back up and"
-	cont "give it a bit of"
-	cont "space."
+.RefusedText:
+	text "Totally focused on"
+	line "your own quest,"
+	cont "yeah?"
+
+	para "I respect that!"
 	done
 
-Route22Trace_Doubt:
-	text "Oh really?!?"
-	
-	para "Well then, why"
-	line "don't you go wake"
-	cont "it up if you're so"
-	cont "big and brave!"
-	
-	para "I'm gonna go watch"
-	line "from over here."
-	done
+Route22CooltrainerfText:
+	text "The name “Kanto”"
+	line "means “east of the"
+	cont "barrier.”"
 
-Route22Trace_ThatWasClose:
-	text "<RIVAL>: That sure"
-	line "was close!"
-	
-	para "I heard about some"
-	line "kind of shadowy"
-	cont "figure and came to"
-	cont "investigate."
-	done
-
-Route22_TraceChallengePlayer1:
-	text "I think we should"
-	line "leave it alone for"
-	cont "now though."
-	
-	para "Say, why don't we"
-	line "have a little 1v1"
-	cont "before heading"
-	cont "off to see Blue?"
-	done
-
-Route22_TraceChallengePlayer2:
-	text "You sure sounded"
-	line "tough, thinking it"
-	cont "wasn't that scary."
-	
-	para "Why don't we see"
-	line "how tough you are"
-	cont "in a quick battle"
-	cont "before we go?"
-	done
-
-Route22Text_PlayerWon:
-	text "<RIVAL>: Wow!"
-	line "I bet you could"
-	cont "take on that odd"
-	cont "Snorlax!"
-	done
-
-Route22Text_TraceWon:
-	text "<RIVAL>: That"
-	line "was a fun battle."
-	cont "You should train"
-	cont "more though."
-	done
-
-Route22Text_TraceSaysBye:
-	text "Anyway, We should"
-	line "get going already."
-	cont "Blue is waiting in"
-	cont "Pewter City!"
-
-	para "See ya, <PLAYER>!"
-	done
-
-Route22TraceWinText:
-	text "<RIVAL>: What?!"
-	line "Did I lose?"
-	done
-
-Route22TraceLossText:
-	text "<RIVAL>: Yes!"
-	line "I did it!"
-	done
-
-Route22Snorlax:
-	opentext
-	jumpopenedtext .AsleepText
-
-.AsleepText:
-	text "Snorlax is asleep."
-	
-	para "But something is"
-	line "unusual about it."
+	para "I suppose the"
+	line "barrier must be"
+	cont "Mt.Silver."
 	done
 
 VictoryRoadEntranceSignText:
@@ -264,4 +153,18 @@ VictoryRoadEntranceSignText:
 
 	para "#mon League"
 	line "Reception Gate"
+	done
+
+Route22AdvancedTipsSignText:
+	text "Advanced Tips!"
+
+	para "Starting a New"
+	line "Game+ will keep"
+
+	para "your previous"
+	line "game's money,"
+	cont "Battle Points, and"
+
+	para "any #mon stored"
+	line "in the PC!"
 	done

@@ -10,8 +10,7 @@ BattleStart_TrainerHuds:
 
 ShowPlayerMonsRemaining:
 	call DrawPlayerPartyIconHUDBorder
-	ld hl, wPartyMon1HP
-	ld de, wPartyCount
+	ld hl, wPartyCount
 	call StageBallTilesData
 	; ldpixel wPlaceBallsX, 12, 12
 	ld a, 12 * 8
@@ -20,7 +19,7 @@ ShowPlayerMonsRemaining:
 	ld [hl], a
 	ld a, 8
 	ld [wPlaceBallsDirection], a
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	jmp LoadTrainerHudOAM
 
 EnemySwitch_TrainerHud:
@@ -31,8 +30,7 @@ EnemySwitch_TrainerHud:
 
 ShowOTTrainerMonsRemaining:
 	call DrawEnemyPartyIconHUDBorder
-	ld hl, wOTPartyMon1HP
-	ld de, wOTPartyCount
+	ld hl, wOTPartyCount
 	call StageBallTilesData
 	; ldpixel wPlaceBallsX, 9, 4
 	ld hl, wPlaceBallsX
@@ -41,61 +39,55 @@ ShowOTTrainerMonsRemaining:
 	ld [hl], 4 * 8
 	ld a, -8
 	ld [wPlaceBallsDirection], a
-	ld hl, wVirtualOAM + PARTY_LENGTH * 4
+	ld hl, wShadowOAM + PARTY_LENGTH * 4
 	jmp LoadTrainerHudOAM
 
 StageBallTilesData:
-	ld a, [de]
-	push af
-	ld de, wBuffer1
-	ld c, PARTY_LENGTH
-	ld a, $34 ; empty slot
-.loop1
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .loop1
-	pop af
-	ld de, wBuffer1
-.loop2
-	push af
-	call .GetHUDTile
-	inc de
-	pop af
-	dec a
-	jr nz, .loop2
-	ret
+	ld a, PARTY_LENGTH
+	ld c, a
+	sub [hl]
+	ld b, a
+	assert wPartyMon1Status - wPartyCount == wOTPartyMon1Status - wOTPartyCount
+	ld de, wPartyMon1Status - wPartyCount
+	add hl, de
+	ld de, wBattleHUDTiles
+.loop
+	push bc
+	ld a, b
+	cp c
+	ld b, $34 ; empty slot
+	jr nc, .load
 
-.GetHUDTile:
+	assert MON_HP == MON_STATUS + 2
+	inc hl
+	inc hl ; points to w(OT)PartyMon1HP
+	dec b ; $33, fainted
 	ld a, [hli]
 	and a
 	jr nz, .got_hp
 	ld a, [hl]
 	and a
-	ld b, $33 ; fainted
-	jr z, .fainted
-
 .got_hp
+	dec hl ; dec rr doesn't affect flags
 	dec hl
 	dec hl
-	dec hl
+	jr z, .load
+
+	dec b ; $32, statused
 	ld a, [hl]
 	and a
-	ld b, $32 ; statused
 	jr nz, .load
-	dec b ; $31 ; normal
-	jr .load
-
-.fainted
-	dec hl
-	dec hl
-	dec hl
+	dec b ; $31, normal
 
 .load
 	ld a, b
 	ld [de], a
-	ld bc, PARTYMON_STRUCT_LENGTH + MON_HP - MON_STATUS
+	inc de
+	ld bc, PARTYMON_STRUCT_LENGTH
 	add hl, bc
+	pop bc
+	dec c
+	jr nz, .loop
 	ret
 
 DrawPlayerPartyIconHUDBorder:
@@ -133,19 +125,17 @@ DrawEnemyHUDBorder:
 	ld a, [wBattleMode]
 	dec a
 	ret nz
-	call DoesNuzlockeModePreventCapture
-	jr c, .nuzlocke
-	ld a, [wTempEnemyMonSpecies]
-	dec a
-	call CheckCaughtMon
+	ld a, [wOTPartyMon1Species]
+	ld c, a
+	ld a, [wOTPartyMon1Form]
+	ld b, a
+	call CheckCosmeticCaughtMon
+	ret z
+	ld a, [wBattleType]
+	cp BATTLETYPE_GHOST
 	ret z
 	hlcoord 1, 1
-	ld [hl], "<BALL>"
-	ret
-
-.nuzlocke
-	hlcoord 1, 1
-	ld [hl], "<NONO>"
+	ld [hl], '<BALL>'
 	ret
 
 PlaceHUDBorderTiles:
@@ -168,8 +158,7 @@ PlaceHUDBorderTiles:
 
 LinkBattle_TrainerHuds:
 	call LoadBallIconGFX
-	ld hl, wPartyMon1HP
-	ld de, wPartyCount
+	ld hl, wPartyCount
 	call StageBallTilesData
 	ld hl, wPlaceBallsX
 	ld a, 10 * 8
@@ -177,21 +166,20 @@ LinkBattle_TrainerHuds:
 	ld [hl], 8 * 8
 	ld a, $8
 	ld [wPlaceBallsDirection], a
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	call LoadTrainerHudOAM
 
-	ld hl, wOTPartyMon1HP
-	ld de, wOTPartyCount
+	ld hl, wOTPartyCount
 	call StageBallTilesData
 	ld hl, wPlaceBallsX
 	ld a, 10 * 8
 	ld [hli], a
 	ld [hl], 13 * 8
-	ld hl, wVirtualOAM + PARTY_LENGTH * 4
+	ld hl, wShadowOAM + PARTY_LENGTH * 4
 	; fallthrough
 
 LoadTrainerHudOAM:
-	ld de, wBuffer1
+	ld de, wBattleHUDTiles
 	ld c, PARTY_LENGTH
 .loop
 	ld a, [wPlaceBallsY]
@@ -223,7 +211,7 @@ INCBIN "gfx/battle/balls.2bpp"
 
 _ShowLinkBattleParticipants:
 	call ClearBGPalettes
-	call LoadFontsExtra
+	call LoadFrame
 	hlcoord 2, 3
 	lb bc, 9, 14
 	call Textbox
@@ -234,47 +222,13 @@ _ShowLinkBattleParticipants:
 	ld de, wOTPlayerName
 	rst PlaceString
 	hlcoord 9, 8
-	ld a, "V"
+	ld a, 'V'
 	ld [hli], a
-	ld [hl], "S"
+	ld [hl], 'S'
 	call LinkBattle_TrainerHuds
-	ld a, CGB_DIPLOMA
+	ld a, CGB_PLAIN
 	call GetCGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld a, $e4
 	ldh [rOBP0], a
-	ret
-
-DoesNuzlockeModePreventCapture:
-	; Is nuzlocke mode on?
-	ld a, [wInitialOptions]
-	bit NUZLOCKE_MODE, a
-	jr z, .no
-
-	; Is tutorial battle?
-	ld a, [wBattleType]
-	cp BATTLETYPE_TUTORIAL
-	jr z, .no
-
-	; Is enemy shiny?
-	farcall BattleCheckEnemyShininess
-	jr c, .no
-
-	; Is location already done?
-	call GetCurrentLandmark
-	ld c, a
-	ld hl, wNuzlockeLandmarkFlags
-	; Use landmark as index into flag array
-	ld b, CHECK_FLAG
-	ld d, $0
-	predef FlagPredef
-	ld a, c
-	and a
-	jr z, .no
-
-	scf
-	ret
-
-.no
-	xor a
 	ret

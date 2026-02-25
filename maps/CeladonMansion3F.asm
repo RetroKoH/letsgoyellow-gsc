@@ -18,10 +18,10 @@ CeladonMansion3F_MapScriptHeader:
 	bg_event  1,  3, BGEVENT_UP, MapCeladonMansion3FSignpost3Script
 
 	def_object_events
-	object_event  3,  6, SPRITE_COOL_DUDE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GameFreakGameDesignerScript, -1
-	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, GameFreakGraphicArtistText, -1
-	object_event  0,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, GameFreakProgrammerText, -1
-	object_event  0,  4, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, GameFreakCharacterDesignerText, -1
+	object_event  3,  6, SPRITE_COOL_DUDE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, GameFreakGameDesignerScript, -1
+	object_event  3,  4, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, GameFreakGraphicArtistScript, -1
+	object_event  0,  7, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, GameFreakProgrammerText, -1
+	object_event  0,  4, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 2, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, GameFreakCharacterDesignerText, -1
 
 GameFreakGameDesignerScript:
 	checkevent EVENT_DECO_POSTER_4
@@ -29,8 +29,9 @@ GameFreakGameDesignerScript:
 	faceplayer
 	opentext
 	writetext GameFreakGameDesignerText
-	readvar VAR_DEXCAUGHT
-	ifgreater 252, .CompletedPokedex
+	setval16 NUM_POKEMON
+	special CountCaught
+	iftruefwd .CompletedPokedex
 	waitendtext
 
 .CompletedPokedex:
@@ -48,19 +49,75 @@ GameFreakGameDesignerScript:
 	callasm Diploma
 	writetext GameFreakGameDesignerDiplomaSentText
 	waitbutton
-	jumpopenedtext GameFreakGameDesignerAfterDiplomaText
+	setevent EVENT_ENABLE_DIPLOMA_PRINTING
+	jumpthisopenedtext
+
+	text "The Graphic Artist"
+	line "will print out a"
+	cont "Diploma for you."
+
+	para "You should go show"
+	line "that off!"
+	done
+
+GameFreakGraphicArtistScript:
+	faceplayer
+	opentext
+	checkevent EVENT_ENABLE_DIPLOMA_PRINTING
+	iftruefwd .CanPrintDiploma
+	writetext GameFreakGraphicArtistText
+	waitendtext
+
+.CanPrintDiploma:
+	writetext GameFreakGraphicArtistPrintDiplomaText
+	yesorno
+	iffalsefwd .Refused
+	special PrintDiploma
+	closetext
+	end
+
+.Refused:
+	writetext GameFreakGraphicArtistRefusedText
+	waitendtext
 
 MapCeladonMansion3FSignpost0Script:
-	jumptext CeladonMansion3FDevRoomSignText
+	jumpthistext
+
+	text "Game Freak"
+	line "Development Room"
+	done
 
 MapCeladonMansion3FSignpost1Script:
-	jumptext CeladonMansion3FDrawingText
+	jumpthistext
+
+	text "It's a detailed"
+	line "drawing of a"
+	cont "pretty girl."
+	done
 
 MapCeladonMansion3FSignpost2Script:
-	jumptext CeladonMansion3FGameProgramText
+	opentext
+	writetext CeladonMansion3FGameProgramText
+	nooryes
+	iffalse_endtext
+	writetext CeladonMansion3FAreYouSureText
+	nooryes
+	iffalse_endtext
+	callasm .MessWithGameProgram
+	endtext
+
+.MessWithGameProgram:
+	ld a, ERR_PEBKAC
+	jmp Crash
 
 MapCeladonMansion3FSignpost3Script:
-	jumptext CeladonMansion3FReferenceMaterialText
+	jumpthistext
+
+	text "It's crammed with"
+	line "reference materi-"
+	cont "als. There's even"
+	cont "a # Doll."
+	done
 
 GameFreakGameDesignerText:
 	text "Is that right?"
@@ -100,10 +157,6 @@ GameFreakGameDesignerDiplomaSentText:
 	line "was sent home."
 	done
 
-GameFreakGameDesignerAfterDiplomaText:
-	text "You should go show"
-	line "that off!"
-	done
 
 GameFreakDesignerGaveDiplomaText:
 	text "Congratulations"
@@ -119,6 +172,23 @@ GameFreakGraphicArtistText:
 	line "Artist."
 
 	para "I drew you!"
+	done
+
+GameFreakGraphicArtistPrintDiplomaText:
+	text "I'm the Graphic"
+	line "Arist."
+
+	para "Oh, you completed"
+	line "your #dex?"
+
+	para "Want me to print"
+	line "out your Diploma?"
+	done
+
+GameFreakGraphicArtistRefusedText:
+	text "Give me a shout if"
+	line "you want your"
+	cont "Diploma printed."
 	done
 
 GameFreakProgrammerText:
@@ -139,16 +209,7 @@ GameFreakCharacterDesignerText:
 	para "Oh, I love them!"
 	done
 
-CeladonMansion3FDevRoomSignText:
-	text "GAME FREAK"
-	line "Development Room"
-	done
 
-CeladonMansion3FDrawingText:
-	text "It's a detailed"
-	line "drawing of a"
-	cont "pretty girl."
-	done
 
 CeladonMansion3FGameProgramText:
 	text "It's the game"
@@ -156,11 +217,13 @@ CeladonMansion3FGameProgramText:
 
 	para "with it could put"
 	line "a bug in the game!"
+
+	para "Want to mess with"
+	line "it anyway?"
 	done
 
-CeladonMansion3FReferenceMaterialText:
-	text "It's crammed with"
-	line "reference materi-"
-	cont "als. There's even"
-	cont "a # Doll."
+CeladonMansion3FAreYouSureText:
+	text "Are you sure?"
+	line "It could crash!"
 	done
+

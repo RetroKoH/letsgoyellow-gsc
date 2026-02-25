@@ -26,13 +26,12 @@ endr
 wCurTrackDuty:: db
 wCurTrackIntensity:: db
 wCurTrackFrequency:: dw
-	ds 1 ; BCD value, dummied out
 wCurNoteDuration:: db ; used in MusicE0 and LoadNote
 
 wCurMusicByte:: db
 wCurChannel:: db
 wVolume::
-; corresponds to rNR50
+; corresponds to rAUDVOL
 ; Channel control / ON-OFF / Volume (R/W)
 ;   bit 7 - Vin->SO2 ON/OFF
 ;   bit 6-4 - SO2 output level (volume) (# 0-7)
@@ -40,12 +39,12 @@ wVolume::
 ;   bit 2-0 - SO1 output level (volume) (# 0-7)
 	db
 wSoundOutput::
-; corresponds to rNR51
+; corresponds to rAUDTERM
 ; bit 4-7: ch1-4 so2 on/off
 ; bit 0-3: ch1-4 so1 on/off
 	db
 wSoundInput::
-; corresponds to rNR52
+; corresponds to rAUDENA
 ; bit 7: global on/off
 ; bit 0: ch1 on/off
 ; bit 1: ch2 on/off
@@ -61,7 +60,6 @@ wNoiseSampleAddress::
 wNoiseSampleAddressLo:: db
 wNoiseSampleAddressHi:: db
 wNoiseSampleDelay:: db ; noise delay?
-	ds 1
 wMusicNoiseSampleSet:: db
 wSFXNoiseSampleSet:: db
 wLowHealthAlarm::
@@ -79,17 +77,10 @@ wMusicFadeCount:: db
 wMusicFadeID::
 wMusicFadeIDLo:: db
 wMusicFadeIDHi:: db
-	ds 5
 wCryPitch:: dw
 wCryLength:: dw
 wLastVolume:: db
-	ds 1
 wSFXPriority:: db ; if nonzero, turn off music when playing sfx
-	ds 1
-wChannel1JumpCondition:: db
-wChannel2JumpCondition:: db
-wChannel3JumpCondition:: db
-wChannel4JumpCondition:: db
 wStereoPanningMask:: db
 wCryTracks::
 ; plays only in left or right track depending on what side the monster is on
@@ -103,6 +94,17 @@ wMapMusic:: db
 wDontPlayMapMusicOnReload:: db
 wMusicEnd::
 
+; Has to be outside the area used to save/load audio state
+wCh3LoadedWaveform:: db
+
+; Music player
+; audio engine input
+wChannelSelectorSwitches:: ds 4
+wPitchTransposition:: db
+wTempoAdjustment:: db
+; audio engine output
+wNoiseHit:: db
+
 
 SECTION "WRAM 0", WRAM0
 
@@ -113,7 +115,7 @@ wCurMove::
 wCreditsSpawn::
 	db
 
-wNamedObjectTypeBuffer:: db
+wTimeSinceText:: db
 
 wCurOptionsPage:: db
 
@@ -186,7 +188,21 @@ wTilePermissions::
 ; bit 0: right
 	db
 
-	ds 13
+wPanningAroundTinyMap:: db
+wSavedXCoord:: db
+
+wLinkOtherPlayerGameID:: db
+wLinkOtherPlayerVersion:: dw
+wLinkOtherPlayerMinTradeVersion:: dw
+wLinkOtherPlayerGender:: db
+
+wPalFlags:: db
+
+wPlayerCurrentOAMSlot:: db
+
+wMapSetupFlags:: db
+
+wPrinterConnectionOpen:: db
 
 
 SECTION "Sprite Animations", WRAM0
@@ -207,7 +223,8 @@ wSpriteAnimationStructsEnd::
 wSpriteAnimCount:: db
 wCurSpriteOAMAddr:: db
 
-wCurIcon:: db
+wCurIcon::
+wCurIconSpecies:: db
 wCurIconPersonality::
 wCurIconShiny:: db
 wCurIconForm:: db
@@ -226,7 +243,38 @@ wGlobalAnimXOffset:: db
 wSpriteAnimsEnd::
 
 
-SECTION "Music Player RAM", WRAM0
+SECTION "Sprites", WRAM0
+
+wShadowOAM::
+for n, OAM_COUNT
+wShadowOAMSprite{02d:n}:: sprite_oam_struct wShadowOAMSprite{02d:n}
+endr
+wShadowOAMEnd::
+
+
+SECTION "Tilemap and Attrmap", WRAM0
+
+; Some code depend on these being next to each other in memory.
+wTilemap::
+; 20x18 grid of 8x8 tiles
+	ds SCREEN_AREA
+wTilemapEnd::
+
+wAttrmap::
+; 20x18 grid of palettes for 8x8 tiles
+; read horizontally from the top row
+; bit 7: priority
+; bit 6: y flip
+; bit 5: x flip
+; bit 4: pal # (non-cgb)
+; bit 3: vram bank (cgb only)
+; bit 2-0: pal # (cgb only)
+	ds SCREEN_AREA
+wAttrmapEnd::
+
+
+SECTION UNION "Misc 404", WRAM0
+; music player
 
 wMusicPlayerWRAM::
 wSongSelection:: dw
@@ -254,52 +302,10 @@ wSelectorCur:: db
 ; song editor
 wChannelSelector:: db
 wAdjustingTempo:: db
-; audio engine input
-wChannelSelectorSwitches:: ds 4
-wPitchTransposition:: db
-wTempoAdjustment:: db
-; audio engine output
-wNoiseHit:: db
 wMusicPlayerWRAMEnd::
 
 
-SECTION "Sprites", WRAM0
-
-wVirtualOAM::
-for n, NUM_SPRITE_OAM_STRUCTS
-wVirtualOAMSprite{02d:n}:: sprite_oam_struct wVirtualOAMSprite{02d:n}
-endr
-wVirtualOAMEnd::
-
-
-SECTION "Tilemap and Attrmap", WRAM0
-
-wTileMap::
-; 20x18 grid of 8x8 tiles
-	ds SCREEN_WIDTH * SCREEN_HEIGHT
-wTileMapEnd::
-
-wAttrMap::
-; 20x18 grid of palettes for 8x8 tiles
-; read horizontally from the top row
-; bit 7: priority
-; bit 6: y flip
-; bit 5: x flip
-; bit 4: pal # (non-cgb)
-; bit 3: vram bank (cgb only)
-; bit 2-0: pal # (cgb only)
-	ds SCREEN_WIDTH * SCREEN_HEIGHT
-wAttrMapEnd::
-
-
-SECTION UNION "Misc 480", WRAM0
-; misc
-
-wMisc:: ds (SCREEN_WIDTH + 4) * (SCREEN_HEIGHT + 2)
-wMiscEnd::
-
-
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; odd egg
 
 wOddEgg:: party_struct wOddEgg
@@ -307,13 +313,13 @@ wOddEggName:: ds MON_NAME_LENGTH
 wOddEggOTName:: ds MON_NAME_LENGTH
 
 
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; hall of fame temp struct
 
 wHallOfFameTemp:: hall_of_fame wHallOfFameTemp
 
 
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; timeset temp storage
 
 wTimeSetBuffer:: ds 20
@@ -321,14 +327,14 @@ wInitHourBuffer:: ds 13
 wInitMinuteBuffer:: ds 17
 
 
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; link patch lists
 
 wPlayerPatchLists:: ds 200
 wOTPatchLists:: ds 200
 
 
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; link engine
 
 wLinkMisc:: ds 10
@@ -336,10 +342,24 @@ wLinkPlayerFixedPartyMon1ID:: ds 3
 	ds 37
 
 
-SECTION UNION "Misc 480", WRAM0
-; battle
+SECTION UNION "Misc 404", WRAM0
+; polished link transfer buffer
 
+wLinkReceivedPolishedMiscBuffer:: ds 10
+wLinkPolishedMiscBuffer:: ds 10
+
+
+SECTION UNION "Misc 404", WRAM0
+; battle + pokédex (merged because pokédex can be called from battle)
+
+; wLCDPokedex is defined in a LOAD UNION block in engine/pokedex/lcd.asm
+; Reserve space for it at the beginning of this LOAD UNION
+	ds 15
+	assert wLCDPokedexEnd - wLCDPokedex == @ - STARTOF("Misc 404")
+
+; Battle data
 wBattle::
+
 wEnemyMoveStruct::  move_struct wEnemyMoveStruct
 wPlayerMoveStruct:: move_struct wPlayerMoveStruct
 
@@ -349,7 +369,7 @@ wBattleMonNickname:: ds MON_NAME_LENGTH
 wBattleMon:: battle_struct wBattleMon
 
 wWildMon:: db
-	ds 1
+wBadgeBaseLevel:: db
 wEnemyTrainerItem1:: db
 wEnemyTrainerItem2:: db
 wEnemyTrainerBaseReward:: db
@@ -359,16 +379,15 @@ wOTClassName:: ds TRAINER_CLASS_NAME_LENGTH
 wCurOTMon:: db
 
 wTypeModifier::
-; >10: super effective
-;  10: normal
-; <10: not very effective
+; >$10: super effective
+;  $10: normal
+; <$10: not very effective
 ; bit 7: stab
 	db
 
-wCriticalHit::
-; 0 if not critical
-; 1 for a critical hit
-; 2 for a OHKO
+wMoveHitState::
+; bit 0: move was a critical hit
+; bit 1: move hit a substitute
 	db
 
 wAttackMissed::
@@ -378,11 +397,11 @@ wAttackMissed::
 wBattleSubStatusWRAM::
 wPlayerSubStatus1::
 ; bit
-; 7 attract (UNUSED)
+; 7 attract
 ; 6 flash fire
-; 5 endure (UNUSED)
-; 4 perish song (UNUSED)
-; 3 identified (UNUSED)
+; 5 endure
+; 4 unused
+; 3 identified
 ; 2 protect
 ; 1 curse
 ; 0 unburden
@@ -390,7 +409,7 @@ wPlayerSubStatus1::
 wPlayerSubStatus2::
 ; bit
 ; 7 cant run
-; 6 destiny bond (UNUSED)
+; 6 destiny bond
 ; 5 lock-on
 ; 4 transformed
 ; 3 magic bounce
@@ -413,12 +432,12 @@ wPlayerSubStatus3::
 wPlayerSubStatus4::
 ; bit
 ; 7 leech seed
-; 6 rage (UNUSED)
+; 6 rage
 ; 5 flinched
 ; 4 substitute
 ; 3 roost
 ; 2 focus energy
-; 1 helping hand
+; 1 unused
 ; 0 curled
 	db
 
@@ -442,10 +461,8 @@ wPlayerConfuseCount:: db
 wPlayerToxicCount:: db
 wPlayerDisableCount:: db
 wPlayerEncoreCount:: db ; also for choice-locking
-wPlayerRageHitCount:: db ; for Rage Fist power
+wPlayerPerishCount:: db
 wPlayerProtectCount:: db
-wPlayerFuryCutterCount:: db
-wPlayerTauntCount:: db
 
 wEnemyAbility:: db
 wEnemyRolloutCount:: db
@@ -453,10 +470,8 @@ wEnemyConfuseCount:: db
 wEnemyToxicCount:: db
 wEnemyDisableCount:: db
 wEnemyEncoreCount:: db
-wEnemyRageHitCount:: db
+wEnemyPerishCount:: db
 wEnemyProtectCount:: db
-wEnemyFuryCutterCount:: db
-wEnemyTauntCount:: db
 
 wCriticalCount:: ds PARTY_LENGTH ; for g-Farfetch'd evolution
 wBattleSubStatusWRAMEnd::
@@ -466,8 +481,7 @@ wDamageTaken::
 	dw
 
 wBattleReward:: ds 3
-wBattleAnimParam::
-wKickCounter:: db
+wBattleAnimParam:: db
 
 wPartyBackupItems::
 ; Back up of party items before a battle. Modified in-battle for consumed/harvested.
@@ -491,6 +505,9 @@ wEnemySelectedMove:: db
 wPlayerMetronomeCount:: db
 wEnemyMetronomeCount:: db
 
+wPlayerCudChewBerry:: db
+wEnemyCudChewBerry:: db
+
 wPartyParticipants:: ds PARTY_LENGTH
 
 wDeferredSwitch:: db
@@ -505,7 +522,7 @@ wPlayerStatLevels::
 ; 07 neutral
 wPlayerAtkLevel:: db
 wPlayerDefLevel:: db
-wPlayerSpdLevel:: db
+wPlayerSpeLevel:: db
 wPlayerSAtkLevel:: db
 wPlayerSDefLevel:: db
 wPlayerAccLevel:: db
@@ -516,7 +533,7 @@ wEnemyStatLevels::
 ; 07 neutral
 wEnemyAtkLevel:: db
 wEnemyDefLevel:: db
-wEnemySpdLevel:: db
+wEnemySpeLevel:: db
 wEnemySAtkLevel:: db
 wEnemySDefLevel:: db
 wEnemyAccLevel:: db
@@ -538,8 +555,6 @@ wLinkBattleRNCount:: db ; how far through the prng stream
 
 wEnemyItemState:: db
 
-;	ds 2 < I believe these were unused???
-
 wCurEnemyMoveNum:: db
 
 wEnemyHPAtTimeOfPlayerSwitch:: dw
@@ -550,6 +565,8 @@ wSafariMonEating:: db
 
 wAlreadyDisobeyed:: db
 
+wAlreadyExecuted:: db
+
 wAlreadySawWeather:: db
 
 wWhichMonFaintedFirst:: db
@@ -558,13 +575,11 @@ wWhichMonFaintedFirst:: db
 wLastPlayerCounterMove:: db
 wLastEnemyCounterMove:: db
 
-wAlreadyExecuted:: db
-
 wTrickRoom:: db
 
 wBattleLowHealthAlarm:: db
 
-	ds 1 ; unused
+	ds 3 ; unused
 
 wPlayerHazards::
 ; bit
@@ -585,11 +600,10 @@ wPlayerScreens::
 wPlayerGuards::
 ; bit
 ; 4-7 mist
-; 0-3 aurora veil
+; 0-3 safeguard
 	db
 
-wPlayerHelpingHandBoost:: db
-	ds 1
+	ds 2
 
 wEnemyScreens::
 ; see wPlayerScreens
@@ -598,8 +612,7 @@ wEnemyGuards::
 ; see wPlayerGuards
 	db
 
-wEnemyHelpingHandBoost:: db
-	ds 1
+	ds 2
 
 wBattleWeather::
 ; 00 normal
@@ -640,13 +653,10 @@ wLastEnemyMove:: db
 
 wEnemyUsingItem:: db
 
-wPlayerWishCount:: db
-wEnemyWishCount:: db
-wPlayerYawnCount:: db
-wEnemyYawnCount:: db
-
-	ds 2
-
+wPlayerFutureSightCount:: db
+wEnemyFutureSightCount:: db
+wPlayerFutureSightDamage:: dw
+wEnemyFutureSightDamage:: dw
 wPlayerTrappingMove:: db
 wEnemyTrappingMove:: db
 wPlayerWrapCount:: db
@@ -656,19 +666,91 @@ wEnemyCharging:: db
 
 wGivingExperienceToExpShareHolders:: db
 
-wAnimationsDisabled:: db ; used to temporarily disable animations for abilities
+wInAbility:: db ; disables animations for abilities among other things
 
 wBattleEnded:: db
 
 wAmuletCoin:: db
 
-;	ds 1
+	ds 1
 
 wDVAndPersonalityBuffer:: ds 5
 wBattleEnd::
 
+; Pokédex data.
 
-SECTION UNION "Misc 480", WRAM0
+; For setting up a new HBlank trigger
+wPokedex_PendingLYC:: db
+wPokedex_PendingHBlankFunction:: dw
+
+; Palettes and tile offset for listview minis
+UNION
+wPokedex_UnownCursor: db
+NEXTU
+wPokedex_Pals::
+wPokedex_Row1::
+wPokedex_Row1Tile: db ; Sprite offset for dex minis col 2-4
+wPokedex_Row1Pals:: ds COLOR_SIZE * 3 * 5 ; 3 15bit colors per pal, 5 columns
+wPokedex_Row2::
+wPokedex_Row2Tile: db
+wPokedex_Row2Pals:: ds COLOR_SIZE * 3 * 5
+wPokedex_Row3::
+wPokedex_Row3Tile: db
+wPokedex_Row3Pals:: ds COLOR_SIZE * 3 * 5
+wPokedex_PalsEnd::
+ENDU
+
+; Pokémon info (frontpic, types, etc) is stored in either vbk0 or vbk1. This is
+; cycled each time we move the cursor. The reason for this is so that we can
+; update the entire display smoothly in a single frame without noticeable delay.
+wPokedex_MonInfoBank:: db
+
+wPokedex_Personality::
+; bit 7 = shiny
+; bit 0 = has other form (eligible to switch to)
+wPokedex_Shiny::
+wPokedex_OtherForm:: db
+wPokedex_Form:: db
+
+wPokedexOAM_DexNoX:: db
+wPokedexOAM_DexNoY:: db
+wPokedexOAM_IsCaught:: db
+
+wPokedex_NumSeen:: dw
+wPokedex_NumOwned:: dw
+wPokedex_CursorPos:: db
+wPokedex_Offset:: db
+wPokedex_FirstIconTile:: db
+UNION
+wPokedex_Rows:: db
+wPokedex_LastCol:: db ; 1-5 in case the final row isn't completely filled
+NEXTU
+wPokedex_FinalEntry:: dw ; Final entry. Overwritten with rows/lastcol later.
+ENDU
+wPokedex_GFXFlags:: db ; flags for various gfx update types
+wPokedex_DisplayMode:: db ; current pokédex display
+
+wPokedex_InSearchMode:: db
+
+; 0 when not in a current search, otherwise vblank counter at search start.
+; If vblank counter happens to be zero, it's treated as 255.
+wPokedex_SearchInProgress:: db
+
+wPokedex_Search::
+wPokedex_SearchOrder:: db
+wPokedex_SearchData::
+wPokedex_SearchType1:: db
+wPokedex_SearchType2:: db
+wPokedex_SearchGroup1:: db
+wPokedex_SearchGroup2:: db
+wPokedex_SearchColor:: db
+wPokedex_SearchBody:: db
+wPokedex_SearchDataEnd::
+wPokedex_SearchEnd::
+wPokedex_MenuCursorY:: db
+
+
+SECTION UNION "Misc 404", WRAM0
 ; trade
 	ds 172
 
@@ -691,7 +773,7 @@ wLinkTradeGetmonShiny:: db
 wLinkTradeGetmonForm:: db
 
 
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; naming screen
 	ds 172
 
@@ -702,11 +784,14 @@ wNamingScreenType:: db
 wNamingScreenCursorObjectPointer:: dw
 wNamingScreenLastCharacter:: db
 wNamingScreenStringEntryCoord:: dw
+wNamingScreenKeyboardWidth:: db
 
 
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; pokegear
-	ds 172
+	ds 132
+
+wRadioCompressedText:: ds 2 * SCREEN_WIDTH
 
 wPokegearPhoneLoadNameBuffer:: db
 wPokegearPhoneCursorPosition:: db
@@ -720,9 +805,10 @@ wPokegearRadioChannelBank:: db
 wPokegearRadioChannelAddr:: dw
 wPokegearRadioMusicPlaying:: db
 wPokegearNumberBuffer:: db
+wPokegearMapCursorSpawnpoint:: db
 
 
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; slot machine
 	ds 172
 
@@ -749,7 +835,7 @@ wSlotsDataEnd::
 wSlotsEnd::
 
 
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; card flip
 	ds 172
 
@@ -763,7 +849,7 @@ wDiscardPileEnd::
 wCardFlipEnd::
 
 
-;SECTION UNION "Misc 480", WRAM0
+;SECTION UNION "Misc 404", WRAM0
 ;; memory game
 ;	ds 172
 ;
@@ -782,7 +868,7 @@ wCardFlipEnd::
 ;wMemoryGameEnd::
 
 
-SECTION UNION "Misc 480", WRAM0
+SECTION UNION "Misc 404", WRAM0
 ; Unown puzzle
 	ds 172
 
@@ -791,59 +877,54 @@ wPuzzlePieces:: ds 6 * 6
 wUnownPuzzleEnd::
 
 
-SECTION UNION "Misc 480", WRAM0
-; Pokedex
-	ds 172
+SECTION "Footprint Queue", WRAM0
+; volatile footprints in sand
 
-wPokedexDataStart::
-wPokedexOrder:: ds NUM_POKEMON - 1
-wPokedexOrderEnd:: ds 6
-wPokedexMetadata::
-wDexListingScrollOffset:: db ; offset of the first displayed entry from the start
-wDexListingCursor:: db ; Dex cursor
-wDexListingEnd:: db ; Last mon to display
-wDexListingHeight:: db ; number of entries displayed at once in the dex listing
-wCurDexMode:: db ; Pokedex Mode
-wDexSearchMonType1:: db ; first type to search
-wDexSearchMonType2:: db ; second type to search
-wDexSearchResultCount:: db
-wDexArrowCursorPosIndex:: db
-wDexArrowCursorDelayCounter:: db
-wDexArrowCursorBlinkCounter:: db
-wDexSearchSlowpokeFrame:: db
-wUnlockedUnownMode:: db
-wDexCurUnownIndex:: db
-wDexUnownCount:: db
-wDexConvertedMonType:: db ; mon type converted from dex search mon type
-wDexListingScrollOffsetBackup:: db
-wDexListingCursorBackup:: db
-wBackupDexListingCursor:: db
-wBackupDexListingPage:: db
-wDexCurLocation:: db
-wPokedexStatus:: db
-wDexMonPersonality::
-wDexMonShiny:: db
-wDexMonForm:: db
-wPokedexDataEnd::
+wFootprintQueue:: ds 3 * 2 + 1
+
+
+SECTION "Unused", WRAM0
+
+	ds 69 ; it's free real estate
 
 
 SECTION UNION "Misc 1300", WRAM0
 ; overworld map
 
-; large enough for 45x20 NavelRockInside.ablk; (45+6)x(20+6) = 1326 < 1408
-; was originally only 1300 bytes
-wOverworldMapBlocks:: ds $580
+; large enough for 32x27 Route41.ablk; (32+6)x(27+6) = 1254
+wOverworldMapBlocks:: ds 1300
 wOverworldMapBlocksEnd::
+
+
+SECTION UNION "Misc 1300", WRAM0
+; psychic inver party
+
+; large enough for 4x4 KantoHouse1.asm in wOverworldMapBlocks
+	ds (4 + 6) * (4 + 6)
+
+wInverIndexes:: ds NUM_INVER_MONS
+
+wInverGroup::
+	ds 8 ; length + "Inver@" + flags
+	rept PARTY_LENGTH
+		ds 3 ; dbp <level>, <species>, <form>
+		ds 3 ; db <item>, <dvs>, <nat | abil>
+		ds NUM_MOVES ; moves
+	endr
 
 
 SECTION UNION "Misc 1300", WRAM0
 ; credits image
 
-wCreditsBlankFrame2bpp:: ds 8 * 8 * 2
+wCreditsBlankFrame2bpp:: ds 16 tiles
 
 
 SECTION UNION "Misc 1300", WRAM0
 ; Bill's PC
+
+	; LCD hblank code block. Labels are defined as part of the code.
+	ds $cf
+	assert BillsPC_LCDCode.End - BillsPC_LCDCode == @ - STARTOF("Misc 1300")
 
 ; If you change ordering of this, remember to fix LCD hblank code too.
 ; Note that (as of when comment was written), hblank can't always keep up
@@ -901,6 +982,28 @@ wBillsPC_QuickToY:: db
 wBillsPC_QuickFrames:: db
 
 wBillsPC_ApplyThemePals:: db ; used by _CGB_BillsPC
+
+wSummaryScreenPals:: ds 8 palettes
+
+wSummaryScreenOAM::
+for n, OAM_COUNT
+wSummaryScreenOAMSprite{02d:n}:: sprite_oam_struct wSummaryScreenOAMSprite{02d:n}
+endr
+wSummaryScreenTypes:: ds 6
+wSummaryScreenStep:: db
+wSummaryScreenInterrupts:: ds 2 * 16
+wSummaryScreenPage:: db
+wSummaryScreenMoveCount:: db
+wSummaryMoveSwap:: db
+
+; Used to align window buffer for DMA copying
+; Feel free to use or move data, an assert will fail if the memory becomes misaligned
+ds 13
+assert @ % 16 == 0
+
+wSummaryScreenWindowBuffer:: ds 32 * 10
+
+wSummaryScreenPPTileBuffer:: ds 3 * TILE_1BPP_SIZE
 
 
 SECTION UNION "Misc 1300", WRAM0
@@ -970,29 +1073,76 @@ wLinkReceivedMail:: ds MAIL_STRUCT_LENGTH * PARTY_LENGTH
 wLinkReceivedMailEnd:: db
 
 
+SECTION UNION "Misc 1300", WRAM0
+
+; GB Printer data
+wGameboyPrinterRAM::
+wGameboyPrinter2bppSource:: ds 40 tiles
+wGameboyPrinter2bppSourceEnd::
+wPrinterRowIndex:: db
+
+; Printer data
+wPrinterData:: ds 4
+wPrinterChecksum:: dw
+wPrinterHandshake:: db
+wPrinterStatusFlags::
+; bit 7: set if error 1 (battery low)
+; bit 6: set if error 4 (too hot or cold)
+; bit 5: set if error 3 (paper jammed or empty)
+; if this and the previous byte are both $ff: error 2 (connection error)
+	db
+
+wHandshakeFrameDelay:: db
+wPrinterSerialFrameDelay:: db
+wPrinterSendByteOffset:: dw
+wPrinterSendByteCounter:: dw
+
+; tilemap backup?
+wPrinterTilemapBuffer:: ds SCREEN_AREA
+wPrinterStatus:: db
+	ds 1
+; High nibble is for margin before the image, low nibble is for after.
+wPrinterMargins:: db
+wPrinterExposureTime:: db
+	ds 16
+wGameboyPrinterRAMEnd::
+
+wPrinterOpcode:: db
+
+
+SECTION UNION "Misc 1300", WRAM0
+
+wMPNotes:: ds 3 * 256
+
+
 SECTION "Video", WRAM0
 
 wBGMapBuffer:: ds 48
+wBGMapBufferEnd::
 wBGMapPalBuffer:: ds 48
+wBGMapPalBufferEnd::
 wBGMapBufferPtrs:: ds 48 ; 24 bg map addresses (16x8 tiles)
+
+wTileAnimBuffer:: ds 1 tiles
+wTileAnimationTimer:: db
+
+
+SECTION "More WRAM 0", WRAM0
 
 wMemCGBLayout:: db
 
 UNION
 wCreditsPos:: dw
 wCreditsTimer:: db
+NEXTU
 wTrainerCardBadgePaletteAddr:: dw
-
 NEXTU
 wPlayerHPPal:: db
 wEnemyHPPal:: db
 wHPPals:: ds PARTY_LENGTH
 wCurHPPal:: db
 wHPPalIndex:: db
-
 ENDU
-
-wTileAnimBuffer:: ds 1 tiles
 
 ; link data
 UNION
@@ -1036,10 +1186,10 @@ NEXTU
 ; pokegear
 wPokegearCard:: db
 wPokegearMapRegion:: db
+wTownMapCanFlyHere:: db
 
 NEXTU
 ; pack
-wPackJumptableIndex:: db
 wCurPocket:: db
 wPackUsedItem:: db
 
@@ -1081,9 +1231,8 @@ wBattleTransitionSineWaveOffset::
 wBattleTransitionSpinQuadrant:: db
 
 NEXTU
-; stats screen
-wStatsScreenToggle:: db
-wStatsScreenFlags:: db
+; summary screen
+wSummaryScreenFlags:: db
 
 NEXTU
 ; miscellaneous
@@ -1092,7 +1241,10 @@ wMomBankDigitCursorPosition::
 wNamingScreenLetterCase::
 wHallOfFameMonCounter::
 wTradeDialog::
+wRandomValue::
+wEchoRAMTest::
 	db
+wPrinterQueueLength::
 wFrameCounter2:: db
 wUnusedTradeAnimPlayEvolutionMusic:: db
 
@@ -1105,6 +1257,7 @@ wPalFadeMode::
 ; bit 4: skip the last palette
 	db
 
+wMenuMetadata::
 wWindowStackPointer:: dw
 wMenuJoypad:: db
 wMenuSelection:: db
@@ -1112,8 +1265,8 @@ wMenuSelectionQuantity:: db
 wWhichIndexSet:: db
 wScrollingMenuCursorPosition:: db
 wWindowStackSize:: db
-
 	ds 8
+wMenuMetadataEnd::
 
 ; menu header
 wMenuHeader::
@@ -1189,25 +1342,23 @@ w2DMenuFlags1::
 w2DMenuFlags2:: db
 w2DMenuCursorOffsets:: db
 wMenuJoypadFilter:: db
-w2DMenuDataEnd::
 
 wMenuCursorY:: db
 wMenuCursorX:: db
 wCursorOffCharacter:: db
 wCursorCurrentTile:: dw
+	ds 3
+w2DMenuDataEnd::
 
-wBTTempOTSprite:: db
+wMonPicSize:: db
+wMonAnimationSize:: db
 
 wPendingOverworldGraphics:: db
 wTextDelayFrames:: db
 
-	ds 1
-
 wGenericDelay:: db
 
-wGameTimerPaused::
-; bit 0
-	db
+wGameTimerPaused:: db
 
 wInputFlags::
 ; bits 7, 6, and 4 can be used to disable joypad input
@@ -1237,8 +1388,6 @@ wFXAnimIDHi:: db
 wPlaceBallsX:: db
 wPlaceBallsY:: db
 
-wTileAnimationTimer:: db
-
 ; palette backups?
 wBGP:: db
 wOBP0:: db
@@ -1246,9 +1395,44 @@ wOBP1:: db
 
 wNumHits:: db
 
+wOverworldWeatherTimer:: db
+wOverworldWeatherCooldown:: db
+wSpriteOverlapCount:: db
+wWeatherFlags:: db
+wPrevWeather:: db
+wCurWeather:: db
+wPrevOvercastIndex:: db
+
+wPalState:: db
+wPalWhiteState:: db
+
+wPalStates::
+wPrevPalStates::
+wPrevPalWeatherState:: db
+wPrevPalDarknessState:: db
+wPrevPalOvercastIndexState:: db
+wPrevPalTimeOfDayPalState:: db
+
+wCurPalStates::
+wCurPalWeatherState:: db
+wCurPalDarknessState:: db
+wCurPalOvercastIndexState:: db
+wCurPalTimeOfDayPalState:: db
+
+
+SECTION "Unused 2", WRAM0
+
+	ds 281 ; it's free real estate
+
+
+SECTION "Options", WRAM0
+
 wOptions3::
 ; bit 0: keyword abc/qwerty
-; bits 1-7: unused
+; bit 1: nicknames always ("Yes")
+; bit 2: nicknames never ("No")
+; (bits 1 and 2 are never both set; both clear = "Ask")
+; bits 3-7: unused
 	db
 
 wOptions::
@@ -1267,11 +1451,13 @@ wOptions1::
 wSaveFileExists:: db
 
 wTextboxFrame::
-; bits 0-3: textbox frame 0-8
+; bits 0-4: textbox frame 1-20
 	db
 wTextboxFlags::
 ; bit 0: 1-frame text delay
-; bit 4: no text delay
+; bit 1: no text delay
+; bit 2: no line spacing
+; bit 3: use bg map width
 	db
 
 wOptions2::
@@ -1290,13 +1476,20 @@ wInitialOptions::
 ; bit 2: color variation off/on
 ; bit 3: perfect IVs off/on
 ; bit 4: traded behavior off/on
-; bit 5: nuzlocke mode off/on
-; bit 6: scaled exp on/off
+; bit 5: affection bonuses off/on
+; bit 6: scaled exp on/off (cannot be set together with no exp)
 ; bit 7: physical-special split on/off
 	db
 
 wInitialOptions2::
-; bits 0-6: unused
+; bits 0-1: EVs (cannot be set to %11)
+; - %00: EVs disabled
+; - %01: classic EVs (no 510 cap)
+; - %10: modern EVs (510 cap)
+; bit 2: no exp on/off (cannot be set together with scaled exp)
+; bit 3: use RTC
+; bit 4: evolve in battle
+; bits 5-6: unused
 ; bit 7: ask to reset at start
 	db
 wOptionsEnd::
@@ -1309,3 +1502,19 @@ wDaysSince:: db
 
 ; Temporary backup for options
 wOptionsBuffer:: db
+
+
+SECTION "SRAM Access Count", WRAM0
+
+; Contains a count of the number of times SRAM has been opened in a
+; session. Protects against bugs from emulators that do not load SRAM
+; when loading a savestate.
+wSRAMAccessCount:: db
+
+
+SECTION "ROM Checksum", WRAM0
+
+; Contains a copy of the rom checksum, read from the header. Used as
+; protection against people trying to load a save state for a save in
+; a different rom version.
+wRomChecksum:: dw

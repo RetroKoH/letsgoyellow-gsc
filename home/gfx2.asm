@@ -7,9 +7,8 @@ HBlankCopy2bpp::
 	ld a, [hli]
 	ld d, a ; destination
 
-	ld a, [hli] ; source
-	ld h, [hl]
-	ld l, a
+	ld sp, hl ; source
+	pop hl
 	ld sp, hl ; set source to sp
 	ld a, h ; save source high byte for later
 	ld h, d ; exchange hl and de
@@ -17,9 +16,9 @@ HBlankCopy2bpp::
 ; vram to vram copy check:
 	cp HIGH(vTiles0) ; is source in RAM?
 	jr c, .innerLoop
-	cp HIGH(SRAM_Begin) ; is source past VRAM
+	cp HIGH(STARTOF(VRAM) + SIZEOF(VRAM)) ; is source past VRAM
 	jr nc, .innerLoop
-	jmp VRAMToVRAMCopy
+	jr VRAMToVRAMCopy
 .outerLoop
 	ldh a, [rLY]
 	cp $88
@@ -29,11 +28,11 @@ HBlankCopy2bpp::
 	pop de
 .waitNoHBlank
 	ldh a, [rSTAT]
-	and 3
+	and STAT_MODE
 	jr z, .waitNoHBlank
 .waitHBlank
 	ldh a, [rSTAT]
-	and 3
+	and STAT_MODE
 	jr nz, .waitHBlank
 ; preloads r us
 	ld a, c

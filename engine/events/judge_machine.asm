@@ -1,13 +1,13 @@
-JUDGE_UP_DOWN_TILE    EQU $00
-JUDGE_UNDERLINE_TILE  EQU $01
-JUDGE_LINE_END_TILE   EQU $02
-JUDGE_MALE_TILE       EQU $07
-JUDGE_FEMALE_TILE     EQU $08
-JUDGE_STAR_TILE       EQU $09
-JUDGE_LEFT_RIGHT_TILE EQU $0a
-JUDGE_BORDER_TILE     EQU $13
-JUDGE_BLANK_TILE      EQU $64
-JUDGE_WHITE_TILE      EQU $6d
+DEF JUDGE_UP_DOWN_TILE    EQU $00
+DEF JUDGE_UNDERLINE_TILE  EQU $01
+DEF JUDGE_LINE_END_TILE   EQU $02
+DEF JUDGE_MALE_TILE       EQU $07
+DEF JUDGE_FEMALE_TILE     EQU $08
+DEF JUDGE_STAR_TILE       EQU $09
+DEF JUDGE_LEFT_RIGHT_TILE EQU $0a
+DEF JUDGE_BORDER_TILE     EQU $0b
+DEF JUDGE_WHITE_TILE      EQU $64
+DEF JUDGE_BLANK_TILE      EQU $65
 
 JudgeMachine:
 ; Check that the machine is activated
@@ -24,12 +24,14 @@ JudgeMachine:
 ; Choose a party Pokémon
 	ld hl, NewsMachineWhichMonText
 	call PrintText
+	call BackupSprites
+	call ClearSprites
 	farcall SelectMonFromParty
 	jr c, .cancel
 ; Can't judge an Egg
 	ld a, MON_IS_EGG
-	call GetPartyParamLocation
-	bit MON_IS_EGG_F, [hl]
+	call GetPartyParamLocationAndValue
+	bit MON_IS_EGG_F, a
 	ld hl, NewsMachineEggText
 	jr nz, .done
 ; Show the EV and IV charts
@@ -117,27 +119,29 @@ JudgeSystem::
 	farcall CopyBetweenPartyAndTemp
 
 ; Load the frontpic graphics
-	ld hl, wTempMonForm
-	predef GetVariant
+	ld a, [wTempMonForm]
+	ld [wCurForm], a
 	call GetBaseData
 	ld de, vTiles2
 	predef GetFrontpic
 
-; Load the blank chart graphics
 	ld a, $1
 	ldh [rVBK], a
+
+; Load the blank chart graphics
 	ld hl, JudgeSystemGFX
 	ld de, vTiles5
-	lb bc, BANK(JudgeSystemGFX), 10 * 12
+	lb bc, BANK(JudgeSystemGFX), 10 * 12 - 3
 	call DecompressRequest2bpp
-	xor a
-	ldh [rVBK], a
 
 ; Load the max stat sparkle and hyper trained bottle cap graphics
-	ld hl, MaxStatSparkleGFX
-	ld de, vTiles0
+	ld hl, vTiles5 tile $12
+	ld de, vTiles3
 	ld bc, 2 tiles
 	rst CopyBytes
+
+	xor a
+	ldh [rVBK], a
 
 ; Place the up/down arrows and nickname
 	ld hl, wPartyMonNicknames
@@ -190,18 +194,26 @@ JudgeSystem::
 
 ; Place the frontpic graphics
 	hlcoord 0, 6
-	farcall PlaceFrontpicAtHL
+	call PlaceFrontpicAtHL
 
 ; Place the Pokédex number
 	ld a, [wCurPartySpecies]
-	ld [wTextDecimalByte], a
+	ld c, a
+	ld a, [wCurForm]
+	ld b, a
+	call GetPokedexNumber
+	ld de, wTextDecimalByte+1
+	ld a, c
+	ld [de], a
+	dec de
+	ld a, b
+	ld [de], a
 	hlcoord 1, 13
-	ld a, "№"
+	ld a, '№'
 	ld [hli], a
-	ld a, "."
+	ld a, '.'
 	ld [hli], a
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
-	ld de, wTextDecimalByte
+	lb bc, PRINTNUM_LEADINGZEROS | 2, 3
 	call PrintNum
 
 ; Place the chart
@@ -236,6 +248,10 @@ JudgeSystem::
 	hlcoord 15, 15
 	ld [hli], a
 	ld [hl], a
+	ldcoord_a 9, 5
+	ldcoord_a 16, 5
+	assert JUDGE_BLANK_TILE == $65 ; no need to clear (9, 14)
+	ldcoord_a 16, 14
 
 ; Place the stat names and values
 	hlcoord 12, 2
@@ -251,16 +267,16 @@ JudgeSystem::
 	ld bc, wTempMonDefense
 	call .PrintBottomStat
 	hlcoord 12, 17
-	ld de, .Spd
+	ld de, .Spe
 	ld bc, wTempMonSpeed
 	call .PrintBottomStat
 	hlcoord 6, 15
 	ld de, .SDf
-	ld bc, wTempMonSpclDef
+	ld bc, wTempMonSpDef
 	call .PrintBottomStat
 	hlcoord 6, 4
 	ld de, .SAt
-	ld bc, wTempMonSpclAtk
+	ld bc, wTempMonSpAtk
 	call .PrintTopStat
 
 ; Show the screen
@@ -291,7 +307,7 @@ JudgeSystem::
 	ldh [rVBK], a
 	ld hl, vTiles5
 	ld de, wDecompressScratch
-	lb bc, BANK(wDecompressScratch), 10 * 12
+	ld c, 10 * 12
 	call Request2bppInWRA6
 	xor a
 	ldh [rVBK], a
@@ -303,15 +319,15 @@ JudgeSystem::
 	call JoyTextDelay
 	ldh a, [hJoyLast]
 	; B button quits
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	ret nz
 	; Up or down switches between party members
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .prev_mon
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .next_mon
 	; Left or right toggles between EVs and IVs
-	and D_LEFT | D_RIGHT
+	and PAD_LEFT | PAD_RIGHT
 	jr z, .input_loop
 	ldh a, [hChartScreen]
 	cpl
@@ -348,12 +364,10 @@ JudgeSystem::
 	jr nz, .more_next
 .switch_mon
 	ld [wCurPartyMon], a
-	ld c, a
-	ld b, 0
-	ld hl, wPartySpecies
-	add hl, bc
 	inc a
 	ld [wPartyMenuCursor], a
+	ld bc, MON_SPECIES - MON_IS_EGG
+	add hl, bc
 	ld a, [hl]
 	ld [wCurPartySpecies], a
 	call ClearSpriteAnims
@@ -387,7 +401,7 @@ JudgeSystem::
 .HP:  db "HP@"
 .Atk: db "Atk@"
 .Def: db "Def@"
-.Spd: db "Spd@"
+.Spe: db "Spe@"
 .SDf: db "SDf@"
 .SAt: db "SAt@"
 
@@ -413,7 +427,7 @@ SparkleMaxStat:
 	inc a
 	ret nz
 	ld a, SPRITE_ANIM_INDEX_MAX_STAT_SPARKLE
-	jr _InitSpriteAnimStruct_PreserveHL
+	jr InitSpriteAnimStruct_PreserveHL
 
 SparkleMaxStatOrShowBottleCap:
 ; Show a sparkle sprite at (d, e) if a is 255,
@@ -422,13 +436,13 @@ SparkleMaxStatOrShowBottleCap:
 	rlc [hl] ; sets carry if hyper trained
 	inc a ; sets z if if max stat; does not affect carry
 	ld a, SPRITE_ANIM_INDEX_MAX_STAT_SPARKLE
-	jr z, _InitSpriteAnimStruct_PreserveHL
+	jr z, InitSpriteAnimStruct_PreserveHL
 	assert SPRITE_ANIM_INDEX_MAX_STAT_SPARKLE + 1 == SPRITE_ANIM_INDEX_HYPER_TRAINED_STAT
 	inc a ; does not affect carry
 	ret nc
-_InitSpriteAnimStruct_PreserveHL:
+InitSpriteAnimStruct_PreserveHL:
 	push hl
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	pop hl
 	scf
 	ret
@@ -453,10 +467,10 @@ RenderEVChart:
 	ldh [hChartDef], a
 	depixel 15, 17
 	call SparkleMaxStat
-; Spd
-	ld a, [wTempMonSpdEV]
+; Spe
+	ld a, [wTempMonSpeEV]
 	or %11
-	ldh [hChartSpd], a
+	ldh [hChartSpe], a
 	depixel 17, 12
 	call SparkleMaxStat
 ; SAt
@@ -475,7 +489,7 @@ RenderEVChart:
 
 RenderIVChart:
 ; Read the IVs and scale them to 255 instead of 31
-	ld hl, wBuffer1
+	ld hl, wJudgeHyperTrainFlags
 	ld a, [wTempMonHyperTraining]
 	ld [hl], a
 ; HP
@@ -497,7 +511,7 @@ RenderIVChart:
 	depixel 4, 17
 	call SparkleMaxStatOrShowBottleCap
 ; Def
-	ld a, [wTempMonDefSpdDV]
+	ld a, [wTempMonDefSpeDV]
 	and $f0
 	ld b, a
 	swap a
@@ -505,13 +519,13 @@ RenderIVChart:
 	ldh [hChartDef], a
 	depixel 15, 17
 	call SparkleMaxStatOrShowBottleCap
-; Spd
-	ld a, [wTempMonDefSpdDV]
+; Spe
+	ld a, [wTempMonDefSpeDV]
 	and $0f
 	ld b, a
 	swap a
 	or b
-	ldh [hChartSpd], a
+	ldh [hChartSpe], a
 	depixel 17, 12
 	call SparkleMaxStatOrShowBottleCap
 ; SAt
@@ -541,10 +555,10 @@ RenderChart:
 	call FarDecompressWRA6InB
 ; Render the radar chart onto the graphics
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call OutlineRadarChart
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 CalcBTimesCOver256:
@@ -556,7 +570,7 @@ CalcBTimesCOver256:
 	ldh [hMultiplicand + 2], a
 	ld a, c
 	ldh [hMultiplier], a
-	call Multiply
+	farcall Multiply
 	ldh a, [hProduct + 2]
 	ret
 
@@ -565,13 +579,12 @@ OutlineRadarChart:
 	ldh a, [hChartHP]
 	ld b, a
 	; x = 39
-	ld a, 39
-	ld d, a
-	; y = 46 - v * 47 / 256
-	ld c, 47
+	ld d, 39
+	; y = 47 - v * 46 / 256
+	ld c, 46
 	call CalcBTimesCOver256
 	cpl
-	add 46 + 1 ; a = 46 - a
+	add 47 + 1 ; a = 47 - a
 	ld e, a
 
 ; Store the HP point to close the polygon
@@ -581,12 +594,12 @@ OutlineRadarChart:
 ; de = Atk point
 	ldh a, [hChartAtk]
 	ld b, a
-	; x = 41 + v * 39 / 256
+	; x = 40 + v * 39 / 256
 	ld c, 39
 	call CalcBTimesCOver256
-	add 41
+	add 40
 	ld d, a
-	; y = ForwardSlashAxisYCoords[x] (~= 46 - v * 23 / 256)
+	; y = ForwardSlashAxisYCoords[x] (~= 47 - v * 23 / 256)
 	add LOW(ForwardSlashAxisYCoords)
 	ld c, a
 	adc HIGH(ForwardSlashAxisYCoords)
@@ -607,12 +620,12 @@ OutlineRadarChart:
 ; de = Def point
 	ldh a, [hChartDef]
 	ld b, a
-	; x = 41 + v * 39 / 256
+	; x = 40 + v * 39 / 256
 	ld c, 39
 	call CalcBTimesCOver256
-	add 41
+	add 40
 	ld d, a
-	; y = BackslashAxisYCoords[x] (~= 49 + v * 23 / 256)
+	; y = BackslashAxisYCoords[x] (~= 48 + v * 23 / 256)
 	add LOW(BackslashAxisYCoords)
 	ld c, a
 	adc HIGH(BackslashAxisYCoords)
@@ -630,19 +643,18 @@ OutlineRadarChart:
 	ldh [hFunctionTargetHi], a
 	call DrawAndFillRadarEdge
 
-; de = Spd point
-	ldh a, [hChartSpd]
+; de = Spe point
+	ldh a, [hChartSpe]
 	ld b, a
-	; x = 40
-	ld a, 40
-	ld d, a
-	; y = 49 + v * 47 / 256
-	ld c, 47
+	; x = 39
+	ld d, 39
+	; y = 48 + v * 46 / 256
+	ld c, 46
 	call CalcBTimesCOver256
-	add 49
+	add 48
 	ld e, a
 
-; Draw a line from Def to Spd
+; Draw a line from Def to Spe
 	pop bc
 	push de
 	ld a, LOW(FillRadarUp)
@@ -660,7 +672,7 @@ OutlineRadarChart:
 	cpl
 	add 38 + 1 ; a = 38 - a
 	ld d, a
-	; y = ForwardSlashAxisYCoords[x] (~= 49 + v * 23 / 256)
+	; y = ForwardSlashAxisYCoords[x] (~= 48 + v * 23 / 256)
 	add LOW(ForwardSlashAxisYCoords)
 	ld c, a
 	adc HIGH(ForwardSlashAxisYCoords)
@@ -669,7 +681,7 @@ OutlineRadarChart:
 	ld a, [bc]
 	ld e, a
 
-; Draw a line from Spd to SDf
+; Draw a line from Spe to SDf
 	pop bc
 	push de
 	; hFunctionTarget is already FillRadarUp
@@ -684,7 +696,7 @@ OutlineRadarChart:
 	cpl
 	add 38 + 1 ; a = 38 - a
 	ld d, a
-	; y = BackslashAxisYCoords[x] (~= 46 - v * 23 / 256)
+	; y = BackslashAxisYCoords[x] (~= 47 - v * 23 / 256)
 	add LOW(BackslashAxisYCoords)
 	ld c, a
 	adc HIGH(BackslashAxisYCoords)
@@ -969,7 +981,7 @@ _FillRadarHorizontal:
 
 ; de = point on the diagonal axes
 	ld a, c
-	sub 24
+	sub 25 ; BackslashAxisYCoords[0] == ForwardSlashAxisYCoords[-1]
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -1038,134 +1050,47 @@ DrawRadarPointBC:
 	ldh [hBitwiseOpcode], a
 	jmp hBitwiseOperation
 
-atk_y_coords: MACRO
-	db 47, 46, 46, 45, 45, 44, 43, 43, 42, 42, 41, 40, 40, 39, 39, 38, 37, 37, 36, 36
-	db 35, 34, 34, 33, 33, 32, 31, 31, 30, 30, 29, 29, 28, 27, 27, 26, 26, 25, 25, 24
-ENDM
-
-def_y_coords: MACRO
-	db 48, 48, 49, 49, 50, 51, 51, 52, 52, 53, 53, 54, 55, 55, 56, 56, 57, 58, 58, 59
-	db 59, 60, 61, 61, 62, 62, 63, 64, 64, 65, 65, 66, 67, 67, 68, 68, 69, 70, 70, 71
-ENDM
-
-spcl_atk_y_coords: MACRO
-	db 24, 25, 25, 26, 26, 27, 27, 28, 29, 29, 30, 30, 31, 31, 32, 33, 33, 34, 34, 35
-	db 36, 36, 37, 37, 38, 39, 39, 40, 40, 41, 42, 42, 43, 43, 44, 45, 45, 46, 46, 47
-ENDM
-
-spcl_def_y_coords: MACRO
-	db 71, 70, 70, 69, 68, 68, 67, 67, 66, 65, 65, 64, 64, 63, 62, 62, 61, 61, 60, 59
-	db 59, 58, 58, 57, 56, 56, 55, 55, 54, 53, 53, 52, 52, 51, 51, 50, 49, 49, 48, 48
-ENDM
-
 ForwardSlashAxisYCoords:
-	spcl_def_y_coords
-	atk_y_coords
+	db 70, 69, 68, 68, 67, 67, 66, 66, 65, 64, 64, 63, 63, 62, 62, 61, 60, 60, 59, 59
+	db 58, 58, 57, 57, 56, 55, 55, 54, 54, 53, 53, 52, 51, 51, 50, 50, 49, 49, 48
+	db 47
+	db 47, 46, 46, 45, 45, 44, 44, 43, 42, 42, 41, 41, 40, 40, 39, 38, 38, 37, 37
+	db 36, 36, 35, 35, 34, 33, 33, 32, 32, 31, 31, 30, 29, 29, 28, 28, 27, 27, 26, 25
 
 BackslashAxisYCoords:
-	spcl_atk_y_coords
-	def_y_coords
+	db 25, 26, 27, 27, 28, 28, 29, 29, 30, 31, 31, 32, 32, 33, 33, 34, 35, 35, 36, 36
+	db 37, 37, 38, 38, 39, 40, 40, 41, 41, 42, 42, 43, 44, 44, 45, 45, 46, 46, 47
+	db 48
+	db 48, 49, 49, 50, 50, 51, 51, 52, 53, 53, 54, 54, 55, 55, 56, 57, 57, 58, 58
+	db 59, 59, 60, 60, 61, 62, 62, 63, 63, 64, 64, 65, 66, 66, 67, 67, 68, 68, 69, 70
 
 UpperSlashAxesYCoords:
-	spcl_atk_y_coords
-	atk_y_coords
+	db 25, 26, 27, 27, 28, 28, 29, 29, 30, 31, 31, 32, 32, 33, 33, 34, 35, 35, 36, 36
+	db 37, 37, 38, 38, 39, 40, 40, 41, 41, 42, 42, 43, 44, 44, 45, 45, 46, 46, 47
+	db 48
+	db 47, 46, 46, 45, 45, 44, 44, 43, 42, 42, 41, 41, 40, 40, 39, 38, 38, 37, 37
+	db 36, 36, 35, 35, 34, 33, 33, 32, 32, 31, 31, 30, 29, 29, 28, 28, 27, 27, 26, 25
 
 LowerSlashAxesYCoords:
-	spcl_def_y_coords
-	def_y_coords
+	db 70, 69, 68, 68, 67, 67, 66, 66, 65, 64, 64, 63, 63, 62, 62, 61, 60, 60, 59, 59
+	db 58, 58, 57, 57, 56, 55, 55, 54, 54, 53, 53, 52, 51, 51, 50, 50, 49, 49, 48
+	db 47
+	db 48, 49, 49, 50, 50, 51, 51, 52, 53, 53, 54, 54, 55, 55, 56, 57, 57, 58, 58
+	db 59, 59, 60, 60, 61, 62, 62, 63, 63, 64, 64, 65, 66, 66, 67, 67, 68, 68, 69, 70
 
 LeftSlashAxesXCoords:
-	db  0,  2,  4,  6,  7,  9, 11, 13, 14, 16, 18, 19, 21, 23, 24, 26, 28, 29, 31, 33, 34, 36, 38, 39
-	db 38, 37, 35, 34, 32, 30, 28, 27, 25, 23, 22, 20, 18, 17, 15, 13, 12, 10,  8,  7,  5,  3,  2,  0
+	db  0,  1,  3,  5,  7,  8, 10, 12, 14, 15, 17, 19, 21, 23, 24, 26, 28, 30, 31, 33, 35, 37, 39
+	db 39, 37, 35, 33, 31, 30, 28, 26, 24, 23, 21, 19, 17, 15, 14, 12, 10,  8,  7,  5,  3,  1,  0
 
 RightSlashAxesXCoords:
-	db 79, 77, 75, 73, 72, 70, 68, 66, 65, 63, 61, 60, 58, 56, 55, 53, 51, 50, 48, 46, 45, 43, 41, 40
-	db 41, 42, 44, 45, 47, 49, 51, 52, 54, 56, 57, 59, 61, 62, 64, 66, 67, 69, 71, 72, 74, 76, 77, 79
+	db 78, 77, 75, 73, 71, 70, 68, 66, 64, 63, 61, 59, 57, 55, 54, 52, 50, 48, 47, 45, 43, 41, 39
+	db 39, 41, 43, 45, 47, 48, 50, 52, 54, 55, 57, 59, 61, 63, 64, 66, 68, 70, 71, 73, 75, 77, 78
 
 JudgeSystemGFX:
-INCBIN "gfx/stats/judge.2bpp.lz"
-
-MaxStatSparkleGFX:
-INCBIN "gfx/stats/sparkle.2bpp"
+INCBIN "gfx/stats/judge.2bpp.lzp"
 
 EVChartPals:
-if !DEF(MONOCHROME)
-	RGB 23,28,21, 22,26,20, 10,17,16, 00,00,00 ; main bg
-	RGB 31,31,31, 23,28,21, 31,25,02, 00,00,00 ; top text (incl. shiny)
-	RGB 23,28,21, 31,31,31, 00,00,00, 02,06,13 ; stat values and B button
-	RGB 23,28,21, 31,00,31, 31,00,31, 03,15,29 ; lowered stat
-	RGB 23,28,21, 31,00,31, 31,00,31, 23,07,03 ; raised stat
-	RGB 18,27,29, 23,28,21, 02,10,20, 10,17,16 ; chart
-else
-; main bg
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_DARK
-	RGB_MONOCHROME_BLACK
-; top text
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_BLACK
-; stat values and B button
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_BLACK
-	RGB_MONOCHROME_BLACK
-; lowered stat
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_BLACK
-; raised stat
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_BLACK
-; chart
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_BLACK
-	RGB_MONOCHROME_DARK
-endc
+INCLUDE "gfx/stats/ev_chart.pal"
 
 IVChartPals:
-if !DEF(MONOCHROME)
-	RGB 28,21,14, 26,20,13, 27,14,13, 00,00,00 ; main bg
-	RGB 31,31,31, 28,21,14, 31,25,02, 00,00,00 ; top text (incl. shiny)
-	RGB 28,21,14, 31,31,31, 00,00,00, 02,06,13 ; stat values and B button
-	RGB 28,21,14, 31,00,31, 31,00,31, 03,15,29 ; lowered stat
-	RGB 28,21,14, 31,00,31, 31,00,31, 23,07,03 ; raised stat
-	RGB 18,27,29, 28,21,14, 02,10,20, 27,14,13 ; chart
-else
-; main bg
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_DARK
-	RGB_MONOCHROME_BLACK
-; top text
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_BLACK
-; stat values and B button
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_BLACK
-	RGB_MONOCHROME_BLACK
-; lowered stat
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_BLACK
-; raised stat
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_BLACK
-; chart
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_BLACK
-	RGB_MONOCHROME_DARK
-endc
+INCLUDE "gfx/stats/iv_chart.pal"

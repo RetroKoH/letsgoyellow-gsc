@@ -1,6 +1,7 @@
 BattleTowerBattleRoom_MapScriptHeader:
 	def_scene_scripts
-	scene_script BattleTowerBattleRoomEnterBattleRoom
+	scene_script BattleTowerBattleRoomEnterScene, SCENE_BATTLETOWERBATTLEROOM_ENTER
+	scene_const SCENE_BATTLETOWERBATTLEROOM_NOOP
 
 	def_callbacks
 
@@ -13,14 +14,14 @@ BattleTowerBattleRoom_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  4,  0, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
-	object_event  2,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event  4,  0, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BATTLE_TOWER_BATTLE_ROOM_YOUNGSTER
+	object_event  2,  6, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 
 	object_const_def
 	const BATTLETOWERBATTLEROOM_OPPONENT
 	const BATTLETOWERBATTLEROOM_RECEPTIONIST
 
-BattleTowerBattleRoomEnterBattleRoom:
+BattleTowerBattleRoomEnterScene:
 	disappear BATTLETOWERBATTLEROOM_OPPONENT
 	sdefer Script_BattleRoom
 	end
@@ -49,7 +50,7 @@ Script_BattleRoomLoop:
 	applyonemovement PLAYER, turn_head_down
 	opentext
 	writethistext
-		text "<PLAYER> received"
+		text "<PLAYER> earned"
 		line ""
 		text_ram wStringBuffer1
 		text " BP!"
@@ -57,8 +58,8 @@ Script_BattleRoomLoop:
 	waitsfx
 	specialsound
 	waitbutton
-	ifequal BTCHALLENGE_WON, Script_BeatenAllTowerTrainers
-	ifequal BTCHALLENGE_FACILITYBRAIN, .WarnAboutTycoon
+	ifequalfwd BTCHALLENGE_WON, Script_BeatenAllTowerTrainers
+	ifequalfwd BTCHALLENGE_FACILITYBRAIN, .WarnAboutTycoon
 .AskNextBattle:
 	writethistext
 		text "Next up, opponent"
@@ -66,7 +67,7 @@ Script_BattleRoomLoop:
 		text_decimal wStringBuffer3, 2, 5
 		text ". Ready?"
 		done
-	sjump .ShownText
+	sjumpfwd .ShownText
 .WarnAboutTycoon
 	writethistext
 		text "Congratulations"
@@ -85,7 +86,7 @@ Script_BattleRoomLoop:
 		done
 .ShownText
 	yesorno
-	iffalse .DontBattleNextOpponent
+	iffalsefwd .DontBattleNextOpponent
 	closetext
 	applyonemovement PLAYER, turn_head_right
 	applymovement BATTLETOWERBATTLEROOM_RECEPTIONIST, MovementData_BattleTowerBattleRoomReceptionistWalksAway
@@ -97,7 +98,7 @@ Script_BattleRoomLoop:
 		line "session?"
 		done
 	yesorno
-	iffalse .DontSaveAndEndTheSession
+	iffalsefwd .DontSaveAndEndTheSession
 	special SaveOptions
 	setval BATTLETOWER_SAVED_AND_LEFT
 	special Special_BattleTower_SetChallengeState
@@ -120,7 +121,7 @@ Script_BattleRoomLoop:
 Script_LostBattleTower:
 	setval BATTLETOWER_LOST_CHALLENGE
 	special Special_BattleTower_SetChallengeState
-	sjump Script_ReturnToBattleTowerLobby
+	sjumpfwd Script_ReturnToBattleTowerLobby
 
 Script_BeatenAllTowerTrainers:
 	special FadeOutPalettes

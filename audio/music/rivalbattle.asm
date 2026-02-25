@@ -1,774 +1,861 @@
-Music_FinalBattle:
-	musicheader 3, 1, Music_FinalBattle_Ch1
-	musicheader 1, 2, Music_FinalBattle_Ch2
-	musicheader 1, 3, Music_FinalBattle_Ch3
+Music_RivalBattle:
+	channel_count 3
+	channel 1, Music_RivalBattle_Ch1
+	channel 2, Music_RivalBattle_Ch2
+	channel 3, Music_RivalBattle_Ch3
 
-Music_FinalBattle_Ch1:
-	tempo 98
-	volume $77
-	dutycycle $3
-	tone $0002
-	vibrato $12, $15
-	notetype $c, $b2
-	octave 2
-	note A#, 8
-	note A#, 8
-	note A#, 8
+Music_RivalBattle_Ch1:
+	tempo 102
+	volume 7, 7
+	duty_cycle 3
+	pitch_offset 2
+	vibrato 8, 1, 5
+	note_type 12, 11, 2
+	octave 3
+	note F#, 2
 	note A#, 4
-	intensity $b7
+	volume_envelope 11, 7
+	note A#, 10
+	volume_envelope 11, 2
+	note F#, 2
+	octave 4
+	note C#, 4
+	volume_envelope 11, 7
+	note C#, 6
+	note E_, 4
+Music_RivalBattle_branch_e9777:
+	volume_envelope 11, 2
+	octave 2
+	note A#, 6
+	volume_envelope 11, 7
+	octave 3
+	note C#, 6
+	volume_envelope 11, 2
+	note D#, 4
+	sound_loop 3, Music_RivalBattle_branch_e9777
+	volume_envelope 11, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note C#, 4
+	volume_envelope 11, 7
+	note C#, 10
+Music_RivalBattle_branch_e978f:
+	volume_envelope 11, 2
+	octave 3
+	note G#, 6
+	volume_envelope 11, 7
+	note B_, 6
+	volume_envelope 11, 2
+	octave 4
+	note C#, 4
+	sound_loop 3, Music_RivalBattle_branch_e978f
+	volume_envelope 11, 2
+	octave 3
+	note G#, 2
 	note B_, 4
-Music_FinalBattle_branch_ea9e2:
-	callchannel Music_FinalBattle_branch_eaaee
-	octave 3
+	volume_envelope 4, -5
+	note B_, 10
+Music_RivalBattle_branch_e97a6:
+	volume_envelope 11, 7
+	note A#, 6
+	note F#, 6
 	note D#, 4
-	loopchannel 2, Music_FinalBattle_branch_ea9e2
-	callchannel Music_FinalBattle_branch_eaaee
-	octave 3
-	note E_, 4
-Music_FinalBattle_branch_ea9f0:
-	callchannel Music_FinalBattle_branch_eaafc
-	loopchannel 3, Music_FinalBattle_branch_ea9f0
-	callchannel Music_FinalBattle_branch_eab06
-Music_FinalBattle_branch_ea9fa:
-	callchannel Music_FinalBattle_branch_eaafc
-	loopchannel 7, Music_FinalBattle_branch_ea9fa
-	callchannel Music_FinalBattle_branch_eab06
-	intensity $b2
-	note A#, 2
-	note A#, 2
-	intensity $b7
-	octave 3
-	note D#, 4
-	intensity $b2
-	octave 2
-	note A#, 2
-	note A#, 2
-	intensity $b7
-	octave 3
-	note E_, 4
-	intensity $b2
-	octave 2
-	note A#, 2
-	note A#, 2
-	intensity $b7
-	octave 3
+	note F_, 4
 	note F#, 4
-	intensity $b2
-	octave 2
+	note G#, 2
+	note A#, 6
+	volume_envelope 11, 2
+	note F_, 1
+	note D#, 1
+	note C#, 1
+	note D#, 1
+	volume_envelope 11, 7
+	note F_, 4
+	volume_envelope 11, 2
+	note G#, 1
+	note F#, 1
+	note F_, 1
+	note F#, 1
+	volume_envelope 11, 7
+	note G#, 4
+	volume_envelope 11, 6
+	note G#, 2
 	note A#, 2
+	note B_, 2
 	note A#, 2
-	intensity $b7
+	note B_, 2
+	octave 4
+	note C#, 2
+	octave 3
+	note B_, 2
+	octave 4
+	note E_, 2
+	volume_envelope 11, 7
+	octave 3
+	note A#, 6
+	note F#, 6
+	note A#, 4
+	octave 4
+	note C#, 4
+	octave 3
+	note B_, 4
+	note A#, 2
+	note G#, 6
+	note F_, 6
+	octave 4
+	note C#, 6
 	octave 3
 	note G#, 4
-	intensity $a0
+	volume_envelope 11, 5
+	note C#, 2
+	note F_, 2
+	note G#, 2
+	octave 4
+	note C_, 2
+	note C#, 2
+	octave 3
+	note G#, 2
+	note F_, 2
+	note G#, 2
+	volume_envelope 11, 7
+	note F#, 10
+	volume_envelope 11, 4
+	octave 2
+	note B_, 2
+	octave 3
+	note D#, 2
+	note F#, 2
+	volume_envelope 11, 7
+	note F_, 4
+	note D#, 4
+	note C#, 2
+	note D#, 6
+	volume_envelope 10, 0
+	note F_, 8
+	volume_envelope 10, 7
+	note F_, 8
+	volume_envelope 10, 0
+	octave 2
 	note A#, 8
+	volume_envelope 10, 7
+	note A#, 8
+	volume_envelope 11, 7
+	octave 3
+	note F#, 10
+	volume_envelope 11, 5
+	octave 2
+	note B_, 2
+	octave 3
+	note D#, 2
+	note F#, 2
+	note F_, 2
+	note D#, 2
+	note C#, 2
+	note D#, 2
+	note G#, 2
+	note F#, 2
+	note F_, 2
+	note G#, 2
+	volume_envelope 10, 0
+	note A#, 16
+	volume_envelope 10, 7
+	note A#, 16
+	volume_envelope 10, 0
+	note B_, 8
+	volume_envelope 10, 7
+	note B_, 4
+	volume_envelope 11, 7
+	note G#, 4
+	volume_envelope 11, 5
+	octave 4
+	note E_, 2
+	note D#, 2
+	note C#, 2
+	octave 3
+	note B_, 2
+	octave 4
+	note F#, 2
+	note E_, 2
+	note D#, 2
+	note C#, 2
+Music_RivalBattle_branch_e9837:
+	octave 3
+	note A#, 2
+	note E_, 2
+	note A#, 2
+	octave 4
+	note D#, 2
+	note E_, 2
+	note D#, 2
+	octave 3
+	note A#, 2
+	octave 4
+	note D#, 2
+	octave 3
+	note A#, 2
+	octave 4
+	note D#, 2
+	note E_, 2
+	note D#, 2
+	octave 3
+	note A#, 2
+	note D#, 2
+	note A#, 2
+	octave 4
+	note D#, 2
+	sound_loop 2, Music_RivalBattle_branch_e9837
+	volume_envelope 9, 4
+	octave 3
+	note D#, 8
 	octave 2
 	note A#, 8
 	octave 3
-	note B_, 12
-	intensity $b2
-	note A#, 1
+	note G_, 8
+	note F_, 8
+	volume_envelope 9, 6
+	octave 2
+	note G#, 8
+	note A#, 8
+	note B_, 8
+	octave 3
+	note C#, 8
+	volume_envelope 11, 7
+	octave 4
+	note D#, 8
+	octave 3
+	note A#, 8
+	octave 4
+	note G_, 8
+	note F_, 8
+	octave 3
+	note G#, 8
+	note A#, 8
+	note B_, 8
+	octave 4
+	note C#, 8
+	volume_envelope 10, 0
+	note D#, 8
+	volume_envelope 10, 7
+	note D#, 8
+	volume_envelope 10, 0
+	octave 3
+	note G_, 8
+	volume_envelope 10, 7
+	note G_, 8
+	volume_envelope 11, 7
+	note D#, 8
+	note C#, 8
+	note D#, 4
+	note C#, 4
+	octave 2
+	note B_, 4
+	octave 3
+	note C#, 4
+	volume_envelope 12, 7
+	octave 2
+	note A#, 6
+	octave 3
+	note C#, 6
+	note D#, 4
+	note E_, 6
+	note D#, 6
+	note C#, 4
+	note G#, 6
+	note E_, 6
+	note D#, 4
+	note C#, 6
+	note D#, 6
+	note D_, 4
+	octave 2
+	note G#, 6
+	note B_, 6
+	octave 3
+	note C#, 4
+	note D_, 6
+	note C#, 6
+	octave 2
+	note B_, 4
+	octave 3
+	note F#, 6
+	note D_, 6
+	note C#, 4
+	octave 2
+	note B_, 6
+	octave 3
+	note C#, 10
+	sound_jump Music_RivalBattle_branch_e97a6
+
+Music_RivalBattle_Ch2:
+	duty_cycle 3
+	vibrato 8, 3, 6
+	pitch_offset 1
+	note_type 12, 12, 2
+	octave 4
+	note E_, 1
+	note D#, 1
+	note D_, 1
+	note C#, 1
+	note D_, 1
+	note C#, 1
+	note C_, 1
+	octave 3
 	note B_, 1
 	octave 4
 	note C_, 1
+	octave 3
+	note B_, 1
+	note A#, 1
+	note A_, 1
+	note A#, 1
+	note A_, 1
+	note G#, 1
+	note G_, 1
+	note G#, 1
+	note G_, 1
+	note F#, 1
+	note F_, 1
+	note F#, 1
+	note F_, 1
+	note E_, 1
+	note D#, 1
+	note E_, 1
+	note D#, 1
+	note D_, 1
 	note C#, 1
-Music_FinalBattle_branch_eaa35:
-	callchannel Music_FinalBattle_branch_eab0f
-	note E_, 2
-	note E_, 2
-	intensity $b7
-	note F#, 4
-Music_FinalBattle_branch_eaa3d:
-	intensity $b2
-	note E_, 2
-	note E_, 2
-	intensity $b7
-	note G#, 4
-	loopchannel 2, Music_FinalBattle_branch_eaa3d
-	intensity $b2
-	note E_, 2
-	note E_, 2
-	intensity $b7
-	note B_, 4
-	callchannel Music_FinalBattle_branch_eab0f
-	note E_, 2
-	note E_, 2
-	intensity $b7
-	note F#, 4
-	intensity $b2
-	note E_, 2
-	note E_, 2
-	intensity $b7
-	note G#, 4
-	intensity $b2
-	note E_, 2
-	note E_, 2
-	intensity $b7
-	note B_, 4
-	intensity $b2
-	note E_, 2
-	note E_, 2
-	intensity $b7
-	octave 4
-	note E_, 4
-	callchannel Music_FinalBattle_branch_eab24
-	note B_, 4
-	note G#, 4
-	callchannel Music_FinalBattle_branch_eab24
-	octave 4
-	note D_, 4
-	note D_, 4
-	intensity $a0
-	octave 3
-	note A#, 8
+	note D_, 1
+	note C#, 1
+	note C_, 1
 	octave 2
-	note A#, 8
-	octave 3
-	note F#, 8
-	octave 2
-	note F#, 8
-	intensity $60
-	note B_, 16
-	intensity $70
-	note B_, 16
-	intensity $80
-	octave 3
-	note C#, 16
-	intensity $a0
-	note D#, 16
-	intensity $b4
+	note B_, 1
+	volume_envelope 12, 2
 	octave 4
-	note F#, 4
-	note F_, 4
-	note E_, 4
-	note D#, 4
-	note D_, 4
-	note C#, 4
-	note F#, 4
-	note F#, 4
-	note F#, 4
-	note F_, 4
-	note E_, 4
-	note D#, 4
-	note F#, 2
-	note G#, 2
-	note D#, 2
-	note E_, 2
-	note F#, 4
-	note F#, 4
-	note __, 16
-	intensity $90
-	octave 3
-	note F#, 8
-	intensity $b4
-	note E_, 4
-	note E_, 4
-	intensity $90
-	note D#, 16
-	note C#, 16
-Music_FinalBattle_branch_eaab1:
-	intensity $b2
-	octave 2
-	note A#, 2
-	note A#, 2
-	intensity $b7
-	octave 3
-	note D#, 4
-	loopchannel 4, Music_FinalBattle_branch_eaab1
-Music_FinalBattle_branch_eaabe:
-	intensity $b2
-	note C_, 2
-	note C_, 2
-	intensity $b7
-	note D#, 4
-	loopchannel 2, Music_FinalBattle_branch_eaabe
-	intensity $b2
-	note C_, 2
-	note C_, 2
-	intensity $b7
-	note F#, 4
-	intensity $b2
-	note C_, 2
-	note C_, 2
-	intensity $b7
-	note G#, 4
-	callchannel Music_FinalBattle_branch_eab31
-	octave 3
-	note D#, 2
-	note D#, 2
-	intensity $b7
-	note B_, 4
-	callchannel Music_FinalBattle_branch_eab31
-	octave 3
-	note D#, 2
-	note D#, 2
-	intensity $b7
-	octave 4
-	note D_, 4
-	loopchannel 0, Music_FinalBattle_branch_eaa35
-
-Music_FinalBattle_branch_eaaee:
-	intensity $b2
-	octave 2
-	note A#, 2
-	note A#, 6
-	note A#, 2
-	note A#, 6
-	note A#, 2
-	note A#, 6
-	note A#, 2
-	note A#, 2
-	intensity $b7
-	endchannel
-
-Music_FinalBattle_branch_eaafc:
-	intensity $b2
-	octave 2
-	note A#, 2
-	note A#, 2
-	intensity $b7
-	octave 3
-	note D#, 4
-	endchannel
-
-Music_FinalBattle_branch_eab06:
-	intensity $b2
-	octave 2
-	note A#, 2
-	note A#, 2
-	intensity $b7
-	note B_, 4
-	endchannel
-
-Music_FinalBattle_branch_eab0f:
-	intensity $b5
-	octave 3
-	note D#, 2
-	note A#, 2
-	note D#, 2
-	note F#, 4
-	note F_, 2
-	note E_, 2
-	note B_, 2
-	note F#, 2
-	note A#, 2
-	note F_, 2
-	note A_, 2
-	note E_, 2
-	note G#, 2
-	note D#, 2
-	note G_, 2
-	intensity $b2
-	endchannel
-
-Music_FinalBattle_branch_eab24:
-	intensity $b2
-	octave 3
-	note A#, 2
-	note A#, 4
-	note A#, 4
-	note A#, 4
-	note A#, 4
-	note A#, 4
-	note A#, 2
-	intensity $b7
-	endchannel
-
-Music_FinalBattle_branch_eab31:
-	intensity $b2
-	note D#, 2
-	note D#, 2
-	intensity $b7
-	note A#, 4
-	intensity $b2
-	note D#, 2
-	note D#, 2
-	intensity $b7
-	note B_, 4
-	intensity $b2
-	note D#, 2
-	note D#, 2
-	intensity $b7
-	octave 4
-	note C#, 4
-	intensity $b2
-	endchannel
-
-Music_FinalBattle_Ch2:
-	dutycycle $3
-	vibrato $8, $36
-	tone $0001
-	notetype $c, $c2
-	octave 3
-	note D#, 8
-	note D#, 8
-	note D#, 8
-	note D#, 4
-	intensity $c7
-	note D_, 4
-	callchannel Music_FinalBattle_branch_eac4f
-	note A#, 4
-	callchannel Music_FinalBattle_branch_eac4f
-	note B_, 4
-	callchannel Music_FinalBattle_branch_eac4f
-	octave 4
-	note C#, 4
-	callchannel Music_FinalBattle_branch_eac5c
-	note D_, 4
-	callchannel Music_FinalBattle_branch_eac5c
-	note F_, 4
-	callchannel Music_FinalBattle_branch_eac5c
-	note D_, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note A#, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note B_, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	octave 4
-	note C_, 4
-	intensity $c2
-	octave 3
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	octave 4
-	note C#, 4
-	note D#, 8
-	octave 3
-	note D#, 8
-	octave 4
-	note E_, 8
-	intensity $3c
-	note E_, 8
-Music_FinalBattle_branch_eab9d:
-	intensity $c5
 	note D#, 6
+	volume_envelope 12, 7
 	octave 3
-	note A#, 6
-	octave 4
-	note D#, 2
-	note D_, 2
-	note C#, 4
-	note C_, 4
-	octave 3
-	note B_, 4
-	note A#, 4
-	intensity $c7
-	note B_, 8
-	octave 4
-	note E_, 8
-	intensity $c2
-	octave 3
-	note G#, 2
-	note G#, 2
-	intensity $c7
-	note B_, 4
-	intensity $c2
-	note G#, 2
-	note G#, 2
-	intensity $c7
-	octave 4
-	note C#, 4
-	intensity $c5
+	note F#, 6
+	volume_envelope 12, 2
+	note G#, 4
+Music_RivalBattle_branch_e98ea:
+	volume_envelope 12, 2
 	note D#, 6
-	octave 3
-	note A#, 6
-	octave 4
+	volume_envelope 12, 7
+	note F#, 6
+	volume_envelope 12, 2
+	note G#, 4
+	sound_loop 2, Music_RivalBattle_branch_e98ea
+	volume_envelope 12, 2
 	note D#, 2
-	note D_, 2
-	note C#, 4
-	note C_, 4
-	octave 3
-	note B_, 4
-	note A#, 2
-	note B_, 2
-	intensity $c7
+	note F#, 4
+	volume_envelope 12, 7
+	note F#, 8
+	volume_envelope 10, 2
+	note B_, 1
 	octave 4
-	note E_, 8
+	note C_, 1
+Music_RivalBattle_branch_e9903:
+	volume_envelope 12, 2
+	note C#, 6
+	volume_envelope 12, 7
+	note E_, 6
+	volume_envelope 12, 2
+	note F#, 4
+	sound_loop 3, Music_RivalBattle_branch_e9903
+	volume_envelope 12, 2
+	note C#, 2
+	note E_, 4
+	volume_envelope 11, 0
+	note E_, 4
+	volume_envelope 11, 7
+	note E_, 6
+Music_RivalBattle_branch_e991a:
+	sound_call Music_RivalBattle_branch_e99e0
+	volume_envelope 11, 0
 	note G#, 8
-	note E_, 8
-	note B_, 8
-	callchannel Music_FinalBattle_branch_eac79
-	note E_, 4
-	note E_, 4
-	callchannel Music_FinalBattle_branch_eac79
-	note F#, 4
-	note F#, 4
-	intensity $c7
-	note D#, 8
+	volume_envelope 11, 7
+	note G#, 8
+	sound_call Music_RivalBattle_branch_e99e0
+	volume_envelope 4, -6
+	note G#, 8
+	volume_envelope 11, 7
+	note G#, 8
+	volume_envelope 11, 0
 	octave 3
-	note D#, 8
+	note B_, 10
+	volume_envelope 11, 7
+	note B_, 6
+	volume_envelope 11, 0
 	octave 4
 	note C#, 8
 	octave 3
+	note B_, 8
+	volume_envelope 11, 0
+	note A#, 10
+	volume_envelope 11, 7
+	note A#, 6
+	volume_envelope 2, -7
+	note D#, 10
+	volume_envelope 11, 7
+	note D#, 6
+	volume_envelope 11, 0
+	note B_, 10
+	volume_envelope 11, 7
+	note B_, 6
+	volume_envelope 12, 7
+	octave 4
 	note C#, 8
-	intensity $b0
+	octave 3
+	note B_, 8
+	volume_envelope 11, 0
+	octave 4
 	note D#, 16
+	volume_envelope 11, 7
 	note D#, 16
-	note F_, 16
-	note F#, 16
-	intensity $c4
-Music_FinalBattle_branch_eabef:
+	volume_envelope 11, 0
+	note E_, 4
+	volume_envelope 11, 7
+	note E_, 6
+	volume_envelope 12, 7
+	note E_, 2
+	note G#, 2
+	note B_, 2
 	octave 5
-	note D#, 4
-	note D_, 4
-	note C#, 4
-	note C_, 4
-	note D#, 2
-	note D_, 2
-	note C#, 2
-	note C_, 2
+	note C#, 8
 	octave 4
-	note B_, 4
-	note B_, 4
-	loopchannel 2, Music_FinalBattle_branch_eabef
-	intensity $b0
-	octave 3
-	note D#, 16
-	note B_, 16
-	note A#, 16
-	note G#, 16
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note A#, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note B_, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note A#, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note A_, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note A#, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note B_, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	octave 4
-	note C#, 4
-	intensity $c2
-	octave 3
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	octave 4
-	note D_, 4
-	intensity $b0
-	note D#, 8
-	note E_, 8
-	note F#, 8
-	note E_, 8
-	note D#, 8
-	note E_, 8
-	note F#, 8
-	note G#, 8
-	loopchannel 0, Music_FinalBattle_branch_eab9d
-
-Music_FinalBattle_branch_eac4f:
-	intensity $c2
-	note D#, 2
-	note D#, 6
-	note D#, 2
-	note D#, 6
-	note D#, 2
-	note D#, 6
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	endchannel
-
-Music_FinalBattle_branch_eac5c:
-	intensity $c2
-	octave 3
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note A#, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note B_, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	note A#, 4
-	intensity $c2
-	note D#, 2
-	note D#, 2
-	intensity $c7
-	endchannel
-
-Music_FinalBattle_branch_eac79:
-	intensity $c1
-	note D#, 2
-	note D#, 4
-	note D#, 4
-	note D#, 4
-	note D#, 4
-	note D#, 4
-	note D#, 2
-	intensity $c5
-	endchannel
-
-Music_FinalBattle_Ch3:
-	notetype $c, $14
-Music_FinalBattle_branch_eac88:
-	octave 3
-	note D#, 1
-	note __, 7
-	loopchannel 3, Music_FinalBattle_branch_eac88
-	note D#, 1
-	note __, 3
-	note E_, 4
-	callchannel Music_FinalBattle_branch_ead61
-	callchannel Music_FinalBattle_branch_ead61
-	callchannel Music_FinalBattle_branch_ead61
-	callchannel Music_FinalBattle_branch_ead6f
-	note D_, 4
-	callchannel Music_FinalBattle_branch_ead6f
-	note A_, 4
-	callchannel Music_FinalBattle_branch_ead6f
-	note D_, 4
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	note A#, 4
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	note A#, 4
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	note B_, 4
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	octave 4
-	note C#, 4
-	note D#, 8
-	octave 3
-	note D#, 8
-	note B_, 4
-	note G_, 2
-	note B_, 2
-	note F#, 2
-	note A#, 2
-	note F_, 2
-	note A_, 2
-Music_FinalBattle_branch_eacc6:
-	note D#, 2
-	note A#, 2
-	loopchannel 8, Music_FinalBattle_branch_eacc6
-Music_FinalBattle_branch_eaccc:
-	note E_, 2
-	note B_, 2
-	loopchannel 5, Music_FinalBattle_branch_eaccc
-	note E_, 2
-	octave 4
-	note C_, 2
-	octave 3
-	note A_, 2
-	note B_, 2
-	note G_, 2
-	note A_, 2
-Music_FinalBattle_branch_eacda:
-	note D#, 2
-	note A#, 2
-	loopchannel 8, Music_FinalBattle_branch_eacda
-Music_FinalBattle_branch_eace0:
-	note E_, 2
-	note B_, 2
-	loopchannel 8, Music_FinalBattle_branch_eace0
-	callchannel Music_FinalBattle_branch_ead83
-	octave 3
-	note D#, 2
-	note E_, 2
-	note D#, 2
-	note E_, 2
-	note D#, 2
-	octave 4
-	note D_, 2
-	note C#, 2
-	note C_, 2
-	callchannel Music_FinalBattle_branch_ead83
-	octave 3
-	note D#, 2
-	note A#, 2
-	note D#, 2
-	note A#, 2
-	note D#, 2
-	octave 4
-	note D_, 2
-	note C#, 2
-	note C_, 2
-	octave 3
-	note A#, 8
-	note D#, 8
 	note B_, 8
+	volume_envelope 11, 0
+	note A#, 10
+	volume_envelope 11, 7
+	note A#, 6
+	volume_envelope 11, 0
+	note A_, 10
+	volume_envelope 11, 7
+	note A_, 6
+	volume_envelope 11, 0
+	note G#, 10
+	volume_envelope 11, 7
+	note G#, 6
+	volume_envelope 11, 0
+	note G_, 10
+	volume_envelope 11, 7
+	note G_, 6
+	volume_envelope 10, 4
+	octave 3
+	note G_, 8
 	note D#, 8
-Music_FinalBattle_branch_ead05:
-	note D#, 2
-	note F#, 2
-	loopchannel 16, Music_FinalBattle_branch_ead05
-	callchannel Music_FinalBattle_branch_ead8e
+	note A#, 8
+	note G#, 8
+	volume_envelope 10, 6
+	octave 2
+	note B_, 8
 	octave 3
-	note E_, 2
-	note B_, 2
+	note C#, 8
+	note D#, 8
+	note F_, 8
+	volume_envelope 12, 7
 	octave 4
-	note D#, 2
-	note E_, 2
-	note F#, 2
+	note G_, 8
+	note D#, 8
+	note A#, 8
+	note G#, 8
 	octave 3
-	note B_, 2
+	note B_, 8
 	octave 4
-	note D#, 2
-	note E_, 2
-	callchannel Music_FinalBattle_branch_ead8e
-Music_FinalBattle_branch_ead1d:
+	note C#, 8
+	note D#, 8
+	note F_, 8
+	volume_envelope 11, 0
+	note G_, 16
+	note D#, 16
 	octave 3
-	note E_, 2
-	note B_, 2
-	loopchannel 4, Music_FinalBattle_branch_ead1d
-Music_FinalBattle_branch_ead24:
-	note D#, 2
+	note B_, 8
+	note A#, 8
+	note G#, 8
+	volume_envelope 12, 7
+	note F_, 8
+Music_RivalBattle_branch_e99a6:
+	volume_envelope 12, 2
+	octave 3
+	note A#, 6
+	volume_envelope 12, 7
+	octave 4
+	note C#, 6
+	volume_envelope 12, 2
+	note D#, 4
+	sound_loop 3, Music_RivalBattle_branch_e99a6
+	volume_envelope 12, 2
+	octave 3
 	note A#, 2
-	loopchannel 5, Music_FinalBattle_branch_ead24
-	note B_, 2
+	octave 4
+	note C#, 4
+	volume_envelope 11, 7
+	note C#, 6
+	volume_envelope 9, -2
+	note C#, 4
+Music_RivalBattle_branch_e99c1:
+	volume_envelope 12, 2
+	octave 3
+	note G#, 6
+	volume_envelope 12, 7
+	note B_, 6
+	volume_envelope 12, 2
+	octave 4
+	note C#, 4
+	sound_loop 3, Music_RivalBattle_branch_e99c1
+	volume_envelope 12, 2
+	octave 3
+	note G#, 2
+	note B_, 4
+	volume_envelope 12, 7
+	note B_, 6
+	volume_envelope 6, -2
+	octave 4
+	note D_, 4
+	sound_jump Music_RivalBattle_branch_e991a
+
+Music_RivalBattle_branch_e99e0:
+	volume_envelope 12, 7
+	note D#, 10
+	volume_envelope 12, 4
+	octave 3
+	note A#, 2
 	octave 4
 	note D#, 2
+	note F#, 2
+	volume_envelope 12, 5
+	note F_, 4
+	note D#, 4
+	volume_envelope 12, 2
+	note C#, 2
+	volume_envelope 12, 7
+	note D#, 6
+	volume_envelope 11, 0
+	note F_, 8
+	volume_envelope 11, 7
+	note F_, 8
+	sound_ret
+
+Music_RivalBattle_Ch3:
+	note_type 12, 1, 9
 	octave 3
-	note D#, 2
-	note __, 2
-	note D#, 2
-	note __, 2
-Music_FinalBattle_branch_ead32:
-	note E_, 2
-	note B_, 2
-	loopchannel 5, Music_FinalBattle_branch_ead32
+	note F#, 2
+	note A#, 2
+	rest 2
+	note A#, 10
+	octave 3
+	note F#, 2
 	octave 4
 	note C#, 2
-	note E_, 2
+	rest 2
+	note C#, 6
 	octave 3
-	note E_, 2
-	note __, 2
-	note E_, 2
-	note __, 2
-Music_FinalBattle_branch_ead40:
+	note C#, 2
+	note D_, 2
+Music_RivalBattle_branch_e9a0c:
 	note D#, 2
-	note G#, 2
-	loopchannel 8, Music_FinalBattle_branch_ead40
-Music_FinalBattle_branch_ead46:
+	note C#, 2
 	note D#, 2
-	note A#, 2
-	loopchannel 7, Music_FinalBattle_branch_ead46
+	note F#, 4
+	note E_, 2
+	note D#, 2
+	note C#, 2
+	sound_loop 4, Music_RivalBattle_branch_e9a0c
+Music_RivalBattle_branch_e9a17:
+	octave 3
+	note C#, 2
+	octave 2
 	note B_, 2
-	note A#, 2
-Music_FinalBattle_branch_ead4e:
 	octave 3
-	note D#, 2
+	note C#, 2
+	note E_, 4
+	note D_, 2
+	note C#, 2
+	octave 2
+	note B_, 2
+	sound_loop 3, Music_RivalBattle_branch_e9a17
+	octave 3
+	note C#, 2
+	note E_, 2
+	note C#, 2
+	octave 2
+	note B_, 4
+	octave 3
+	note C_, 2
+	note C#, 2
+	note D_, 2
+Music_RivalBattle_branch_e9a30:
+	sound_call Music_RivalBattle_branch_e9b47
+	octave 2
 	note A#, 2
 	octave 4
-	note D_, 2
-	note D#, 2
-	loopchannel 7, Music_FinalBattle_branch_ead4e
+	note C#, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note B_, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note A#, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note G#, 2
+	sound_call Music_RivalBattle_branch_e9b50
+	note C#, 2
+	note G#, 2
+	octave 4
 	note C#, 2
 	octave 3
-	note B_, 2
-	note A#, 2
-	note G#, 2
-	loopchannel 0, Music_FinalBattle_branch_eacc6
-
-Music_FinalBattle_branch_ead61:
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 5
-	loopchannel 3, Music_FinalBattle_branch_ead61
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	note B_, 4
-	endchannel
-
-Music_FinalBattle_branch_ead6f:
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	note A#, 4
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	note B_, 4
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	note A#, 4
-	note D#, 1
-	note __, 1
-	note D#, 1
-	note __, 1
-	endchannel
-
-Music_FinalBattle_branch_ead83:
-	octave 3
-	note D#, 2
-	note F#, 2
-	note D#, 2
-	note F#, 2
-	note D#, 2
-	octave 4
-	note D_, 2
+	note G#, 4
 	note C#, 2
 	note C_, 2
-	endchannel
-
-Music_FinalBattle_branch_ead8e:
+	octave 2
+	note B_, 2
+	sound_call Music_RivalBattle_branch_e9b47
+	octave 2
+	note A#, 2
 	octave 3
-	note E_, 2
+	note A#, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note G#, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note F#, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note F_, 2
+	sound_call Music_RivalBattle_branch_e9b50
+Music_RivalBattle_branch_e9a66:
+	note C#, 2
+	note G#, 2
+	sound_loop 4, Music_RivalBattle_branch_e9a66
+	sound_call Music_RivalBattle_branch_e9b5c
+	note G#, 2
+	note F#, 2
+Music_RivalBattle_branch_e9a71:
+	octave 2
+	note A#, 2
+	octave 3
+	note F_, 2
+	sound_loop 4, Music_RivalBattle_branch_e9a71
+	octave 2
+	note A#, 2
+	octave 3
+	note F#, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note F#, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note F#, 2
+	note F_, 2
+	note D#, 2
+	sound_call Music_RivalBattle_branch_e9b5c
+	octave 2
 	note B_, 2
-	note E_, 2
-	note B_, 2
+	octave 3
+	note D_, 2
+	sound_call Music_RivalBattle_branch_e9b65
+	octave 3
+	note D#, 2
+	octave 4
+	note D#, 2
+	sound_call Music_RivalBattle_branch_e9b65
+	octave 3
+	note D#, 2
+	note A#, 2
 	note E_, 2
 	note B_, 2
 	octave 4
-	note D#, 2
 	note E_, 2
-	endchannel
+	octave 3
+	note E_, 2
+	note B_, 2
+	octave 4
+	note E_, 2
+	octave 3
+	note E_, 2
+	octave 4
+	note E_, 2
+	octave 3
+	note E_, 2
+	note B_, 2
+	octave 4
+	note E_, 2
+	octave 3
+	note E_, 2
+	note E_, 2
+	note F#, 2
+	note G_, 2
+	note G#, 2
+Music_RivalBattle_branch_e9ab3:
+	note D#, 2
+	note A#, 2
+	sound_loop 4, Music_RivalBattle_branch_e9ab3
+Music_RivalBattle_branch_e9ab9:
+	note D#, 2
+	note A_, 2
+	sound_loop 4, Music_RivalBattle_branch_e9ab9
+Music_RivalBattle_branch_e9abf:
+	note D#, 2
+	note G#, 2
+	sound_loop 4, Music_RivalBattle_branch_e9abf
+Music_RivalBattle_branch_e9ac5:
+	note D#, 2
+	note G_, 2
+	sound_loop 12, Music_RivalBattle_branch_e9ac5
+Music_RivalBattle_branch_e9acb:
+	octave 2
+	note B_, 2
+	octave 3
+	note D#, 2
+	sound_loop 4, Music_RivalBattle_branch_e9acb
+Music_RivalBattle_branch_e9ad3:
+	octave 2
+	note B_, 2
+	octave 3
+	note F#, 2
+	sound_loop 4, Music_RivalBattle_branch_e9ad3
+	note D#, 2
+	note G_, 2
+	note A#, 2
+	note D#, 2
+	note G_, 2
+	note A#, 2
+	note D#, 2
+	note A#, 2
+	note D#, 2
+	note G_, 2
+	note A#, 2
+	note D#, 2
+	note G_, 2
+	note A#, 2
+	note D#, 2
+	note A#, 2
+	octave 2
+	note B_, 2
+	octave 3
+	note G_, 2
+	note B_, 2
+	octave 2
+	note B_, 2
+	octave 3
+	note G_, 2
+	note B_, 2
+	octave 2
+	note B_, 2
+	octave 3
+	note B_, 2
+	octave 2
+	note B_, 2
+	octave 3
+	note G#, 2
+	note B_, 2
+	octave 2
+	note B_, 2
+	octave 4
+	note D#, 2
+	note C#, 2
+	octave 3
+	note B_, 2
+	note G#, 2
+	note G_, 8
+	note D#, 8
+	note A#, 8
+	note G_, 8
+	octave 2
+	note B_, 8
+	octave 3
+	note C#, 8
+	note D#, 8
+	note F_, 8
+Music_RivalBattle_branch_e9b10:
+	octave 2
+	note A#, 2
+	octave 3
+	note D#, 2
+	sound_loop 7, Music_RivalBattle_branch_e9b10
+	note E_, 2
+	note D#, 2
+Music_RivalBattle_branch_e9b1a:
+	octave 2
+	note A#, 2
+	octave 3
+	note D#, 2
+	sound_loop 6, Music_RivalBattle_branch_e9b1a
+	octave 2
+	note A#, 2
+	octave 3
+	note F#, 2
+	note F_, 2
+	note E_, 2
+Music_RivalBattle_branch_e9b28:
+	octave 2
+	note G#, 2
+	octave 3
+	note C#, 2
+	sound_loop 7, Music_RivalBattle_branch_e9b28
+	note D_, 2
+	note C#, 2
+Music_RivalBattle_branch_e9b32:
+	octave 2
+	note G#, 2
+	octave 3
+	note C#, 2
+	sound_loop 4, Music_RivalBattle_branch_e9b32
+	octave 2
+	note B_, 2
+	note G#, 2
+	note B_, 2
+	octave 3
+	note F_, 4
+	note E_, 2
+	note D#, 2
+	note D_, 2
+	sound_jump Music_RivalBattle_branch_e9a30
+
+Music_RivalBattle_branch_e9b47:
+	octave 2
+	note A#, 2
+	octave 3
+	note D#, 2
+	sound_loop 4, Music_RivalBattle_branch_e9b47
+	sound_ret
+
+Music_RivalBattle_branch_e9b50:
+	note C#, 2
+	note G#, 2
+	octave 4
+	note C#, 2
+	octave 3
+	note G#, 4
+	octave 4
+	note C#, 2
+	octave 3
+	note C#, 2
+	note G#, 2
+	sound_ret
+
+Music_RivalBattle_branch_e9b5c:
+	octave 2
+	note B_, 2
+	octave 3
+	note F#, 2
+	sound_loop 7, Music_RivalBattle_branch_e9b5c
+	sound_ret
+
+Music_RivalBattle_branch_e9b65:
+	octave 3
+	note D#, 2
+	note A#, 2
+	octave 4
+	note D#, 2
+	sound_loop 2, Music_RivalBattle_branch_e9b65
+	sound_ret

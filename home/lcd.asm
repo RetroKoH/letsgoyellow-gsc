@@ -1,33 +1,37 @@
 LCDGeneric::
-	push af
-	ldh a, [hLCDCPointer]
-	and a
-	jr z, .done
-
-; At this point it's assumed we're in WRAM bank 5!
-	push bc
+; Unlike vanilla, it's *not* assume we're in BANK(wLYOverrides),
+; since interrupts can now occur during VBlank
 	ldh a, [rLY]
+	cp SCREEN_HEIGHT_PX
+	jr c, .continue
+	xor a
+.continue
+	push bc
 	ld c, a
 	ld b, HIGH(wLYOverrides)
+	ldh a, [rWBK]
+	push af
+	ld a, BANK(wLYOverrides)
+	ldh [rWBK], a
 	ld a, [bc]
 	ld b, a
 	ldh a, [hLCDCPointer]
 	ld c, a
 	ld a, b
 	ldh [c], a
+	pop af
+	ldh [rWBK], a
 	pop bc
-
-.done
 	pop af
 	reti
 
 LCDMusicPlayer::
-	push af
 	ldh a, [rLY]
-	cp PIANO_ROLL_HEIGHT_PX
+	cp PIANO_ROLL_HEIGHT_PX - 1
 	jr nc, .done
 
 	push hl
+	push de
 
 	ld l, a
 	add SCREEN_HEIGHT - 1
@@ -36,194 +40,108 @@ LCDMusicPlayer::
 	ld [oamSprite02YCoord], a
 
 	ldh a, [hMPState]
-	inc a
 	add l
-	jr nc, .ok
-	sub SCREEN_HEIGHT_PX
-.ok
-
-	ld h, 0
-	ld l, a
-	add hl, hl
-	add hl, hl
-
-	assert LOW(wMPNotes) == 0
-	ld a, h
-	add HIGH(wMPNotes)
-	ld h, a
+	ld e, a
+	ld d, 0
+	ld hl, wMPNotes
+	add hl, de
+	add hl, de
+	add hl, de
 
 	ld a, [hli]
 	ld [oamSprite00XCoord], a
 	ld a, [hli]
 	ld [oamSprite01XCoord], a
-	ld a, [hli]
+	ld a, [hl]
 	ld [oamSprite02XCoord], a
-	pop hl
 
+	pop de
+	pop hl
+	pop af
+	reti
 .done
+	; this ideally runs once but there's no harm letting it run
+	; for the remaining blanks
+	ldh a, [hNextMPState]
+	ldh [hMPState], a
 	pop af
 	reti
 
-LCDBillsPC1::
-	push af
-
-	; Write boxmon palettes
+LCDSummaryScreenHideWindow::
 	ldh a, [rSTAT]
-	bit 2, a
-	jr z, .donepc
+	bit B_STAT_LYCF, a
+	jr z, LCDSummaryScreenDone
+	ldh a, [rSTAT]
+	and 3
+	jr nz, LCDSummaryScreenDone
+	ld a, 200
+	ldh [rWX], a
+	jr LCDSummaryScreenProgress
+
+LCDSummaryScreenShowWindow::
+	ldh a, [rSTAT]
+	bit B_STAT_LYCF, a
+	jr z, LCDSummaryScreenDone
+	ldh a, [hWX]
+	ldh [rWX], a
+	jr LCDSummaryScreenProgress
+
+LCDSummaryScreenScrollBackground::
+	ldh a, [rSTAT]
+	bit B_STAT_LYCF, a
+	jr z, LCDSummaryScreenDone
+	ldh a, [rSCY]
+	add 4
+	ldh [rSCY], a
+	; fallthrough
+
+LCDSummaryScreenProgress::
 	push hl
 	push bc
-	ld c, LOW(rBGPD)
-	ld hl, wBillsPC_CurMonPals + 4
-
-	; start of VRAM writes
-	; second box mon
-	ld a, $80 | $2a
-	ldh [rBGPI], a
-rept 4
-	ld a, [hli]
-	ld [c], a
-endr
-
-	; third box mon
-	ld a, $80 | $32
-	ldh [rBGPI], a
-rept 4
-	ld a, [hli]
-	ld [c], a
-endr
-
-	; fourth box mon
-	ld a, $80 | $3a
-	ldh [rBGPI], a
-rept 4
-	ld a, [hli]
-	ld [c], a
-endr
-	; end of VRAM writes
-
-	; prepare for partymon write
-	ld a, LOW(LCDBillsPC2)
-	ldh [hFunctionTargetLo], a
-	ld a, HIGH(LCDBillsPC2)
-	ldh [hFunctionTargetHi], a
-	pop bc
-	pop hl
-.donepc
-	pop af
-	reti
-
-LCDBillsPC2::
-	push af
-	push hl
-	push bc
-	ld c, LOW(rBGPD)
-	ld hl, wBillsPC_CurPartyPals
-
-	; start of VRAM writes
-	; first party mon
-	ld a, $80 | $12
-	ldh [rBGPI], a
-rept 4
-	ld a, [hli]
-	ld [c], a
-endr
-
-	; second party mon
-	ld a, $80 | $1a
-	ldh [rBGPI], a
-rept 4
-	ld a, [hli]
-	ld [c], a
-endr
-
-	; first box mon
-	ld a, $80 | $22
-	ldh [rBGPI], a
-rept 4
-	ld a, [hli]
-	ld [c], a
-endr
-	; end of VRAM writes
-
-	; prepare for next write
-	push de
-	ldh a, [rLYC]
-	cp 135
-	jr nz, .increase_lyc
-	sub 16 * 5
-.increase_lyc
-	add 16
-	ldh [rLYC], a
-
-	; Since we write the next palette at the bottom row, we actually want to
-	; copy not the upcoming palette, but the one after that.
-	sub 55
-	cp $50
-	jr c, .got_result
-	xor a
-.got_result
-	rrca
-	ld c, a
-	add a
-	add c
-	ld c, a
 	ld b, 0
-
-	; Copies party+mon palettes
-	ld hl, wBillsPC_PalList
+	ld a, [wSummaryScreenStep]
+	ld c, a
+	ld hl, wSummaryScreenInterrupts
 	add hl, bc
-	ld de, wBillsPC_CurPals
-	ld c, 24
-	rst CopyBytes
-	ld a, LOW(LCDBillsPC3)
-	ldh [hFunctionTargetLo], a
-	ld a, HIGH(LCDBillsPC3)
-	ldh [hFunctionTargetHi], a
-	pop de
-	pop bc
-	pop hl
-	pop af
-	reti
-
-LCDBillsPC3:
-; Writes white or box background to color0 for BG3
-	push af
-	push hl
-	push bc
-	push de
-	ldh a, [rSVBK]
-	push af
-	ld a, BANK("GBC Video")
-	ldh [rSVBK], a
-
-	ld c, LOW(rBGPD)
-	ldh a, [rLY]
-	cp $8a
-	ld hl, wBGPals1
-	jr nc, .got_pal
-	ld hl, wBGPals1 palette $4
-.got_pal
-
-	; start of VRAM writes
-	; BG3 color 0
-	ld a, $80 | $18
-	ldh [rBGPI], a
-rept 2
 	ld a, [hli]
-	ld [c], a
-endr
-	; end of VRAM writes
-
-	pop af
-	ldh [rSVBK], a
-	ld a, LOW(LCDBillsPC1)
+	inc a
+	jr nz, .continue
+	; return to start of list
+	ld [wSummaryScreenStep], a
+	ld hl, wSummaryScreenInterrupts
+	ld a, [hli]
+	inc a
+.continue
+	dec a
+	ldh [rLYC], a
+	ld a, [hl]
+	assert SUMMARY_LCD_SHOW_WINDOW == 1
+	dec a
+	jr z, .show
+	assert SUMMARY_LCD_SCROLL_BACKGROUND == 2
+	dec a
+	jr z, .nudge
+	ld hl, LCDSummaryScreenHideWindow
+	jr .setupNext
+.show
+	ld hl, LCDSummaryScreenShowWindow
+	jr .setupNext
+.nudge
+	ld hl, LCDSummaryScreenScrollBackground
+	; fallthrough
+.setupNext
+	ld a, l
 	ldh [hFunctionTargetLo], a
-	ld a, HIGH(LCDBillsPC1)
+	ld a, h
 	ldh [hFunctionTargetHi], a
-	pop de
+
+	; procede to next step
+	ld hl, wSummaryScreenStep
+	inc [hl]
+	inc [hl]
 	pop bc
 	pop hl
+LCDSummaryScreenDone::
 	pop af
 	reti
 
@@ -232,7 +150,7 @@ DisableLCD::
 
 ; Don't need to do anything if the LCD is already off
 	ldh a, [rLCDC]
-	bit 7, a ; lcd enable
+	bit B_LCDC_ENABLE, a
 	ret z
 
 	xor a
@@ -241,29 +159,23 @@ DisableLCD::
 	ld b, a
 
 ; Disable VBlank
-	res VBLANK, a
+	res B_IE_VBLANK, a
 	ldh [rIE], a
 
 .wait
 ; Wait until VBlank would normally happen
 	ldh a, [rLY]
-	cp $90
+	cp LY_VBLANK
 	jr c, .wait
-	cp $99
+	cp LY_VBLANK + 9
 	jr z, .wait
 
 	ldh a, [rLCDC]
-	and %01111111 ; lcd enable off
+	res B_LCDC_ENABLE, a
 	ldh [rLCDC], a
 
 	xor a
 	ldh [rIF], a
 	ld a, b
 	ldh [rIE], a
-	ret
-
-EnableLCD::
-	ldh a, [rLCDC]
-	set 7, a ; lcd enable
-	ldh [rLCDC], a
 	ret

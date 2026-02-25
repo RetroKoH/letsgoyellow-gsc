@@ -18,15 +18,16 @@ PnP_HiddenPeople_BeatE4:
 	db BLUE
 	; fallthrough
 PnP_HiddenPeople_BeatKanto:
-	db TRACE0
+	db RIVAL0
 	db RIVAL1
 	db RIVAL2
 	db LYRA1
 	db LYRA2
 	db PROF_OAK
 	db PROF_ELM
-	db CHASE
-	db ELAINE
+	db CAL
+	db CARRIE
 	db RED
 	db LEAF
+	db INVER ; Is not located in the same bank as the others
 	db -1

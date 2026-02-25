@@ -1,10 +1,11 @@
 _DeleteSaveData:
 	farcall BlankScreen
-	ld a, CGB_DIPLOMA
+	ld a, CGB_PLAIN
 	call GetCGBLayout
 	call LoadStandardFont
-	call LoadFontsExtra
-	ld de, MUSIC_MAIN_MENU
+	call LoadFrame
+	call BlackOutScreen
+	ld e, MUSIC_MAIN_MENU
 	call PlayMusic
 	ld hl, .Text_ClearAllSaveData
 	call PrintText
@@ -13,7 +14,7 @@ _DeleteSaveData:
 	call VerticalMenu
 	ret c
 	ld a, [wMenuCursorY]
-	cp $1
+	dec a
 	ret z
 
 	xor a
@@ -25,8 +26,8 @@ _DeleteSaveData:
 	ld a, 3
 .EmptyBank:
 	call GetSRAMBank
-	ld hl, SRAM_Begin
-	ld bc, SRAM_End - SRAM_Begin
+	ld hl, STARTOF(SRAM)
+	ld bc, SIZEOF(SRAM)
 	xor a
 	rst ByteFill
 	jmp CloseSRAM
@@ -38,11 +39,12 @@ _DeleteSaveData:
 
 _ResetInitialOptions:
 	farcall BlankScreen
-	ld a, CGB_DIPLOMA
+	ld a, CGB_PLAIN
 	call GetCGBLayout
 	call LoadStandardFont
-	call LoadFontsExtra
-	ld de, MUSIC_MAIN_MENU
+	call LoadFrame
+	call BlackOutScreen
+	ld e, MUSIC_MAIN_MENU
 	call PlayMusic
 	ld hl, .Text_ResetInitialOptions
 	call PrintText
@@ -51,7 +53,7 @@ _ResetInitialOptions:
 	call VerticalMenu
 	ret c
 	ld a, [wMenuCursorY]
-	cp $1
+	dec a
 	ret z
 	ld a, [wInitialOptions2]
 	set RESET_INIT_OPTS, a

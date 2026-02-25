@@ -1,6 +1,6 @@
-puzcoord EQUS "* 6 +"
-PUZZLE_BORDER EQU $ee
-PUZZLE_VOID   EQU $ef
+DEF puzcoord EQUS "* 6 +"
+DEF PUZZLE_BORDER EQU $ee
+DEF PUZZLE_VOID   EQU $ef
 
 UnownPuzzle:
 	ldh a, [hInMenu]
@@ -13,8 +13,8 @@ UnownPuzzle:
 	xor a
 	ldh [hBGMapMode], a
 	call DisableLCD
-	ld hl, wMisc
-	ld bc, wMiscEnd - wMisc
+	ld hl, wUnownPuzzle
+	ld bc, wUnownPuzzleEnd - wUnownPuzzle
 	xor a
 	rst ByteFill
 	ld hl, UnownPuzzleCursorGFX
@@ -26,7 +26,7 @@ UnownPuzzle:
 	call Decompress
 	call LoadUnownPuzzlePiecesGFX
 	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	ld bc, SCREEN_AREA
 	ld a, PUZZLE_BORDER
 	rst ByteFill
 	hlcoord 4, 3
@@ -44,10 +44,10 @@ UnownPuzzle:
 	ld [wHoldingUnownPuzzlePiece], a
 	ld [wUnownPuzzleCursorPosition], a
 	ld [wUnownPuzzleHeldPiece], a
-	ld a, %10010011
+	ld a, LCDC_ON | LCDC_WIN_9800 | LCDC_WIN_OFF | LCDC_BLOCK01 | LCDC_BG_9800 | LCDC_OBJ_8 | LCDC_OBJ_ON | LCDC_PRIO_ON
 	ldh [rLCDC], a
 	call ApplyTilemapInVBlank
-	ld a, CGB_MYSTERY_PUZZLE
+	ld a, CGB_UNOWN_PUZZLE
 	call GetCGBLayout
 	ld a, $e4
 	call DmgToCgbBGPals
@@ -84,7 +84,7 @@ UnownPuzzle:
 	call ClearBGPalettes
 	call ClearTileMap
 	call ClearSprites
-	ld a, %11100011
+	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	ret
 
@@ -110,11 +110,11 @@ InitUnownPuzzlePiecePositions:
 	ret
 
 .PuzzlePieceInitialPositions:
-initpuzcoord: MACRO
-rept _NARG / 2
-	db \1 puzcoord \2
-	shift 2
-endr
+MACRO initpuzcoord
+	rept _NARG / 2
+		db \1 puzcoord \2
+		shift 2
+	endr
 ENDM
 	initpuzcoord 0,0, 0,1, 0,2, 0,3, 0,4, 0,5
 	initpuzcoord 1,0,                     1,5
@@ -167,23 +167,23 @@ PlaceStartCancelBoxBorder:
 
 _UnownPuzzle:
 	ldh a, [hJoyPressed]
-	and START
+	and PAD_START
 	jmp nz, UnownPuzzle_Quit
 	ldh a, [hJoyPressed]
-	and A_BUTTON
+	and PAD_A
 	jmp nz, UnownPuzzle_A
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
+	and PAD_UP
 	jr nz, .d_up
 	ld a, [hl]
-	and D_DOWN
+	and PAD_DOWN
 	jr nz, .d_down
 	ld a, [hl]
-	and D_LEFT
+	and PAD_LEFT
 	jr nz, .d_left
 	ld a, [hl]
-	and D_RIGHT
+	and PAD_RIGHT
 	jr nz, .d_right
 	ret
 
@@ -317,13 +317,20 @@ UnownPuzzle_A:
 	ld de, SFX_1ST_PLACE
 	call PlaySFX
 	call WaitSFX
-	call SimpleWaitPressAorB
+	call UnownPuzzle_WaitPressAorB
 	ld a, TRUE
 	ld [wSolvedUnownPuzzle], a
 UnownPuzzle_Quit:
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
+
+UnownPuzzle_WaitPressAorB:
+.loop
+	call CheckIfAOrBPressed
+	ret nz
+	call DelayFrame
+	jr .loop
 
 UnownPuzzle_InvalidAction:
 	ld de, SFX_WRONG
@@ -491,7 +498,7 @@ RedrawUnownPuzzlePieces:
 	ld hl, .OAM_NotHoldingPiece
 
 .load
-	ld de, wVirtualOAM
+	ld de, wShadowOAM
 .loop
 	ld a, [hli]
 	cp -1
@@ -528,18 +535,18 @@ RedrawUnownPuzzlePieces:
 .OAM_NotHoldingPiece:
 	dsprite -1, -4, -1, -4, $00, $0
 	dsprite -1, -4,  0, -4, $01, $0
-	dsprite -1, -4,  0,  4, $00, $0 | X_FLIP
+	dsprite -1, -4,  0,  4, $00, $0 | OAM_XFLIP
 	dsprite  0, -4, -1, -4, $02, $0
 	dsprite  0, -4,  0, -4, $03, $0
-	dsprite  0, -4,  0,  4, $02, $0 | X_FLIP
-	dsprite  0,  4, -1, -4, $00, $0 | Y_FLIP
-	dsprite  0,  4,  0, -4, $01, $0 | Y_FLIP
-	dsprite  0,  4,  0,  4, $00, $0 | X_FLIP | Y_FLIP
+	dsprite  0, -4,  0,  4, $02, $0 | OAM_XFLIP
+	dsprite  0,  4, -1, -4, $00, $0 | OAM_YFLIP
+	dsprite  0,  4,  0, -4, $01, $0 | OAM_YFLIP
+	dsprite  0,  4,  0,  4, $00, $0 | OAM_XFLIP | OAM_YFLIP
 	db -1
 
 UnownPuzzleCoordData:
 
-puzzle_coords: MACRO
+MACRO puzzle_coords
 	dbpixel \1, \2, \3, \4
 	dwcoord \5, \6
 	db \7
@@ -788,16 +795,16 @@ UnownPuzzleCursorGFX:
 INCBIN "gfx/unown_puzzle/cursor.2bpp"
 
 UnownPuzzleStartCancelLZ:
-INCBIN "gfx/unown_puzzle/start_cancel.2bpp.lz"
+INCBIN "gfx/unown_puzzle/start_cancel.2bpp.lzp"
 
 HoOhPuzzleLZ:
-INCBIN "gfx/unown_puzzle/hooh.2bpp.lz"
+INCBIN "gfx/unown_puzzle/hooh.2bpp.lzp"
 
 AerodactylPuzzleLZ:
-INCBIN "gfx/unown_puzzle/aerodactyl.2bpp.lz"
+INCBIN "gfx/unown_puzzle/aerodactyl.2bpp.lzp"
 
 KabutoPuzzleLZ:
-INCBIN "gfx/unown_puzzle/kabuto.2bpp.lz"
+INCBIN "gfx/unown_puzzle/kabuto.2bpp.lzp"
 
 OmanytePuzzleLZ:
-INCBIN "gfx/unown_puzzle/omanyte.2bpp.lz"
+INCBIN "gfx/unown_puzzle/omanyte.2bpp.lzp"

@@ -17,17 +17,17 @@ RadioTower3F_MapScriptHeader:
 	bg_event 14,  2, BGEVENT_UP, CardKeySlotScript
 
 	def_object_events
-	object_event  7,  4, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, RadioTower3FSuperNerdText, EVENT_RADIO_TOWER_CIVILIANS_AFTER
-	object_event  3,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower3FGymGuideScript, -1
-	object_event 11,  3, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower3FCooltrainerFScript, -1
-	object_event  5,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event  6,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event 16,  6, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
-	object_event  9,  6, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerRocketScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event  7,  4, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, RadioTower3FSuperNerdText, EVENT_RADIO_TOWER_CIVILIANS_AFTER
+	object_event  3,  4, SPRITE_SUPER_NERD, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower3FGymGuideScript, -1
+	object_event 11,  3, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_WANDER, 1, 1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower3FCooltrainerFScript, -1
+	object_event  5,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerGruntM7, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event  6,  2, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerGruntM8, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event 16,  6, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerGruntM9, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
+	object_event  9,  6, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerRocketScientistMarc, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 
 CardKeyShutterCallback:
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
-	iftrue .Change
+	iftruefwd .Change
 	endcallback
 
 .Change:
@@ -38,13 +38,24 @@ CardKeyShutterCallback:
 RadioTower3FGymGuideScript:
 	checkevent EVENT_CLEARED_RADIO_TOWER
 	iftrue_jumptextfaceplayer RadioTower3FGymGuideText
-	jumptextfaceplayer RadioTower3FGymGuideText_Rockets
+	jumpthistextfaceplayer
+
+	text "To trainers, #-"
+	line "mon are their"
+	cont "beloved partners."
+
+	para "It's terrible how"
+	line "Team Rocket is"
+
+	para "trying to control"
+	line "#mon."
+	done
 
 RadioTower3FCooltrainerFScript:
-	checkevent EVENT_GOT_HEAT_ROCK_FROM_RADIO_TOWER
+	checkevent EVENT_GOT_GBC_SOUNDS_FROM_RADIO_TOWER
 	iftrue_jumptextfaceplayer RadioTower3FCooltrainerFYouWereMarvelousText
 	checkevent EVENT_CLEARED_RADIO_TOWER
-	iftrue .NoRockets
+	iftruefwd .NoRockets
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
 	iftrue_jumptextfaceplayer RadioTower3FCooltrainerFIsDirectorSafeText
 	jumpthistextfaceplayer
@@ -67,12 +78,12 @@ RadioTower3FCooltrainerFScript:
 	opentext
 	writetext RadioTower3FCooltrainerFYoureMyHeroText
 	promptbutton
-	verbosegiveitem HEAT_ROCK
+	verbosegivekeyitem GBC_SOUNDS
 	iffalse_endtext
-	writetext RadioTower3FCooltrainerFItsAHeatRockText
+	writetext RadioTower3FCooltrainerFItsAGBCSoundsText
 	waitbutton
 	closetext
-	setevent EVENT_GOT_HEAT_ROCK_FROM_RADIO_TOWER
+	setevent EVENT_GOT_GBC_SOUNDS_FROM_RADIO_TOWER
 	end
 
 GenericTrainerGruntM7:
@@ -120,9 +131,9 @@ CardKeySlotScript::
 	writetext RadioTower3FCardKeySlotText
 	waitbutton
 	checkevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
-	iftrue .UsedCardKey
+	iftruefwd .UsedCardKey
 	checkkeyitem CARD_KEY
-	iftrue .HaveCardKey
+	iftruefwd .HaveCardKey
 .UsedCardKey:
 	endtext
 
@@ -133,7 +144,7 @@ CardKeySlotScript::
 	playsound SFX_ENTER_DOOR
 	changeblock 14, 2, $2a
 	changeblock 14, 4, $1
-	reloadmappart
+	refreshmap
 	closetext
 	waitsfx
 	end
@@ -149,17 +160,6 @@ RadioTower3FSuperNerdText:
 	line "200 kinds."
 	done
 
-RadioTower3FGymGuideText_Rockets:
-	text "To trainers, #-"
-	line "mon are their"
-	cont "beloved partners."
-
-	para "It's terrible how"
-	line "Team Rocket is"
-
-	para "trying to control"
-	line "#mon."
-	done
 
 RadioTower3FGymGuideText:
 	text "We run 24 hours a"
@@ -186,11 +186,25 @@ RadioTower3FCooltrainerFYoureMyHeroText:
 	line "my appreciation."
 	done
 
-RadioTower3FCooltrainerFItsAHeatRockText:
-	text "It's a Heat Rock."
-	line "It makes the move"
-	cont "Sunny Day last"
-	cont "longer."
+RadioTower3FCooltrainerFItsAGBCSoundsText:
+	text "That's GBC Sounds."
+
+	para "It's chock full of"
+	line "songs you can"
+
+	para "listen to any-"
+	line "where, even"
+	cont "during battles."
+
+	para "It has special"
+	line "features to adjust"
+	cont "pitch or tempo,"
+
+	para "but the controls"
+	line "are a bit fiddly."
+
+	para "Just play around"
+	line "with it!"
 	done
 
 RadioTower3FCooltrainerFYouWereMarvelousText:

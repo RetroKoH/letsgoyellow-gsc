@@ -24,7 +24,7 @@
 	const SFX_CHANGE_DEX_MODE             ; 15
 	const SFX_JUMP_OVER_LEDGE             ; 16
 	const SFX_GRASS_RUSTLE                ; 17
-	const SFX_SKY_SOAR                    ; 18
+	const SFX_FLY                         ; 18
 	const SFX_WRONG                       ; 19
 	const SFX_SQUEAK                      ; 1a
 	const SFX_STRENGTH                    ; 1b
@@ -37,6 +37,7 @@
 	const SFX_TRANSACTION                 ; 22
 	const SFX_EXIT_BUILDING               ; 23
 	const SFX_BUMP                        ; 24
+	const SFX_THUNDER_OW                  ; d5
 	const SFX_SAVE                        ; 25
 	const SFX_POKEFLUTE                   ; 26
 	const SFX_ELEVATOR_END                ; 27
@@ -210,4 +211,10 @@
 	const SFX_TWINKLE                     ; ce
 	const SFX_PUDDLE                      ; cf
 	const SFX_ABILITYSLIDEOUT             ; d0
-NUM_SFX EQU const_value
+	const SFX_CRITICAL_CAPTURE            ; d1
+	const SFX_STAT_UP                     ; d2
+	const SFX_STAT_DOWN                   ; d3
+	const SFX_GRAVITY                     ; d4
+	const SFX_OW_WHIRLPOOL                ; d5
+	const SFX_THUNDERBOLT                 ; d5
+DEF NUM_SFX EQU const_value

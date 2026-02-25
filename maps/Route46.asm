@@ -7,18 +7,20 @@ Route46_MapScriptHeader:
 	warp_event  7, 33, ROUTE_29_46_GATE, 1
 	warp_event  8, 33, ROUTE_29_46_GATE, 2
 	warp_event 14,  5, DARK_CAVE_VIOLET_ENTRANCE, 3
+	warp_event  8,  4, HIDDEN_CAVE_GROTTO, 1
 
 	def_coord_events
 
 	def_bg_events
 	bg_event  9, 27, BGEVENT_JUMPTEXT, Route46SignText
+	bg_event  8,  3, BGEVENT_JUMPSTD, cavegrotto, HIDDENGROTTO_ROUTE_46
 
 	def_object_events
-	object_event 15, 13, SPRITE_HIKER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route46HikerScript, -1
-	object_event 12, 19, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerHikerBailey, -1
-	object_event  4, 14, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerCamperTed, -1
-	object_event  2, 13, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerPicnickerErin1, -1
-	object_event  7, 26, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route46LassText, -1
+	object_event 15, 13, SPRITE_HIKER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, Route46HikerScript, -1
+	object_event 12, 19, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerHikerBailey, -1
+	object_event  4, 14, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerCamperTed, -1
+	object_event  2, 13, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerPicnickerErin1, -1
+	object_event  7, 26, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route46LassText, -1
 	fruittree_event  7,  5, FRUITTREE_ROUTE_46_1, CHERI_BERRY, PAL_NPC_RED
 	fruittree_event  8,  6, FRUITTREE_ROUTE_46_2, CHESTO_BERRY, PAL_NPC_PURPLE
 	itemball_event  1, 15, X_SPEED, 1, EVENT_ROUTE_46_X_SPEED
@@ -27,7 +29,7 @@ Route46HikerScript:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_ROLLOUT_INTRO
-	iftrue Route46TutorRoute46Script
+	iftruefwd Route46TutorRoute46Script
 	writetext Route46HikerText
 	waitbutton
 	setevent EVENT_LISTENED_TO_ROLLOUT_INTRO
@@ -35,23 +37,36 @@ Route46TutorRoute46Script:
 	writetext Text_Route46TutorRollout
 	waitbutton
 	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
+	iffalsefwd .NoSilverLeaf
 	writetext Text_Route46TutorQuestion
 	yesorno
-	iffalse .TutorRefused
+	iffalsefwd .TutorRefused
 	setval ROLLOUT
 	writetext ClearText
 	special Special_MoveTutor
-	ifequal $0, .TeachMove
+	ifequalfwd $0, .TeachMove
 .TutorRefused
-	jumpopenedtext Text_Route46TutorRefused
+	jumpthisopenedtext
+
+	text "Suit yourself."
+	done
 
 .NoSilverLeaf
-	jumpopenedtext Text_Route46TutorNoSilverLeaf
+	jumpthisopenedtext
+
+	text "Ah well, you don't"
+	line "have a Silver"
+	cont "Leaf."
+	done
 
 .TeachMove
 	takeitem SILVER_LEAF
-	jumpopenedtext Text_Route46TutorTaught
+	jumpthisopenedtext
+
+	text "All done! Your"
+	line "#mon learned"
+	cont "to use Rollout!"
+	done
 
 GenericTrainerCamperTed:
 	generictrainer CAMPER, TED, EVENT_BEAT_CAMPER_TED, CamperTedSeenText, CamperTedBeatenText
@@ -70,40 +85,40 @@ PicnickerErin1Script:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_ERIN
 	opentext
 	checkflag ENGINE_ERIN_READY_FOR_REMATCH
-	iftrue UnknownScript_0x1a96da
+	iftruefwd .WantsBattle
 	checkcellnum PHONE_PICNICKER_ERIN
-	iftrue Route46NumberAcceptedF
+	iftruefwd Route46NumberAcceptedF
 	checkevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x1a96c3
+	iftruefwd .AskedAlready
 	writetext PicnickerErinAfterBattleText
 	promptbutton
 	setevent EVENT_ERIN_ASKED_FOR_PHONE_NUMBER
 	scall Route46AskNumber1F
-	sjump UnknownScript_0x1a96c6
+	sjumpfwd .AskForNumber
 
-UnknownScript_0x1a96c3:
+.AskedAlready:
 	scall Route46AskNumber2F
-UnknownScript_0x1a96c6:
+.AskForNumber:
 	askforphonenumber PHONE_PICNICKER_ERIN
-	ifequal $1, Route46PhoneFullF
-	ifequal $2, Route46NumberDeclinedF
-	gettrainername PICNICKER, ERIN1, $0
+	ifequalfwd $1, Route46PhoneFullF
+	ifequalfwd $2, Route46NumberDeclinedF
+	gettrainername PICNICKER, ERIN1, STRING_BUFFER_3
 	scall Route46RegisteredNumberF
-	sjump Route46NumberAcceptedF
+	sjumpfwd Route46NumberAcceptedF
 
-UnknownScript_0x1a96da:
+.WantsBattle:
 	scall Route46RematchF
 	winlosstext PicnickerErin1BeatenText, 0
 	readmem wErinFightCount
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
+	ifequalfwd 2, .Fight2
+	ifequalfwd 1, .Fight1
+	ifequalfwd 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue .LoadFight2
+	iftruefwd .LoadFight2
 .Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue .LoadFight1
+	iftruefwd .LoadFight1
 .LoadFight0:
 	loadtrainer PICNICKER, ERIN1
 	startbattle
@@ -126,27 +141,27 @@ UnknownScript_0x1a96da:
 	reloadmapafterbattle
 	clearflag ENGINE_ERIN_READY_FOR_REMATCH
 	checkevent EVENT_ERIN_CALCIUM
-	iftrue UnknownScript_0x1a973b
+	iftruefwd .HasCalcium
 	checkevent EVENT_GOT_CALCIUM_FROM_ERIN
-	iftrue UnknownScript_0x1a973a
+	iftruefwd .GotCalciumAlready
 	scall Route46RematchGiftF
 	verbosegiveitem CALCIUM
-	iffalse ErinNoRoomForCalcium
+	iffalsefwd ErinNoRoomForCalcium
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
-	sjump Route46NumberAcceptedF
+	sjumpfwd Route46NumberAcceptedF
 
-UnknownScript_0x1a973a:
+.GotCalciumAlready:
 	end
 
-UnknownScript_0x1a973b:
+.HasCalcium:
 	opentext
 	writetext PicnickerErin2BeatenText
 	waitbutton
 	verbosegiveitem CALCIUM
-	iffalse ErinNoRoomForCalcium
+	iffalsefwd ErinNoRoomForCalcium
 	clearevent EVENT_ERIN_CALCIUM
 	setevent EVENT_GOT_CALCIUM_FROM_ERIN
-	sjump Route46NumberAcceptedF
+	sjumpfwd Route46NumberAcceptedF
 
 Route46AskNumber1F:
 	jumpstd asknumber1f
@@ -207,11 +222,6 @@ Text_Route46TutorRollout:
 	line "a Silver Leaf."
 	done
 
-Text_Route46TutorNoSilverLeaf:
-	text "Ah well, you don't"
-	line "have a Silver"
-	cont "Leaf."
-	done
 
 Text_Route46TutorQuestion:
 	text "Should I teach"
@@ -219,15 +229,7 @@ Text_Route46TutorQuestion:
 	cont "Rollout?"
 	done
 
-Text_Route46TutorRefused:
-	text "Suit yourself."
-	done
 
-Text_Route46TutorTaught:
-	text "All done! Your"
-	line "#mon learned"
-	cont "to use Rollout!"
-	done
 
 HikerBaileySeenText:
 	text "Awright! I'll show"
@@ -248,7 +250,7 @@ CamperTedSeenText:
 	line "with me?"
 	done
 
-CamperTedBeatenText:
+CamperTedBeatenText: ; text > text
 	text "Wha…?"
 	done
 

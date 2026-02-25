@@ -1,22 +1,27 @@
+if DEF(FAITHFUL)
 	db  60,  85,  50, 110,  95,  80 ; 480 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
+else
+	db  60,  95,  50, 121, 105,  85 ; 516 BST
+	;   hp  atk  def  spe  sat  sdf
+endc
 
 	db ELECTRIC, PSYCHIC ; type
 	db 75 ; catch rate
+if DEF(FAITHFUL)
 	db 122 ; base exp
-	db ORAN_BERRY ; item 1
-	db LIGHT_BALL ; item 2
-	dn GENDER_F50, 1 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/raichu_alolan/front.dimensions"
-	abilities_for RAICHU_ALOLAN, STATIC, STATIC, SURGE_SURFER
+else
+	db 179 ; base exp
+endc
+	db ORAN_BERRY, LIGHT_BALL ; held items
+	dn GENDER_F50, HATCH_FASTER ; gender ratio, step cycles to hatch
+
+	abilities_for RAICHU_ALOLAN, STATIC, STATIC, MOTOR_DRIVE
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_FAIRY ; egg groups
 
-	ev_yield   0,   0,   0,   3,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 3 Spe
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, TELEPORT, REST, LIGHT_SCREEN, PROTECT, SUBSTITUTE, REFLECT, DIG, FACADE, BRICK_BREAK, SEISMIC_TOSS, THUNDER_WAVE, IRON_TAIL, THUNDERPUNCH, CALM_MIND, THUNDERBOLT, THUNDER, PSYCHIC, PLAY_ROUGH, SURF, HYPER_BEAM, RAIN_DANCE, VOLT_SWITCH
-
-	;tutors FOCUS_BLAST, SIGNAL_BEAM, GRASS_KNOT, WILD_CHARGE, KNOCK_OFF, DISARM_VOICE
+	; tm/hm learnset
+	tmhm DYNAMICPUNCH, CURSE, CALM_MIND, TOXIC, HIDDEN_POWER, HYPER_BEAM, LIGHT_SCREEN, PROTECT, RAIN_DANCE, SAFEGUARD, IRON_TAIL, THUNDERBOLT, THUNDER, RETURN, DIG, PSYCHIC, ROCK_SMASH, DOUBLE_TEAM, REFLECT, SWIFT, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, FOCUS_BLAST, WILD_CHARGE, GIGA_IMPACT, FLASH, VOLT_SWITCH, THUNDER_WAVE, SURF, STRENGTH, AGILITY, BODY_SLAM, CHARM, COUNTER, DEFENSE_CURL, DOUBLE_EDGE, ENDURE, HEADBUTT, KNOCK_OFF, PAY_DAY, ROLLOUT, SEISMIC_TOSS, SLEEP_TALK, SWAGGER, THUNDERPUNCH, ZAP_CANNON
 	; end

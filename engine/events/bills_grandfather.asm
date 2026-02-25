@@ -3,9 +3,10 @@ Special_BillsGrandfather:
 	jr c, .cancel
 	ld a, [wCurPartySpecies]
 	ldh [hScriptVar], a
-	ld [wNamedObjectIndex], a
-	call GetPokemonName
-	jr CopyPokemonName_Buffer1_Buffer3
+	ld a, [wCurForm]
+	ldh [hScriptVar+1], a
+	call GetPartyPokemonName
+	jmp CopyPokemonName_Buffer1_Buffer3
 
 .cancel
 	xor a

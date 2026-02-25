@@ -1,9 +1,9 @@
-CELADONGAMECORNERPRIZEROOM_TM32_COINS EQU 3500
-CELADONGAMECORNERPRIZEROOM_TM06_COINS EQU 5500
-CELADONGAMECORNERPRIZEROOM_TM68_COINS EQU 7500
-CELADONGAMECORNERPRIZEROOM_MR__MIME_COINS EQU 3333
-CELADONGAMECORNERPRIZEROOM_EEVEE_COINS    EQU 6666
-CELADONGAMECORNERPRIZEROOM_PORYGON_COINS  EQU 9999
+DEF CELADONGAMECORNERPRIZEROOM_TM32_COINS EQU 3500
+DEF CELADONGAMECORNERPRIZEROOM_TM06_COINS EQU 5500
+DEF CELADONGAMECORNERPRIZEROOM_TM68_COINS EQU 7500
+DEF CELADONGAMECORNERPRIZEROOM_MR__MIME_COINS EQU 3333
+DEF CELADONGAMECORNERPRIZEROOM_EEVEE_COINS    EQU 6666
+DEF CELADONGAMECORNERPRIZEROOM_PORYGON_COINS  EQU 9999
 
 CeladonGameCornerPrizeRoom_MapScriptHeader:
 	def_scene_scripts
@@ -19,10 +19,10 @@ CeladonGameCornerPrizeRoom_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  2,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerTMVendor, -1
-	object_event  5,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPokemonVendor, -1
-	object_event  0,  3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonGameCornerPrizeRoomGentlemanText, -1
-	object_event  5,  5, SPRITE_PHARMACIST, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonGameCornerPrizeRoomPharmacistText, -1
+	object_event  2,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerTMVendor, -1
+	object_event  5,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonGameCornerPokemonVendor, -1
+	object_event  0,  3, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonGameCornerPrizeRoomGentlemanText, -1
+	object_event  5,  5, SPRITE_PHARMACIST, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonGameCornerPrizeRoomPharmacistText, -1
 
 CeladonGameCornerTMVendor:
 	faceplayer
@@ -37,46 +37,46 @@ CeladonPrizeRoom_tmcounterloop:
 	loadmenu CeladonPrizeRoom_TMMenuDataHeader
 	verticalmenu
 	closewindow
-	ifequal $1, .doubleteam
-	ifequal $2, .toxic
-	ifequal $3, .gigaimpact
+	ifequalfwd $1, .doubleteam
+	ifequalfwd $2, .toxic
+	ifequalfwd $3, .gigaimpact
 	jumpopenedtext CeladonPrizeRoom_ComeAgainText
 
 .doubleteam
-	checktmhm TM_TRICK_ROOM
-	iftrue CeladonPrizeRoom_alreadyhavetm
+	checktmhm TM_DOUBLE_TEAM
+	iftruefwd CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
-	ifequal $2, CeladonPrizeRoom_notenoughcoins
-	gettmhmname TM_TRICK_ROOM, $0
+	ifequalfwd HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	gettmhmname TM_DOUBLE_TEAM, STRING_BUFFER_3
 	scall CeladonPrizeRoom_askbuytm
 	iffalse_jumpopenedtext CeladonPrizeRoom_ComeAgainText
-	givetmhm TM_TRICK_ROOM
+	givetmhm TM_DOUBLE_TEAM
 	takecoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
-	sjump CeladonPrizeRoom_purchased
+	sjumpfwd CeladonPrizeRoom_purchased
 
 .toxic
 	checktmhm TM_TOXIC
-	iftrue CeladonPrizeRoom_alreadyhavetm
+	iftruefwd CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM06_COINS
-	ifequal $2, CeladonPrizeRoom_notenoughcoins
-	gettmhmname TM_TOXIC, $0
+	ifequalfwd HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	gettmhmname TM_TOXIC, STRING_BUFFER_3
 	scall CeladonPrizeRoom_askbuytm
 	iffalse_jumpopenedtext CeladonPrizeRoom_ComeAgainText
 	givetmhm TM_TOXIC
 	takecoins CELADONGAMECORNERPRIZEROOM_TM06_COINS
-	sjump CeladonPrizeRoom_purchased
+	sjumpfwd CeladonPrizeRoom_purchased
 
 .gigaimpact
-	checktmhm TM_HYPER_BEAM
-	iftrue CeladonPrizeRoom_alreadyhavetm
+	checktmhm TM_GIGA_IMPACT
+	iftruefwd CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM68_COINS
-	ifequal $2, CeladonPrizeRoom_notenoughcoins
-	gettmhmname TM_HYPER_BEAM, $0
+	ifequalfwd HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	gettmhmname TM_GIGA_IMPACT, STRING_BUFFER_3
 	scall CeladonPrizeRoom_askbuytm
 	iffalse_jumpopenedtext CeladonPrizeRoom_ComeAgainText
-	givetmhm TM_HYPER_BEAM
+	givetmhm TM_GIGA_IMPACT
 	takecoins CELADONGAMECORNERPRIZEROOM_TM68_COINS
-	sjump CeladonPrizeRoom_purchased
+	sjumpfwd CeladonPrizeRoom_purchased
 
 CeladonPrizeRoom_askbuy:
 	writetext CeladonPrizeRoom_ConfirmPurchaseText
@@ -101,12 +101,15 @@ CeladonPrizeRoom_alreadyhavetm:
 	sjump CeladonPrizeRoom_tmcounterloop
 
 CeladonPrizeRoom_notenoughcoins:
-	jumpopenedtext CeladonPrizeRoom_NotEnoughCoinsText
+	jumpthisopenedtext
+
+	text "You don't have"
+	line "enough coins."
+	done
 
 CeladonPrizeRoom_TMMenuDataHeader:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 15 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 2, 15, 11
 	dw .MenuData2
 	db 1 ; default option
 
@@ -131,15 +134,15 @@ CeladonGameCornerPokemonVendor:
 	loadmenu .MenuDataHeader
 	verticalmenu
 	closewindow
-	ifequal $1, .mr__mime
-	ifequal $2, .eevee
-	ifequal $3, .porygon
+	ifequalfwd $1, .mr__mime
+	ifequalfwd $2, .eevee
+	ifequalfwd $3, .porygon
 	jumpopenedtext CeladonPrizeRoom_ComeAgainText
 
 .mr__mime
 	checkcoins CELADONGAMECORNERPRIZEROOM_MR__MIME_COINS
-	ifequal $2, CeladonPrizeRoom_notenoughcoins
-	getmonname MR__MIME, $0
+	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	getmonname MR__MIME, STRING_BUFFER_3
 	scall CeladonPrizeRoom_askbuy
 	iffalse_jumpopenedtext CeladonPrizeRoom_ComeAgainText
 	waitsfx
@@ -148,15 +151,15 @@ CeladonGameCornerPokemonVendor:
 	waitbutton
 	givepoke MR__MIME, 10
 	iffalse_jumpopenedtext CeladonPrizeRoom_NotEnoughRoomText
-	setval MR__MIME
+	setmonval MR__MIME
 	special Special_GameCornerPrizeMonCheckDex
 	takecoins CELADONGAMECORNERPRIZEROOM_MR__MIME_COINS
 	sjump .loop
 
 .eevee
 	checkcoins CELADONGAMECORNERPRIZEROOM_EEVEE_COINS
-	ifequal $2, CeladonPrizeRoom_notenoughcoins
-	getmonname EEVEE, $0
+	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	getmonname EEVEE, STRING_BUFFER_3
 	scall CeladonPrizeRoom_askbuy
 	iffalse_jumpopenedtext CeladonPrizeRoom_ComeAgainText
 	waitsfx
@@ -165,15 +168,15 @@ CeladonGameCornerPokemonVendor:
 	waitbutton
 	givepoke EEVEE, 20
 	iffalse_jumpopenedtext CeladonPrizeRoom_NotEnoughRoomText
-	setval EEVEE
+	setmonval EEVEE
 	special Special_GameCornerPrizeMonCheckDex
 	takecoins CELADONGAMECORNERPRIZEROOM_EEVEE_COINS
 	sjump .loop
 
 .porygon
 	checkcoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
-	ifequal $2, CeladonPrizeRoom_notenoughcoins
-	getmonname PORYGON, $0
+	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+	getmonname PORYGON, STRING_BUFFER_3
 	scall CeladonPrizeRoom_askbuy
 	iffalse_jumpopenedtext CeladonPrizeRoom_ComeAgainText
 	waitsfx
@@ -182,15 +185,14 @@ CeladonGameCornerPokemonVendor:
 	waitbutton
 	givepoke PORYGON, 30
 	iffalse_jumpopenedtext CeladonPrizeRoom_NotEnoughRoomText
-	setval PORYGON
+	setmonval PORYGON
 	special Special_GameCornerPrizeMonCheckDex
 	takecoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
 	sjump .loop
 
 .MenuDataHeader:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 17 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 2, 17, 11
 	dw .MenuData2
 	db 1 ; default option
 
@@ -255,10 +257,6 @@ CeladonPrizeRoom_AlreadyHaveTMText:
 	line "that TM."
 	done
 
-CeladonPrizeRoom_NotEnoughCoinsText:
-	text "You don't have"
-	line "enough coins."
-	done
 
 CeladonPrizeRoom_NotEnoughRoomText:
 	text "Wait, no, you have"

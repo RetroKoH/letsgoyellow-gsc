@@ -13,7 +13,7 @@ UpdateTMHMIconAndDescriptionAndOwnership::
 	call ClearTMHMIcon
 .ok
 	farcall LoadTMHMIconPalette
-	jmp SetPalettes
+	jmp SetDefaultBGPAndOBP
 
 UpdateItemIconAndDescriptionAndBagQuantity::
 	farcall UpdateItemDescriptionAndBagQuantity
@@ -26,48 +26,73 @@ _UpdateItemIcon:
 .has_icon
 	call _LoadItemOrKeyItemIcon
 	farcall LoadItemIconPalette
-	jmp SetPalettes
+	jmp SetDefaultBGPAndOBP
+
+UpdateExpCandyIconAndDescriptionAndBagQuantity::
+	farcall UpdateExpCandyDescriptionAndBagQuantity
+	ld hl, ExpCandyIconPointers
+	ld a, [wCurItem]
+	cp NUM_CANDIES + 1
+	jr c, .has_icon
+	xor a
+.has_icon
+	call _LoadItemOrKeyItemIcon
+	farcall LoadExpCandyIconPalette
+	jmp SetDefaultBGPAndOBP
+	ret
 
 UpdateKeyItemIconAndDescription::
 	farcall UpdateKeyItemDescription
 _UpdateKeyItemIcon:
 	ld hl, KeyItemIconPointers
-	ld a, [wCurKeyItem]
-	dec a
+	ld a, [wCurItem]
 	call _LoadItemOrKeyItemIcon
 	farcall LoadKeyItemIconPalette
-	jmp SetPalettes
+	jmp SetDefaultBGPAndOBP
 
 LoadApricornIconForOverworld:
 	ld hl, ApricornIcon
 	lb bc, BANK(ApricornIcon), 9
-	ld de, vTiles1 tile $6d
+	ld de, vTiles0 tile '▲'
 	jmp DecompressRequest2bpp
-
-LoadKeyItemIconForOverworld::
-	ld hl, KeyItemIconPointers
-	jr _LoadItemOrKeyItemIconForOverworld
-
-LoadTMHMIconForOverworld::
-	ld hl, TMHMIcon
-	lb bc, BANK(TMHMIcon), 9
-	jr _DecompressItemIconForOverworld
 
 LoadItemIconForOverworld::
 	ld hl, ItemIconPointers
 _LoadItemOrKeyItemIconForOverworld:
 	call _SetupLoadItemOrKeyItemIcon
-_DecompressItemIconForOverworld:
+DecompressItemIconForOverworld::
 	push bc
 	call FarDecompressWRA6InB
 	call WhiteOutDecompressedItemIconCorners
 	pop bc
-	ld hl, vTiles1 tile $6d
+	ld hl, vTiles0 tile '▲'
 	ld de, wDecompressScratch
 	jmp Request2bppInWRA6
 
+LoadItemIconForSummaryScreen::
+	ld hl, ItemIconPointers
+	call _SetupLoadItemOrKeyItemIcon
+	push bc
+	call FarDecompressWRA6InB
+	call WhiteOutDecompressedItemIconCorners
+	pop bc
+	ld hl, vTiles2 tile SUMMARY_TILE_ITEM
+	ld de, wDecompressScratch
+	jmp Request2bppInWRA6
+
+LoadTMHMIcon::
+	ld hl, TMHMIcon
+	lb bc, BANK(TMHMIcon), 9
+	jr _LoadItemIcon
+
+ClearTMHMIcon::
+	ld hl, NoItemIcon
+	lb bc, BANK(NoItemIcon), 9
+	jr _LoadItemIcon
+
 _LoadItemOrKeyItemIcon:
 	call _SetupLoadItemOrKeyItemIcon
+_LoadItemIcon:
 	ld de, vTiles2 tile $1e
 	jmp DecompressRequest2bpp
 
@@ -84,19 +109,6 @@ _SetupLoadItemOrKeyItemIcon:
 	ld l, a
 	ld c, 9
 	ret
-
-LoadTMHMIcon::
-	ld hl, TMHMIcon
-	lb bc, BANK(TMHMIcon), 9
-	ld de, vTiles2 tile $1e
-	jmp DecompressRequest2bpp
-
-ClearKeyItemIcon::
-ClearTMHMIcon::
-	ld hl, NoItemIcon
-	lb bc, BANK(NoItemIcon), 9
-	ld de, vTiles2 tile $1e
-	jmp DecompressRequest2bpp
 
 WhiteOutDecompressedItemIconCorners:
 	call RunFunctionInWRA6
@@ -132,9 +144,44 @@ WhiteOutDecompressedItemIconCorners:
 	ld [hl], a
 	ret
 
+ShowSpecialItemIcon::
+	ld a, [wCurSpecialItem]
+	ld hl, SpecialItemIconPointers
+	call _LoadItemOrKeyItemIconForOverworld
+	farcall LoadSpecialItemIconPalette
+	jr PrintOverworldItemIcon
+
+ShowParkBallIcon::
+	ld hl, ParkBallIcon
+	lb bc, BANK(ParkBallIcon), 9
+	call DecompressItemIconForOverworld
+	ld hl, ParkBallIconPalette
+	farcall LoadIconPaletteFromHL
+	jr PrintOverworldItemIcon
+
+ShowItemIcon::
+	ld a, [wCurItem]
+	call LoadItemIconForOverworld
+	farcall LoadItemIconPalette
+	jr PrintOverworldItemIcon
+
+ShowKeyItemIcon::
+	ld a, [wCurKeyItem]
+	ld hl, KeyItemIconPointers
+	call _LoadItemOrKeyItemIconForOverworld
+	farcall LoadKeyItemIconPalette
+	jr PrintOverworldItemIcon
+
+ShowTMHMIcon::
+	ld a, [wCurTMHM]
+	ld hl, TMHMIcon
+	lb bc, BANK(TMHMIcon), 9
+	call DecompressItemIconForOverworld
+	farcall LoadTMHMIconPalette
+	; fallthrough
 PrintOverworldItemIcon:
-	call SetPalettes
-	ld a, $ed
+	call SetDefaultBGPAndOBP
+	ld a, '▲'
 	hlcoord 16, 13
 	ld [hli], a
 	inc a

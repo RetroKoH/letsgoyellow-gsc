@@ -1,408 +1,128 @@
 TrainerHouse1F_MapScriptHeader:
 	def_scene_scripts
-	scene_script TrainerHouseTrigger0
-	scene_script TrainerHouseTrigger1
-	scene_script TrainerHouseTrigger2
 
 	def_callbacks
 
 	def_warp_events
 	warp_event  4, 11, VIRIDIAN_CITY, 3
 	warp_event  5, 11, VIRIDIAN_CITY, 3
-;	warp_event  8,  2, TRAINER_HOUSE_B1F, 1
+	warp_event  8,  2, TRAINER_HOUSE_B1F, 1
 
 	def_coord_events
-	coord_event  0,  5, 1, TrainerHouseTryToLeaveScript
-	coord_event  1,  5, 1, TrainerHouseTryToLeaveScript
-	coord_event  3,  5, 1, TrainerHouseTryToLeaveScript
-	coord_event  4,  5, 1, TrainerHouseTryToLeaveScript
-	coord_event  5,  5, 1, TrainerHouseTryToLeaveScript
-	coord_event  6,  5, 1, TrainerHouseTryToLeaveScript
-	coord_event  7,  5, 1, TrainerHouseTryToLeaveScript
-	coord_event  9,  5, 1, TrainerHouseTryToLeaveScript
 
 	def_bg_events
+	bg_event  7,  0, BGEVENT_JUMPTEXT, TrainerHouseSign1Text
+	bg_event  9,  0, BGEVENT_JUMPTEXT, TrainerHouseSign2Text
+	bg_event  4,  6, BGEVENT_JUMPTEXT, TrainerHouseIllegibleText
 
 	def_object_events
-	object_event  6,  1, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouseBlueScript, EVENT_HIDE_STARTHOUSE_BLUE
-	object_event  5,  4, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, TrainerHouseTraceScript, EVENT_HIDE_STARTHOUSE_TRACE
-	object_event  4,  1, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PikaBallScript, EVENT_HIDE_STARTHOUSE_STARTER_PIKA
-	object_event  5,  1, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EeveeBallScript, EVENT_HIDE_STARTHOUSE_STARTER_EEVEE
+	object_event  0, 10, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, TrainerHouse1FReceptionistText, -1
+	object_event  8, 10, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, TrainerHouse1FCooltrainerMText, -1
+	object_event  6,  2, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 2, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, TrainerHouse1FCooltrainerFText, -1
+	object_event  7,  7, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, TrainerHouse1FYoungsterText, -1
+	object_event  2,  4, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, TrainerHouse1FGentlemanText, -1
 
-	object_const_def
-	const STARTHOUSE_BLUE
-	const STARTHOUSE_TRACE
-	const STARTHOUSE_STARTER_PIKA
-	const STARTHOUSE_STARTER_EEVEE
+TrainerHouse1FReceptionistText:
+	text "Welcome to Trainer"
+	line "House, the newest"
 
-TrainerHouseTrigger0:
-	sdefer .StartGameEvent
-	end
+	para "and most happening"
+	line "place in Viridian."
 
-.StartGameEvent
-;	showemote EMOTE_SHOCK, STARTHOUSE_BLUE, 15
-	turnobject PLAYER, UP
-;	opentext
-;	writetext Text_BlueScoldsPlayer
-;	waitbutton
-;	closetext
-;	turnobject STARTHOUSE_TRACE, LEFT
-;	turnobject PLAYER, RIGHT
-;	opentext
-;	writetext Text_TraceExcited
-;	waitbutton
-;	closetext
-;	showemote EMOTE_SHOCK, STARTHOUSE_BLUE, 15
-;	turnobject STARTHOUSE_TRACE, UP
-;	turnobject PLAYER, UP
-;	showtext Text_BlueChoosePokemon
-;	opentext
-;	writetext Text_BlueChoosePokemon
-;	waitbutton
-;	closetext
-;	turnobject STARTHOUSE_TRACE, LEFT
-;	turnobject PLAYER, RIGHT
-;	opentext
-;	writetext Text_TraceYouPickFirst
-;	waitbutton
-;	closetext
-	setscene $1
-TrainerHouseTrigger1:
-	end
+	para "We're open to"
+	line "trainers only."
 
-TrainerHouseBlueScript:
-	jumpthistextfaceplayer
-	text "Blue: Now, <PLAYER>,"
-	line "which #mon do"
-	cont "you want?"
+	para "You can battle"
+	line "against the best"
+
+	para "of the best right"
+	line "downstairs."
 	done
 
-TrainerHouseTraceScript:
-	jumpthistextfaceplayer
-; Speaking to Rival when choosing a mon
-	text "<RIVAL>: Go ahead"
-	line "and choose first,"
-	cont "<PLAYER>!"
+TrainerHouse1FCooltrainerMText:
+	text "Viridian is the"
+	line "town closest to"
+	cont "Indigo Plateau."
+
+	para "It's known as the"
+	line "gateway to Indigo"
+	cont "Plateau!"
+
+	para "They built this"
+	line "place because so"
+
+	para "many trainers pass"
+	line "through on their"
+
+	para "way up to the"
+	line "#mon League."
 	done
 
-TrainerHouseTryToLeaveScript:
-	turnobject STARTHOUSE_BLUE, DOWN
-	showtext BlueDontGoAwayText
-	applyonemovement PLAYER, step_up
-	end
+TrainerHouse1FCooltrainerFText:
+	text "They hold practice"
+	line "battles downstairs"
+	cont "here."
 
-BlueDontGoAwayText:
-	text "Blue: Hey! Don't go"
-	line "away just yet!"
+	para "I would love to"
+	line "see how well a"
+
+	para "trainer from Johto"
+	line "battles."
 	done
 
-PikaBallScript:
-	turnobject STARTHOUSE_BLUE, LEFT
-	refreshscreen
-	pokepic PIKACHU
-	cry PIKACHU
-	waitbutton
-	closepokepic
-	opentext
-	getmonname PIKACHU, STRING_BUFFER_3
-	writetext TrainerHouseStarterText
-	yesorno
-	iffalse_jumpopenedtext BlueDidntChooseStarterText
-	disappear STARTHOUSE_STARTER_PIKA
-	setevent EVENT_PLAYER_CHOSE_PIKACHU
-	setevent EVENT_GOT_STARTER
-	writetext TrainerHouseBlueConfirm
-	promptbutton
-	waitsfx
-	givepoke PIKACHU, PARTNER, 5
-	closetext
-	applymovement STARTHOUSE_TRACE, Movement_TracePicksEevee
-	opentext
-	writetext TrainerHouseTraceTakesStarterText
-	pause 15
-	disappear STARTHOUSE_STARTER_EEVEE
-	opentext
-	getmonname EEVEE, STRING_BUFFER_3
-	writetext TrainerHouseTraceStarterText
-	playsound SFX_CAUGHT_MON
-	waitsfx
-	closetext
-	setscene $2
-	end
+TrainerHouse1FYoungsterText:
+	text "I guess you can't"
+	line "become the Champ"
 
-EeveeBallScript:
-	turnobject STARTHOUSE_BLUE, LEFT
-	refreshscreen
-	pokepic EEVEE
-	cry EEVEE
-	waitbutton
-	closepokepic
-	opentext
-	getmonname EEVEE, STRING_BUFFER_3
-	writetext TrainerHouseStarterText
-	yesorno
-	iffalse_jumpopenedtext BlueDidntChooseStarterText
-	disappear STARTHOUSE_STARTER_EEVEE
-	setevent EVENT_PLAYER_CHOSE_EEVEE
-	setevent EVENT_GOT_STARTER
-	writetext TrainerHouseBlueConfirm
-	promptbutton
-	waitsfx
-	givepoke EEVEE, PARTNER, 5
-	closetext
-	applymovement STARTHOUSE_TRACE, Movement_TracePicksPikachu
-	opentext
-	writetext TrainerHouseTraceTakesStarterText
-	pause 15
-	disappear STARTHOUSE_STARTER_PIKA
-	opentext
-	getmonname PIKACHU, STRING_BUFFER_3
-	writetext TrainerHouseTraceStarterText
-	playsound SFX_CAUGHT_MON
-	waitsfx
-	closetext
-	setscene $2
-	end
+	para "unless you go all"
+	line "over the place and"
 
-Movement_TracePicksPikachu:
-	step_left
-	step_up
-	step_up
-	step_end
+	para "battle all kinds"
+	line "of people."
 
-Movement_TracePicksEevee:
-	step_up
-	step_up
-	step_end
+	para "The Champion from"
+	line "Pallet traveled to"
 
-BlueDidntChooseStarterText:
-	text "Blue: Think it"
-	line "over carefully."
-
-	para "Your partner is"
-	line "important."
+	para "all the cities and"
+	line "towns in Kanto."
 	done
 
-TrainerHouseStarterText:
-	text "Blue: So, you want"
-	line "@"
-	text_ram wStringBuffer3
-	text "?"
+TrainerHouse1FGentlemanText:
+	text "Whew… I'm taking a"
+	line "rest from #mon"
+	cont "battles."
 	done
 
-TrainerHouseBlueConfirm:
-	text "This #mon will"
-	line "make for a great"
-	cont "partner!"
+TrainerHouseSign1Text:
+	text "Practice battles"
+	line "are held in the"
+
+	para "Training Hall"
+	line "downstairs."
+
+	para "Skilled trainers"
+	line "are invited to"
+	cont "participate."
 	done
 
-TrainerHouseTraceTakesStarterText:
-	text "<RIVAL>: That means"
-	line "this one's mine!"
+TrainerHouseSign2Text:
+	text "There are no rules"
+	line "or regulations for"
+
+	para "practice matches."
+	line "Just like in field"
+
+	para "battles, anything"
+	line "goes!"
 	done
 
-TrainerHouseTraceStarterText:
-	text "<RIVAL> received"
-	line "@"
-	text_ram wStringBuffer3
-	text "!"
-	done
+TrainerHouseIllegibleText:
+	text "…What's this?"
+	line "A strategy memo?"
 
-TrainerHouseTrigger2:
-	applymovement STARTHOUSE_BLUE, Movement_BlueWalksDown
-	turnobject STARTHOUSE_BLUE, LEFT
-	turnobject STARTHOUSE_TRACE, RIGHT
-	turnobject PLAYER, RIGHT
-	opentext
-	writetext Text_BlueSendsOff
-	waitbutton
-	closetext
-	turnobject STARTHOUSE_TRACE, DOWN
-	turnobject PLAYER, DOWN
-	playmusic MUSIC_RIVAL_AFTER
-	applymovement STARTHOUSE_BLUE, Movement_BlueLeaves
-	disappear STARTHOUSE_BLUE
-	special RestartMapMusic
-	faceobject STARTHOUSE_TRACE, PLAYER
-	faceobject PLAYER, STARTHOUSE_TRACE
-	opentext
-	writetext Text_TraceChallengesYou
-	waitbutton
-	closetext
+	para "This writing looks"
+	line "like Onix tracks…"
 
-	winlosstext TrainerHouseTraceWinText, TrainerHouseTraceLossText
-	setlasttalked STARTHOUSE_TRACE
-	checkevent EVENT_PLAYER_CHOSE_EEVEE
-	iftrue .Eevee
-	loadtrainer TRACE0, 1
-	sjump .continueBattle
-.Eevee
-	loadtrainer TRACE0, 2
-
-.continueBattle
-	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
-	startbattle
-;	dontrestartmapmusic
-	reloadmap
-	iffalse .AfterYouWin
-	sjump .AfterYouLose
-
-.AfterYouWin:
-	showtext Text_PlayerWon
-	sjump .FinishTrace
-
-.AfterYouLose:
-	showtext Text_TraceWon
-.FinishTrace
-	showemote EMOTE_HAPPY, STARTHOUSE_TRACE, 20
-	opentext
-	writetext Text_TraceSaysBye
-	waitbutton
-	closetext
-	turnobject PLAYER, DOWN
-	applymovement STARTHOUSE_TRACE, Movement_BlueLeaves
-	disappear STARTHOUSE_TRACE
-	special HealPartyEvenForNuzlocke
-	setscene $3
-	end
-
-Movement_BlueWalksDown:
-	step_down
-	step_end
-
-Movement_BlueLeaves:
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_end
-
-Text_BlueSendsOff:
-	text "Blue: OK, now"
-	line "that that's taken"
-	cont "care of…"
-
-	para "I need your help."
-	line "Please head south"
-	cont "to Pallet Town to"
-	cont "see Prof. Oak."
-
-	para "He's my grandpa."
-	line "He has something"
-	cont "he needs to give"
-	cont "you both."
-
-	para "Don't keep him"
-	line "waiting, you two!"
-
-	para "Smell ya later!"
-	done
-
-Text_TraceChallengesYou:
-	text "<RIVAL>: Well, you"
-	line "heard the man."
-	cont "Let's get a move"
-	cont "on already!"
-
-	para "Before we do, why"
-	line "don't we have a"
-	cont "quick battle?"
-
-	para "It'll be nice to"
-	line "see what our new"
-	cont "#mon can do!"
-
-	para "Ready? Let's go!"
-	done
-
-Text_PlayerWon:
-	text "<RIVAL>: Whoa!"
-	line "What a battle!"
-	cont "Your #mon sure"
-	cont "is strong!"
-	done
-
-Text_TraceWon:
-	text "<RIVAL>: Whoa!"
-	line "What a battle!"
-	cont "Your #mon needs"
-	cont "practice though!"
-	done
-
-Text_TraceSaysBye:
-	text "You'd better"
-	line "start training,"
-	cont "I want a rematch"
-	cont "later on."
-
-	para "Anyway, You go to"
-	line "the lab first. I"
-	cont "have something to"
-	cont "do before I go."
-
-	para "See ya, <PLAYER>!"
-	done
-
-Text_BlueScoldsPlayer:
-	text "Blue: <PLAYER>!"
-	line "Are you even"
-	cont "listening to me?"
-	done
-
-Text_TraceExcited:
-	text "<RIVAL>: Oh man,"
-	line "I bet you're"
-	cont "thinking about"
-
-	para "meeting Prof. Oak"
-	line "and getting your"
-	cont "#dex, right?"
-	done
-
-Text_BlueChoosePokemon:
-	text "Blue: Will you two"
-	line "wait a second? You"
-	cont "aren't going out"
-	cont "without #mon!"
-
-	para "It's dangerous to"
-	line "wander out empty-"
-	cont "handed, y'know."
-
-	para "It just so happens"
-	line "that I've got two"
-	cont "#mon left, one"
-	cont "for each of you."
-
-	para "There was a third"
-	line "one, but that one"
-	cont "was already taken"
-	cont "by <BACKUP>."
-
-	para "Anyway, you can"
-	line "both have one. Go"
-	cont "ahead!"
-	done
-
-Text_TraceYouPickFirst:
-	text "<RIVAL>: Do you"
-	line "hear that? We can"
-	cont "take a #mon!"
-
-	para "Go ahead and pick"
-	line "first. You seem"
-	cont "like you can't"
-	cont "wait anymore!"
-	done
-
-TrainerHouseTraceWinText:
-	text "<RIVAL>: What?!"
-	line "Did I lose?"
-	done
-
-TrainerHouseTraceLossText:
-	text "<RIVAL>: Yes!"
-	line "I did it!"
+	para "It's completely"
+	line "illegible…"
 	done

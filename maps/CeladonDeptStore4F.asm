@@ -14,62 +14,65 @@ CeladonDeptStore4F_MapScriptHeader:
 	bg_event 14,  0, BGEVENT_JUMPTEXT, CeladonDeptStore4FDirectoryText
 
 	def_object_events
-	object_event 13,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_CELADON, MART_CELADON_4F, -1
-	object_event  7,  6, SPRITE_POKEMANIAC, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonDeptStore4FSuperNerdText, -1
-	object_event  8,  2, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonDeptStore4FYoungsterText, -1
-	object_event 15,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PosterClerkScript, -1
+	object_event 13,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_STANDARD, MART_CELADON_4F, -1
+	object_event  7,  6, SPRITE_POKEMANIAC, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonDeptStore4FSuperNerdText, -1
+	object_event  8,  2, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonDeptStore4FYoungsterText, -1
+	object_event 15,  5, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PosterClerkScript, -1
 
 PosterClerkScript:
 	faceplayer
 	opentext
 	writetext PosterClerkText
-.Start:
 	special PlaceMoneyTopRight
+.Start:
 	loadmenu .MenuData
 	verticalmenu
 	closewindow
-	ifequal $1, .EeveePoster
-	ifequal $2, .ClefairyPoster
-	ifequal $3, .PikachuPoster
+	ifequalfwd $1, .MarillPoster
+	ifequalfwd $2, .ClefairyPoster
+	ifequalfwd $3, .PikachuPoster
 	endtext
 
-.EeveePoster:
-	checkmoney $0, 3200
-	ifequal $2, .NotEnoughMoney
+.MarillPoster:
+	checkmoney YOUR_MONEY, 3200
+	ifequalfwd HAVE_LESS, .NotEnoughMoney
 	checkevent EVENT_DECO_POSTER_3
-	iftrue .AlreadyBought
-	takemoney $0, 3200
+	iftruefwd .AlreadyBought
+	takemoney YOUR_MONEY, 3200
 	setevent EVENT_DECO_POSTER_3
-	writetext BoughtEeveePosterText
+	writetext BoughtMarillPosterText
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
-	writetext EeveePosterSentText
+	writetext MarillPosterSentText
 	waitbutton
 	sjump .Start
 
 .ClefairyPoster:
-	checkmoney $0, 4800
-	ifequal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 4800
+	ifequalfwd HAVE_LESS, .NotEnoughMoney
 	checkevent EVENT_DECO_POSTER_2
-	iftrue .AlreadyBought
-	takemoney $0, 4800
+	iftruefwd .AlreadyBought
+	takemoney YOUR_MONEY, 4800
 	setevent EVENT_DECO_POSTER_2
 	writetext BoughtClefairyPosterText
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
 	writetext ClefairyPosterSentText
 	waitbutton
 	sjump .Start
 
 .PikachuPoster:
-	checkmoney $0, 6400
-	ifequal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 6400
+	ifequalfwd HAVE_LESS, .NotEnoughMoney
 	checkevent EVENT_DECO_POSTER_1
-	iftrue .AlreadyBought
-	takemoney $0, 6400
+	iftruefwd .AlreadyBought
+	takemoney YOUR_MONEY, 6400
 	setevent EVENT_DECO_POSTER_1
 	writetext BoughtPikachuPosterText
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
 	writetext PikachuPosterSentText
 	waitbutton
@@ -86,16 +89,15 @@ PosterClerkScript:
 	sjump .Start
 
 .MenuData:
-	db $40 ; flags
-	db 02, 00 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 2, 19, 11
 	dw .MenuData2
 	db 1 ; default option
 
 .MenuData2:
 	db $80 ; flags
 	db 4 ; items
-	db "Eevee       ¥3200@"
+	db "Marill      ¥3200@"
 	db "Clefairy    ¥4800@"
 	db "Pikachu     ¥6400@"
 	db "Cancel@"
@@ -115,13 +117,13 @@ PosterClerkAlreadyBoughtText:
 	line "already."
 	done
 
-BoughtEeveePosterText:
+BoughtMarillPosterText:
 	text "<PLAYER> bought"
-	line "Eevee Poster."
+	line "Marill Poster."
 	done
 
-EeveePosterSentText:
-	text "Eevee Poster"
+MarillPosterSentText:
+	text "Marill Poster"
 	line "was sent home."
 	done
 

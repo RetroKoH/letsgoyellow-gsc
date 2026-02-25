@@ -1,22 +1,18 @@
 	db  80,  70,  65, 100,  80, 120 ; 515 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
 
 	db WATER, POISON ; type
 	db 60 ; catch rate
 	db 205 ; base exp
-	db NO_ITEM ; item 1
-	db POISON_BARB ; item 2
-	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/tentacruel/front.dimensions"
+	db NO_ITEM, POISON_BARB ; held items
+	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
+
 	abilities_for TENTACRUEL, CLEAR_BODY, LIQUID_OOZE, RAIN_DISH
 	db GROWTH_SLOW ; growth rate
 	dn EGG_WATER_3, EGG_WATER_3 ; egg groups
 
-	ev_yield   0,   0,   0,   0,   0,   2
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 2 SDf
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, REFLECT, FACADE, WATERFALL, POISON_JAB, SCALD, DAZZLINGLEAM, SURF, HYPER_BEAM, BLIZZARD, SLUDGE_BOMB, MEGA_DRAIN, ICE_BEAM, RAIN_DANCE, HAIL
-
-	;tutors HEX, KNOCK_OFF
+	; tm/hm learnset
+	tmhm CURSE, TOXIC, HAIL, VENOSHOCK, HIDDEN_POWER, ICE_BEAM, BLIZZARD, HYPER_BEAM, PROTECT, RAIN_DANCE, GIGA_DRAIN, SAFEGUARD, RETURN, DOUBLE_TEAM, SLUDGE_BOMB, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, DAZZLINGLEAM, LEECH_LIFE, SCALD, WATER_PULSE, POISON_JAB, GIGA_IMPACT, SWORDS_DANCE, CUT, SURF, WHIRLPOOL, WATERFALL, DOUBLE_EDGE, ENDURE, ICY_WIND, KNOCK_OFF, SLEEP_TALK, SWAGGER
 	; end

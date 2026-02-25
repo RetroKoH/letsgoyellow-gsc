@@ -10,9 +10,11 @@ PokemonMansionB1F_MapScriptHeader:
 
 	def_bg_events
 	bg_event 26,  4, BGEVENT_ITEM + MAX_ELIXIR, EVENT_POKEMON_MANSION_B1F_HIDDEN_MAX_ELIXIR
-	bg_event  8, 13, BGEVENT_READ, PokemonMansionB1FHiddenRareCandy
-	bg_event 20, 27, BGEVENT_READ, PokemonMansionB1FHiddenBerserkGene
+	bg_event  8, 13, BGEVENT_ITEM + RARE_CANDY, EVENT_POKEMON_MANSION_B1F_HIDDEN_RARE_CANDY
+	bg_event 20, 27, BGEVENT_ITEM + BERSERK_GENE, EVENT_POKEMON_MANSION_B1F_HIDDEN_BERSERK_GENE
+	bg_event 20, 27, BGEVENT_JUMPTEXT, PokemonMansion1FMewtwoStatueText
 	bg_event 22,  5, BGEVENT_JUMPTEXT, PokemonMansion1FMewtwoStatueText
+	bg_event  8, 13, BGEVENT_JUMPTEXT, PokemonMansion1FFlowerPotText
 	bg_event  9, 13, BGEVENT_JUMPTEXT, PokemonMansion1FFlowerPotText
 	bg_event  4, 17, BGEVENT_JUMPTEXT, PokemonMansion1FFlowerPotText
 	bg_event  5, 17, BGEVENT_JUMPTEXT, PokemonMansion1FFlowerPotText
@@ -20,8 +22,8 @@ PokemonMansionB1F_MapScriptHeader:
 	bg_event  9, 17, BGEVENT_JUMPTEXT, PokemonMansion1FFlowerPotText
 
 	def_object_events
-	object_event 18,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerScientistBraydon, -1
-	object_event 18, 22, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptext, PokemonMansionDiaryText, -1
+	object_event 18,  5, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerScientistBraydon, -1
+	object_event 18, 22, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptext, PokemonMansionDiaryText, -1
 	itemball_event 13,  5, CARBOS, 1, EVENT_POKEMON_MANSION_B1F_CARBOS
 	itemball_event  7,  6, CALCIUM, 1, EVENT_POKEMON_MANSION_B1F_CALCIUM
 	itemball_event 16, 27, HP_UP, 1, EVENT_POKEMON_MANSION_B1F_HP_UP
@@ -36,50 +38,6 @@ GenericTrainerScientistBraydon:
 	para "serious #mon"
 	line "research."
 	done
-
-PokemonMansionB1FHiddenRareCandy:
-	checkevent EVENT_POKEMON_MANSION_B1F_HIDDEN_RARE_CANDY
-	iftrue_jumptext PokemonMansion1FFlowerPotText
-	giveitem RARE_CANDY
-	iffalse .PackFull
-	opentext
-	getitemname RARE_CANDY, $0
-	writetext PokemonMansion1FFoundItemText
-	playsound SFX_ITEM
-	waitsfx
-	itemnotify
-	closetext
-	setevent EVENT_POKEMON_MANSION_B1F_HIDDEN_RARE_CANDY
-	end
-
-.PackFull:
-	opentext
-	getitemname RARE_CANDY, $0
-	writetext PokemonMansion1FFoundItemText
-	promptbutton
-	jumpopenedtext PokemonMansion1FNoRoomForItemText
-
-PokemonMansionB1FHiddenBerserkGene:
-	checkevent EVENT_POKEMON_MANSION_B1F_HIDDEN_BERSERK_GENE
-	iftrue_jumptext PokemonMansion1FMewtwoStatueText
-	giveitem BERSERK_GENE
-	iffalse .PackFull
-	opentext
-	getitemname BERSERK_GENE, $0
-	writetext PokemonMansion1FFoundItemText
-	playsound SFX_ITEM
-	waitsfx
-	itemnotify
-	closetext
-	setevent EVENT_POKEMON_MANSION_B1F_HIDDEN_BERSERK_GENE
-	end
-
-.PackFull:
-	opentext
-	getitemname BERSERK_GENE, $0
-	writetext PokemonMansion1FFoundItemText
-	promptbutton
-	jumpopenedtext PokemonMansion1FNoRoomForItemText
 
 ScientistBraydonSeenText:
 	text "I miss the old"

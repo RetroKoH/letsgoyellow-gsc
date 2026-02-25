@@ -13,8 +13,8 @@ PsychicInversHouse_MapScriptHeader:
 	bg_event  7,  1, BGEVENT_JUMPSTD, difficultbookshelf
 
 	def_object_events
-	object_event  2,  2, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PsychicInverScript, -1
-	object_event  6,  3, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, PsychicInversHouseHexManiacText, -1
+	object_event  2,  2, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, PsychicInverScript, -1
+	object_event  6,  3, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, PsychicInversHouseHexManiacText, -1
 
 	object_const_def
 	const PSYCHICINVERSHOUSE_INVER
@@ -33,14 +33,14 @@ PsychicInverScript:
 	setflag ENGINE_FOUGHT_PSYCHIC_INVER
 	winlosstext PsychicInverBeatenText, 0
 	setlasttalked PSYCHICINVERSHOUSE_INVER
-; TODO: pick six random Pokémon from a larger pool
+	special PickPsychicInverParty
 	loadtrainer INVER, 1
 	loadvar VAR_BATTLETYPE, BATTLETYPE_INVERSE
 	startbattle
 	reloadmapafterbattle
 	opentext
 	readmem wInverseBattleScore
-	ifequal 0, .Score0
+	ifequalfwd 0, .Score0
 	ifgreater 127, .Score0 ; negative
 	ifless 4, .Score1_3
 	ifless 7, .Score4_6
@@ -69,19 +69,19 @@ PsychicInverScript:
 
 .Score4_6
 	writetext InverseBattle4_6PointRewardText
-	random MARANGABERRY - LUM_BERRY + 1
+	random MARANGABERRY - LUM_BERRY + 1 ; excludes early common berries
 	addval LUM_BERRY
 	sjump .Reward
 
 .Score7_9
 	writetext InverseBattle7_9PointRewardText
-	random EVERSTONE - LEAF_STONE + 1
-	addval LEAF_STONE
+	random NUM_STONES
+	addval FIRST_STONE
 	sjump .Reward
 
 PsychicInverGreetingText:
 	text "Oh. I wasn't ex-"
-	line "pecting a vistor"
+	line "pecting a visitor"
 	cont "here. Hmm…"
 
 	para "Shall we have a"

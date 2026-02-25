@@ -16,10 +16,12 @@ ApplyTilemapInVBlank::
 _ApplyAttrOrTilemapInVBlank:
 	ldh [hBGMapMode], a
 
+; TODO: Update the audio engine so we can remove the calls to SFXDelay* routines,
+; without causing odd button sounds when the artifical delays are gone.
+
 SFXDelay2::
 Delay2::
 	ld c, 2
-
 SFXDelayFrames::
 DelayFrames::
 ; Wait c frames
@@ -28,18 +30,28 @@ DelayFrames::
 	jr nz, DelayFrames
 	ret
 
-SFXDelayFrame::
 DelayFrame::
 ; Wait for one frame
 	ldh a, [rLY]
 	ldh [hDelayFrameLY], a
-	ld a, TRUE
+	xor a ; ld a, FALSE
 	ldh [hVBlankOccurred], a
 
 ; Wait for the next VBlank, halting to conserve battery
-.halt
-	halt ; rgbasm adds a nop after this instruction by default
+DelayFrameHalt:
+	halt
+	nop
+	; fallthrough
+MaybeDelayFrame:
+; Used in place of DelayFrame for special cases.
 	ldh a, [hVBlankOccurred]
 	and a
-	jr nz, .halt
+	jr z, DelayFrameHalt
 	ret
+
+ConsumeGenericDelay::
+	ld a, [wGenericDelay]
+	and a
+	ret z
+	ld c, a
+	jr DelayFrames

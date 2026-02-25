@@ -40,8 +40,10 @@
 	const giftf
 	const packfullf
 	const rematchgiftf
-	const gymstatue
-	const receiveitem
+	const gymstatue0
+	const gymstatue1
+	const gymstatue2
+	const gymstatue3
 	const pcscript
 	const gamecornercoinvendor
 	const happinesschecknpc
@@ -52,3 +54,4 @@
 	const vendingmachine
 	const treegrotto
 	const cavegrotto
+	const kantopostgymevents

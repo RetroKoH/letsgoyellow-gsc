@@ -1,6 +1,7 @@
 ShamoutiHotelRestaurant_MapScriptHeader:
 	def_scene_scripts
-	scene_script ShamoutiHotelRestaurantTrigger0
+	scene_script ShamoutiHotelRestaurantMeetScene, SCENE_SHAMOUTIHOTELRESTAURANT_MEET
+	scene_const SCENE_SHAMOUTIHOTELRESTAURANT_NOOP
 
 	def_callbacks
 
@@ -9,18 +10,18 @@ ShamoutiHotelRestaurant_MapScriptHeader:
 	warp_event 17,  7, SHAMOUTI_HOTEL_1F, 4
 
 	def_coord_events
-	coord_event 16,  6, 1, ShamoutiHotelRestaurantLeavingTrigger1
-	coord_event 16,  7, 1, ShamoutiHotelRestaurantLeavingTrigger2
+	coord_event 16,  6, SCENE_SHAMOUTIHOTELRESTAURANT_NOOP, ShamoutiHotelRestaurantLeavingTrigger1
+	coord_event 16,  7, SCENE_SHAMOUTIHOTELRESTAURANT_NOOP, ShamoutiHotelRestaurantLeavingTrigger2
 
 	def_bg_events
 
 	def_object_events
-	object_event 16,  4, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_COMMAND, jumptextfaceplayer, ShamoutiHotelRestaurantReceptionistText, -1
+	object_event 16,  4, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_COMMAND, jumptextfaceplayer, ShamoutiHotelRestaurantReceptionistText, -1
 
 	object_const_def
 	const SHAMOUTIHOTELRESTAURANT_RECEPTIONIST
 
-ShamoutiHotelRestaurantTrigger0:
+ShamoutiHotelRestaurantMeetScene:
 	sdefer ShamoutiHotelRestaurantChallengeScript
 	end
 
@@ -28,23 +29,23 @@ ShamoutiHotelRestaurantChallengeScript:
 	applyonemovement PLAYER, step_up
 	opentext
 	checkflag ENGINE_SHAMOUTI_RESTAURANT_CHALLENGE
-	iftrue .AlreadyAte
+	iftruefwd .AlreadyAte
 	writetext .GreetingText
 	special PlaceMoneyTopRight
 	yesorno
-	iffalse .NeverMind
-	checkmoney $0, 5000
-	ifequal $2, .NotEnoughMoney
+	iffalsefwd .NeverMind
+	checkmoney YOUR_MONEY, 5000
+	ifequalfwd HAVE_LESS, .NotEnoughMoney
 	setflag ENGINE_SHAMOUTI_RESTAURANT_CHALLENGE
 	waitsfx
 	playsound SFX_TRANSACTION
-	takemoney $0, 5000
+	takemoney YOUR_MONEY, 5000
 	special PlaceMoneyTopRight
 	writetext ShamoutiHotelRestaurantReceptionistText
 	waitbutton
 	closetext
 	applyonemovement PLAYER, step_left
-	setscene $1
+	setscene SCENE_SHAMOUTIHOTELRESTAURANT_NOOP
 	end
 
 .AlreadyAte:
@@ -105,9 +106,9 @@ ShamoutiHotelRestaurantLeavingTrigger1:
 	opentext
 	writetext .LeavingText
 	yesorno
-	iffalse .Staying
+	iffalsefwd .Staying
 	writetext .GoodbyeText
-	sjump ShamoutiHotelRestaurantLeaveScript
+	sjumpfwd ShamoutiHotelRestaurantLeaveScript
 
 .Staying:
 	writetext ShamoutiHotelRestaurantReceptionistText

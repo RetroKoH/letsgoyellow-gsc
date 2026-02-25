@@ -1,18 +1,18 @@
-command: MACRO
+MACRO command
 	const \1_command
-\1 EQUS "db \1_command"
+	DEF \1 EQUS "db \1_command"
 	dw BattleCommand_\1
 ENDM
 
-commandx: MACRO
+MACRO commandx
 	const \1_command
-\1 EQUS "db \1_command,"
+	DEF \1 EQUS "db \1_command,"
 	dw BattleCommand_\1
 ENDM
 
-commandonly: MACRO
+MACRO commandonly
 	const \1_command
-\1 EQUS "db \1_command"
+	DEF \1 EQUS "db \1_command"
 ENDM
 
 	const_def 1
@@ -27,6 +27,7 @@ BattleCommandPointers:
 	command stab
 	command damagevariation
 	command checkhit
+	command checkpriority
 	command lowersub
 	command moveanimnosub
 	command raisesub
@@ -38,7 +39,6 @@ BattleCommandPointers:
 	command posthiteffects
 	command poisontarget
 	command sleep
-	command yawn
 	command draintarget
 	command eatdream
 	command burntarget
@@ -47,7 +47,6 @@ BattleCommandPointers:
 	command selfdestruct
 	command payday
 	command conversion
-	command haze
 	command resetstats
 	command roar
 	command endloop
@@ -65,6 +64,7 @@ BattleCommandPointers:
 	command rechargenextturn
 	command metronome
 	command leechseed
+	command splash
 	command disable
 	command cleartext
 	command charge
@@ -74,46 +74,49 @@ BattleCommandPointers:
 	command constantdamage
 	command counter
 	command encore
-	command recycle
-	command mimic
+	command painsplit
+	command sketch
+	command sleeptalk
 	command destinybond
+	command falseswipe
 	command healbell
 	command hastarget
 	command triplekick
 	command kickcounter
 	command thief
 	command arenatrap
-	command defrost
 	command curse
 	command protect
-	command stealthrock
+	command spikes
+	command foresight
+	command perishsong
 	command startsandstorm
 	command starthail
 	command endure
-	command falseswipe
 	command rolloutpower
 	command conditionalboost
 	command attract
 	command happinesspower
 	command damagecalc
-	command auroraveil
-	command helpinghand
+	command safeguard
+	command checksafeguard
+	command getmagnitude
+	command batonpass
 	command pursuit
 	command clearhazards
 	command healweather
-	command weatherball
+	command hiddenpower
 	command startrain
 	command startsun
 	command effectchance
 	command selfeffectchance
 	command switchturn
 	command bellydrum
-	command furycutter
-	command ragefist
+	command rage
 	command doubleflyingdamage
 	command doubleundergrounddamage
-	command checkwish
-	command wish
+	command checkfuturesight
+	command futuresight
 	command doubleminimizedamage
 	command thunderaccuracy
 	command teleport
@@ -131,28 +134,29 @@ BattleCommandPointers:
 	command burn
 	command bounceback
 	command suckerpunch
-	command ohko
+	command toxicspikes
 	command roost
-	command taunt
-	command knockoff
-	command bugbite
+	command skillswap
+	command trick
 	command toxic
 	command gyroball
 	command checkpowder
 	command lowkick
-	command heavyslam
 	command brickbreak
-	command feint
 	command trickroom
 
-	; The following commands have an argument: stat to raise/lower.
+	; The following commands have an argument
+	; Argument: check if possible (false) vs perform the action (true)
+	commandx bugbite
+	commandx knockoff
+
+	; Argument: stat to lower
 	; (raise|lower)stat: can miss, silent
 	; force(raise|lower)stat: (always)
 	; (raise|lower)stathit: can miss, respects secondary, silent
 	; (raise|lower)oppstat: can miss, respects sub+mist+clear body
 	; force(raise|lower)oppstat: respects sub+mist+clear body
 	; (raise|lower)oppstathit: can miss, respects secondary+sub+mist+clear body, silent
-
 	commandx raisestat
 	commandx lowerstat
 	commandx forceraisestat
@@ -166,10 +170,10 @@ BattleCommandPointers:
 	commandx raiseoppstathit
 	commandx loweroppstathit
 
-NUM_EFFECT_COMMANDS EQU const_value - 1
+DEF NUM_EFFECT_COMMANDS EQU const_value - 1
 
-FIRST_MOVEARG_COMMAND EQU raisestat_command
-LAST_MOVEARG_COMMAND EQU loweroppstathit_command
+DEF FIRST_MOVEARG_COMMAND EQU raisestat_command
+DEF LAST_MOVEARG_COMMAND EQU loweroppstathit_command
 
 	const_def $ff, -1
 	commandonly endmove

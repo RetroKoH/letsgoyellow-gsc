@@ -20,11 +20,11 @@ KurtsHouse_MapScriptHeader:
 	bg_event  4,  1, BGEVENT_JUMPTEXT, KurtsHouseCelebiStatueText
 
 	def_object_events
-	object_event  3,  2, SPRITE_KURT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Kurt1, EVENT_KURTS_HOUSE_KURT_1
-	object_event  5,  3, SPRITE_SCHOOLGIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
-	object_event 14,  3, SPRITE_KURT, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Kurt2, EVENT_KURTS_HOUSE_KURT_2
-	object_event 11,  4, SPRITE_SCHOOLGIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2
-	pokemon_event  6,  3, SLOWPOKE, -1, -1, PAL_NPC_RED, KurtsHouseSlowpokeText, EVENT_KURTS_HOUSE_SLOWPOKE
+	object_event  3,  2, SPRITE_KURT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, Kurt1, EVENT_KURTS_HOUSE_KURT_1
+	object_event  5,  3, SPRITE_SCHOOLGIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter1, EVENT_KURTS_HOUSE_GRANDDAUGHTER_1
+	object_event 14,  3, SPRITE_KURT, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, Kurt2, EVENT_KURTS_HOUSE_KURT_2
+	object_event 11,  4, SPRITE_SCHOOLGIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, KurtsGranddaughter2, EVENT_KURTS_HOUSE_GRANDDAUGHTER_2
+	pokemon_event  6,  3, SLOWPOKE, SPRITEMOVEDATA_POKEMON, -1, PAL_MON_PINK, KurtsHouseSlowpokeText, EVENT_KURTS_HOUSE_SLOWPOKE
 
 	object_const_def
 	const KURTSHOUSE_KURT1
@@ -34,11 +34,11 @@ KurtsHouse_MapScriptHeader:
 
 KurtsHouseKurtCallback:
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iffalse .Done
+	iffalsefwd .Done
 	checkevent EVENT_FOREST_IS_RESTLESS
-	iftrue .Done
+	iftruefwd .Done
 	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue .MakingBalls
+	iftruefwd .MakingBalls
 	disappear KURTSHOUSE_KURT2
 	appear KURTSHOUSE_KURT1
 	disappear KURTSHOUSE_TWIN2
@@ -57,18 +57,18 @@ Kurt1:
 	faceplayer
 	opentext
 	checkevent EVENT_KURT_GAVE_YOU_APRICORN_BOX
-	iftrue .GotApricornBox
+	iftruefwd .GotApricornBox
 	checkevent EVENT_CLEARED_SLOWPOKE_WELL
-	iftrue .ClearedSlowpokeWell
+	iftruefwd .ClearedSlowpokeWell
 	writetext KurtsHouseKurtMakingBallsMustWaitText
 	waitbutton
 	closetext
 	special Special_FadeOutMusic
 	setevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	readvar VAR_FACING
-	ifequal UP, .RunAround
+	ifequalfwd UP, .RunAround
 	turnobject PLAYER, DOWN
-	playsound SFX_SKY_SOAR
+	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtExitHouseMovement
 	playsound SFX_EXIT_BUILDING
 	disappear KURTSHOUSE_KURT1
@@ -78,7 +78,7 @@ Kurt1:
 
 .RunAround:
 	turnobject PLAYER, DOWN
-	playsound SFX_SKY_SOAR
+	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtGoAroundPlayerThenExitHouseMovement
 	playsound SFX_EXIT_BUILDING
 	disappear KURTSHOUSE_KURT1
@@ -93,29 +93,31 @@ Kurt1:
 	setevent EVENT_KURT_GAVE_YOU_APRICORN_BOX
 .GotApricornBox:
 	checkevent EVENT_GAVE_KURT_RED_APRICORN
-	iftrue .GiveLevelBall
+	iftruefwd .GiveLevelBall
 	checkevent EVENT_GAVE_KURT_BLU_APRICORN
-	iftrue .GiveLureBall
+	iftruefwd .GiveLureBall
 	checkevent EVENT_GAVE_KURT_YLW_APRICORN
-	iftrue .GiveMoonBall
+	iftruefwd .GiveMoonBall
 	checkevent EVENT_GAVE_KURT_GRN_APRICORN
-	iftrue .GiveFriendBall
+	iftruefwd .GiveFriendBall
 	checkevent EVENT_GAVE_KURT_WHT_APRICORN
 	iftrue .GiveFastBall
 	checkevent EVENT_GAVE_KURT_BLK_APRICORN
 	iftrue .GiveHeavyBall
 	checkevent EVENT_GAVE_KURT_PNK_APRICORN
 	iftrue .GiveLoveBall
+	checkevent EVENT_CAN_GIVE_GS_BALL_TO_KURT
+	iftrue .CanGiveGSBallToKurt
 .NoGSBall:
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
-	iftrue .CheckApricorns
+	iftruefwd .CheckApricorns
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
-	iftrue .CheckApricorns
+	iftruefwd .CheckApricorns
 	writetext KurtsHouseKurtBallsFromApricornsText
 	waitbutton
 .CheckApricorns:
 	callasm .CheckHaveAnyApricorns
-	iftrue .AskApricorn
+	iftruefwd .AskApricorn
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue_jumpopenedtext KurtsHouseKurtTurnedOutGreatText
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
@@ -139,35 +141,35 @@ endr
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_3
 	special Special_SelectApricornForKurt
 	iffalse_jumpopenedtext KurtsHouseKurtThatsALetdownText
-	ifequal BLU_APRICORN, .Blu
-	ifequal YLW_APRICORN, .Ylw
-	ifequal GRN_APRICORN, .Grn
-	ifequal WHT_APRICORN, .Wht
-	ifequal BLK_APRICORN, .Blk
-	ifequal PNK_APRICORN, .Pnk
+	ifequalfwd BLU_APRICORN, .Blu
+	ifequalfwd YLW_APRICORN, .Ylw
+	ifequalfwd GRN_APRICORN, .Grn
+	ifequalfwd WHT_APRICORN, .Wht
+	ifequalfwd BLK_APRICORN, .Blk
+	ifequalfwd PNK_APRICORN, .Pnk
 ; .Red
 	setevent EVENT_GAVE_KURT_RED_APRICORN
-	sjump .GaveKurtApricorns
+	sjumpfwd .GaveKurtApricorns
 
 .Blu:
 	setevent EVENT_GAVE_KURT_BLU_APRICORN
-	sjump .GaveKurtApricorns
+	sjumpfwd .GaveKurtApricorns
 
 .Ylw:
 	setevent EVENT_GAVE_KURT_YLW_APRICORN
-	sjump .GaveKurtApricorns
+	sjumpfwd .GaveKurtApricorns
 
 .Grn:
 	setevent EVENT_GAVE_KURT_GRN_APRICORN
-	sjump .GaveKurtApricorns
+	sjumpfwd .GaveKurtApricorns
 
 .Wht:
 	setevent EVENT_GAVE_KURT_WHT_APRICORN
-	sjump .GaveKurtApricorns
+	sjumpfwd .GaveKurtApricorns
 
 .Blk:
 	setevent EVENT_GAVE_KURT_BLK_APRICORN
-	sjump .GaveKurtApricorns
+	sjumpfwd .GaveKurtApricorns
 
 .Pnk:
 	setevent EVENT_GAVE_KURT_PNK_APRICORN
@@ -197,7 +199,7 @@ endr
 
 .GiveLevelBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+	iftruefwd KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar LEVEL_BALL, VAR_KURT_APRICORNS
@@ -207,7 +209,7 @@ endr
 
 .GiveLureBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+	iftruefwd KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar LURE_BALL, VAR_KURT_APRICORNS
@@ -217,7 +219,7 @@ endr
 
 .GiveMoonBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+	iftruefwd KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar MOON_BALL, VAR_KURT_APRICORNS
@@ -227,7 +229,7 @@ endr
 
 .GiveFriendBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+	iftruefwd KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar FRIEND_BALL, VAR_KURT_APRICORNS
@@ -237,7 +239,7 @@ endr
 
 .GiveFastBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+	iftruefwd KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar FAST_BALL, VAR_KURT_APRICORNS
@@ -247,7 +249,7 @@ endr
 
 .GiveHeavyBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+	iftruefwd KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar HEAVY_BALL, VAR_KURT_APRICORNS
@@ -257,13 +259,33 @@ endr
 
 .GiveLoveBall:
 	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+	iftruefwd KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar LOVE_BALL, VAR_KURT_APRICORNS
 	iffalse_endtext
 	clearevent EVENT_GAVE_KURT_PNK_APRICORN
 	sjump .ThatTurnedOutGreat
+
+.CanGiveGSBallToKurt:
+	checkevent EVENT_GAVE_GS_BALL_TO_KURT
+	iftruefwd .GaveGSBallToKurt
+	checkkeyitem GS_BALL
+	iffalse .NoGSBall
+	writetext KurtsHouseKurtWhatIsThatText
+	waitbutton
+	closetext
+	setevent EVENT_GAVE_GS_BALL_TO_KURT
+	takekeyitem GS_BALL
+	setflag ENGINE_KURT_MAKING_BALLS
+	end
+
+.GaveGSBallToKurt:
+	checkflag ENGINE_KURT_MAKING_BALLS
+	iffalsefwd .NotMakingBalls
+	writetext KurtsHouseKurtImCheckingItNowText
+	waitbutton
+	jumpopenedtext KurtsHouseKurtAhHaISeeText
 
 .NotMakingBalls:
 	writetext KurtsHouseKurtThisBallStartedToShakeText
@@ -276,15 +298,15 @@ endr
 	pause 20
 	showemote EMOTE_SHOCK, KURTSHOUSE_KURT1, 30
 	readvar VAR_FACING
-	ifequal UP, .GSBallRunAround
+	ifequalfwd UP, .GSBallRunAround
 	turnobject PLAYER, DOWN
-	playsound SFX_SKY_SOAR
+	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtExitHouseMovement
-	sjump .KurtHasLeftTheBuilding
+	sjumpfwd .KurtHasLeftTheBuilding
 
 .GSBallRunAround:
 	turnobject PLAYER, DOWN
-	playsound SFX_SKY_SOAR
+	playsound SFX_FLY
 	applymovement KURTSHOUSE_KURT1, KurtsHouseKurtGoAroundPlayerThenExitHouseMovement
 .KurtHasLeftTheBuilding:
 	playsound SFX_EXIT_BUILDING
@@ -292,17 +314,17 @@ endr
 	clearevent EVENT_AZALEA_TOWN_KURT
 	waitsfx
 	special RestartMapMusic
-	setmapscene AZALEA_TOWN, $2
+	setmapscene AZALEA_TOWN, SCENE_AZALEATOWN_CELEBI_EVENT
 	end
 
 Kurt2:
 	faceplayer
 	opentext
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
-	iftrue KurtScript_ImCheckingItNow
+	iftruefwd KurtScript_ImCheckingItNow
 KurtMakingBallsScript:
 	checkevent EVENT_BUGGING_KURT_TOO_MUCH
-	iffalse Script_FirstTimeBuggingKurt
+	iffalsefwd Script_FirstTimeBuggingKurt
 	writetext KurtsHouseKurtDontBotherMeText
 	waitbutton
 	closetext
@@ -326,7 +348,7 @@ KurtScript_ImCheckingItNow:
 KurtsGranddaughter1:
 	faceplayer
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	iftrue KurtsGranddaughter2Subscript
+	iftruefwd KurtsGranddaughter2Subscript
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue_jumptext KurtsGranddaughterFunText
 	checkevent EVENT_FOREST_IS_RESTLESS
@@ -337,14 +359,21 @@ KurtsGranddaughter1:
 	iftrue_jumptext KurtsGranddaughterSlowpokeBackText
 	checkevent EVENT_AZALEA_TOWN_SLOWPOKETAIL_ROCKET
 	iftrue_jumptext KurtsGranddaughterLonelyText
-	jumptext KurtsGranddaughterSlowpokeGoneText
+	jumpthistext
+
+	text "The Slowpoke are"
+	line "gone… Were they"
+
+	para "taken away by bad"
+	line "people?"
+	done
 
 KurtsGranddaughter2:
 	faceplayer
 KurtsGranddaughter2Subscript:
 	opentext
 	checkevent EVENT_GAVE_GS_BALL_TO_KURT
-	iftrue .GSBall
+	iftruefwd .GSBall
 	writetext KurtsGranddaughterHelpText
 	waitbutton
 	closetext
@@ -579,13 +608,6 @@ KurtsHouseKurtThisBallStartedToShakeText:
 	line "something to this!"
 	done
 
-KurtsGranddaughterSlowpokeGoneText:
-	text "The Slowpoke are"
-	line "gone… Were they"
-
-	para "taken away by bad"
-	line "people?"
-	done
 
 KurtsGranddaughterLonelyText:
 	text "Grandpa's gone…"

@@ -1,28 +1,28 @@
 PlaySlowCry:
+; used in scripts
+	xor a
+	ld [wStereoPanningMask], a ; no stereo
 	ldh a, [hScriptVar]
-PlaySlowCryA:
-	call LoadCryHeader
+	ld c, a
+	ldh a, [hScriptVar+1]
+	ld b, a
+PlaySlowCryBC:
+; can be used in stereo (e.g. battle engine)
+	call LoadCry
 	ret c
-
-	ld hl, wCryPitch
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld bc, -$140
-	add hl, bc
-	ld a, l
-	ld [wCryPitch], a
-	ld a, h
-	ld [wCryPitch + 1], a
+	; cry length *= 1.5
 	ld hl, wCryLength
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld bc, $60
+	ld b, h
+	ld c, l
+	srl b
+	rr c
 	add hl, bc
 	ld a, l
 	ld [wCryLength], a
 	ld a, h
 	ld [wCryLength + 1], a
-	farcall _PlayCryHeader
+	farcall _PlayCry
 	jmp WaitSFX

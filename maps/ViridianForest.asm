@@ -9,9 +9,6 @@ ViridianForest_MapScriptHeader:
 	warp_event 19, 47, VIRIDIAN_FOREST_VIRIDIAN_GATE, 2
 
 	def_coord_events
-	coord_event 18, 46, 0, ViridianForest_MeetJessieJames
-	coord_event 19, 46, 0, ViridianForest_MeetJessieJames
-	coord_event 3, 7, 1, ViridianForest_BattleJessieJames
 
 	def_bg_events
 	bg_event  4,  7, BGEVENT_JUMPTEXT, ViridianForestSignText1
@@ -22,234 +19,21 @@ ViridianForest_MapScriptHeader:
 	bg_event 20, 44, BGEVENT_JUMPTEXT, ViridianForestSignText6
 	bg_event 32, 44, BGEVENT_ITEM + MAX_ETHER, EVENT_VIRIDIAN_FOREST_HIDDEN_MAX_ETHER
 	bg_event 18, 43, BGEVENT_ITEM + FULL_HEAL, EVENT_VIRIDIAN_FOREST_HIDDEN_FULL_HEAL
+	bg_event  4, 43, BGEVENT_ITEM + MULCH, EVENT_VIRIDIAN_FOREST_HIDDEN_MULCH
 	bg_event 30,  9, BGEVENT_ITEM + BIG_MUSHROOM, EVENT_VIRIDIAN_FOREST_HIDDEN_BIG_MUSHROOM
 	bg_event  3, 14, BGEVENT_ITEM + LEAF_STONE, EVENT_VIRIDIAN_FOREST_HIDDEN_LEAF_STONE
 
 	def_object_events
-	object_event 18, 44, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJessieText, EVENT_MET_JESSIE_JAMES
-	object_event 19, 44, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJamesText, EVENT_MET_JESSIE_JAMES
-	object_event 12, 4, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJamesText, EVENT_HIDE_VIRIDIAN_FOREST_JESSIE
-	object_event 19, 4, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJessieText, EVENT_HIDE_VIRIDIAN_FOREST_JAMES
-	object_event 4, 43, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT,  0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, trade, NPC_TRADE_JOANA, -1 ; Instead of battling her like in Yellow/LGPE, we trade.
-	object_event 16, 18, SPRITE_YELLOW, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestYellowText, -1
-	object_event 29, 42, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerBug_maniacDane, -1
-	object_event 33, 35, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBug_maniacDion, -1
-	object_event 32, 21, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBug_maniacStacey, -1
-	object_event 31,  4, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBug_maniacEllis, -1
-	object_event  5, 24, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBug_maniacAbner, -1
-
-	object_const_def
-	const VFOREST_JAMES
-	const VFOREST_JESSIE
-	const VFOREST_JAMES_2
-	const VFOREST_JESSIE_2
-
-ViridianForest_MeetJessieJames:
-	showtext Text_JessieJames1
-	showemote EMOTE_WAIT, VFOREST_JESSIE, 15 ; The new emote's color palette is off...
-	turnobject VFOREST_JESSIE, LEFT
-	showtext Text_JessieJames2
-	showemote EMOTE_SHOCK, VFOREST_JESSIE, 15
-	turnobject VFOREST_JESSIE, DOWN
-	showtext Text_JessieSeesPlayer
-	turnobject VFOREST_JAMES, DOWN
-	showemote EMOTE_SHOCK, VFOREST_JAMES, 15
-	showtext Text_JessieSeesPlayer2
-	turnobject VFOREST_JAMES, RIGHT
-	turnobject VFOREST_JESSIE, LEFT
-	showtext Text_JamesAsksForMeowth
-	showemote EMOTE_WAIT, VFOREST_JESSIE, 15
-	applymovement VFOREST_JESSIE, Movement_JessieJamesApproach
-	applymovement VFOREST_JAMES, Movement_JessieJamesApproach
-	showtext Text_JessieDemandsPlayer
-	showtext Text_JamesBoasts
-	turnobject VFOREST_JAMES, RIGHT
-	turnobject VFOREST_JESSIE, LEFT
-	showtext Text_JessieJamesLaugh
-	applymovement VFOREST_JESSIE, Movement_JessieLeaves
-	disappear VFOREST_JESSIE
-	turnobject VFOREST_JAMES, DOWN
-	showtext Text_JamesWarnsPlayer
-	applymovement VFOREST_JAMES, Movement_JamesLeaves
-	disappear VFOREST_JAMES
-	appear VFOREST_JESSIE_2
-	appear VFOREST_JAMES_2
-	setscene $1
-	end
-
-Text_JessieJames1:
-	text "???: Looks like"
-	line "there's nothing"
-	cont "in here."
-	done
-
-Text_JessieJames2:
-	text "???: Then let's"
-	line "just search a bit"
-	cont "farther in."
-	done
-
-Text_JessieSeesPlayer:
-	text "???: Hey! What are"
-	line "you doing there?"
-	done
-
-Text_JessieSeesPlayer2:
-	text "???: You were"
-	line "eavesdropping,"
-	cont "weren't you?"
-	done
-
-Text_JamesAsksForMeowth:
-	text "???: Why didn't we"
-	line "have Meowth here"
-	cont "keeping watch"
-	cont "for us?"
-	done
-
-Text_JessieDemandsPlayer:
-	text "???: We know there"
-	line "are rare Bulbasaur"
-	cont "hiding within"
-	cont "Viridian Forest!"
-
-	para "If you've found"
-	line "any, you better"
-	cont "hand 'em over"
-	cont "to us, twerp!"
-	done
-
-Text_JamesBoasts:
-	text "???: That's right!"
-	line "If anyone's going"
-	cont "to have the most"
-	cont "powerful #mon,"
-	cont "it's us!"
-	done
-
-Text_JessieJamesLaugh:
-	text "???: Wahahaha!"
-	done
-
-Text_JamesWarnsPlayer:
-	text "???: And don't"
-	line "even think about"
-	cont "following us!"
-	done
-
-Movement_JessieJamesApproach:
-	step_down
-	step_end
-
-Movement_JamesLeaves:
-	step_right
-Movement_JessieLeaves:
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_right
-	step_end
-
-ViridianForest_BattleJessieJames:
-	playmusic MUSIC_JESSIE_JAMES_ENCOUNTER
-	pause 15
-	opentext
-	writetext JessieJamesHoldItText
-	waitbutton
-	closetext
-	showemote EMOTE_SHOCK, PLAYER, 15
-	disappear VFOREST_JAMES_2
-	disappear VFOREST_JESSIE_2
-	moveobject VFOREST_JAMES_2, 3, 12
-	moveobject VFOREST_JESSIE_2, 4, 12
-	appear VFOREST_JAMES_2
-	appear VFOREST_JESSIE_2
-	turnobject PLAYER, DOWN
-	applymovement VFOREST_JAMES_2, Movement_RocketsRunIn
-	applymovement VFOREST_JESSIE_2, Movement_RocketsRunIn
-	turnobject VFOREST_JAMES_2, RIGHT
-	showtext JamesRocketText
-	turnobject VFOREST_JESSIE_2, LEFT
-	showtext JessieRocketText
-	turnobject VFOREST_JAMES_2, UP
-	turnobject VFOREST_JESSIE_2, UP
-	showtext JessieJamesRocketText
-	winlosstext JessieJamesWinLossText, 0
-	loadtrainer JESSIE_JAMES, 1
-	startbattle
-	dontrestartmapmusic
-	reloadmapafterbattle
-	showtext JessieJamesAfterDefeat
-	disappear VFOREST_JAMES_2
-	disappear VFOREST_JESSIE_2
-	setscene $2
-	playmapmusic
-	end
-
-Movement_RocketsRunIn:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_end
-
-JessieJamesHoldItText:
-	text "???: HOLD IT RIGHT"
-	line "THERE, TWERP!"
-	done
-
-JamesRocketText:
-	text "???: Ready,"
-	line "Jessie?"
-	done
-
-JessieRocketText:
-	text "Jessie: Ready,"
-	line "James!"
-	done
-
-JessieJamesRocketText:
-	text "Jessie: Prepare"
-	line "for trouble!"
-
-	para "James: And make"
-	line "it double!"
-
-	para "Jessie: We found"
-	line "Bulbasaur with a"
-	cont "trusty Lure!"
-
-	para "James: And now we"
-	line "will use it to"
-	cont "win for sure!"
-	done
-
-JessieJamesWinLossText:
-	text "Jessie: Yikes! Our"
-	line "new power wasn't"
-	cont "enough!"
-	done
-
-JessieJamesAfterDefeat:
-	text "James: What do we"
-	line "do now, Jessie?"
-
-	para "Jessie: This"
-	line "doesn't matter."
-	cont "Let's get our new"
-	cont "weapon back to"
-	cont "the boss!"
-
-	para "James: You'd best"
-	line "stay out of our"
-	cont "way, brat!"
-	done
-
+	object_event 29, 42, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerBug_maniacDane, -1
+	object_event 33, 35, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBug_maniacDion, -1
+	object_event 32, 21, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBug_maniacStacey, -1
+	object_event 31,  4, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBug_maniacEllis, -1
+	object_event  5, 24, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBug_maniacAbner, -1
+	itemball_event 14, 31, DIRE_HIT, 1, EVENT_ROUTE_2_DIRE_HIT
+	itemball_event  3, 33, MAX_POTION, 1, EVENT_ROUTE_2_MAX_POTION
 
 GenericTrainerBug_maniacDane:
-	generictrainer BUG_CATCHER, DANE, EVENT_BEAT_BUG_MANIAC_DANE, BugManiacDaneSeenText, BugManiacDaneBeatenText
+	generictrainer BUG_MANIAC, DANE, EVENT_BEAT_BUG_MANIAC_DANE, BugManiacDaneSeenText, BugManiacDaneBeatenText
 
 	text "Pretty impressive!"
 
@@ -259,7 +43,7 @@ GenericTrainerBug_maniacDane:
 	done
 
 GenericTrainerBug_maniacDion:
-	generictrainer BUG_CATCHER, DION, EVENT_BEAT_BUG_MANIAC_DION, BugManiacDionSeenText, BugManiacDionBeatenText
+	generictrainer BUG_MANIAC, DION, EVENT_BEAT_BUG_MANIAC_DION, BugManiacDionSeenText, BugManiacDionBeatenText
 
 	text "Bug-type #mon"
 	line "make all kinds of"
@@ -272,7 +56,7 @@ GenericTrainerBug_maniacDion:
 	done
 
 GenericTrainerBug_maniacStacey:
-	generictrainer BUG_CATCHER, STACEY, EVENT_BEAT_BUG_MANIAC_STACEY, BugManiacStaceySeenText, BugManiacStaceyBeatenText
+	generictrainer BUG_MANIAC, STACEY, EVENT_BEAT_BUG_MANIAC_STACEY, BugManiacStaceySeenText, BugManiacStaceyBeatenText
 
 	text "Has anyone ever"
 	line "told you that from"
@@ -281,7 +65,7 @@ GenericTrainerBug_maniacStacey:
 	done
 
 GenericTrainerBug_maniacEllis:
-	generictrainer BUG_CATCHER, ELLIS, EVENT_BEAT_BUG_MANIAC_ELLIS, BugManiacEllisSeenText, BugManiacEllisBeatenText
+	generictrainer BUG_MANIAC, ELLIS, EVENT_BEAT_BUG_MANIAC_ELLIS, BugManiacEllisSeenText, BugManiacEllisBeatenText
 
 	text "If this is it,"
 	line "then I don't mind"
@@ -289,7 +73,7 @@ GenericTrainerBug_maniacEllis:
 	done
 
 GenericTrainerBug_maniacAbner:
-	generictrainer BUG_CATCHER, ABNER, EVENT_BEAT_BUG_MANIAC_ABNER, BugManiacAbnerSeenText, BugManiacAbnerBeatenText
+	generictrainer BUG_MANIAC, ABNER, EVENT_BEAT_BUG_MANIAC_ABNER, BugManiacAbnerSeenText, BugManiacAbnerBeatenText
 
 	text "Doesn't matter what"
 	line "kind of #mon--"
@@ -409,22 +193,4 @@ ViridianForestSignText6:
 
 	para "When healthy,"
 	line "they may escape!"
-	done
-
-ViridianForestJessieText:
-	text "Beat it, twerp!"
-	line "We're hard at"
-	cont "work over here!"
-	done
-
-ViridianForestJamesText:
-	text "Prepare for"
-	line "trouble! And make"
-	cont "it double!"
-	done
-
-ViridianForestYellowText:
-	text "Hi! My name's"
-	line "Yellow. It's nice"
-	cont "to meet you!"
 	done

@@ -4,7 +4,7 @@ DoBattleTransition:
 	call DelayFrame
 
 	ld de, .TrainerBattlePokeballTile
-	ld hl, vTiles0 tile "<PHONE>"
+	ld hl, vTiles0 tile '<PHONE>'
 	lb bc, BANK(.TrainerBattlePokeballTile), 1
 	call Request2bpp
 
@@ -46,10 +46,10 @@ DoBattleTransition:
 	bit 7, a
 	jr z, .loop
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wBGPals1)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wBGPals1
 if !DEF(MONOCHROME)
@@ -68,12 +68,15 @@ else
 endc
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld a, %11111111
 	ld [wBGP], a
 	call DmgToCgbBGPals
 	call DelayFrame
+
+	ld hl, rIE
+	res B_IE_STAT, [hl]
 
 	xor a
 	ldh [hLCDCPointer], a
@@ -82,9 +85,7 @@ endc
 	ldh [hSCY], a
 
 	ld a, BANK(wEnemyMon)
-	ldh [rSVBK], a
-	ld hl, rIE
-	res LCD_STAT, [hl]
+	ldh [rWBK], a
 
 	pop af
 	ldh [hVBlank], a
@@ -221,10 +222,12 @@ StartTrainerBattle_SetUpBGMap:
 StartTrainerBattle_SetUpForWavyOutro:
 	farcall BattleStart_HideAllSpritesExceptBattleParticipants
 	ld a, BANK(wLYOverrides)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call StartTrainerBattle_NextScene
 
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, LOW(rSCX)
 	ldh [hLCDCPointer], a
 	xor a
@@ -234,11 +237,13 @@ StartTrainerBattle_SetUpForWavyOutro:
 	xor a
 	ld [wBattleTransitionCounter], a
 	ld [wBattleTransitionSineWaveOffset], a
-	ld hl, rIE
-	set LCD_STAT, [hl]
 	ret
 
 StartTrainerBattle_SineWave:
+; Added to reduce speed when Doublepeed is active
+	call DelayFrame
+	call DelayFrame
+;------------------------------------------------
 	ld a, [wBattleTransitionCounter]
 	cp $60
 	jr c, .DoSineWave
@@ -266,9 +271,8 @@ StartTrainerBattle_SineWave:
 	ld [bc], a
 	inc bc
 	pop de
-	ld a, e
-	add 2
-	ld e, a
+	inc e
+	inc e
 	pop af
 	dec a
 	jr nz, .loop
@@ -277,16 +281,16 @@ StartTrainerBattle_SineWave:
 StartTrainerBattle_SetUpForSpinOutro:
 	farcall BattleStart_HideAllSpritesExceptBattleParticipants
 	ld a, BANK(wLYOverrides)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call StartTrainerBattle_NextScene
 	xor a
 	ld [wBattleTransitionCounter], a
 	ret
 
-spintable_entry: MACRO
+MACRO spintable_entry
 	db \1
 	dw .wedge\2
-	dw \4 * SCREEN_WIDTH + \3 + wAttrMap
+	dw \4 * SCREEN_WIDTH + \3 + wAttrmap
 ENDM
 
 ; quadrants
@@ -389,7 +393,7 @@ endr
 	inc de
 .loop1
 	ld a, [hl]
-	and ~PALETTE_MASK
+	and ~OAM_PALETTE
 	or PAL_BG_TEXT ; black
 	ld [hl], a
 	ld a, [wBattleTransitionSpinQuadrant]
@@ -445,7 +449,7 @@ endr
 StartTrainerBattle_SetUpForRandomScatterOutro:
 	farcall BattleStart_HideAllSpritesExceptBattleParticipants
 	ld a, BANK(wLYOverrides)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call StartTrainerBattle_NextScene
 	ld a, $10
 	ld [wBattleTransitionCounter], a
@@ -454,6 +458,10 @@ StartTrainerBattle_SetUpForRandomScatterOutro:
 	ret
 
 StartTrainerBattle_SpeckleToBlack:
+; Added to reduce speed when Doublepeed is active
+	call DelayFrame
+	call DelayFrame
+;------------------------------------------------
 	ld hl, wBattleTransitionCounter
 	ld a, [hl]
 	and a
@@ -493,7 +501,7 @@ StartTrainerBattle_SpeckleToBlack:
 	jr nc, .x_loop
 	ld c, a
 
-	hlcoord 0, -1, wAttrMap
+	hlcoord 0, -1, wAttrmap
 	ld de, SCREEN_WIDTH
 	inc b
 
@@ -506,11 +514,11 @@ StartTrainerBattle_SpeckleToBlack:
 ; If the tile has already been blacked out,
 ; sample a new tile
 	ld a, [hl]
-	and PALETTE_MASK
+	and OAM_PALETTE
 	cp PAL_BG_TEXT ; black
 	jr z, .y_loop
 	ld a, [hl]
-	and ~PALETTE_MASK
+	and ~OAM_PALETTE
 	or PAL_BG_TEXT ; black
 	ld [hl], a
 	ret
@@ -526,9 +534,9 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	jr z, .got_offset
 	ld a, [wTimeOfDayPal]
 	and %00000011
-	sla a
-	sla a
-	sla a
+	add a
+	add a
+	add a
 .got_offset
 	ldh [hTimeOfDayPalOffset], a
 
@@ -539,16 +547,16 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	; wild battles just need PAL_BG_TEXT to be black, and do flash PAL_BG_GRAY
 	ld a, PALFADE_BG | PALFADE_FLASH
 	ldh [hBattlePalFadeMode], a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5 ; WRAM5 = palettes
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, .black_pals
 	call .timeofdaypal
 	ld de, wBGPals1 palette PAL_BG_TEXT ; black
 	call .copy
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
@@ -561,11 +569,11 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	ldh [hBattlePalFadeMode], a
 
 	; use PAL_BG_RED for the whole flashing screen
-	hlcoord 0, 0, wAttrMap
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	hlcoord 0, 0, wAttrmap
+	ld bc, SCREEN_AREA
 .loop1
 	ld a, [hl]
-	and ~PALETTE_MASK
+	and ~OAM_PALETTE
 	or PAL_BG_RED ; flashing overworld
 	ld [hli], a
 	dec bc
@@ -574,7 +582,11 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	jr nz, .loop1
 
 	ld a, [wOtherTrainerClass]
-	ld hl, .RocketTrainerClasses
+	farcall IsJohtoGymLeader
+	ld de, GymLeaderTransition
+	jr c, .got_transition
+	ld a, [wOtherTrainerClass]
+	ld hl, RocketTrainerClasses
 	call IsInByteArray
 	ld de, RocketTransition
 	jr c, .got_transition
@@ -593,14 +605,14 @@ StartTrainerBattle_LoadPokeBallGraphics:
 ; Loading is done bit by bit
 	and a
 	jr z, .done
-	sla a
+	add a
 	jr nc, .no_load
 
 	; poke ball tile; use PAL_BG_GRAY, bank 0, no flips or priority
-	ld [hl], "<PHONE>"
+	ld [hl], '<PHONE>'
 	push hl
 	push bc
-	ld bc, wAttrMap - wTileMap
+	ld bc, wAttrmap - wTilemap
 	add hl, bc
 	ld [hl], PAL_BG_GRAY ; poke ball
 	pop bc
@@ -639,13 +651,16 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	ld hl, .timepals
 	call .timeofdaypal
 .got_palette
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5 ; WRAM5 = palettes
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call .copypals
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
+	farcall ClearSavedObjPals
+	farcall CheckForUsedObjPals
+	farcall _UpdateSprites
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
@@ -666,10 +681,6 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	ld de, wBGPals1 palette PAL_BG_BROWN
 	call .copy
 	ld de, wBGPals1 palette PAL_BG_ROOF
-	call .copy
-	ld de, wOBPals1 palette PAL_OW_ROCK
-	call .copy
-	ld de, wOBPals1 palette PAL_OW_TREE
 	call .copy
 	ld hl, .black_pals
 	call .timeofdaypal
@@ -701,136 +712,80 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	pop bc
 	ret
 
-.RocketTrainerClasses
-	db GRUNTM
-	db GRUNTF
-	db ROCKET_SCIENTIST
-	db JESSIE_JAMES
-	db PROTON
-	db PETREL
-	db ARCHER
-	db ARIANA
-	db GIOVANNI
-	db -1
-
 .timepals
-if !DEF(MONOCHROME)
-; morn
-	RGB 31, 24, 18
-	RGB 31, 15, 17
-	RGB 31, 05, 05
-	RGB 07, 07, 07
-; day
-	RGB 31, 18, 29
-	RGB 31, 11, 15
-	RGB 31, 05, 05
-	RGB 07, 07, 07
-; nite
-	RGB 15, 09, 22
-	RGB 15, 05, 11
-	RGB 15, 02, 04
-	RGB 00, 00, 00
-; eve
-	RGB 25, 17, 13
-	RGB 25, 08, 11
-	RGB 25, 03, 03
-	RGB 06, 05, 05
-; dark
-	RGB 11, 07, 07
-	RGB 07, 03, 03
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-else
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR
-	MONOCHROME_RGB_FOUR_EVE
-	MONOCHROME_RGB_FOUR_NIGHT
-endc
+INCLUDE "gfx/overworld/trainer_battle.pal"
 
 .armored_mewtwo_pals
-if !DEF(MONOCHROME)
-	RGB 29, 18, 31
-	RGB 21, 11, 31
-	RGB 13, 05, 31
-	RGB 07, 07, 07
-else
-	MONOCHROME_RGB_FOUR
-endc
+INCLUDE "gfx/overworld/mewtwo_battle.pal"
 
 .black_pals
-if !DEF(MONOCHROME)
-; morn
-	RGB 07, 07, 07
-	RGB 07, 07, 07
-	RGB 07, 07, 07
-	RGB 07, 07, 07
-; day
-	RGB 07, 07, 07
-	RGB 07, 07, 07
-	RGB 07, 07, 07
-	RGB 07, 07, 07
-; nite
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-; eve
-	RGB 06, 05, 05
-	RGB 06, 05, 05
-	RGB 06, 05, 05
-	RGB 06, 05, 05
-; dark
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-else
-rept 16
-	RGB_MONOCHROME_BLACK
-endr
-endc
+INCLUDE "gfx/overworld/black.pal"
+
+pusho b.X
 
 PokeBallTransition:
-	db %00000011, %11000000
-	db %00001111, %11110000
-	db %00111100, %00111100
-	db %00110000, %00001100
-	db %01100000, %00000110
-	db %01100011, %11000110
-	db %11000110, %01100011
-	db %11111100, %00111111
-	db %11111100, %00111111
-	db %11000110, %01100011
-	db %01100011, %11000110
-	db %01100000, %00000110
-	db %00110000, %00001100
-	db %00111100, %00111100
-	db %00001111, %11110000
-	db %00000011, %11000000
+	bigdw %......XXXX......
+	bigdw %....XXXXXXXX....
+	bigdw %..XXXX....XXXX..
+	bigdw %..XX........XX..
+	bigdw %.XX..........XX.
+	bigdw %.XX...XXXX...XX.
+	bigdw %XX...XX..XX...XX
+	bigdw %XXXXXX....XXXXXX
+	bigdw %XXXXXX....XXXXXX
+	bigdw %XX...XX..XX...XX
+	bigdw %.XX...XXXX...XX.
+	bigdw %.XX..........XX.
+	bigdw %..XX........XX..
+	bigdw %..XXXX....XXXX..
+	bigdw %....XXXXXXXX....
+	bigdw %......XXXX......
 
 RocketTransition:
-	db %11111111, %11110000
-	db %11111111, %11111100
-	db %11111111, %11111110
-	db %11111111, %11111110
-	db %11111000, %00111111
-	db %11111000, %00011111
-	db %11111000, %00111111
-	db %11111111, %11111110
-	db %11111111, %11111110
-	db %11111111, %11111100
-	db %11111111, %11111000
-	db %11111000, %01111100
-	db %11111000, %01111100
-	db %11111000, %00111110
-	db %11111000, %00011111
-	db %11111000, %00011111
+	bigdw %XXXXXXXXXXXX....
+	bigdw %XXXXXXXXXXXXXX..
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXX.....XXXXXX
+	bigdw %XXXXX......XXXXX
+	bigdw %XXXXX.....XXXXXX
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXXX.
+	bigdw %XXXXXXXXXXXXXX..
+	bigdw %XXXXXXXXXXXXX...
+	bigdw %XXXXX....XXXXX..
+	bigdw %XXXXX....XXXXX..
+	bigdw %XXXXX.....XXXXX.
+	bigdw %XXXXX......XXXXX
+	bigdw %XXXXX......XXXXX
+
+GymLeaderTransition:
+	bigdw %.....XX......XX.
+	bigdw %...XXXXXX.XXXXX.
+	bigdw %..XXX..XXXXXXX..
+	bigdw %.XX......X..XX..
+	bigdw %.XX..XX.X..XX...
+	bigdw %XX..X..X...XX...
+	bigdw %XX..X..X..XX....
+	bigdw %.XXX.XX...XX....
+	bigdw %.XX......XX.....
+	bigdw %..XXX....XX.....
+	bigdw %...XXXX.XX......
+	bigdw %.....XX.XX......
+	bigdw %......XXX.......
+	bigdw %......XXX.......
+	bigdw %......XX........
+	bigdw %......XX........
+
+popo
+
+INCLUDE "data/trainers/team_rocket.asm"
 
 WipeLYOverrides:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, wLYOverrides
 	call .wipe
@@ -838,7 +793,7 @@ WipeLYOverrides:
 	call .wipe
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .wipe
@@ -850,10 +805,10 @@ WipeLYOverrides:
 	jr nz, .loop
 	ret
 
-zoombox: MACRO
+MACRO zoombox
 ; width, height, start y, start x
 	db \1, \2
-	dw \4 * SCREEN_WIDTH + \3 + wAttrMap
+	dw \4 * SCREEN_WIDTH + \3 + wAttrmap
 ENDM
 
 StartTrainerBattle_ZoomToBlack:
@@ -904,7 +859,7 @@ StartTrainerBattle_ZoomToBlack:
 	push hl
 .col
 	ld a, [hl]
-	and ~PALETTE_MASK
+	and ~OAM_PALETTE
 	or PAL_BG_TEXT ; black
 	ld [hli], a
 	dec c

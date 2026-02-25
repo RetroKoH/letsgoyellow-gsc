@@ -1,24 +1,80 @@
-PlaceMenuItemName:
+PlaceMenuKeyItemName:
 ; places a star near the name if registered
 	push hl
 	push de
 	dec de
 	dec de
-	ld a, " "
+	ld a, ' '
 	ld [de], a
 	ld a, [wMenuSelection]
+	push bc
+	and a
+	jr z, .not_registered
+	ld b, a
+	ld hl, wRegisteredItems
+	ld a, [hli]
+	cp b
+	ld c, '▲'
+	jr z, .registered
+	ld a, [hli]
+	cp b
+	ld c, '◀'
+	jr z, .registered
+	ld a, [hli]
+	cp b
+	ld c, '▶'
+	jr z, .registered
+	ld a, [hli]
+	cp b
+	ld c, '▼'
+	jr nz, .not_registered
+.registered
+	push bc
+	push de
+	farcall CheckRegisteredItem
+	pop de
+	pop bc
+	dec a
+	jr nz, .not_unique
+	ld c, '★'
+.not_unique
+	ld a, c
+	ld [de], a
+.not_registered
+	pop bc
 	pop de
 	pop hl
-PlaceMartItemName:
+
+	; Now, handle the item name itself.
 	push de
+	ld de, GetKeyItemName
 	ld a, [wMenuSelection]
-	cp CANCEL ; special case for Cancel in Key Items pocket
-	ld de, ScrollingMenu_CancelString ; found in scrolling_menu.asm
+	and a
+	jr _PlaceMenuItemName
+PlaceMenuItemName:
+	push de
+	ld de, GetItemName
+	ld a, [wMenuSelection]
+	cp CANCEL
+	; fallthrough
+_PlaceMenuItemName:
+	jr z, .cancel
 	ld [wNamedObjectIndex], a
-	call nz, GetItemName
+	call _de_
+	jr .got_string
+.cancel
+	ld de, ScrollingMenu_CancelString ; found in scrolling_menu.asm
+.got_string
 	pop hl
 	rst PlaceString
 	ret
+
+PlaceMenuExpCandyName:
+	push de
+	ld de, GetExpCandyName
+	ld a, [wMenuSelection]
+	cp CANCEL
+	jr _PlaceMenuItemName
 
 PlaceMenuTMHMName:
 	push de
@@ -46,7 +102,7 @@ PlaceMenuItemQuantity:
 _PlaceMenuQuantity:
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
-	ld a, "×"
+	ld a, '×'
 	ld [hli], a
 	ld de, wMenuSelectionQuantity
 	lb bc, 1, 2
@@ -77,16 +133,14 @@ PlaceMoneyDataHeader:
 	jmp PrintNum
 
 MoneyTopRightMenuHeader:
-	db $40 ; flags
-	db 00, 10 ; start coords
-	db 02, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 10, 0, 19, 2
 	dw NULL
 	db 1 ; default option
 
 MoneyBottomLeftMenuHeader:
-	db $40 ; flags
-	db 11, 00 ; start coords
-	db 13, 09 ; end coords
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 11, 9, 13
 	dw NULL
 	db 1 ; default option
 
@@ -178,11 +232,13 @@ StartMenu_PrintBugContestStatus:
 	hlcoord 1, 1
 	ld de, .Caught
 	rst PlaceString
-	ld a, [wContestMon]
+	ld a, [wContestMonSpecies]
 	and a
 	ld de, .None
 	jr z, .no_contest_mon
 	ld [wNamedObjectIndex], a
+	ld a, [wContestMonForm]
+	ld [wNamedObjectIndex+1], a
 	call GetPokemonName
 
 .no_contest_mon

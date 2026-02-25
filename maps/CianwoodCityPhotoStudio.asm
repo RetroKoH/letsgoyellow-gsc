@@ -12,7 +12,7 @@ CianwoodCityPhotoStudio_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPhotoStudioFishingGuruScript, -1
+	object_event  2,  3, SPRITE_FISHING_GURU, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CianwoodPhotoStudioFishingGuruScript, -1
 
 CianwoodPhotoStudioFishingGuruScript:
 	faceplayer
@@ -25,19 +25,20 @@ CianwoodPhotoStudioFishingGuruScript:
 	writetext PhotoStudioWhichMonText
 	promptbutton
 	special Special_CianwoodPhotograph
-	ifequal $0, .NoPicture
-	ifequal $1, .EggPicture
+	ifequalfwd $0, .NoPicture
+	ifequalfwd $1, .EggPicture
 	setflag ENGINE_DAILY_PHOTOGRAPH
 	writetext PhotoStudioHoldStillText
 	waitbutton
 	closetext
 	special FadeOutPalettes
 	special LoadMapPalettes
+	callasm LoadBlindingFlashPalette
 	pause 10
 	playsound SFX_DOUBLE_SLAP
 	waitsfx
 	pause 10
-	special FadeInPalettes
+	special FadeInPalettes_EnableDynNoApply
 	readmem wCurPartySpecies
 	pokepic 0
 	cry 0
@@ -53,10 +54,18 @@ CianwoodPhotoStudioFishingGuruScript:
 	done
 
 .NoPicture:
-	jumpopenedtext PhotoStudioNoPictureText
+	jumpthisopenedtext
+
+	text "Oh, no picture?"
+	line "Come again, OK?"
+	done
 
 .EggPicture:
-	jumpopenedtext PhotoStudioEggPictureText
+	jumpthisopenedtext
+
+	text "An Egg? My talent"
+	line "is worth more…"
+	done
 
 PhotoStudioGreetingText:
 	text "I am Cameron"
@@ -108,12 +117,4 @@ PhotoStudioRefusedText:
 	line "memento…"
 	done
 
-PhotoStudioNoPictureText:
-	text "Oh, no picture?"
-	line "Come again, OK?"
-	done
 
-PhotoStudioEggPictureText:
-	text "An Egg? My talent"
-	line "is worth more…"
-	done

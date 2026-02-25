@@ -1,8 +1,9 @@
-ROUTE43GATE_TOLL EQU 1000
+DEF ROUTE43GATE_TOLL EQU 1000
 
 Route43Gate_MapScriptHeader:
 	def_scene_scripts
-	scene_script Route43GateTrigger0
+	scene_script Route43GateRocketShakedownScene, SCENE_ROUTE43GATE_ROCKET_SHAKEDOWN
+	scene_const SCENE_ROUTE43GATE_NOOP
 
 	def_callbacks
 
@@ -17,24 +18,24 @@ Route43Gate_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  2,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, RocketText_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
-	object_event  7,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, RocketText_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
-	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
+	object_event  2,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, RocketText_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
+	object_event  7,  4, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, RocketText_MakingABundle, EVENT_ROUTE_43_GATE_ROCKETS
+	object_event  0,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OfficerScript_GuardWithSludgeBomb, EVENT_LAKE_OF_RAGE_CIVILIANS
 
 	object_const_def
 	const ROUTE43GATE_ROCKET1
 	const ROUTE43GATE_ROCKET2
 
-Route43GateTrigger0:
+Route43GateRocketShakedownScene:
 	sdefer .RocketTakeover
 	end
 
 .RocketTakeover:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	readvar VAR_FACING
-	ifequal DOWN, RocketScript_Southbound
-	ifequal UP, RocketScript_Northbound
-	setscene $1
+	ifequalfwd DOWN, RocketScript_Southbound
+	ifequalfwd UP, RocketScript_Northbound
+	setscene SCENE_ROUTE43GATE_NOOP
 	end
 
 RocketScript_Southbound:
@@ -47,26 +48,26 @@ RocketScript_Southbound:
 	opentext
 	writetext RocketText_TollFee
 	promptbutton
-	checkmoney $0, ROUTE43GATE_TOLL - 1
-	ifequal $0, RocketScript_TollSouth
-	sjump RocketScript_YoureBrokeSouth
+	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
+	ifequalfwd HAVE_MORE, RocketScript_TollSouth
+	sjumpfwd RocketScript_YoureBrokeSouth
 
 RocketScript_TollSouth:
-	takemoney $0, ROUTE43GATE_TOLL
+	scall RocketScript_TakeToll
 	writetext RocketText_ThankYou
-	sjump RocketScript_ShakeDownSouth
+	sjumpfwd RocketScript_ShakeDownSouth
 
 RocketScript_YoureBrokeSouth:
-	takemoney $0, ROUTE43GATE_TOLL
+	scall RocketScript_TakeToll
 	writetext RocketText_AllYouGot
-	sjump RocketScript_ShakeDownSouth
+	; fallthrough
 
 RocketScript_ShakeDownSouth:
 	promptbutton
 	closetext
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassSouth
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassSouth
-	setscene $1
+	setscene SCENE_ROUTE43GATE_NOOP
 	special RestartMapMusic
 	end
 
@@ -79,27 +80,33 @@ RocketScript_Northbound:
 	opentext
 	writetext RocketText_TollFee
 	promptbutton
-	checkmoney $0, ROUTE43GATE_TOLL - 1
-	ifequal $0, RocketScript_TollNorth
-	sjump RocketScript_YoureBrokeNorth
+	checkmoney YOUR_MONEY, ROUTE43GATE_TOLL - 1
+	ifequalfwd HAVE_MORE, RocketScript_TollNorth
+	sjumpfwd RocketScript_YoureBrokeNorth
 
 RocketScript_TollNorth:
-	takemoney $0, ROUTE43GATE_TOLL
+	scall RocketScript_TakeToll
 	writetext RocketText_ThankYou
-	sjump RocketScript_ShakeDownNorth
+	sjumpfwd RocketScript_ShakeDownNorth
 
 RocketScript_YoureBrokeNorth:
-	takemoney $0, ROUTE43GATE_TOLL
+	scall RocketScript_TakeToll
 	writetext RocketText_AllYouGot
-	sjump RocketScript_ShakeDownNorth
+	; fallthrough
 
 RocketScript_ShakeDownNorth:
 	promptbutton
 	closetext
 	applymovement ROUTE43GATE_ROCKET2, Rocket2Script_LetsYouPassNorth
 	applymovement ROUTE43GATE_ROCKET1, Rocket1Script_LetsYouPassNorth
-	setscene $1
+	setscene SCENE_ROUTE43GATE_NOOP
 	special RestartMapMusic
+	end
+
+RocketScript_TakeToll:
+	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
+	waitsfx
+	playsound SFX_TRANSACTION
 	end
 
 OfficerScript_GuardWithSludgeBomb:

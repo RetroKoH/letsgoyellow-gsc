@@ -161,7 +161,10 @@ DayCare_DepositPokemonText:
 	ld a, DAYCARETEXT_DEPOSIT
 	call PrintDayCareText
 	ld a, [wCurPartySpecies]
-	call PlayCry
+	ld c, a
+	ld a, [wCurForm]
+	ld b, a
+	call PlayMonCry
 	ld a, DAYCARETEXT_COME_BACK_LATER
 	jr PrintDayCareText
 
@@ -218,7 +221,10 @@ DayCare_TakeMoney_PlayCry:
 	ld a, DAYCARETEXT_WITHDRAW
 	call PrintDayCareText
 	ld a, [wCurPartySpecies]
-	call PlayCry
+	ld c, a
+	ld a, [wCurForm]
+	ld b, a
+	call PlayMonCry
 	ld a, DAYCARETEXT_TOO_SOON
 	; fallthrough
 
@@ -390,7 +396,12 @@ Special_DayCareManOutside:
 	text_end
 
 .AskGiveEgg:
+	; if user already bred an egg, use shorter monologue.
+	eventflagcheck EVENT_BRED_AN_EGG
+	ld hl, .IntroAgainText
+	jr nz, .show_question
 	ld hl, .IntroText
+.show_question
 	call PrintText
 	call YesNoBox
 	jr c, .Declined
@@ -409,11 +420,9 @@ Special_DayCareManOutside:
 	farcall CurBoxFullCheck
 	jr z, .box_not_full
 	ld hl, .CurBoxFullText
-	push bc
 	call PrintText
-	pop bc
 .box_not_full
-	farcall GetBoxName
+	farcall GetCurBoxName
 	ld hl, .SentToPCText
 	call PrintText
 .done
@@ -439,6 +448,11 @@ Special_DayCareManOutside:
 .IntroText:
 	; Ah, it's you! We were raising your #MON, and my goodness, were we surprised! Your #MON had an EGG! We don't know how it got there, but your #MON had it. You want it?
 	text_far _FoundAnEggText
+	text_end
+
+.IntroAgainText:
+	; Text you get after you already received your first egg.
+	text_far _FoundAnEggAgainText
 	text_end
 
 .GotEggText:
@@ -473,7 +487,7 @@ Special_DayCareManOutside:
 
 DayCare_GiveEgg:
 ; returns z if mon sent to party, nz if sent to box
-; returns c if no room in party or box 
+; returns c if no room in party or box
 	call DayCare_GenerateEgg
 	ld a, [wTempMonLevel]
 	ld [wCurPartyLevel], a
@@ -481,9 +495,10 @@ DayCare_GiveEgg:
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
 
+	; Recalculates stats and sets other partymon stuff.
 	farcall SetTempPartyMonData
 	farcall AddTempMonToParty
-	ld a, 0
+	ld a, 0 ; no-optimize a = 0
 	jr nc, .done
 	farcall NewStorageBoxPointer
 	jr c, .PartyAndBoxFull
@@ -673,45 +688,81 @@ DayCare_InitBreeding:
 DayCare_GenerateEgg:
 	ld a, [wBreedMon1Species]
 	ld [wCurPartySpecies], a
-	ld a, [wBreedMon1Gender]
-	ld [wTempMonGender], a
 	ld a, $3
 	ld [wMonType], a
+
+	assert !HIGH(DITTO)
+	ld a, [wBreedMon1Form]
+	ld [wTempMonForm], a
+	and EXTSPECIES_MASK
+	jr nz, .first_dittocheck_done
 	ld a, [wBreedMon1Species]
 	cp DITTO
 	ld a, 1
 	jr z, .LoadWhichBreedmonIsTheMother
+.first_dittocheck_done
+	ld a, [wBreedMon2Form]
+	and EXTSPECIES_MASK
+	jr nz, .second_dittocheck_done
 	ld a, [wBreedMon2Species]
-	cp DITTO
-	ld a, 0
+	sub DITTO
 	jr z, .LoadWhichBreedmonIsTheMother
-	farcall GetGender
-	ld a, 0
-	jr z, .LoadWhichBreedmonIsTheMother
-	inc a
-
+.second_dittocheck_done
+	farcall GetGender ; checks wBreedMon1Form, returns 0 for female, 1 for male
 .LoadWhichBreedmonIsTheMother:
 	; load wCurForm for base data check later
 	ld [wBreedMotherOrNonDitto], a
 	and a
-	ld a, [wBreedMon1Form]
-	ld [wCurForm], a
 	ld a, [wBreedMon1Species]
 	jr z, .GotMother
-	ld a, [wBreedMon2Form]
-	ld [wCurForm], a
 	ld a, [wBreedMon2Species]
 
 .GotMother:
-	ld [wCurPartySpecies], a
-	farcall GetBaseEvolution
+	ld c, a
+	ld hl, wBreedMon1Form
+	call .inherit_mother_unless_samespecies ; this should preserve c!
+	and SPECIESFORM_MASK
+	ld d, a
+	push bc
+	farcall CheckInvalidVariants ; conveniently, forms we don't want to pass on are here
+	pop bc
+	ld a, d
+	jr nc, .parent_form_ok
+	assert PLAIN_FORM == 1
+	and EXTSPECIES_MASK
+	inc a ; or PLAIN_FORM
+.parent_form_ok
+	ld b, a
+	push bc
+	call GetSpeciesAndFormIndex
+	ld hl, EggSpeciesMovesPointers
+	add hl, bc
+	add hl, bc
+	pop bc
+	ld a, BANK(EggSpeciesMovesPointers)
+	call GetFarWord
+	ld a, BANK(EggSpeciesMoves)
+	call GetFarWord
+	ld a, l
+	inc a
+	jr nz, .found_preevo
+	ld h, b
+	ld l, c
+.found_preevo
 	ld a, EGG_LEVEL
 	ld [wCurPartyLevel], a
 
-	ld a, [wCurPartySpecies]
+	ld a, h
+	ld [wCurForm], a
+	assert !HIGH(NIDORAN_F) && !HIGH(NIDORAN_M)
+	and EXTSPECIES_MASK
+	ld a, l
+	jr nz, .nidoran_check_done
 	cp NIDORAN_F
-	jr nz, .GotEggSpecies
-
+	jr z, .random_nidoran
+	cp NIDORAN_M
+	jr nz, .nidoran_check_done
+.random_nidoran
 	; random Nidoran offspring
 	call Random
 	cp 1 + 50 percent
@@ -719,7 +770,7 @@ DayCare_GenerateEgg:
 	sbc a
 	and NIDORAN_F - NIDORAN_M
 	add NIDORAN_M
-.GotEggSpecies:
+.nidoran_check_done
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 
@@ -732,15 +783,15 @@ DayCare_GenerateEgg:
 	ld a, [wCurPartySpecies]
 	ld [wTempMonSpecies], a
 
-	; Form inheritance: from the mother or non-Ditto. If both
-	; parents share species, pick at random.
-	; Must assign [wCurForm] before GetBaseData.
-	ld hl, wBreedMon1Form
-	call .inherit_mother_unless_samespecies
-	ld a, [hl]
-	and SPECIESFORM_MASK
+	ld a, [wCurForm]
+	ld b, a
+	and FORM_MASK
+	jr nz, .form_ok
+	ld a, d
+	and FORM_MASK
+	or b
 	ld [wCurForm], a
-
+.form_ok
 	call GetBaseData
 
 	; Set name and item
@@ -753,9 +804,6 @@ DayCare_GenerateEgg:
 	rst CopyBytes
 	xor a
 	ld [wTempMonItem], a
-
-	; Set moves for the egg
-	call InitEggMoves
 
 	; Set OTID to the player
 	ld hl, wTempMonID
@@ -827,19 +875,25 @@ DayCare_GenerateEgg:
 	; hold it)
 	ld b, 3
 	ld a, [wBreedMon1Item]
+	cp ABILITYPATCH
+	jr z, .parent1_abilitypatch
 	cp ABILITY_CAP
 	jr nz, .no_parent1_abilitycap
+.parent1_abilitypatch
 	dec b
 .no_parent1_abilitycap
 	ld a, [wBreedMon2Item]
+	cp ABILITYPATCH
+	jr z, .parent2_abilitypatch
 	cp ABILITY_CAP
 	jr nz, .no_parent2_abilitycap
+.parent2_abilitypatch
 	dec b
 .no_parent2_abilitycap
 	ld a, b
 	cp 3
 	jr z, .no_ha_boost
-	sla a
+	add a
 	call BattleRandomRange
 	and a
 	jr nz, .no_ha_boost
@@ -984,6 +1038,9 @@ DayCare_GenerateEgg:
 	; Mark as an egg (same byte as form)
 	set MON_IS_EGG_F, [hl]
 
+	; Set moves for the egg
+	call InitEggMoves
+
 	; Ball inheritance: from the mother or non-Ditto. If both
 	; parents share species, pick at random.
 	ld hl, wBreedMon1CaughtBall
@@ -1012,9 +1069,9 @@ DayCare_GenerateEgg:
 	add b
 	ld hl, wTempMonHappiness
 	ld [hli], a
+
+	; Clear pokérus status
 	xor a
-	ld [hli], a
-	ld [hli], a
 	ld [hl], a
 	ld a, [wCurPartyLevel]
 	ld [wTempMonLevel], a
@@ -1024,6 +1081,14 @@ DayCare_GenerateEgg:
 	ld a, [wBreedMon1Species]
 	ld b, a
 	ld a, [wBreedMon2Species]
+	cp b
+	ld a, [wBreedMotherOrNonDitto]
+	jr nz, .use_mother
+	ld a, [wBreedMon1ExtSpecies]
+	and EXTSPECIES_MASK
+	ld b, a
+	ld a, [wBreedMon2ExtSpecies]
+	and EXTSPECIES_MASK
 	cp b
 	ld a, [wBreedMotherOrNonDitto]
 	jr nz, .use_mother
@@ -1037,3 +1102,4 @@ DayCare_GenerateEgg:
 
 .String_EGG:
 	rawchar "Egg@"
+

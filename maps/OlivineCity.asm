@@ -1,8 +1,11 @@
 OlivineCity_MapScriptHeader:
 	def_scene_scripts
+	scene_const SCENE_OLIVINECITY_RIVAL_ENCOUNTER
+	scene_const SCENE_OLIVINECITY_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, OlivineCityFlyPoint
+	callback MAPCALLBACK_TILES, OlivineCityLighthouseCallback
 
 	def_warp_events
 	warp_event 13, 17, OLIVINE_POKECENTER_1F, 1
@@ -13,49 +16,56 @@ OlivineCity_MapScriptHeader:
 	warp_event  7, 17, OLIVINE_CAFE, 1
 	warp_event 19, 13, OLIVINE_MART, 2
 	warp_event 33, 19, OLIVINE_LIGHTHOUSE_1F, 1
-	warp_event 19, 31, OLIVINE_PORT_PASSAGE, 1
-	warp_event 20, 31, OLIVINE_PORT_PASSAGE, 2
-	warp_event 57, 30, ROUTE_35_NATIONAL_PARK_GATE, 5
-	warp_event 57, 31, ROUTE_35_NATIONAL_PARK_GATE, 6
+	warp_event 18, 31, OLIVINE_PORT, 1
+	warp_event 19, 31, OLIVINE_PORT, 2
 
 	def_coord_events
-	coord_event 10,  8, 0, OlivineCityRivalGymScript
-	coord_event 33, 23, 0, OlivineCityRivalLighthouseScript
+	coord_event 10,  8, SCENE_OLIVINECITY_RIVAL_ENCOUNTER, OlivineCityRivalGymScript
+	coord_event 33, 23, SCENE_OLIVINECITY_RIVAL_ENCOUNTER, OlivineCityRivalLighthouseScript
 
 	def_bg_events
 	bg_event 17,  7, BGEVENT_JUMPTEXT, OlivineCitySignText
-	bg_event 20, 22, BGEVENT_JUMPTEXT, OlivineCityPortSignText
+	bg_event 20, 27, BGEVENT_JUMPTEXT, OlivineCityPortSignText
 	bg_event  7,  7, BGEVENT_JUMPTEXT, OlivineGymSignText
 	bg_event 34, 20, BGEVENT_JUMPTEXT, OlivineLighthouseSignText
 	bg_event  1, 21, BGEVENT_JUMPTEXT, OlivineCityBattleTowerSignText
-	bg_event 50, 27, BGEVENT_JUMPTEXT, OlivineCityPokeathlonDomeSignText
 	bg_event 10, 17, BGEVENT_JUMPTEXT, OlivineCityCafeSignText
 	bg_event 36, 14, BGEVENT_ITEM + RARE_CANDY, EVENT_OLIVINE_CITY_HIDDEN_RARE_CANDY
-	bg_event 47, 17, BGEVENT_ITEM + BIG_PEARL, EVENT_OLIVINE_CITY_HIDDEN_BIG_PEARL
-	bg_event 49, 29, BGEVENT_ITEM + SOFT_SAND, EVENT_OLIVINE_CITY_HIDDEN_SOFT_SAND
 
 	def_object_events
-	object_event 10,  7, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY
-	object_event 20,  8, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineCityYoungster1Script, -1
-	object_event 26, 22, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor1Text, -1
-	object_event 15, 21, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 1 << EVE, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor2Text, -1
-	object_event 31, 17, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, (1 << MORN) | (1 << DAY), 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityFisherText, -1
-	object_event 31, 17, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, (1 << EVE) | (1 << NITE), 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor3Text, -1
-	object_event 18, 26, SPRITE_MATRON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, (1 << DAY), PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityPokefanFText, -1
-	object_event 21, 27, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, (1 << MORN) | (1 << NITE), PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityPokefanMText, -1
-	object_event 23, 16, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor4Text, -1
-	object_event 23, 17, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor5Text, -1
-	object_event 26, 11, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, (1 << MORN) | (1 << EVE), PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityLass1Text, -1
-	object_event 28, 11, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, (1 << DAY) | (1 << NITE), 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityYoungster2Text, -1
-	object_event  8, 21, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, (1 << MORN) | (1 << DAY) | (1 << EVE), PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityLass2Text, -1
+	object_event 10,  7, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_OLIVINE_CITY
+	object_event 20,  8, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineCityYoungster1Script, -1
+	object_event 21, 25, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, (1 << MORN) | (1 << NITE), PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineCityPokefanMScript, -1
+	object_event 26, 22, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor1Text, -1
+	object_event 15, 21, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, 1 << EVE, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor2Text, -1
+	object_event 31, 17, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, (1 << MORN) | (1 << DAY), 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityFisherText, -1
+	object_event 31, 17, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, (1 << EVE) | (1 << NITE), 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor3Text, -1
+	object_event 22, 25, SPRITE_MATRON, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, (1 << DAY), PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityPokefanFText, -1
+	object_event 23, 16, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor4Text, -1
+	object_event 23, 17, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCitySailor5Text, -1
+	object_event 26, 11, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, (1 << MORN) | (1 << EVE), PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityLass1Text, -1
+	object_event 28, 11, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, (1 << DAY) | (1 << NITE), 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityYoungster2Text, -1
+	object_event  8, 21, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, (1 << MORN) | (1 << DAY) | (1 << EVE), PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, OlivineCityLass2Text, -1
 	smashrock_event 52, 23
 	smashrock_event 55, 26
+	object_event 18, 32, SPRITE_BLANK_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_DONOTHING, 0, DoNothingScript, -1
+	object_event 19, 32, SPRITE_BLANK_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_DONOTHING, 0, DoNothingScript, -1
 
 	object_const_def
 	const OLIVINECITY_OLIVINE_RIVAL
 
 OlivineCityFlyPoint:
 	setflag ENGINE_FLYPOINT_OLIVINE
+	endcallback
+
+OlivineCityLighthouseCallback:
+	checkevent EVENT_JASMINE_RETURNED_TO_GYM
+	iffalsefwd .done
+	checktime 1 << NITE
+	iffalsefwd .done
+	changeblock 32, 10, $92
+	changeblock 34, 10, $93
+.done
 	endcallback
 
 OlivineCityRivalGymScript:
@@ -72,7 +82,7 @@ OlivineCityRivalGymScript:
 	showtext OlivineCityRivalGymText
 	turnobject PLAYER, RIGHT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityMovementData_RivalLeavesGym
-	setscene $1
+	setscene SCENE_OLIVINECITY_NOOP
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	end
@@ -92,7 +102,7 @@ OlivineCityRivalLighthouseScript:
 	applymovement PLAYER, OlivineCityMovementData_ShovePlayerDown2
 	turnobject PLAYER, LEFT
 	applymovement OLIVINECITY_OLIVINE_RIVAL, OlivineCityMovementData_RivalLeavesLighthouse
-	setscene $1
+	setscene SCENE_OLIVINECITY_NOOP
 	disappear OLIVINECITY_OLIVINE_RIVAL
 	special RestartMapMusic
 	end
@@ -106,6 +116,18 @@ OlivineCityYoungster1Script:
 	line "have--it's a #-"
 	cont "gear, right? Wow,"
 	cont "that's cool."
+	done
+
+OlivineCityPokefanMScript:
+	checkevent EVENT_FAST_SHIP_PASSENGERS_FIRST_TRIP
+	iffalse_jumptextfaceplayer OlivineCityPokefanMText
+	jumpthistextfaceplayer
+
+	text "Fast Ship S.S.Aqua"
+	line "sails to Kanto on"
+
+	para "Mondays and Fri-"
+	line "days."
 	done
 
 OlivineCityMovementData_ShovePlayerDown:
@@ -393,12 +415,6 @@ OlivineLighthouseSignText:
 OlivineCityBattleTowerSignText:
 	text "Battle Tower Ahead"
 	line "Opening Now!"
-	done
-
-OlivineCityPokeathlonDomeSignText:
-	text "The #athlon"
-	line "Project Has"
-	cont "Started!"
 	done
 
 OlivineCityCafeSignText:

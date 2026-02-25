@@ -4,7 +4,7 @@ FruitTreeScript::
 	promptbutton
 	readmem wCurFruit
 	callasm CheckFruitTree
-	iffalse PickBerryScript
+	iffalsefwd PickBerryScript
 	farwritetext _NothingHereText
 	promptbutton
 	checkitem MULCH
@@ -23,30 +23,32 @@ FruitTreeScript::
 PickBerryScript:
 	readmem wCurFruit
 	ifless NUM_APRICORNS+1, PickApricornScript
-	getitemname $0, $0
+	getitemname USE_SCRIPT_VAR, STRING_BUFFER_3
 	farwritetext _HeyItsFruitText
 	callasm GetFruitTreeCount
-	ifequal $1, .try_one
-	ifequal $2, .try_two
+	setquantity
+	pluralize wStringBuffer3
+	ifequalfwd $1, .try_one
+	ifequalfwd $2, .try_two
 	readmem wCurFruit
 	giveitem ITEM_FROM_MEM, 3
-	iffalse .try_two
+	iffalsefwd .try_two
 	promptbutton
 	farwritetext _ObtainedThreeFruitText
 	callasm .ShowBerryIcon
-	sjump .continue
+	sjumpfwd .continue
 .try_two
 	readmem wCurFruit
 	giveitem ITEM_FROM_MEM, 2
-	iffalse .try_one
+	iffalsefwd .try_one
 	promptbutton
 	farwritetext _ObtainedTwoFruitText
 	callasm .ShowBerryIcon
-	sjump .continue
+	sjumpfwd .continue
 .try_one
 	readmem wCurFruit
 	giveitem ITEM_FROM_MEM
-	iffalse .packisfull
+	iffalsefwd .packisfull
 	promptbutton
 	farwritetext _ObtainedOneFruitText
 	callasm .ShowBerryIcon
@@ -65,14 +67,12 @@ PickBerryScript:
 	text_end
 
 .ShowBerryIcon:
-	ld a, [wCurFruitTree]
-	push af
 	ld a, [wCurFruit]
-	ld [wItemBallItemID], a
-	call FindItemInBallScript.ShowItemIcon
+	push af
+	call LoadItemIconForOverworld
 	pop af
-	ld [wCurFruitTree], a
-	ret
+	farcall LoadItemIconPaletteFromA
+	jmp PrintOverworldItemIcon
 
 PickApricornScript:
 	checkkeyitem APRICORN_BOX
@@ -81,27 +81,27 @@ PickApricornScript:
 	callasm .GetApricornName
 	farwritetext _HeyItsFruitText
 	callasm GetFruitTreeCount
-	ifequal $1, .try_one
-	ifequal $2, .try_two
+	ifequalfwd $1, .try_one
+	ifequalfwd $2, .try_two
 	readmem wCurFruit
 	giveapricorn ITEM_FROM_MEM, 3
-	iffalse .try_two
+	iffalsefwd .try_two
 	promptbutton
 	farwritetext _ObtainedThreeFruitText
 	callasm .ShowApricornIcon
-	sjump .continue
+	sjumpfwd .continue
 .try_two
 	readmem wCurFruit
 	giveapricorn ITEM_FROM_MEM, 2
-	iffalse .try_one
+	iffalsefwd .try_one
 	promptbutton
 	farwritetext _ObtainedTwoFruitText
 	callasm .ShowApricornIcon
-	sjump .continue
+	sjumpfwd .continue
 .try_one
 	readmem wCurFruit
 	giveapricorn ITEM_FROM_MEM
-	iffalse .packisfull
+	iffalsefwd .packisfull
 	promptbutton
 	farwritetext _ObtainedOneFruitText
 	callasm .ShowApricornIcon
@@ -130,8 +130,11 @@ PickApricornScript:
 
 .ShowApricornIcon:
 	ld a, [wCurFruit]
+	push af
 	call LoadApricornIconForOverworld
-	farcall LoadApricornIconPalette
+	pop af
+	ld bc, ApricornIconPalettes - COLOR_SIZE * 2
+	farcall LoadIconPalette
 	jmp PrintOverworldItemIcon
 
 CheckFruitTree:

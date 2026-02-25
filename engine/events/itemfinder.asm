@@ -7,7 +7,7 @@ ItemFinder:
 	jr .resume
 
 .found_something
-	ld [wBuffer1], a
+	ld [wCurMapScriptBank], a
 	ld hl, .Script_FoundSomething
 
 .resume
@@ -17,7 +17,7 @@ ItemFinder:
 	ret
 
 .ItemfinderEffect:
-	ld a, [wBuffer1]
+	ld a, [wCurMapScriptBank]
 	and $f ; taxicab distance, 0-15
 	inc a ; 1-16
 	cp 9
@@ -38,17 +38,16 @@ ItemFinder:
 	dec c
 	jr nz, .sfx_loop
 	ld d, PLAYER
-	ld a, [wBuffer1]
+	ld a, [wCurMapScriptBank]
 	and $f
 	ldh [hScriptVar], a
-	ld a, [wBuffer1]
+	ld a, [wCurMapScriptBank]
 	rrca
 	rrca
 	ld e, a
-	farjp ApplyPersonFacing
+	farjp ApplyObjectFacing
 
 .Script_FoundSomething:
-	reloadmappart
 	special UpdateTimePals
 	callasm .ItemfinderEffect
 	iffalse_jumpopenedtext .UnderfootText
@@ -64,7 +63,6 @@ ItemFinder:
 	done
 
 .Script_FoundNothingNearby:
-	reloadmappart
 	special UpdateTimePals
 	jumpthisopenedtext
 
@@ -73,7 +71,6 @@ ItemFinder:
 	done
 
 .Script_FoundNothingAtAll:
-	reloadmappart
 	special UpdateTimePals
 	jumpthisopenedtext
 

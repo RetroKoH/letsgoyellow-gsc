@@ -1,8 +1,4 @@
 CanLearnTMHMMove:
-	ld a, [wPutativeTMHMMove]
-	and a
-	jmp z, GetForgottenMoves
-
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData
@@ -12,7 +8,7 @@ CanLearnTMHMMove:
 	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, 0
-	ld hl, TMMoves
+	ld hl, TMHMMoves
 .loop
 	ld a, [hli]
 	and a
@@ -39,7 +35,7 @@ CanLearnTMHMMove:
 GetTMHMMove:
 	ld a, [wTempTMHM]
 	dec a
-	ld hl, TMMoves
+	ld hl, TMHMMoves
 	ld b, 0
 	ld c, a
 	add hl, bc
@@ -47,4 +43,4 @@ GetTMHMMove:
 	ld [wTempTMHM], a
 	ret
 
-INCLUDE "data/moves/tm_tutor_moves.asm"
+INCLUDE "data/moves/tmhm_moves.asm"

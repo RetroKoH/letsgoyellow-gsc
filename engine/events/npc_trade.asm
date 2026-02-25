@@ -27,6 +27,17 @@ NPCTrade::
 	ld a, TRADE_DIALOG_WRONG
 	jr nz, .done
 
+	inc hl
+	ld a, [hl]
+	and ~EXTSPECIES_MASK
+	ld a, [wCurForm]
+	jr nz, .check_form ; if NO_FORM specified, then accept any mon of this species
+	and EXTSPECIES_MASK
+.check_form
+	cp [hl]
+	ld a, TRADE_DIALOG_WRONG
+	jr nz, .done
+
 	ld b, SET_FLAG
 	call TradeFlagAction
 
@@ -77,22 +88,32 @@ Trade_GetDialog:
 	ret
 
 DoNPCTrade:
-	ld e, NPCTRADE_GIVEMON
-	call GetTradeAttribute
-	ld a, [hl]
+	; Don't use NPCTRADE_GIVEMON in case the given mon is of a nonstandard form.
+	ld a, MON_SPECIES
+	call GetPartyParamLocationAndValue
+	ld c, a
 	ld [wPlayerTrademonSpecies], a
+	ld a, MON_FORM
+	call GetPartyParamLocationAndValue
+	ld b, a
+	ld [wPlayerTrademonForm], a
 
 	ld e, NPCTRADE_GETMON
 	call GetTradeAttribute
-	ld a, [hl]
+	ld a, [hli]
 	ld [wOTTrademonSpecies], a
+	ld a, [hl]
+	ld [wOTTrademonForm], a
 
-	ld a, [wPlayerTrademonSpecies]
+	; bc = wPlayerTrademonSpecies+Form
 	ld de, wPlayerTrademonSpeciesName
 	call GetTradeMonName
 	call CopyTradeName
 
 	ld a, [wOTTrademonSpecies]
+	ld c, a
+	ld a, [wOTTrademonForm]
+	ld b, a
 	ld de, wOTTrademonSpeciesName
 	call GetTradeMonName
 	call CopyTradeName
@@ -125,32 +146,14 @@ DoNPCTrade:
 	ld de, wPlayerTrademonPersonality
 	call Trade_CopyTwoBytes
 
-	ld hl, wPartyMon1Species
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call Trade_GetAttributeOfCurrentPartymon
-	ld b, h
-	ld c, l
-	call GetCaughtGender
-	ld [wPlayerTrademonCaughtData], a
-
 	xor a
+	ld [wPlayerTrademonCaughtData], a
 	ld [wOTTrademonCaughtData], a
 
-
-; Set hard-coded level
-	ld e, NPCTRADE_LEVEL
-	call GetTradeAttribute
-	ld a, [hl]
-	cp $FF
-	jr nz, .gotLevel
-
-; Copy level of given mon to received mon.
 	ld hl, wPartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon
 	ld a, [hl]
-
-.gotLevel
 	ld [wCurPartyLevel], a
 	ld a, [wOTTrademonSpecies]
 	ld [wCurPartySpecies], a
@@ -211,10 +214,12 @@ DoNPCTrade:
 	ld hl, wOTTrademonDVs
 	call Trade_CopyThreeBytes
 
+	; NPCTRADE_PERSONALITY only has the first personality byte.
+	; The second (form+extspecies) is part of the species word.
 	ld e, NPCTRADE_PERSONALITY
 	call GetTradeAttribute
-	ld de, wOTTrademonPersonality
-	call Trade_CopyTwoBytes
+	ld a, [hl]
+	ld [wOTTrademonPersonality], a
 
 	ld hl, wPartyMon1Personality
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -252,23 +257,19 @@ DoNPCTrade:
 	ld a, [wPartyCount]
 	dec a
 	ld [wCurPartyMon], a
-	farcall ComputeNPCTrademonStats
+	farcall ComputeNPCTrademonStatsAndEggSteps
 	pop af
 	ld [wCurPartyMon], a
 	jmp PopAFBCDEHL
 
 GetTradeAttribute:
-	ld d, 0
-	push de
-	ld a, [wJumptableIndex]
-	and $f
-	swap a
-	ld e, a
-	ld d, 0
+	push bc
 	ld hl, NPCTrades
-	add hl, de
-	add hl, de
-	pop de
+	ld a, [wJumptableIndex]
+	ld bc, NPCTRADE_STRUCT_LENGTH
+	rst AddNTimes
+	pop bc
+	ld d, a ; 0 after AddNTimes
 	add hl, de
 	ret
 
@@ -287,7 +288,10 @@ Trade_GetAttributeOfLastPartymon:
 
 GetTradeMonName:
 	push de
-	ld [wNamedObjectIndex], a
+	ld hl, wNamedObjectIndex
+	ld a, c
+	ld [hli], a
+	ld [hl], b
 	call GetBasePokemonName
 	ld hl, wStringBuffer1
 	pop de
@@ -340,7 +344,9 @@ Trade_CopyThreeBytes:
 GetTradeMonNames:
 	ld e, NPCTRADE_GETMON
 	call GetTradeAttribute
-	ld a, [hl]
+	ld a, [hli]
+	ld c, a
+	ld b, [hl]
 	call GetTradeMonName
 
 	ld de, wStringBuffer2
@@ -348,7 +354,9 @@ GetTradeMonNames:
 
 	ld e, NPCTRADE_GIVEMON
 	call GetTradeAttribute
-	ld a, [hl]
+	ld a, [hli]
+	ld c, a
+	ld b, [hl]
 	call GetTradeMonName
 
 	ld de, wMonOrItemNameBuffer
@@ -357,18 +365,10 @@ GetTradeMonNames:
 	ld hl, wStringBuffer1
 .loop
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr nz, .loop
 
 	ld [hl], a ; "@"
-	ret
-
-GetCaughtGender:
-	ld hl, MON_CAUGHTGENDER
-	add hl, bc
-	ld a, [hl]
-	and CAUGHT_GENDER_MASK
-	rla
 	ret
 
 INCLUDE "data/events/npc_trades.asm"
@@ -429,7 +429,7 @@ TradedForText:
 	; traded givemon for getmon
 	text_far Text_NPCTraded
 	text_asm
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	ld hl, .done

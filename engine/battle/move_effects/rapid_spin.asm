@@ -16,14 +16,25 @@ BattleCommand_clearhazards:
 	ld de, wEnemyWrapCount
 .got_screens_wrap
 	push de
-	bit HAZARDS_STEALTH_ROCK, [hl]
+	ld a, [hl]
+	and HAZARDS_SPIKES
 	jr z, .no_spikes
-	res HAZARDS_STEALTH_ROCK, [hl]
+	cpl
+	and [hl]
+	ld [hl], a
 	push hl
-	ld hl, BlewStealthRocksText
+	ld hl, BlewSpikesText
 	call StdBattleTextbox
 	pop hl
 .no_spikes
+	ld a, [hl]
+	and HAZARDS_TOXIC_SPIKES
+	jr z, .no_toxic_spikes
+	xor a
+	ld [hl], a
+	ld hl, BlewToxicSpikesText
+	call StdBattleTextbox
+.no_toxic_spikes
 	pop de
 	ld a, [de]
 	and a

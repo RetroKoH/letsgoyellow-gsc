@@ -26,9 +26,9 @@ IvysLab_MapScriptHeader:
 	bg_event  9,  7, BGEVENT_JUMPSTD, difficultbookshelf
 
 	def_object_events
-	object_event  4,  3, SPRITE_IVY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfIvyScript, -1
-	object_event  5,  3, SPRITE_MON_ICON, SPRITEMOVEDATA_POKEMON, 0, NIDORINO, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, IvysLabNidorinoScript, -1
-	object_event  2,  9, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, IvysLabHopeScript, -1
+	object_event  4,  3, SPRITE_IVY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ProfIvyScript, -1
+	object_event  5,  3, SPRITE_MON_ICON, SPRITEMOVEDATA_POKEMON, 0, NIDORINO, -1, PAL_MON_PURPLE, OBJECTTYPE_SCRIPT, NO_FORM, IvysLabNidorinoScript, -1
+	object_event  2,  9, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, IvysLabHopeScript, -1
 
 	object_const_def
 	const IVYSLAB_IVY
@@ -38,7 +38,7 @@ ProfIvyScript:
 	faceplayer
 	opentext
 	checkevent EVENT_HEALED_NIDORINO
-	iftrue .GetItem
+	iftruefwd .GetItem
 	writetext .RequestText
 	yesorno
 	iffalse_jumpopenedtext .NoBerryText
@@ -46,10 +46,10 @@ ProfIvyScript:
 	iffalse_jumpopenedtext .NoBerryText
 	takeitem LIECHI_BERRY
 	checkitem LIECHI_BERRY
-	iffalse .Return1
+	iffalsefwd .Return1
 	takeitem LIECHI_BERRY
 	checkitem LIECHI_BERRY
-	iffalse .Return2
+	iffalsefwd .Return2
 	takeitem LIECHI_BERRY
 	writetext .OkayText
 	waitbutton
@@ -72,7 +72,7 @@ ProfIvyScript:
 	opentext
 .GetItem
 	checkevent EVENT_GOT_MOON_STONE_FROM_IVY
-	iftrue .GotItem
+	iftruefwd .GotItem
 	writetext .ThanksText
 	promptbutton
 	verbosegiveitem MOON_STONE
@@ -115,7 +115,7 @@ ProfIvyScript:
 	line "<PLAYER>!"
 
 	para "Can I ask you to"
-	line "to do me a favor?"
+	line "do me a favor?"
 
 	para "This Nidorino"
 	line "is sick, and my"
@@ -201,10 +201,10 @@ IvysLabHopeScript:
 
 IvysLabNidorinoScript:
 	checkevent EVENT_HEALED_NIDORINO
-	iftrue .Healed
+	iftruefwd .Healed
 	opentext
 	writetext .WeakCry
-	setval NIDORINO
+	setmonval NIDORINO
 	special PlaySlowCry
 	promptbutton
 	jumpthisopenedtext
@@ -235,7 +235,7 @@ IvysLabHealingMachine:
 	opentext
 	writetext .Text
 	yesorno
-	iftrue .HealParty
+	iftruefwd .HealParty
 	endtext
 
 .HealParty:

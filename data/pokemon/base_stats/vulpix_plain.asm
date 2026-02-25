@@ -1,22 +1,22 @@
 	db  38,  41,  40,  65,  50,  65 ; 299 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
 
 	db FIRE, FIRE ; type
 	db 190 ; catch rate
 	db 63 ; base exp
-	db ALWAYS_ITEM_2 ; item 1
-	db ASPEAR_BERRY ; item 2
-	dn GENDER_F75, 3 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/vulpix_plain/front.dimensions"
+	db ALWAYS_ITEM_2, ASPEAR_BERRY ; held items
+	dn GENDER_F75, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
+
+if DEF(FAITHFUL)
 	abilities_for VULPIX, FLASH_FIRE, FLASH_FIRE, DROUGHT
+else
+	abilities_for VULPIX, FLASH_FIRE, FOREWARN, DROUGHT
+endc
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_GROUND, EGG_GROUND ; egg groups
 
-	ev_yield   0,   0,   0,   1,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 1 Spe
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, REFLECT, DIG, WILL_O_WISP, FACADE, IRON_TAIL, DARK_PULSE, FOUL_PLAY, FLAMETHROWER, SHADOW_BALL, FIRE_BLAST, SUNNY_DAY, ENERGY_BALL
-
-	;tutors WEATHER_BALL, HEX, FLAME_CHARGE, ZEN_HEADBUTT
+	; tm/hm learnset
+	tmhm CURSE, ROAR, TOXIC, HIDDEN_POWER, SUNNY_DAY, PROTECT, SAFEGUARD, IRON_TAIL, RETURN, DIG, SHADOW_BALL, DOUBLE_TEAM, FLAMETHROWER, FIRE_BLAST, SWIFT, SUBSTITUTE, FACADE, FLAME_CHARGE, REST, ATTRACT, THIEF, ENERGY_BALL, DARK_PULSE, WILL_O_WISP, AGILITY, BATON_PASS, BODY_SLAM, CHARM, DOUBLE_EDGE, ENDURE, HEADBUTT, SLEEP_TALK, SWAGGER, ZEN_HEADBUTT
 	; end

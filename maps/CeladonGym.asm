@@ -14,24 +14,24 @@ CeladonGym_MapScriptHeader:
 	bg_event  6, 15, BGEVENT_READ, CeladonGymStatue
 
 	def_object_events
-	object_event  5,  3, SPRITE_ERIKA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonGymErikaScript, -1
-	object_event  7,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerLassMichelle, -1
-	object_event  2,  8, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerPicnickerTanya, -1
-	object_event  3,  5, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerBeautyJulia, -1
-	object_event  6,  5, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerAroma_ladyDahlia, -1
-	object_event  4, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsJoandzoe1, -1
-	object_event  5, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsJoandzoe2, -1
+	object_event  5,  3, SPRITE_ERIKA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonGymErikaScript, -1
+	object_event  7,  8, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerLassMichelle, -1
+	object_event  2,  8, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerPicnickerTanya, -1
+	object_event  3,  5, SPRITE_BEAUTY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerBeautyJulia, -1
+	object_event  6,  5, SPRITE_AROMA_LADY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerAroma_ladyDahlia, -1
+	object_event  4, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsJoandzoe1, -1
+	object_event  5, 10, SPRITE_TWIN, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerTwinsJoandzoe2, -1
 
 CeladonGymErikaScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_RAINBOWBADGE
-	iftrue .FightDone
+	iftruefwd .FightDone
 	writetext ErikaBeforeBattleText
 	waitbutton
 	closetext
 	winlosstext ErikaBeatenText, 0
-	loadgymleader ERIKA
+	loadtrainer ERIKA, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_ERIKA
@@ -41,33 +41,29 @@ CeladonGymErikaScript:
 	setevent EVENT_BEAT_AROMA_LADY_DAHLIA
 	setevent EVENT_BEAT_TWINS_JO_AND_ZOE
 	opentext
-	writetext PlayerReceivedRainbowBadgeText
-	playsound SFX_GET_BADGE
-	waitsfx
-	setflag ENGINE_RAINBOWBADGE
-	readvar VAR_BADGES
-	ifequal 9, .FirstBadge
-	ifequal 10, .SecondBadge
-	ifequal 12, .LyrasEgg
-	sjump .FightDone
-.FirstBadge:
-	specialphonecall SPECIALCALL_FIRSTBADGE
-	sjump .FightDone
-.SecondBadge:
-	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	iftrue .FightDone
-	specialphonecall SPECIALCALL_SECONDBADGE
-	sjump .FightDone
-.LyrasEgg:
-	specialphonecall SPECIALCALL_LYRASEGG
+	givebadge RAINBOWBADGE, KANTO_REGION
+	callstd kantopostgymevents
 .FightDone:
 	checkevent EVENT_GOT_TM19_GIGA_DRAIN
 	iftrue_jumpopenedtext ErikaAfterBattleText
 	writetext ErikaExplainTMText
 	promptbutton
-	verbosegivetmhm TM_MEGA_DRAIN
+	verbosegivetmhm TM_GIGA_DRAIN
 	setevent EVENT_GOT_TM19_GIGA_DRAIN
-	jumpopenedtext ErikaOutroText
+	jumpthisopenedtext
+
+	text "It is Giga Drain."
+
+	para "It is a wonderful"
+	line "move that drains"
+
+	para "half the damage it"
+	line "inflicts to heal"
+	cont "your #mon."
+
+	para "Please use it if"
+	line "it pleases you…"
+	done
 
 GenericTrainerLassMichelle:
 	generictrainer LASS, MICHELLE, EVENT_BEAT_LASS_MICHELLE, LassMichelleSeenText, LassMichelleBeatenText
@@ -122,8 +118,12 @@ GenericTrainerTwinsJoandzoe2:
 	done
 
 CeladonGymStatue:
-	gettrainername ERIKA, 1, $1
-	jumpstd gymstatue
+	gettrainername ERIKA, 1, STRING_BUFFER_4
+	checkflag ENGINE_RAINBOWBADGE
+	iftruefwd .Beaten
+	jumpstd gymstatue1
+.Beaten:
+	jumpstd gymstatue2
 
 ErikaBeforeBattleText:
 	text "Erika: Hello…"
@@ -164,11 +164,6 @@ ErikaBeatenText:
 	line "the Rainbow Badge…"
 	done
 
-PlayerReceivedRainbowBadgeText:
-	text "<PLAYER> received"
-	line "the Rainbow Badge."
-	done
-
 ErikaExplainTMText:
 	text "Erika: That was a"
 	line "delightful match."
@@ -178,19 +173,6 @@ ErikaExplainTMText:
 	cont "to have this TM."
 	done
 
-ErikaOutroText:
-	text "It is Giga Drain."
-
-	para "It is a wonderful"
-	line "move that drains"
-
-	para "half the damage it"
-	line "inflicts to heal"
-	cont "your #mon."
-
-	para "Please use it if"
-	line "it pleases you…"
-	done
 
 ErikaAfterBattleText:
 	text "Erika: Losing"

@@ -1,5 +1,5 @@
 SongOrigins:
-	list_start SongOrigins
+	list_start
 	li "R/B"
 	li "Y"
 	li "G/S"
@@ -13,6 +13,7 @@ SongOrigins:
 	li "X/Y"
 	li "OR/AS"
 	li "S/M"
+	li "Sw/Sh"
 	li "Stadium"
 	li "Go"
 	li "M02"

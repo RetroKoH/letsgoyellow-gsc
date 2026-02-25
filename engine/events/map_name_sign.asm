@@ -1,15 +1,14 @@
-POPUP_MAP_NAME_START  EQU $e0
-POPUP_MAP_NAME_SIZE   EQU 18
-POPUP_MAP_FRAME_START EQU $f3
-POPUP_MAP_FRAME_SIZE  EQU 8
-POPUP_MAP_FRAME_SPACE EQU $fb
+DEF POPUP_MAP_NAME_START  EQU $e0
+DEF POPUP_MAP_NAME_SIZE   EQU 18
+DEF POPUP_MAP_FRAME_START EQU $f3
+DEF POPUP_MAP_FRAME_SPACE EQU $fb
 
 ; wLandmarkSignTimer
-MAPSIGNSTAGE_1_SLIDEOLD EQU $74
-MAPSIGNSTAGE_2_LOADGFX  EQU $68
-MAPSIGNSTAGE_3_SLIDEIN  EQU $65
-MAPSIGNSTAGE_4_VISIBLE  EQU $59
-MAPSIGNSTAGE_5_SLIDEOUT EQU $0c
+DEF MAPSIGNSTAGE_1_SLIDEOLD EQU $74
+DEF MAPSIGNSTAGE_2_LOADGFX  EQU $68
+DEF MAPSIGNSTAGE_3_SLIDEIN  EQU $65
+DEF MAPSIGNSTAGE_4_VISIBLE  EQU $59
+DEF MAPSIGNSTAGE_5_SLIDEOUT EQU $0c
 
 InitMapNameSign::
 	ld a, [wMapGroup]
@@ -100,6 +99,8 @@ InitMapNameSign::
 	ld a, SCREEN_HEIGHT_PX
 	ldh [rWY], a
 	ldh [hWY], a
+	ld hl, rIE
+	res B_IE_STAT, [hl]
 	xor a
 	ldh [hLCDCPointer], a
 	ret
@@ -122,11 +123,11 @@ InitMapNameSign::
 	ret z
 	cp LAV_RADIO_TOWER
 	ret z
-	cp UNDERGROUND
+	cp UNDERGROUND_PATH
 	ret z
 	cp POWER_PLANT
 	ret z
-	cp POKEMON_MANSION
+	cp SOUL_HOUSE
 	ret z
 	cp CINNABAR_LAB
 	ret z
@@ -192,24 +193,39 @@ PlaceMapNameSign::
 .stage_5_sliding_out
 	add a
 	cpl
-	add SCREEN_HEIGHT_PX + TILE_WIDTH + 1 ; a = SCREEN_HEIGHT_PX + TILE_WIDTH - a
+	add SCREEN_HEIGHT_PX + 1 ; a = SCREEN_HEIGHT_PX - a
 .got_value
 	ldh [rWY], a
 	ldh [hWY], a
 	sub SCREEN_HEIGHT_PX
 	ret nz
+	ld hl, rIE
+	res B_IE_STAT, [hl]
 	ldh [hLCDCPointer], a
+	ld hl, wWeatherFlags
+	res OW_WEATHER_LIGHTNING_DISABLED_F, [hl]
 	ret
 
 LoadMapNameSignGFX:
+	ld hl, wWeatherFlags
+	set OW_WEATHER_LIGHTNING_DISABLED_F, [hl]
 	; load opaque space
 	ld hl, vTiles0 tile POPUP_MAP_FRAME_SPACE
 	call GetOpaque1bppSpaceTile
 	; load sign frame
-	ld hl, vTiles0 tile POPUP_MAP_FRAME_START
-	ld de, MapEntryFrameGFX
-	lb bc, BANK(MapEntryFrameGFX), POPUP_MAP_FRAME_SIZE
-	call Get2bpp
+	ld a, [wSign]
+	add a
+	add LOW(Signs)
+	ld l, a
+	adc HIGH(Signs)
+	sub l
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, vTiles0 tile POPUP_MAP_FRAME_START
+	lb bc, BANK("Map Name Sign Graphics"), 8
+	call DecompressRequest2bpp
 	; clear landmark name area
 	ld hl, vTiles0 tile POPUP_MAP_NAME_START
 	ld e, POPUP_MAP_NAME_SIZE
@@ -219,7 +235,7 @@ LoadMapNameSignGFX:
 	call GetOpaque1bppSpaceTile
 	pop de
 	pop hl
-	ld bc, LEN_2BPP_TILE
+	ld bc, TILE_SIZE
 	add hl, bc
 	dec e
 	jr nz, .clear_loop
@@ -233,7 +249,7 @@ LoadMapNameSignGFX:
 	ld hl, wStringBuffer1
 .length_loop
 	ld a, [hli]
-	cp "@"
+	cp '@'
 	jr z, .got_length
 	inc c
 	jr .length_loop
@@ -257,14 +273,32 @@ LoadMapNameSignGFX:
 .loop
 	; a = tile offset into font graphic
 	ld a, [hli]
-	cp "@"
-	ret z
+	cp '@'
+	jr nz, .continue
+
+	; copy sign palette for PAL_BG_TEXT
+	ld hl, SignPals
+	ld bc, 1 palettes
+	ld a, [wSign]
+	rst AddNTimes ; preserves bc
+	ld de, wBGPals1 palette PAL_BG_TEXT
+	call FarCopyColorWRAM
+	ld hl, wBGPals1 palette PAL_BG_TEXT
+	ld de, wBGPals2 palette PAL_BG_TEXT
+	ld bc, 1 palettes
+	call FarCopyColorWRAM
+
+	ld a, TRUE
+	ldh [hCGBPalUpdate], a
+	ret
+
+.continue
 	; save position in landmark name
 	push hl
 	; spaces are unique
-	cp "¯"
+	cp '¯'
 	jr z, .space
-	cp " "
+	cp ' '
 	jr nz, .not_space
 .space
 	ld hl, TextboxSpaceGFX
@@ -294,7 +328,7 @@ LoadMapNameSignGFX:
 	call GetOpaque1bppFontTile
 	pop hl
 	; increment position in vram
-	ld bc, LEN_2BPP_TILE
+	ld bc, TILE_SIZE
 	add hl, bc
 	; de = position in vram
 	ld d, h
@@ -303,29 +337,31 @@ LoadMapNameSignGFX:
 	pop hl
 	jr .loop
 
+INCLUDE "data/maps/map_name_signs.asm"
+
 InitMapNameFrame:
 ; InitMapSignAttrMap
 	hlcoord 0, 0
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	; top row
-	ld a, PRIORITY | PAL_BG_TEXT
+	ld a, OAM_PRIO | PAL_BG_TEXT
 	ld bc, SCREEN_WIDTH - 1
 	rst ByteFill
-	or X_FLIP
+	or OAM_XFLIP
 	ld [hli], a
 	; middle row
-	and $ff - X_FLIP
+	and ~OAM_XFLIP
 	ld [hli], a
 	ld bc, SCREEN_WIDTH - 2
 	rst ByteFill
-	or X_FLIP
+	or OAM_XFLIP
 	ld [hli], a
 	; bottom row
-	and $ff - X_FLIP
+	and ~OAM_XFLIP
 	ld bc, SCREEN_WIDTH - 1
 	rst ByteFill
-	or X_FLIP
+	or OAM_XFLIP
 	ld [hl], a
 ; PlaceMapNameFrame
 	hlcoord 0, 0

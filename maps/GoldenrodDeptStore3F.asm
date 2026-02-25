@@ -11,5 +11,36 @@ GoldenrodDeptStore3F_MapScriptHeader:
 	def_coord_events
 
 	def_bg_events
+	bg_event 14,  0, BGEVENT_JUMPTEXT, GoldenrodDeptStore3FDirectoryText
 
 	def_object_events
+	object_event  6,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_STANDARD, MART_GOLDENROD_3F, -1
+	object_event 12,  5, SPRITE_POKEMANIAC, SPRITEMOVEDATA_SPINRANDOM_FAST, 1, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, GoldenrodDeptStore3FSuperNerdText, -1
+	object_event  2,  5, SPRITE_ROCKER, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, GoldenrodDeptStore3FRockerText, -1
+
+GoldenrodDeptStore3FSuperNerdText:
+	text "I, I, I'm really"
+	line "impatient!"
+
+	para "I use X Speed in"
+	line "battle to speed up"
+	cont "my #mon."
+	done
+
+GoldenrodDeptStore3FRockerText:
+	text "Hey! When you bat-"
+	line "tle, do you use"
+	cont "X Sp.Atk?"
+
+	para "It's awesome. It"
+	line "really jacks up"
+	cont "Special Attack!"
+	done
+
+GoldenrodDeptStore3FDirectoryText:
+	text "For Victory"
+	line "Seekers"
+
+	para "3F Battle"
+	line "   Collection"
+	done

@@ -12,5 +12,5 @@
 	db $02 ; bitmask
 	db $20, $21, $22, $23
 .frame4
-	db $02 ; bitmask
-	db $20, $21, $00, $24
+	db $03 ; bitmask
+	db $20, $24, $25

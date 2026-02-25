@@ -1,22 +1,32 @@
+if DEF(FAITHFUL)
 	db  70,  55,  55,  45,  80,  60 ; 365 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
+else
+	db  70,  60,  60,  50,  85,  65 ; 390 BST
+	;   hp  atk  def  spe  sat  sdf
+endc
 
 	db ELECTRIC, ELECTRIC ; type
+if DEF(FAITHFUL)
 	db 120 ; catch rate
 	db 117 ; base exp
-	db NO_ITEM ; item 1
-	db NO_ITEM ; item 2
-	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/flaaffy/front.dimensions"
+else
+	db 110 ; catch rate
+	db 127 ; base exp
+endc
+	db NO_ITEM, NO_ITEM ; held items
+	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
+
+if DEF(FAITHFUL)
 	abilities_for FLAAFFY, STATIC, STATIC, STATIC
+else
+	abilities_for FLAAFFY, STATIC, FLUFFY, MOTOR_DRIVE
+endc
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_GROUND ; egg groups
 
-	ev_yield   0,   0,   0,   0,   2,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 2 SAt
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, LIGHT_SCREEN, PROTECT, SUBSTITUTE, REFLECT, DIG, FACADE, BRICK_BREAK, SEISMIC_TOSS, THUNDER_WAVE, IRON_TAIL, THUNDERPUNCH, FIRE_PUNCH, DAZZLINGLEAM, ICE_PUNCH, THUNDERBOLT, THUNDER, RAIN_DANCE, VOLT_SWITCH
-
-	;tutors SIGNAL_BEAM, WILD_CHARGE
+	; tm/hm learnset
+	tmhm DYNAMICPUNCH, CURSE, TOXIC, HIDDEN_POWER, LIGHT_SCREEN, PROTECT, RAIN_DANCE, SAFEGUARD, IRON_TAIL, THUNDERBOLT, THUNDER, RETURN, ROCK_SMASH, DOUBLE_TEAM, SWIFT, SUBSTITUTE, FACADE, REST, ATTRACT, DAZZLINGLEAM, WILD_CHARGE, FLASH, VOLT_SWITCH, THUNDER_WAVE, STRENGTH, AGILITY, BODY_SLAM, COUNTER, DEFENSE_CURL, DOUBLE_EDGE, ENDURE, FIRE_PUNCH, HEADBUTT, SEISMIC_TOSS, SLEEP_TALK, SWAGGER, THUNDERPUNCH, ZAP_CANNON
 	; end

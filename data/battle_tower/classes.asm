@@ -1,5 +1,5 @@
 BattleTowerTrainers:
-	table_width (NAME_LENGTH - 1) + 1, BattleTowerTrainers
+	table_width (NAME_LENGTH - 1) + 1
 	rawchar "Yayoi@@@@@", ARTIST
 	rawchar "Sawyer@@@@", POKEMANIAC
 	rawchar "Santiago@@", FISHER
@@ -33,7 +33,7 @@ BattleTowerTrainers:
 	rawchar "Rajan@@@@@", PICNICKER
 	rawchar "Diaz@@@@@@", PICNICKER
 	rawchar "Mozi@@@@@@", SAGE
-	rawchar "Adrián@@@@", WAITER
+	rawchar "Adrian@@@@", WAITER
 	rawchar "Tomoyo@@@@", COSPLAYER
 	rawchar "Ebony@@@@@", COOLTRAINERF
 	rawchar "Pirsig@@@@", SAGE
@@ -46,6 +46,7 @@ BattleTowerTrainers:
 	rawchar "Sophia@@@@", AROMA_LADY
 	rawchar "Joanna@@@@", WAITRESS
 	rawchar "Newton@@@@", SCIENTIST
+	rawchar "York@@@@@@", SOLDIER
 	rawchar "Chelsea@@@", MEDIUM
 	rawchar "Kuroki@@@@", HEX_MANIAC
 	rawchar "Hitesh@@@@", POKEMANIAC
@@ -57,13 +58,14 @@ BattleTowerTrainers:
 	rawchar "Swartz@@@@", VETERANM
 	rawchar "Cobb@@@@@@", SCHOOLBOY
 	rawchar "Yufune@@@@", BLACKBELT_T
-	rawchar "Mónica@@@@", WAITRESS
+	rawchar "Monica@@@@", WAITRESS
 	rawchar "Daniel@@@@", TAMER
 	rawchar "Toshi@@@@@", BLACKBELT_T
 	rawchar "Charlie@@@", JUGGLER
 	rawchar "Fagin@@@@@", BURGLAR
 	rawchar "Buckley@@@", RICH_BOY
 	rawchar "Mateo@@@@@", VETERANM
+	rawchar "Johnson@@@", SOLDIER
 	rawchar "Newandyke@", OFFICERM
 	rawchar "Rebecca@@@", SKIER
 	rawchar "Santiago@@", PSYCHIC_T
@@ -71,14 +73,15 @@ BattleTowerTrainers:
 	rawchar "James@@@@@", BOARDER
 	rawchar "Kubrick@@@", HEX_MANIAC
 	rawchar "Alisha@@@@", LASS
-	rawchar "Sunni@@@@@", KIMONO_GIRL_1
+	rawchar "Sunni@@@@@", KIMONO_GIRL
 	rawchar "Andre@@@@@", ROUGHNECK
 	rawchar "Hill@@@@@@", COOLTRAINERM
 	rawchar "Tara@@@@@@", SWIMMERF
 	rawchar "Morse@@@@@", SUPER_NERD
 	rawchar "Phelps@@@@", SWIMMERM
 	rawchar "Zeke@@@@@@", DRAGON_TAMER
-	rawchar "Bisom@@@@@", TEACHER
+	rawchar "Bisom@@@@@", TEACHER_F
+	rawchar "Dyrland@@@", TEACHER_M
 	rawchar "Nadia@@@@@", BREEDER
 	rawchar "Hatcher@@@", GENTLEMAN
 	rawchar "Frida@@@@@", ARTIST
@@ -87,14 +90,15 @@ BattleTowerTrainers:
 	rawchar "Valentine@", BEAUTY
 	rawchar "Uri@@@@@@@", PSYCHIC_T
 	rawchar "Wong@@@@@@", FIREBREATHER
-	rawchar "Chiyo@@@@@", KIMONO_GIRL_1
+	rawchar "Chiyo@@@@@", KIMONO_GIRL
 	rawchar "Sidney@@@@", BIKER
 	rawchar "Nerai@@@@@", HIKER
 	rawchar "Gwen@@@@@@", LADY
 	rawchar "Axl@@@@@@@", SUPER_NERD
 	rawchar "Gerald@@@@", SIGHTSEERM
 	rawchar "Kafuka@@@@", SCHOOLGIRL
-	rawchar "Hong@@@@@@", TEACHER
+	rawchar "Hong@@@@@@", TEACHER_F
+	rawchar "Mott@@@@@@", TEACHER_M
 	rawchar "Pov@@@@@@@", BOARDER
 	rawchar "Collins@@@", POKEFANM
 	rawchar "Darwin@@@@", BUG_CATCHER
@@ -129,6 +133,5 @@ BattleTowerTrainers:
 	rawchar "Mako@@@@@@", BREEDER
 	rawchar "Argo@@@@@@", BIRD_KEEPER
 	assert_table_length BATTLETOWER_NUM_TRAINERS
-;BattleTowerTycoon:
 	rawchar "Palmer@@@@", TOWERTYCOON
-	rawchar "Thorton@@@", TOWERTYCOON ; should be factory head
+	rawchar "Thorton@@@", FACTORYHEAD

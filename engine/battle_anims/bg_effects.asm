@@ -71,7 +71,7 @@ DoBattleBGEffectFunction:
 	ld a, [hl]
 	call StackJumpTable
 
-BattleBGEffects:
+.BattleBGEffects:
 	dw BattleBGEffect_End
 	dw BattleBGEffect_FlashInverted
 	dw BattleBGEffect_FlashWhite
@@ -80,6 +80,7 @@ BattleBGEffects:
 	dw BattleBGEffect_AlternateHues
 	dw BattleBGEffect_CycleOBPalsGrayAndYellow
 	dw BattleBGEffect_CycleMidOBPalsGrayAndYellow
+	dw BattleBGEffect_CycleOBPalsGrayAndYellowFullShift
 	dw BattleBGEffect_CycleBGPals_Inverted
 	dw BattleBGEffect_HideMon
 	dw BattleBGEffect_ShowMon
@@ -108,7 +109,7 @@ BattleBGEffects:
 	dw BattleBGEffect_Withdraw
 	dw BattleBGEffect_BounceDown
 	dw BattleBGEffect_Dig
-	dw BattleBGEffect_Strike ; WAS Tackle
+	dw BattleBGEffect_Tackle
 	dw BattleBGEffect_BodySlam
 	dw BattleBGEffect_WobbleMon
 	dw BattleBGEffect_RemoveMon
@@ -126,6 +127,8 @@ BattleBGEffects:
 	dw BattleBGEffect_VibrateMon
 	dw BattleBGEffect_WobblePlayer
 	dw BattleBGEffect_WobbleScreen
+	dw BattleBGEffect_ShakeMonX
+	dw BattleBGEffect_ShakeMonY
 
 BattleBGEffects_AnonJumptable:
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
@@ -253,6 +256,19 @@ BattleBGEffect_CycleOBPalsGrayAndYellow:
 	dc 2, 1, 0, 0
 	db -2
 
+BattleBGEffect_CycleOBPalsGrayAndYellowFullShift:
+	ld de, .PalsCGB
+	call BattleBGEffect_GetNthDMGPal
+	ld [wOBP0], a
+	ret
+
+.PalsCGB:
+	dc 3, 2, 1, 0
+	dc 2, 1, 0, 3
+	dc 1, 0, 3, 2
+	dc 0, 3, 2, 1
+	db -2
+
 BattleBGEffect_CycleMidOBPalsGrayAndYellow:
 	ld de, .PalsCGB
 	call BattleBGEffect_GetNthDMGPal
@@ -271,9 +287,9 @@ BattleBGEffect_CycleBGPals_Inverted:
 	ret
 
 .Pals:
-	dc 1, 1, 1, 1 ; invert once
-	dc 1, 3, 2, 0
-	dc 2, 1, 3, 0
+	dc 0, 1, 2, 3
+	dc 1, 2, 0, 3
+	dc 2, 0, 1, 3
 	db -2
 
 BattleBGEffect_HideMon:
@@ -359,12 +375,14 @@ BattleBGEffect_BattlerObj_1Row:
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_turn
 	ld a, ANIM_OBJ_ENEMYFEET_1ROW
+	assert !HIGH(ANIM_OBJ_ENEMYFEET_1ROW)
 	ld [wBattleAnimTemp0], a
 	ld a, 16 * 8 + 4
 	jr .okay
 
 .player_turn
 	ld a, ANIM_OBJ_PLAYERHEAD_1ROW
+	assert !HIGH(ANIM_OBJ_PLAYERHEAD_1ROW)
 	ld [wBattleAnimTemp0], a
 	ld a, 6 * 8
 .okay
@@ -424,12 +442,14 @@ BattleBGEffect_BattlerObj_2Row:
 	call BGEffect_CheckBattleTurn
 	jr nz, .player_turn
 	ld a, ANIM_OBJ_ENEMYFEET_2ROW
+	assert !HIGH(ANIM_OBJ_ENEMYFEET_2ROW)
 	ld [wBattleAnimTemp0], a
 	ld a, 16 * 8 + 4
 	jr .okay
 
 .player_turn
 	ld a, ANIM_OBJ_PLAYERHEAD_2ROW
+	assert !HIGH(ANIM_OBJ_PLAYERHEAD_2ROW)
 	ld [wBattleAnimTemp0], a
 	ld a, 6 * 8
 .okay
@@ -467,6 +487,7 @@ BattleBGEffect_BattlerObj_2Row:
 	jmp EndBattleBGEffect
 
 _QueueBattleAnimation:
+	ld d, 0 ; playerhead+enemyfeet stuff is $0xx
 	farjp QueueBattleAnimation
 
 BattleBGEffect_RemoveMon:
@@ -716,9 +737,9 @@ BattleBGEffect_RunPicResizeScript:
 	and $f
 	ld b, a
 ; store pointer
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
+	ld e, a
 ; get byte
 	pop hl
 	inc hl
@@ -757,7 +778,7 @@ BattleBGEffect_RunPicResizeScript:
 	pop bc
 
 	; reset ability overlay if applicable
-	ld a, [wAnimationsDisabled]
+	ld a, [wInAbility]
 	and a
 	ret z
 	push hl
@@ -778,7 +799,7 @@ BattleBGEffect_RunPicResizeScript:
 	dwcoord 14,  4
 
 .BGSquares:
-bgsquare: MACRO
+MACRO bgsquare
 	dn \1,\2
 	dw \3
 ENDM
@@ -900,6 +921,8 @@ BattleBGEffect_Whirlpool:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, LOW(rSCY)
 	ldh [hLCDCPointer], a
 	xor a
@@ -911,6 +934,8 @@ BattleBGEffect_Whirlpool:
 
 BattleBGEffect_StartWater:
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $42
 	call BattleBGEffect_SetLCDStatCustoms1
 	jmp EndBattleBGEffect
@@ -941,7 +966,7 @@ BattleBGEffect_Water:
 	jr nc, .done
 	inc [hl]
 	inc [hl]
-	jmp Functionc8f9a
+	jmp DeformWater
 
 .done
 	call BattleBGEffects_ClearLYOverrides
@@ -957,6 +982,8 @@ BattleBGEffect_Psychic:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	ldh [hLCDCPointer], a
 	xor a
@@ -989,6 +1016,8 @@ BattleBGEffect_Teleport:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	call BattleBGEffect_SetLCDStatCustoms1
 	lb de, 6, 5
@@ -1004,6 +1033,8 @@ BattleBGEffect_NightShade:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $42
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld hl, BG_EFFECT_STRUCT_PARAM
@@ -1025,6 +1056,8 @@ BattleBGEffect_DoubleTeam:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	call BattleBGEffect_SetLCDStatCustoms1
 	ldh a, [hLYOverrideEnd]
@@ -1061,7 +1094,7 @@ BattleBGEffect_DoubleTeam:
 	add hl, bc
 	ld a, [hl]
 	ld d, $2
-	call Sine
+	farcall Sine
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
 	add [hl]
@@ -1086,9 +1119,9 @@ BattleBGEffect_DoubleTeam:
 	srl a
 	push af
 .loop
-	ld [hl], e
+	ld [hl], e ; no-optimize *hl++|*hl-- = b|c|d|e
 	inc hl
-	ld [hl], d
+	ld [hl], d ; no-optimize *hl++|*hl-- = b|c|d|e
 	inc hl
 	dec a
 	jr nz, .loop
@@ -1107,6 +1140,8 @@ BattleBGEffect_AcidArmor:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $42
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld hl, BG_EFFECT_STRUCT_PARAM
@@ -1140,8 +1175,8 @@ BattleBGEffect_AcidArmor:
 	ldh a, [hLYOverrideEnd]
 	ld l, a
 	ld a, [hl]
-	cp $1
-	jr c, .okay
+	and a
+	jr z, .okay
 	cp $90
 	jr z, .okay
 	ld [hl], $0
@@ -1165,6 +1200,8 @@ BattleBGEffect_Withdraw:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $42
 	call BattleBGEffect_SetLCDStatCustoms1
 	ldh a, [hLYOverrideEnd]
@@ -1210,6 +1247,8 @@ BattleBGEffect_Dig:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $42
 	call BattleBGEffect_SetLCDStatCustoms1
 	ldh a, [hLYOverrideEnd]
@@ -1261,7 +1300,7 @@ BattleBGEffect_Dig:
 	inc [hl]
 	ret
 
-BattleBGEffect_Strike:
+BattleBGEffect_Tackle:
 	call BattleBGEffects_AnonJumptable
 .anon_dw
 	dw .zero
@@ -1272,6 +1311,8 @@ BattleBGEffect_Strike:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	call BattleBGEffect_SetLCDStatCustoms1
 	ldh a, [hLYOverrideEnd]
@@ -1299,6 +1340,8 @@ BattleBGEffect_BodySlam:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	call BattleBGEffect_SetLCDStatCustoms2
 	ldh a, [hLYOverrideEnd]
@@ -1415,6 +1458,8 @@ BattleBGEffect_BetaPursuit:
 BGEffect2d_2f_zero:
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	call BattleBGEffect_SetLCDStatCustoms1
 	ldh a, [hLYOverrideEnd]
@@ -1450,6 +1495,8 @@ BattleBGEffect_WobbleMon:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	call BattleBGEffect_SetLCDStatCustoms1
 	ldh a, [hLYOverrideEnd]
@@ -1465,7 +1512,7 @@ BattleBGEffect_WobbleMon:
 	add hl, bc
 	ld a, [hl]
 	ld d, $8
-	call Sine
+	farcall Sine
 	call BGEffect_FillLYOverridesBackup
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
@@ -1484,6 +1531,8 @@ BattleBGEffect_Flail:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	call BattleBGEffect_SetLCDStatCustoms1
 	ldh a, [hLYOverrideEnd]
@@ -1501,13 +1550,13 @@ BattleBGEffect_Flail:
 	add hl, bc
 	ld a, [hl]
 	ld d, $6
-	call Sine
+	farcall Sine
 	push af
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
 	ld d, $2
-	call Sine
+	farcall Sine
 	ld e, a
 	pop af
 	add e
@@ -1534,6 +1583,8 @@ BattleBGEffect_WaveDeformMon:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	jmp BattleBGEffect_SetLCDStatCustoms1
 
@@ -1569,34 +1620,29 @@ BattleBGEffect_BounceDown:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $42
 	call BattleBGEffect_SetLCDStatCustoms2
 	ldh a, [hLYOverrideEnd]
 	inc a
 	ldh [hLYOverrideEnd], a
-	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
-	add hl, bc
-	ld [hl], $1
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
 	ld [hl], $20
 	ret
 
 .one
-	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
-	add hl, bc
-	ld a, [hl]
-	cp $38
-	ret nc
 	push af
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
 	ld d, $10
-	call Cosine
+	farcall Cosine
 	add $10
 	ld d, a
 	pop af
+	ld a, 1
 	add d
 	call BGEffect_DisplaceLYOverridesBackup
 	ld hl, BG_EFFECT_STRUCT_PARAM
@@ -1619,6 +1665,8 @@ BattleBGEffect_BetaSendOutMon1:
 	call BattleBGEffects_IncrementJumptable
 	ld a, $e4
 	call BattleBGEffects_SetLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $47
 	call BattleBGEffect_SetLCDStatCustoms1
 	ldh a, [hLYOverrideEnd]
@@ -1672,7 +1720,7 @@ BattleBGEffect_BetaSendOutMon1:
 	srl a
 	ld h, HIGH(wLYOverridesBackup)
 .loop2
-	ld [hl], e
+	ld [hl], e ; no-optimize *hl++|*hl-- = b|c|d|e
 	inc hl
 	inc hl
 	dec a
@@ -1709,6 +1757,8 @@ BattleBGEffect_BetaSendOutMon2:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	call BattleBGEffect_SetLCDStatCustoms1
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
@@ -1758,9 +1808,8 @@ BattleBGEffect_FadeMonsToBlackRepeating:
 	ret nz
 	ld a, e
 	and $18
-	sla a
-	swap a
-	sla a
+	rrca
+	rrca
 	ld e, a
 	ld d, 0
 	call BGEffect_CheckBattleTurn
@@ -1806,6 +1855,8 @@ BattleBGEffect_VibrateMon:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	call BattleBGEffect_SetLCDStatCustoms1
 	ldh a, [hLYOverrideEnd]
@@ -1846,6 +1897,8 @@ BattleBGEffect_WobblePlayer:
 .zero
 	call BattleBGEffects_IncrementJumptable
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
 	ld a, $43
 	ldh [hLCDCPointer], a
 	xor a
@@ -1864,7 +1917,7 @@ BattleBGEffect_WobblePlayer:
 	cp $40
 	jmp nc, BattleAnim_ResetLCDStatCustom
 	ld d, $6
-	call Sine
+	farcall Sine
 	call BGEffect_FillLYOverridesBackup
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
@@ -1896,6 +1949,130 @@ BattleBGEffect_ShakeScreenX:
 	xor a
 .skip
 	ldh [hSCX], a
+	ret
+
+BattleBGEffect_ShakeMonY:
+; Oscillates a mon between +1 and +x+1 pixels in the Y axis, where x is
+; the argument given to BG_EFFEECT_STRUCT_PARAM.
+	call BattleBGEffects_AnonJumptable
+.anon_dw
+	dw .zero
+	dw .one
+	dw BattleAnim_ResetLCDStatCustom
+
+.zero
+	call BattleBGEffects_IncrementJumptable
+	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
+	ld a, LOW(rSCY)
+	call BattleBGEffect_SetLCDStatCustoms2
+	ldh a, [hLYOverrideEnd]
+	inc a
+	ldh [hLYOverrideEnd], a
+	jr .reset_duration
+
+.reload_distance
+	; Toggles between distances.
+	ld hl, BG_EFFECT_STRUCT_PARAM
+	add hl, bc
+	ld a, $80
+	xor [hl]
+	ld [hl], a
+.reset_duration
+	; (Re)set shake duration.
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	ld a, [hl]
+	and $f0
+	ld [hl], a
+	swap a
+	or [hl]
+	ld [hl], a
+	ret
+
+.one
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	dec [hl]
+	ld a, [hl]
+	and $f
+	call z, .reload_distance
+
+	ld hl, BG_EFFECT_STRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	bit 7, a
+	jr z, .got_distance
+	xor a
+.got_distance
+	jmp BGEffect_DisplaceLYOverridesBackup
+
+BattleBGEffect_ShakeMonX:
+; Oscillates a mon between -x and +x pixels in the X axis, where x is
+; the argument given to BG_EFFEECT_STRUCT_PARAM.
+; Note that the oscillation distance is different from ShakeMonY.
+	call BattleBGEffects_AnonJumptable
+.anon_dw
+	dw .zero
+	dw .one
+	dw BattleAnim_ResetLCDStatCustom
+
+.zero
+	call BattleBGEffects_IncrementJumptable
+	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	set B_IE_STAT, [hl]
+	ld a, LOW(rSCX)
+	call BattleBGEffect_SetLCDStatCustoms2
+	ldh a, [hLYOverrideEnd]
+	inc a
+	ldh [hLYOverrideEnd], a
+	jr .reset_duration
+
+.reload_distance
+	; Toggles between sides.
+	ld hl, BG_EFFECT_STRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	cpl
+	inc a
+	ld [hl], a
+.reset_duration
+	; (Re)set shake duration.
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	ld a, [hl]
+	and $f0
+	ld [hl], a
+	swap a
+	or [hl]
+	ld [hl], a
+	ret
+
+.one
+	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
+	add hl, bc
+	dec [hl]
+	ld a, [hli]
+	and $f
+	call z, .reload_distance
+
+	ld hl, BG_EFFECT_STRUCT_PARAM
+	add hl, bc
+	ld a, [hl]
+	ld e, a
+	ldh a, [hLYOverrideStart]
+	ld l, a
+	ldh a, [hLYOverrideEnd]
+	sub l
+	ld h, HIGH(wLYOverridesBackup)
+	ld d, a
+	ld a, e
+.loop
+	ld [hli], a
+	dec d
+	jr nz, .loop
 	ret
 
 BattleBGEffect_ShakeScreenY:
@@ -1951,7 +2128,7 @@ BattleBGEffect_WobbleScreen:
 	cp $40
 	jr nc, .finish
 	ld d, $6
-	call Sine
+	farcall Sine
 	ldh [hSCX], a
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
@@ -2134,10 +2311,10 @@ BGEffect_RapidCyclePals:
 
 BGEffects_LoadBGPal0_OBPal1:
 	ld h, a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, h
 	push bc
 	push af
@@ -2161,17 +2338,17 @@ BGEffects_LoadBGPal0_OBPal1:
 	call CopyPals
 	pop bc
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	ret
 
 BGEffects_LoadBGPal1_OBPal0:
 	ld h, a
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, h
 	push bc
 	push af
@@ -2188,7 +2365,7 @@ BGEffects_LoadBGPal1_OBPal0:
 	call CopyPals
 	pop bc
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, $1
 	ldh [hCGBPalUpdate], a
 	ret
@@ -2221,6 +2398,8 @@ BattleBGEffect_GetNextDMGPal:
 	ret
 
 BattleBGEffects_ResetVideoHRAM:
+	ld hl, rIE
+	res B_IE_STAT, [hl]
 	xor a
 	ldh [hLCDCPointer], a
 	ld a, %11100100
@@ -2285,6 +2464,8 @@ BattleAnim_ResetLCDStatCustom:
 	ldh [hLYOverrideStart], a
 	ldh [hLYOverrideEnd], a
 	call BattleBGEffects_ClearLYOverrides
+	ld hl, rIE
+	res B_IE_STAT, [hl]
 	xor a
 	ldh [hLCDCPointer], a
 	jmp EndBattleBGEffect
@@ -2309,7 +2490,7 @@ BattleBGEffect_SineWave:
 	jr c, .next
 
 	; If ability slideouts are up, don't sinewave them.
-	ld a, [wAnimationsDisabled]
+	ld a, [wInAbility]
 	ld d, a
 	bit 6, d
 	jr z, .no_player_slideout
@@ -2332,7 +2513,7 @@ BattleBGEffect_SineWave:
 	ld a, [wBattleAnimTemp2]
 	ld d, a
 	ld a, [wBattleAnimTemp0]
-	call Sine
+	farcall Sine
 	ld [bc], a
 .next
 	inc bc
@@ -2361,7 +2542,7 @@ InitSurfWaves:
 	ld a, [wBattleAnimTemp2]
 	ld d, a
 	ld a, [wBattleAnimTemp0]
-	call Sine
+	farcall Sine
 	ld [bc], a
 	inc bc
 	ld a, [wBattleAnimTemp1]
@@ -2374,7 +2555,7 @@ InitSurfWaves:
 	pop bc
 	ret
 
-Functionc8f9a:
+DeformWater:
 	push bc
 	ld [wBattleAnimTemp3], a
 	ld a, e
@@ -2397,7 +2578,7 @@ Functionc8f9a:
 	ld d, a
 	ld a, [wBattleAnimTemp1]
 	push hl
-	call Sine
+	farcall Sine
 	ld e, a
 	pop hl
 	ldh a, [hLYOverrideEnd]
@@ -2410,8 +2591,8 @@ Functionc8f9a:
 	ldh a, [hLYOverrideStart]
 	cp l
 	jr nc, .skip2
-	ld [hl], e
-	dec hl
+	ld a, e
+	ld [hld], a
 .skip2
 	ld a, [wBattleAnimTemp1]
 	add $4
@@ -2489,8 +2670,11 @@ BGEffect_DisplaceLYOverridesBackup:
 	ldh a, [hLYOverrideStart]
 	ld l, a
 	ld a, $90
+	inc e
+	jr .first_iteration
 .loop
 	ld [hli], a
+.first_iteration
 	dec e
 	jr nz, .loop
 	pop af
@@ -2505,8 +2689,8 @@ BGEffect_CheckBattleTurn:
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ldh a, [hBattleTurn]
-	and $1
 	xor [hl]
+	and $1
 	ret
 
 BGEffect_CheckMonVisible:

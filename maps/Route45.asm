@@ -5,29 +5,31 @@ Route45_MapScriptHeader:
 
 	def_warp_events
 	warp_event  4,  5, DARK_CAVE_BLACKTHORN_ENTRANCE, 1
+	warp_event 16, 22, HIDDEN_CAVE_GROTTO, 1
 
 	def_coord_events
 
 	def_bg_events
 	bg_event 17,  5, BGEVENT_JUMPTEXT, Route45SignText
 	bg_event 17, 78, BGEVENT_ITEM + PP_UP, EVENT_ROUTE_45_HIDDEN_PP_UP
+	bg_event 16, 21, BGEVENT_JUMPSTD, cavegrotto, HIDDENGROTTO_ROUTE_45
 
 	def_object_events
-	object_event 19, 75, SPRITE_DRAGON_TAMER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route45Dragon_tamerScript, -1
-	object_event  5, 59, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerBattleGirlNozomi, -1
-	object_event 12, 18, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerHikerErik, -1
-	object_event 19, 65, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerHikerMichael, -1
-	object_event  7, 28, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerHikerParry, -1
-	object_event 13, 65, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerHikerTimothy, -1
-	object_event 16, 50, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerBlackbeltKenji, -1
-	object_event 21, 18, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainermRyan, -1
-	object_event  6, 33, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerCooltrainerfKelly, -1
+	object_event 19, 75, SPRITE_DRAGON_TAMER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, 0, OBJECTTYPE_SCRIPT, 0, Route45Dragon_tamerScript, -1
+	object_event  5, 59, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerBattleGirlNozomi, -1
+	object_event 12, 18, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerHikerErik, -1
+	object_event 19, 65, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerHikerMichael, -1
+	object_event  7, 28, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerHikerParry, -1
+	object_event 13, 65, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerHikerTimothy, -1
+	object_event 16, 50, SPRITE_BLACK_BELT, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerBlackbeltKenji, -1
+	object_event 21, 18, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainermRyan, -1
+	object_event  6, 33, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerCooltrainerfKelly, -1
 	fruittree_event 20, 80, FRUITTREE_ROUTE_45, LEPPA_BERRY, PAL_NPC_RED
 	itemball_event  8, 51, NUGGET, 1, EVENT_ROUTE_45_NUGGET
 	itemball_event  5, 66, REVIVE, 1, EVENT_ROUTE_45_REVIVE
 	itemball_event  7, 20, ELIXIR, 1, EVENT_ROUTE_45_ELIXIR
 	itemball_event 15, 32, MAX_POTION, 1, EVENT_ROUTE_45_MAX_POTION
-	object_event  4, 70, SPRITE_CAMPER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerCamperQuentin, -1
+	object_event  4, 70, SPRITE_CAMPER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerCamperQuentin, -1
 
 	object_const_def
 	const ROUTE45_DRAGON_TAMER
@@ -37,7 +39,7 @@ Route45Dragon_tamerScript:
 	iftrue_jumptextfaceplayer .AfterText2
 	faceplayer
 	checkevent EVENT_BEAT_DRAGON_TAMER_AEGON
-	iftrue .Beaten
+	iftruefwd .Beaten
 	checkevent EVENT_BEAT_BATTLE_GIRL_NOZOMI
 	iffalse_jumptext .IntroText
 	checkevent EVENT_BEAT_BLACKBELT_KENJI
@@ -159,50 +161,65 @@ BlackbeltKenji1Script:
 	loadvar VAR_CALLERID, PHONE_BLACKBELT_KENJI
 	opentext
 	checkcellnum PHONE_BLACKBELT_KENJI
-	iftrue UnknownScript_0x19e0e4
+	iftruefwd .Registered
 	checkevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x19e0cd
+	iftruefwd .AskedAlready
 	special Special_SampleKenjiBreakCountdown
 	writetext BlackbeltKenjiAfterBattleText
 	waitbutton
 	setevent EVENT_KENJI_ASKED_FOR_PHONE_NUMBER
 	scall Route45AskNumber1M
-	sjump UnknownScript_0x19e0d0
+	sjumpfwd .AskForNumber
 
-UnknownScript_0x19e0cd:
+.AskedAlready:
 	scall Route45AskNumber2M
-UnknownScript_0x19e0d0:
+.AskForNumber:
 	askforphonenumber PHONE_BLACKBELT_KENJI
-	ifequal $1, Route45PhoneFullM
-	ifequal $2, Route45NumberDeclinedM
-	gettrainername BLACKBELT_T, KENJI1, $0
+	ifequalfwd $1, Route45PhoneFullM
+	ifequalfwd $2, Route45NumberDeclinedM
+	gettrainername BLACKBELT_T, KENJI1, STRING_BUFFER_3
 	scall Route45RegisteredNumberM
-	sjump Route45NumberAcceptedM
+	sjumpfwd Route45NumberAcceptedM
 
-UnknownScript_0x19e0e4:
+.Registered:
 	readvar VAR_KENJI_BREAK
 	ifnotequal $1, Route45NumberAcceptedM
 	checktime 1 << MORN
-	iftrue UnknownScript_0x19e10c
+	iftruefwd .Morning
 	checktime (1 << EVE) | (1 << NITE)
-	iftrue UnknownScript_0x19e112
+	iftruefwd .Night
 	checkevent EVENT_KENJI_ON_BREAK
-	iffalse Route45NumberAcceptedM
+	iffalsefwd Route45NumberAcceptedM
 	scall Route45GiftM
 	verbosegiveitem PP_UP
-	iffalse UnknownScript_0x19e118
+	iffalsefwd .NoRoom
 	clearevent EVENT_KENJI_ON_BREAK
 	special Special_SampleKenjiBreakCountdown
-	sjump Route45NumberAcceptedM
+	sjumpfwd Route45NumberAcceptedM
 
-UnknownScript_0x19e10c:
-	jumpopenedtext BlackbeltKenjiMorningText
+.Morning:
+	jumpthisopenedtext
 
-UnknownScript_0x19e112:
-	jumpopenedtext BlackbeltKenjiNightText
+	text "I'm going to train"
+	line "a bit more before"
+	cont "I break for lunch."
+	done
 
-UnknownScript_0x19e118:
-	sjump Route45PackFullM
+.Night:
+	jumpthisopenedtext
+
+	text "We had plenty of"
+	line "rest at lunch, so"
+
+	para "now we're all"
+	line "ready to go again!"
+
+	para "We're going to"
+	line "train again!"
+	done
+
+.NoRoom:
+	sjumpfwd Route45PackFullM
 
 Route45AskNumber1M:
 	jumpstd asknumber1m
@@ -268,40 +285,40 @@ HikerParry1Script:
 	loadvar VAR_CALLERID, PHONE_HIKER_PARRY
 	opentext
 	checkflag ENGINE_PARRY_READY_FOR_REMATCH
-	iftrue UnknownScript_0x19e1b8
+	iftruefwd .WantsBattle
 	checkcellnum PHONE_HIKER_PARRY
 	iftrue Route45NumberAcceptedM
 	checkevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
-	iftrue UnknownScript_0x19e1a1
+	iftruefwd .AskedAlready
 	writetext HikerParryAfterBattleText
 	promptbutton
 	setevent EVENT_PARRY_ASKED_FOR_PHONE_NUMBER
 	scall Route45AskNumber1M
-	sjump UnknownScript_0x19e1a4
+	sjumpfwd .AskForNumber
 
-UnknownScript_0x19e1a1:
+.AskedAlready:
 	scall Route45AskNumber2M
-UnknownScript_0x19e1a4:
+.AskForNumber:
 	askforphonenumber PHONE_HIKER_PARRY
 	ifequal $1, Route45PhoneFullM
 	ifequal $2, Route45NumberDeclinedM
-	gettrainername HIKER, PARRY1, $0
+	gettrainername HIKER, PARRY1, STRING_BUFFER_3
 	scall Route45RegisteredNumberM
 	sjump Route45NumberAcceptedM
 
-UnknownScript_0x19e1b8:
+.WantsBattle:
 	scall Route45RematchM
 	winlosstext HikerParry1BeatenText, 0
 	readmem wParryFightCount
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
+	ifequalfwd 2, .Fight2
+	ifequalfwd 1, .Fight1
+	ifequalfwd 0, .LoadFight0
 .Fight2:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
-	iftrue .LoadFight2
+	iftruefwd .LoadFight2
 .Fight1:
 	checkevent EVENT_BEAT_ELITE_FOUR
-	iftrue .LoadFight1
+	iftruefwd .LoadFight1
 .LoadFight0:
 	loadtrainer HIKER, PARRY1
 	startbattle
@@ -324,19 +341,19 @@ UnknownScript_0x19e1b8:
 	reloadmapafterbattle
 	clearflag ENGINE_PARRY_READY_FOR_REMATCH
 	checkevent EVENT_PARRY_IRON
-	iftrue UnknownScript_0x19e219
+	iftruefwd .HasIron
 	checkevent EVENT_GOT_IRON_FROM_PARRY
-	iftrue UnknownScript_0x19e218
+	iftruefwd .GotIron
 	scall Route45RematchGiftM
 	verbosegiveitem IRON
 	iffalse HikerParryHasIron
 	setevent EVENT_GOT_IRON_FROM_PARRY
 	sjump Route45NumberAcceptedM
 
-UnknownScript_0x19e218:
+.GotIron:
 	end
 
-UnknownScript_0x19e219:
+.HasIron:
 	opentext
 	writetext HikerParryGivesIronText
 	waitbutton
@@ -497,22 +514,7 @@ BlackbeltKenjiAfterBattleText:
 	cont "solitude."
 	done
 
-BlackbeltKenjiMorningText:
-	text "I'm going to train"
-	line "a bit more before"
-	cont "I break for lunch."
-	done
 
-BlackbeltKenjiNightText:
-	text "We had plenty of"
-	line "rest at lunch, so"
-
-	para "now we're all"
-	line "ready to go again!"
-
-	para "We're going to"
-	line "train again!"
-	done
 
 CooltrainermRyanSeenText:
 	text "What are your"

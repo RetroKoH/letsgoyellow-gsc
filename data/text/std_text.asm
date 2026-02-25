@@ -277,13 +277,6 @@ ContestResults_PlayerWonAPrizeText:
 	text "!"
 	done
 
-ReceivedItemText:
-	text "<PLAYER> received"
-	line ""
-	text_ram wStringBuffer4
-	text "."
-	done
-
 ContestResults_JoinUsNextTimeText:
 	text "Please join us for"
 	line "the next Contest!"
@@ -314,8 +307,7 @@ ContestResults_PartyFullText:
 	text "Your party's full,"
 	line "so the #mon was"
 
-	para "sent to your BOX"
-	line "in Bill's PC."
+	cont "sent to Bill's PC."
 	done
 
 GymStatue_CityGymText:
@@ -324,6 +316,24 @@ GymStatue_CityGymText:
 
 	para "Leader: "
 	text_ram wStringBuffer4
+	done
+
+GymStatue_WinningTrainersText:
+	text "Winning Trainers:"
+	line "<RIVAL>"
+	done
+
+GymStatue_TwoWinningTrainersText:
+	text "Winning Trainers:"
+	line "<RIVAL>"
+	cont "<PLAYER>"
+	done
+
+GymStatue_ThreeWinningTrainersText:
+	text "Winning Trainers:"
+	line "<RIVAL>"
+	cont "<PLAYER>"
+	cont "Lyra"
 	done
 
 CoinVendor_WelcomeText:

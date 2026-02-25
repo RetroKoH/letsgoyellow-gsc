@@ -1,10 +1,10 @@
 ; Pic animation arrangement.
 
-POKEANIM: MACRO
-for i, 1, _NARG + 1
-	db (PokeAnim_\<i>_ - PokeAnim_SetupCommands) / 2
-endr
-	db (PokeAnim_Finish_ - PokeAnim_SetupCommands) / 2
+MACRO pokeanim
+	for i, 1, _NARG + 1
+		db (PokeAnim_\<i>_SetupCommand - PokeAnim_SetupCommands) / 2
+	endr
+	db (PokeAnim_Finish_SetupCommand - PokeAnim_SetupCommands) / 2
 ENDM
 
 PokeAnims:
@@ -18,14 +18,14 @@ PokeAnims:
 	dw .Egg1
 	dw .Egg2
 
-.Slow:   POKEANIM StereoCry, Setup2, Play
-.Normal: POKEANIM StereoCry, Setup, Play
-.Menu:   POKEANIM CryNoWait, Setup, Play, SetWait, Wait, Extra, Play
-.Trade:  POKEANIM Extra, Play2, Extra, Play, SetWait, Wait, Cry, Setup, Play
-.Evolve: POKEANIM Extra, Play, SetWait, Wait, CryNoWait, Setup, Play
-.Hatch:  POKEANIM Extra, Play, CryNoWait, Setup, Play, SetWait, Wait, Extra, Play
-.Egg1:   POKEANIM Setup, Play
-.Egg2:   POKEANIM Extra, Play
+.Slow:   pokeanim StereoCry, Setup2, Play
+.Normal: pokeanim StereoCry, Setup, Play
+.Menu:   pokeanim CryNoWait, Setup, Play, SetWait, Wait, Extra, Play
+.Trade:  pokeanim Extra, Play2, Extra, Play, SetWait, Wait, CryNoWait, Setup, Play
+.Evolve: pokeanim Extra, Play, SetWait, Wait, CryNoWait, Setup, Play
+.Hatch:  pokeanim Extra, Play, CryNoWait, Setup, Play, SetWait, Wait, Extra, Play
+.Egg1:   pokeanim Setup, Play
+.Egg2:   pokeanim Extra, Play
 
 AnimateFrontpic:
 	call AnimateMon_CheckIfPokemon
@@ -51,10 +51,10 @@ LoadMonAnimation:
 	ld c, a
 	pop hl
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	push bc
 	push de
@@ -81,12 +81,12 @@ LoadMonAnimation:
 	ld a, d
 	ld [wPokeAnimGraphicStartTile], a
 
-	ld a, $1
+	ld a, BANK(wCurPartySpecies)
 	ld hl, wCurPartySpecies
 	call GetFarWRAMByte
 	ld [wPokeAnimSpecies], a
 
-	ld a, $1
+	ld a, BANK(wCurForm)
 	ld hl, wCurForm
 	call GetFarWRAMByte
 	ld [wPokeAnimVariant], a
@@ -96,14 +96,14 @@ LoadMonAnimation:
 	ld [wPokeAnimFrontpicHeight], a
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 SetUpPokeAnim:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [wPokeAnimSceneIndex]
 	ld c, a
 	ld b, 0
@@ -118,71 +118,67 @@ SetUpPokeAnim:
 	ld a, [wPokeAnimSceneIndex]
 	ld c, a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, c
 	and $80
 	ret z
 	scf
 	ret
 
-PokeAnim_SetupCommands:
-setup_command: MACRO
-\1_: dw \1
+MACRO add_setup_command
+\1_SetupCommand:
+	dw \1
 ENDM
-	setup_command PokeAnim_Finish
-	setup_command PokeAnim_BasePic
-	setup_command PokeAnim_SetWait
-	setup_command PokeAnim_Wait
-	setup_command PokeAnim_Setup
-	setup_command PokeAnim_Setup2
-	setup_command PokeAnim_Extra
-	setup_command PokeAnim_Play
-	setup_command PokeAnim_Play2
-	setup_command PokeAnim_Cry
-	setup_command PokeAnim_CryNoWait
-	setup_command PokeAnim_StereoCry
+
+PokeAnim_SetupCommands:
+	add_setup_command PokeAnim_Finish
+	add_setup_command PokeAnim_BasePic
+	add_setup_command PokeAnim_SetWait
+	add_setup_command PokeAnim_Wait
+	add_setup_command PokeAnim_Setup
+	add_setup_command PokeAnim_Setup2
+	add_setup_command PokeAnim_Extra
+	add_setup_command PokeAnim_Play
+	add_setup_command PokeAnim_Play2
+	add_setup_command PokeAnim_CryNoWait
+	add_setup_command PokeAnim_StereoCry
 
 PokeAnim_SetWait:
 	ld a, 18
 	ld [wPokeAnimWaitCounter], a
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
-
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
+	;fall-through
 PokeAnim_Wait:
 	ld hl, wPokeAnimWaitCounter
 	dec [hl]
 	ret nz
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Setup:
 	lb bc, 0, FALSE
 	call PokeAnim_InitAnim
 	call PokeAnim_SetVBank1
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Setup2:
 	lb bc, 4, FALSE
 	call PokeAnim_InitAnim
 	call PokeAnim_SetVBank1
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Extra:
 	lb bc, 0, TRUE
 	call PokeAnim_InitAnim
 	call PokeAnim_SetVBank1
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Play:
@@ -191,9 +187,8 @@ PokeAnim_Play:
 	bit 7, a
 	ret z
 	call PokeAnim_PlaceGraphic
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Play2:
@@ -201,16 +196,14 @@ PokeAnim_Play2:
 	ld a, [wPokeAnimJumptableIndex]
 	bit 7, a
 	ret z
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_BasePic:
 	call PokeAnim_DeinitFrames
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Finish:
@@ -219,43 +212,39 @@ PokeAnim_Finish:
 	set 7, [hl]
 	ret
 
-PokeAnim_Cry:
-	ld a, [wPokeAnimSpecies]
-	call _PlayCry
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
-	ret
-
 PokeAnim_CryNoWait:
 	ld a, [wPokeAnimSpecies]
-	call PlayCry2
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld c, a
+	ld a, [wPokeAnimVariant]
+	ld b, a
+	call PlayMonCry2
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_StereoCry:
 	ld a, $f
 	ld [wCryTracks], a
 	ld a, [wPokeAnimSpecies]
+	ld c, a
+	ld a, [wPokeAnimVariant]
+	ld b, a
 	call PlayStereoCry2
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_DeinitFrames:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	call PokeAnim_PlaceGraphic
 	farcall HDMATransferTileMapToWRAMBank3
 	call PokeAnim_SetVBank0
 	farcall HDMATransferAttrMapToWRAMBank3
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 AnimateMon_CheckIfPokemon:
@@ -270,10 +259,10 @@ AnimateMon_CheckIfPokemon:
 	ret
 
 PokeAnim_InitAnim:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	push bc
 	ld hl, wPokeAnimIdleFlag
 	ld bc, wPokeAnimStructEnd - wPokeAnimIdleFlag
@@ -288,7 +277,7 @@ PokeAnim_InitAnim:
 	call GetMonFramesPointer
 	call GetMonBitmaskPointer
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 PokeAnim_DoAnimScript:
@@ -319,9 +308,8 @@ PokeAnim_DoAnimScript:
 	ld [wPokeAnimWaitCounter], a
 	call PokeAnim_StartWaitAnim
 .WaitAnim:
-	ld a, [wPokeAnimWaitCounter]
-	dec a
-	ld [wPokeAnimWaitCounter], a
+	ld hl, wPokeAnimWaitCounter
+	dec [hl]
 	ret nz
 	jr PokeAnim_StopWaitAnim
 
@@ -364,31 +352,17 @@ PokeAnim_GetDuration:
 	add c
 	ret
 
-PokeAnim_GetFrame:
-	call PokeAnim_PlaceGraphic
-	ld a, [wPokeAnimCommand]
-	and a
-	ret z
-	call PokeAnim_GetBitmaskIndex
-	push hl
-	call PokeAnim_CopyBitmaskToBuffer
-	pop hl
-	jmp PokeAnim_ConvertAndApplyBitmask
-
 PokeAnim_StartWaitAnim:
-	ld a, [wPokeAnimJumptableIndex]
-	inc a
-	ld [wPokeAnimJumptableIndex], a
+	ld hl, wPokeAnimJumptableIndex
+	inc [hl]
 	ret
 
 PokeAnim_StopWaitAnim:
-	ld a, [wPokeAnimJumptableIndex]
-	dec a
-	ld [wPokeAnimJumptableIndex], a
+	ld hl, wPokeAnimJumptableIndex
+	dec [hl]
 	ret
 
 PokeAnim_GetPointer:
-	push hl
 	ld a, [wPokeAnimFrame]
 	ld e, a
 	ld d, $0
@@ -406,7 +380,6 @@ PokeAnim_GetPointer:
 	ld [wPokeAnimParameter], a
 	ld hl, wPokeAnimFrame
 	inc [hl]
-	pop hl
 	ret
 
 PokeAnim_GetBitmaskIndex:
@@ -457,7 +430,17 @@ PokeAnim_CopyBitmaskToBuffer:
 
 .Sizes: db 4, 5, 7
 
-PokeAnim_ConvertAndApplyBitmask:
+PokeAnim_GetFrame:
+	call PokeAnim_PlaceGraphic
+	ld a, [wPokeAnimCommand]
+	and a
+	ret z
+
+	call PokeAnim_GetBitmaskIndex
+	push hl
+	call PokeAnim_CopyBitmaskToBuffer
+	pop hl
+
 	xor a
 	ld [wPokeAnimBitmaskCurBit], a
 	ld [wPokeAnimBitmaskCurRow], a
@@ -605,12 +588,12 @@ PokeAnim_ConvertAndApplyBitmask:
 	add 13
 	ret
 
-poke_anim_box: MACRO
-for y, 7, 7 * (\1 + 1), 7
-for x, 7 - \1, 7
-	db x + y
-endr
-endr
+MACRO poke_anim_box
+	for y, 7, 7 * (\1 + 1), 7
+		for x, 7 - \1, 7
+			db x + y
+		endr
+	endr
 ENDM
 
 ._5by5:
@@ -660,19 +643,17 @@ ENDM
 	ret
 
 .NextBit:
-	ld a, [wPokeAnimBitmaskCurRow]
-	inc a
-	ld [wPokeAnimBitmaskCurRow], a
-	ld c, a
+	ld hl, wPokeAnimBitmaskCurRow
+	inc [hl]
+	ld c, [hl]
 	ld a, [wPokeAnimFrontpicHeight]
 	cp c
 	jr nz, .no_carry
 	xor a
 	ld [wPokeAnimBitmaskCurRow], a
-	ld a, [wPokeAnimBitmaskCurCol]
-	inc a
-	ld [wPokeAnimBitmaskCurCol], a
-	ld c, a
+	ld hl, wPokeAnimBitmaskCurCol
+	inc [hl]
+	ld c, [hl]
 	ld a, [wPokeAnimFrontpicHeight]
 	cp c
 	jr nz, .no_carry
@@ -732,16 +713,16 @@ PokeAnim_PlaceGraphic:
 	jmp ClearBox
 
 PokeAnim_SetVBank1:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $2
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	xor a
 	ldh [hBGMapMode], a
 	call .SetFlag
 	farcall HDMATransferAttrMapToWRAMBank3
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 .SetFlag:
@@ -791,23 +772,26 @@ PokeAnim_GetAttrMapCoord:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wAttrMap - wTileMap
+	ld de, wAttrmap - wTilemap
 	add hl, de
 	ret
 
 PokeAnim_GetFrontpicDims:
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
+
+	; This is no longer needed for the pic size, but do it just
+	; in case subsequent code expects base data available
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a
 	call GetBaseData ; [wCurForm] is already set
-	ld a, [wBasePicSize]
-	and $f
+
+	call GetPicSize
 	ld c, a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 GetMonAnimDataIndex:
@@ -830,7 +814,6 @@ GetMonAnimPointer:
 	ld hl, AnimationExtraPointers
 	ld a, BANK(AnimationExtraPointers)
 .extras
-	dec bc
 	add hl, bc
 	add hl, bc
 	ld [wPokeAnimPointerBank], a
@@ -843,28 +826,29 @@ GetMonAnimPointer:
 
 GetMonFramesPointer:
 	call GetMonAnimDataIndex
-	dec bc
-	ld hl, FramesPointers
+	ld h, b
+	ld l, c
+	add hl, hl
 	add hl, bc
+	add hl, hl
 	add hl, bc
-	ld a, BANK(FramesPointers)
+	ld bc, PokemonPicPointers
+	add hl, bc
+	ld a, BANK(PokemonPicPointers)
+	call GetFarByte
+	ld [wPokeAnimFramesBank], a
+	ld bc, 5
+	add hl, bc
+	ld a, BANK(PokemonPicPointers)
 	call GetFarWord
 	ld a, l
 	ld [wPokeAnimFramesAddr], a
 	ld a, h
 	ld [wPokeAnimFramesAddr + 1], a
-	ld a, [wPokeAnimSpecies]
-	cp HOPPIP
-	; a = carry ? BANK(KantoFrames) : BANK(JohtoFrames)
-	assert BANK(KantoFrames) + 1 == BANK(JohtoFrames)
-	sbc a
-	add BANK(JohtoFrames)
-	ld [wPokeAnimFramesBank], a
 	ret
 
 GetMonBitmaskPointer:
 	call GetMonAnimDataIndex
-	dec bc
 	ld hl, BitmasksPointers
 	add hl, bc
 	add hl, bc

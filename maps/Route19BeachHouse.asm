@@ -12,8 +12,8 @@ Route19BeachHouse_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  2,  3, SPRITE_COOL_DUDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route19BeachHouseVictorScript, -1
-	object_event  6,  4, SPRITE_SURFING_PIKACHU, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route19BeachHouseSurfingPikachuScript, -1
+	object_event  2,  3, SPRITE_COOL_DUDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route19BeachHouseVictorScript, -1
+	object_event  6,  4, SPRITE_SURFING_PIKACHU, SPRITEMOVEDATA_WANDER, 1, 1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route19BeachHouseSurfingPikachuScript, -1
 
 	object_const_def
 	const ROUTE19BEACHHOUSE_VICTOR
@@ -22,14 +22,14 @@ Route19BeachHouseVictorScript:
 	faceplayer
 	opentext
 	checkevent EVENT_BEAT_VICTOR
-	iftrue .AfterScript
+	iftruefwd .AfterScript
 	writetext .GreetingText
 	waitbutton
 	special CheckForSurfingPikachu
-	iffalse .NoPikachu
+	iffalsefwd .NoPikachu
 	writetext .ChallengeText
 	yesorno
-	iffalse .NoBattle
+	iffalsefwd .NoBattle
 	writetext .SeenText
 	waitbutton
 	closetext
@@ -44,7 +44,18 @@ Route19BeachHouseVictorScript:
 	jumpopenedtext .AfterText
 
 .NoPikachu:
-	jumpopenedtext .NoPikachuText
+	jumpthisopenedtext
+
+	text "You can do it,"
+	line "too!"
+
+	para "Go out there and"
+	line "find a Surfing"
+	cont "Pikachu!"
+
+	para "Show me that you"
+	line "love Surfing too!"
+	done
 
 .NoBattle:
 	jumpopenedtext .NoBattleText
@@ -103,17 +114,6 @@ Route19BeachHouseVictorScript:
 	line "since then."
 	done
 
-.NoPikachuText:
-	text "You can do it,"
-	line "too!"
-
-	para "Go out there and"
-	line "find a Surfing"
-	cont "Pikachu!"
-
-	para "Show me that you"
-	line "love Surfing too!"
-	done
 
 .NoBattleText:
 	text "Shucks. Come Surf"

@@ -32,6 +32,10 @@ _TimeOfDayPals::
 	cp [hl]
 	jr z, .dontchange
 
+	push af
+	farcall SavePrevPalStates
+	pop af
+
 ; update palette id
 	ld [wTimeOfDayPal], a
 
@@ -39,26 +43,26 @@ _TimeOfDayPals::
 	ld hl, wBGPals1 palette 7
 
 ; save wram bank
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld b, a
 ; wram bank 5
 	ld a, 5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; push palette
-	ld c, 4 ; NUM_PAL_COLORS
+	ld c, 4 ; PAL_COLORS
 .push
-	ld d, [hl]
-	inc hl
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld e, a
 	push de
 	dec c
 	jr nz, .push
 
 ; restore wram bank
 	ld a, b
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; update cgb pals
 	ld a, CGB_MAPPALS
@@ -68,30 +72,31 @@ _TimeOfDayPals::
 	ld hl, wBGPals1 palette 7 + 1 palettes - 1 ; last byte in UnknBGPals
 
 ; save wram bank
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	ld d, a
 ; wram bank 5
 	ld a, 5
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; pop palette
-	ld e, 4 ; NUM_PAL_COLORS
+	ld e, 4 ; PAL_COLORS
 .pop
 	pop bc
-	ld [hl], c
-	dec hl
-	ld [hl], b
-	dec hl
+	ld a, c
+	ld [hld], a
+	ld a, b
+	ld [hld], a
 	dec e
 	jr nz, .pop
 
 ; restore wram bank
 	ld a, d
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 ; update palettes
-	call _UpdateTimePals
-	call DelayFrame
+	farcall LoadMapPalettes
+	farcall EnableDynPalUpdatesNoApply
+	farcall OWFadePalettesInit
 
 ; successful change
 	scf
@@ -104,9 +109,13 @@ _TimeOfDayPals::
 
 _UpdateTimePals::
 	ld c, $9 ; normal
+UpdatePalFromC::
 	call GetTimePalFade
-	jmp DmgToCgbTimePals
+	jr DmgToCgbTimePals
 
+FadeInPalettes_EnableDynNoApply:
+	farcall EnableDynPalUpdatesNoApply
+	; fallthrough
 FadeInPalettes::
 	ld c, 10
 	jmp FadePalettes
@@ -119,45 +128,13 @@ Special_FadeInQuickly:
 	ld c, $0
 	call GetTimePalFade
 	ld b, $4
-	jmp ConvertTimePalsIncHL
+	jr ConvertTimePalsIncHL
 
 Special_FadeBlackQuickly:
 	ld c, $9
 	call GetTimePalFade
 	ld b, $4
-	jmp ConvertTimePalsDecHL
-
-FillWhiteBGColor:
-	ldh a, [rSVBK]
-	push af
-	ld a, $5
-	ldh [rSVBK], a
-
-	ld hl, wBGPals1
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld hl, wBGPals1 palette 1
-	ld c, 6
-.loop
-	ld a, e
-	ld [hli], a
-	ld a, d
-	ld [hli], a
-rept 6
-	inc hl
-endr
-	dec c
-	jr nz, .loop
-
-	pop af
-	ldh [rSVBK], a
-	ret
-
-brightlevel: MACRO
-	db (\1 << 6) | (\2 << 4) | (\3 << 2) | \4
-ENDM
+	jr ConvertTimePalsDecHL
 
 ReplaceTimeOfDayPals:
 	ld a, [wMapTimeOfDay]
@@ -180,6 +157,10 @@ ReplaceTimeOfDayPals:
 	ld a, [hl]
 	ld [wTimeOfDayPalset], a
 	ret
+
+MACRO brightlevel
+	db (\1 << 6) | (\2 << 4) | (\3 << 2) | \4
+ENDM
 
 .BrightnessLevels:
 	brightlevel 3, 2, 1, 0 ; PALETTE_AUTO

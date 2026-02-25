@@ -1,10 +1,5 @@
 OaksLab_MapScriptHeader:
 	def_scene_scripts
-	scene_script OaksLabTrigger0
-	scene_script OaksLabTrigger1
-	scene_script OaksLabTrigger2
-	scene_script OaksLabTrigger3
-	scene_script OaksLabTrigger4
 
 	def_callbacks
 
@@ -27,450 +22,555 @@ OaksLab_MapScriptHeader:
 	bg_event  7,  7, BGEVENT_JUMPSTD, difficultbookshelf
 	bg_event  8,  7, BGEVENT_JUMPSTD, difficultbookshelf
 	bg_event  9,  7, BGEVENT_JUMPSTD, difficultbookshelf
-	bg_event  4,  0, BGEVENT_JUMPTEXT, OaksLabSign1Text
-	bg_event  5,  0, BGEVENT_JUMPTEXT, OaksLabSign2Text
-	bg_event  9,  3, BGEVENT_JUMPTEXT, OaksLabTrashcanText
+	bg_event  4,  0, BGEVENT_JUMPTEXT, OaksLabPoster1Text
+	bg_event  5,  0, BGEVENT_JUMPTEXT, OaksLabPoster2Text
 	bg_event  0,  1, BGEVENT_JUMPTEXT, OaksLabPCText
 
 	def_object_events
-	object_event  4,  3, SPRITE_SILVER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OaksLabBlueScript, EVENT_HIDE_OAKSLAB_TRACE
-	object_event  7,  3, SPRITE_BALL_CUT_FRUIT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, SpecialPokeballScript, -1
-	object_event  5,  2, SPRITE_OAK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OaksLabOakScript, EVENT_HIDE_OAKSLAB_OAK
-	object_event  2,  1, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptext, OaksLabPokedexDescriptionText, EVENT_GOT_POKEDEX_FROM_OAK
-	object_event  3,  1, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptext, OaksLabPokedexDescriptionText, EVENT_GOT_POKEDEX_FROM_OAK
-	object_event  1,  9, SPRITE_AROMA_LADY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 1, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OaksLabGirlText, -1
-	object_event  8,  10, SPRITE_SCIENTIST, SPRITEMOVEDATA_SPINRANDOM_SLOW, 1, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, OaksLabAideText, -1
+	object_event  4,  2, SPRITE_OAK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, Oak, -1
+	object_event  7,  3, SPRITE_MON_ICON, SPRITEMOVEDATA_STILL, 0, EEVEE, -1, PAL_MON_BROWN, OBJECTTYPE_SCRIPT, NO_FORM, EeveeDollScript, EVENT_DECO_EEVEE_DOLL
+	object_event  1,  8, SPRITE_AROMA_LADY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, OaksAssistant1Text, -1
+	object_event  8,  9, SPRITE_SCIENTIST, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, OaksAssistant2Text, -1
+	object_event  1,  4, SPRITE_SCIENTIST, SPRITEMOVEDATA_WANDER, 1, 1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, OaksAssistant3Text, -1
+	object_event  2,  1, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptext, OaksLabPokedexText, -1
 
 	object_const_def
-	const OAKSLAB_TRACE
-	const OAKSLAB_POKEBALL
 	const OAKSLAB_OAK
-	const OAKSLAB_POKEDEX_1
-	const OAKSLAB_POKEDEX_2
-	const OAKSLAB_GIRL
-	const OAKSLAB_AIDE
+	const OAKSLAB_EEVEE_DOLL
 
-OaksLabTrigger1:
-	sdefer OaksLab_AutowalkUpToOak
-OaksLabTrigger0:
-OaksLabTrigger2:
-OaksLabTrigger3:
-OaksLabTrigger4:
-	end
-
-OaksLab_AutowalkUpToOak:
-	applymovement PLAYER, Movement_WalkUpToProfOak
-	opentext
-	writetext OaksLabArrivalText
-	pause 15
-	writetext OaksLabTraceArrivesText
-	promptbutton
-	closetext
-	moveobject OAKSLAB_TRACE, 4, 7
-	appear OAKSLAB_TRACE
-	applymovement OAKSLAB_TRACE, Movement_TraceRunsIn
-	opentext
-	writetext OaksLabTraceSorryText
-	promptbutton
-	writetext OaksLabIntroducePokedexText
-	closetext
-	readvar VAR_FACING
-	ifequal RIGHT, .OakWalk2
-	applymovement OAKSLAB_OAK, Movement_OakWalksToTable
-	disappear OAKSLAB_POKEDEX_1
-	disappear OAKSLAB_POKEDEX_2
-	pause 15
-	applymovement OAKSLAB_OAK, Movement_OakWalksBack
-	sjump .continue
-.OakWalk2
-	applymovement OAKSLAB_OAK, Movement_OakWalksToTable2
-	disappear OAKSLAB_POKEDEX_1
-	disappear OAKSLAB_POKEDEX_2
-	pause 15
-	applymovement OAKSLAB_OAK, Movement_OakWalksBack2
+Oak:
 	faceplayer
-.continue
 	opentext
-	writetext OaksLabReceivedPokedexText
-	playsound SFX_KEY_ITEM
+	checkevent EVENT_OPENED_MT_SILVER
+	iftruefwd .GiveStarter
+	checkevent EVENT_TALKED_TO_OAK_IN_KANTO
+	iftruefwd .GiveStarter
+	writetext OakWelcomeKantoText
+	promptbutton
+	setevent EVENT_TALKED_TO_OAK_IN_KANTO
+.GiveStarter:
+	checkevent EVENT_GOT_A_POKEMON_FROM_OAK
+	iftruefwd .CheckBadges
+	checkevent EVENT_GOT_A_POKEMON_FROM_IVY
+	iffalsefwd .CheckBadges
+	writetext OakLabGiveStarterText
+	promptbutton
 	waitsfx
+	checkevent EVENT_GOT_BULBASAUR_FROM_IVY
+	iftruefwd .Charmander
+	checkevent EVENT_GOT_CHARMANDER_FROM_IVY
+	iftruefwd .Squirtle
+	givepoke BULBASAUR, PLAIN_FORM, 10, SITRUS_BERRY
+	iffalsefwd .PartyAndBoxFull
+	setevent EVENT_GOT_A_POKEMON_FROM_OAK
+	sjumpfwd .CheckBadges
+
+.Charmander:
+	givepoke CHARMANDER, PLAIN_FORM, 10, SITRUS_BERRY
+	iffalsefwd .PartyAndBoxFull
+	setevent EVENT_GOT_A_POKEMON_FROM_OAK
+	sjumpfwd .CheckBadges
+
+.Squirtle:
+	givepoke SQUIRTLE, PLAIN_FORM, 10, SITRUS_BERRY
+	iffalsefwd .PartyAndBoxFull
+	setevent EVENT_GOT_A_POKEMON_FROM_OAK
+	sjumpfwd .CheckBadges
+
+.PartyAndBoxFull:
+	writetext OakLabPartyAndBoxFullText
+	waitbutton
+.CheckBadges:
+	checkevent EVENT_OPENED_MT_SILVER
+	iftruefwd .CheckPokedex
+	checkevent EVENT_BEAT_ELITE_FOUR_AGAIN
+	iftruefwd .BattleOak
+	readvar VAR_BADGES
+	ifequalfwd 16, .Complain1
+	ifequalfwd  8, .Complain2
+	writetext OakYesKantoBadgesText
 	promptbutton
-	writetext OaksLabRequestText
-	verbosegiveitem POKE_BALL, 5
-	faceobject OAKSLAB_TRACE, PLAYER
-	writetext OaksLabLeaveItToUsText
+.CheckPokedex:
+	checkkeyitem CATCH_CHARM
+	iftruefwd .GotCatchCharm
+	writetext OakLabCatchMoreText
 	promptbutton
-	closetext
-	applymovement OAKSLAB_TRACE, Movement_TraceRunsOut
-	disappear OAKSLAB_TRACE
-
-	; Set all original 150 to seen/caught
-	callasm FillKantoPokedex
-
-	setflag ENGINE_POKEDEX
-	setevent EVENT_GOT_POKEDEX_FROM_OAK
-	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
-	setmapscene VIRIDIAN_CITY, $1
-	setmapscene ROUTE_22, $1
-	clearevent EVENT_HIDE_ROUTE_22_TRACE
-	callasm AdvanceOverworld1
-	setscene $2
-	end
-
-AdvanceOverworld1:
-	ld hl, wOverworldLevel
-	ld [hl], 1
-	ret
-
-FillKantoPokedex:
-	ld hl, wPokedexSeen
-	call .Fill
-	ld hl, wPokedexCaught
-.Fill:
-	ld a, %11111111
-	ld bc, 18 ; 001-144
-	rst ByteFill
-	ld [hl], %00111111 ; 145-150
-	ret
-
-Movement_WalkUpToProfOak:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_up
-	step_end
-
-Movement_TraceRunsIn:
-	step_up
-	step_up
-	step_up
-	step_up
-	step_end
-
-Movement_TraceRunsOut:
-	step_down
-	step_down
-	step_down
-	step_down
-	step_down
-	step_end
-
-Movement_OakWalksToTable:
-	step_left
-	step_left
-	turn_head_up
-	step_end
-
-Movement_OakWalksBack:
-	step_right
-	step_right
-	turn_head_down
-	step_end
-
-Movement_OakWalksToTable2:
-	step_up
-	step_left
-	step_end
-
-Movement_OakWalksBack2:
-	step_right
-	step_down
-	step_end
-
-SpecialPokeballScript:
-	opentext
-	jumpthisopenedtext
-	text "It looks like a"
-	line "special # Ball."
-	done
-
-OaksLabOakScript:
-	faceplayer
-	opentext
-;	checkevent EVENT_CAN_VISIT_BATTLE_TOWER
-;	iftrue_jumpopenedtext OaksLabTalkAboutBattleTowerText
-;	checkevent EVENT_BEAT_ELITE_FOUR
-;	iftrue .EnableBattleTower
-	checkevent EVENT_GOT_POKEDEX_FROM_OAK
-	iftrue .RatePokedex
-	checkevent EVENT_BATTLED_OAKSLAB_RIVAL
-	iftrue_jumpopenedtext OaksLabMakeItFightText
-	checkevent EVENT_GOT_STARTER
-	iftrue_jumpopenedtext OaksLabYourPokemonCanBattleText
-	jumpthisopenedtext
-;OaksLabWhichPokemonDoYouWantText
-	text "OAK: Now, <PLAYER>,"
-	line "which #MON do"
-	cont "you want?"
-	done
-
-.RatePokedex
-	writetext OaksLabDexCheckText
+	verbosegivekeyitem CATCH_CHARM
+	writetext OakLabCatchCharmText
+	waitbutton
+.GotCatchCharm
+	writetext OakLabDexCheckText
+	waitbutton
 	special ProfOaksPCBoot
+	checkkeyitem OVAL_CHARM
+	iftruefwd .NoOvalCharm
+	setval16 NUM_POKEMON
+	special CountSeen
+	iffalsefwd .NoOvalCharm
+	writetext OakLabSeenAllText
+	promptbutton
+	verbosegivekeyitem OVAL_CHARM
+	writetext OakLabOvalCharmText
+	waitbutton
+.NoOvalCharm
+	checkkeyitem SHINY_CHARM
+	iftruefwd .NoShinyCharm
+	setval16 NUM_POKEMON
+	special CountCaught
+	iffalsefwd .NoShinyCharm
+	writetext OakLabCaughtAllText
+	promptbutton
+	verbosegivekeyitem SHINY_CHARM
+	writetext OakLabShinyCharmText
+	waitbutton
+.NoShinyCharm
 	jumpthisopenedtext
-;OaksLabGoodbyeText
+
 	text "If you're in the"
 	line "area, I hope you"
 	cont "come visit again."
 	done
 
-OaksLabBlueScript:
-	faceplayer
+.BattleOak:
+	checkevent EVENT_LISTENED_TO_OAK_INTRO
+	iftruefwd .HeardIntro
+	writetext OakMightBeReadyText
+	waitbutton
+	setevent EVENT_LISTENED_TO_OAK_INTRO
+.HeardIntro:
+	writetext OakChallengeText
+	yesorno
+	iffalsefwd .NotReady
+	writetext OakSeenText
+	waitbutton
+	closetext
+	winlosstext OakWinText, 0
+	setlasttalked OAKSLAB_OAK
+	loadtrainer PROF_OAK, 1
+	startbattle
+	reloadmapafterbattle
 	opentext
+	writetext OakOpenMtSilverText
+	promptbutton
+	setevent EVENT_BEAT_PROF_OAK
+	setevent EVENT_OPENED_MT_SILVER
+	sjump .CheckPokedex
+
+.NotReady:
+	writetext OakRefusedText
+	promptbutton
+	sjump .CheckPokedex
+
+.Complain1:
+	writetext OakNoEliteFourRematchText
+	promptbutton
+	sjump .CheckPokedex
+
+.Complain2:
+	writetext OakNoKantoBadgesText
+	promptbutton
+	sjump .CheckPokedex
+
+EeveeDollScript:
+	turnobject OAKSLAB_OAK, RIGHT
+	opentext
+	writetext ProfOakEeveeDollTradeText
+	waitbutton
+	checkitem EVERSTONE
+	iffalse_jumpopenedtext NoEverstoneText
+	writetext WantToTradeText
+	yesorno
+	iffalse_jumpopenedtext NoTradeText
+	takeitem EVERSTONE
+	disappear OAKSLAB_EEVEE_DOLL
+	setevent EVENT_DECO_EEVEE_DOLL
+	writetext EeveeDollText
+	playsound SFX_ITEM
+	pause 60
+	waitbutton
+	writetext EeveeDollSentText
+	waitbutton
 	jumpthisopenedtext
-;HehIDontNeedToBeGreedyText
-	text "<RIVAL>: Heh, I"
-	line "don't need to be"
-	cont "greedy like you!"
 
-	para "Go ahead and"
-	line "choose, <PLAYER>!"
+	text "Prof.Oak: Set it"
+	line "somewhere you can"
+	cont "appreciate it!"
 	done
 
-OaksLabYourPokemonCanBattleText:
-	text "Oak: If a wild"
-	line "#mon appears,"
-	cont "your #mon can"
-	cont "fight against it!"
+OakWelcomeKantoText:
+	text "Oak: Ah, <PLAYER>!"
+	line "It's good of you"
+
+	para "to come all this"
+	line "way to Kanto."
+
+	para "What do you think"
+	line "of the trainers"
+
+	para "out here?"
+	line "Pretty tough, huh?"
 	done
 
-OaksLabMakeItFightText:
-	text "Oak: <PLAYER>,"
-	line "raise your young"
-	cont "#mon by making"
-	cont "it fight!"
+OakLabGiveStarterText:
+	text "Oak: Oh, so Prof."
+	line "Ivy says hello?"
+
+	para "Thanks for convey-"
+	line "ing her message,"
+	cont "<PLAYER>."
+
+	para "She's a good friend"
+	line "of mine."
+
+	para "If she gave you a"
+	line "#mon, let me do"
+	cont "the same!"
+
+	para "You don't see this"
+	line "#mon very often"
+	cont "in Kanto or Johto."
 	done
 
-OaksLabRivalChallengeText:
-	text "<RIVAL>: Wait"
-	line "<PLAYER>!"
-	cont "Let's check out"
-	cont "our #mon!"
-
-	para "Come on, I'll take"
-	line "you on!"
+OakLabPartyAndBoxFullText:
+	text "Hm, you don't have"
+	line "room for it, and"
+	line "your Box is full."
 	done
 
-OaksLabBlueWinText:
-	text "<RIVAL>: WHAT?"
-	line "Unbelievable!"
-	cont "I picked the"
-	cont "wrong #mon!"
-	done
-
-OaksLabBlueLossText:
-	text "<RIVAL>: Yeah! Am"
-	line "I great or what?"
-	done
-
-OaksLabRivalToughenUpText:
-	text "<RIVAL>: Okay!"
-	line "I'll make my"
-	cont "#mon fight to"
-	cont "toughen it up!"
-
-	para "<PLAYER>! Gramps!"
-	line "Smell you later!"
-	done
-
-OaksLabArrivalText:
-	text "Right! So, I must"
-	line "ask you to do"
-	cont "something for me."
-	prompt
-
-OaksLabTraceArrivesText:
-	text "<RIVAL>: Hey!"
-	done
-
-OaksLabTraceSorryText:
-	text "<RIVAL>: PHEW!"
-	line "Sorry I'm late!"
-	done
-
-OaksLabIntroducePokedexText:
-	text "Oak: Ah, yes! I"
-	line "actually have a"
-	cont "request for both"
-	cont "of you."
-
-	para "On the desk there"
-	line "is my invention,"
-	cont "the #dex!"
-
-	para "It automatically"
-	line "records data on"
-	cont "#mon you've"
-	cont "seen or caught!"
-
-	para "It's a hi-tech"
-	line "encyclopedia!"
-	done
-
-OaksLabReceivedPokedexText:
-	text "Oak: <PLAYER> and"
-	line "<RIVAL>! Take"
-	cont "these with you!"
-
-	para "<PLAYER> got"
-	line "the #dex!"
-	done
-
-OaksLabRequestText:
-	text "To make a complete"
-	line "guide on all the"
-	cont "#mon in the"
-	cont "world…"
-
-	para "That was my dream!"
-	line "But…"
-
-	para "It's already been"
-	line "done! My dream"
-	cont "has come true!"
-
-	para "<RIVAL>: So, what"
-	line "exactly do we"
-	cont "need to do?"
-
-	para "Oak: I need you"
-	line "to take these and"
-	cont "report to Blue"
-	cont "in Pewter City."
-	
-	para "He will explain"
-	line "more once you get"
-	cont "there."
-
-	para "Oh, take these"
-	line "# Balls too!"
-	cont "Use them to catch"
-	cont "wild #mon!"
-	prompt
-
-OaksLabLeaveItToUsText:
-	text "<RIVAL>: I see."
-	line "Ok then! Leave it"
-	cont "all to us!"
-
-	para "<PLAYER>, We can"
-	line "use the #dex"
-	cont "to find really"
-	cont "strong #mon to"
-	cont "help us out!"
-	
-	para "Anyway, I'm out!"
-	line "See you in Pewter"
-	cont "City!"
-	done
-
-OaksLabDexCheckText:
+OakLabDexCheckText:
 	text "How is your #-"
 	line "dex coming?"
 
 	para "Let's see…"
-	prompt
-
-OaksLabIntroduceBattleTowerText: ;OaksLabIntroduceJohtoText:
-	text "Oak: <PLAYER>!"
-	line "Now that you have"
-	cont "defeated the Elite"
-	cont "Four, I've made"
-	cont "arrangements for"
-	cont "you to take on a"
-	cont "new challenge."
-
-	para "There is a new"
-	line "Battle Tower, that"
-	cont "just finished"
-	cont "construction on an"
-	cont "island just east"
-	cont "of Route 19."
-
-	para "You can take the"
-	line "Seagallop Ferry in"
-	cont "Vermilion City to"
-	cont "get there."
-
-	para "Good luck on this"
-	line "new adventure,"
-	cont "<PLAYER>!"
-	prompt
-
-OaksLabTalkAboutBattleTowerText: ;OaksLabTalkAboutJohtoText:
-	text "The Battle Tower"
-	line "lets you test your"
-	cont "skills in a series"
-	cont "of battles with"
-	cont "other skilled"
-	cont "trainers."
-
-	para "It should be a"
-	line "fun challenge!"
 	done
 
-OaksLabSign1Text:
-	text "Push Start to"
-	line "open the Menu!"
+OakLabCatchMoreText:
+	text "I want to thank"
+	line "you for being of"
+
+	para "such help with"
+	line "filling out the"
+	cont "#dex."
+
+	para "Take this as a"
+	line "reward for your"
+	cont "hard work!"
 	done
 
-OaksLabSign2Text:
+OakLabCatchCharmText:
+	text "Holding a Catch"
+	line "Charm will improve"
+
+	para "your chances of a"
+	line "critical capture."
+
+	para "That's when your"
+	line "# Ball is"
+
+	para "thrown just right"
+	line "and is more likely"
+	cont "to succeed!"
+	done
+
+OakLabSeenAllText:
+	text "You've been meeting"
+	line "new #mon at a"
+
+	para "good clip, haven't"
+	line "you?"
+
+	para "Take this as a"
+	line "reward for your"
+	cont "hard work!"
+	done
+
+OakLabOvalCharmText:
+	text "Holding an Oval"
+	line "Charm will improve"
+
+	para "your chances of"
+	line "finding an Egg at"
+	cont "the Day-Care."
+	done
+
+OakLabCaughtAllText:
+	text "I was completely"
+	line "justified in"
+
+	para "giving you that"
+	line "#dex."
+
+	para "It is a testament"
+	line "to your effort…"
+
+	para "And to the support"
+	line "of the many who"
+	cont "helped you…"
+
+	para "And to the bonds"
+	line "you have built"
+	cont "with your #mon!"
+
+	para "Take this as a"
+	line "reward for your"
+	cont "hard work!"
+	done
+
+OakLabShinyCharmText:
+	text "Holding a Shiny"
+	line "Charm will improve"
+
+	para "your chances of"
+	line "finding a shiny"
+	cont "#mon!"
+	done
+
+
+OakMightBeReadyText:
+	text "Oak: Incredible,"
+	line "<PLAYER>!"
+
+	para "You won against"
+	line "the Elite Four"
+	cont "a second time!"
+
+	para "You just might be"
+	line "ready to ascend"
+	cont "Mt.Silver."
+	done
+
+OakChallengeText:
+	text "Oak: Mt.Silver is"
+	line "a tall mountain"
+
+	para "that is home to"
+	line "many wild #mon."
+
+	para "It's too dangerous"
+	line "for your average"
+
+	para "trainer, so it's"
+	line "off limits."
+
+	para "I'll need to see"
+	line "your skills for"
+	cont "myself."
+
+	para "Are you ready for"
+	line "a battle?"
+	done
+
+OakRefusedText:
+	text "Oak: Come back"
+	line "when you're ready."
+	done
+
+OakSeenText:
+	text "Oak: Put every-"
+	line "thing you have"
+	cont "into this battle!"
+	done
+
+OakWinText:
+	text "I was right in my"
+	line "assessment of you!"
+	done
+
+OakOpenMtSilverText:
+	text "Oak: Spectacular,"
+	line "<PLAYER>!"
+
+	para "I'll make arrange-"
+	line "ments so that you"
+
+	para "can go to Mt."
+	line "Silver."
+
+	para "It's unusual, but"
+	line "we can make an"
+
+	para "exception in your"
+	line "case, <PLAYER>."
+
+	para "Go up to Indigo"
+	line "Plateau. You can"
+
+	para "reach Mt.Silver"
+	line "from there."
+
+	para "…"
+
+	para "I let Red train on"
+	line "Mt.Silver after"
+
+	para "his first defeat"
+	line "as Champion."
+
+	para "But he hasn't"
+	line "come back…"
+	done
+
+OakNoKantoBadgesText:
+	text "Oak: Hmm? You're"
+	line "not collecting"
+	cont "Kanto Gym Badges?"
+
+	para "The Gym Leaders in"
+	line "Kanto are as tough"
+
+	para "as any you battled"
+	line "in Johto."
+
+	para "I recommend that"
+	line "you challenge"
+	cont "them."
+	done
+
+OakNoEliteFourRematchText:
+	text "Oak: Wow! That's"
+	line "excellent!"
+
+	para "You collected the"
+	line "Badges of Gyms in"
+	cont "Kanto. Well done!"
+
+	para "Now you can cha-"
+	line "llenge the Elite"
+
+	para "Four with their"
+	line "best #mon."
+
+	para "Keep trying hard,"
+	line "<PLAYER>!"
+	done
+
+OakYesKantoBadgesText:
+	text "Oak: Ah, you're"
+	line "collecting Kanto"
+	cont "Gym Badges."
+
+	para "I imagine that"
+	line "it's hard, but the"
+
+	para "experience is sure"
+	line "to help you."
+
+	para "After you earn all"
+	line "eight, you can"
+	cont "challenge the"
+
+	para "Elite Four at"
+	line "their best."
+
+	para "Keep trying hard,"
+	line "<PLAYER>!"
+	done
+
+OaksAssistant1Text:
+	text "The Prof's #mon"
+	line "Talk radio program"
+
+	para "isn't aired here"
+	line "in Kanto."
+
+	para "It's a shame--I'd"
+	line "like to hear it."
+	done
+
+OaksAssistant2Text:
+	text "Thanks to your"
+	line "work on the #-"
+	cont "dex, the Prof's"
+
+	para "research is coming"
+	line "along great."
+	done
+
+OaksAssistant3Text:
+	text "Don't tell anyone,"
+	line "but Prof.Oak's"
+
+	para "#mon Talk isn't"
+	line "a live broadcast."
+	done
+
+OaksLabPoster1Text:
+	text "Press Start to"
+	line "open the Menu."
+	done
+
+OaksLabPoster2Text:
 	text "The Save option is"
-	line "on the Start Menu!"
-	done
+	line "on the Menu."
 
-OaksLabTrashcanText:
-	text "There's nothing in"
-	line "here…"
+	para "Use it in a timely"
+	line "manner."
 	done
 
 OaksLabPCText:
 	text "There's an e-mail"
-	line "message here!"
+	line "message on the PC."
 
 	para "…"
 
-	para "Calling all"
-	line "#mon trainers!"
+	para "Prof.Oak, how is"
+	line "your research"
+	cont "coming along?"
 
-	para "The elite trainers"
-	line "of #mon League"
-	cont "are ready to take"
-	cont "all comers!"
+	para "I'm still plugging"
+	line "away."
 
-	para "Bring your best"
-	line "#mon and see"
-	cont "how you rate as a"
-	cont "trainer!"
+	para "I heard rumors"
+	line "that <PLAYER> is"
 
-	para "#mon League HQ"
-	line "Indigo Plateau"
+	para "getting quite a"
+	line "reputation."
 
-	para "PS: Prof.Oak,"
-	line "please visit us!"
-	cont "…"
+	para "I'm delighted to"
+	line "hear that."
+
+	para "Elm in New Bark"
+	line "Town 8-)"
 	done
 
-OaksLabPokedexDescriptionText:
-	text "It's a small red"
-	line "electronic device."
+ProfOakEeveeDollTradeText:
+	text "Oak: Oh, are you"
+	line "admiring my"
+	cont "Eevee Doll?"
+
+	para "I'll trade it"
+	line "to you for an"
+	cont "Everstone."
 	done
 
-OaksLabGirlText:
-	text "Prof. Oak is the"
-	line "authority on"
-	cont "#MON!"
-
-	para "Many #MON"
-	line "trainers hold him"
-	cont "in high regard!"
+NoEverstoneText:
+	text "But you don't have"
+	line "one of those…"
 	done
 
-OaksLabAideText:
-	text "I study #mon as"
-	line "Prof. Oak's Aide."
+WantToTradeText:
+	text "Do you want to"
+	line "trade?"
+	done
+
+NoTradeText:
+	text "It will still be"
+	line "here if you change"
+	cont "your mind."
+	done
+
+EeveeDollText:
+	text "<PLAYER> received"
+	line "Eevee Doll."
+	done
+
+EeveeDollSentText:
+	text "Eevee Doll"
+	line "was sent home."
+	done
+
+
+OaksLabPokedexText:
+	text "It's Prof.Oak's"
+	line "#dex."
 	done

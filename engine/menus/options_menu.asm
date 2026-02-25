@@ -1,217 +1,191 @@
 OptionsMenu:
-	ld hl, hInMenu
-	ld a, [hl]
+	ldh a, [hInMenu]
 	push af
-	ld [hl], $1
+	ld a, TRUE
+	ldh [hInMenu], a
+
+	xor a
+	ld [wBattleMenuFlags], a
+
 	call ClearBGPalettes
-	hlcoord 0, 0
-	lb bc, SCREEN_HEIGHT - 2, SCREEN_WIDTH - 2
-	call Textbox
-	hlcoord 2, 2
-	ld de, StringOptions1
-	rst PlaceString
-	xor a
-	ld [wCurOptionsPage], a
-	call OptionsMenu_LoadOptions
 
-	xor a
-	ld [wJumptableIndex], a
-	ld a, CGB_DIPLOMA
+	ld a, CGB_PLAIN
 	call GetCGBLayout
-	call SetPalettes
 
-.joypad_loop
-	call JoyTextDelay
-	ldh a, [hJoyPressed]
-	and START | B_BUTTON
-	jr nz, .ExitOptions
-	call OptionsControl
-	jr c, .dpad
-	call GetOptionPointer
-	jr c, .ExitOptions
+	ld hl, .BGPalettes
+	ld de, wBGPals1
+	ld bc, 1 palettes
+	call FarCopyColorWRAM
 
-.dpad
-	call Options_UpdateCursorPosition
-	ld c, 3
-	call DelayFrames
-	jr .joypad_loop
+	call LoadFrame
+	call OptionsShared_LoadEdgeTiles
 
-.ExitOptions:
-	ld de, SFX_TRANSACTION
-	call PlaySFX
-	call WaitSFX
+	ld hl, MenuDataHeader_Options
+	call CopyMenuHeader
+
+	xor a
+	ldh [hBGMapMode], a
+
+	call InitScrollingMenu
+
+	xor a ; FALSE
+	ld [wOptionsMenuIsInitial], a
+	call OptionsShared_RunLoop
+
 	pop af
 	ldh [hInMenu], a
 	ret
 
-OptionsMenu_LoadOptions:
-	xor a
-	ld [wJumptableIndex], a
-	ldh [hJoyPressed], a
-	ld c, $6 ; number of items on the menu minus 1 (for done)
-.print_text_loop ; this next will display the settings of each option when the menu is opened
-	push bc
-	xor a
-	ldh [hJoyLast], a
-	call GetOptionPointer
-	pop bc
-	ld hl, wJumptableIndex
-	inc [hl]
-	dec c
-	jr nz, .print_text_loop
-	ld a, [wCurOptionsPage]
-	and a
-	call z, UpdateFrame
-	ld a, 1
-	ldh [hBGMapMode], a
-	jmp ApplyTilemapInVBlank
+.BGPalettes:
+INCLUDE "gfx/options/options_bg.pal"
 
-StringOptions1:
-	db "Text Speed<LNBRK>"
-	db "        :<LNBRK>"
-	db "Battle Effects<LNBRK>"
-	db "        :<LNBRK>"
-	db "Battle Style<LNBRK>"
-	db "        :<LNBRK>"
-	db "Running Shoes<LNBRK>"
-	db "        :<LNBRK>"
-	db "Frame<LNBRK>"
-	db "        :Type<LNBRK>"
-	db "Sound<LNBRK>"
-	db "        :<LNBRK>"
-	db "Next<LNBRK>"
-	db "        <LNBRK>"
-	db "Done@"
+DEF NUM_OPTIONS EQU 13
 
-StringOptions2:
-	db "Clock Format<LNBRK>"
-	db "        :<LNBRK>"
-	db "#dex Units<LNBRK>"
-	db "        :<LNBRK>"
-	db "Text Autoscroll<LNBRK>"
-	db "        :<LNBRK>"
-	db "Turning Speed<LNBRK>"
-	db "        :<LNBRK>"
-	db "Typeface<LNBRK>"
-	db "        :<LNBRK>"
-	db "Keyboard<LNBRK>"
-	db "        :<LNBRK>"
-	db "Previous<LNBRK>"
-	db "        <LNBRK>"
-	db "Done@"
-
-GetOptionPointer:
-	ld a, [wCurOptionsPage]
-	and a
-	ld a, [wJumptableIndex]
-	jr z, .page1
-	add 8
-.page1
+OptionsMenu_CallOptionRoutine:
+	ld a, [wMenuSelection]
+	dec a
 	call StackJumpTable
 
 .Pointers:
+	table_width 2
 	dw Options_TextSpeed
-	dw Options_BattleEffects
-	dw Options_BattleStyle
-	dw Options_RunningShoes
-	dw Options_Frame
-	dw Options_Sound
-	dw Options_NextPrevious
-	dw Options_Done
-
-	dw Options_ClockFormat
-	dw Options_PokedexUnits
 	dw Options_TextAutoscroll
-	dw Options_TurningSpeed
+	dw Options_Frame
 	dw Options_Typeface
 	dw Options_Keyboard
-	dw Options_NextPrevious
+	dw Options_Sound
+	dw Options_BattleEffects
+	dw Options_BattleStyle
+	dw Options_Nicknames
+	dw Options_RunningShoes
+	dw Options_TurningSpeed
+	dw Options_ClockFormat
+	dw Options_PokedexUnits
 	dw Options_Done
+	assert_table_length NUM_OPTIONS + 1 ; include "Done"
+
+MenuDataHeader_Options:
+	db MENU_BACKUP_TILES | MENU_NO_CLICK_SFX
+	menu_coords 1, 0, 18, 11
+	dw .MenuData2
+	db 1 ; default option
+	db 0
+
+.MenuData2:
+	db SCROLLINGMENU_CALL_FUNCTION1_CANCEL | SCROLLINGMENU_ENABLE_LEFT | SCROLLINGMENU_ENABLE_RIGHT | SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_FUNCTION3 | SCROLLINGMENU_ENABLE_START ; flags
+	db 5, OPTIONS_SHARED_VALUE_OFFSET ; rows, columns
+	db SCROLLINGMENU_ITEMS_NORMAL ; horizontal spacing
+	dba OptionsMenuItems ; text pointer
+	dba OptionsShared_PlaceOptionName
+	dba OptionsShared_PlaceOptionValue
+	dba OptionsShared_ResetSelectionDescription
+
+OptionsMenuItems:
+	db NUM_OPTIONS
+for n, NUM_OPTIONS
+	db n + 1
+endr
+	db -1 ; terminator ("Done")
+
+INCLUDE "data/options/option_names.asm"
+
+OptionsMenu_GetTextSpeedFlag:
+; Returns C = 0 for instant text, C != 0 for configured text speed.
+; Text Speed option (wMenuSelection == 1) uses configured speed.
+	ld c, 0
+	ld a, [wMenuSelection]
+	dec a
+	ret nz
+	inc c
+	ret
+
+OptionsMenu_AdvanceSelectionDescription:
+; Text Speed: always redraw from the start using current speed.
+	call OptionsMenu_GetTextSpeedFlag
+	ld a, c
+	and a
+	jmp z, OptionsShared_SimpleAdvanceDescription
+	; TextSpeed special case: redraw from start with configured speed
+	call OptionsShared_DispatchLookupDescription
+	call SetUpTextbox
+	ld c, TRUE ; use text speed
+	jmp OptionsShared_PlaceDescriptionText
 
 Options_TextSpeed:
 	ld a, [wOptions1]
-	and %11
+	and TEXT_DELAY_MASK
 	ld c, a
 	ldh a, [hJoyPressed]
 	dec c
-	bit D_LEFT_F, a
-	jr nz, .ok
+	bit B_PAD_LEFT, a
+	jr nz, .LeftPressed
 	inc c
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr z, .NonePressed
 	inc c
-.ok
+.LeftPressed:
 	ld a, c
-	and $3
+	and TEXT_DELAY_MASK
 	ld c, a
 	ld a, [wOptions1]
-	and $fc
+	and ~TEXT_DELAY_MASK
 	or c
 	ld [wOptions1], a
-
 .NonePressed:
 	ld b, 0
 	ld hl, .Strings
 	add hl, bc
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
-	hlcoord 11, 3
-	rst PlaceString
-	and a
-	ret
+	ld e, a
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 .Strings:
-	dw .Instant
-	dw .Fast
-	dw .Medium
+	table_width 2
 	dw .Slow
+	dw .Medium
+	dw .Fast
+	dw .Instant
+	assert_table_length TEXT_DELAY_MASK >> TZCOUNT(TEXT_DELAY_MASK) + 1
 
-.Fast:
-	db "Fast   @"
-.Medium:
-	db "Medium @"
 .Slow:
 	db "Slow   @"
+.Medium:
+	db "Medium @"
+.Fast:
+	db "Fast   @"
 .Instant:
 	db "Instant@"
 
 Options_BattleEffects:
 	ld hl, wOptions1
 	ldh a, [hJoyPressed]
-	and D_LEFT | D_RIGHT
+	and PAD_LEFT | PAD_RIGHT
 	jr nz, .Toggle
 	bit BATTLE_EFFECTS, [hl]
 	jr z, .SetOff
 	jr .SetOn
-.Toggle
+
+.Toggle:
 	bit BATTLE_EFFECTS, [hl]
 	jr z, .SetOn
 .SetOff:
 	res BATTLE_EFFECTS, [hl]
-	ld de, .Off
-	jr .Display
+	ld de, OffString
+	jmp OptionsShared_PlaceStringAtValueCoord
+
 .SetOn:
 	set BATTLE_EFFECTS, [hl]
-	ld de, .On
-.Display:
-	hlcoord 11, 5
-	rst PlaceString
-	and a
-	ret
-
-.Off:
-	db "Off@"
-.On:
-	db "On @"
+	ld de, OnString
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 Options_BattleStyle:
 	ld hl, wOptions2
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .RightPressed
 	bit BATTLE_SWITCH, [hl]
 	jr nz, .SetSwitch
@@ -246,10 +220,7 @@ Options_BattleStyle:
 	set BATTLE_PREDICT, [hl]
 	ld de, .Predict
 .Display:
-	hlcoord 11, 7
-	rst PlaceString
-	and a
-	ret
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 .Set:
 	db "Set    @"
@@ -258,49 +229,94 @@ Options_BattleStyle:
 .Predict:
 	db "Predict@"
 
+Options_Nicknames:
+	ld hl, wOptions3
+	ldh a, [hJoyPressed]
+	bit B_PAD_LEFT, a
+	jr nz, .LeftPressed
+	bit B_PAD_RIGHT, a
+	jr nz, .RightPressed
+	bit NICKNAMES_ALWAYS, [hl]
+	jr nz, .SetAlways
+	bit NICKNAMES_NEVER, [hl]
+	jr nz, .SetNever
+.SetAsk:
+	res NICKNAMES_ALWAYS, [hl]
+	res NICKNAMES_NEVER, [hl]
+	ld de, .Ask
+	jr .Display
+
+.LeftPressed:
+	bit NICKNAMES_ALWAYS, [hl]
+	jr nz, .SetAsk
+	bit NICKNAMES_NEVER, [hl]
+	jr nz, .SetAlways
+	jr .SetNever
+
+.RightPressed:
+	bit NICKNAMES_ALWAYS, [hl]
+	jr nz, .SetNever
+	bit NICKNAMES_NEVER, [hl]
+	jr nz, .SetAsk
+.SetAlways:
+	set NICKNAMES_ALWAYS, [hl]
+	res NICKNAMES_NEVER, [hl]
+	ld de, .Always
+	jr .Display
+
+.SetNever:
+	res NICKNAMES_ALWAYS, [hl]
+	set NICKNAMES_NEVER, [hl]
+	ld de, .Never
+.Display:
+	jmp OptionsShared_PlaceStringAtValueCoord
+
+.Ask:
+	db "Ask   @"
+.Always:
+	db "Always@"
+.Never:
+	db "Never @"
+
 Options_RunningShoes:
 	ld hl, wOptions2
 	ldh a, [hJoyPressed]
-	and D_LEFT | D_RIGHT
+	and PAD_LEFT | PAD_RIGHT
 	jr nz, .Toggle
 	bit RUNNING_SHOES, [hl]
 	jr z, .SetOff
 	jr .SetOn
-.Toggle
+
+.Toggle:
 	bit RUNNING_SHOES, [hl]
 	jr z, .SetOn
 .SetOff:
 	res RUNNING_SHOES, [hl]
-	ld de, .Off
+	ld de, OffString
 	jr .Display
+
 .SetOn:
 	set RUNNING_SHOES, [hl]
-	ld de, .On
+	ld de, OnString
 .Display:
-	hlcoord 11, 9
-	rst PlaceString
-	and a
-	ret
+	jmp OptionsShared_PlaceStringAtValueCoord
 
-.Off:
+OffString:
 	db "Off@"
-.On:
+OnString:
 	db "On @"
 
 Options_Frame:
 	ld hl, wTextboxFrame
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
-	jr nz, .RightPressed
-	and a
-	ret
-
+	bit B_PAD_RIGHT, a
+	jr z, .UpdateFrame
 .RightPressed:
 	ld a, [hl]
 	inc a
-	cp $9
+	cp NUM_FRAMES
 	jr nz, .Save
 	xor a
 	jr .Save
@@ -308,47 +324,48 @@ Options_Frame:
 .LeftPressed:
 	ld a, [hl]
 	dec a
-	cp $ff
+	cp -1
 	jr nz, .Save
-	ld a, $8
-
+	ld a, NUM_FRAMES - 1
 .Save:
 	ld [hl], a
-UpdateFrame:
+.UpdateFrame:
 	ld a, [wTextboxFrame]
-	hlcoord 16, 11 ; where on the screen the number is drawn
-	add "1"
-	ld [hl], a
-	call LoadFontsExtra
+	inc a
+	ld e, a
+	ld d, 0
+	call OptionsShared_GetValueCoord
+	inc hl
+	ld a, ' '
+	ld [hld], a
+	lb bc, PRINTNUM_LEFTALIGN, 2
+	call PrintNumFromReg
+	call LoadFrame
 	and a
 	ret
 
 Options_Sound:
 	ld hl, wOptions1
 	ldh a, [hJoyPressed]
-	and D_LEFT | D_RIGHT
+	and PAD_LEFT | PAD_RIGHT
 	jr nz, .Toggle
 	bit STEREO, [hl]
 	jr z, .SetMono
 	jr .SetStereo
-.Toggle
+
+.Toggle:
 	bit STEREO, [hl]
 	jr z, .SetStereo
 .SetMono:
 	res STEREO, [hl]
 	ld de, .Mono
 	jr .Display
+
 .SetStereo:
 	set STEREO, [hl]
 	ld de, .Stereo
 .Display:
-	ldh a, [hJoyPressed]
-	and D_LEFT | D_RIGHT
-	call nz, RestartMapMusic
-	hlcoord 11, 13
-	rst PlaceString
-	and a
-	ret
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 .Mono:
 	db "Mono  @"
@@ -358,26 +375,25 @@ Options_Sound:
 Options_ClockFormat:
 	ld hl, wOptions2
 	ldh a, [hJoyPressed]
-	and D_LEFT | D_RIGHT
+	and PAD_LEFT | PAD_RIGHT
 	jr nz, .Toggle
 	bit CLOCK_FORMAT, [hl]
 	jr z, .Set12Hour
 	jr .Set24Hour
-.Toggle
+
+.Toggle:
 	bit CLOCK_FORMAT, [hl]
 	jr z, .Set24Hour
 .Set12Hour:
 	res CLOCK_FORMAT, [hl]
 	ld de, .Twelve
 	jr .Display
+
 .Set24Hour:
 	set CLOCK_FORMAT, [hl]
 	ld de, .TwentyFour
 .Display:
-	hlcoord 11, 3
-	rst PlaceString
-	and a
-	ret
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 .Twelve:
 	db "12-hour@"
@@ -387,26 +403,25 @@ Options_ClockFormat:
 Options_PokedexUnits:
 	ld hl, wOptions2
 	ldh a, [hJoyPressed]
-	and D_LEFT | D_RIGHT
+	and PAD_LEFT | PAD_RIGHT
 	jr nz, .Toggle
 	bit POKEDEX_UNITS, [hl]
 	jr z, .SetImperial
 	jr .SetMetric
-.Toggle
+
+.Toggle:
 	bit POKEDEX_UNITS, [hl]
 	jr z, .SetMetric
 .SetImperial:
 	res POKEDEX_UNITS, [hl]
 	ld de, .Imperial
 	jr .Display
+
 .SetMetric:
 	set POKEDEX_UNITS, [hl]
 	ld de, .Metric
 .Display:
-	hlcoord 11, 5
-	rst PlaceString
-	and a
-	ret
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 .Imperial:
 	db "Imperial@"
@@ -419,78 +434,76 @@ Options_TextAutoscroll:
 	ld a, [wOptions1]
 	and AUTOSCROLL_MASK
 	sub 4
-	bit D_LEFT_F, b
-	jr nz, .ok
+	bit B_PAD_LEFT, b
+	jr nz, .LeftPressed
 	add 4
-	bit D_RIGHT_F, b
-	jr z, .not_changing
+	bit B_PAD_RIGHT, b
+	jr z, .NonePressed
 	add 4
-.ok
+.LeftPressed:
 	and AUTOSCROLL_MASK
 	ld c, a
 	ld a, [wOptions1]
-	and $f3
+	and ~AUTOSCROLL_MASK
 	or c
 	ld [wOptions1], a
 	ld a, c
-
-.not_changing
+.NonePressed:
+rept TZCOUNT(AUTOSCROLL_MASK) - 1
 	rrca
+endr
 	ld b, 0
 	ld c, a
 	ld hl, .Strings
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
-	hlcoord 11, 7
-	rst PlaceString
-	and a
-	ret
+	ld e, a
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 .Strings:
+	table_width 2
 	dw .None
 	dw .Start
-	dw .AandB
+	dw .B
 	dw .AorB
+	assert_table_length (AUTOSCROLL_MASK >> TZCOUNT(AUTOSCROLL_MASK)) + 1
 
 .None:
-	db "None   @"
+	db "None  @"
 .Start:
-	db "Start  @"
-.AandB:
-	db "A and B@"
+	db "Start @"
+.B:
+	db "B     @"
 .AorB:
-	db "A or B @"
+	db "A or B@"
 
 Options_TurningSpeed:
 	ldh a, [hJoyPressed]
-	and D_LEFT | D_RIGHT
+	and PAD_LEFT | PAD_RIGHT
 	ld a, [wOptions1]
-	jr z, .not_changing
+	jr z, .NonePressed
 	xor TURNING_SPEED_MASK
 	ld [wOptions1], a
-
-.not_changing
+.NonePressed:
 	and TURNING_SPEED_MASK
+rept TZCOUNT(TURNING_SPEED_MASK) - 1
 	rrca
-	rrca
-	rrca
+endr
 	ld b, 0
 	ld c, a
 	ld hl, .Strings
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
-	hlcoord 11, 9
-	rst PlaceString
-	and a
-	ret
+	ld e, a
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 .Strings:
+	table_width 2
 	dw .Slow
 	dw .Fast
+	assert_table_length (TURNING_SPEED_MASK >> TZCOUNT(TURNING_SPEED_MASK)) + 1
 
 .Slow:
 	db "Slow@"
@@ -504,15 +517,14 @@ Options_Typeface:
 	ld c, a
 	ld b, 0
 	ldh a, [hJoyPressed]
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .LeftPressed
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr z, .NonePressed
 	ld a, c ; right pressed
 	cp UNOWN_FONT
 	jr c, .Increase
 	ld c, NORMAL_FONT - 1
-
 .Increase:
 	inc c
 	jr .Save
@@ -522,10 +534,8 @@ Options_Typeface:
 	and a
 	jr nz, .Decrease
 	ld c, UNOWN_FONT + 1
-
 .Decrease:
 	dec c
-
 .Save:
 	push hl
 	push bc
@@ -533,7 +543,7 @@ Options_Typeface:
 	pop bc
 	pop hl
 	ld a, [hl]
-	and $ff - FONT_MASK
+	and ~FONT_MASK
 	or c
 	ld [hl], a
 	call .NonePressed
@@ -545,15 +555,13 @@ Options_Typeface:
 	ld hl, .Strings
 	add hl, bc
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
-	hlcoord 11, 11
-	rst PlaceString
-	and a
-	ret
+	ld e, a
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 .Strings:
+	table_width 2
 	dw .Normal
 	dw .Narrow
 	dw .Bold
@@ -562,6 +570,7 @@ Options_Typeface:
 	dw .Chicago
 	dw .MICR
 	dw .Unown
+	assert_table_length NUM_FONTS
 
 .Normal:
 	db "Normal @"
@@ -583,64 +592,34 @@ Options_Typeface:
 Options_Keyboard:
 	ld hl, wOptions3
 	ldh a, [hJoyPressed]
-	and D_LEFT | D_RIGHT
+	and PAD_LEFT | PAD_RIGHT
 	jr nz, .Toggle
 	bit QWERTY_KEYBOARD_F, [hl]
 	jr z, .SetABC
 	jr .SetQWERTY
-.Toggle
+
+.Toggle:
 	bit QWERTY_KEYBOARD_F, [hl]
 	jr z, .SetQWERTY
 .SetABC:
 	res QWERTY_KEYBOARD_F, [hl]
 	ld de, .ABC
 	jr .Display
+
 .SetQWERTY:
 	set QWERTY_KEYBOARD_F, [hl]
 	ld de, .QWERTY
 .Display:
-	hlcoord 11, 13
-	rst PlaceString
-	and a
-	ret
+	jmp OptionsShared_PlaceStringAtValueCoord
 
 .ABC:
 	db "ABCDEF@"
 .QWERTY:
 	db "QWERTY@"
 
-Options_NextPrevious:
-	ld hl, wCurOptionsPage
-	ldh a, [hJoyPressed]
-	and A_BUTTON | D_LEFT | D_RIGHT
-	jr z, .NonePressed
-	bit 0, [hl]
-	jr z, .Page2
-;.Page1:
-	res 0, [hl]
-	ld de, StringOptions1
-	jr .Display
-.Page2:
-	set 0, [hl]
-	ld de, StringOptions2
-.Display:
-	push de
-	hlcoord 0, 0
-	lb bc, 16, 18
-	call Textbox
-	pop de
-	hlcoord 2, 2
-	rst PlaceString
-	call OptionsMenu_LoadOptions
-	ld a, $6
-	ld [wJumptableIndex], a
-.NonePressed:
-	and a
-	ret
-
 Options_Done:
 	ldh a, [hJoyPressed]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .Exit
 	and a
 	ret
@@ -649,48 +628,4 @@ Options_Done:
 	scf
 	ret
 
-OptionsControl:
-	ld hl, wJumptableIndex
-	ldh a, [hJoyLast]
-	cp D_DOWN
-	jr z, .DownPressed
-	cp D_UP
-	jr z, .UpPressed
-	and a
-	ret
-
-.DownPressed:
-	ld a, [hl] ; load the cursor position to a
-	cp $7 ; maximum number of items in option menu
-	jr nz, .Increase
-	ld [hl], -1
-.Increase:
-	inc [hl]
-	scf
-	ret
-
-.UpPressed:
-	ld a, [hl]
-	and a
-	jr nz, .Decrease
-	ld [hl], $8 ; number of option items + 1
-.Decrease:
-	dec [hl]
-	scf
-	ret
-
-Options_UpdateCursorPosition:
-	hlcoord 1, 1
-	ld de, SCREEN_WIDTH
-	ld c, $10
-.loop
-	ld [hl], " "
-	add hl, de
-	dec c
-	jr nz, .loop
-	hlcoord 1, 2
-	ld bc, 2 * SCREEN_WIDTH
-	ld a, [wJumptableIndex]
-	rst AddNTimes
-	ld [hl], "▶"
-	ret
+INCLUDE "data/options/options_descriptions.asm"

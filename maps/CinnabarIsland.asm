@@ -18,7 +18,7 @@ CinnabarIsland_MapScriptHeader:
 	bg_event 11, 12, BGEVENT_ITEM + RARE_CANDY, EVENT_CINNABAR_ISLAND_HIDDEN_RARE_CANDY
 
 	def_object_events
-	object_event 20, 14, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
+	object_event 20, 14, SPRITE_BLUE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, CinnabarIslandBlue, EVENT_BLUE_IN_CINNABAR
 	itemball_event 22,  2, MAGMARIZER, 1, EVENT_CINNABAR_ISLAND_MAGMARIZER
 
 	object_const_def
@@ -32,7 +32,7 @@ CinnabarIslandBlue:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_BLUE_INTRO
-	iftrue .HeardIntro
+	iftruefwd .HeardIntro
 	writetext CinnabarIslandBlueText
 	waitbutton
 	setevent EVENT_LISTENED_TO_BLUE_INTRO
@@ -41,7 +41,18 @@ CinnabarIslandBlue:
 	waitbutton
 	readvar VAR_BADGES
 	ifgreater 14, .Ready
-	jumpopenedtext CinnabarIslandBlueNotReadyText
+	jumpthisopenedtext
+
+	text "If you want to"
+	line "battle me, show me"
+
+	para "how many Kanto"
+	line "Badges you've got."
+
+	para "Less than seven…"
+	line "You're not ready"
+	cont "to battle me."
+	done
 
 .Ready
 	writetext CinnabarIslandBlueReadyText
@@ -127,17 +138,6 @@ CinnabarIslandBlueReadyText:
 	line "then."
 	done
 
-CinnabarIslandBlueNotReadyText:
-	text "If you want to"
-	line "battle me, show me"
-
-	para "how many Kanto"
-	line "badges you've got."
-
-	para "Less than seven…"
-	line "You're not ready"
-	cont "to battle me."
-	done
 
 CinnabarIslandGymSignText:
 	text "There's a notice"
@@ -164,8 +164,7 @@ CinnabarIslandVolcanoWarningSignText:
 	line "is dormant, but"
 	cont "still active!"
 
-	para "Do not explore"
-	line "the volcano"
-	cont "without a means"
-	cont "of escape!"
+	para "Do not enter the"
+	line "volcano without"
+	cont "a means of escape!"
 	done

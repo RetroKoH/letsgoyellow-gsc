@@ -73,6 +73,60 @@ CalculateMaximumBTQuantity:
 	ld [wItemQuantityBuffer], a
 	ret
 
+SelectWingQuantity:
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	ld a, 1
+	ld [wItemQuantityChangeBuffer], a
+.loop
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
+	call BuySellToss_UpdateQuantityDisplay ; update display
+	call BuySellToss_InterpretJoypad       ; joy action
+	jr nc, .loop
+	cp -1
+	jr nz, .nope ; pressed B
+	call ExitMenu
+	scf
+	ret
+
+.nope
+	call ExitMenu
+	and a
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 14, 11, 19, 13
+	dw DoNothing
+	db 0
+
+SelectCandyQuantity:
+	ld hl, .MenuHeader
+	call LoadMenuHeader
+	ld a, 1
+	ld [wItemQuantityChangeBuffer], a
+.loop
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
+	call BuySellToss_UpdateQuantityDisplay ; update display
+	call BuySellToss_InterpretJoypad       ; joy action
+	jr nc, .loop
+	cp -1
+	jr nz, .nope ; pressed B
+	call ExitMenu
+	scf
+	ret
+
+.nope
+	call ExitMenu
+	and a
+	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES
+	menu_coords 15, 11, 19, 13
+	dw DoNothing
+	db 0
+
 SelectQuantityToToss:
 	ld hl, TossItem_MenuDataHeader
 	call LoadMenuHeader
@@ -82,9 +136,9 @@ SelectQuantityToBuy:
 	farcall GetItemPrice
 RooftopSale_SelectQuantityToBuy:
 	ld a, d
-	ld [wBuffer1], a
+	ld [wBuySellPriceHi], a
 	ld a, e
-	ld [wBuffer2], a
+	ld [wBuySellPriceLo], a
 	call CalculateMaximumQuantity
 	ld hl, BuyItem_MenuDataHeader
 	call LoadMenuHeader
@@ -92,9 +146,9 @@ RooftopSale_SelectQuantityToBuy:
 
 BT_SelectQuantityToBuy:
 	xor a
-	ld [wBuffer1], a
+	ld [wBuySellPriceHi], a
 	ld a, c
-	ld [wBuffer2], a
+	ld [wBuySellPriceLo], a
 	call CalculateMaximumBTQuantity
 	ld hl, BTBuyItem_MenuDataHeader
 	call LoadMenuHeader
@@ -103,9 +157,9 @@ BT_SelectQuantityToBuy:
 SelectQuantityToSell:
 	farcall GetItemPrice
 	ld a, d
-	ld [wBuffer1], a
+	ld [wBuySellPriceHi], a
 	ld a, e
-	ld [wBuffer2], a
+	ld [wBuySellPriceLo], a
 	ld hl, SellItem_MenuDataHeader
 	call LoadMenuHeader
 	; fallthrough
@@ -114,6 +168,7 @@ Toss_Sell_Loop:
 	ld a, 1
 	ld [wItemQuantityChangeBuffer], a
 .loop
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call BuySellToss_UpdateQuantityDisplay ; update display
 	call BuySellToss_InterpretJoypad       ; joy action
 	jr nc, .loop
@@ -128,17 +183,17 @@ Toss_Sell_Loop:
 
 BuySellToss_InterpretJoypad:
 	call JoyTextDelay_ForcehJoyDown ; get joypad
-	bit B_BUTTON_F, c
+	bit B_PAD_B, c
 	jr nz, .b
-	bit A_BUTTON_F, c
+	bit B_PAD_A, c
 	jr nz, .a
-	bit D_DOWN_F, c
+	bit B_PAD_DOWN, c
 	jr nz, .down
-	bit D_UP_F, c
+	bit B_PAD_UP, c
 	jr nz, .up
-	bit D_LEFT_F, c
+	bit B_PAD_LEFT, c
 	jr nz, .left
-	bit D_RIGHT_F, c
+	bit B_PAD_RIGHT, c
 	jr nz, .right
 	and a
 	ret
@@ -167,9 +222,11 @@ BuySellToss_InterpretJoypad:
 .up
 	ld hl, wItemQuantityChangeBuffer
 	inc [hl]
+	jr z, .load_1
 	ld a, [wItemQuantityBuffer]
 	cp [hl]
 	jr nc, .finish_up
+.load_1
 	ld [hl], 1
 
 .finish_up
@@ -178,14 +235,12 @@ BuySellToss_InterpretJoypad:
 
 .left
 	ld a, [wItemQuantityChangeBuffer]
-	sub 10
-	jr c, .load_1
-	jr nz, .finish_left
-
-.load_1
-	ld a, 1
-
-.finish_left
+	; Subtracting by 11, then incrementing, simplifies checks.
+	sub 11
+	jr nc, .no_underflow
+	xor a
+.no_underflow
+	inc a
 	ld [wItemQuantityChangeBuffer], a
 	and a
 	ret
@@ -193,6 +248,9 @@ BuySellToss_InterpretJoypad:
 .right
 	ld a, [wItemQuantityChangeBuffer]
 	add 10
+	jr nc, .no_overflow
+	ld a, 255
+.no_overflow
 	ld b, a
 	ld a, [wItemQuantityBuffer]
 	cp b
@@ -206,14 +264,15 @@ BuySellToss_InterpretJoypad:
 	ret
 
 BuySellToss_UpdateQuantityDisplay:
+	push bc
 	call MenuBox
 	call MenuBoxCoord2Tile
 	ld de, SCREEN_WIDTH + 1
 	add hl, de
-	ld a, "×"
+	ld a, '×'
 	ld [hli], a
 	ld de, wItemQuantityChangeBuffer
-	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
+	pop bc
 	call PrintNum
 	dec hl
 	ld a, [wMenuDataPointer]
@@ -253,14 +312,14 @@ BuySell_DisplaySubtotal:
 BuySell_MultiplyPrice:
 	xor a
 	ldh [hMultiplicand + 0], a
-	ld a, [wBuffer1]
+	ld a, [wBuySellPriceHi]
 	ldh [hMultiplicand + 1], a
-	ld a, [wBuffer2]
+	ld a, [wBuySellPriceLo]
 	ldh [hMultiplicand + 2], a
 	ld a, [wItemQuantityChangeBuffer]
 	ldh [hMultiplier], a
 	push hl
-	call Multiply
+	farcall Multiply
 	pop hl
 	ret
 
@@ -291,29 +350,25 @@ DisplayPurchasePriceCommon:
 	ret
 
 TossItem_MenuDataHeader:
-	db $40 ; flags
-	db 09, 15 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 15, 9, 19, 11
 	dw DoNothing
 	db 0 ; default option
 
 BuyItem_MenuDataHeader:
-	db $40 ; flags
-	db 15, 07 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 7, 15, 19, 17
 	dw DisplayPurchasePrice
 	db -1 ; default option
 
 SellItem_MenuDataHeader:
-	db $40 ; flags
-	db 15, 07 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 7, 15, 19, 17
 	dw DisplaySellingPrice
 	db 0 ; default option
 
 BTBuyItem_MenuDataHeader:
-	db $40 ; flags
-	db 15, 07 ; start coords
-	db 17, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 7, 15, 19, 17
 	dw BTDisplayPurchaseCost
 	db -1 ; default option

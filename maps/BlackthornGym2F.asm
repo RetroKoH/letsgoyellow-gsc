@@ -22,8 +22,8 @@ BlackthornGym2F_MapScriptHeader:
 	strengthboulder_event  3, 3
 	strengthboulder_event  6, 1
 	strengthboulder_event  8, 14
-	object_event  4,  1, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainermCody, -1
-	object_event  4, 11, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainerfFran, -1
+	object_event  4,  1, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainermCody, -1
+	object_event  4, 11, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainerfFran, -1
 
 	object_const_def
 	const BLACKTHORNGYM2F_BOULDER1
@@ -42,14 +42,16 @@ BlackthornGym2FBoulders:
 
 .Disappear4:
 	disappear BLACKTHORNGYM2F_BOULDER1
-	sjump .Fall
+	sjumpfwd .Fall
 
 .Disappear5:
 	disappear BLACKTHORNGYM2F_BOULDER2
-	sjump .Fall
+	sjumpfwd .Fall
 
 .Disappear6:
 	disappear BLACKTHORNGYM2F_BOULDER3
+	; fallthrough
+
 .Fall:
 	pause 30
 	playsound SFX_STRENGTH

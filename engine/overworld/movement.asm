@@ -1,6 +1,12 @@
-MovementPointers:
+DoMovementFunction:
+	push af
+	call ApplyMovementToFollower
+	pop af
+	call StackJumpTable
+
+.MovementPointers:
 ; entries correspond to movement_* constants (see macros/scripts/movement.asm)
-	table_width 2, MovementPointers
+	table_width 2
 	dw Movement_turn_head_down        ; 00
 	dw Movement_turn_head_up          ; 01
 	dw Movement_turn_head_left        ; 02
@@ -103,6 +109,8 @@ MovementPointers:
 	dw Movement_stairs_step_up        ; 63
 	dw Movement_stairs_step_left      ; 64
 	dw Movement_stairs_step_right     ; 65
+	dw Movement_exeggutor_shake       ; 66
+	dw Movement_step_right            ; 67
 	assert_table_length NUM_MOVEMENT_CMDS
 
 Movement_teleport_from:
@@ -146,7 +154,7 @@ Movement_step_dig:
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_SLEEP
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], STANDING
 	ret
@@ -162,7 +170,7 @@ Movement_return_dig:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], STANDING
 	ld hl, OBJECT_STEP_TYPE
@@ -202,7 +210,7 @@ Movement_fish_cast_rod:
 	ret
 
 Movement_step_loop:
-	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
+	ld hl, OBJECT_MOVEMENT_INDEX
 	add hl, bc
 	ld [hl], $0
 	jmp ContinueReadingMovement
@@ -210,16 +218,16 @@ Movement_step_loop:
 Movement_step_resume:
 Movement_step_end:
 	call RestoreDefaultMovement
-	ld hl, OBJECT_MOVEMENTTYPE
+	ld hl, OBJECT_MOVEMENT_TYPE
 	add hl, bc
 	ld [hl], a
 
-	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
+	ld hl, OBJECT_MOVEMENT_INDEX
 	add hl, bc
 	ld [hl], $0
 
-	ld hl, wVramState
-	res 7, [hl]
+	ld hl, wStateFlags
+	res SCRIPTED_MOVEMENT_STATE_F, [hl]
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
@@ -235,8 +243,8 @@ Movement_remove_object:
 	ld [hl], -1
 
 .not_leading
-	ld hl, wVramState
-	res 7, [hl]
+	ld hl, wStateFlags
+	res SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ret
 
 Movement_4b:
@@ -248,8 +256,8 @@ Movement_4b:
 	add hl, bc
 	ld [hl], STEP_TYPE_STANDING
 
-	ld hl, wVramState
-	res 7, [hl]
+	ld hl, wStateFlags
+	res SCRIPTED_MOVEMENT_STATE_F, [hl]
 	ret
 
 Movement_step_sleep_1:
@@ -302,7 +310,7 @@ Movement_step_sleep_common:
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STAND
 
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], STANDING
 	ret
@@ -321,16 +329,21 @@ Movement_step_bump:
 	add hl, bc
 	ld [hl], OBJECT_ACTION_BUMP
 
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], STANDING
 	ret
 
+Movement_exeggutor_shake:
+	lb de, OBJECT_ACTION_SHAKE_EXEGGUTOR, 64
+	jr ShakeTree
+
 Movement_tree_shake:
-	ld a, 24
+	lb de, OBJECT_ACTION_WEIRD_TREE, 24
+ShakeTree:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
-	ld [hl], a
+	ld [hl], e
 
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
@@ -338,9 +351,9 @@ Movement_tree_shake:
 
 	ld hl, OBJECT_ACTION
 	add hl, bc
-	ld [hl], OBJECT_ACTION_WEIRD_TREE
+	ld [hl], d
 
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], STANDING
 	ret
@@ -413,7 +426,7 @@ Movement_turn_head_right:
 	ld a, OW_RIGHT
 	; fallthrough
 TurnHead:
-	ld hl, OBJECT_FACING
+	ld hl, OBJECT_DIRECTION
 	add hl, bc
 	ld [hl], a
 
@@ -421,7 +434,7 @@ TurnHead:
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STAND
 
-	ld hl, OBJECT_DIRECTION_WALKING
+	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], STANDING
 	ret
@@ -702,7 +715,7 @@ NormalStep:
 	bit INVISIBLE_F, [hl]
 	jr nz, SetWalkStepType
 
-	ld hl, OBJECT_NEXT_TILE
+	ld hl, OBJECT_TILE_COLLISION
 	add hl, bc
 	ld a, [hl]
 	cp COLL_LONG_GRASS
@@ -746,7 +759,7 @@ SlideStep:
 
 JumpStep:
 	call InitStep
-	ld hl, OBJECT_1F
+	ld hl, OBJECT_JUMP_HEIGHT
 	add hl, bc
 	ld [hl], $0
 
@@ -787,7 +800,7 @@ Movement_stairs_step_right:
 
 DiagonalStairsStep:
 	call InitStep
-	ld hl, OBJECT_1F
+	ld hl, OBJECT_JUMP_HEIGHT
 	add hl, bc
 	ld [hl], $0
 

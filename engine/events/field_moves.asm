@@ -7,21 +7,52 @@ BlindingFlash::
 	ld a, CGB_MAPPALS
 	call GetCGBLayout
 	farcall LoadBlindingFlashPalette
-	jmp FadeInPalettes
+	jmp FadeInPalettes_EnableDynNoApply
 
 ShakeHeadbuttTree:
+	ld hl, wWeatherFlags
+	set OW_WEATHER_LIGHTNING_DISABLED_F, [hl]
+	farcall CancelOWFadePalettes
+	farcall CopyBGGreenToOBPal7
 	call ClearSpriteAnims
+	call GetCurrentLandmark
+	cp NOISY_FOREST
+	ld hl, HeadbuttTree2GFX
+	jr z, .got_gfx
 	ld hl, HeadbuttTreeGFX
-	ld de, vTiles0 tile $64
-	lb bc, BANK(HeadbuttTreeGFX), 8
+.got_gfx
+	ld de, vTiles0 tile $61
+	lb bc, BANK("Overworld Effect Graphics"), 12
 	call DecompressRequest2bpp
-	call ChopDown_Headbutt_GetPixelFacing
+	call Cut_Headbutt_GetPixelFacing
 	ld a, SPRITE_ANIM_INDEX_HEADBUTT
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
-	ld [hl], $64
-	ld a, 36 * 4
+	ld [hl], $61
+
+	; shift all sprites left in OAM by 4 slots
+	; hl = source, de = destination, bc = length
+	ldh a, [hUsedOAMIndex]
+	; a = OAM_SIZE - a
+	cpl
+	add OAM_SIZE + 1
+	ld h, HIGH(wShadowOAM)
+	ld l, a
+	sub (4 * OBJ_SIZE)
+	ld e, a
+	ld d, h
+	ld b, 0
+	ldh a, [hUsedOAMIndex]
+	ld c, a
+.copy_loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy_loop
+
+	ld a, LOW(wShadowOAMSprite36)
 	ld [wCurSpriteOAMAddr], a
 	call DoNextFrameForAllSprites
 	call HideHeadbuttTree
@@ -36,9 +67,11 @@ ShakeHeadbuttTree:
 	and a
 	jr z, .done
 	dec [hl]
-	ld a, 36 * 4
+
+	ld a, LOW(wShadowOAMSprite36)
 	ld [wCurSpriteOAMAddr], a
-	call DoNextFrameForAllSprites
+	call DoNextFrameForAllSprites_OW
+	farcall DoOverworldWeather
 	call DelayFrame
 	jr .loop
 
@@ -47,16 +80,44 @@ ShakeHeadbuttTree:
 	call ApplyTilemapInVBlank
 	xor a
 	ldh [hBGMapMode], a
-	call ClearSpriteAnims
-	ld hl, wVirtualOAM + 36 * 4
-	ld bc, wVirtualOAMEnd - (wVirtualOAM + 36 * 4)
-	xor a
-	rst ByteFill
-	call DelayFrame
-	jmp UpdatePlayerSprite
 
-HeadbuttTreeGFX:
-INCBIN "gfx/overworld/headbutt_tree.2bpp.lz"
+	; shift all sprites right in OAM by 4 slots
+	; hl = source, de = destination, bc = length
+	ldh a, [hUsedOAMIndex]
+	; a = OAM_SIZE - a - 1
+	cpl
+	add OAM_SIZE
+	ld l, a
+	ld h, HIGH(wShadowOAM)
+	ld de, wShadowOAMSprite39 + 3
+	ld c, OBJ_SIZE * 4
+.copy_done_loop
+	ld a, [hld]
+	ld [de], a
+	dec de
+	dec c
+	jr nz, .copy_done_loop
+	ld h, HIGH(wShadowOAM)
+	ldh a, [hUsedOAMIndex]
+	; a = (OAM_COUNT - 4) * OBJ_SIZE - a
+	cpl
+	add (OAM_COUNT - 4) * OBJ_SIZE + 1
+	ld l, a
+
+	ld c, 4
+	ld de, OBJ_SIZE
+	ld a, OAM_YCOORD_HIDDEN
+.hide_loop
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .hide_loop
+
+	call ClearSpriteAnims
+	call DelayFrame
+	ld hl, wWeatherFlags
+	res OW_WEATHER_LIGHTNING_DISABLED_F, [hl]
+	jmp UpdatePlayerSprite
 
 HideHeadbuttTree:
 	xor a
@@ -72,7 +133,7 @@ HideHeadbuttTree:
 	ld h, [hl]
 	ld l, a
 
-	ld a, $2 ; grass tile
+	ld a, ' '
 	ld [hli], a
 	ld [hld], a
 	ld bc, SCREEN_WIDTH
@@ -90,7 +151,7 @@ TreeRelativeLocationTable:
 	dwcoord 8 - 2, 8     ; DOWN
 	dwcoord 8 + 2, 8     ; UP
 
-OWChopDownAnimation:
+OWCutAnimation:
 	; Animation index in a
 	; 0: Split tree in half
 	; 1: Mow the lawn
@@ -99,66 +160,124 @@ OWChopDownAnimation:
 	call WaitSFX
 	ld de, SFX_PLACE_PUZZLE_PIECE_DOWN
 	call PlaySFX
+	; shift all sprites left in OAM by 4 slots
+	; hl = source, de = destination, bc = length
+	ldh a, [hUsedOAMIndex]
+	; a = OAM_SIZE - a
+	cpl
+	add OAM_SIZE + 1
+	ld h, HIGH(wShadowOAM)
+	ld l, a
+	sub (4 * OBJ_SIZE)
+	ld e, a
+	ld d, h
+	ld b, 0
+	ldh a, [hUsedOAMIndex]
+	ld c, a
+.copy_loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy_loop
 .loop
 	ld a, [wJumptableIndex]
 	bit 7, a
-	ret nz
-	ld a, 36 * 4
+	jr nz, .finish
+
+	ld a, LOW(wShadowOAMSprite36)
 	ld [wCurSpriteOAMAddr], a
 	call DoNextFrameForAllSprites
-	call OWChopDownJumptable
+	farcall DoOverworldWeather
+	call OWCutJumptable
 	call DelayFrame
 	jr .loop
 
-OWChopDownJumptable:
+.finish
+	; hide tree/leaf sprites
+
+	; shift all sprites right in OAM by 4 slots
+	; hl = source, de = destination, bc = length
+	ldh a, [hUsedOAMIndex]
+	; a = OAM_SIZE - a - 1
+	cpl
+	add OAM_SIZE
+	ld l, a
+	ld h, HIGH(wShadowOAM)
+	ld de, wShadowOAMSprite39 + 3
+	ld c, OBJ_SIZE * 4
+.copy_done_loop
+	ld a, [hld]
+	ld [de], a
+	dec de
+	dec c
+	jr nz, .copy_done_loop
+
+	ld h, HIGH(wShadowOAM)
+	ldh a, [hUsedOAMIndex]
+	; a = (OAM_COUNT - 4) * OBJ_SIZE - a
+	cpl
+	add (OAM_COUNT - 4) * OBJ_SIZE + 1
+	ld l, a
+	ld c, 4
+	ld de, OBJ_SIZE
+	ld a, OAM_YCOORD_HIDDEN
+.hide_loop
+	ld [hl], a
+	add hl, de
+	dec c
+	jr nz, .hide_loop
+	ret
+
+OWCutJumptable:
 	call StandardStackJumpTable
 
 .Jumptable:
-	dw ChopDown_SpawnAnimateTree
-	dw ChopDown_SpawnAnimateLeaves
-	dw ChopDown_StartWaiting
-	dw ChopDown_WaitAnimSFX
+	dw Cut_SpawnAnimateTree
+	dw Cut_SpawnAnimateLeaves
+	dw Cut_StartWaiting
+	dw Cut_WaitAnimSFX
 
-ChopDown_SpawnAnimateTree:
-	call ChopDown_Headbutt_GetPixelFacing
-	ld a, SPRITE_ANIM_INDEX_CHOP_TREE ; chop tree
-	call _InitSpriteAnimStruct
+Cut_SpawnAnimateTree:
+	call Cut_Headbutt_GetPixelFacing
+	ld a, SPRITE_ANIM_INDEX_CUT_TREE
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $74
 	ld a, 32
 	ld [wFrameCounter], a
-; ChopDown_StartWaiting
+; Cut_StartWaiting
 	ld hl, wJumptableIndex
 	inc [hl]
 	inc [hl]
 	ret
 
-ChopDown_SpawnAnimateLeaves:
-	call ChopDown_GetLeafSpawnCoords
+Cut_SpawnAnimateLeaves:
+	call Cut_GetLeafSpawnCoords
 	xor a
-	call ChopDown_SpawnLeaf
+	call Cut_SpawnLeaf
 	ld a, $10
-	call ChopDown_SpawnLeaf
+	call Cut_SpawnLeaf
 	ld a, $20
-	call ChopDown_SpawnLeaf
+	call Cut_SpawnLeaf
 	ld a, $30
-	call ChopDown_SpawnLeaf
+	call Cut_SpawnLeaf
 	ld a, 32 ; frames
 	ld [wFrameCounter], a
-; ChopDown_StartWaiting
+; Cut_StartWaiting
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
 
-ChopDown_StartWaiting:
+Cut_StartWaiting:
 	ld a, $1
 	ldh [hBGMapMode], a
-; ChopDown_WaitAnimSFX
+; Cut_WaitAnimSFX
 	ld hl, wJumptableIndex
 	inc [hl]
 
-ChopDown_WaitAnimSFX:
+Cut_WaitAnimSFX:
 	ld hl, wFrameCounter
 	ld a, [hl]
 	and a
@@ -171,11 +290,11 @@ ChopDown_WaitAnimSFX:
 	set 7, [hl]
 	ret
 
-ChopDown_SpawnLeaf:
+Cut_SpawnLeaf:
 	push de
 	push af
 	ld a, SPRITE_ANIM_INDEX_LEAF ; leaf
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $70
@@ -189,7 +308,7 @@ ChopDown_SpawnLeaf:
 	pop de
 	ret
 
-ChopDown_GetLeafSpawnCoords:
+Cut_GetLeafSpawnCoords:
 	ld de, 0
 	ld a, [wMetatileStandingX]
 	bit 0, a
@@ -208,9 +327,9 @@ ChopDown_GetLeafSpawnCoords:
 	ld hl, .Coords
 	add hl, de
 	add hl, de
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
+	ld e, a
 	ret
 
 .Coords:
@@ -234,7 +353,7 @@ ChopDown_GetLeafSpawnCoords:
 	dbpixel 11, 10 ; facing right, bottom left
 	dbpixel 13, 10 ; facing right, bottom right
 
-ChopDown_Headbutt_GetPixelFacing:
+Cut_Headbutt_GetPixelFacing:
 	ld a, [wPlayerDirection]
 	and %00001100
 	srl a
@@ -242,9 +361,9 @@ ChopDown_Headbutt_GetPixelFacing:
 	ld d, 0
 	ld hl, .Coords
 	add hl, de
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
+	ld e, a
 	ret
 
 .Coords:
@@ -253,56 +372,80 @@ ChopDown_Headbutt_GetPixelFacing:
 	dbpixel  8, 11
 	dbpixel 12, 11
 
-SkySoarFromAnim:
+FlyFromAnim:
+	farcall CheckForUsedObjPals
+	ldh a, [hUsedOAMIndex]
+	cp (OAM_COUNT - NUM_FLYFROM_ANIM_OAMS - 1) * OBJ_SIZE
+	call nc, ClearNormalSprites ; not enough OAM slots, clear all sprites.
+	ld a, [wUsedObjectPals]
+	set 7, a ; slot 7 already reserved for leaves.
+	ld [wUsedObjectPals], a
+	inc a
+	call z, ClearSprites ; no more object palettes available, clear all sprites.
+	call HidePlayerSprite
 	call DelayFrame
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
-	call SkySoarFunction_InitGFX
+	ld [wStateFlags], a
+	call FlyFunction_InitGFX
 	depixel 10, 10, 4, 0
-	ld a, SPRITE_ANIM_INDEX_RED_WALK
-	call _InitSpriteAnimStruct
+	ld a, SPRITE_ANIM_INDEX_FLY_MON
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $64
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_SKY_SOAR_FROM
+	ld [hl], SPRITE_ANIM_SEQ_FLY_FROM
 	ld a, 128
 	ld [wFrameCounter], a
 .loop
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
-	xor a
+
+	ldh a, [hUsedOAMIndex]
+	cp (OAM_COUNT - NUM_FLYFROM_ANIM_OAMS - 1) * OBJ_SIZE
+	ld a, (OAM_COUNT - NUM_FLYFROM_ANIM_OAMS) * OBJ_SIZE
+	jr nc, .got_oam_addr
+	ldh a, [hUsedOAMIndex]
+	; a = (OAM_COUNT - NUM_FLYFROM_ANIM_OAMS) * OBJ_SIZE - a
+	cpl
+	add (OAM_COUNT - NUM_FLYFROM_ANIM_OAMS) * OBJ_SIZE + 1
+.got_oam_addr
 	ld [wCurSpriteOAMAddr], a
-	call DoNextFrameForAllSprites
-	call SkySoarFunction_FrameTimer
+	call DoNextFrameForAllSprites_OW
+	farcall DoOverworldWeather
+	call FlyFunction_FrameTimer
 	call DelayFrame
 	jr .loop
 
 .exit
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 	ret
 
-SkySoarToAnim:
+FlyToAnim:
+	call HideSprites
+	farcall LoadWeatherGraphics
+	farcall LoadWeatherPal
+	farcall SpawnRandomWeatherFullScreen
 	call DelayFrame
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
-	call SkySoarFunction_InitGFX
+	ld [wStateFlags], a
+	call FlyFunction_InitGFX
 	depixel 31, 10, 4, 0
-	ld a, SPRITE_ANIM_INDEX_RED_WALK
-	call _InitSpriteAnimStruct
+	ld a, SPRITE_ANIM_INDEX_FLY_MON
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $64
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld [hl], SPRITE_ANIM_SEQ_SKY_SOAR_TO
+	ld [hl], SPRITE_ANIM_SEQ_FLY_TO
 	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
 	ld [hl], 11 * 8
@@ -312,17 +455,41 @@ SkySoarToAnim:
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .exit
-	xor a
+
+	ldh a, [hUsedOAMIndex]
+	cp (OAM_COUNT - NUM_FLYFROM_ANIM_OAMS - 1) * OBJ_SIZE
+	ld a, (OAM_COUNT - NUM_FLYFROM_ANIM_OAMS) * OBJ_SIZE
+	jr nc, .got_oam_addr
+	ldh a, [hUsedOAMIndex]
+	; a = (OAM_COUNT - NUM_FLYFROM_ANIM_OAMS) * OBJ_SIZE - a
+	cpl
+	add (OAM_COUNT - NUM_FLYFROM_ANIM_OAMS) * OBJ_SIZE + 1
+.got_oam_addr
+
 	ld [wCurSpriteOAMAddr], a
-	call DoNextFrameForAllSprites
-	call SkySoarFunction_FrameTimer
+	call DoNextFrameForAllSprites_OW
+	farcall DoOverworldWeather
+	call FlyFunction_FrameTimer
 	call DelayFrame
 	jr .loop
 
 .exit
 	pop af
-	ld [wVramState], a
-	ld hl, wVirtualOAM + 2 ; Tile ID
+	ld [wStateFlags], a
+
+	ld a, [wCurSpriteOAMAddr]
+	sub NUM_FLYTO_ANIM_OAMS * OBJ_SIZE
+	cpl
+	add LOW(wShadowOAMEnd) + 1
+	ld b, a
+	ld h, HIGH(wShadowOAM)
+	ld a, [wCurSpriteOAMAddr]
+	sub NUM_FLYTO_ANIM_OAMS * OBJ_SIZE
+	ld l, a
+	call HideSpritesInRange
+
+
+	ld hl, wShadowOAMSprite36TileID
 	xor a
 	ld c, $4
 .loop2
@@ -333,21 +500,18 @@ SkySoarToAnim:
 	inc a
 	dec c
 	jr nz, .loop2
-	ld hl, wVirtualOAM + 4 * 4
-	ld bc, wVirtualOAMEnd - (wVirtualOAM + 4 * 4)
-	xor a
-	rst ByteFill
 	ret
 
-SkySoarFunction_InitGFX:
+FlyFunction_InitGFX:
 	call ClearSpriteAnims
+	call SetOWFlyMonColor
 	ld e, $64
-	call SkySoarFunction_GetMonIcon
+	call FlyFunction_GetMonIcon
 	xor a
 	ld [wJumptableIndex], a
 	ret
 
-SkySoarFunction_FrameTimer:
+FlyFunction_FrameTimer:
 	call .SpawnLeaf
 	ld hl, wFrameCounter
 	ld a, [hl]
@@ -358,7 +522,7 @@ SkySoarFunction_FrameTimer:
 	ret c
 	and $7
 	ret nz
-	ld de, SFX_SKY_SOAR
+	ld de, SFX_FLY
 	jmp PlaySFX
 
 .exit
@@ -374,12 +538,12 @@ SkySoarFunction_FrameTimer:
 	ret nz
 	ld a, [hl]
 	and (6 * 8) >> 1
-	sla a
+	add a
 	add 8 * 8 ; gives a number in [$40, $50, $60, $70]
 	ld d, a
-	ld e, $0
-	ld a, SPRITE_ANIM_INDEX_SKY_SOAR_LEAF ; sky soar land
-	call _InitSpriteAnimStruct
+	ld e, 0
+	ld a, SPRITE_ANIM_INDEX_FLY_LEAF ; fly land
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $70

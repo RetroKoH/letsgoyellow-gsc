@@ -1,5 +1,5 @@
 BeverlyAskNumber1Text:
-	text "Your Togepi is so"
+	text "Your Marill is so"
 	line "cute and adorable!"
 
 	para "You love #mon"
@@ -13,7 +13,7 @@ BeverlyAskNumber1Text:
 	done
 
 BeverlyAskNumber2Text:
-	text "Your Togepi is so"
+	text "Your Marill is so"
 	line "cute and adorable!"
 
 	para "We should chat, it"
@@ -25,17 +25,17 @@ BeverlyAskNumber2Text:
 
 BeverlyNumberAcceptedText:
 	text "To be honest, I"
-	line "want a Togepi."
+	line "want a Marill."
 
 	para "But I make do with"
-	line "my cute Pichu."
+	line "my cute Snubbull."
 	done
 
 BeverlyNumberDeclinedText:
 	text "Oh… That's"
 	line "disappointing…"
 
-	para "Goodbye, Togepi…"
+	para "Goodbye, Marill…"
 	done
 
 BeverlyPhoneFullText:

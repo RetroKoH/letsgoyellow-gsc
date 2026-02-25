@@ -1,22 +1,18 @@
 	db  35,  70,  55,  25,  45,  55 ; 285 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
 
 	db BUG, GRASS ; type
 	db 190 ; catch rate
 	db 70 ; base exp
-	db TINYMUSHROOM ; item 1
-	db BIG_MUSHROOM ; item 2
-	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/paras/front.dimensions"
+	db TINYMUSHROOM, BIG_MUSHROOM ; held items
+	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
+
 	abilities_for PARAS, EFFECT_SPORE, DRY_SKIN, DAMP
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_BUG, EGG_PLANT ; egg groups
 
-	ev_yield   0,   1,   0,   0,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 1 Atk
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, LIGHT_SCREEN, PROTECT, SUBSTITUTE, REFLECT, DIG, FACADE, BRICK_BREAK, X_SCISSOR, SOLAR_BEAM, SLUDGE_BOMB, MEGA_DRAIN, FALSE_SWIPE, BULLET_SEED, ENERGY_BALL
-
-	;tutors AERIAL_ACE, GRASS_KNOT, KNOCK_OFF
+	; tm/hm learnset
+	tmhm CURSE, TOXIC, VENOSHOCK, HIDDEN_POWER, SUNNY_DAY, HONE_CLAWS, LIGHT_SCREEN, PROTECT, GIGA_DRAIN, SOLAR_BEAM, RETURN, DIG, ROCK_SMASH, DOUBLE_TEAM, SLUDGE_BOMB, AERIAL_ACE, SUBSTITUTE, FACADE, REST, ATTRACT, THIEF, LEECH_LIFE, ENERGY_BALL, FALSE_SWIPE, X_SCISSOR, FLASH, SWORDS_DANCE, CUT, BODY_SLAM, COUNTER, DOUBLE_EDGE, ENDURE, KNOCK_OFF, SEED_BOMB, SLEEP_TALK, SWAGGER
 	; end

@@ -1,36 +1,36 @@
-INCLUDE "constants.asm"
-
-
 SECTION "Tileset Headers", ROMX
 
-tileset: MACRO
+MACRO tileset
+	dbas \1Meta, \1Coll, \1Attr
 	dba \1GFX0, \1GFX1, \1GFX2
-	dba \1Meta, \1Coll, \1Attr
-	dw \1Anim
+	dw \1Anim ; BANK(_AnimateTileset)
 ENDM
 
 Tilesets::
 ; entries correspond to TILESET_* constants (see constants/tileset_constants.asm)
-	table_width TILESET_LENGTH, Tilesets
-	tileset TilesetJohto1
-	tileset TilesetJohto2
-	tileset TilesetJohto3
-	tileset TilesetJohto4
-	tileset TilesetKanto1
-	tileset TilesetKanto2
-	tileset TilesetShamouti
-	tileset TilesetValencia
-	tileset TilesetFaraway
-	tileset TilesetHouse1
-	tileset TilesetHouse2
-	tileset TilesetHouse3
+	table_width TILESET_LENGTH
+	tileset TilesetJohtoTraditional
+	tileset TilesetJohtoModern
+	tileset TilesetJohtoOutlands
+	tileset TilesetJohtoAncient
+	tileset TilesetBattleTowerOutside
+	tileset TilesetEcruteakShrine
+	tileset TilesetKanto
+	tileset TilesetKantoNorth
+	tileset TilesetIndigoPlateau
+	tileset TilesetShamoutiIsland
+	tileset TilesetValenciaIsland
+	tileset TilesetFarawayIsland
+	tileset TilesetJohtoHouse
+	tileset TilesetKantoHouse
+	tileset TilesetTraditionalHouse
 	tileset TilesetPokeCenter
-	tileset TilesetPokeCom
+	tileset TilesetPokeComCenter
 	tileset TilesetMart
 	tileset TilesetGate
-	tileset TilesetGym1
-	tileset TilesetGym2
-	tileset TilesetGym3
+	tileset TilesetGym
+	tileset TilesetMagnetTrain
+	tileset TilesetChampionsRoom
 	tileset TilesetPort
 	tileset TilesetLab
 	tileset TilesetFacility
@@ -40,807 +40,878 @@ Tilesets::
 	tileset TilesetMuseum
 	tileset TilesetHotel
 	tileset TilesetTower
-	tileset TilesetBattleTower
+	tileset TilesetBattleTowerInside
 	tileset TilesetRadioTower
 	tileset TilesetLighthouse
-	tileset TilesetWarehouse
+	tileset TilesetUnderground
 	tileset TilesetCave
 	tileset TilesetQuietCave
 	tileset TilesetIcePath
 	tileset TilesetTunnel
 	tileset TilesetForest
 	tileset TilesetPark
-	tileset TilesetSafari
-	tileset TilesetRuins
-	tileset TilesetAlph
+	tileset TilesetSafariZone
+	tileset TilesetRuinsOfAlph
 	tileset TilesetPokemonMansion
 	tileset TilesetBattleFactory
+	tileset TilesetSnowtopMountain
+	tileset TilesetHiddenGrotto
+	tileset TilesetPeaks
+	tileset TilesetHideout
+	tileset TilesetKantoGym
 	assert_table_length NUM_TILESETS
 
 
-SECTION "Tileset Data - johto_traditional", ROMX
+SECTION "Tileset Graphics - johto common vram0", ROMX
 
-TilesetJohto1GFX0::
-INCBIN "gfx/tilesets/johto_traditional.2bpp.vram0.lz"
-
-TilesetJohto1GFX1::
-INCBIN "gfx/tilesets/johto_traditional.2bpp.vram1.lz"
-
-TilesetJohto1Meta::
-INCBIN "data/tilesets/johto_traditional_metatiles.bin.lz"
-
-TilesetJohto1Attr::
-INCBIN "data/tilesets/johto_traditional_attributes.bin.lz"
-
-TilesetJohto1Coll::
-INCBIN "data/tilesets/johto_traditional_collision.bin.lz"
+TilesetJohtoTraditionalGFX0::
+TilesetJohtoModernGFX0::
+TilesetJohtoOutlandsGFX0::
+TilesetJohtoAncientGFX0::
+TilesetBattleTowerOutsideGFX0::
+TilesetEcruteakShrineGFX0:: INCBIN "gfx/tilesets/johto_common.2bpp.lzp"
 
 
-SECTION "Tileset Data - johto_modern", ROMX
+SECTION "Tileset Graphics - johto traditional vram1", ROMX
 
-TilesetJohto2GFX0::
-INCBIN "gfx/tilesets/johto_modern.2bpp.vram0.lz"
-
-TilesetJohto2GFX1::
-INCBIN "gfx/tilesets/johto_modern.2bpp.vram1.lz"
-
-TilesetJohto2Meta::
-INCBIN "data/tilesets/johto_modern_metatiles.bin.lz"
-
-TilesetJohto2Attr::
-INCBIN "data/tilesets/johto_modern_attributes.bin.lz"
-
-TilesetJohto2Coll::
-INCBIN "data/tilesets/johto_modern_collision.bin.lz"
+TilesetJohtoTraditionalGFX1::
+TilesetEcruteakShrineGFX1:: INCBIN "gfx/tilesets/johto_traditional.johto_common.2bpp.vram0.lzp"
 
 
-SECTION "Tileset Data - battle_tower_outside", ROMX
+SECTION "Tileset Graphics - johto traditional vram2", ROMX
 
-TilesetJohto3GFX0::
-INCBIN "gfx/tilesets/battle_tower_outside.2bpp.vram0.lz"
-
-TilesetJohto3GFX1::
-INCBIN "gfx/tilesets/battle_tower_outside.2bpp.vram1.lz"
-
-TilesetJohto3Meta::
-INCBIN "data/tilesets/battle_tower_outside_metatiles.bin.lz"
-
-TilesetJohto3Attr::
-INCBIN "data/tilesets/battle_tower_outside_attributes.bin.lz"
-
-TilesetJohto3Coll::
-INCBIN "data/tilesets/battle_tower_outside_collision.bin.lz"
+TilesetJohtoTraditionalGFX2::
+TilesetEcruteakShrineGFX2:: INCBIN "gfx/tilesets/johto_traditional.johto_common.2bpp.vram1.lzp"
 
 
-SECTION "Tileset Data - johto_overcast", ROMX
+SECTION "Tileset Data - johto traditional", ROMX
 
-TilesetJohto4GFX0::
-INCBIN "gfx/tilesets/johto_overcast.2bpp.vram0.lz"
+TilesetJohtoTraditionalMeta:: INCBIN "data/tilesets/johto_traditional_metatiles.bin.lzp"
+TilesetJohtoTraditionalAttr:: INCBIN "data/tilesets/johto_traditional_attributes.bin.lzp"
+TilesetJohtoTraditionalColl:: INCBIN "data/tilesets/johto_traditional_collision.bin.lzp"
 
-TilesetJohto4GFX1::
-INCBIN "gfx/tilesets/johto_overcast.2bpp.vram1.lz"
 
-TilesetJohto4Meta::
-INCBIN "data/tilesets/johto_overcast_metatiles.bin.lz"
+SECTION "Tileset Graphics - johto modern vram1", ROMX
 
-TilesetJohto4Attr::
-INCBIN "data/tilesets/johto_overcast_attributes.bin.lz"
+TilesetJohtoModernGFX1:: INCBIN "gfx/tilesets/johto_modern.johto_common.2bpp.vram0.lzp"
 
-TilesetJohto4Coll::
-INCBIN "data/tilesets/johto_overcast_collision.bin.lz"
+
+SECTION "Tileset Graphics - johto modern vram2", ROMX
+
+TilesetJohtoModernGFX2:: INCBIN "gfx/tilesets/johto_modern.johto_common.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - johto modern", ROMX
+
+TilesetJohtoModernMeta:: INCBIN "data/tilesets/johto_modern_metatiles.bin.lzp"
+TilesetJohtoModernAttr:: INCBIN "data/tilesets/johto_modern_attributes.bin.lzp"
+TilesetJohtoModernColl:: INCBIN "data/tilesets/johto_modern_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - johto outlands vram1", ROMX
+
+TilesetJohtoOutlandsGFX1:: INCBIN "gfx/tilesets/johto_outlands.johto_common.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Data - johto outlands", ROMX
+
+TilesetJohtoOutlandsMeta:: INCBIN "data/tilesets/johto_outlands_metatiles.bin.lzp"
+TilesetJohtoOutlandsAttr:: INCBIN "data/tilesets/johto_outlands_attributes.bin.lzp"
+TilesetJohtoOutlandsColl:: INCBIN "data/tilesets/johto_outlands_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - johto ancient vram1", ROMX
+
+TilesetJohtoAncientGFX1:: INCBIN "gfx/tilesets/johto_ancient.johto_common.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Data - johto ancient", ROMX
+
+TilesetJohtoAncientMeta:: INCBIN "data/tilesets/johto_ancient_metatiles.bin.lzp"
+TilesetJohtoAncientAttr:: INCBIN "data/tilesets/johto_ancient_attributes.bin.lzp"
+TilesetJohtoAncientColl:: INCBIN "data/tilesets/johto_ancient_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - battle tower outside vram1", ROMX
+
+TilesetBattleTowerOutsideGFX1:: INCBIN "gfx/tilesets/battle_tower_outside.johto_common.2bpp.lzp"
+
+
+SECTION "Tileset Data - battle tower outside", ROMX
+
+TilesetBattleTowerOutsideMeta:: INCBIN "data/tilesets/battle_tower_outside_metatiles.bin.lzp"
+TilesetBattleTowerOutsideAttr:: INCBIN "data/tilesets/battle_tower_outside_attributes.bin.lzp"
+TilesetBattleTowerOutsideColl:: INCBIN "data/tilesets/battle_tower_outside_collision.bin.lzp"
+
+
+SECTION "Tileset Data - ecruteak shrine", ROMX
+
+TilesetEcruteakShrineMeta:: INCBIN "data/tilesets/ecruteak_shrine_metatiles.bin.lzp"
+TilesetEcruteakShrineAttr:: INCBIN "data/tilesets/ecruteak_shrine_attributes.bin.lzp"
+TilesetEcruteakShrineColl:: INCBIN "data/tilesets/ecruteak_shrine_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - kanto common vram0", ROMX
+
+TilesetKantoGFX0::
+TilesetKantoNorthGFX0::
+TilesetIndigoPlateauGFX0:: INCBIN "gfx/tilesets/kanto_common.2bpp.lzp"
+
+
+SECTION "Tileset Graphics - kanto vram1", ROMX
+
+TilesetKantoGFX1:: INCBIN "gfx/tilesets/kanto.kanto_common.2bpp.lzp"
 
 
 SECTION "Tileset Data - kanto", ROMX
 
-TilesetKanto1GFX0::
-INCBIN "gfx/tilesets/kanto.2bpp.vram0.lz"
-
-TilesetKanto1GFX1::
-INCBIN "gfx/tilesets/kanto.2bpp.vram1.lz"
-
-TilesetKanto1Meta::
-INCBIN "data/tilesets/kanto_metatiles.bin.lz"
-
-TilesetKanto1Attr::
-INCBIN "data/tilesets/kanto_attributes.bin.lz"
-
-TilesetKanto1Coll::
-INCBIN "data/tilesets/kanto_collision.bin.lz"
+TilesetKantoMeta:: INCBIN "data/tilesets/kanto_metatiles.bin.lzp"
+TilesetKantoAttr:: INCBIN "data/tilesets/kanto_attributes.bin.lzp"
+TilesetKantoColl:: INCBIN "data/tilesets/kanto_collision.bin.lzp"
 
 
-SECTION "Tileset Data - indigo_plateau", ROMX
+SECTION "Tileset Graphics - kanto north vram1", ROMX
 
-TilesetKanto2GFX0::
-INCBIN "gfx/tilesets/indigo_plateau.2bpp.vram0.lz"
-
-TilesetKanto2GFX1::
-INCBIN "gfx/tilesets/indigo_plateau.2bpp.vram1.lz"
-
-TilesetKanto2Meta::
-INCBIN "data/tilesets/indigo_plateau_metatiles.bin.lz"
-
-TilesetKanto2Attr::
-INCBIN "data/tilesets/indigo_plateau_attributes.bin.lz"
-
-TilesetKanto2Coll::
-INCBIN "data/tilesets/indigo_plateau_collision.bin.lz"
+TilesetKantoNorthGFX1:: INCBIN "gfx/tilesets/kanto_north.kanto_common.2bpp.lzp"
 
 
-SECTION "Tileset Data - shamouti_island", ROMX
+SECTION "Tileset Data - kanto north", ROMX
 
-TilesetShamoutiGFX0::
-INCBIN "gfx/tilesets/shamouti_island.2bpp.vram0.lz"
-
-TilesetShamoutiGFX1::
-INCBIN "gfx/tilesets/shamouti_island.2bpp.vram1.lz"
-
-TilesetShamoutiMeta::
-INCBIN "data/tilesets/shamouti_island_metatiles.bin.lz"
-
-TilesetShamoutiAttr::
-INCBIN "data/tilesets/shamouti_island_attributes.bin.lz"
-
-TilesetShamoutiColl::
-INCBIN "data/tilesets/shamouti_island_collision.bin.lz"
+TilesetKantoNorthMeta:: INCBIN "data/tilesets/kanto_north_metatiles.bin.lzp"
+TilesetKantoNorthAttr:: INCBIN "data/tilesets/kanto_north_attributes.bin.lzp"
+TilesetKantoNorthColl:: INCBIN "data/tilesets/kanto_north_collision.bin.lzp"
 
 
-SECTION "Tileset Data - valencia_island", ROMX
+SECTION "Tileset Graphics - indigo plateau vram1", ROMX
 
-TilesetValenciaGFX0::
-INCBIN "gfx/tilesets/valencia_island.2bpp.vram0.lz"
-
-TilesetValenciaGFX1::
-INCBIN "gfx/tilesets/valencia_island.2bpp.vram1.lz"
-
-TilesetValenciaMeta::
-INCBIN "data/tilesets/valencia_island_metatiles.bin.lz"
-
-TilesetValenciaAttr::
-INCBIN "data/tilesets/valencia_island_attributes.bin.lz"
-
-TilesetValenciaColl::
-INCBIN "data/tilesets/valencia_island_collision.bin.lz"
+TilesetIndigoPlateauGFX1:: INCBIN "gfx/tilesets/indigo_plateau.kanto_common.2bpp.lzp"
 
 
-SECTION "Tileset Data - faraway_island", ROMX
+SECTION "Tileset Data - indigo plateau", ROMX
 
-TilesetFarawayGFX0::
-INCBIN "gfx/tilesets/faraway_island.2bpp.vram0.lz"
-
-TilesetFarawayGFX1::
-INCBIN "gfx/tilesets/faraway_island.2bpp.vram1.lz"
-
-TilesetFarawayMeta::
-INCBIN "data/tilesets/faraway_island_metatiles.bin.lz"
-
-TilesetFarawayAttr::
-INCBIN "data/tilesets/faraway_island_attributes.bin.lz"
-
-TilesetFarawayColl::
-INCBIN "data/tilesets/faraway_island_collision.bin.lz"
+TilesetIndigoPlateauMeta:: INCBIN "data/tilesets/indigo_plateau_metatiles.bin.lzp"
+TilesetIndigoPlateauAttr:: INCBIN "data/tilesets/indigo_plateau_attributes.bin.lzp"
+TilesetIndigoPlateauColl:: INCBIN "data/tilesets/indigo_plateau_collision.bin.lzp"
 
 
-SECTION "Tileset Data - johto_house", ROMX
+SECTION "Tileset Graphics - shamouti island vram0", ROMX
 
-TilesetHouse1GFX0::
-INCBIN "gfx/tilesets/johto_house.2bpp.vram0.lz"
-
-TilesetHouse1GFX1::
-INCBIN "gfx/tilesets/johto_house.2bpp.vram1.lz"
-
-TilesetHouse1Meta::
-INCBIN "data/tilesets/johto_house_metatiles.bin.lz"
-
-TilesetHouse1Attr::
-INCBIN "data/tilesets/johto_house_attributes.bin.lz"
-
-TilesetHouse1Coll::
-INCBIN "data/tilesets/johto_house_collision.bin.lz"
+TilesetShamoutiIslandGFX0:: INCBIN "gfx/tilesets/shamouti_island.2bpp.vram0.lzp"
 
 
-SECTION "Tileset Data - kanto_house", ROMX
+SECTION "Tileset Graphics - shamouti island vram1", ROMX
 
-TilesetHouse2GFX0::
-INCBIN "gfx/tilesets/kanto_house.2bpp.vram0.lz"
-
-TilesetHouse2GFX1::
-INCBIN "gfx/tilesets/kanto_house.2bpp.vram1.lz"
-
-TilesetHouse2Meta::
-INCBIN "data/tilesets/kanto_house_metatiles.bin.lz"
-
-TilesetHouse2Attr::
-INCBIN "data/tilesets/kanto_house_attributes.bin.lz"
-
-TilesetHouse2Coll::
-INCBIN "data/tilesets/kanto_house_collision.bin.lz"
+TilesetShamoutiIslandGFX1:: INCBIN "gfx/tilesets/shamouti_island.2bpp.vram1.lzp"
 
 
-SECTION "Tileset Data - traditional_house", ROMX
+SECTION "Tileset Data - shamouti island", ROMX
 
-TilesetHouse3GFX0::
-INCBIN "gfx/tilesets/traditional_house.2bpp.vram0.lz"
+TilesetShamoutiIslandMeta:: INCBIN "data/tilesets/shamouti_island_metatiles.bin.lzp"
+TilesetShamoutiIslandAttr:: INCBIN "data/tilesets/shamouti_island_attributes.bin.lzp"
+TilesetShamoutiIslandColl:: INCBIN "data/tilesets/shamouti_island_collision.bin.lzp"
 
-TilesetHouse3GFX1::
-INCBIN "gfx/tilesets/traditional_house.2bpp.vram1.lz"
 
-TilesetHouse3Meta::
-INCBIN "data/tilesets/traditional_house_metatiles.bin.lz"
+SECTION "Tileset Graphics - valencia island vram0", ROMX
 
-TilesetHouse3Attr::
-INCBIN "data/tilesets/traditional_house_attributes.bin.lz"
+TilesetValenciaIslandGFX0:: INCBIN "gfx/tilesets/valencia_island.2bpp.vram0.lzp"
 
-TilesetHouse3Coll::
-INCBIN "data/tilesets/traditional_house_collision.bin.lz"
+
+SECTION "Tileset Graphics - valencia island vram1", ROMX
+
+TilesetValenciaIslandGFX1:: INCBIN "gfx/tilesets/valencia_island.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - valencia island", ROMX
+
+TilesetValenciaIslandMeta:: INCBIN "data/tilesets/valencia_island_metatiles.bin.lzp"
+TilesetValenciaIslandAttr:: INCBIN "data/tilesets/valencia_island_attributes.bin.lzp"
+TilesetValenciaIslandColl:: INCBIN "data/tilesets/valencia_island_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - faraway island vram0", ROMX
+
+TilesetFarawayIslandGFX0:: INCBIN "gfx/tilesets/faraway_island.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - faraway island vram1", ROMX
+
+TilesetFarawayIslandGFX1:: INCBIN "gfx/tilesets/faraway_island.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - faraway island", ROMX
+
+TilesetFarawayIslandMeta:: INCBIN "data/tilesets/faraway_island_metatiles.bin.lzp"
+TilesetFarawayIslandAttr:: INCBIN "data/tilesets/faraway_island_attributes.bin.lzp"
+TilesetFarawayIslandColl:: INCBIN "data/tilesets/faraway_island_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - johto house vram0", ROMX
+
+TilesetJohtoHouseGFX0:: INCBIN "gfx/tilesets/johto_house.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - johto house vram1", ROMX
+
+TilesetJohtoHouseGFX1:: INCBIN "gfx/tilesets/johto_house.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - johto house", ROMX
+
+TilesetJohtoHouseMeta:: INCBIN "data/tilesets/johto_house_metatiles.bin.lzp"
+TilesetJohtoHouseAttr:: INCBIN "data/tilesets/johto_house_attributes.bin.lzp"
+TilesetJohtoHouseColl:: INCBIN "data/tilesets/johto_house_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - kanto house vram0", ROMX
+
+TilesetKantoHouseGFX0:: INCBIN "gfx/tilesets/kanto_house.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - kanto house vram1", ROMX
+
+TilesetKantoHouseGFX1:: INCBIN "gfx/tilesets/kanto_house.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - kanto house", ROMX
+
+TilesetKantoHouseMeta:: INCBIN "data/tilesets/kanto_house_metatiles.bin.lzp"
+TilesetKantoHouseAttr:: INCBIN "data/tilesets/kanto_house_attributes.bin.lzp"
+TilesetKantoHouseColl:: INCBIN "data/tilesets/kanto_house_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - traditional house vram0", ROMX
+
+TilesetTraditionalHouseGFX0:: INCBIN "gfx/tilesets/traditional_house.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - traditional house vram1", ROMX
+
+TilesetTraditionalHouseGFX1:: INCBIN "gfx/tilesets/traditional_house.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - traditional house", ROMX
+
+TilesetTraditionalHouseMeta:: INCBIN "data/tilesets/traditional_house_metatiles.bin.lzp"
+TilesetTraditionalHouseAttr:: INCBIN "data/tilesets/traditional_house_attributes.bin.lzp"
+TilesetTraditionalHouseColl:: INCBIN "data/tilesets/traditional_house_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - pokecenter vram0", ROMX
+
+TilesetPokeCenterGFX0:: INCBIN "gfx/tilesets/pokecenter.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - pokecenter vram1", ROMX
+
+TilesetPokeCenterGFX1:: INCBIN "gfx/tilesets/pokecenter.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - pokecenter", ROMX
 
-TilesetPokeCenterGFX0::
-INCBIN "gfx/tilesets/pokecenter.2bpp.vram0.lz"
-
-TilesetPokeCenterGFX1::
-INCBIN "gfx/tilesets/pokecenter.2bpp.vram1.lz"
-
-TilesetPokeCenterMeta::
-INCBIN "data/tilesets/pokecenter_metatiles.bin.lz"
-
-TilesetPokeCenterAttr::
-INCBIN "data/tilesets/pokecenter_attributes.bin.lz"
-
-TilesetPokeCenterColl::
-INCBIN "data/tilesets/pokecenter_collision.bin.lz"
+TilesetPokeCenterMeta:: INCBIN "data/tilesets/pokecenter_metatiles.bin.lzp"
+TilesetPokeCenterAttr:: INCBIN "data/tilesets/pokecenter_attributes.bin.lzp"
+TilesetPokeCenterColl:: INCBIN "data/tilesets/pokecenter_collision.bin.lzp"
 
 
-SECTION "Tileset Data - pokecom_center", ROMX
+SECTION "Tileset Graphics - pokecom center vram0", ROMX
 
-TilesetPokeComGFX0::
-INCBIN "gfx/tilesets/pokecom_center.2bpp.vram0.lz"
+TilesetPokeComCenterGFX0:: INCBIN "gfx/tilesets/pokecom_center.2bpp.vram0.lzp"
 
-TilesetPokeComGFX1::
-INCBIN "gfx/tilesets/pokecom_center.2bpp.vram1.lz"
 
-TilesetPokeComMeta::
-INCBIN "data/tilesets/pokecom_center_metatiles.bin.lz"
+SECTION "Tileset Graphics - pokecom center vram1", ROMX
 
-TilesetPokeComAttr::
-INCBIN "data/tilesets/pokecom_center_attributes.bin.lz"
+TilesetPokeComCenterGFX1:: INCBIN "gfx/tilesets/pokecom_center.2bpp.vram1.lzp"
 
-TilesetPokeComColl::
-INCBIN "data/tilesets/pokecom_center_collision.bin.lz"
+
+SECTION "Tileset Data - pokecom center", ROMX
+
+TilesetPokeComCenterMeta:: INCBIN "data/tilesets/pokecom_center_metatiles.bin.lzp"
+TilesetPokeComCenterAttr:: INCBIN "data/tilesets/pokecom_center_attributes.bin.lzp"
+TilesetPokeComCenterColl:: INCBIN "data/tilesets/pokecom_center_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - mart vram0", ROMX
+
+TilesetMartGFX0:: INCBIN "gfx/tilesets/mart.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - mart vram1", ROMX
+
+TilesetMartGFX1:: INCBIN "gfx/tilesets/mart.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - mart", ROMX
 
-TilesetMartGFX0::
-INCBIN "gfx/tilesets/mart.2bpp.vram0.lz"
+TilesetMartMeta:: INCBIN "data/tilesets/mart_metatiles.bin.lzp"
+TilesetMartAttr:: INCBIN "data/tilesets/mart_attributes.bin.lzp"
+TilesetMartColl:: INCBIN "data/tilesets/mart_collision.bin.lzp"
 
-TilesetMartGFX1::
-INCBIN "gfx/tilesets/mart.2bpp.vram1.lz"
 
-TilesetMartMeta::
-INCBIN "data/tilesets/mart_metatiles.bin.lz"
+SECTION "Tileset Graphics - gate vram0", ROMX
 
-TilesetMartAttr::
-INCBIN "data/tilesets/mart_attributes.bin.lz"
+TilesetGateGFX0:: INCBIN "gfx/tilesets/gate.2bpp.vram0.lzp"
 
-TilesetMartColl::
-INCBIN "data/tilesets/mart_collision.bin.lz"
+
+SECTION "Tileset Graphics - gate vram1", ROMX
+
+TilesetGateGFX1:: INCBIN "gfx/tilesets/gate.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - gate", ROMX
 
-TilesetGateGFX0::
-INCBIN "gfx/tilesets/gate.2bpp.vram0.lz"
+TilesetGateMeta:: INCBIN "data/tilesets/gate_metatiles.bin.lzp"
+TilesetGateAttr:: INCBIN "data/tilesets/gate_attributes.bin.lzp"
+TilesetGateColl:: INCBIN "data/tilesets/gate_collision.bin.lzp"
 
-TilesetGateGFX1::
-INCBIN "gfx/tilesets/gate.2bpp.vram1.lz"
 
-TilesetGateMeta::
-INCBIN "data/tilesets/gate_metatiles.bin.lz"
+SECTION "Tileset Graphics - gym vram0", ROMX
 
-TilesetGateAttr::
-INCBIN "data/tilesets/gate_attributes.bin.lz"
+TilesetGymGFX0:: INCBIN "gfx/tilesets/gym.2bpp.vram0.lzp"
 
-TilesetGateColl::
-INCBIN "data/tilesets/gate_collision.bin.lz"
+
+SECTION "Tileset Graphics - gym vram1", ROMX
+
+TilesetGymGFX1:: INCBIN "gfx/tilesets/gym.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - gym", ROMX
 
-TilesetGym1GFX0::
-INCBIN "gfx/tilesets/gym.2bpp.vram0.lz"
-
-TilesetGym1GFX1::
-INCBIN "gfx/tilesets/gym.2bpp.vram1.lz"
-
-TilesetGym1Meta::
-INCBIN "data/tilesets/gym_metatiles.bin.lz"
-
-TilesetGym1Attr::
-INCBIN "data/tilesets/gym_attributes.bin.lz"
-
-TilesetGym1Coll::
-INCBIN "data/tilesets/gym_collision.bin.lz"
+TilesetGymMeta:: INCBIN "data/tilesets/gym_metatiles.bin.lzp"
+TilesetGymAttr:: INCBIN "data/tilesets/gym_attributes.bin.lzp"
+TilesetGymColl:: INCBIN "data/tilesets/gym_collision.bin.lzp"
 
 
-SECTION "Tileset Data - magnet_train", ROMX
+SECTION "Tileset Graphics - magnet train vram0", ROMX
 
-TilesetGym2GFX0::
-INCBIN "gfx/tilesets/magnet_train.2bpp.vram0.lz"
-
-TilesetGym2GFX1::
-INCBIN "gfx/tilesets/magnet_train.2bpp.vram1.lz"
-
-TilesetGym2Meta::
-INCBIN "data/tilesets/magnet_train_metatiles.bin.lz"
-
-TilesetGym2Attr::
-INCBIN "data/tilesets/magnet_train_attributes.bin.lz"
-
-TilesetGym2Coll::
-INCBIN "data/tilesets/magnet_train_collision.bin.lz"
+TilesetMagnetTrainGFX0:: INCBIN "gfx/tilesets/magnet_train.2bpp.vram0.lzp"
 
 
-SECTION "Tileset Data - champions_room", ROMX
+SECTION "Tileset Graphics - magnet train vram1", ROMX
 
-TilesetGym3GFX0::
-INCBIN "gfx/tilesets/champions_room.2bpp.vram0.lz"
+TilesetMagnetTrainGFX1:: INCBIN "gfx/tilesets/magnet_train.2bpp.vram1.lzp"
 
-TilesetGym3GFX1::
-INCBIN "gfx/tilesets/champions_room.2bpp.vram1.lz"
 
-TilesetGym3Meta::
-INCBIN "data/tilesets/champions_room_metatiles.bin.lz"
+SECTION "Tileset Data - magnet train", ROMX
 
-TilesetGym3Attr::
-INCBIN "data/tilesets/champions_room_attributes.bin.lz"
+TilesetMagnetTrainMeta:: INCBIN "data/tilesets/magnet_train_metatiles.bin.lzp"
+TilesetMagnetTrainAttr:: INCBIN "data/tilesets/magnet_train_attributes.bin.lzp"
+TilesetMagnetTrainColl:: INCBIN "data/tilesets/magnet_train_collision.bin.lzp"
 
-TilesetGym3Coll::
-INCBIN "data/tilesets/champions_room_collision.bin.lz"
+
+SECTION "Tileset Graphics - champions room vram0", ROMX
+
+TilesetChampionsRoomGFX0:: INCBIN "gfx/tilesets/champions_room.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - champions room vram1", ROMX
+
+TilesetChampionsRoomGFX1:: INCBIN "gfx/tilesets/champions_room.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - champions room", ROMX
+
+TilesetChampionsRoomMeta:: INCBIN "data/tilesets/champions_room_metatiles.bin.lzp"
+TilesetChampionsRoomAttr:: INCBIN "data/tilesets/champions_room_attributes.bin.lzp"
+TilesetChampionsRoomColl:: INCBIN "data/tilesets/champions_room_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - port vram0", ROMX
+
+TilesetPortGFX0:: INCBIN "gfx/tilesets/port.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - port vram1", ROMX
+
+TilesetPortGFX1:: INCBIN "gfx/tilesets/port.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - port", ROMX
 
-TilesetPortGFX0::
-INCBIN "gfx/tilesets/port.2bpp.vram0.lz"
+TilesetPortMeta:: INCBIN "data/tilesets/port_metatiles.bin.lzp"
+TilesetPortAttr:: INCBIN "data/tilesets/port_attributes.bin.lzp"
+TilesetPortColl:: INCBIN "data/tilesets/port_collision.bin.lzp"
 
-TilesetPortGFX1::
-INCBIN "gfx/tilesets/port.2bpp.vram1.lz"
 
-TilesetPortMeta::
-INCBIN "data/tilesets/port_metatiles.bin.lz"
+SECTION "Tileset Graphics - lab vram0", ROMX
 
-TilesetPortAttr::
-INCBIN "data/tilesets/port_attributes.bin.lz"
+TilesetLabGFX0:: INCBIN "gfx/tilesets/lab.2bpp.vram0.lzp"
 
-TilesetPortColl::
-INCBIN "data/tilesets/port_collision.bin.lz"
+
+SECTION "Tileset Graphics - lab vram1", ROMX
+
+TilesetLabGFX1:: INCBIN "gfx/tilesets/lab.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - lab", ROMX
 
-TilesetLabGFX0::
-INCBIN "gfx/tilesets/lab.2bpp.vram0.lz"
+TilesetLabMeta:: INCBIN "data/tilesets/lab_metatiles.bin.lzp"
+TilesetLabAttr:: INCBIN "data/tilesets/lab_attributes.bin.lzp"
+TilesetLabColl:: INCBIN "data/tilesets/lab_collision.bin.lzp"
 
-TilesetLabGFX1::
-INCBIN "gfx/tilesets/lab.2bpp.vram1.lz"
 
-TilesetLabMeta::
-INCBIN "data/tilesets/lab_metatiles.bin.lz"
+SECTION "Tileset Graphics - facility vram0", ROMX
 
-TilesetLabAttr::
-INCBIN "data/tilesets/lab_attributes.bin.lz"
+TilesetFacilityGFX0:: INCBIN "gfx/tilesets/facility.2bpp.vram0.lzp"
 
-TilesetLabColl::
-INCBIN "data/tilesets/lab_collision.bin.lz"
+
+SECTION "Tileset Graphics - facility vram1", ROMX
+
+TilesetFacilityGFX1:: INCBIN "gfx/tilesets/facility.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - facility", ROMX
 
-TilesetFacilityGFX0::
-INCBIN "gfx/tilesets/facility.2bpp.vram0.lz"
-
-TilesetFacilityGFX1::
-INCBIN "gfx/tilesets/facility.2bpp.vram1.lz"
-
-TilesetFacilityMeta::
-INCBIN "data/tilesets/facility_metatiles.bin.lz"
-
-TilesetFacilityAttr::
-INCBIN "data/tilesets/facility_attributes.bin.lz"
-
-TilesetFacilityColl::
-INCBIN "data/tilesets/facility_collision.bin.lz"
+TilesetFacilityMeta:: INCBIN "data/tilesets/facility_metatiles.bin.lzp"
+TilesetFacilityAttr:: INCBIN "data/tilesets/facility_attributes.bin.lzp"
+TilesetFacilityColl:: INCBIN "data/tilesets/facility_collision.bin.lzp"
 
 
-SECTION "Tileset Data - celadon_mansion", ROMX
+SECTION "Tileset Graphics - celadon mansion vram0", ROMX
 
-TilesetMansionGFX0::
-INCBIN "gfx/tilesets/celadon_mansion.2bpp.vram0.lz"
-
-TilesetMansionGFX1::
-INCBIN "gfx/tilesets/celadon_mansion.2bpp.vram1.lz"
-
-TilesetMansionMeta::
-INCBIN "data/tilesets/celadon_mansion_metatiles.bin.lz"
-
-TilesetMansionAttr::
-INCBIN "data/tilesets/celadon_mansion_attributes.bin.lz"
-
-TilesetMansionColl::
-INCBIN "data/tilesets/celadon_mansion_collision.bin.lz"
+TilesetMansionGFX0:: INCBIN "gfx/tilesets/celadon_mansion.2bpp.vram0.lzp"
 
 
-SECTION "Tileset Data - game_corner", ROMX
+SECTION "Tileset Graphics - celadon mansion vram1", ROMX
 
-TilesetGameCornerGFX0::
-INCBIN "gfx/tilesets/game_corner.2bpp.vram0.lz"
-
-TilesetGameCornerGFX1::
-INCBIN "gfx/tilesets/game_corner.2bpp.vram1.lz"
-
-TilesetGameCornerMeta::
-INCBIN "data/tilesets/game_corner_metatiles.bin.lz"
-
-TilesetGameCornerAttr::
-INCBIN "data/tilesets/game_corner_attributes.bin.lz"
-
-TilesetGameCornerColl::
-INCBIN "data/tilesets/game_corner_collision.bin.lz"
+TilesetMansionGFX1:: INCBIN "gfx/tilesets/celadon_mansion.2bpp.vram1.lzp"
 
 
-SECTION "Tileset Data - home_decor_store", ROMX
+SECTION "Tileset Data - celadon mansion", ROMX
 
-TilesetDecorGFX0::
-INCBIN "gfx/tilesets/home_decor_store.2bpp.vram0.lz"
+TilesetMansionMeta:: INCBIN "data/tilesets/celadon_mansion_metatiles.bin.lzp"
+TilesetMansionAttr:: INCBIN "data/tilesets/celadon_mansion_attributes.bin.lzp"
+TilesetMansionColl:: INCBIN "data/tilesets/celadon_mansion_collision.bin.lzp"
 
-TilesetDecorGFX1::
-INCBIN "gfx/tilesets/home_decor_store.2bpp.vram1.lz"
 
-TilesetDecorMeta::
-INCBIN "data/tilesets/home_decor_store_metatiles.bin.lz"
+SECTION "Tileset Graphics - game corner vram0", ROMX
 
-TilesetDecorAttr::
-INCBIN "data/tilesets/home_decor_store_attributes.bin.lz"
+TilesetGameCornerGFX0:: INCBIN "gfx/tilesets/game_corner.2bpp.vram0.lzp"
 
-TilesetDecorColl::
-INCBIN "data/tilesets/home_decor_store_collision.bin.lz"
+
+SECTION "Tileset Graphics - game corner vram1", ROMX
+
+TilesetGameCornerGFX1:: INCBIN "gfx/tilesets/game_corner.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - game corner", ROMX
+
+TilesetGameCornerMeta:: INCBIN "data/tilesets/game_corner_metatiles.bin.lzp"
+TilesetGameCornerAttr:: INCBIN "data/tilesets/game_corner_attributes.bin.lzp"
+TilesetGameCornerColl:: INCBIN "data/tilesets/game_corner_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - home decor store vram0", ROMX
+
+TilesetDecorGFX0:: INCBIN "gfx/tilesets/home_decor_store.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - home decor store vram1", ROMX
+
+TilesetDecorGFX1:: INCBIN "gfx/tilesets/home_decor_store.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - home decor store", ROMX
+
+TilesetDecorMeta:: INCBIN "data/tilesets/home_decor_store_metatiles.bin.lzp"
+TilesetDecorAttr:: INCBIN "data/tilesets/home_decor_store_attributes.bin.lzp"
+TilesetDecorColl:: INCBIN "data/tilesets/home_decor_store_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - museum vram0", ROMX
+
+TilesetMuseumGFX0:: INCBIN "gfx/tilesets/museum.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - museum vram1", ROMX
+
+TilesetMuseumGFX1:: INCBIN "gfx/tilesets/museum.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - museum", ROMX
 
-TilesetMuseumGFX0::
-INCBIN "gfx/tilesets/museum.2bpp.vram0.lz"
+TilesetMuseumMeta:: INCBIN "data/tilesets/museum_metatiles.bin.lzp"
+TilesetMuseumAttr:: INCBIN "data/tilesets/museum_attributes.bin.lzp"
+TilesetMuseumColl:: INCBIN "data/tilesets/museum_collision.bin.lzp"
 
-TilesetMuseumGFX1::
-INCBIN "gfx/tilesets/museum.2bpp.vram1.lz"
 
-TilesetMuseumMeta::
-INCBIN "data/tilesets/museum_metatiles.bin.lz"
+SECTION "Tileset Graphics - hotel vram0", ROMX
 
-TilesetMuseumAttr::
-INCBIN "data/tilesets/museum_attributes.bin.lz"
+TilesetHotelGFX0:: INCBIN "gfx/tilesets/hotel.2bpp.vram0.lzp"
 
-TilesetMuseumColl::
-INCBIN "data/tilesets/museum_collision.bin.lz"
+
+SECTION "Tileset Graphics - hotel vram1", ROMX
+
+TilesetHotelGFX1:: INCBIN "gfx/tilesets/hotel.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - hotel", ROMX
 
-TilesetHotelGFX0::
-INCBIN "gfx/tilesets/hotel.2bpp.vram0.lz"
-
-TilesetHotelGFX1::
-INCBIN "gfx/tilesets/hotel.2bpp.vram1.lz"
-
-TilesetHotelMeta::
-INCBIN "data/tilesets/hotel_metatiles.bin.lz"
-
-TilesetHotelAttr::
-INCBIN "data/tilesets/hotel_attributes.bin.lz"
-
-TilesetHotelColl::
-INCBIN "data/tilesets/hotel_collision.bin.lz"
+TilesetHotelMeta:: INCBIN "data/tilesets/hotel_metatiles.bin.lzp"
+TilesetHotelAttr:: INCBIN "data/tilesets/hotel_attributes.bin.lzp"
+TilesetHotelColl:: INCBIN "data/tilesets/hotel_collision.bin.lzp"
 
 
-SECTION "Tileset Data - sprout_tower", ROMX
+SECTION "Tileset Graphics - sprout tower vram0", ROMX
 
-TilesetTowerGFX0::
-INCBIN "gfx/tilesets/sprout_tower.2bpp.vram0.lz"
-
-TilesetTowerGFX1::
-INCBIN "gfx/tilesets/sprout_tower.2bpp.vram1.lz"
-
-TilesetTowerMeta::
-INCBIN "data/tilesets/sprout_tower_metatiles.bin.lz"
-
-TilesetTowerAttr::
-INCBIN "data/tilesets/sprout_tower_attributes.bin.lz"
-
-TilesetTowerColl::
-INCBIN "data/tilesets/sprout_tower_collision.bin.lz"
+TilesetTowerGFX0:: INCBIN "gfx/tilesets/sprout_tower.2bpp.vram0.lzp"
 
 
-SECTION "Tileset Data - battle_tower_inside", ROMX
+SECTION "Tileset Graphics - sprout tower vram1", ROMX
 
-TilesetBattleTowerGFX0::
-INCBIN "gfx/tilesets/battle_tower_inside.2bpp.vram0.lz"
-
-TilesetBattleTowerGFX1::
-INCBIN "gfx/tilesets/battle_tower_inside.2bpp.vram1.lz"
-
-TilesetBattleTowerMeta::
-INCBIN "data/tilesets/battle_tower_inside_metatiles.bin.lz"
-
-TilesetBattleTowerAttr::
-INCBIN "data/tilesets/battle_tower_inside_attributes.bin.lz"
-
-TilesetBattleTowerColl::
-INCBIN "data/tilesets/battle_tower_inside_collision.bin.lz"
+TilesetTowerGFX1:: INCBIN "gfx/tilesets/sprout_tower.2bpp.vram1.lzp"
 
 
-SECTION "Tileset Data - radio_tower", ROMX
+SECTION "Tileset Data - sprout tower", ROMX
 
-TilesetRadioTowerGFX0::
-INCBIN "gfx/tilesets/radio_tower.2bpp.vram0.lz"
+TilesetTowerMeta:: INCBIN "data/tilesets/sprout_tower_metatiles.bin.lzp"
+TilesetTowerAttr:: INCBIN "data/tilesets/sprout_tower_attributes.bin.lzp"
+TilesetTowerColl:: INCBIN "data/tilesets/sprout_tower_collision.bin.lzp"
 
-TilesetRadioTowerGFX1::
-INCBIN "gfx/tilesets/radio_tower.2bpp.vram1.lz"
 
-TilesetRadioTowerMeta::
-INCBIN "data/tilesets/radio_tower_metatiles.bin.lz"
+SECTION "Tileset Graphics - battle tower inside vram0", ROMX
 
-TilesetRadioTowerAttr::
-INCBIN "data/tilesets/radio_tower_attributes.bin.lz"
+TilesetBattleTowerInsideGFX0:: INCBIN "gfx/tilesets/battle_tower_inside.2bpp.vram0.lzp"
 
-TilesetRadioTowerColl::
-INCBIN "data/tilesets/radio_tower_collision.bin.lz"
+
+SECTION "Tileset Graphics - battle tower inside vram1", ROMX
+
+TilesetBattleTowerInsideGFX1:: INCBIN "gfx/tilesets/battle_tower_inside.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - battle tower inside", ROMX
+
+TilesetBattleTowerInsideMeta:: INCBIN "data/tilesets/battle_tower_inside_metatiles.bin.lzp"
+TilesetBattleTowerInsideAttr:: INCBIN "data/tilesets/battle_tower_inside_attributes.bin.lzp"
+TilesetBattleTowerInsideColl:: INCBIN "data/tilesets/battle_tower_inside_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - radio tower vram0", ROMX
+
+TilesetRadioTowerGFX0:: INCBIN "gfx/tilesets/radio_tower.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - radio tower vram1", ROMX
+
+TilesetRadioTowerGFX1:: INCBIN "gfx/tilesets/radio_tower.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - radio tower", ROMX
+
+TilesetRadioTowerMeta:: INCBIN "data/tilesets/radio_tower_metatiles.bin.lzp"
+TilesetRadioTowerAttr:: INCBIN "data/tilesets/radio_tower_attributes.bin.lzp"
+TilesetRadioTowerColl:: INCBIN "data/tilesets/radio_tower_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - lighthouse vram0", ROMX
+
+TilesetLighthouseGFX0:: INCBIN "gfx/tilesets/lighthouse.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - lighthouse vram1", ROMX
+
+TilesetLighthouseGFX1:: INCBIN "gfx/tilesets/lighthouse.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - lighthouse", ROMX
 
-TilesetLighthouseGFX0::
-INCBIN "gfx/tilesets/lighthouse.2bpp.vram0.lz"
+TilesetLighthouseMeta:: INCBIN "data/tilesets/lighthouse_metatiles.bin.lzp"
+TilesetLighthouseAttr:: INCBIN "data/tilesets/lighthouse_attributes.bin.lzp"
+TilesetLighthouseColl:: INCBIN "data/tilesets/lighthouse_collision.bin.lzp"
 
-TilesetLighthouseGFX1::
-INCBIN "gfx/tilesets/lighthouse.2bpp.vram1.lz"
 
-TilesetLighthouseMeta::
-INCBIN "data/tilesets/lighthouse_metatiles.bin.lz"
+SECTION "Tileset Graphics - underground vram0", ROMX
 
-TilesetLighthouseAttr::
-INCBIN "data/tilesets/lighthouse_attributes.bin.lz"
+TilesetUndergroundGFX0:: INCBIN "gfx/tilesets/underground.2bpp.vram0.lzp"
 
-TilesetLighthouseColl::
-INCBIN "data/tilesets/lighthouse_collision.bin.lz"
+
+SECTION "Tileset Graphics - underground vram1", ROMX
+
+TilesetUndergroundGFX1:: INCBIN "gfx/tilesets/underground.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - underground", ROMX
 
-TilesetWarehouseGFX0::
-INCBIN "gfx/tilesets/underground.2bpp.vram0.lz"
+TilesetUndergroundMeta:: INCBIN "data/tilesets/underground_metatiles.bin.lzp"
+TilesetUndergroundAttr:: INCBIN "data/tilesets/underground_attributes.bin.lzp"
+TilesetUndergroundColl:: INCBIN "data/tilesets/underground_collision.bin.lzp"
 
-TilesetWarehouseGFX1::
-INCBIN "gfx/tilesets/underground.2bpp.vram1.lz"
 
-TilesetWarehouseMeta::
-INCBIN "data/tilesets/underground_metatiles.bin.lz"
+SECTION "Tileset Graphics - cave vram0", ROMX
 
-TilesetWarehouseAttr::
-INCBIN "data/tilesets/underground_attributes.bin.lz"
+TilesetCaveGFX0:: INCBIN "gfx/tilesets/cave.2bpp.vram0.lzp"
 
-TilesetWarehouseColl::
-INCBIN "data/tilesets/underground_collision.bin.lz"
+
+SECTION "Tileset Graphics - cave vram1", ROMX
+
+TilesetCaveGFX1:: INCBIN "gfx/tilesets/cave.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - cave", ROMX
 
-TilesetCaveGFX0::
-INCBIN "gfx/tilesets/cave.2bpp.vram0.lz"
-
-TilesetCaveGFX1::
-INCBIN "gfx/tilesets/cave.2bpp.vram1.lz"
-
-TilesetQuietCaveGFX0::
-INCBIN "gfx/tilesets/quiet_cave.2bpp.vram0.lz"
-
-TilesetQuietCaveGFX1::
-INCBIN "gfx/tilesets/quiet_cave.2bpp.vram1.lz"
-
-TilesetCaveMeta::
-TilesetQuietCaveMeta::
-INCBIN "data/tilesets/cave_metatiles.bin.lz"
-
-TilesetCaveAttr::
-TilesetQuietCaveAttr::
-INCBIN "data/tilesets/cave_attributes.bin.lz"
-
-TilesetCaveColl::
-TilesetQuietCaveColl::
-INCBIN "data/tilesets/cave_collision.bin.lz"
+TilesetCaveMeta:: INCBIN "data/tilesets/cave_metatiles.bin.lzp"
+TilesetCaveAttr:: INCBIN "data/tilesets/cave_attributes.bin.lzp"
+TilesetCaveColl:: INCBIN "data/tilesets/cave_collision.bin.lzp"
 
 
-SECTION "Tileset Data - ice_path", ROMX
+SECTION "Tileset Graphics - quiet cave vram0", ROMX
 
-TilesetIcePathGFX0::
-INCBIN "gfx/tilesets/ice_path.2bpp.vram0.lz"
+TilesetQuietCaveGFX0:: INCBIN "gfx/tilesets/quiet_cave.2bpp.vram0.lzp"
 
-TilesetIcePathGFX1::
-INCBIN "gfx/tilesets/ice_path.2bpp.vram1.lz"
 
-TilesetIcePathMeta::
-INCBIN "data/tilesets/ice_path_metatiles.bin.lz"
+SECTION "Tileset Graphics - quiet cave vram1", ROMX
 
-TilesetIcePathAttr::
-INCBIN "data/tilesets/ice_path_attributes.bin.lz"
+TilesetQuietCaveGFX1:: INCBIN "gfx/tilesets/quiet_cave.2bpp.vram1.lzp"
 
-TilesetIcePathColl::
-INCBIN "data/tilesets/ice_path_collision.bin.lz"
+
+SECTION "Tileset Data - quiet cave", ROMX
+
+TilesetQuietCaveMeta:: INCBIN "data/tilesets/quiet_cave_metatiles.bin.lzp"
+TilesetQuietCaveAttr:: INCBIN "data/tilesets/quiet_cave_attributes.bin.lzp"
+TilesetQuietCaveColl:: INCBIN "data/tilesets/quiet_cave_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - ice path vram0", ROMX
+
+TilesetIcePathGFX0:: INCBIN "gfx/tilesets/ice_path.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - ice path vram1", ROMX
+
+TilesetIcePathGFX1:: INCBIN "gfx/tilesets/ice_path.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - ice path", ROMX
+
+TilesetIcePathMeta:: INCBIN "data/tilesets/ice_path_metatiles.bin.lzp"
+TilesetIcePathAttr:: INCBIN "data/tilesets/ice_path_attributes.bin.lzp"
+TilesetIcePathColl:: INCBIN "data/tilesets/ice_path_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - tunnel vram0", ROMX
+
+TilesetTunnelGFX0:: INCBIN "gfx/tilesets/tunnel.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - tunnel vram1", ROMX
+
+TilesetTunnelGFX1:: INCBIN "gfx/tilesets/tunnel.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - tunnel", ROMX
 
-TilesetTunnelGFX0::
-INCBIN "gfx/tilesets/tunnel.2bpp.vram0.lz"
+TilesetTunnelMeta:: INCBIN "data/tilesets/tunnel_metatiles.bin.lzp"
+TilesetTunnelAttr:: INCBIN "data/tilesets/tunnel_attributes.bin.lzp"
+TilesetTunnelColl:: INCBIN "data/tilesets/tunnel_collision.bin.lzp"
 
-TilesetTunnelGFX1::
-INCBIN "gfx/tilesets/tunnel.2bpp.vram1.lz"
 
-TilesetTunnelMeta::
-INCBIN "data/tilesets/tunnel_metatiles.bin.lz"
+SECTION "Tileset Graphics - forest vram0", ROMX
 
-TilesetTunnelAttr::
-INCBIN "data/tilesets/tunnel_attributes.bin.lz"
+TilesetForestGFX0:: INCBIN "gfx/tilesets/forest.2bpp.vram0.lzp"
 
-TilesetTunnelColl::
-INCBIN "data/tilesets/tunnel_collision.bin.lz"
+
+SECTION "Tileset Graphics - forest vram1", ROMX
+
+TilesetForestGFX1:: INCBIN "gfx/tilesets/forest.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - forest", ROMX
 
-TilesetForestGFX0::
-INCBIN "gfx/tilesets/forest.2bpp.vram0.lz"
+TilesetForestMeta:: INCBIN "data/tilesets/forest_metatiles.bin.lzp"
+TilesetForestAttr:: INCBIN "data/tilesets/forest_attributes.bin.lzp"
+TilesetForestColl:: INCBIN "data/tilesets/forest_collision.bin.lzp"
 
-TilesetForestGFX1::
-INCBIN "gfx/tilesets/forest.2bpp.vram1.lz"
 
-TilesetForestMeta::
-INCBIN "data/tilesets/forest_metatiles.bin.lz"
+SECTION "Tileset Graphics - park vram0", ROMX
 
-TilesetForestAttr::
-INCBIN "data/tilesets/forest_attributes.bin.lz"
+TilesetParkGFX0:: INCBIN "gfx/tilesets/park.2bpp.vram0.lzp"
 
-TilesetForestColl::
-INCBIN "data/tilesets/forest_collision.bin.lz"
+
+SECTION "Tileset Graphics - park vram1", ROMX
+
+TilesetParkGFX1:: INCBIN "gfx/tilesets/park.2bpp.vram1.lzp"
 
 
 SECTION "Tileset Data - park", ROMX
 
-TilesetParkGFX0::
-INCBIN "gfx/tilesets/park.2bpp.vram0.lz"
-
-TilesetParkGFX1::
-INCBIN "gfx/tilesets/park.2bpp.vram1.lz"
-
-TilesetParkMeta::
-INCBIN "data/tilesets/park_metatiles.bin.lz"
-
-TilesetParkAttr::
-INCBIN "data/tilesets/park_attributes.bin.lz"
-
-TilesetParkColl::
-INCBIN "data/tilesets/park_collision.bin.lz"
+TilesetParkMeta:: INCBIN "data/tilesets/park_metatiles.bin.lzp"
+TilesetParkAttr:: INCBIN "data/tilesets/park_attributes.bin.lzp"
+TilesetParkColl:: INCBIN "data/tilesets/park_collision.bin.lzp"
 
 
-SECTION "Tileset Data - safari_zone", ROMX
+SECTION "Tileset Graphics - safari zone vram0", ROMX
 
-TilesetSafariGFX0::
-INCBIN "gfx/tilesets/safari_zone.2bpp.vram0.lz"
-
-TilesetSafariGFX1::
-INCBIN "gfx/tilesets/safari_zone.2bpp.vram1.lz"
-
-TilesetSafariMeta::
-INCBIN "data/tilesets/safari_zone_metatiles.bin.lz"
-
-TilesetSafariAttr::
-INCBIN "data/tilesets/safari_zone_attributes.bin.lz"
-
-TilesetSafariColl::
-INCBIN "data/tilesets/safari_zone_collision.bin.lz"
+TilesetSafariZoneGFX0:: INCBIN "gfx/tilesets/safari_zone.2bpp.vram0.lzp"
 
 
-SECTION "Tileset Data - ruins_of_alph", ROMX
+SECTION "Tileset Graphics - safari zone vram1", ROMX
 
-TilesetRuinsGFX0::
-TilesetAlphGFX0::
-INCBIN "gfx/tilesets/ruins_of_alph.2bpp.vram0.lz"
-
-TilesetRuinsGFX1::
-TilesetAlphGFX1::
-INCBIN "gfx/tilesets/ruins_of_alph.2bpp.vram1.lz"
-
-TilesetRuinsMeta::
-INCBIN "data/tilesets/ruins_of_alph_metatiles.bin.lz"
-
-TilesetRuinsAttr::
-INCBIN "data/tilesets/ruins_of_alph_attributes.bin.lz"
-
-TilesetRuinsColl::
-INCBIN "data/tilesets/ruins_of_alph_collision.bin.lz"
+TilesetSafariZoneGFX1:: INCBIN "gfx/tilesets/safari_zone.2bpp.vram1.lzp"
 
 
-SECTION "Tileset Data - alph_word_room", ROMX
+SECTION "Tileset Data - safari zone", ROMX
 
-TilesetAlphMeta::
-INCBIN "data/tilesets/alph_word_room_metatiles.bin.lz"
-
-TilesetAlphAttr::
-INCBIN "data/tilesets/alph_word_room_attributes.bin.lz"
-
-TilesetAlphColl::
-INCBIN "data/tilesets/alph_word_room_collision.bin.lz"
+TilesetSafariZoneMeta:: INCBIN "data/tilesets/safari_zone_metatiles.bin.lzp"
+TilesetSafariZoneAttr:: INCBIN "data/tilesets/safari_zone_attributes.bin.lzp"
+TilesetSafariZoneColl:: INCBIN "data/tilesets/safari_zone_collision.bin.lzp"
 
 
-SECTION "Tileset Data - pokemon_mansion", ROMX
+SECTION "Tileset Graphics - ruins of alph vram0", ROMX
 
-TilesetPokemonMansionGFX0::
-INCBIN "gfx/tilesets/pokemon_mansion.2bpp.vram0.lz"
-
-TilesetPokemonMansionGFX1::
-INCBIN "gfx/tilesets/pokemon_mansion.2bpp.vram1.lz"
-
-TilesetPokemonMansionMeta::
-INCBIN "data/tilesets/pokemon_mansion_metatiles.bin.lz"
-
-TilesetPokemonMansionAttr::
-INCBIN "data/tilesets/pokemon_mansion_attributes.bin.lz"
-
-TilesetPokemonMansionColl::
-INCBIN "data/tilesets/pokemon_mansion_collision.bin.lz"
+TilesetRuinsOfAlphGFX0:: INCBIN "gfx/tilesets/ruins_of_alph.2bpp.vram0.lzp"
 
 
-SECTION "Tileset Data - battle_factory", ROMX
+SECTION "Tileset Graphics - ruins of alph vram1", ROMX
 
-TilesetBattleFactoryGFX0::
-INCBIN "gfx/tilesets/battle_factory.2bpp.vram0.lz"
-
-TilesetBattleFactoryGFX1::
-INCBIN "gfx/tilesets/battle_factory.2bpp.vram1.lz"
-
-TilesetBattleFactoryMeta::
-INCBIN "data/tilesets/battle_factory_metatiles.bin.lz"
-
-TilesetBattleFactoryAttr::
-INCBIN "data/tilesets/battle_factory_attributes.bin.lz"
-
-TilesetBattleFactoryColl::
-INCBIN "data/tilesets/battle_factory_collision.bin.lz"
+TilesetRuinsOfAlphGFX1:: INCBIN "gfx/tilesets/ruins_of_alph.2bpp.vram1.lzp"
 
 
-SECTION "Tileset Data - GFX2", ROMX
+SECTION "Tileset Data - ruins of alph", ROMX
 
-; None of the tilesets need "★" GFX, so consolidate them here.
-TilesetJohto1GFX2::
-TilesetJohto2GFX2::
-TilesetJohto3GFX2::
-TilesetJohto4GFX2::
-TilesetKanto1GFX2::
-TilesetKanto2GFX2::
-TilesetShamoutiGFX2::
-TilesetValenciaGFX2::
-TilesetFarawayGFX2::
-TilesetHouse1GFX2::
-TilesetHouse2GFX2::
-TilesetHouse3GFX2::
+TilesetRuinsOfAlphMeta:: INCBIN "data/tilesets/ruins_of_alph_metatiles.bin.lzp"
+TilesetRuinsOfAlphAttr:: INCBIN "data/tilesets/ruins_of_alph_attributes.bin.lzp"
+TilesetRuinsOfAlphColl:: INCBIN "data/tilesets/ruins_of_alph_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - pokemon mansion vram0", ROMX
+
+TilesetPokemonMansionGFX0:: INCBIN "gfx/tilesets/pokemon_mansion.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - pokemon mansion vram1", ROMX
+
+TilesetPokemonMansionGFX1:: INCBIN "gfx/tilesets/pokemon_mansion.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - pokemon mansion", ROMX
+
+TilesetPokemonMansionMeta:: INCBIN "data/tilesets/pokemon_mansion_metatiles.bin.lzp"
+TilesetPokemonMansionAttr:: INCBIN "data/tilesets/pokemon_mansion_attributes.bin.lzp"
+TilesetPokemonMansionColl:: INCBIN "data/tilesets/pokemon_mansion_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - battle factory vram0", ROMX
+
+TilesetBattleFactoryGFX0:: INCBIN "gfx/tilesets/battle_factory.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - battle factory vram1", ROMX
+
+TilesetBattleFactoryGFX1:: INCBIN "gfx/tilesets/battle_factory.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - battle factory", ROMX
+
+TilesetBattleFactoryMeta:: INCBIN "data/tilesets/battle_factory_metatiles.bin.lzp"
+TilesetBattleFactoryAttr:: INCBIN "data/tilesets/battle_factory_attributes.bin.lzp"
+TilesetBattleFactoryColl:: INCBIN "data/tilesets/battle_factory_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - snowtop mountain vram0", ROMX
+
+TilesetSnowtopMountainGFX0:: INCBIN "gfx/tilesets/snowtop_mountain.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - snowtop mountain vram1", ROMX
+
+TilesetSnowtopMountainGFX1:: INCBIN "gfx/tilesets/snowtop_mountain.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - snowtop mountain", ROMX
+
+TilesetSnowtopMountainMeta:: INCBIN "data/tilesets/snowtop_mountain_metatiles.bin.lzp"
+TilesetSnowtopMountainAttr:: INCBIN "data/tilesets/snowtop_mountain_attributes.bin.lzp"
+TilesetSnowtopMountainColl:: INCBIN "data/tilesets/snowtop_mountain_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - hidden grotto vram0", ROMX
+
+TilesetHiddenGrottoGFX0:: INCBIN "gfx/tilesets/hidden_grotto.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - hidden grotto vram1", ROMX
+
+TilesetHiddenGrottoGFX1:: INCBIN "gfx/tilesets/hidden_grotto.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - hidden grotto", ROMX
+
+TilesetHiddenGrottoMeta:: INCBIN "data/tilesets/hidden_grotto_metatiles.bin.lzp"
+TilesetHiddenGrottoAttr:: INCBIN "data/tilesets/hidden_grotto_attributes.bin.lzp"
+TilesetHiddenGrottoColl:: INCBIN "data/tilesets/hidden_grotto_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - peaks vram0", ROMX
+
+TilesetPeaksGFX0:: INCBIN "gfx/tilesets/peaks.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - peaks vram1", ROMX
+
+TilesetPeaksGFX1:: INCBIN "gfx/tilesets/peaks.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - peaks", ROMX
+
+TilesetPeaksMeta:: INCBIN "data/tilesets/peaks_metatiles.bin.lzp"
+TilesetPeaksAttr:: INCBIN "data/tilesets/peaks_attributes.bin.lzp"
+TilesetPeaksColl:: INCBIN "data/tilesets/peaks_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - hideout vram0", ROMX
+
+TilesetHideoutGFX0:: INCBIN "gfx/tilesets/hideout.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - hideout vram1", ROMX
+
+TilesetHideoutGFX1:: INCBIN "gfx/tilesets/hideout.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - hideout", ROMX
+
+TilesetHideoutMeta:: INCBIN "data/tilesets/hideout_metatiles.bin.lzp"
+TilesetHideoutAttr:: INCBIN "data/tilesets/hideout_attributes.bin.lzp"
+TilesetHideoutColl:: INCBIN "data/tilesets/hideout_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - kanto gym vram0", ROMX
+
+TilesetKantoGymGFX0:: INCBIN "gfx/tilesets/kanto_gym.2bpp.vram0.lzp"
+
+
+SECTION "Tileset Graphics - kanto gym vram1", ROMX
+
+TilesetKantoGymGFX1:: INCBIN "gfx/tilesets/kanto_gym.2bpp.vram1.lzp"
+
+
+SECTION "Tileset Data - kanto gym", ROMX
+
+TilesetKantoGymMeta:: INCBIN "data/tilesets/kanto_gym_metatiles.bin.lzp"
+TilesetKantoGymAttr:: INCBIN "data/tilesets/kanto_gym_attributes.bin.lzp"
+TilesetKantoGymColl:: INCBIN "data/tilesets/kanto_gym_collision.bin.lzp"
+
+
+SECTION "Tileset Graphics - Terminator vram2", ROMX
+
+TilesetJohtoOutlandsGFX2::
+TilesetJohtoAncientGFX2::
+TilesetBattleTowerOutsideGFX2::
+TilesetKantoGFX2::
+TilesetKantoNorthGFX2::
+TilesetIndigoPlateauGFX2::
+TilesetShamoutiIslandGFX2::
+TilesetValenciaIslandGFX2::
+TilesetFarawayIslandGFX2::
+TilesetJohtoHouseGFX2::
+TilesetKantoHouseGFX2::
+TilesetTraditionalHouseGFX2::
 TilesetPokeCenterGFX2::
-TilesetPokeComGFX2::
+TilesetPokeComCenterGFX2::
 TilesetMartGFX2::
 TilesetGateGFX2::
-TilesetGym1GFX2::
-TilesetGym2GFX2::
-TilesetGym3GFX2::
+TilesetGymGFX2::
+TilesetMagnetTrainGFX2::
+TilesetChampionsRoomGFX2::
 TilesetPortGFX2::
 TilesetLabGFX2::
 TilesetFacilityGFX2::
@@ -850,19 +921,23 @@ TilesetDecorGFX2::
 TilesetMuseumGFX2::
 TilesetHotelGFX2::
 TilesetTowerGFX2::
-TilesetBattleTowerGFX2::
+TilesetBattleTowerInsideGFX2::
 TilesetRadioTowerGFX2::
 TilesetLighthouseGFX2::
-TilesetWarehouseGFX2::
+TilesetUndergroundGFX2::
 TilesetCaveGFX2::
 TilesetQuietCaveGFX2::
 TilesetIcePathGFX2::
 TilesetTunnelGFX2::
 TilesetForestGFX2::
 TilesetParkGFX2::
-TilesetSafariGFX2::
-TilesetRuinsGFX2::
-TilesetAlphGFX2::
+TilesetSafariZoneGFX2::
+TilesetRuinsOfAlphGFX2::
 TilesetPokemonMansionGFX2::
 TilesetBattleFactoryGFX2::
+TilesetSnowtopMountainGFX2::
+TilesetHiddenGrottoGFX2::
+TilesetPeaksGFX2::
+TilesetHideoutGFX2::
+TilesetKantoGymGFX2::
 	db $ff ; Compressed data is terminated with $ff.

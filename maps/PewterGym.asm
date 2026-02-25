@@ -14,46 +14,29 @@ PewterGym_MapScriptHeader:
 	bg_event  7, 11, BGEVENT_READ, PewterGymStatue
 
 	def_object_events
-	object_event  5,  1, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterGymBrockScript, EVENT_HIDE_PEWTERGYM_BROCK
-	object_event  2,  7, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerCamperJerry, EVENT_HIDE_PEWTERGYM_BROCK
-	object_event  7,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHikerEdwin, EVENT_HIDE_PEWTERGYM_BROCK
-	object_event  6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, PewterGymGuyScript, EVENT_HIDE_PEWTERGYM_BROCK
+	object_event  5,  1, SPRITE_BROCK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterGymBrockScript, -1
+	object_event  2,  7, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerCamperJerry, -1
+	object_event  7,  5, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHikerEdwin, -1
+	object_event  6, 11, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, PewterGymGuyScript, -1
 
 PewterGymBrockScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_BOULDERBADGE
-	iftrue .FightDone
+	iftruefwd .FightDone
 	writetext BrockIntroText
 	waitbutton
 	closetext
 	winlosstext BrockWinLossText, 0
-	loadgymleader BROCK
+	loadtrainer BROCK, 1
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_BROCK
 	setevent EVENT_BEAT_CAMPER_JERRY
 	setevent EVENT_BEAT_HIKER_EDWIN
 	opentext
-	writetext ReceivedBoulderBadgeText
-	playsound SFX_GET_BADGE
-	waitsfx
-	setflag ENGINE_BOULDERBADGE
-	readvar VAR_BADGES
-	ifequal 9, .FirstBadge
-	ifequal 10, .SecondBadge
-	ifequal 12, .LyrasEgg
-	sjump .FightDone
-.FirstBadge:
-	specialphonecall SPECIALCALL_FIRSTBADGE
-	sjump .FightDone
-.SecondBadge:
-	checkevent EVENT_GOT_GS_BALL_FROM_POKECOM_CENTER
-	iftrue .FightDone
-	specialphonecall SPECIALCALL_SECONDBADGE
-	sjump .FightDone
-.LyrasEgg:
-	specialphonecall SPECIALCALL_LYRASEGG
+	givebadge BOULDERBADGE, KANTO_REGION
+	callstd kantopostgymevents
 .FightDone:
 	checkevent EVENT_GOT_TM48_ROCK_SLIDE
 	iftrue_jumpopenedtext BrockFightDoneText
@@ -91,11 +74,31 @@ GenericTrainerHikerEdwin:
 PewterGymGuyScript:
 	checkevent EVENT_BEAT_BROCK
 	iftrue_jumptextfaceplayer PewterGymGuyWinText
-	jumptextfaceplayer PewterGymGuyText
+	jumpthistextfaceplayer
+
+	text "Yo! Champ in"
+	line "making! You're"
+
+	para "really rocking."
+	line "Are you battling"
+
+	para "the Gym Leaders of"
+	line "Kanto?"
+
+	para "They're strong and"
+	line "dedicated people,"
+
+	para "just like Johto's"
+	line "Gym Leaders."
+	done
 
 PewterGymStatue:
-	gettrainername BROCK, 1, $1
-	jumpstd gymstatue
+	gettrainername BROCK, 1, STRING_BUFFER_4
+	checkflag ENGINE_BOULDERBADGE
+	iftruefwd .Beaten
+	jumpstd gymstatue1
+.Beaten:
+	jumpstd gymstatue2
 
 BrockIntroText:
 	text "Brock: Wow, it's"
@@ -133,11 +136,6 @@ BrockWinLossText:
 
 	para "Go ahead--take"
 	line "this Badge."
-	done
-
-ReceivedBoulderBadgeText:
-	text "<PLAYER> received"
-	line "the Boulder Badge."
 	done
 
 BrockBoulderBadgeText:
@@ -186,56 +184,25 @@ CamperJerryBeatenText:
 	line "these battles…"
 	done
 
-HikerEdwinSeenText:
+HikerEdwinSeenText: ; text > text
 	text "R-r-r-R-R--CRASH!"
 	done
 
-HikerEdwinBeatenText:
+HikerEdwinBeatenText: ; text > text
 	text "BOOM!"
 	done
 
-PewterGymGuyText:
-	text "Yo! You're that"
-	line "same guy from"
-	cont "earlier!"
-
-	para "Brock just came"
-	line "back. He said he"
-	cont "was waiting for"
-	cont "a certain trainer."
-
-	para "That must be you!"
-	line "Right?"
-
-	para "Brock needs your"
-	line "help, but he wants"
-	cont "to test you first!"
-
-	para "If you can beat"
-	line "him in battle, he"
-	cont "will know that"
-	cont "you're ready!"
-	done
 
 PewterGymGuyWinText:
-	text "Yo! You really"
-	line "brought the fight"
-	cont "to Brock!"
+	text "Yo! Champ in"
+	line "making! That Gym"
 
-	para "I'm sure you'll"
-	line "have no trouble if"
-	cont "you go to the"
-	cont "other gyms."
+	para "didn't give you"
+	line "much trouble."
 
-	para "I've been told the"
-	line "#mon League has"
-	cont "been suspended for"
-	cont "now."
+	para "The way you took"
+	line "charge was really"
 
-	para "But I think you"
-	line "should still seek"
-	cont "out the other Gym"
-	cont "Leaders!"
+	para "inspiring. I mean"
+	line "that seriously."
 	done
-
-; Add text relevant to post-game rematches

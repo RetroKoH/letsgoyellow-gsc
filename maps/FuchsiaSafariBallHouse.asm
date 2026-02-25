@@ -12,7 +12,7 @@ FuchsiaSafariBallHouse_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  2,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaSafariBallHouseOfficerScript, -1
+	object_event  2,  4, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, FuchsiaSafariBallHouseOfficerScript, -1
 
 FuchsiaSafariBallHouseOfficerScript:
 	faceplayer
@@ -22,8 +22,8 @@ FuchsiaSafariBallHouseOfficerScript:
 	loadmenu .MenuDataHeader
 	verticalmenu
 	closewindow
-	ifequal $1, .Buy1
-	ifequal $2, .Buy10
+	ifequalfwd $1, .Buy1
+	ifequalfwd $2, .Buy10
 	jumpthisopenedtext ; cancel
 
 	text "What will I do"
@@ -31,19 +31,19 @@ FuchsiaSafariBallHouseOfficerScript:
 	done
 
 .Buy1:
-	checkmoney $0, 2000
-	ifequal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 2000
+	ifequalfwd HAVE_LESS, .NotEnoughMoney
 	giveitem SAFARI_BALL
 	iffalse_jumpopenedtext .BagFullText
-	takemoney $0, 2000
-	sjump .Done
+	takemoney YOUR_MONEY, 2000
+	sjumpfwd .Done
 
 .Buy10:
-	checkmoney $0, 20000
-	ifequal $2, .NotEnoughMoney
+	checkmoney YOUR_MONEY, 20000
+	ifequalfwd HAVE_LESS, .NotEnoughMoney
 	giveitem SAFARI_BALL, 10
 	iffalse_jumpopenedtext .BagFullText
-	takemoney $0, 20000
+	takemoney YOUR_MONEY, 20000
 
 .Done:
 	special PlaceMoneyTopRight
@@ -89,9 +89,8 @@ FuchsiaSafariBallHouseOfficerScript:
 	done
 
 .MenuDataHeader:
-	db $40 ; flags
-	db 04, 00 ; start coords
-	db 11, 14 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 4, 14, 11
 	dw .MenuData2
 	db 1 ; default option
 

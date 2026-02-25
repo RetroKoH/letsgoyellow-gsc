@@ -1,38 +1,37 @@
 ItemIconPointers:
-	table_width 3, ItemIconPointers
+	table_width 3
 	dba NoItemIcon
 	dba PokeBallIcon
 	dba GreatBallIcon
 	dba UltraBallIcon
 	dba MasterBallIcon
 	dba SafariBallIcon
-	dba FastBallIcon
 	dba LevelBallIcon
 	dba LureBallIcon
+	dba MoonBallIcon
+	dba FriendBallIcon
+	dba FastBallIcon
 	dba HeavyBallIcon
 	dba LoveBallIcon
-	dba FriendBallIcon
-	dba MoonBallIcon
-	dba NetBallIcon
-	dba DiveBallIcon
-	dba NestBallIcon
 	dba RepeatBallIcon
 	dba TimerBallIcon
+	dba NestBallIcon
+	dba NetBallIcon
+	dba DiveBallIcon
 	dba LuxuryBallIcon
-	dba DuskBallIcon
 	dba HealBallIcon
 	dba QuickBallIcon
+	dba DuskBallIcon
 	dba DreamBallIcon
 	dba PremierBallIcon
 	dba CherishBallIcon
-	dba SnagBallIcon
 	dba PotionIcon
 	dba SuperPotionIcon
 	dba HyperPotionIcon
 	dba MaxPotionIcon
 	dba AntidoteIcon
 	dba BurnHealIcon
-	dba ParlyzHealIcon
+	dba ParalyzeHealIcon
 	dba AwakeningIcon
 	dba IceHealIcon
 	dba FullHealIcon
@@ -56,40 +55,13 @@ ItemIconPointers:
 	dba SodaPopIcon
 	dba LemonadeIcon
 	dba MoomooMilkIcon
+	dba RageCandyBarIcon
 	dba PewterCrunchIcon
-	dba SacredAshIcon
 	dba EnergyPowderIcon
 	dba EnergyRootIcon
 	dba HealPowderIcon
 	dba RevivalHerbIcon
-	dba XAttackIcon
-	dba XDefendIcon
-	dba XSpeedIcon
-	dba XSpclAtkIcon
-	dba XSpclDefIcon
-	dba XAccuracyIcon
-	dba DireHitIcon
-	dba GuardSpecIcon
-	dba RepelIcon
-	dba SuperRepelIcon
-	dba MaxRepelIcon
-	dba LureIcon ; LURE
-	dba LureIcon
-	dba LureIcon
-	dba AbilityCapIcon
-	dba AbilityPatchIcon
-	dba LeafStoneIcon
-	dba FireStoneIcon
-	dba WaterStoneIcon
-	dba ThunderStoneIcon
-	dba MoonStoneIcon
-	dba SunStoneIcon
-	dba DuskStoneIcon
-	dba DawnStoneIcon
-	dba ShinyStoneIcon
-	dba IceStoneIcon
-	dba EverstoneIcon
-	dba ExpShareIcon
+	dba SacredAshIcon
 	dba CheriBerryIcon
 	dba ChestoBerryIcon
 	dba PechaBerryIcon
@@ -121,6 +93,34 @@ ItemIconPointers:
 	dba KeeBerryIcon
 	dba MarangaBerryIcon
 	dba BerryJuiceIcon
+	dba RepelIcon
+	dba SuperRepelIcon
+	dba MaxRepelIcon
+	dba EscapeRopeIcon
+	dba PokeDollIcon
+	dba MulchIcon
+	dba SweetHoneyIcon
+	dba XAttackIcon
+	dba XDefendIcon
+	dba XSpeedIcon
+	dba XSpAtkIcon
+	dba XSpDefIcon
+	dba XAccuracyIcon
+	dba DireHitIcon
+	dba GuardSpecIcon
+	dba AbilityCapIcon
+	dba AbilityPatchIcon
+	dba LeafStoneIcon
+	dba FireStoneIcon
+	dba WaterStoneIcon
+	dba ThunderStoneIcon
+	dba IceStoneIcon
+	dba MoonStoneIcon
+	dba SunStoneIcon
+	dba DuskStoneIcon
+	dba ShinyStoneIcon
+	dba EverstoneIcon
+	dba ExpShareIcon
 	dba SilkScarfIcon
 	dba BlackBeltIcon
 	dba SharpBeakIcon
@@ -138,63 +138,62 @@ ItemIconPointers:
 	dba NeverMeltIceIcon
 	dba DragonFangIcon
 	dba BlackGlassesIcon
-	dba PinkBowIcon
+	dba FairyFeatherIcon
+	dba BerserkGeneIcon
 	dba BrightPowderIcon
-	dba ScopeLensIcon
 	dba QuickClawIcon
 	dba KingsRockIcon
-	dba FocusBandIcon
-	dba LeftoversIcon
-	dba LuckyEggIcon
 	dba AmuletCoinIcon
 	dba CleanseTagIcon
 	dba SmokeBallIcon
-	dba BerserkGeneIcon
+	dba FocusBandIcon
+	dba LuckyEggIcon
+	dba LeftoversIcon
+	dba SootheBellIcon
+	dba ShellBellIcon
+	dba MuscleBandIcon
+	dba WiseGlassesIcon
+	dba ExpertBeltIcon
+	dba LightClayIcon
+	dba LifeOrbIcon
+	dba FocusSashIcon
+	dba MetronomeIIcon
+	dba IronBallIcon
+	dba LaggingTailIcon
+	dba DestinyKnotIcon
+	dba GripClawIcon
+	dba ShedShellIcon
+	dba BigRootIcon
+	dba EvioliteIcon
+	dba RockyHelmetIcon
+	dba AirBalloonIcon
+	dba RedCardIcon
+	dba BindingBandIcon
+	dba EjectButtonIcon
+	dba WeakPolicyIcon
+	dba AssaultVestIcon
+	dba SafeGogglesIcon
+	dba ProtectPadsIcon
+	dba ThroatSprayIcon
+	dba EjectPackIcon
+	dba HeavyBootsIcon
+	dba BlundrPolicyIcon
+	dba RoomServiceIcon
+	dba ClearAmuletIcon
+	dba MirrorHerbIcon
+	dba PunchinGloveIcon
+	dba CovertCloakIcon
+	dba LoadedDiceIcon
 	dba LightBallIcon
-	dba StickIcon
+	dba LeekIcon
 	dba ThickClubIcon
 	dba LuckyPunchIcon
 	dba MetalPowderIcon
 	dba QuickPowderIcon
 	dba ArmorSuitIcon
-	dba AirBalloonIcon
-	dba AssaultVestIcon
-	dba BigRootIcon
-	dba BindingBandIcon
-	dba DestinyKnotIcon
-	dba EvioliteIcon
-	dba ExpertBeltIcon
-	dba FocusSashIcon
-	dba GripClawIcon
-	dba LifeOrbIcon
-	dba LightClayIcon
-	dba MetronomeIIcon
-	dba MuscleBandIcon
-	dba ProtectPadsIcon
-	dba RockyHelmetIcon
-	dba SafeGogglesIcon
-	dba ShedShellIcon
-	dba ShellBellIcon
-	dba SootheBellIcon
-	dba WeakPolicyIcon
+	dba ScopeLensIcon
 	dba WideLensIcon
-	dba WiseGlassesIcon
 	dba ZoomLensIcon
-	dba EjectButtonIcon
-	dba LaggingTailIcon
-	dba IronBallIcon
-	dba RingTargetIcon
-	dba RedCardIcon
-	dba AbsorbBulbIcon
-	dba CellBatteryIcon
-	dba LuminousMossIcon
-	dba SnowballIcon
-	dba EjectPackIcon
-	dba RoomServiceIcon
-	dba BlundrPolicyIcon
-	dba ThroatSprayIcon
-	dba HeavyBootsIcon
-	dba UtilUmbrellaIcon
 	dba MentalHerbIcon
 	dba PowerHerbIcon
 	dba WhiteHerbIcon
@@ -216,14 +215,20 @@ ItemIconPointers:
 	dba PowerBandIcon
 	dba PowerAnkletIcon
 	dba DragonScaleIcon
-	dba UpGradeIcon
+	dba UpgradeIcon
 	dba DubiousDiscIcon
 	dba ProtectorIcon
 	dba ElectirizerIcon
 	dba MagmarizerIcon
 	dba RazorFangIcon
 	dba RazorClawIcon
+	dba OvalStoneIcon
 	dba OddSouvenirIcon
+	dba LinkingCordIcon
+	dba SilverLeafIcon
+	dba GoldLeafIcon
+	dba MintLeafIcon
+	dba BottleCapIcon
 	dba NuggetIcon
 	dba BigNuggetIcon
 	dba TinyMushroomIcon
@@ -234,17 +239,12 @@ ItemIconPointers:
 	dba PearlStringIcon
 	dba StardustIcon
 	dba StarPieceIcon
+	dba BrickPieceIcon
 	dba RareBoneIcon
-	dba SilverLeafIcon
-	dba GoldLeafIcon
 	dba SlowpokeTailIcon
-	dba BottleCapIcon
 	dba HelixFossilIcon
 	dba DomeFossilIcon
 	dba OldAmberIcon
-	dba MulchIcon
-	dba SweetHoneyIcon
-	dba MintLeafIcon
 	dba FlowerMailIcon
 	dba SurfMailIcon
 	dba LiteBlueMailIcon
@@ -258,24 +258,63 @@ ItemIconPointers:
 	assert_table_length NUM_ITEMS + 1
 
 KeyItemIconPointers:
-	table_width 3, KeyItemIconPointers
+	table_width 3
+	dba NoItemIcon
 	dba BicycleIcon
-	dba FishingRodIcon
-	dba CoinCaseIcon
+	dba OldRodIcon
+	dba GoodRodIcon
+	dba SuperRodIcon
 	dba ItemfinderIcon
+	dba CoinCaseIcon
+	dba ApricornBoxIcon
+	dba WingCaseIcon
+	dba CandyJarIcon
+	dba TypeChartIcon
+	dba GBCSoundsIcon
+	dba BlueCardIcon
+	dba SquirtBottleIcon
+	dba SilphScope2Icon
 	dba MysteryEggIcon
-	dba TownMapIcon
+	dba SecretPotionIcon
+	dba GoGogglesIcon
 	dba RedScaleIcon
 	dba CardKeyIcon
+	dba BasementKeyIcon
+	dba LostItemIcon
+	dba MachinePartIcon
+	dba RainbowWingIcon
+	dba SilverWingIcon
+	dba ClearBellIcon
+	dba GSBallIcon
 	dba SSTicketIcon
-	dba EscapeRopeIcon
-	dba PokeDollIcon
+	dba PassIcon
+	dba OrangeTicketIcon
+	dba MysticTicketIcon
 	dba OldSeaMapIcon
+	dba LiftKeyIcon
+	dba HarshLureIcon
+	dba PotentLureIcon
+	dba MalignLureIcon
 	dba ShinyCharmIcon
 	dba OvalCharmIcon
 	dba CatchCharmIcon
-	dba SilphScope2Icon
-	dba ApricornBoxIcon
-	dba CandyJarIcon
-	dba TypeChartIcon
-	assert_table_length NUM_KEY_ITEMS
+	assert_table_length NUM_KEY_ITEMS + 1
+
+ExpCandyIconPointers:
+	table_width 3
+	dba NoItemIcon
+	dba ExpCandyXSIcon
+	dba ExpCandySIcon
+	dba ExpCandyMIcon
+	dba ExpCandyLIcon
+	dba ExpCandyXLIcon
+	assert_table_length NUM_CANDIES + 1
+
+SpecialItemIconPointers:
+	table_width 3
+	dba PokedexItemIcon
+	dba NoItemIcon ; TODO MAP_CARD
+	dba NoItemIcon ; TODO RADIO_CARD
+	dba NoItemIcon ; TODO EXPN_CARD
+	dba PokegearItemIcon
+	assert_table_length NUM_SPECIAL_ITEMS

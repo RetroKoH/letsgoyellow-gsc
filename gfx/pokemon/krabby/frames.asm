@@ -7,22 +7,22 @@
 	dw .frame7
 .frame1
 	db $00 ; bitmask
-	db $19, $1a
+	db $19, $1a, $1b, $1c, $1d, $1e, $1f, $20, $21, $22
 .frame2
 	db $00 ; bitmask
-	db $1b, $1c
+	db $23, $24, $1b, $1c, $1d, $1e, $1f, $20, $21, $22
 .frame3
 	db $01 ; bitmask
-	db $1d, $1e, $1f, $20
+	db $1b, $1c, $1d, $1e, $1f, $25, $26, $21, $22, $27
 .frame4
 	db $02 ; bitmask
-	db $21, $22, $23
+	db $1b, $1c, $1d, $1e, $1f, $28, $29, $21, $22
 .frame5
 	db $03 ; bitmask
-	db $19, $1a, $1d, $1e, $1f, $20
+	db $19, $1a, $1b, $1c, $1d, $1e, $1f, $25, $26, $21, $22, $27
 .frame6
 	db $04 ; bitmask
-	db $1b, $1c, $21, $22, $23
+	db $23, $24, $28, $2a
 .frame7
 	db $05 ; bitmask
-	db $24, $25
+	db $2b, $2c, $2d, $2e

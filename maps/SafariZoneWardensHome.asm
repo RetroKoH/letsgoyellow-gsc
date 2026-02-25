@@ -15,20 +15,28 @@ SafariZoneWardensHome_MapScriptHeader:
 	bg_event  9,  0, BGEVENT_JUMPTEXT, SafariZonePhotoText
 
 	def_object_events
-	object_event  2,  4, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, WardensGranddaughter, -1
+	object_event  2,  4, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, WardensGranddaughter, -1
 
 WardensGranddaughter:
 	faceplayer
 	opentext
 	checkevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
-	iftrue .AlreadyMet
+	iftruefwd .AlreadyMet
 	writetext WardensGranddaughterText1
 	waitbutton
 	closetext
 	setevent EVENT_TALKED_TO_WARDENS_GRANDDAUGHTER
 	end
 .AlreadyMet:
-	jumpopenedtext WardensGranddaughterText2
+	jumpthisopenedtext
+
+	text "Many people were"
+	line "disappointed that"
+
+	para "Safari Zone closed"
+	line "down, but Grandpa"
+	cont "is so stubborn…"
+	done
 
 WardensGranddaughterText1:
 	text "My grandpa is the"
@@ -48,14 +56,6 @@ WardensGranddaughterText1:
 	cont "like that."
 	done
 
-WardensGranddaughterText2:
-	text "Many people were"
-	line "disappointed that"
-
-	para "Safari Zone closed"
-	line "down, but Grandpa"
-	cont "is so stubborn…"
-	done
 
 WardenPhotoText:
 	text "It's a photo of a"

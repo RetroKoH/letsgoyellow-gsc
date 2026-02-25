@@ -1,22 +1,26 @@
+if DEF(FAITHFUL)
 	db  75,  55,  70, 110,  55,  95 ; 460 BST
 	;   hp  atk  def  spe  sat  sdf
+else
+	db  95,  55,  70, 110,  55,  95 ; 480 BST
+	;   hp  atk  def  spe  sat  sdf
+endc
 
 	db GRASS, FLYING ; type
 	db 45 ; catch rate
 	db 176 ; base exp
-	db NO_ITEM ; item 1
-	db NO_ITEM ; item 2
-	dn GENDER_F50, 3 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/jumpluff/front.dimensions"
+	db NO_ITEM, NO_ITEM ; held items
+	dn GENDER_F50, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
+if DEF(FAITHFUL)
 	abilities_for JUMPLUFF, CHLOROPHYLL, LEAF_GUARD, INFILTRATOR
+else
+	abilities_for JUMPLUFF, CHLOROPHYLL, WIND_RIDER, INFILTRATOR
+endc
 	db GROWTH_MEDIUM_SLOW ; growth rate
 	dn EGG_FAIRY, EGG_PLANT ; egg groups
 
-	ev_yield   0,   0,   0,   3,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 3 Spe
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, REST, LIGHT_SCREEN, PROTECT, SUBSTITUTE, REFLECT, FACADE, U_TURN, DAZZLINGLEAM, SOLAR_BEAM, HYPER_BEAM, MEGA_DRAIN, SUNNY_DAY, BULLET_SEED, ENERGY_BALL, ACROBATICS
-
-	;tutors AERIAL_ACE, GRASS_KNOT
+	; tm/hm learnset
+	tmhm CURSE, TOXIC, HIDDEN_POWER, SUNNY_DAY, HYPER_BEAM, PROTECT, GIGA_DRAIN, SOLAR_BEAM, RETURN, DOUBLE_TEAM, REFLECT, AERIAL_ACE, SUBSTITUTE, FACADE, REST, ATTRACT, DAZZLINGLEAM, ENERGY_BALL, FALSE_SWIPE, ACROBATICS, GIGA_IMPACT, U_TURN, FLASH, SWORDS_DANCE, AGILITY, BATON_PASS, CHARM, DEFENSE_CURL, DOUBLE_EDGE, ENDURE, HEADBUTT, PAY_DAY, SEED_BOMB, SLEEP_TALK, SWAGGER
 	; end

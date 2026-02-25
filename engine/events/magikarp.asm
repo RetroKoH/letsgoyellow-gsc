@@ -8,7 +8,13 @@ CheckMagikarpLength:
 	farcall SelectMonFromParty
 	jr c, .declined
 	ld a, [wCurPartySpecies]
-	cp MAGIKARP
+	cp LOW(MAGIKARP)
+	jr nz, .not_magikarp
+	ld a, [wCurForm]
+	assert MON_IS_EGG == MON_FORM
+	and IS_EGG_MASK | EXTSPECIES_MASK
+	assert !HIGH(MAGIKARP)
+	and a ; cp HIGH(MAGIKARP) << MON_EXTSPECIES_F | IS_EGG_MASK
 	jr nz, .not_magikarp
 
 	; Now let's compute its length based on its DVs and ID.
@@ -85,14 +91,14 @@ PrintMagikarpLength:
 	call PrintNum
 	dec hl
 	ld a, [hl]
-	ld [hl], "." ; no-optimize *hl++|*hl-- = N
+	ld [hl], '.' ; no-optimize *hl++|*hl-- = N
 	inc hl
 	ld [hli], a
-	ld a, "c"
+	ld a, 'c'
 	ld [hli], a
-	ld a, "m"
+	ld a, 'm'
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
 	ret
 
 .imperial
@@ -100,7 +106,7 @@ PrintMagikarpLength:
 	ld b, a
 	ld a, [wMagikarpLengthMmLo]
 	ld c, a
-	ld de, div(1.0, 25.4)
+	ld de, div(1.0q16, 25.4q16, 16) ; 1 in / 25.4 mm = 0.03937 in/mm
 	xor a
 	ldh [hTmpd], a
 	ldh [hTmpe], a
@@ -148,6 +154,11 @@ PrintMagikarpLength:
 	inc e
 	jr .inchloop
 .inchdone
+	ld a, [wMagikarpLengthMmHi]
+	ld b, a
+	ld a, [wMagikarpLengthMmLo]
+	ld c, a
+	push bc
 	ld a, e
 	ld [wMagikarpLengthMmHi], a
 	ld a, l
@@ -156,14 +167,19 @@ PrintMagikarpLength:
 	ld de, wMagikarpLengthMmHi
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
-	ld a, "′"
+	ld a, '′'
 	ld [hli], a
 	ld de, wMagikarpLengthMmLo
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
-	ld a, "″"
+	ld a, '″'
 	ld [hli], a
-	ld [hl], "@"
+	ld [hl], '@'
+	pop bc
+	ld hl, wMagikarpLengthMmHi
+	ld a, b
+	ld [hli], a
+	ld [hl], c
 	ret
 
 CalcMagikarpLength:
@@ -268,7 +284,7 @@ CalcMagikarpLength:
 	ld a, [hl]
 	ldh [hDivisor], a
 	ld b, 2
-	call Divide
+	farcall Divide
 	ldh a, [hQuotient + 2]
 	ld c, a
 
@@ -280,7 +296,7 @@ CalcMagikarpLength:
 	ldh [hMultiplicand + 2], a
 	ld a, [wTempByteValue]
 	ldh [hMultiplier], a
-	call Multiply
+	farcall Multiply
 	ld b, 0
 	ldh a, [hProduct + 3]
 	add c
@@ -288,57 +304,20 @@ CalcMagikarpLength:
 	ldh a, [hProduct + 2]
 	adc b
 	ld d, a
-	jr .done
+
+.done
+	ld hl, wMagikarpLengthMm
+	ld a, d
+	ld [hli], a
+	ld [hl], e
+	ret
 
 .next
 	inc hl ; align to next triplet
 	ld a, [wTempByteValue]
-	inc a
+	inc a ; no-optimize inefficient WRAM increment/decrement
 	ld [wTempByteValue], a
-	cp 16
-	jr c, .read
-
-	call .BCMinusDE
-	ld hl, 1600
-	add hl, bc
-	ld d, h
-	ld e, l
-
-.done
-
-;	; hl = de × 10
-;	ld h, d
-;	ld l, e
-;rept 2
-;	add hl, hl
-;endr
-;	add hl, de
-;	add hl, hl
-;
-;	; hl = hl / 254
-;	ld de, -254
-;	ld a, -1
-;.div_254
-;	inc a
-;	add hl, de
-;	jr c, .div_254
-;
-;	; d, e = hl / 12, hl % 12
-;	ld d, 0
-;.mod_12
-;	cp 12
-;	jr c, .ok
-;	sub 12
-;	inc d
-;	jr .mod_12
-;.ok
-;	ld e, a
-
-	ld hl, wMagikarpLengthMm
-	ld [hl], d
-	inc hl
-	ld [hl], e
-	ret
+	jr .read
 
 .BCLessThanDE:
 ; return bc < de
@@ -362,9 +341,10 @@ CalcMagikarpLength:
 INCLUDE "data/events/magikarp_lengths.asm"
 
 Special_MagikarpHouseSign:
-	ld a, [wBestMagikarpLengthMmHi]
+	ld hl, wBestMagikarpLengthMmHi
+	ld a, [hli]
 	ld [wMagikarpLengthMmHi], a
-	ld a, [wBestMagikarpLengthMmLo]
+	ld a, [hl]
 	ld [wMagikarpLengthMmLo], a
 	call PrintMagikarpLength
 	ld hl, .CurrentRecordtext

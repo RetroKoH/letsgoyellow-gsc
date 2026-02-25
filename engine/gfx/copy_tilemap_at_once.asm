@@ -25,7 +25,7 @@ _SafeCopyTilemapAtOnce::
 	jr .gotPalUpdate
 .doNotUseOldValue
 	dec a
-	call nz, SetPalettes
+	call nz, SetDefaultBGPAndOBP
 	lb de, 0, 1
 .gotPalUpdate
 	xor a
@@ -82,7 +82,7 @@ _CopyTilemapAtOnce::
 	ldh [hMapAnims], a
 
 	di
-	hlcoord 0, 0, wAttrMap
+	hlcoord 0, 0, wAttrmap
 	ld a, 1 ; BANK(vStandingFrameTiles)
 	call CopyFullTilemapInHBlank
 	hlcoord 0, 0
@@ -123,28 +123,28 @@ VBlankSafeCopyTilemapAtOnce::
 	jr z, .attrAndBGCopy
 ; if we only need to update tiles, copy the remaining half in hblank
 	hlcoord 0, 9
-	ld de, BG_MAP_WIDTH * 9
+	ld de, TILEMAP_WIDTH * 9
 	ld b, 9
 	jr CopyTilemapInHBlank
 .attrAndBGCopy
 ; now copy both tile and attr map, of alternating groups of 5/5/4
-	hlcoord 0, 3, wAttrMap
-	ld de, BG_MAP_WIDTH * 3
+	hlcoord 0, 3, wAttrmap
+	ld de, TILEMAP_WIDTH * 3
 	call Copy5RowsOfTilemapInHBlank_VBK1
 	hlcoord 0, 3
-	ld de, BG_MAP_WIDTH * 3
+	ld de, TILEMAP_WIDTH * 3
 	call Copy5RowsOfTilemapInHBlank_VBK0
-	hlcoord 0, 8, wAttrMap
-	ld de, BG_MAP_WIDTH * 8
+	hlcoord 0, 8, wAttrmap
+	ld de, TILEMAP_WIDTH * 8
 	call Copy5RowsOfTilemapInHBlank_VBK1
 	hlcoord 0, 8
-	ld de, BG_MAP_WIDTH * 8
+	ld de, TILEMAP_WIDTH * 8
 	call Copy5RowsOfTilemapInHBlank_VBK0
-	hlcoord 0, 13, wAttrMap
-	ld de, BG_MAP_WIDTH * 13
+	hlcoord 0, 13, wAttrmap
+	ld de, TILEMAP_WIDTH * 13
 	call Copy5RowsOfTilemapInHBlank_VBK1
 	hlcoord 0, 13
-	ld de, BG_MAP_WIDTH * 13
+	ld de, TILEMAP_WIDTH * 13
 
 ; fallthrough
 Copy5RowsOfTilemapInHBlank_VBK0:
@@ -189,11 +189,11 @@ CopyTilemapInHBlank:
 	jr nc, .inVBlank1
 .waitnohbl1
 	ldh a, [rSTAT]
-	and %10
+	and STAT_OAM ; wait until mode 2-3
 	jr z, .waitnohbl1
 .waithbl1
 	ldh a, [rSTAT]
-	and %10
+	and STAT_OAM ; wait until mode 0-1
 	jr nz, .waithbl1
 ; load BGMap0
 .inVBlank1
@@ -218,8 +218,8 @@ CopyTilemapInHBlank:
 	pop de
 	ld a, e
 	ld [hli], a
-	ld [hl], d
-	inc hl
+	ld a, d
+	ld [hli], a
 
 	pop bc
 	pop de
@@ -228,11 +228,11 @@ CopyTilemapInHBlank:
 	jr nc, .inVBlank2
 .waitnohbl2
 	ldh a, [rSTAT]
-	and %10
+	and STAT_OAM ; wait until mode 2-3
 	jr z, .waitnohbl2
 .waithbl2
 	ldh a, [rSTAT]
-	and %10
+	and STAT_OAM ; wait until mode 0-1
 	jr nz, .waithbl2
 ; load BGMap0
 .inVBlank2
@@ -259,7 +259,7 @@ CopyTilemapInHBlank:
 	ld [hli], a
 	ld [hl], d
 
-	ld de, BG_MAP_WIDTH - (SCREEN_WIDTH - 1)
+	ld de, TILEMAP_WIDTH - (SCREEN_WIDTH - 1)
 	add hl, de
 
 	ldh a, [hTilesPerCycle]

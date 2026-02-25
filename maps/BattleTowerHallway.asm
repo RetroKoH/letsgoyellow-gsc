@@ -1,6 +1,7 @@
 BattleTowerHallway_MapScriptHeader:
 	def_scene_scripts
-	scene_script BattleTowerHallwayFollowReceptionist
+	scene_script BattleTowerHallwayEnterScene, SCENE_BATTLETOWERHALLWAY_ENTER
+	scene_const SCENE_BATTLETOWERHALLWAY_NOOP
 
 	def_callbacks
 
@@ -17,40 +18,40 @@ BattleTowerHallway_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event 11,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event 11,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 
 	object_const_def
 	const BATTLETOWERHALLWAY_RECEPTIONIST
 
-BattleTowerHallwayFollowReceptionist:
+BattleTowerHallwayEnterScene:
 	sdefer .ChooseBattleRoom
 	end
 
 .ChooseBattleRoom:
 	follow BATTLETOWERHALLWAY_RECEPTIONIST, PLAYER
 	scall .PickBattleRoom
-	ifequal 0, .Room1
-	ifequal 1, .Room2
-	ifequal 2, .Room3
-	ifequal 3, .Room4
+	ifequalfwd 0, .Room1
+	ifequalfwd 1, .Room2
+	ifequalfwd 2, .Room3
+	ifequalfwd 3, .Room4
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo1020Room
-	sjump .EnterBattleRoom
+	sjumpfwd .EnterBattleRoom
 
 .Room1:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo3040Room
-	sjump .EnterBattleRoom
+	sjumpfwd .EnterBattleRoom
 
 .Room2:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo5060Room
-	sjump .EnterBattleRoom
+	sjumpfwd .EnterBattleRoom
 
 .Room3:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo7080Room
-	sjump .EnterBattleRoom
+	sjumpfwd .EnterBattleRoom
 
 .Room4:
 	applymovement BATTLETOWERHALLWAY_RECEPTIONIST, MovementData_BattleTowerHallwayWalkTo90100Room
-	sjump .EnterBattleRoom
+	; fallthrough
 
 .EnterBattleRoom:
 	stopfollow

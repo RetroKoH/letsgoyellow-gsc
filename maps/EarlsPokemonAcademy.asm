@@ -10,18 +10,18 @@ EarlsPokemonAcademy_MapScriptHeader:
 	def_coord_events
 
 	def_bg_events
-	bg_event  0,  1, BGEVENT_READ, PokemonJournalWillScript
-	bg_event  1,  1, BGEVENT_READ, PokemonJournalWillScript
+	bg_event  0,  1, BGEVENT_READ, PokemonJournalWalkerScript
+	bg_event  1,  1, BGEVENT_READ, PokemonJournalWalkerScript
 	bg_event  3,  0, BGEVENT_READ, AcademyBlackboard
 	bg_event  4,  0, BGEVENT_READ, AcademyBlackboard
 
 	def_object_events
-	object_event  4,  2, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
-	object_event  2,  4, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AcademyNotebook, -1
-	object_event  2,  5, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, EarlsPokemonAcademyYoungster1Text, -1
-	object_event  4,  7, SPRITE_CHILD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, EarlsPokemonAcademyYoungster2Text, -1
-	object_event  3, 11, SPRITE_GAMER_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid1Script, -1
-	object_event  4, 11, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid2Script, -1
+	object_event  4,  2, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, AcademyEarl, EVENT_EARLS_ACADEMY_EARL
+	object_event  2,  4, SPRITE_BOOK_PAPER_POKEDEX, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, AcademyNotebook, -1
+	object_event  2,  5, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, EarlsPokemonAcademyYoungster1Text, -1
+	object_event  4,  7, SPRITE_CHILD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, EarlsPokemonAcademyYoungster2Text, -1
+	object_event  3, 11, SPRITE_GAMER_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid1Script, -1
+	object_event  4, 11, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EarlsPokemonAcademyGameboyKid2Script, -1
 
 	object_const_def
 	const EARLSPOKEMONACADEMY_EARL
@@ -33,7 +33,7 @@ AcademyEarl:
 	opentext
 	writetext AcademyEarlIntroText
 	yesorno
-	iffalse .Part1
+	iffalsefwd .Part1
 	writetext AcademyEarlTeachHowToWinText
 	yesorno
 	iffalse_jumpopenedtext AcademyEarlNoMoreToTeachText
@@ -41,7 +41,27 @@ AcademyEarl:
 	writetext AcademyEarlTeachMoreText
 	yesorno
 	iffalse_jumpopenedtext AcademyEarlNoMoreToTeachText
-	jumpopenedtext AcademyEarlTeachHowToRaiseWellText
+	jumpthisopenedtext
+
+	text "Fine! Teach you,"
+	line "I will!"
+
+	para "If #mon come"
+	line "out in battle even"
+
+	para "briefly, some Exp."
+	line "Points it gets."
+
+	para "At top of list put"
+	line "weak #mon."
+
+	para "Switch in battle"
+	line "quick!"
+
+	para "This way, weak"
+	line "#mon strong"
+	cont "become!"
+	done
 
 EarlsPokemonAcademyGameboyKid1Script:
 	showtextfaceplayer EarlsPokemonAcademyGameboyKid1Text
@@ -60,11 +80,11 @@ AcademyBlackboard:
 	loadmenu .MenuHeader
 	_2dmenu
 	closewindow
-	ifequal $1, .Poison
-	ifequal $2, .Paralysis
-	ifequal $3, .Sleep
-	ifequal $4, .Burn
-	ifequal $5, .Freeze
+	ifequalfwd $1, .Poison
+	ifequalfwd $2, .Paralysis
+	ifequalfwd $3, .Sleep
+	ifequalfwd $4, .Burn
+	ifequalfwd $5, .Freeze
 	endtext
 
 .Poison:
@@ -93,9 +113,8 @@ AcademyBlackboard:
 	sjump .Loop
 
 .MenuHeader:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 11 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 11, 8
 	dw .Data
 	db 1 ; default option
 
@@ -118,39 +137,33 @@ AcademyNotebook:
 	opentext
 	writetext AcademyNotebookText
 	yesorno
-	iffalse .Done
+	iffalsefwd .Done
 	writetext AcademyNotebookText1
 	yesorno
-	iffalse .Done
+	iffalsefwd .Done
 	writetext AcademyNotebookText2
 	yesorno
-	iffalse .Done
+	iffalsefwd .Done
 	writetext AcademyNotebookText3
 	waitbutton
 .Done:
 	endtext
 
-PokemonJournalWillScript:
-	setflag ENGINE_READ_WILL_JOURNAL
+PokemonJournalWalkerScript:
+	setflag ENGINE_READ_WALKER_JOURNAL
 	jumpthistext
 
 	text "#mon Journal"
 
 	para "Special Feature:"
-	line "Elite Four Will!"
+	line "Ex-Leader Walker!"
 
-	para "Will does not talk"
-	line "about his past"
+	para "Falkner's father"
+	line "Walker is rumored"
 
-	para "before joining the"
-	line "Elite Four."
-
-	para "Some say he worked"
-	line "for Team Rocket."
-
-	para "#mon Journal"
-	line "refuses to specu-"
-	cont "late."
+	para "to be wandering"
+	line "around Johto as"
+	cont "a vagabond."
 	done
 
 AcademyEarlSpinMovement:
@@ -206,26 +219,6 @@ AcademyEarlTeachMoreText:
 	cont "#mon well?"
 	done
 
-AcademyEarlTeachHowToRaiseWellText:
-	text "Fine! Teach you,"
-	line "I will!"
-
-	para "If #mon come"
-	line "out in battle even"
-
-	para "briefly, some Exp."
-	line "Points it gets."
-
-	para "At top of list put"
-	line "weak #mon."
-
-	para "Switch in battle"
-	line "quick!"
-
-	para "This way, weak"
-	line "#mon strong"
-	cont "become!"
-	done
 
 AcademyEarlNoMoreToTeachText:
 	text "Oh! Smart student"

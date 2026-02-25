@@ -1,4 +1,3 @@
-; Will use near Lavender Town(?) Precious items from the sea
 BargainShopData:
 	db 7
 	dbw NUGGET,       4500

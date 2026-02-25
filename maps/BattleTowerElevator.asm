@@ -1,6 +1,7 @@
 BattleTowerElevator_MapScriptHeader:
 	def_scene_scripts
-	scene_script BattleTowerElevatorFollowReceptionist
+	scene_script BattleTowerElevatorEnterScene, SCENE_BATTLETOWERELEVATOR_ENTER
+	scene_const SCENE_BATTLETOWERELEVATOR_NOOP
 
 	def_callbacks
 
@@ -13,12 +14,12 @@ BattleTowerElevator_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  1,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event  1,  2, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
 
 	object_const_def
 	const BATTLETOWERELEVATOR_RECEPTIONIST
 
-BattleTowerElevatorFollowReceptionist:
+BattleTowerElevatorEnterScene:
 	sdefer .RideElevator
 	end
 

@@ -40,19 +40,20 @@ CeladonCity_MapScriptHeader:
 	bg_event 41, 21, BGEVENT_ITEM + PP_UP, EVENT_CELADON_CITY_HIDDEN_PP_UP
 
 	def_object_events
-	object_event  4, 17, SPRITE_RICH_BOY, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCityScript, -1
-	object_event 30, 11, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityFisherText, -1
-	pokemon_event 31, 11, POLIWRATH, -1, -1, PAL_NPC_BLUE, CeladonCityPoliwrathText, -1
-	object_event 24, 24, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityTeacher1Text, -1
-	object_event 17, 16, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityGramps1Text, -1
-	object_event 12, 31, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityGramps2Text, -1
-	object_event 22, 13, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityYoungster1Text, -1
-	object_event 27, 32, SPRITE_CAMPER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityYoungster2Text, -1
-	object_event 12, 13, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityTeacher2Text, -1
-	object_event 10, 22, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityLassText_PCC, -1
-	object_event 35, 23, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityLassText, -1
+	object_event  5, 16, SPRITE_RICH_BOY, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCityScript, -1
+	object_event 30, 11, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityFisherText, -1
+	pokemon_event 31, 11, POLIWRATH, SPRITEMOVEDATA_POKEMON, -1, PAL_MON_BLUE, CeladonCityPoliwrathText, -1
+	object_event 24, 24, SPRITE_POKEFAN_F, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityTeacher1Text, -1
+	object_event 17, 16, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityGramps1Text, -1
+	object_event 12, 31, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityGramps2Text, -1
+	object_event 22, 13, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityYoungster1Text, -1
+	object_event 27, 32, SPRITE_CAMPER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityYoungster2Text, -1
+	object_event 12, 13, SPRITE_TEACHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityTeacher2Text, -1
+	object_event 10, 22, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_UP_DOWN, 2, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityLassText_PCC, -1
+	object_event 45, 10, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_ROUTE_7_SNORLAX
+	object_event 35, 23, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, PAL_NPC_BROWN, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonCityLassText, -1
 	itemball_event 39,  7, MAX_ETHER, 1, EVENT_CELADON_CITY_MAX_ETHER
-	choptree_event 32, 34, EVENT_CELADON_CITY_CHOP_TREE
+	cuttree_event 32, 34, EVENT_CELADON_CITY_CUT_TREE
 
 CeladonCityFlyPoint:
 	setflag ENGINE_FLYPOINT_CELADON
@@ -62,7 +63,7 @@ CeladonCityScript:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_SWAGGER_INTRO
-	iftrue CeladonCityTutorSwaggerScript
+	iftruefwd CeladonCityTutorSwaggerScript
 	writetext CeladonCityRichBoyText
 	waitbutton
 	setevent EVENT_LISTENED_TO_SWAGGER_INTRO
@@ -70,23 +71,36 @@ CeladonCityTutorSwaggerScript:
 	writetext Text_CeladonCityTutorSwagger
 	waitbutton
 	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
+	iffalsefwd .NoSilverLeaf
 	writetext Text_CeladonCityTutorQuestion
 	yesorno
-	iffalse .TutorRefused
-	setval TAUNT
+	iffalsefwd .TutorRefused
+	setval SWAGGER
 	writetext ClearText
 	special Special_MoveTutor
-	ifequal $0, .TeachMove
+	ifequalfwd $0, .TeachMove
 .TutorRefused
-	jumpopenedtext Text_CeladonCityTutorRefused
+	jumpthisopenedtext
+
+	text "Then goodbye!"
+	done
 
 .NoSilverLeaf
-	jumpopenedtext Text_CeladonCityTutorNoSilverLeaf
+	jumpthisopenedtext
+
+	text "…You have no"
+	line "Silver Leaf?"
+	cont "What a pity."
+	done
 
 .TeachMove
 	takeitem SILVER_LEAF
-	jumpopenedtext Text_CeladonCityTutorTaught
+	jumpthisopenedtext
+
+	text "Behold! Your #-"
+	line "mon has learned"
+	cont "to Swagger!"
+	done
 
 CeladonCityRichBoyText:
 	text "Is my suit not"
@@ -112,11 +126,6 @@ Text_CeladonCityTutorSwagger:
 	cont "Silver Leaf."
 	done
 
-Text_CeladonCityTutorNoSilverLeaf:
-	text "…You have no"
-	line "Silver Leaf?"
-	cont "What a pity."
-	done
 
 Text_CeladonCityTutorQuestion:
 	text "You wish me to"
@@ -124,23 +133,23 @@ Text_CeladonCityTutorQuestion:
 	cont "mon Swagger?"
 	done
 
-Text_CeladonCityTutorRefused:
-	text "Then goodbye!"
-	done
 
-Text_CeladonCityTutorTaught:
-	text "Behold! Your #-"
-	line "mon has learned"
-	cont "to Swagger!"
-	done
 
 CeladonCityFisherText:
 	text "This Poliwrath is"
 	line "my partner."
 
-	para "I wonder if it'll"
-	line "ever evolve into a"
-	cont "frog #mon."
+	para "It used to be"
+	line "Quiet, but the"
+
+	para "manager lady in"
+	line "the condo here"
+
+	para "brewed us some"
+	line "tea with a Mint"
+
+	para "Leaf that made it"
+	line "act more Jolly!"
 	done
 
 CeladonCityPoliwrathText:
@@ -267,6 +276,9 @@ CeladonGymSignText:
 
 CeladonUniversitySignText:
 	text "Celadon University"
+
+	para "“Growth Through"
+	line "Studying”"
 	done
 
 CeladonCityDeptStoreSignText:
@@ -314,7 +326,11 @@ CeladonCityHotelSignText:
 CeladonCityTrainerTips1Text:
 	text "Trainer Tips"
 
+if DEF(FAITHFUL)
 	para "Guard Spec."
+else
+	para "Guard Stats"
+endc
 	line "protects #mon"
 
 	para "against stat"

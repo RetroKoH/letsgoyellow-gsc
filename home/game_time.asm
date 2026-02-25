@@ -13,15 +13,15 @@ ResetGameTime::
 	ret
 
 GameTimer::
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, 1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call UpdateGameTimer
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 UpdateGameTimer::
@@ -34,8 +34,8 @@ UpdateGameTimer::
 	ret nz
 
 ; Is the timer paused?
-	ld hl, wGameTimerPaused
-	bit 0, [hl]
+	ld a, [wGameTimerPaused]
+	and a
 	ret z
 
 ; Is the timer already capped?
@@ -59,19 +59,17 @@ UpdateGameTimer::
 	ld [hl], a
 
 ; kroc - no-RTC patch
-; the game timer has increased by 1 second; increase the "fake" RTC by 12 seconds
-; (24 in-game hours will pass in 4 real-world hours) < NOTE: Change to 24 mins per PLA
+; the game timer has increased by 1 second; increase the "fake" RTC by 6 seconds
+; (24 in-game hours will pass in 4 real-world hours)
 ; this does not affect the rate of the "hours played", which remains real-time
-.checkOWLevel
-	ld a, [wOverworldLevel]
-	cp 2					; Have we reached the Pewter cutscene yet?
-	jr c, .skip				; if not, skip in-world time advancement
-
+	ld a, [wInitialOptions2]
+	and 1 << RTC_OPT
+	jr nz, .using_rtc
 rept NO_RTC_SPEEDUP
 	call UpdateNoRTC
 endr
+.using_rtc
 
-.skip
 ; +1 second
 	ld hl, wGameTimeSeconds
 	ld a, [hl]
@@ -133,13 +131,13 @@ endr
 	ld [wGameTimeHours + 1], a
 	ret
 
-;; add a second to the no-RTC fake real-time clock (NO_RTC)
+;; add a second to the no-RTC fake real-time clock
 UpdateNoRTC::
 	; set our modulus
 	ld a, 60
 	ld b, a
 
-	ld hl, wNoRTCSeconds
+	ld hl, wRTCSeconds
 
 ; +1 second
 	inc [hl]

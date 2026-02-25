@@ -1,24 +1,3 @@
-CopyPkmnOrEggToTempMon:
-	ld a, [wMonType]
-	ld hl, wPartyMon1IsEgg
-	ld bc, PARTYMON_STRUCT_LENGTH
-	and a
-	jr z, .got_addr
-	ld hl, wOTPartyMon1IsEgg
-	cp OTPARTYMON
-	jr z, .got_addr
-	ld a, ERR_OLDBOX
-	jmp Crash
-.got_addr
-	ld a, [wCurPartyMon]
-	rst AddNTimes
-	bit MON_IS_EGG_F, [hl]
-	jr z, CopyPkmnToTempMon
-	ld a, EGG
-	ld [wCurPartySpecies], a
-	ld [wCurSpecies], a
-	jr _CopyPkmnToTempMon ; [wCurForm] doesn't matter form WGG
-
 CopyPkmnToTempMon:
 ; gets the BaseData of a Pkmn
 ; and copys the PkmnStructure to wTempMon
@@ -37,7 +16,7 @@ _CopyPkmnToTempMon:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	cp OTPARTYMON
 	jr z, .copywholestruct
-	ld a, ERR_OLDBOX
+	ld a, ERR_PC_BOX_OLD
 	jmp Crash
 
 .copywholestruct
@@ -61,16 +40,14 @@ GetPkmnSpecies:
 	; WILDMON
 
 .partymon
-	ld hl, wPartySpecies
+	ld hl, wPartyMon1Species
 	jr .done
 
 .otpartymon
-	ld hl, wOTPartySpecies
+	ld hl, wOTPartyMon1Species
 .done
 	ld a, [wCurPartyMon]
-	ld e, a
-	ld d, 0
-	add hl, de
+	call GetPartyLocation
 	ld a, [hl]
 .done2
 	ld [wCurPartySpecies], a
@@ -78,7 +55,7 @@ GetPkmnSpecies:
 	ret
 
 .boxmon
-	ld a, ERR_OLDBOX
+	ld a, ERR_PC_BOX_OLD
 	jmp Crash
 
 .breedmon
@@ -115,7 +92,7 @@ GetPkmnForm:
 	ret
 
 .boxmon
-	ld a, ERR_OLDBOX
+	ld a, ERR_PC_BOX_OLD
 	jmp Crash
 
 .breedmon

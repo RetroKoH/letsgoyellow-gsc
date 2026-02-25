@@ -18,7 +18,6 @@ BattleCommand_disable:
 	jr z, DoEncoreDisable
 	ld de, wPlayerDisableCount
 	ld hl, wBattleMonMoves
-
 DoEncoreDisable:
 	ld a, [de]
 	and $f
@@ -69,13 +68,13 @@ DoEncoreDisable:
 	jr z, .failed
 
 	; Potential Cursed Body message
-	call ShowPotentialAbilityActivation
+	farcall ShowPotentialAbilityActivation
 
 	; Get move effect text and duration
 	ld a, b
 	cp DISABLE
 	ld hl, WasDisabledText
-	ld a, 4
+	ld a, 5
 	jr z, .got_text_and_duration
 	ld hl, GotAnEncoreText
 	dec a
@@ -100,5 +99,10 @@ DoEncoreDisable:
 	jmp CheckOpponentMentalHerb
 
 .failed
+	; Cursed Body prints nothing in this case.
+	ld a, [wInAbility]
+	and a
+	ret nz
+
 	call AnimateFailedMove
 	jmp PrintButItFailed

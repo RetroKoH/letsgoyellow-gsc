@@ -1,4 +1,5 @@
 MoldBreakerSuppressedAbilities:
+	db ARMOR_TAIL
 	db BATTLE_ARMOR
 	db BIG_PECKS
 	db CLEAR_BODY
@@ -7,8 +8,10 @@ MoldBreakerSuppressedAbilities:
 	db DRY_SKIN
 	db FILTER
 	db FLASH_FIRE
+	db FLUFFY
 	db FUR_COAT
 	db HYPER_CUTTER
+	db ILLUMINATE
 	db IMMUNITY
 	db INNER_FOCUS
 	db INSOMNIA
@@ -21,6 +24,7 @@ MoldBreakerSuppressedAbilities:
 	db MAGIC_BOUNCE
 	db MAGMA_ARMOR
 	db MARVEL_SCALE
+	db MINDS_EYE
 	db MOTOR_DRIVE
 	db MULTISCALE
 	db OBLIVIOUS
@@ -45,5 +49,6 @@ MoldBreakerSuppressedAbilities:
 	db WATER_ABSORB
 	db WATER_VEIL
 	db WHITE_SMOKE
+	db WIND_RIDER
 	db WONDER_SKIN
 	db -1

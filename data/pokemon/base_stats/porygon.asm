@@ -1,22 +1,18 @@
 	db  65,  60,  70,  40,  85,  75 ; 395 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
 
 	db NORMAL, NORMAL ; type
 	db 45 ; catch rate
 	db 130 ; base exp
-	db NO_ITEM ; item 1
-	db UP_GRADE ; item 2
-	dn GENDER_UNKNOWN, 3 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/porygon/front.dimensions"
+	db NO_ITEM, UPGRADE ; held items
+	dn GENDER_UNKNOWN, HATCH_MEDIUM_FAST ; gender ratio, step cycles to hatch
+
 	abilities_for PORYGON, TRACE, DOWNLOAD, ANALYTIC
 	db GROWTH_MEDIUM_FAST ; growth rate
 	dn EGG_MINERAL, EGG_MINERAL ; egg groups
 
-	ev_yield   0,   0,   0,   0,   1,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 1 SAt
 
-	; tm/move tutor learnset
-	tms HEADBUTT, HELPING_HAND, TELEPORT, REST, PROTECT, SUBSTITUTE, REFLECT, FACADE, THUNDER_WAVE, IRON_TAIL, FOUL_PLAY, TRI_ATTACK, THUNDERBOLT, THUNDER, PSYCHIC, SHADOW_BALL, SOLAR_BEAM, HYPER_BEAM, BLIZZARD, ICE_BEAM, DREAM_EATER, TRICK_ROOM
-
-	;tutors AERIAL_ACE, SIGNAL_BEAM, ZEN_HEADBUTT
+	; tm/hm learnset
+	tmhm CURSE, TOXIC, HIDDEN_POWER, SUNNY_DAY, ICE_BEAM, BLIZZARD, HYPER_BEAM, PROTECT, RAIN_DANCE, SOLAR_BEAM, IRON_TAIL, THUNDERBOLT, THUNDER, RETURN, PSYCHIC, SHADOW_BALL, DOUBLE_TEAM, SWIFT, AERIAL_ACE, SUBSTITUTE, FACADE, REST, THIEF, GIGA_IMPACT, FLASH, THUNDER_WAVE, AGILITY, DOUBLE_EDGE, DREAM_EATER, ENDURE, ICY_WIND, SLEEP_TALK, SWAGGER, TRICK, TRICK_ROOM, ZAP_CANNON, ZEN_HEADBUTT
 	; end

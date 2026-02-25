@@ -1,7 +1,7 @@
 FarawayIsland_MapScriptHeader:
 	def_scene_scripts
-	scene_script FarawayIslandTrigger0
-	scene_script FarawayIslandTrigger1
+	scene_script FarawayIslandMewBattleScene, SCENE_FARAWAYISLAND_MEW_BATTLE
+	scene_script FarawayIslandNoopScene, SCENE_FARAWAYISLAND_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, FarawayIslandVisited
@@ -17,16 +17,16 @@ FarawayIsland_MapScriptHeader:
 	bg_event  4, 34, BGEVENT_JUMPTEXT, FarawayIslandSignText
 
 	def_object_events
-	object_event 12, 42, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FarawayIslandSailorScript, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	object_event  3, 37, SPRITE_LAWRENCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FarawayIslandLawrenceScript, EVENT_LAWRENCE_FARAWAY_ISLAND
+	object_event 12, 42, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, FarawayIslandSailorScript, EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
+	object_event  3, 37, SPRITE_LAWRENCE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, FarawayIslandLawrenceScript, EVENT_LAWRENCE_FARAWAY_ISLAND
 
 	object_const_def
 	const FARAWAYISLAND_SAILOR
 	const FARAWAYISLAND_LAWRENCE
 
-FarawayIslandTrigger1:
+FarawayIslandNoopScene:
 	sdefer FarawayIsland_PlayerArrives
-FarawayIslandTrigger0:
+FarawayIslandMewBattleScene:
 	end
 
 FarawayIslandVisited:
@@ -36,9 +36,9 @@ FarawayIslandVisited:
 FarawayIslandSetupLawrence:
 	disappear FARAWAYISLAND_LAWRENCE
 	checkevent EVENT_BEAT_LAWRENCE
-	iffalse .Done
+	iffalsefwd .Done
 	checkevent EVENT_BEAT_LAWRENCE_AGAIN
-	iftrue .Done
+	iftruefwd .Done
 	appear FARAWAYISLAND_LAWRENCE
 .Done
 	endcallback
@@ -48,7 +48,7 @@ FarawayIsland_PlayerArrives:
 	applymovement PLAYER, FarawayIslandPlayerArriveMovementData
 	showtext SeagallopFerryFarawayIslandRefusedText
 	applymovement FARAWAYISLAND_SAILOR, FarawayIslandSailorArrive2MovementData
-	setscene $0
+	setscene SCENE_FARAWAYISLAND_MEW_BATTLE
 	end
 
 FarawayIslandSailorScript:
@@ -56,7 +56,7 @@ FarawayIslandSailorScript:
 	opentext
 	writetext SeagallopFerryFarawayToVermilionQuestionText
 	yesorno
-	iffalse .RefuseFerry
+	iffalsefwd .RefuseFerry
 	writetext SeagallopFerryFarawayToVermilionText
 	waitbutton
 	closetext
@@ -71,7 +71,7 @@ FarawayIslandSailorScript:
 	special FadeOutPalettes
 	waitsfx
 	appear FARAWAYISLAND_SAILOR
-	setmapscene SEAGALLOP_FERRY_VERMILION_GATE, $1
+	setmapscene SEAGALLOP_FERRY_VERMILION_GATE, SCENE_SEAGALLOPFERRYVERMILIONGATE_LEAVE
 	warp SEAGALLOP_FERRY_VERMILION_GATE, 6, 5
 	end
 
@@ -86,7 +86,7 @@ FarawayIslandLawrenceScript:
 	opentext
 	writetext FarawayIslandLawrenceText1
 	yesorno
-	iffalse .no_battle
+	iffalsefwd .no_battle
 	writetext FarawayIslandLawrenceYesText
 	waitbutton
 	closetext

@@ -18,7 +18,7 @@
 	const CRY_DROWZEE
 	const CRY_PIDGEY
 	const CRY_BULBASAUR
-	const CRY_SPEAROW
+	const CRY_FARFETCH_D
 	const CRY_RHYDON
 	const CRY_GOLEM
 	const CRY_BLASTOISE
@@ -73,4 +73,4 @@
 	const CRY_DUNSPARCE
 	const CRY_DONPHAN
 
-NUM_CRIES EQU const_value
+DEF NUM_CRIES EQU const_value

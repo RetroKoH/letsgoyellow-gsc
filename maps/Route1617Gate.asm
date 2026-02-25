@@ -1,26 +1,27 @@
 Route1617Gate_MapScriptHeader:
 	def_scene_scripts
+	scene_const SCENE_ROUTE1617GATE_BICYCLE_CHECK
 
 	def_callbacks
 
 	def_warp_events
-	warp_event  0,  5, ROUTE_16_SOUTH, 1
-	warp_event  0,  6, ROUTE_16_SOUTH, 2
-	warp_event  9,  5, ROUTE_16_NORTHEAST, 1
-	warp_event  9,  6, ROUTE_16_NORTHEAST, 2
+	warp_event  0,  5, ROUTE_17_NORTH, 1
+	warp_event  0,  6, ROUTE_17_NORTH, 2
+	warp_event  9,  5, ROUTE_16_EAST, 1
+	warp_event  9,  6, ROUTE_16_EAST, 2
 	warp_event  8,  8, ROUTE_16_17_GATE_2F, 1
 
 	def_coord_events
-	coord_event  5,  3, 0, Route16GateBicycleCheck
-	coord_event  5,  4, 0, Route16GateBicycleCheck
-	coord_event  5,  5, 0, Route1617GateStepUpOneTrigger
-	coord_event  5,  6, 0, Route1617GateStepUpTwoTrigger
-	coord_event  5,  7, 0, Route1617GateStepUpThreeTrigger
+	coord_event  5,  3, SCENE_ROUTE1617GATE_BICYCLE_CHECK, Route16GateBicycleCheck
+	coord_event  5,  4, SCENE_ROUTE1617GATE_BICYCLE_CHECK, Route16GateBicycleCheck
+	coord_event  5,  5, SCENE_ROUTE1617GATE_BICYCLE_CHECK, Route1617GateStepUpOneTrigger
+	coord_event  5,  6, SCENE_ROUTE1617GATE_BICYCLE_CHECK, Route1617GateStepUpTwoTrigger
+	coord_event  5,  7, SCENE_ROUTE1617GATE_BICYCLE_CHECK, Route1617GateStepUpThreeTrigger
 
 	def_bg_events
 
 	def_object_events
-	object_event  5,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route1617GateOfficerText, -1
+	object_event  5,  1, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route1617GateOfficerText, -1
 
 	object_const_def
 	const ROUTE1617GATE_OFFICER
@@ -29,24 +30,24 @@ Route1617GateStepUpOneTrigger:
 	checkkeyitem BICYCLE
 	iftrue DoNothingScript
 	applyonemovement PLAYER, step_up
-	sjump UnknownScript_0x733f3
+	sjumpfwd Route1617GateNoBicycle
 
 Route1617GateStepUpTwoTrigger:
 	checkkeyitem BICYCLE
 	iftrue DoNothingScript
 	applymovement PLAYER, Route1617GateStepUpTwoMovementData
-	sjump UnknownScript_0x733f3
+	sjumpfwd Route1617GateNoBicycle
 
 Route1617GateStepUpThreeTrigger:
 	checkkeyitem BICYCLE
 	iftrue DoNothingScript
 	applymovement PLAYER, Route1617GateStepUpThreeMovementData
-	sjump UnknownScript_0x733f3
+	sjumpfwd Route1617GateNoBicycle
 
 Route16GateBicycleCheck:
 	checkkeyitem BICYCLE
 	iftrue DoNothingScript
-UnknownScript_0x733f3:
+Route1617GateNoBicycle:
 	showemote EMOTE_SHOCK, ROUTE1617GATE_OFFICER, 15
 	turnobject PLAYER, UP
 	showtext Route16GateCannotPassText

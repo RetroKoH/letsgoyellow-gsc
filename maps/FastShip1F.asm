@@ -1,7 +1,8 @@
 FastShip1F_MapScriptHeader:
 	def_scene_scripts
-	scene_script FastShip1FTrigger0
-	scene_script FastShip1FTrigger1
+	scene_script FastShip1FNoopScene, SCENE_FASTSHIP1F_NOOP
+	scene_script FastShip1FEnterShipScene, SCENE_FASTSHIP1F_ENTER_SHIP
+	scene_const SCENE_FASTSHIP1F_MEET_GRANDPA
 
 	def_callbacks
 
@@ -20,24 +21,24 @@ FastShip1F_MapScriptHeader:
 	warp_event 30, 14, FAST_SHIP_B1F, 2
 
 	def_coord_events
-	coord_event 24,  6, 2, WorriedGrandpaTriggerLeft
-	coord_event 25,  6, 2, WorriedGrandpaTriggerRight
+	coord_event 24,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaTriggerLeft
+	coord_event 25,  6, SCENE_FASTSHIP1F_MEET_GRANDPA, WorriedGrandpaTriggerRight
 
 	def_bg_events
 
 	def_object_events
-	object_event 25,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor1Script, -1
-	object_event 19,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN
-	object_event 14,  7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor2Script, -1
-	object_event 22, 17, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, FastShip1FSailor3Text, -1
+	object_event 25,  2, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor1Script, -1
+	object_event 19,  6, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_FAST_SHIP_1F_GENTLEMAN
+	object_event 14,  7, SPRITE_SAILOR, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, FastShip1FSailor2Script, -1
+	object_event 22, 17, SPRITE_SAILOR, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, FastShip1FSailor3Text, -1
 
 	object_const_def
 	const FASTSHIP1F_SAILOR1
 	const FASTSHIP1F_GENTLEMAN
 
-FastShip1FTrigger1:
+FastShip1FEnterShipScene:
 	sdefer FastShip1FEnterFastShipScript
-FastShip1FTrigger0:
+FastShip1FNoopScene:
 	end
 
 FastShip1FEnterFastShipScript:
@@ -50,19 +51,19 @@ FastShip1FEnterFastShipScript:
 	blackoutmod FAST_SHIP_CABINS_SW_SSW_NW
 	clearevent EVENT_FAST_SHIP_HAS_ARRIVED
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
-	iftrue .SkipGrandpa
-	setscene $2
+	iftruefwd .SkipGrandpa
+	setscene SCENE_FASTSHIP1F_MEET_GRANDPA
 	end
 
 .SkipGrandpa:
-	setscene $0
+	setscene SCENE_FASTSHIP1F_NOOP
 	end
 
 FastShip1FSailor1Script:
 	faceplayer
 	opentext
 	checkevent EVENT_FAST_SHIP_HAS_ARRIVED
-	iftrue .Arrived
+	iftruefwd .Arrived
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
 	iftrue_jumpopenedtext FastShip1FSailor1Text_ToOlivine
 	jumpthisopenedtext
@@ -78,7 +79,7 @@ FastShip1FSailor1Script:
 
 .Arrived:
 	checkevent EVENT_FAST_SHIP_DESTINATION_OLIVINE
-	iftrue ._Olivine
+	iftruefwd ._Olivine
 	writetext FastShip1FSailor1Text_InVermilion
 	waitbutton
 	closetext
@@ -87,7 +88,7 @@ FastShip1FSailor1Script:
 	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_VERMILION_PORT_SAILOR_AT_GANGWAY
-	setmapscene VERMILION_PORT, $1
+	setmapscene VERMILION_PORT, SCENE_VERMILIONPORT_LEAVE_SHIP
 	warp VERMILION_PORT, 7, 17
 	end
 
@@ -100,13 +101,13 @@ FastShip1FSailor1Script:
 	special FadeOutPalettes
 	waitsfx
 	setevent EVENT_OLIVINE_PORT_SAILOR_AT_GANGWAY
-	setmapscene OLIVINE_PORT, $1
-	warp OLIVINE_PORT, 7, 23
+	setmapscene OLIVINE_PORT, SCENE_OLIVINEPORT_LEAVE_SHIP
+	warp OLIVINE_PORT, 7, 15
 	end
 
 .LetThePlayerOut:
 	readvar VAR_FACING
-	ifequal RIGHT, .YouAreFacingRight
+	ifequalfwd RIGHT, .YouAreFacingRight
 	applymovement FASTSHIP1F_SAILOR1, FastShip1F_SailorStepAsideMovement
 	applymovement PLAYER, FastShip1F_PlayerLeavesShipMovement
 	end
@@ -119,7 +120,17 @@ FastShip1FSailor1Script:
 FastShip1FSailor2Script:
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
 	iftrue_jumptextfaceplayer FastShip1FSailor2Text
-	jumptextfaceplayer FastShip1FSailor2Text_FirstTime
+	jumpthistextfaceplayer
+
+	text "Here's your cabin."
+
+	para "If your #mon"
+	line "are hurt, take a"
+	cont "nap in the bed."
+
+	para "That will heal"
+	line "them."
+	done
 
 WorriedGrandpaTriggerRight:
 	moveobject FASTSHIP1F_GENTLEMAN, 20, 6
@@ -133,7 +144,7 @@ WorriedGrandpaTriggerLeft:
 	turnobject PLAYER, RIGHT
 	applymovement FASTSHIP1F_GENTLEMAN, FastShip1F_GrandpaRunsOutMovement
 	disappear FASTSHIP1F_GENTLEMAN
-	setscene $0
+	setscene SCENE_FASTSHIP1F_NOOP
 	end
 
 FastShip1F_SailorStepAsideMovement:
@@ -203,16 +214,6 @@ FastShip1FSailor1Text_ToOlivine:
 	cont "we arrive."
 	done
 
-FastShip1FSailor2Text_FirstTime:
-	text "Here's your cabin."
-
-	para "If your #mon"
-	line "are hurt, take a"
-	cont "nap in the bed."
-
-	para "That will heal"
-	line "them."
-	done
 
 FastShip1FSailor2Text:
 	text "Here's your cabin."

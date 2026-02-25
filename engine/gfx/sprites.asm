@@ -8,7 +8,7 @@ PlaySpriteAnimations:
 	push bc
 	push af
 
-	ld a, LOW(wVirtualOAM)
+	ld a, LOW(wShadowOAM)
 	ld [wCurSpriteOAMAddr], a
 	call DoNextFrameForAllSprites
 
@@ -40,15 +40,54 @@ DoNextFrameForAllSprites:
 
 	ld a, [wCurSpriteOAMAddr]
 	ld l, a
-	ld h, HIGH(wVirtualOAM)
+	ld h, HIGH(wShadowOAM)
 
-.loop2 ; Clear (wVirtualOAM + [wCurSpriteOAMAddr] --> wVirtualOAMEnd)
+.loop2 ; Clear (wShadowOAM + [wCurSpriteOAMAddr] --> wShadowOAMEnd)
 	ld a, l
-	cp LOW(wVirtualOAMEnd)
+	cp LOW(wShadowOAMEnd)
 	ret nc
 	xor a
 	ld [hli], a
 	jr .loop2
+
+DoNextFrameForAllSprites_OW:
+	ld hl, wSpriteAnimationStructs
+	ld e, 10
+
+.loop
+	ld a, [hl]
+	and a
+	jr z, .next
+	ld c, l
+	ld b, h
+	push hl
+	push de
+	call DoAnimFrame ; Uses a massive dw
+	call UpdateAnimFrame
+	pop de
+	pop hl
+	ret c
+
+.next
+	ld bc, $10
+	add hl, bc
+	dec e
+	jr nz, .loop
+
+	ld a, [wCurSpriteOAMAddr]
+	ld l, a
+	ld h, HIGH(wShadowOAM)
+
+.ow_clear_loop ; Clear (wShadowOAM + [wCurSpriteOAMAddr] --> [(OAM_COUNT - 1) * OBJ_SIZE - hUsedOAMIndex])
+	ldh a, [hUsedOAMIndex]
+	; a = (OAM_COUNT - 1) * OBJ_SIZE - a
+	cpl
+	add (OAM_COUNT - 1) * OBJ_SIZE + 1
+	cp l
+	ret c
+	xor a
+	ld [hli], a
+	jr .ow_clear_loop
 
 DoNextFrameForFirst16Sprites:
 	ld hl, wSpriteAnimationStructs
@@ -76,17 +115,17 @@ DoNextFrameForFirst16Sprites:
 
 	ld a, [wCurSpriteOAMAddr]
 	ld l, a
-	ld h, HIGH(wVirtualOAM + 16 * 4)
+	ld h, HIGH(wShadowOAM + 16 * 4)
 
-.loop2 ; Clear (wVirtualOAM + [wCurSpriteOAMAddr] --> wVirtualOAM + 16 * 4)
+.loop2 ; Clear (wShadowOAM + [wCurSpriteOAMAddr] --> wShadowOAM + 16 * 4)
 	ld a, l
-	cp LOW(wVirtualOAM + 16 * 4)
+	cp LOW(wShadowOAM + 16 * 4)
 	ret nc
 	xor a
 	ld [hli], a
 	jr .loop2
 
-InitSpriteAnimStruct::
+_InitSpriteAnimStruct::
 ; Initialize animation a at pixel x=e, y=d
 ; Find if there's any room in the wSpriteAnimationStructs array, which is 10x16
 	push de
@@ -204,9 +243,9 @@ DeinitializeAllSprites:
 UpdateAnimFrame:
 	call InitSpriteAnimBuffer ; init WRAM
 	call GetSpriteAnimFrame ; read from a memory array
-	cp -3
+	cp oamwait_command
 	jr z, .done
-	cp -4
+	cp oamdelete_command
 	jr z, .delete
 	call GetFrameOAMPointer
 	; add byte to [wCurAnimVTile]
@@ -221,7 +260,7 @@ UpdateAnimFrame:
 	push bc
 	ld a, [wCurSpriteOAMAddr]
 	ld e, a
-	ld d, HIGH(wVirtualOAM)
+	ld d, HIGH(wShadowOAM)
 	ld a, [hli]
 	ld c, a ; number of objects
 .loop
@@ -265,16 +304,28 @@ UpdateAnimFrame:
 	; fourth byte: attributes
 	; [de] = GetSpriteOAMAttr([hl])
 	ld a, [hl]
-	cp -1 ; this lets the party menu icons keep their dynamic color attribute
+	cp SPRITEOAM_SKIP_PAL_APPLY
 	jr z, .skipOAMAttributes
+	cp SPRITEOAM_SKIP_PAL_APPLY_XFLIP
+	jr z, .skipOAMAttributes_xflip
 	call GetSpriteOAMAttr
 	ld [de], a
+	jr .attributes_done
 .skipOAMAttributes
+	ld a, [de]
+	and ~OAM_XFLIP
+	ld [de], a
+	jr .attributes_done
+.skipOAMAttributes_xflip
+	ld a, [de]
+	or OAM_XFLIP
+	ld [de], a
+.attributes_done
 	inc hl
 	inc de
 	ld a, e
 	ld [wCurSpriteOAMAddr], a
-	cp LOW(wVirtualOAMEnd)
+	cp LOW(wShadowOAMEnd)
 	jr nc, .reached_the_end
 	dec c
 	jr nz, .loop
@@ -282,6 +333,7 @@ UpdateAnimFrame:
 	jr .done
 
 .delete
+; Removes the object from the screen, as opposed to `oamend` which just stops all motion
 	call DeinitializeSprite
 .done
 	and a
@@ -389,8 +441,7 @@ GetSpriteAnimFrame:
 	and a
 	jr z, .next_frame ; finished the current sequence
 	dec [hl]
-	call .GetPointer ; load pointer from SpriteAnimFrameData
-	ld a, [hli]
+	call .GetPointerAndAdvance ; load pointer from SpriteAnimFrameData
 	push af
 	jr .okay
 
@@ -398,17 +449,16 @@ GetSpriteAnimFrame:
 	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 	inc [hl]
-	call .GetPointer ; load pointer from SpriteAnimFrameData
-	ld a, [hli]
-	cp -2
+	call .GetPointerAndAdvance ; load pointer from SpriteAnimFrameData
+	cp oamrestart_command
 	jr z, .restart
-	cp -1
+	cp oamend_command
 	jr z, .repeat_last
 
 	push af
 	ld a, [hl]
 	push hl
-	and $3f
+	and ~(OAM_YFLIP << 1 | OAM_XFLIP << 1)
 	ld hl, SPRITEANIMSTRUCT_DURATIONOFFSET
 	add hl, bc
 	add [hl]
@@ -418,7 +468,7 @@ GetSpriteAnimFrame:
 	pop hl
 .okay
 	ld a, [hl]
-	and $c0
+	and OAM_YFLIP << 1 | OAM_XFLIP << 1 ; The << 1 is compensated in the "oamframe" macro
 	srl a
 	ld [wCurSpriteAddSubFlags], a
 	pop af
@@ -448,7 +498,7 @@ GetSpriteAnimFrame:
 	ld [hl], a
 	jr .loop
 
-.GetPointer:
+.GetPointerAndAdvance:
 	; Get the data for the current frame for the current animation sequence
 
 	; SpriteAnimFrameData[SpriteAnim[SPRITEANIMSTRUCT_FRAMESET_ID]][SpriteAnim[SPRITEANIMSTRUCT_FRAME]]
@@ -459,15 +509,16 @@ GetSpriteAnimFrame:
 	ld hl, SpriteAnimFrameData
 	add hl, de
 	add hl, de
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
+	ld e, a
 	ld hl, SPRITEANIMSTRUCT_FRAME
 	add hl, bc
 	ld l, [hl]
 	ld h, 0
 	add hl, hl
 	add hl, de
+	ld a, [hli]
 	ret
 
 GetFrameOAMPointer:
@@ -506,7 +557,7 @@ AnimateEndOfExpBar:
 	jmp ClearSprites
 
 .AnimateFrame:
-	ld hl, wVirtualOAM
+	ld hl, wShadowOAM
 	ld c, $8
 .anim_loop
 	ld a, c
@@ -515,9 +566,9 @@ AnimateEndOfExpBar:
 	dec c
 	ld a, c
 ; multiply by 8
-	sla a
-	sla a
-	sla a
+	add a
+	add a
+	add a
 	push af
 
 	push de

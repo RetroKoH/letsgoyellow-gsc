@@ -16,39 +16,27 @@ Route3_MapScriptHeader:
 	bg_event  8, 15, BGEVENT_JUMPTEXT, Route3MeteoriteText
 	bg_event  8, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
 	bg_event  9, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
+	bg_event 12, 15, BGEVENT_JUMPTEXT, Route3MeteoriteText
 	bg_event 14, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
 	bg_event 15, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
 
 	def_object_events
-	object_event 13,  15, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route3ScientistScript, -1
-	smashrock_event  12, 15 ; Set event flag to hide this rock. This hide event will trigger scientist finding the fossil (Similar to Route 15 Choppable Berry Tree)
-	object_event 12,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterRegis, -1
-	object_event 17,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterJimmy, -1
-	object_event 25,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterWarren, -1
-	object_event 38,  6, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerHikerBruce, -1
-	object_event 61, 19, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerHikerDwight, -1
+	object_event 12,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterRegis, -1
+	object_event 17,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterJimmy, -1
+	object_event 25,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterWarren, -1
+	object_event 30, 12, SPRITE_FIREBREATHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerFirebreatherOtis, -1
+	object_event 60, 10, SPRITE_FIREBREATHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerFirebreatherBurt, -1
+	object_event 44,  8, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBlackbeltManford, -1
+	object_event 52, 18, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerBlackbeltAnder, -1
+	object_event 38,  6, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerHikerBruce, -1
+	object_event 61, 19, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerHikerDwight, -1
+	object_event 14, 12, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoZacandjen1, -1
+	object_event 15, 12, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoZacandjen2, -1
 	itemball_event 36, 14, BIG_ROOT, 1, EVENT_ROUTE_3_BIG_ROOT
 
 Route3FlyPoint:
 	setflag ENGINE_FLYPOINT_MT_MOON
 	endcallback
-
-Route3ScientistScript:
-	faceplayer
-	showtext Route3_ScientistGreetsPlayer
-	setflag ENGINE_LEARNED_FIELD_TECH
-	end
-
-Route3_ScientistGreetsPlayer:
-	text "Hi there!"
-	
-	para "You can now use"
-	line "Field Techniques!"
-	
-	para "Go speak to Brock"
-	line "and continue the"
-	cont "game!"
-	done
 
 GenericTrainerYoungsterRegis:
 	generictrainer YOUNGSTER, REGIS, EVENT_BEAT_YOUNGSTER_REGIS, .SeenText, .BeatenText
@@ -107,6 +95,82 @@ GenericTrainerYoungsterWarren:
 	text "I knew I'd lose…"
 	done
 
+GenericTrainerFirebreatherOtis:
+	generictrainer FIREBREATHER, OTIS, EVENT_BEAT_FIREBREATHER_OTIS, .SeenText, .BeatenText
+
+	text "When it rains,"
+	line "it's hard to get"
+	cont "ignition…"
+	done
+
+.SeenText:
+	text "Ah! The weather's"
+	line "as fine as ever."
+	done
+
+.BeatenText:
+	text "It's sunny, but"
+	line "I'm all wet…"
+	done
+
+GenericTrainerFirebreatherBurt:
+	generictrainer FIREBREATHER, BURT, EVENT_BEAT_FIREBREATHER_BURT, .SeenText, .BeatenText
+
+	text "The greatest fire-"
+	line "breather in Kanto,"
+	cont "that's me."
+
+	para "But not the best"
+	line "trainer…"
+	done
+
+.SeenText:
+	text "Step right up and"
+	line "take a look!"
+	done
+
+.BeatenText:
+	text "Yow! That's hot!"
+	done
+
+GenericTrainerBlackbeltManford:
+	generictrainer BLACKBELT_T, MANFORD, EVENT_BEAT_BLACKBELT_MANFORD, .SeenText, .BeatenText
+
+	text "You must have"
+	line "trained under a"
+	cont "well-known master!"
+	done
+
+.SeenText:
+	text "Slow down and give"
+	line "me the chance to"
+	cont "defeat you!"
+	done
+
+.BeatenText:
+	text "I've been beaten"
+	line "at my own game…"
+	done
+
+GenericTrainerBlackbeltAnder:
+	generictrainer BLACKBELT_T, ANDER, EVENT_BEAT_BLACKBELT_ANDER, .SeenText, .BeatenText
+
+	text "You came all the"
+	line "way from Johto?"
+
+	para "You must be very"
+	line "persistent!"
+	done
+
+.SeenText:
+	text "Wait a moment!"
+	line "Come fight me!"
+	done
+
+.BeatenText:
+	text "You did it…"
+	done
+
 GenericTrainerHikerBruce:
 	generictrainer HIKER, BRUCE, EVENT_BEAT_HIKER_BRUCE, .SeenText, .BeatenText
 
@@ -152,6 +216,50 @@ GenericTrainerHikerDwight:
 .BeatenText:
 	text "Peace--even though"
 	line "I lost!"
+	done
+
+GenericTrainerAceDuoZacandjen1:
+	generictrainer ACE_DUO, ZACANDJEN1, EVENT_BEAT_ACE_DUO_ZAC_AND_JEN, .SeenText, .BeatenText
+
+	text "Zac: Your future"
+	line "looks promising."
+	done
+
+.SeenText:
+	text "Zac: Really, you"
+	line "want to battle us?"
+
+	para "You've got a lot"
+	line "of courage for"
+	cont "someone so young."
+	done
+
+.BeatenText:
+	text "Zac: You weren't"
+	line "bluffing…"
+	done
+
+GenericTrainerAceDuoZacandjen2:
+	generictrainer ACE_DUO, ZACANDJEN2, EVENT_BEAT_ACE_DUO_ZAC_AND_JEN, .SeenText, .BeatenText
+
+	text "Jen: I'm looking"
+	line "forward to seeing"
+
+	para "what kind of"
+	line "trainer you'll"
+	cont "become."
+	done
+
+.SeenText:
+	text "Jen: Huh? You'd"
+	line "like to go up"
+	cont "against us? Great!"
+	done
+
+.BeatenText:
+	text "Jen: You're so"
+	line "much stronger than"
+	cont "I thought."
 	done
 
 Route3MeteoriteText:

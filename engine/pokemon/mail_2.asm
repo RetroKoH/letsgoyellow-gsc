@@ -12,15 +12,14 @@ ReadAnyMail:
 	call ClearTileMap
 	call DisableLCD
 	call LoadStandardFont
-	call LoadFontsExtra
+	call LoadFrame
 	pop de
 	call .LoadGFX
 	call EnableLCD
 	call ApplyTilemapInVBlank
-	ld a, [wBuffer3]
-	ld e, a
-	farcall LoadMailPalettes
-	call SetPalettes
+	ld a, CGB_READ_MAIL
+	call GetCGBLayout
+	call SetDefaultBGPAndOBP
 	xor a
 	ldh [hJoyPressed], a
 	call .loop
@@ -32,7 +31,7 @@ ReadAnyMail:
 .loop
 	call GetJoypad
 	ldh a, [hJoyPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .loop
 	ret
 
@@ -42,47 +41,32 @@ ReadAnyMail:
 	push hl
 	xor a
 	call GetSRAMBank
-	ld de, sPartyMon1MailAuthorID - sPartyMon1Mail
+	ld de, sPartyMon1MailSpecies - sPartyMon1Mail
 	add hl, de
-	ld a, [hli]
-	ld [wBuffer1], a
-	ld a, [hli]
-	ld [wBuffer2], a
 	ld a, [hli]
 	ld [wCurPartySpecies], a
 	ld b, [hl]
 	call CloseSRAM
-	ld hl, MailGFXPointers
-	ld c, 0
-.loop2
-	ld a, [hli]
-	cp b
-	jr z, .got_pointer
-	cp -1
-	jr z, .got_pointer
-	inc c
-	inc hl
-	inc hl
-	jr .loop2
-
-.got_pointer
-	ld a, c
-	ld [wBuffer3], a
+	ld a, b
+	ld [wCurItem], a
+	sub FIRST_MAIL
 	pop bc
-	jmp IndirectHL
+	call StackJumpTable
 
-MailGFXPointers:
-	dbw FLOWER_MAIL,  LoadFlowerMailGFX
-	dbw SURF_MAIL,    LoadSurfMailGFX
-	dbw LITEBLUEMAIL, LoadLiteBlueMailGFX
-	dbw PORTRAITMAIL, LoadPortraitMailGFX
-	dbw LOVELY_MAIL,  LoadLovelyMailGFX
-	dbw EON_MAIL,     LoadEonMailGFX
-	dbw MORPH_MAIL,   LoadMorphMailGFX
-	dbw BLUESKY_MAIL, LoadBlueSkyMailGFX
-	dbw MUSIC_MAIL,   LoadMusicMailGFX
-	dbw MIRAGE_MAIL,  LoadMirageMailGFX
-	dbw -1,           LoadFlowerMailGFX ; invalid
+.Jumptable:
+; entries correspond to mail items
+	table_width 2
+	dw LoadFlowerMailGFX
+	dw LoadSurfMailGFX
+	dw LoadLiteBlueMailGFX
+	dw LoadPortraitMailGFX
+	dw LoadLovelyMailGFX
+	dw LoadEonMailGFX
+	dw LoadMorphMailGFX
+	dw LoadBlueSkyMailGFX
+	dw LoadMusicMailGFX
+	dw LoadMirageMailGFX
+	assert_table_length NUM_MAILS
 
 LoadSurfMailGFX:
 	push bc
@@ -155,16 +139,15 @@ FinishLoadingSurfLiteBlueMailGFX:
 	ld [hli], a
 	hlcoord 13, 12
 	ld [hl], a
-	ld a, $42
+	inc a ; $42
 	hlcoord 9, 2
 	ld [hli], a
 	hlcoord 14, 5
 	ld [hli], a
 	hlcoord 3, 10
 	ld [hl], a
-	ld a, $43
-	hlcoord 6, 11
-	ld [hli], a
+	inc a ; $43
+	ldcoord_a 6, 11
 	pop hl
 	jmp MailGFX_PlaceMessage
 
@@ -365,7 +348,7 @@ LoadBlueSkyMailGFX:
 	ld de, BlueSkyMailGrassGFX
 	ld c, 1 * 8
 	call LoadMailGFX_Color3
-	ld de, MailDragoniteGFX
+	ld de, MailDragoniteAndSentretGFX
 	ld c, 23 * 8
 	call LoadMailGFX_Color3
 	ld de, MailCloudGFX
@@ -509,14 +492,14 @@ LoadPortraitMailGFX:
 	ld de, PortraitMailSmallPokeballGFX
 	ld c, 1 * 8
 	call LoadMailGFX_Color2
-
 	call DrawMailBorder2
 	hlcoord 8, 15
 	ld a, $36
 	ld b, $a
 	call Mail_DrawRowLoop
 	call LovelyEonMail_PlaceIcons
-	ld a, $1
+	ld a, MON_FORM
+	call GetPartyParamLocationAndValue
 	ld [wCurForm], a
 	hlcoord 1, 10
 	call PrepMonFrontpic
@@ -636,7 +619,7 @@ MailGFX_PlaceMessage:
 	ld de, wMonOrItemNameBuffer
 	ld bc, NAME_LENGTH - 1
 	rst CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [wTempMailAuthor], a
 	ld [wMonOrItemNameBuffer + NAME_LENGTH - 1], a
 	ld de, wTempMailMessage
@@ -646,12 +629,12 @@ MailGFX_PlaceMessage:
 	ld a, [de]
 	and a
 	ret z
-	ld a, [wBuffer3]
+	ld a, [wCurItem]
 	hlcoord 8, 14
-	cp $3 ; PORTRAITMAIL
+	cp PORTRAITMAIL
 	jr z, .place_author
 	hlcoord 6, 14
-	cp $6 ; MORPH_MAIL
+	cp MORPH_MAIL
 	jr z, .place_author
 	hlcoord 5, 14
 

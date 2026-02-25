@@ -14,26 +14,26 @@ Route40_MapScriptHeader:
 	bg_event  7,  8, BGEVENT_ITEM + HYPER_POTION, EVENT_ROUTE_40_HIDDEN_HYPER_POTION
 
 	def_object_events
-	object_event  8, 10, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
-	object_event 13, 16, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerSwimmermSimon, -1
-	object_event 18, 33, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerSwimmermRandall, -1
-	object_event  3, 19, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerSwimmerfElaine, -1
-	object_event  9, 25, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerSwimmerfPaula, -1
+	object_event  8, 10, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, MonicaScript, EVENT_ROUTE_40_MONICA_OF_MONDAY
+	object_event 13, 16, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerSwimmermSimon, -1
+	object_event 18, 33, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerSwimmermRandall, -1
+	object_event  3, 19, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerSwimmerfElaine, -1
+	object_event  9, 25, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerSwimmerfPaula, -1
+	object_event 11, 13, SPRITE_BEACH_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route40BeachGirlText, -1
+	object_event  7,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route40PokefanMScript, -1
+	object_event 13,  4, SPRITE_PICNICKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route40PicnickerText, -1
+	object_event 14,  8, SPRITE_BEACH_GUY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, Route40BeachGuyScript, -1
+	object_event 16, 27, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, Route40FisherScript, -1
 	smashrock_event  7, 11
 	smashrock_event  6, 9
 	smashrock_event  7, 8
-	object_event 11, 13, SPRITE_CUTE_GIRL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route40Lass1Text, -1
-	object_event  7,  6, SPRITE_POKEFAN_M, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, Route40PokefanMScript, -1
-	object_event 13,  4, SPRITE_PICNICKER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route40Lass2Text, -1
-	object_event 14,  8, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route40YoungsterScript, -1
-	object_event 16, 27, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route40FisherScript, -1
 
 	object_const_def
 	const ROUTE40_MONICA
 
 MonicaCallback:
 	readvar VAR_WEEKDAY
-	ifequal MONDAY, .MonicaAppears
+	ifequalfwd MONDAY, .MonicaAppears
 	disappear ROUTE40_MONICA
 	endcallback
 
@@ -76,31 +76,48 @@ GenericTrainerSwimmermRandall:
 Route40PokefanMScript:
 	checkevent EVENT_BATTLE_TOWER_OPEN
 	iftrue_jumptextfaceplayer Route40PokefanMText2
-	jumptextfaceplayer Route40PokefanMText
+	jumpthistextfaceplayer
 
-Route40YoungsterScript:
+	text "Hm! There's a big"
+	line "building up ahead!"
+
+	para "What is it?"
+	done
+
+Route40BeachGuyScript:
 	checkevent EVENT_BATTLE_TOWER_OPEN
-	iftrue_jumptextfaceplayer Route40StandingYoungsterText
-	jumptextfaceplayer Route40YoungsterText
+	iftrue_jumptextfaceplayer Route40BeachGuyText2
+	jumpthistextfaceplayer
+
+	text "The Battle Tower"
+	line "is almost ready!"
+
+	para "Trainers are head-"
+	line "ing to Olivine"
+
+	para "from all over the"
+	line "world to test"
+	cont "their strength."
+	done
 
 Route40FisherScript:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_KNOCK_OFF_INTRO
-	iftrue .HeardIntro
+	iftruefwd .HeardIntro
 	writetext .IntroText
 	waitbutton
 	setevent EVENT_LISTENED_TO_KNOCK_OFF_INTRO
 .HeardIntro:
 	writetext .QuestionText
 	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
+	iffalsefwd .NoSilverLeaf
 	yesorno
-	iffalse .TutorRefused
+	iffalsefwd .TutorRefused
 	setval KNOCK_OFF
 	writetext ClearText
 	special Special_MoveTutor
-	ifequal $0, .TeachMove
+	ifequalfwd $0, .TeachMove
 .TutorRefused
 	jumpthisopenedtext
 
@@ -164,7 +181,7 @@ MonicaScript:
 	faceplayer
 	opentext
 	checkevent EVENT_MET_MONICA_OF_MONDAY
-	iftrue .MetMonica
+	iftruefwd .MetMonica
 	writetext MeetMonicaText
 	promptbutton
 	setevent EVENT_MET_MONICA_OF_MONDAY
@@ -172,12 +189,28 @@ MonicaScript:
 	writetext MonicaGivesGiftText
 	promptbutton
 	verbosegiveitem SHARP_BEAK
-	iffalse MonicaDoneScript
+	iffalsefwd MonicaDoneScript
 	setevent EVENT_GOT_SHARP_BEAK_FROM_MONICA
-	jumpopenedtext MonicaGaveGiftText
+	jumpthisopenedtext
+
+	text "Monica: It's an"
+	line "item that raises"
+
+	para "the power of Fly-"
+	line "ing-type moves."
+
+	para "You should equip a"
+	line "bird #mon with"
+	cont "that item."
+	done
 
 MonicaNotMondayScript:
-	jumptextfaceplayer MonicaNotMondayText
+	jumpthistextfaceplayer
+
+	text "Monica: I don't"
+	line "think today is"
+	cont "Monday. How sad…"
+	done
 
 MonicaDoneScript:
 	end
@@ -231,20 +264,14 @@ SwimmerfPaulaBeatenText:
 	line "dizzy!"
 	done
 
-Route40Lass1Text:
-	text "Although you can't"
-	line "see it from here,"
+Route40BeachGirlText:
+	text "I just ate at the"
+	line "Olivine Café, so"
 
-	para "Cianwood is across"
-	line "the sea."
+	para "I'm taking a break"
+	line "before swimming."
 	done
 
-Route40PokefanMText:
-	text "Hm! There's a big"
-	line "building up ahead!"
-
-	para "What is it?"
-	done
 
 Route40PokefanMText2:
 	text "Hm! Look at all"
@@ -255,7 +282,7 @@ Route40PokefanMText2:
 	para "What? What?"
 	done
 
-Route40Lass2Text:
+Route40PicnickerText:
 	text "I came to Olivine"
 	line "by ship to see the"
 
@@ -267,19 +294,8 @@ Route40Lass2Text:
 	cont "from a big city."
 	done
 
-Route40YoungsterText:
-	text "The Battle Tower"
-	line "is almost ready!"
 
-	para "Trainers are head-"
-	line "ing to Olivine"
-
-	para "from all over the"
-	line "world to test"
-	cont "their strength."
-	done
-
-Route40StandingYoungsterText:
+Route40BeachGuyText2:
 	text "Have you gone to"
 	line "the Battle Tower?"
 
@@ -309,17 +325,6 @@ MonicaGivesGiftText:
 	cont "a gift for you!"
 	done
 
-MonicaGaveGiftText:
-	text "Monica: It's an"
-	line "item that raises"
-
-	para "the power of Fly-"
-	line "ing-type moves."
-
-	para "You should equip a"
-	line "bird #mon with"
-	cont "that item."
-	done
 
 MonicaMondayText:
 	text "Monica: My broth-"
@@ -332,11 +337,6 @@ MonicaMondayText:
 	line "find them all!"
 	done
 
-MonicaNotMondayText:
-	text "Monica: I don't"
-	line "think today is"
-	cont "Monday. How sad…"
-	done
 
 Route40SignText:
 	text "Route 40"

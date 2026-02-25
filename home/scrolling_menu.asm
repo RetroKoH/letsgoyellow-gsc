@@ -17,20 +17,35 @@ ScrollingMenu::
 	ret
 
 .UpdatePalettes:
-	ld hl, wVramState
-	bit 0, [hl]
+	ld hl, wStateFlags
+	bit SPRITE_UPDATES_DISABLED_F, [hl]
 	jmp nz, UpdateTimePals
-	jmp SetPalettes
+	; fallthrough
+
+SetDefaultBGPAndOBP::
+	push de
+	ld a, %11100100
+	call DmgToCgbBGPals
+	lb de, %11100100, %11100100
+	call DmgToCgbObjPals
+	pop de
+	ret
 
 InitScrollingMenu::
 	ld a, [wMenuBorderTopCoord]
+	and a
+	jr z, .top_at_min
 	dec a
+.top_at_min
 	ld b, a
 	ld a, [wMenuBorderBottomCoord]
 	sub b
 	ld d, a
 	ld a, [wMenuBorderLeftCoord]
+	and a
+	jr z, .left_at_min
 	dec a
+.left_at_min
 	ld c, a
 	ld a, [wMenuBorderRightCoord]
 	sub c
@@ -40,7 +55,7 @@ InitScrollingMenu::
 	pop bc
 	jmp Textbox
 
-JoyTextDelay_ForcehJoyDown:: ; 354b joypad
+JoyTextDelay_ForcehJoyDown::
 	call DelayFrame
 
 	ldh a, [hInMenu]
@@ -52,17 +67,10 @@ JoyTextDelay_ForcehJoyDown:: ; 354b joypad
 	ldh [hInMenu], a
 
 	ldh a, [hJoyLast]
-	and D_RIGHT + D_LEFT + D_UP + D_DOWN
+	and PAD_CTRL_PAD
 	ld c, a
 	ldh a, [hJoyPressed]
-	and A_BUTTON + B_BUTTON + SELECT + START
+	and PAD_BUTTONS
 	or c
 	ld c, a
 	ret
-
-ConsumeGenericDelay::
-	ld a, [wGenericDelay]
-	and a
-	ret z
-	ld c, a
-	jmp DelayFrames

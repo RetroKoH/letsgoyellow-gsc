@@ -1,399 +1,306 @@
 Music_ProfOaksPokemonTalk:
-	dbw $80, Music_ProfOaksPokemonTalk_Ch1
-	dbw $01, Music_ProfOaksPokemonTalk_Ch2
-	dbw $02, Music_ProfOaksPokemonTalk_Ch3
+	channel_count 3
+	channel 1, Music_ProfOaksPokemonTalk_Ch1
+	channel 2, Music_ProfOaksPokemonTalk_Ch2
+	channel 3, Music_ProfOaksPokemonTalk_Ch3
 
-Music_ProfOaksPokemonTalk_Ch1: ; 7eeb9 (1f:6eb9)
-	tempo 140
-	volume 119
-	dutycycle 3
-	vibrato 16, 18
-	
-	notetype 12, 179
-	octave 2
-	note B_, 1
+Music_ProfOaksPokemonTalk_Ch1:
+	tempo 164
+	volume 7, 7
+	stereo_panning FALSE, TRUE
+	vibrato 6, 2, 5
+	duty_cycle 1
+	note_type 12, 9, 4
+	rest 8
 	octave 3
-	note C#, 1
-	note D_, 1
-	note E_, 1
-	note F#, 1
-	note G#, 1
-	note A_, 1
-	note B_, 1
-
-Music_ProfOaksPokemonTalk_branch_7eed0:
-	octave 4
-	note C#, 4
-	octave 3
-	note B_, 2
-	octave 4
-	note C#, 2
-	octave 3
-	note A_, 4
-	note G#, 2
-	note A_, 2
-	note B_, 1
-	note __, 3
-	note A_, 6
-	note G#, 1
-	note B_, 1
-	octave 4
-	note C#, 4
-	octave 3
-	note A_, 4
-	note G#, 2
-	note A_, 2
-	note F#, 4
-	note E_, 2
-	note F#, 2
-	note G#, 1
-	note __, 3
-	note F#, 8
-	note E_, 4
-	note A_, 6
-	note E_, 1
-	note A_, 1
-	octave 4
-	note D_, 8
-	note C#, 6
-	octave 3
-	note A_, 1
-	octave 4
-	note C#, 1
-	note E_, 8
-	note D_, 4
-	note C#, 4
-	octave 3
-	note B_, 4
-	note A_, 4
-	note G#, 1
-	note __, 3
-	note E_, 4
-	note F#, 4
-	note G#, 4
-	loopchannel 0, Music_ProfOaksPokemonTalk_branch_7eed0
-
-
-Music_ProfOaksPokemonTalk_Ch2: ; 7ef05 (1f:6f05)
-	dutycycle 3
-	vibrato 10, 37
-	notetype 12, 196
-	octave 3
-	note G#, 1
-	note A_, 1
 	note B_, 1
 	octave 4
 	note C#, 1
-	note D_, 1
+	note D#, 1
 	note E_, 1
-	note F#, 1
-	note G#, 1
-
-Music_ProfOaksPokemonTalk_branch_7ef16:
-	note A_, 6
-	note G#, 1
-	note F#, 1
-	note E_, 6
+	note C#, 1
 	note D#, 1
 	note E_, 1
 	note F#, 1
-	note __, 3
-	note E_, 8
-	note E_, 4
-	note F#, 6
+Music_ProfOaksPokemonTalk_branch_f4cc3:
+	note D#, 6
+	note C#, 1
+	octave 3
+	note B_, 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	rest 1
+	note F#, 1
+	rest 1
+	note A_, 1
+	note A#, 1
+	note B_, 2
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	rest 1
+	note F#, 1
+	rest 1
+	note F#, 1
+	note G#, 1
+	note F#, 1
+	rest 1
+	note A#, 4
+	octave 4
+	note D#, 6
+	note C#, 1
+	octave 3
+	note B_, 1
+	note G#, 1
+	note B_, 1
+	note D#, 1
+	rest 1
+	note D#, 1
+	rest 1
+	note A#, 1
+	note B_, 1
+	note F#, 1
+	note A#, 1
+	note D#, 1
+	rest 1
+	note D#, 1
+	rest 1
+	note F#, 1
+	note A#, 1
+	note D#, 1
+	rest 1
+	note D#, 1
+	rest 1
+	note A#, 4
+	note E_, 2
+	octave 2
+	note B_, 1
+	octave 3
 	note E_, 1
-	note D_, 1
-	note C#, 6
+	note G#, 2
+	note E_, 1
+	note G#, 1
+	note B_, 1
+	octave 4
+	note C#, 1
 	octave 3
 	note B_, 1
 	octave 4
 	note C#, 1
-	note D_, 1
-	note __, 3
-	note C#, 8
-	note C#, 4
-	note D_, 6
 	octave 3
-	note A_, 1
+	note B_, 4
+	note F#, 2
+	note D#, 1
+	note F#, 1
+	note B_, 2
+	note F#, 1
+	note B_, 1
 	octave 4
-	note D_, 1
-	note F#, 8
-	note E_, 6
-	note C#, 1
+	note D#, 1
 	note E_, 1
-	note A_, 8
+	note D#, 1
+	note E_, 1
+	note D#, 4
+	octave 3
+	note A#, 2
+	octave 4
+	note C#, 2
+	note E_, 2
+	note F#, 2
+	note C#, 2
+	note E_, 2
+	note F#, 2
+	note E_, 2
+	note C#, 2
+	octave 3
+	note A#, 1
+	rest 1
+	note B_, 1
+	rest 1
+	octave 4
+	note C#, 1
+	rest 1
+	note D#, 1
+	rest 1
+	note E_, 1
+	rest 1
+	note F_, 1
+	rest 1
+	note F#, 1
+	rest 1
+	sound_jump Music_ProfOaksPokemonTalk_branch_f4cc3
+
+Music_ProfOaksPokemonTalk_Ch2:
+	vibrato 8, 2, 4
+	duty_cycle 3
+	note_type 12, 10, 7
+	stereo_panning TRUE, TRUE
+	octave 3
+	note B_, 1
+	octave 4
+	note C#, 1
+	note D#, 1
+	note E_, 1
+	note C#, 1
+	note D#, 1
+	note E_, 1
+	note F#, 1
+	note D#, 1
+	note E_, 1
+	note F#, 1
+	note G#, 1
+	note E_, 1
+	note F#, 1
+	note G#, 1
+	note A#, 1
+Music_ProfOaksPokemonTalk_branch_f4d4d:
+	note B_, 6
+	note A#, 1
+	note G#, 1
+	note F#, 6
+	note F_, 1
+	note F#, 1
 	note G#, 4
-	note A_, 2
-	note G#, 2
+	note F#, 8
 	note F#, 4
+	note G#, 6
+	note F#, 1
+	note E_, 1
+	note D#, 6
+	note D_, 1
+	note D#, 1
+	note E_, 4
+	note D#, 8
+	note D#, 4
+	note E_, 6
+	octave 3
+	note B_, 1
+	octave 4
+	note E_, 1
+	note G#, 8
+	note F#, 6
+	note D#, 1
+	note F#, 1
+	note B_, 8
+	note A#, 4
+	note B_, 2
+	note A#, 2
+	note G#, 4
+	note A#, 2
 	note G#, 2
 	note F#, 2
-	note E_, 1
-	note __, 1
-	octave 3
-	note G#, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note B_, 1
-	note __, 1
-	octave 4
 	note C#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
+	rest 1
+	note D#, 1
+	rest 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
-	loopchannel 0, Music_ProfOaksPokemonTalk_branch_7ef16
+	rest 1
+	note G_, 1
+	rest 1
+	note G#, 1
+	rest 1
+	note A#, 1
+	rest 1
+	sound_jump Music_ProfOaksPokemonTalk_branch_f4d4d
 
-
-Music_ProfOaksPokemonTalk_Ch3: ; 7ef52 (1f:6f52)
-	notetype 12, 17
-	note __, 2
+Music_ProfOaksPokemonTalk_Ch3:
+	vibrato 6, 3, 8
+	note_type 12, 2, 5
+	stereo_panning TRUE, FALSE
+	rest 8
+	octave 3
+	note F#, 1
+	note E_, 1
+	note D#, 1
+	note C#, 1
+	note E_, 1
+	note D#, 1
+	note C#, 1
+	octave 2
+	note A#, 1
+Music_ProfOaksPokemonTalk_branch_f4d95:
+	note B_, 6
+	octave 3
+	note D#, 1
+	note F#, 1
+	note B_, 6
+	note D#, 1
+	note C#, 1
+	octave 2
+	note B_, 4
+	octave 3
+	note B_, 8
 	octave 4
+	note D#, 4
+	octave 3
+	note G#, 6
+	note D#, 1
 	note G#, 1
-	note __, 1
-	note F#, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-
-Music_ProfOaksPokemonTalk_branch_7ef5c:
-	note C#, 1
-	note __, 1
-	note A_, 1
-	note __, 3
-	note A_, 1
-	note __, 3
-	note A_, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note A_, 1
-	note __, 3
-	note A_, 1
-	note __, 3
-	note A_, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-	note A_, 1
-	note __, 1
+	octave 2
+	note G#, 6
 	octave 3
-	note A_, 1
-	note __, 1
-	octave 4
-	note F#, 1
-	note __, 3
-	note F#, 1
-	note __, 3
-	note F#, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note F#, 1
-	note __, 1
-	octave 3
-	note A_, 1
-	note __, 1
-	octave 4
-	note F#, 1
-	note __, 3
-	note F#, 1
-	note __, 3
-	note F#, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note F#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
-	note F#, 1
-	note __, 3
-	note F#, 1
-	note __, 3
-	note F#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
-	note F#, 1
-	note __, 1
+	note D#, 1
+	note G#, 1
+	note D#, 6
+	note F#, 2
+	note A#, 2
+	note G#, 2
+	note F#, 2
+	note D#, 2
+	note E_, 2
+	rest 4
 	note E_, 1
-	note __, 1
-	note A_, 1
-	note __, 3
-	note A_, 1
-	note __, 3
-	note A_, 1
-	note __, 1
 	note E_, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	octave 3
+	note E_, 1
+	rest 1
+	note E_, 1
+	rest 1
+	note B_, 4
+	note F#, 2
+	rest 4
+	note F#, 1
+	note F#, 1
+	octave 2
 	note B_, 1
-	note __, 1
-	octave 4
-	note G#, 1
-	note __, 3
-	note G#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
-	note F#, 1
-	note __, 3
-	note F#, 1
-	note __, 1
-	note E_, 1
-	note __, 5
-	note G#, 1
-	note __, 3
-	note F#, 1
-	note __, 3
-	note E_, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	octave 3
-	note A_, 1
-	note __, 1
-	octave 4
-	note F#, 1
-	note __, 1
-	octave 3
-	note A_, 1
-	note __, 1
-	octave 4
-	note F#, 1
-	note __, 1
-	octave 3
-	note A_, 1
-	note __, 1
-	octave 4
-	note F#, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note F#, 1
-	note __, 1
-	octave 3
-	note A_, 1
-	note __, 1
-	octave 4
-	note F#, 1
-	note __, 1
-	octave 3
-	note A_, 1
-	note __, 1
-	octave 4
-	note F#, 1
-	note __, 1
-	octave 3
-	note A_, 1
-	note __, 1
-	octave 4
-	note F#, 1
-	note __, 1
-	note C#, 1
-	note __, 1
-	note F#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
-	note F#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
-	note F#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
-	note F#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
-	note F#, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	note E_, 1
-	note __, 1
-	note A_, 1
-	note __, 1
-	octave 3
+	rest 1
 	note B_, 1
-	note __, 1
-	octave 4
-	note G#, 1
-	note __, 1
+	rest 1
 	octave 3
-	note B_, 1
-	note __, 1
+	note B_, 4
+	note F#, 2
 	octave 4
+	note F#, 2
+	octave 3
+	note E_, 2
+	octave 4
+	note E_, 2
+	octave 3
+	note C#, 2
+	octave 4
+	note C#, 2
+	octave 2
+	note A#, 2
+	octave 3
+	note A#, 2
+	octave 2
+	note F#, 2
+	octave 3
+	note A#, 1
+	rest 1
 	note G#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
-	note D_, 1
-	note __, 1
-	note F#, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 3
-	note G#, 1
-	note __, 3
-	note F#, 1
-	note __, 3
-	note E_, 1
-	note __, 3
-	loopchannel 0, Music_ProfOaksPokemonTalk_branch_7ef5c
-; 0x7f04a
+	rest 1
+	note D#, 1
+	rest 1
+	note C#, 1
+	rest 1
+	octave 2
+	note A#, 1
+	rest 1
+	sound_jump Music_ProfOaksPokemonTalk_branch_f4d95

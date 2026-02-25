@@ -4,30 +4,30 @@ ViridianGym_MapScriptHeader:
 	def_callbacks
 
 	def_warp_events
-	warp_event  6, 45, VIRIDIAN_CITY, 1
-	warp_event  7, 45, VIRIDIAN_CITY, 1
+	warp_event  6, 43, VIRIDIAN_CITY, 1
+	warp_event  7, 43, VIRIDIAN_CITY, 1
 
 	def_coord_events
 
 	def_bg_events
-	bg_event  4, 43, BGEVENT_READ, ViridianGymStatue
-	bg_event  9, 43, BGEVENT_READ, ViridianGymStatue
+	bg_event  4, 41, BGEVENT_READ, ViridianGymStatue
+	bg_event  9, 41, BGEVENT_READ, ViridianGymStatue
 
 	def_object_events
-	object_event  7,  2, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
-	object_event  8, 43, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
-	object_event  7, 35, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoAraandbela1, -1
-	object_event  6, 35, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoAraandbela2, -1
-	object_event  3, 34, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainerfSalma, -1
-	object_event  3, 20, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainerfBonita, -1
-	object_event  6,  8, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoElanandida1, -1
-	object_event  7,  8, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoElanandida2, -1
+	object_event  7,  2, SPRITE_BLUE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianGymBlueScript, EVENT_VIRIDIAN_GYM_BLUE
+	object_event  8, 41, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ViridianGymGuyScript, EVENT_VIRIDIAN_GYM_BLUE
+	object_event  7, 33, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoAraandbela1, -1
+	object_event  6, 33, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoAraandbela2, -1
+	object_event  3, 32, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainerfSalma, -1
+	object_event  3, 18, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCooltrainerfBonita, -1
+	object_event  6,  8, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoElanandida1, -1
+	object_event  7,  8, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerAceDuoElanandida2, -1
 
 ViridianGymBlueScript:
 	faceplayer
 	opentext
 	checkflag ENGINE_EARTHBADGE
-	iftrue .FightDone
+	iftruefwd .FightDone
 	writetext LeaderBlueBeforeText
 	waitbutton
 	closetext
@@ -41,24 +41,82 @@ ViridianGymBlueScript:
 	setevent EVENT_BEAT_COOLTRAINERF_BONITA
 	setevent EVENT_BEAT_ACE_DUO_ELAN_AND_IDA
 	opentext
-	writetext Text_ReceivedEarthBadge
-	playsound SFX_GET_BADGE
-	waitsfx
-	setflag ENGINE_EARTHBADGE
+	givebadge EARTHBADGE, KANTO_REGION
 	setevent EVENT_FINAL_BATTLE_WITH_LYRA
 .FightDone:
 	checkevent EVENT_GOT_TM71_STONE_EDGE
 	iftrue_jumpopenedtext LeaderBlueEpilogueText
 	writetext LeaderBlueAfterText
 	promptbutton
-	verbosegivetmhm TM_EARTHQUAKE
+	verbosegivetmhm TM_STONE_EDGE
 	setevent EVENT_GOT_TM71_STONE_EDGE
-	jumpopenedtext BlueOutroText
+	jumpthisopenedtext
+
+	text "It contains Stone"
+	line "Edge. It's not only"
+
+	para "for Rock-type"
+	line "#mon, got it?"
+
+	para "…"
+
+	para "All right, I was"
+	line "wrong. You're the"
+
+	para "real deal. You are"
+	line "a good trainer."
+
+	para "With eight Badges"
+	line "from Kanto, you"
+
+	para "can challenge the"
+	line "Elite Four again."
+
+	para "They won't go easy"
+	line "on a trainer who"
+	cont "beat two regions."
+
+	para "You can practice"
+	line "with me at the"
+
+	para "Fighting Dojo in"
+	line "Saffron City on"
+	cont "Mondays."
+
+	para "All of the Gym"
+	line "Leaders show up"
+	cont "there to train."
+
+	para "I'm going to beat"
+	line "you someday."
+
+	para "Don't you forget"
+	line "it!"
+	done
 
 ViridianGymGuyScript:
 	checkevent EVENT_BEAT_BLUE
 	iftrue_jumptextfaceplayer ViridianGymGuyWinText
-	jumptextfaceplayer ViridianGymGuyText
+	jumpthistextfaceplayer
+
+	text "Yo, Champ in"
+	line "making!"
+
+	para "How's it going?"
+	line "Looks like you're"
+	cont "on a roll."
+
+	para "The Gym Leader is"
+	line "a guy who battled"
+
+	para "the Champion three"
+	line "years ago."
+
+	para "He's no pushover."
+
+	para "Give it everything"
+	line "you've got!"
+	done
 
 GenericTrainerAceDuoAraandbela1:
 	generictrainer ACE_DUO, ARAANDBELA1, EVENT_BEAT_ACE_DUO_ARA_AND_BELA, AceDuoAraandbela1SeenText, AceDuoAraandbela1BeatenText
@@ -114,8 +172,12 @@ GenericTrainerAceDuoElanandida2:
 	done
 
 ViridianGymStatue:
-	gettrainername BLUE, 1, $1
-	jumpstd gymstatue
+	gettrainername BLUE, 1, STRING_BUFFER_4
+	checkflag ENGINE_EARTHBADGE
+	iftruefwd .Beaten
+	jumpstd gymstatue1
+.Beaten:
+	jumpstd gymstatue2
 
 LeaderBlueBeforeText:
 	text "Blue: Yo! Finally"
@@ -165,58 +227,11 @@ LeaderBlueWinText:
 	line "Badge."
 	done
 
-Text_ReceivedEarthBadge:
-	text "<PLAYER> received"
-	line "the Earth Badge."
-	done
-
 LeaderBlueAfterText:
 	text "Blue: Here! Take"
 	line "this as well!"
 	done
 
-BlueOutroText:
-	text "It contains Stone"
-	line "Edge. It's not only"
-
-	para "for Rock-type"
-	line "#mon, got it?"
-
-	para "…"
-
-	para "All right, I was"
-	line "wrong. You're the"
-
-	para "real deal. You are"
-	line "a good trainer."
-
-	para "With eight badges"
-	line "from Kanto, you"
-
-	para "can challenge the"
-	line "Elite Four again."
-
-	para "They won't go easy"
-	line "on a trainer who"
-	cont "beat two regions."
-
-	para "You can practice"
-	line "with me at the"
-
-	para "Fighting Dojo in"
-	line "Saffron City on"
-	cont "Mondays."
-
-	para "All of the Gym"
-	line "Leaders show up"
-	cont "there to train."
-
-	para "I'm going to beat"
-	line "you someday."
-
-	para "Don't you forget"
-	line "it!"
-	done
 
 LeaderBlueEpilogueText:
 	text "Blue: Listen, you."
@@ -226,25 +241,6 @@ LeaderBlueEpilogueText:
 	cont "you. Got it?"
 	done
 
-ViridianGymGuyText:
-	text "Yo, Champ in"
-	line "making!"
-
-	para "How's it going?"
-	line "Looks like you're"
-	cont "on a roll."
-
-	para "The Gym Leader is"
-	line "a guy who battled"
-
-	para "the Champion three"
-	line "years ago."
-
-	para "He's no pushover."
-
-	para "Give it everything"
-	line "you've got!"
-	done
 
 ViridianGymGuyWinText:
 	text "Man, you are truly"

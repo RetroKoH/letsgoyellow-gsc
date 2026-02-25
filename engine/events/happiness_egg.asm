@@ -3,20 +3,21 @@ GetFirstPokemonHappiness:
 	ld hl, wPartyMon1Species
 .loop
 	ld a, [hl]
-	push hl
-	ld bc, wPartyMon1IsEgg - wPartyMon1Species
+	ld bc, MON_IS_EGG - MON_SPECIES
 	add hl, bc
 	bit MON_IS_EGG_F, [hl]
-	pop hl
 	jr z, .done
-	ld bc, PARTYMON_STRUCT_LENGTH
+	ld bc, PARTYMON_STRUCT_LENGTH - MON_IS_EGG
 	add hl, bc
 	jr .loop
 
 .done
-	ld bc, wPartyMon1Happiness - wPartyMon1Species
-	add hl, bc
 	ld [wNamedObjectIndex], a
+	assert MON_IS_EGG == MON_FORM
+	ld a, [hl]
+	ld [wNamedObjectIndex+1], a
+	ld bc, MON_HAPPINESS - MON_IS_EGG
+	add hl, bc
 	ld a, [hl]
 	ldh [hScriptVar], a
 	call GetPokemonName
@@ -26,11 +27,12 @@ CheckFirstMonIsEgg:
 	ld a, [wPartyMon1Species]
 	ld [wNamedObjectIndex], a
 	ld a, [wPartyMon1IsEgg]
+	assert MON_IS_EGG == MON_FORM
+	ld [wNamedObjectIndex+1], a
 	bit MON_IS_EGG_F, a
-	ld a, $1
+	ld a, TRUE
 	jr nz, .egg
 	xor a
-
 .egg
 	ldh [hScriptVar], a
 	call GetPokemonName
@@ -72,7 +74,7 @@ ChangeHappiness:
 	ld d, 0
 	add hl, de
 	ld a, [hl]
-	cp $64 ; why not $80?
+	cp $80
 	pop de
 
 	ld a, [de]
@@ -161,9 +163,9 @@ StepHappiness::
 	jr .loop
 
 DayCareStep::
-
 	ld a, [wDayCareMan]
 	bit 0, a
+	push af
 	jr z, .daycare_lady
 
 	ld de, wBreedMon1Level
@@ -173,7 +175,14 @@ DayCareStep::
 .daycare_lady
 	ld a, [wDayCareLady]
 	bit 0, a
+	pop bc
 	jr z, .check_egg
+
+	; If both a (lady) and b (man) has bit 0 set, both of them are managing
+	; Pokémon. See if we should proc Mirror Herb.
+	and b
+	rrca
+	call c, .HandleMirrorHerb
 
 	ld de, wBreedMon2Level
 	ld hl, wBreedMon2Exp + 2
@@ -181,7 +190,7 @@ DayCareStep::
 
 .check_egg
 	ld hl, wDayCareMan
-	bit 5, [hl] ; egg
+	bit DAYCAREMAN_MONS_COMPATIBLE_F, [hl] ; egg
 	ret z
 	ld hl, wStepsToEgg
 	dec [hl]
@@ -215,8 +224,8 @@ DayCareStep::
 	cp b
 	ret nc
 	ld hl, wDayCareMan
-	res 5, [hl]
-	set 6, [hl]
+	res DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
+	set DAYCAREMAN_HAS_EGG_F, [hl]
 	ret
 
 .daycare_exp
@@ -231,7 +240,112 @@ DayCareStep::
 	ret nz
 	dec hl
 	ld a, [hl]
-	cp (MAX_DAY_CARE_EXP / $10000) - 1
+	cp (MAX_DAY_CARE_EXP >> 16) - 1
 	ret nc
 	inc [hl]
+	ret
+
+.HandleMirrorHerb:
+; Do nothing 255/256 of the time.
+	call Random
+	ret nz
+
+	; de is meant to address the other's move list, it's not a mistake.
+	ld hl, wBreedMon1Item
+	ld de, wBreedMon2Moves
+	call .HandleEachMirrorHerb
+	ld hl, wBreedMon2Item
+	ld de, wBreedMon1Moves
+.HandleEachMirrorHerb
+	; Are we actually holding a Mirror Herb?
+	ld a, [hl]
+	cp MIRROR_HERB
+	ret nz
+
+	; Do we have a free move slot?
+	ld bc, MON_MOVES - MON_ITEM
+	add hl, bc
+	ld b, NUM_MOVES
+	push hl
+.freemoveslot_loop
+	ld a, [hli]
+	and a
+	jr z, .found_free_slot
+	dec b
+	jr nz, .freemoveslot_loop
+	pop hl
+	ret
+
+.found_free_slot
+	; Get the correct egg move pointer.
+	pop hl
+	push hl
+	ld bc, MON_SPECIES - MON_MOVES
+	add hl, bc
+	ld a, [hl]
+	ld bc, MON_FORM - MON_SPECIES
+	add hl, bc
+	ld b, [hl]
+	ld c, a
+	call GetSpeciesAndFormIndex
+	ld hl, EggSpeciesMovesPointers
+	add hl, bc
+	add hl, bc
+	ld a, BANK(EggSpeciesMovesPointers)
+	call GetFarWord
+	ld b, h
+	ld c, l
+	inc bc
+	inc bc ; first two bytes are base evolution
+	pop hl
+
+	; Check each move slot for the other mon for whether we already know the
+	; move. If we don't, check if it's an egg move. If it is, learn it.
+	ld a, e
+	add NUM_MOVES - 1
+	dec hl
+
+.checkmove_loop
+	push hl
+	push af
+	ld a, [de]
+
+.ownmove_loop
+	; Check if we have a matching move. This also catches de==hl==0.
+	inc hl
+	cp [hl]
+	jr z, .next
+
+	; Have we reached the (first) empty move slot for the inheriting mon?
+	inc [hl]
+	dec [hl]
+	jr nz, .ownmove_loop
+
+	; We can learn this move, assuming it's part of our egg move table.
+	push hl
+	push de
+	push bc
+	ld h, b
+	ld l, c
+	ld c, a
+	ld a, BANK(EggSpeciesMoves)
+	call FarIsInByteArray
+	ld a, c
+	pop bc
+	pop de
+	pop hl
+	jr nc, .next
+
+	; This is a valid egg move. Inherit it.
+	ld [hl], a
+	pop af
+	pop hl
+	ret
+
+.next
+	pop af
+	pop hl
+	cp e
+	inc de
+	jr nz, .checkmove_loop
 	ret

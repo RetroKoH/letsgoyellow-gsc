@@ -2,7 +2,7 @@ TMHMPocket:
 	ld a, TRUE
 	ldh [hInMenu], a
 	call TMHM_PocketLoop
-	ld a, FALSE
+	ld a, FALSE ; no-optimize a = 0
 	ldh [hInMenu], a
 	ret nc
 	call PlaceHollowCursor
@@ -34,7 +34,7 @@ TMHM_PocketLoop:
 	ld [w2DMenuFlags2], a
 	ld a, $20
 	ld [w2DMenuCursorOffsets], a
-	ld a, A_BUTTON | B_BUTTON | START | D_UP | D_DOWN | D_LEFT | D_RIGHT
+	ld a, PAD_A | PAD_B | PAD_START | PAD_CTRL_PAD
 	ld [wMenuJoypadFilter], a
 	ld a, [wTMHMPocketCursor]
 	and $7f
@@ -64,13 +64,13 @@ TMHM_JoypadLoop:
 	jmp nz, TMHM_ScrollPocket
 	ld a, b
 	ld [wMenuJoypad], a
-	bit START_F, a
+	bit B_PAD_START, a
 	jr nz, TMHM_SortMenu
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, TMHM_ChooseTMorHM
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, TMHM_ExitPack
-	and D_RIGHT | D_LEFT
+	and PAD_RIGHT | PAD_LEFT
 	ret nz
 TMHM_ShowTMMoveDescription:
 	call TMHM_GetCurrentTMHM
@@ -78,12 +78,12 @@ TMHM_ShowTMMoveDescription:
 	lb bc, 4, SCREEN_WIDTH - 2
 	call Textbox
 	ld a, [wCurTMHM]
-	cp NUM_TMS + 1
+	cp NUM_TMS + NUM_HMS + 1
 	jr nc, .Cancel
 	ld [wTempTMHM], a
 	predef GetTMHMMove
 	farcall LoadTMHMIconPalette
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	ld a, [wTempTMHM]
 	ld [wCurMove], a
 	hlcoord 1, 14
@@ -118,7 +118,7 @@ TMHM_GetCurrentTMHM:
 .loop
 	inc c
 	ld a, c
-	cp NUM_TMS + 1
+	cp NUM_TMS + NUM_HMS + 1
 	jr nc, .okay
 	call InnerCheckTMHM
 	jr z, .loop
@@ -135,7 +135,6 @@ TMHM_ExitPack:
 _TMHM_ExitPack:
 	ld a, $2
 	ld [wMenuJoypad], a
-TMHM_ExitPocket:
 	and a
 	ret
 
@@ -157,7 +156,7 @@ TMHM_ScrollPocket:
 .loop
 	inc c
 	ld a, c
-	cp NUM_TMS + 1
+	cp NUM_TMS + NUM_HMS + 1
 	jmp nc, TMHM_JoypadLoop
 	call InnerCheckTMHM
 	jr z, .loop
@@ -181,7 +180,7 @@ TMHM_DisplayPocketItems:
 .loop2
 	inc c
 	ld a, c
-	cp NUM_TMS + 1
+	cp NUM_TMS + NUM_HMS + 1
 	jr nc, .NotTMHM
 	call InnerCheckTMHM
 	jr z, .loop2
@@ -206,7 +205,7 @@ TMHM_DisplayPocketItems:
 	push af
 	sub NUM_TMS
 	ld [wTempTMHM], a
-	ld a, "H"
+	ld a, 'H'
 	ld [hli], a
 	ld de, wTextDecimalByte
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
@@ -266,7 +265,7 @@ TMHM_GetCurrentPocketPosition:
 .loop
 	inc c
 	ld a, c
-	cp NUM_TMS + 1
+	cp NUM_TMS + NUM_HMS + 1
 	jr z, .cancel
 	call InnerCheckTMHM
 	jr z, .loop
@@ -312,7 +311,7 @@ TMHM_GetAlpha:
 	ld c, a
 	ld b, 0
 	dec c
-	ld hl, TMListAlpha
+	ld hl, TMHMListAlpha
 	add hl, bc
 	ld a, [hl]
 	pop bc
@@ -369,7 +368,7 @@ AskTeachTMHM:
 	call CopyName1
 	ld hl, Text_BootedTM ; Booted up a TM
 	ld a, [wCurTMHM]
-	cp MT01 + 1 ; off by one error?
+	cp HM01 + 1 ; off by one error?
 	jr c, .TM
 
 	; allow full PP restore for HMs
@@ -410,16 +409,16 @@ ChooseMonToLearnTMHM_NoRefresh:
 	ld [wPartyMenuActionText], a
 .loopback
 	farcall WritePartyMenuTilemap
-	farcall PrintPartyMenuText
+	farcall PlacePartyMenuText
 	call ApplyTilemapInVBlank
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DelayFrame
 	farcall PartyMenuSelect
 	ret c
 	push af
 	ld a, MON_IS_EGG
-	call GetPartyParamLocation
-	bit MON_IS_EGG_F, [hl]
+	call GetPartyParamLocationAndValue
+	bit MON_IS_EGG_F, a
 	pop bc ; now contains the former contents of af
 	jr nz, .egg
 	push bc
@@ -446,8 +445,7 @@ ChooseMonToLearnTMHM_NoRefresh:
 
 TeachTMHM:
 	ld a, MON_FORM
-	call GetPartyParamLocation
-	ld a, [hl]
+	call GetPartyParamLocationAndValue
 	and SPECIESFORM_MASK
 	ld [wCurForm], a
 	predef CanLearnTMHMMove
@@ -503,19 +501,19 @@ _GetTMHMName::
 	push af
 
 ; TM/HM prefix
-	cp MT01
+	cp HM01
 	push af
 	jr c, .TM
 
 	ld hl, .HMText
 	ld bc, .HMTextEnd - .HMText
-	jr .asm_34a1
+	jr .copy
 
 .TM:
 	ld hl, .TMText
 	ld bc, .TMTextEnd - .TMText
 
-.asm_34a1
+.copy
 	ld de, wStringBuffer1
 	rst CopyBytes
 
@@ -526,19 +524,19 @@ _GetTMHMName::
 ; HM numbers start from 51, not 1
 	pop af
 	ld a, c
-	jr c, .asm_34b9
+	jr c, .not_hm
 	sub NUM_TMS
-.asm_34b9
+.not_hm
 	inc a
 
 ; Divide and mod by 10 to get the top and bottom digits respectively
-	ld b, "0"
+	ld b, '0'
 .mod10
 	sub 10
-	jr c, .asm_34c2
+	jr c, .done_mod
 	inc b
 	jr .mod10
-.asm_34c2
+.done_mod
 	add 10
 
 	push af
@@ -547,13 +545,13 @@ _GetTMHMName::
 	inc de
 	pop af
 
-	ld b, "0"
+	ld b, '0'
 	add b
 	ld [de], a
 
 ; End the string
 	inc de
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 
 	pop af
@@ -575,7 +573,7 @@ _GetTMHMName::
 	db "@"
 
 IsHM::
-	cp MT01
+	cp HM01
 	jr c, .NotHM
 	scf
 	ret
@@ -585,7 +583,7 @@ IsHM::
 
 KnowsMove:
 	ld a, MON_MOVES
-	call GetPartyParamLocation
+	call GetPartyParamLocationAndValue
 	ld a, [wPutativeTMHMMove]
 	ld b, a
 	ld c, NUM_MOVES
@@ -629,4 +627,4 @@ Text_TMHMNotCompatible:
 	text_far _TMHMNotCompatibleText
 	text_end
 
-INCLUDE "data/moves/tm_order.asm"
+INCLUDE "data/moves/tmhm_order.asm"

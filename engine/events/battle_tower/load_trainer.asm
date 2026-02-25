@@ -1,4 +1,4 @@
-BTMON_SIZE EQU 9 ; species + personality extspecies/gender/form + item + 4 moves + DV index + personality ability/nature
+DEF BTMON_SIZE EQU 9 ; species + personality extspecies/gender/form + item + 4 moves + DV index + personality ability/nature
 
 INCLUDE "data/battle_tower/classes.asm"
 INCLUDE "data/battle_tower/tiers.asm"
@@ -13,7 +13,7 @@ WriteBattleTowerTrainerName:
 	rst CopyBytes
 
 	; Add terminator
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 
 	; The 11th byte is actually trainer class, not a terminator.
@@ -22,14 +22,12 @@ WriteBattleTowerTrainerName:
 	ret
 
 NewRentalTeam:
-; Gives the player 6 rental Pokémon to choose from. The first 3
-; are guranteed to be legal together (the first 6 run into problems with
-; Item Clause).
+; Gives the player 6 rental Pokémon to choose from. They are guranteed to
+; be legal in any combination (no duplicate Pokémon).
 	; First, figure out tier selection.
 	ld a, [wBattleFactorySwapCount]
 	ld c, 6
 	call SimpleDivide
-	ld b, a
 
 	ld a, 5 ; same as for trainer 6 (0-indexed).
 	push bc
@@ -73,7 +71,7 @@ NewRentalTeam:
 	; Now, shuffle the tier composition as to not reveal what tiers each mon is.
 	ld c, PARTY_LENGTH
 	pop hl
-	call ShuffleTierSelections
+	call Shuffle16
 
 	; Group composition complete. Now generate the actual sets.
 .generate_team
@@ -81,7 +79,7 @@ NewRentalTeam:
 	ld [wOTPartyCount], a
 
 	ld hl, wBT_MonParty
-	ld b, BATTLETOWER_PARTY_LENGTH
+	ld b, PARTY_LENGTH
 
 .generate_loop
 	push bc
@@ -102,66 +100,8 @@ NewRentalTeam:
 	farcall BT_LegalityCheck
 	jr nz, .generate_team
 
-.generate_filler
-	; The picks are legal. Now, generate filler to fill up the rest
-	; of the party without checking for legality. We do, however, still
-	; want them to be distinct sets, checked later.
-	ld a, BATTLETOWER_PARTY_LENGTH
-	ld [wOTPartyCount], a
-
-	ld hl, wBT_MonParty + BATTLETOWER_PARTYDATA_SIZE
-	ld b, PARTY_LENGTH - BATTLETOWER_PARTY_LENGTH
-
-.filler_loop
-	push bc
-	ld a, [hli]
-	ld b, a
-
-	; Ignore set index, we want to pick a random mon.
-	ld c, -1
-	call BT_AppendOTMon
-
-	ld a, c
-	ld [hli], a
-	pop bc
-	dec b
-	jr nz, .filler_loop
-
-	; Now, verify that all sets are distinct. This does check both
-	; group + index, even if group is currently redundant. This is
-	; in case we generate mons from different groups in the future.
-	ld de, wBT_MonParty
-	ld a, [wOTPartyCount]
-	dec a
-	ld c, a
-.outer_loop
-	ld h, d
-	ld l, e
-	inc hl
-	inc hl
-	ld b, c
-.inner_loop
-	; Is group identical?
-	ld a, [de]
-	cp [hl]
-	inc de
-	inc hl
-	jr nz, .next
-
-	; Is set identical?
-	ld a, [de]
-	cp [hl]
-	jr z, .generate_filler
-
-.next
-	dec de
-	inc hl
-	dec b
-	jr nz, .inner_loop
-	inc de
-	inc de
-	dec c
-	jr nz, .outer_loop
+	; We don't need to verify distinct sets, since that would implicitly
+	; violate Species Clause.
 	ret
 
 LoadRentalParty:
@@ -407,35 +347,21 @@ BT_AppendOTMon:
 	rst AddNTimes
 
 	; Now we can actually start adding data.
-	ld b, [hl]
-	ld a, b
+	ld a, [hli]
 	ld [wNamedObjectIndex], a ; for later nickname setup
+	ld a, [hld]
+	ld [wNamedObjectIndex+1], a
 	push hl
 
-	; Add first species byte.
-	ld hl, wOTPartySpecies
-	ld a, [wOTPartyCount]
-	push af
-	add l
-	ld l, a
-	adc h
-	sub l
-	ld h, a
-	ld [hl], b
-	pop af
-
-	; Also append terminator
-	inc hl
-	ld [hl], -1
-
 	; Set de to the relevant partymon struct.
+	ld a, [wOTPartyCount]
 	ld hl, wOTPartyMon1
 	call GetPartyLocation
 	ld d, h
 	ld e, l
 	pop hl
 
-	; Add second species byte
+	; Add species byte
 	ld bc, 1
 	ld a, MON_SPECIES
 	call .Copy
@@ -496,7 +422,7 @@ BT_AppendOTMon:
 	; Happiness is always 255
 	ld hl, MON_HAPPINESS
 	add hl, de
-	ld [hl], 255
+	ld [hl], MAX_RETURN_HAPPINESS
 
 	; Clear status conditions
 	ld hl, MON_STATUS
@@ -529,12 +455,12 @@ BT_AppendOTMon:
 	rst ByteFill
 
 	; If Speed DV is zero, also set Speed EV to zero
-	ld hl, wPartyMon1DefSpdDV - wPartyMon1
+	ld hl, wPartyMon1DefSpeDV - wPartyMon1
 	add hl, de
 	ld a, [hl]
 	and $f
 	jr nz, .speed_dv_ok
-	ld hl, MON_SPD_EV
+	ld hl, MON_SPE_EV
 	add hl, de
 	ld [hl], a
 
@@ -551,9 +477,8 @@ BT_AppendOTMon:
 	rst CopyBytes
 
 	; All done, now we just have to increment the party counter
-	ld a, [wOTPartyCount]
-	inc a
-	ld [wOTPartyCount], a
+	ld hl, wOTPartyCount
+	inc [hl]
 	pop bc
 
 	; Overwrite c with actual set index, assuming it was -1 previously.
@@ -622,10 +547,11 @@ BT_GetTierTable:
 	jr nz, .add_loop
 
 	; Now shuffle the team.
-	ld c, BATTLETOWER_PARTY_LENGTH
 	ld hl, wBT_OTMonParty
+	ld c, BATTLETOWER_PARTY_LENGTH
 	; fallthrough
-ShuffleTierSelections:
+
+Shuffle16:
 ; Shuffles 16bit array in hl of length c.
 .shuffle_loop
 	; This is intentional. We iterate one less than the amount of mons.
@@ -647,20 +573,19 @@ ShuffleTierSelections:
 	pop bc
 	add hl, bc
 	add hl, bc
-	call .SwapByte
+	ld a, [de]
+	ld b, [hl]
+	ld [hli], a
+	ld a, b
+	ld [de], a
 	inc de
-	inc hl
-	call .SwapByte
-	pop hl
-	jr .shuffle_loop
-
-.SwapByte:
 	ld a, [de]
 	ld b, [hl]
 	ld [hl], a
 	ld a, b
 	ld [de], a
-	ret
+	pop hl
+	jr .shuffle_loop
 
 BT_GetPointsForTrainer:
 ; Returns BP reward that the given trainer in a gives from the table below.
@@ -743,6 +668,7 @@ BT_GetPointsForTrainer:
 BT_GetEVsForTrainer:
 ; Return EVs for given trainer in a. Value is (CurStreak + CurTrainer) * 16,
 ; capped at 252 in Battle Tower, and always 252 in Battle Factory.
+; If modern EVs are enabled, the EVs are divided by 3 before return.
 	ld b, a
 	farcall BT_InRentalMode
 	jr z, .max
@@ -760,10 +686,24 @@ BT_GetEVsForTrainer:
 
 	; EVs = (current streak + current trainer) * 16
 	swap a
-	ret
+	jr DivideModernEVs
 
 .max
-	ld a, 252
+	ld a, MODERN_MAX_EV
+	; fallthrough
+DivideModernEVs:
+; Divides a by 3 if modern EVs are enabled. Intended to be run on a classical
+; EV input. 252 -> 84, a single stat point below the 510 limit (close enough).
+	push bc
+	ld b, a
+	ld a, [wInitialOptions2]
+	and EV_OPTMASK
+	cp EVS_OPT_MODERN
+	ld a, b
+	ld c, 3
+	call z, SimpleDivide
+	ld a, b ; Quotient if zero, otherwise a no-op.
+	pop bc
 	ret
 
 BT_GetTargetTier:
@@ -864,8 +804,8 @@ BT_SetLevel:
 	pop hl
 	pop de
 	push de
+	xor a
 	bit 7, d
-	ld a, 0
 	jr nz, .hyper_training_done
 	push hl
 	ld a, e

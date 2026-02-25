@@ -1,60 +1,32 @@
-HealPartyEvenForNuzlocke:
-	ld a, [wInitialOptions]
-	bit NUZLOCKE_MODE, a
-	jr z, HealParty
-
-	ld a, [wInitialOptions]
-	res NUZLOCKE_MODE, a
-	ld [wInitialOptions], a
-	call HealParty
-	ld a, [wInitialOptions]
-	set NUZLOCKE_MODE, a
-	ld [wInitialOptions], a
-	ret
-
-HealPartyMonEvenForNuzlocke:
-	ld a, [wInitialOptions]
-	bit NUZLOCKE_MODE, a
-	jr z, HealPartyMon
-
-	ld a, [wInitialOptions]
-	res NUZLOCKE_MODE, a
-	ld [wInitialOptions], a
-	call HealPartyMon
-	ld a, [wInitialOptions]
-	set NUZLOCKE_MODE, a
-	ld [wInitialOptions], a
-	ret
-
 HealParty:
+	ld a, [wPartyCount]
+	ld c, a
 	xor a
-	ld [wCurPartyMon], a
-	ld hl, wPartySpecies
 .loop
-	ld a, [hli]
-	cp -1
+	cp c
 	ret z
-	push hl
+	ld [wCurPartyMon], a
+	push bc
 	ld a, MON_IS_EGG
-	call GetPartyParamLocation
-	bit MON_IS_EGG_F, [hl]
+	call GetPartyParamLocationAndValue
+	bit MON_IS_EGG_F, a
 	call z, HealPartyMon
-	pop hl
+	pop bc
 	ld a, [wCurPartyMon]
 	inc a
-	ld [wCurPartyMon], a
 	jr .loop
 
 HealPartyMon:
 	ld a, MON_SPECIES
-	call GetPartyParamLocation
+	call GetPartyParamLocationAndValue
 	ld d, h
 	ld e, l
 
 	ld hl, MON_STATUS
 	add hl, de
 	xor a
-	ld [hl], a ; removed increment, so Shadow status isn't overwritten.
+	ld [hli], a
+	ld [hl], a
 
 	ld hl, MON_MAXHP
 	add hl, de
@@ -65,19 +37,6 @@ HealPartyMon:
 	dec bc
 	dec bc
 
-	ld a, [wInitialOptions]
-	bit NUZLOCKE_MODE, a
-	jr z, .Revive
-	ld a, [bc]
-	push hl
-	ld h, b
-	ld l, c
-	inc hl
-	or [hl]
-	pop hl
-	ret z
-
-.Revive:
 	ld a, [hli]
 	ld [bc], a
 	inc bc
@@ -100,7 +59,7 @@ ComputeHPBarPixels:
 	ldh [hMultiplicand + 2], a
 	ld a, 6 * 8
 	ldh [hMultiplier], a
-	call Multiply
+	farcall Multiply
 	; We need de to be under 256 because hDivisor is only 1 byte.
 	ld a, d
 	and a
@@ -110,10 +69,13 @@ ComputeHPBarPixels:
 	rr e
 	srl d
 	rr e
+	ldh a, [hProduct + 1]
+	srl a ; get the 17th bit into the carry bit
+	ldh [hProduct + 1], a
 	ldh a, [hProduct + 2]
 	ld b, a
 	ldh a, [hProduct + 3]
-	srl b
+	rr b
 	rra
 	srl b
 	rra
@@ -124,7 +86,7 @@ ComputeHPBarPixels:
 	ld a, e
 	ldh [hDivisor], a
 	ld b, 4
-	call Divide
+	farcall Divide
 	ldh a, [hQuotient + 2]
 	ld e, a
 	pop hl

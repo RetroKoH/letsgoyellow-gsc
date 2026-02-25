@@ -1,6 +1,7 @@
 RuinsOfAlphAerodactylChamber_MapScriptHeader:
 	def_scene_scripts
-	scene_script RuinsofAlphAerodactylChamberTrigger0
+	scene_script RuinsOfAlphAerodactylChamberCheckWallScene, SCENE_RUINSOFALPHAERODACTYLCHAMBER_CHECK_WALL
+	scene_const SCENE_RUINSOFALPHAERODACTYLCHAMBER_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, RuinsOfAlphAerodactylChamberHiddenDoorsCallback
@@ -24,20 +25,20 @@ RuinsOfAlphAerodactylChamber_MapScriptHeader:
 
 	def_object_events
 
-RuinsofAlphAerodactylChamberTrigger0:
+RuinsOfAlphAerodactylChamberCheckWallScene:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
-	iffalse .End
+	iffalsefwd .End
 	sdefer RuinsOfAlphAerodactylChamberWallOpenScript
 .End
 	end
 
 RuinsOfAlphAerodactylChamberHiddenDoorsCallback:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
-	iftrue .WallOpen
+	iftruefwd .WallOpen
 	changeblock 4, 0, $24
 .WallOpen:
 	checkevent EVENT_SOLVED_AERODACTYL_PUZZLE
-	iffalse .FloorClosed
+	iffalsefwd .FloorClosed
 	endcallback
 
 .FloorClosed:
@@ -52,29 +53,29 @@ RuinsOfAlphAerodactylChamberWallOpenScript:
 	pause 30
 	playsound SFX_STRENGTH
 	changeblock 4, 0, $25
-	reloadmappart
+	refreshmap
 	earthquake 50
-	setscene $1
+	setscene SCENE_RUINSOFALPHAERODACTYLCHAMBER_NOOP
 	endtext
 
 MapRuinsofAlphAerodactylChamberSignpost2Script:
-	refreshscreen
+	reanchormap
 	setval $2
 	special Special_UnownPuzzle
 	closetext
-	iftrue .PuzzleComplete
+	iftruefwd .PuzzleComplete
 	end
 
 .PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_AERODACTYL_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_R_TO_W
-	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, $1
+	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
 	changeblock 2, 2, $14
 	changeblock 4, 2, $15
-	reloadmappart
+	refreshmap
 	playsound SFX_STRENGTH
 	earthquake 80
 	applyonemovement PLAYER, skyfall_top
@@ -85,10 +86,13 @@ MapRuinsofAlphAerodactylChamberSignpost2Script:
 	end
 
 MapRuinsofAlphAerodactylChamberSignpost3Script:
+	opentext
 	unowntypeface
-	showtext RuinsOfAlphAerodactylChamberDescriptionText
+	writetext RuinsOfAlphAerodactylChamberDescriptionText
+	waitbutton
+	closetext
 	restoretypeface
-	special MapCallbackSprites_LoadUsedSpritesGFX
+	special RefreshSprites
 	end
 
 MapRuinsofAlphAerodactylChamberSignpost5Script:
@@ -97,9 +101,9 @@ MapRuinsofAlphAerodactylChamberSignpost5Script:
 MapRuinsofAlphAerodactylChamberSignpost4Script:
 	opentext
 	checkevent EVENT_RUINS_OF_ALPH_OUTSIDE_TOURIST_YOUNGSTERS
-	iftrue .unsolved
+	iftruefwd .unsolved
 	writetext RuinsOfAlphChambersItsUnownText
-	sjump .unownwords
+	sjumpfwd .unownwords
 .unsolved
 	writetext RuinsOfAlphAerodactylChamberWallPatternLeftText
 .unownwords

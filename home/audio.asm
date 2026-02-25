@@ -38,17 +38,58 @@ UpdateSound::
 
 	jmp PopAFBCDEHL
 
+LoadMusicByte::
+; input:
+;   de = current music address
+; output:
+;   a = wCurMusicByte
+	ld a, [wMusicBank]
+; fallthrough
 _LoadMusicByte::
 ; wCurMusicByte = [a:de]
 	rst Bankswitch
 	ld a, [de]
 	ld [wCurMusicByte], a
-	ld a, BANK(LoadMusicByte)
+	ld a, BANK(GetMusicByte)
+	rst Bankswitch
+	ld a, [wCurMusicByte]
+	ret
+
+_LoadMusicWord::
+	rst Bankswitch
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	ld h, a
+	inc de
+	ld [wCurMusicByte], a
+	ld a, BANK(GetMusicByte)
 	rst Bankswitch
 	ret
 
 CheckSpecialMapMusic:
 ; Returns z if the current map has a special music handler.
+
+	ldh a, [hROMBank]
+	push af
+	ld a, BANK(GetOvercastIndex)
+	rst Bankswitch
+	call GetOvercastIndex ; far-ok
+	ld b, a
+	pop af
+	rst Bankswitch
+	ld a, b
+	and a
+	jr z, .check_special
+	ld hl, .OvercastMusicHandler
+	xor a
+	ret
+
+.OvercastMusicHandler:
+	dw GetMapMusic
+
+.check_special
 	ld hl, SpecialMusicMaps
 	ld a, [wMapGroup]
 	ld b, a
@@ -83,30 +124,39 @@ PlayBikeMusic:
 	call .get_bike_music
 	ld a, e
 	ld [wMapMusic], a
+	ld a, [wMusicFade]
+	and a
+	jr z, PlayMusic
+	; we are fading so set bike music to play after fade
+	ld a, e
+	ld [wMusicFadeIDLo], a
+	xor a ; music hi byte is always 0
+	ld [wMusicFadeIDHi], a
 	jr PlayMusic
 
 .get_bike_music
 	call RegionCheck
 	ld a, e
-	ld de, MUSIC_BICYCLE_RB
+	ld e, MUSIC_BICYCLE_RB
 	cp KANTO_REGION
 	ret z
-	ld de, MUSIC_BICYCLE_RSE
+	ld e, MUSIC_BICYCLE_RSE
 	cp ORANGE_REGION
 	ret z
-	ld de, MUSIC_BICYCLE
+	ld e, MUSIC_BICYCLE
 	ret
 
 PlayMusicAfterDelay::
 	push de
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	pop de
 	ld a, e
 	ld [wMapMusic], a
 PlayMusic::
-; Play music de.
+; Play music e.
+	ld d, 0
 
 	push hl
 	push de
@@ -135,7 +185,8 @@ PlayMusic::
 	jmp PopAFBCDEHL
 
 PlayMusic2::
-; Stop playing music, then play music de.
+; Stop playing music, then play music e.
+	ld d, 0
 
 	push hl
 	push de
@@ -144,11 +195,11 @@ PlayMusic2::
 
 	ldh a, [hROMBank]
 	push af
+
 	ld a, BANK(_PlayMusic)
 	rst Bankswitch
-
 	push de
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call _PlayMusic ; far-ok
 	call DelayFrame
 	pop de
@@ -159,8 +210,8 @@ PlayMusic2::
 
 	jmp PopAFBCDEHL
 
-PlayCryHeader::
-; Play cry header de.
+PlayCry::
+; Play cry de.
 
 	push hl
 	push de
@@ -170,33 +221,13 @@ PlayCryHeader::
 	ldh a, [hROMBank]
 	push af
 
-	; Cry headers are stuck in one bank.
 	ld a, BANK(PokemonCries)
 	rst Bankswitch
+	call _LoadCry
 
-	ld hl, PokemonCries
-rept 6
-	add hl, de
-endr
-
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-
-	ld a, [hli]
-	ld [wCryPitch], a
-	ld a, [hli]
-	ld [wCryPitch + 1], a
-	ld a, [hli]
-	ld [wCryLength], a
-	ld a, [hl]
-	ld [wCryLength + 1], a
-
-	ld a, BANK(_PlayCryHeader)
+	ld a, BANK(_PlayCry)
 	rst Bankswitch
-
-	call _PlayCryHeader ; far-ok
+	call _PlayCry ; far-ok
 
 	pop af
 	rst Bankswitch
@@ -217,7 +248,7 @@ PlaySFX::
 
 	; Is something already playing?
 	call CheckSFX
-	jr nc, .play
+	jr z, .play
 
 	; Does it have priority?
 	ld a, [wCurSFX]
@@ -252,51 +283,14 @@ WaitSFX::
 .wait
 	call DelayFrame
 .handleLoop
-	ld hl, wChannel5Flags
-	bit 0, [hl]
-	jr nz, .wait
-	ld hl, wChannel6Flags
-	bit 0, [hl]
-	jr nz, .wait
-	ld hl, wChannel7Flags
-	bit 0, [hl]
-	jr nz, .wait
-	ld hl, wChannel8Flags
-	bit 0, [hl]
+	call CheckSFX
 	jr nz, .wait
 
 	pop hl
-	ret
-
-IsSFXPlaying::
-; Return carry if no sound effect is playing.
-; The inverse of CheckSFX.
-	push hl
-
-	ld hl, wChannel5Flags
-	bit 0, [hl]
-	jr nz, .playing
-	ld hl, wChannel6Flags
-	bit 0, [hl]
-	jr nz, .playing
-	ld hl, wChannel7Flags
-	bit 0, [hl]
-	jr nz, .playing
-	ld hl, wChannel8Flags
-	bit 0, [hl]
-	jr nz, .playing
-
-	pop hl
-	scf
-	ret
-
-.playing
-	pop hl
-	and a
 	ret
 
 MaxVolume::
-	ld a, $77 ; max
+	ld a, MAX_VOLUME
 	ld [wVolume], a
 	ret
 
@@ -317,18 +311,19 @@ FadeInToMusic::
 
 SkipMusic::
 ; Skip a frames of music.
-	ldh [hBuffer], a
+	push bc
+	ld b, a
 	ld a, [wMusicPlaying]
-	push af
+	ld c, a
 	xor a
 	ld [wMusicPlaying], a
-	ldh a, [hBuffer]
 .loop
 	call UpdateSound
-	dec a
+	dec b
 	jr nz, .loop
-	pop af
+	ld a, c
 	ld [wMusicPlaying], a
+	pop bc
 	ret
 
 FadeToMapMusic::
@@ -346,7 +341,7 @@ FadeToMapMusic::
 	ld [wMusicFade], a
 	ld a, e
 	ld [wMusicFadeIDLo], a
-	ld a, d
+	xor a ; music hi byte is always 0
 	ld [wMusicFadeIDHi], a
 	ld a, e
 	ld [wMapMusic], a
@@ -387,7 +382,7 @@ TryRestartMapMusic::
 	jmp z, RestoreMusic
 	xor a
 	ld [wMapMusic], a
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	xor a
@@ -399,7 +394,7 @@ RestartMapMusic::
 	push de
 	push bc
 	push af
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
 	ld a, [wMapMusic]
@@ -414,14 +409,14 @@ GetMapMusic_MaybeSpecial::
 	jr GetPlayerStateMusic
 
 GetCyclingRoadMusic:
-	ld de, MUSIC_BICYCLE_XY
+	ld e, MUSIC_BICYCLE_XY
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
 	ret z
 	jr GetPlayerStateMusic
 
 GetBugCatchingContestMusic:
-	ld de, MUSIC_BUG_CATCHING_CONTEST_RANKING
+	ld e, MUSIC_BUG_CATCHING_CONTEST_RANKING
 	ld a, [wStatusFlags2]
 	bit 2, a ; ENGINE_BUG_CONTEST_TIMER
 	ret nz
@@ -429,57 +424,45 @@ GetBugCatchingContestMusic:
 
 GetPlayerStateMusic:
 	ld a, [wPlayerState]
-	cp PLAYER_SURF
-	jr z, .surf
 	cp PLAYER_SURF_PIKA
-	jr z, .surf_pikachu
-	jmp GetMapMusic
-
-.surf:
+	ld e, MUSIC_SURFING_PIKACHU
+	ret z
+	cp PLAYER_SURF
+	jmp nz, GetMapMusic
 	call RegionCheck
 	ld a, e
-	ld de, MUSIC_SURF_KANTO
+	ld e, MUSIC_SURF_KANTO
 	cp KANTO_REGION
 	ret z
-	ld de, MUSIC_SURF_HOENN
+	ld e, MUSIC_SURF_HOENN
 	cp ORANGE_REGION
 	ret z
-	ld de, MUSIC_SURF
-	ret
-
-.surf_pikachu:
-	ld de, MUSIC_SURFING_PIKACHU
+	ld e, MUSIC_SURF
 	ret
 
 CheckSFX::
-; Return carry if any SFX channels are active.
-	ld a, [wChannel5Flags]
-	bit 0, a
-	jr nz, .playing
-	ld a, [wChannel6Flags]
-	bit 0, a
-	jr nz, .playing
-	ld a, [wChannel7Flags]
-	bit 0, a
-	jr nz, .playing
-	ld a, [wChannel8Flags]
-	bit 0, a
-	jr nz, .playing
-	and a
-	ret
-.playing
-	scf
+; Return nz if any SFX channels are active.
+	xor a
+	ld hl, wChannel5Flags
+	or [hl]
+	ld hl, wChannel6Flags
+	or [hl]
+	ld hl, wChannel7Flags
+	or [hl]
+	ld hl, wChannel8Flags
+	or [hl]
+	bit SOUND_CHANNEL_ON, a
 	ret
 
 TerminateExpBarSound::
 	xor a
 	ld [wChannel5Flags], a
 	ld [wSoundInput], a
-	ldh [rNR10], a
-	ldh [rNR11], a
-	ldh [rNR12], a
-	ldh [rNR13], a
-	ldh [rNR14], a
+	ldh [rAUD1SWEEP], a
+	ldh [rAUD1LEN], a
+	ldh [rAUD1ENV], a
+	ldh [rAUD1LOW], a
+	ldh [rAUD1HIGH], a
 	ret
 
 ChannelsOff::

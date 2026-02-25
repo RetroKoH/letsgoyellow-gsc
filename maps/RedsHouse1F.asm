@@ -14,7 +14,7 @@ RedsHouse1F_MapScriptHeader:
 	bg_event  5,  1, BGEVENT_UP, RedsHouse1FTVScript
 
 	def_object_events
-	object_event  5,  3, SPRITE_REDS_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, RedsMom, -1
+	object_event  5,  3, SPRITE_REDS_MOM, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, RedsMom, -1
 
 RedsMom:
 	checkevent EVENT_MET_REDS_MOM
@@ -46,13 +46,12 @@ RedsMom:
 	text "I worry about Red"
 	line "getting hurt or"
 
-	para "sick, but he isn't"
-	line "a little kid any-"
-	cont "more."
+	para "sick, but he's a"
+	line "boy. I'm proud"
 
-	para "I'm proud that he"
-	line "is out doing what"
-	cont "he wants to do."
+	para "that he is doing"
+	line "what he wants to"
+	cont "do."
 	done
 
 RedsHouse1FTVScript:

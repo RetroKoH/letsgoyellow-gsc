@@ -1,6 +1,7 @@
 WillsRoom_MapScriptHeader:
 	def_scene_scripts
-	scene_script WillsRoomEntranceTrigger
+	scene_script WillsRoomLockDoorScene, SCENE_WILLSROOM_LOCK_DOOR
+	scene_const SCENE_WILLSROOM_NOOP
 
 	def_callbacks
 	callback MAPCALLBACK_TILES, WillsRoomDoorCallback
@@ -15,39 +16,39 @@ WillsRoom_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  7, SPRITE_WILL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WillScript, -1
+	object_event  5,  7, SPRITE_WILL, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, WillScript, -1
 
-WillsRoomEntranceTrigger:
+WillsRoomLockDoorScene:
 	sdefer .Script
 	end
 
 .Script:
 	applymovement PLAYER, WalkIntoEliteFourRoomMovement
-	refreshscreen
+	reanchormap
 	playsound SFX_STRENGTH
 	earthquake 80
 	changeblock 4, 14, $2a
-	reloadmappart
+	refreshmap
 	closetext
-	setscene $1
+	setscene SCENE_WILLSROOM_NOOP
 	setevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
 	waitsfx
 	end
 
 WillsRoomDoorCallback:
 	checkevent EVENT_WILLS_ROOM_ENTRANCE_CLOSED
-	iffalse .KeepDoorClosed
+	iffalsefwd .KeepDoorClosed
 	changeblock 4, 14, $2a
 .KeepDoorClosed:
 	checkevent EVENT_WILLS_ROOM_EXIT_OPEN
-	iffalse .OpenDoor
+	iffalsefwd .OpenDoor
 	changeblock 4, 2, $16
 .OpenDoor:
 	endcallback
 
 WillScript:
 	readvar VAR_BADGES
-	ifequal 16, .Rematch
+	ifequalfwd 16, .Rematch
 	checkevent EVENT_BEAT_ELITE_4_WILL
 	iftrue_jumptextfaceplayer .AfterText
 	showtextfaceplayer .SeenText
@@ -56,7 +57,7 @@ WillScript:
 	startbattle
 	reloadmapafterbattle
 	showtext .AfterText
-	sjump .EndBattle
+	sjumpfwd .EndBattle
 
 .Rematch:
 	checkevent EVENT_BEAT_ELITE_4_WILL
@@ -70,7 +71,7 @@ WillScript:
 .EndBattle:
 	playsound SFX_ENTER_DOOR
 	changeblock 4, 2, $16
-	reloadmappart
+	refreshmap
 	setevent EVENT_WILLS_ROOM_EXIT_OPEN
 	setevent EVENT_BEAT_ELITE_4_WILL
 	waitsfx

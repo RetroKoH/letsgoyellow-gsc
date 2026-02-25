@@ -12,7 +12,7 @@ CeladonMansionRoofHouse_MapScriptHeader:
 	def_bg_events
 
 	def_object_events
-	object_event  3,  2, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 2, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofHousePharmacistScript, -1
+	object_event  3,  2, SPRITE_PHARMACIST, SPRITEMOVEDATA_STANDING_DOWN, 2, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonMansionRoofHousePharmacistScript, -1
 
 CeladonMansionRoofHousePharmacistScript:
 	checkevent EVENT_GOT_TM03_CURSE
@@ -25,7 +25,7 @@ CeladonMansionRoofHousePharmacistScript:
 	iffalse_jumpopenedtext .NotNiteText
 	writetext .StoryText
 	promptbutton
-	verbosegivetmhm TM_DREAM_EATER
+	verbosegivetmhm TM_CURSE
 	setevent EVENT_GOT_TM03_CURSE
 	jumpthisopenedtext
 

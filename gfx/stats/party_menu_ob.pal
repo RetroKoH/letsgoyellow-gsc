@@ -1,0 +1,23 @@
+if !DEF(MONOCHROME)
+; red (item and mail)
+	RGB 31, 31, 31
+	RGB 31, 25, 02
+	RGB 28, 06, 03
+	RGB 00, 00, 00
+; unused
+	RGB 31, 31, 31
+	RGB 20, 00, 20
+	RGB 10, 00, 10
+	RGB 00, 00, 00
+; minis
+rept 6
+	RGB 31, 31, 31
+	RGB 20, 20, 20
+	RGB 10, 10, 10
+	RGB 00, 00, 00
+endr
+else
+rept 8
+	MONOCHROME_RGB_FOUR
+endr
+endc

@@ -1,8 +1,8 @@
-TileCollisionTable::
-	table_width 1, TileCollisionTable
+CollisionPermissionTable::
+	table_width 1
 	db LAND_TILE  ; COLL_FLOOR
 	db WALL_TILE  ; COLL_VOID
-	db LAND_TILE  ; 02
+	db LAND_TILE  ; COLL_COAST_SAND
 	db LAND_TILE  ; 03
 	db LAND_TILE  ; 04
 	db LAND_TILE  ; 05
@@ -208,7 +208,7 @@ TileCollisionTable::
 	db WATER_TILE ; cd
 	db WATER_TILE ; ce
 	db WATER_TILE ; cf
-	db LAND_TILE  ; d0
+	db WALL_TILE  ; COLL_CHERRY_LEAVES
 	db WALL_TILE  ; COLL_ELEVATOR_BUTTON
 	db LAND_TILE  ; d2
 	db LAND_TILE  ; d3

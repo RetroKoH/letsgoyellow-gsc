@@ -3,7 +3,7 @@ SplashScreen:
 ; Return carry if user cancels animation by pressing a button.
 
 ; Reinitialize everything
-	ld de, MUSIC_NONE
+	ld e, MUSIC_NONE
 	call PlayMusic
 	call ClearBGPalettes
 	call ClearTileMap
@@ -33,12 +33,12 @@ SplashScreen:
 	call ClearTileMap
 	ld a, CGB_GAMEFREAK_LOGO
 	call GetCGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call GameFreakPresentsInit
 .joy_loop
 	call JoyTextDelay
 	ldh a, [hJoyLast]
-	and BUTTONS
+	and PAD_BUTTONS
 	jr nz, .pressed_button
 	ld a, [wJumptableIndex]
 	bit 7, a
@@ -64,10 +64,10 @@ GameFreakPresentsInit:
 	lb bc, BANK(GameFreakLogoGFX), 28
 	call Get1bpp
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wDecompressScratch)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	ld hl, GameFreakDittoGFX
 	ld de, wDecompressScratch
@@ -85,15 +85,15 @@ GameFreakPresentsInit:
 	call Request2bpp
 
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call ClearSpriteAnims
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_GAMEFREAK_LOGO
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
-	ld [hl], 160
+	ld [hl], OAM_YCOORD_HIDDEN
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld [hl], 96
@@ -196,7 +196,7 @@ GameFreakLogoJumper:
 	ld a, [hl]
 	call StackJumpTable
 
-GameFreakLogoScenes:
+.Jumptable:
 	dw GameFreakLogo_Init
 	dw GameFreakLogo_Bounce
 	dw GameFreakLogo_Ditto
@@ -230,7 +230,7 @@ GameFreakLogo_Bounce:
 	jr nc, .no_negative
 	add 32
 .no_negative
-	call Sine
+	farcall Sine
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
@@ -297,16 +297,16 @@ GameFreakLogo_Transform:
 	ld hl, GameFreakLogoPalettes
 	add hl, de
 	add hl, de
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK(wOBPals2)
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, [hli]
 	ld [wOBPals2 palette 1 + 4], a
 	ld a, [hli]
 	ld [wOBPals2 palette 1 + 5], a
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	ret
@@ -318,41 +318,11 @@ GameFreakLogo_Transform:
 	jmp GameFreakPresents_NextScene
 
 GameFreakLogoPalettes:
-; Ditto's color as it turns into the Game Freak logo.
-; Fade from pink to orange.
-; One color per step.
-if !DEF(MONOCHROME)
-	RGB 23, 12, 28
-	RGB 23, 12, 27
-	RGB 23, 13, 26
-	RGB 23, 13, 24
-
-	RGB 24, 14, 22
-	RGB 24, 14, 20
-	RGB 24, 15, 18
-	RGB 24, 15, 16
-
-	RGB 25, 16, 14
-	RGB 25, 16, 12
-	RGB 25, 17, 10
-	RGB 25, 17, 08
-
-	RGB 26, 18, 06
-	RGB 26, 18, 04
-	RGB 26, 19, 02
-	RGB 26, 19, 00
-else
-rept 4
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_LIGHT
-	RGB_MONOCHROME_LIGHT
-endr
-endc
+INCLUDE "gfx/splash/ditto_fade.pal"
 
 GameFreakLogoGFX:
 INCBIN "gfx/splash/logo1.1bpp"
 INCBIN "gfx/splash/logo2.1bpp"
 
 GameFreakDittoGFX:
-INCBIN "gfx/splash/ditto.2bpp.lz"
+INCBIN "gfx/splash/ditto.2bpp.lzp"

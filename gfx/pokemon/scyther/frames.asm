@@ -3,7 +3,6 @@
 	dw .frame3
 	dw .frame4
 	dw .frame5
-	dw .frame6
 .frame1
 	db $00 ; bitmask
 	db $31, $32, $1c, $1c, $1c, $1c, $33, $34, $35, $36, $37, $38
@@ -19,12 +18,8 @@
 	db $45, $1c, $46, $47, $49, $38, $3a, $3b, $4d, $3e, $3f, $4e
 	db $1c, $42, $4f
 .frame4
-	db $01 ; bitmask
-	db $45, $1c, $46, $47, $49, $38, $3a, $3b, $4d, $3e, $3f, $4e
-	db $1c, $42, $4f
-.frame5
 	db $02 ; bitmask
 	db $50, $3a, $3b, $4d, $3e, $3f, $4e, $1c, $42, $4f
-.frame6
+.frame5
 	db $03 ; bitmask
 	db $45, $1c, $46, $47, $51, $38

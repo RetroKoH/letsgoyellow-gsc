@@ -1,8 +1,10 @@
 BTTrainerClassSprites:
 ; entries correspond to trainer classes
-	table_width 1, BTTrainerClassSprites
-	db SPRITE_KRIS          ; CARRIE
+	table_width 1
 	db SPRITE_CHRIS         ; CAL
+	db SPRITE_KRIS          ; CARRIE
+	db SPRITE_CRYS          ; JACKY
+	db SPRITE_BETA          ; EUNA
 	db SPRITE_FALKNER       ; FALKNER
 	db SPRITE_BUGSY         ; BUGSY
 	db SPRITE_WHITNEY       ; WHITNEY
@@ -26,9 +28,9 @@ BTTrainerClassSprites:
 	db SPRITE_BLUE          ; BLUE
 	db SPRITE_RED           ; RED
 	db SPRITE_LEAF          ; LEAF
-	db SPRITE_SILVER        ; RIVAL0
-	db SPRITE_SILVER        ; RIVAL1
-	db SPRITE_SILVER        ; RIVAL2
+	db SPRITE_RIVAL         ; RIVAL0
+	db SPRITE_RIVAL         ; RIVAL1
+	db SPRITE_RIVAL         ; RIVAL2
 	db SPRITE_LYRA          ; LYRA1
 	db SPRITE_LYRA          ; LYRA2
 	db SPRITE_YOUNGSTER     ; YOUNGSTER
@@ -61,11 +63,7 @@ BTTrainerClassSprites:
 	db SPRITE_HEX_MANIAC    ; HEX_MANIAC
 	db SPRITE_SAGE          ; SAGE
 	db SPRITE_GRANNY        ; MEDIUM
-	db SPRITE_KIMONO_GIRL   ; KIMONO_GIRL_1
-	db SPRITE_KIMONO_GIRL   ; KIMONO_GIRL_2
-	db SPRITE_KIMONO_GIRL   ; KIMONO_GIRL_3
-	db SPRITE_KIMONO_GIRL   ; KIMONO_GIRL_4
-	db SPRITE_KIMONO_GIRL   ; KIMONO_GIRL_5
+	db SPRITE_KIMONO_GIRL   ; KIMONO_GIRL
 	db SPRITE_ELDER         ; ELDER
 	db SPRITE_CUTE_GIRL     ; SR_AND_JR
 	db SPRITE_COOL_DUDE     ; COUPLE
@@ -76,8 +74,8 @@ BTTrainerClassSprites:
 	db SPRITE_BAKER         ; BAKER
 	db SPRITE_COWGIRL       ; COWGIRL
 	db SPRITE_SAILOR        ; SAILOR
-	db SPRITE_SWIMMER_GUY   ; SWIMMERM
-	db SPRITE_SWIMMER_GIRL  ; SWIMMERF
+	db SPRITE_BEACH_GUY     ; SWIMMERM
+	db SPRITE_BEACH_GIRL    ; SWIMMERF
 	db SPRITE_BURGLAR       ; BURGLAR
 	db SPRITE_PI            ; PI
 	db SPRITE_SCIENTIST     ; SCIENTIST
@@ -88,7 +86,8 @@ BTTrainerClassSprites:
 	db SPRITE_BATTLE_GIRL   ; BATTLE_GIRL
 	db SPRITE_DRAGON_TAMER  ; DRAGON_TAMER
 	db SPRITE_ENGINEER      ; ENGINEER
-	db SPRITE_TEACHER       ; TEACHER
+	db SPRITE_TEACHER       ; TEACHER_F
+	db SPRITE_SUPER_NERD    ; TEACHER_M
 	db SPRITE_ROCKER        ; GUITARISTM
 	db SPRITE_BATTLE_GIRL   ; GUITARISTF
 	db SPRITE_BIKER         ; BIKER
@@ -96,6 +95,7 @@ BTTrainerClassSprites:
 	db SPRITE_TAMER         ; TAMER
 	db SPRITE_ARTIST        ; ARTIST
 	db SPRITE_AROMA_LADY    ; AROMA_LADY
+	db SPRITE_SOLDIER       ; SOLDIER
 	db SPRITE_COOL_DUDE     ; WAITER
 	db SPRITE_WAITRESS      ; WAITRESS
 	db SPRITE_SIGHTSEER_M   ; SIGHTSEERM
@@ -117,4 +117,5 @@ BTTrainerClassSprites:
 	db SPRITE_EUSINE        ; MYSTICALMAN
 	db SPRITE_BLACK_BELT    ; KARATE_KING
 	db SPRITE_PALMER        ; TOWERTYCOON
-	assert_table_length TOWERTYCOON
+	db SPRITE_THORTON       ; FACTORYHEAD
+	assert_table_length FACTORYHEAD

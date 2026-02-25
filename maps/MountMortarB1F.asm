@@ -13,8 +13,8 @@ MountMortarB1F_MapScriptHeader:
 	bg_event  4,  6, BGEVENT_ITEM + MAX_REVIVE, EVENT_MOUNT_MORTAR_B1F_HIDDEN_MAX_REVIVE
 
 	def_object_events
-	object_event 11, 31, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MountMortarB1FHikerScript, -1
-	object_event 16,  4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MountMortarB1FKiyoScript, -1
+	object_event 11, 31, SPRITE_HIKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, MountMortarB1FHikerScript, -1
+	object_event 16,  4, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, MountMortarB1FKiyoScript, -1
 	strengthboulder_event  9, 10
 	itemball_event 29, 12, HYPER_POTION, 1, EVENT_MOUNT_MORTAR_B1F_HYPER_POTION
 	itemball_event  4, 16, CARBOS, 1, EVENT_MOUNT_MORTAR_B1F_CARBOS
@@ -26,7 +26,7 @@ MountMortarB1FHikerScript:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_DEFENSE_CURL_INTRO
-	iftrue MountMortarB1FTutorDefenseCurlScript
+	iftruefwd MountMortarB1FTutorDefenseCurlScript
 	writetext MountMortarB1FHikerText
 	waitbutton
 	setevent EVENT_LISTENED_TO_DEFENSE_CURL_INTRO
@@ -34,30 +34,44 @@ MountMortarB1FTutorDefenseCurlScript:
 	writetext Text_MountMortarB1FTutorDefenseCurl
 	waitbutton
 	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
+	iffalsefwd .NoSilverLeaf
 	writetext Text_MountMortarB1FTutorQuestion
 	yesorno
-	iffalse .TutorRefused
+	iffalsefwd .TutorRefused
 	setval DEFENSE_CURL
 	writetext ClearText
 	special Special_MoveTutor
-	ifequal $0, .TeachMove
+	ifequalfwd $0, .TeachMove
 .TutorRefused
-	jumpopenedtext Text_MountMortarB1FTutorRefused
+	jumpthisopenedtext
+
+	text "I'll be right here"
+	line "waiting."
+	done
 
 .NoSilverLeaf
-	jumpopenedtext Text_MountMortarB1FTutorNoSilverLeaf
+	jumpthisopenedtext
+
+	text "Shucks, you don't"
+	line "have a Silver"
+	cont "Leaf."
+	done
 
 .TeachMove
 	takeitem SILVER_LEAF
-	jumpopenedtext Text_MountMortarB1FTutorTaught
+	jumpthisopenedtext
+
+	text "There! Now your"
+	line "#mon can use"
+	cont "Defense Curl!"
+	done
 
 MountMortarB1FKiyoScript:
 	checkevent EVENT_GOT_TYROGUE_FROM_KIYO
 	iftrue_jumptextfaceplayer MountMortarB1FKiyoGotTyrogueText
 	faceplayer
 	checkevent EVENT_BEAT_KIYO
-	iftrue .BeatKiyo
+	iftruefwd .BeatKiyo
 	showtext MountMortarB1FKiyoIntroText
 	winlosstext MountMortarB1FKiyoWinText, 0
 	loadtrainer KARATE_KING, KIYO
@@ -69,7 +83,7 @@ MountMortarB1FKiyoScript:
 	writetext MountMortarB1FTyrogueRewardText
 	promptbutton
 	waitsfx
-	givepoke TYROGUE, NO_FORM, 10, NO_ITEM, PREMIER_BALL
+	givepoke TYROGUE, PLAIN_FORM, 10, NO_ITEM, PREMIER_BALL
 	iffalse_jumpopenedtext MountMortarB1FKiyoFullPartyAndBoxText
 	setevent EVENT_GOT_TYROGUE_FROM_KIYO
 	jumpthisopenedtext
@@ -90,7 +104,11 @@ MountMortarB1FKiyoGotTyrogueText:
 
 MountMortarB1FHikerText:
 	text "My #mon used"
+if DEF(FAITHFUL)
 	line "Rock Smash on a"
+else
+	line "Brick Break on a"
+endc
 
 	para "boulder, but it"
 	line "was undamaged."
@@ -108,11 +126,6 @@ Text_MountMortarB1FTutorDefenseCurl:
 	line "one Silver Leaf."
 	done
 
-Text_MountMortarB1FTutorNoSilverLeaf:
-	text "Shucks, you don't"
-	line "have a Silver"
-	cont "Leaf."
-	done
 
 Text_MountMortarB1FTutorQuestion:
 	text "Should I teach"
@@ -120,16 +133,7 @@ Text_MountMortarB1FTutorQuestion:
 	cont "Defense Curl?"
 	done
 
-Text_MountMortarB1FTutorRefused:
-	text "I'll be right here"
-	line "waiting."
-	done
 
-Text_MountMortarB1FTutorTaught:
-	text "There! Now your"
-	line "#mon can use"
-	cont "Defense Curl!"
-	done
 
 MountMortarB1FKiyoIntroText:
 	text "Hey!"
@@ -170,5 +174,5 @@ MountMortarB1FTyrogueRewardText:
 MountMortarB1FKiyoFullPartyAndBoxText:
 	text "You have no room"
 	line "in your party"
-	line "or box!"
+	line "or Box!"
 	done

@@ -7,6 +7,8 @@ ReanchorBGMap_NoOAMUpdate::
 	ldh a, [hBGMapMode]
 	push af
 
+	ld hl, rIE
+	res B_IE_STAT, [hl]
 	xor a
 	ldh [hBGMapMode], a
 	ldh [hLCDCPointer], a
@@ -39,8 +41,8 @@ ReanchorBGMap_NoOAMUpdate::
 	ldh [hBGMapMode], a
 	pop af
 	ldh [hOAMUpdate], a
-	ld hl, wVramState
-	set 6, [hl]
+	ld hl, wStateFlags
+	set TEXT_STATE_F, [hl]
 	ret
 
 LoadFonts_NoOAMUpdate::
@@ -49,7 +51,7 @@ LoadFonts_NoOAMUpdate::
 	ld a, $1
 	ldh [hOAMUpdate], a
 
-	call LoadFontsExtra
+	call LoadFrame
 	ld a, $90
 	ldh [hWY], a
 	call SafeUpdateSprites
@@ -68,6 +70,8 @@ ReanchorBGMap_NoOAMUpdate_NoDelay::
 	ldh a, [hBGMapMode]
 	push af
 
+	ld hl, rIE
+	res B_IE_STAT, [hl]
 	xor a
 	ldh [hBGMapMode], a
 	ldh [hLCDCPointer], a
@@ -95,7 +99,7 @@ ReanchorBGMap_NoOAMUpdate_NoDelay::
 	ldh [hBGMapMode], a
 	pop af
 	ldh [hOAMUpdate], a
-	ld hl, wVramState
-	set 6, [hl]
+	ld hl, wStateFlags
+	set TEXT_STATE_F, [hl]
 	ld b, 0
 	jmp SafeCopyTilemapAtOnce

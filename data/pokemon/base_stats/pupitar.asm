@@ -1,22 +1,22 @@
 	db  70,  84,  70,  51,  65,  70 ; 410 BST
-	;   hp  atk  def  spd  sat  sdf
+	;   hp  atk  def  spe  sat  sdf
 
 	db ROCK, GROUND ; type
 	db 45 ; catch rate
 	db 144 ; base exp
-	db NO_ITEM ; item 1
-	db NO_ITEM ; item 2
-	dn GENDER_F50, 7 ; gender ratio, step cycles to hatch
-	INCBIN "gfx/pokemon/pupitar/front.dimensions"
+	db NO_ITEM, NO_ITEM ; held items
+	dn GENDER_F50, HATCH_SLOWEST ; gender ratio, step cycles to hatch
+
+if DEF(FAITHFUL)
 	abilities_for PUPITAR, SHED_SKIN, SHED_SKIN, SHED_SKIN
+else
+	abilities_for PUPITAR, SHED_SKIN, SHED_SKIN, BATTLE_ARMOR
+endc
 	db GROWTH_SLOW ; growth rate
 	dn EGG_MONSTER, EGG_MONSTER ; egg groups
 
-	ev_yield   0,   2,   0,   0,   0,   0
-	;         hp  atk  def  spd  sat  sdf
+	ev_yield 2 Atk
 
-	; tm/move tutor learnset
-	tms HEADBUTT, TAUNT, HELPING_HAND, REST, PROTECT, SUBSTITUTE, DIG, FACADE, BRICK_BREAK, IRON_TAIL, DARK_PULSE, ROCK_SLIDE, OUTRAGE, EARTHQUAKE, HYPER_BEAM, SUPERPOWER, STEALTH_ROCK, SANDSTORM, BULLDOZE
-
-	;tutors AERIAL_ACE, EARTH_POWER, STONE_EDGE, DRAGON_DANCE
+	; tm/hm learnset
+	tmhm CURSE, TOXIC, HIDDEN_POWER, SUNNY_DAY, HYPER_BEAM, PROTECT, RAIN_DANCE, BULLDOZE, IRON_TAIL, EARTHQUAKE, RETURN, DIG, ROCK_SMASH, DOUBLE_TEAM, SANDSTORM, SUBSTITUTE, FACADE, REST, ATTRACT, ROCK_SLIDE, DARK_PULSE, STONE_EDGE, BODY_SLAM, DOUBLE_EDGE, EARTH_POWER, ENDURE, HEADBUTT, IRON_HEAD, SLEEP_TALK, SWAGGER
 	; end

@@ -25,13 +25,13 @@ Route19_MapScriptHeader:
 	smashrock_event  4, 11
 	smashrock_event 12, 13
 	smashrock_event 13, 14
-	object_event  8, 34, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerSwimmerfDawn, -1
-	object_event  9, 34, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerSwimmermTucker, -1
-	object_event 11, 20, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerSwimmermJerome, -1
-	object_event 13, 43, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerSwimmermHarold, -1
-	object_event 13, 51, SPRITE_COSPLAYER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCosplayerBrooke, -1
-	object_event  9,  3, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route19Fisher1Script, -1
-	object_event 11,  3, SPRITE_ENGINEER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route19Fisher2Script, -1
+	object_event  8, 34, SPRITE_SWIMMER_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerSwimmerfDawn, -1
+	object_event  9, 34, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerSwimmermTucker, -1
+	object_event 11, 20, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerSwimmermJerome, -1
+	object_event 13, 43, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerSwimmermHarold, -1
+	object_event 13, 51, SPRITE_COSPLAYER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerCosplayerBrooke, -1
+	object_event  9,  3, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, Route19Fisher1Script, -1
+	object_event 11,  3, SPRITE_ENGINEER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route19Fisher2Script, -1
 	tmhmball_event 14, 52, TM_SCALD, EVENT_ROUTE_19_TM_SCALD
 
 	object_const_def
@@ -40,14 +40,14 @@ Route19_MapScriptHeader:
 Route19ClearSmashRocks:
 	disappear ROUTE19_ROCK1
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
-	iffalse .Done
+	iffalsefwd .Done
 	appear ROUTE19_ROCK1
 .Done:
 	endcallback
 
 Route19ClearRocks:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
-	iftrue .Done
+	iftruefwd .Done
 	changeblock 6, 4, $7a
 	changeblock 8, 4, $7a
 	changeblock 10, 4, $7a
@@ -112,12 +112,23 @@ GenericTrainerCosplayerBrooke:
 Route19Fisher1Script:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iffalse_jumptextfaceplayer Route19Fisher1Text
-	jumptextfaceplayer Route19Fisher1Text_RocksCleared
+	jumpthistextfaceplayer
+
+	text "I'm all sweaty."
+	line "Time for a swim!"
+	done
 
 Route19Fisher2Script:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iffalse_jumptextfaceplayer Route19EngineerText1
-	jumptextfaceplayer Route19EngineerText2
+	jumpthistextfaceplayer
+
+	text "The roadwork is"
+	line "finally finished."
+
+	para "Now I can go"
+	line "fishing again."
+	done
 
 SwimmerfDawnSeenText:
 	text "I'm disgusted by"
@@ -161,7 +172,7 @@ SwimmermHaroldSeenText:
 	cont "sea at night?"
 	done
 
-SwimmermHaroldBeatenText:
+SwimmermHaroldBeatenText: ; text > text
 	text "Glub…"
 	done
 
@@ -188,10 +199,6 @@ Route19Fisher1Text:
 	line "from Pallet Town."
 	done
 
-Route19Fisher1Text_RocksCleared:
-	text "I'm all sweaty."
-	line "Time for a swim!"
-	done
 
 Route19EngineerText1:
 	text "Who knows how long"
@@ -199,13 +206,6 @@ Route19EngineerText1:
 	cont "move this boulder…"
 	done
 
-Route19EngineerText2:
-	text "The roadwork is"
-	line "finally finished."
-
-	para "Now I can go"
-	line "fishing again."
-	done
 
 Route19SignText:
 	text "Route 19"

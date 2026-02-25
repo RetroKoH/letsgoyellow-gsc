@@ -37,8 +37,14 @@ AIChooseMove:
 	farcall CheckUsableMoves
 	call z, _AIChooseMove
 
-;	; Strongly encourage switch-out by pretending we have Perish 1.
+	; Strongly encourage switch-out by pretending we have Perish 1.
+	ld a, [wEnemyPerishCount]
+	push af
+	ld a, 1
+	ld [wEnemyPerishCount], a
 	farcall AI_MaybeSwitch
+	pop af
+	ld [wEnemyPerishCount], a
 	ret
 
 _AIChooseMove:
@@ -317,23 +323,26 @@ endc
 	ld [wCurEnemyMoveNum], a
 	ret
 
-AIScoringPointers: ; these are all farcalled in BANK(AIScoring)
-	dw AI_Basic ; far-ok
-	dw AI_Setup ; far-ok
-	dw AI_Types ; far-ok
-	dw AI_Offensive ; far-ok
-	dw AI_Smart ; far-ok
-	dw AI_Opportunist ; far-ok
-	dw AI_Aggressive ; far-ok
-	dw AI_Cautious ; far-ok
-	dw AI_Status ; far-ok
-	dw AI_Risky ; far-ok
-	dw DoNothing ; far-ok
-	dw DoNothing ; far-ok
-	dw DoNothing ; far-ok
-	dw DoNothing ; far-ok
-	dw DoNothing ; far-ok
-	dw DoNothing ; far-ok
+AIScoringPointers:
+	table_width 2
+	farbank AIScoring
+	fardw AI_Basic
+	fardw AI_Setup
+	fardw AI_Types
+	fardw AI_Offensive
+	fardw AI_Smart
+	fardw AI_Opportunist
+	fardw AI_Aggressive
+	fardw AI_Cautious
+	fardw AI_Status
+	fardw AI_Risky
+	fardw DoNothing
+	fardw DoNothing
+	fardw DoNothing
+	fardw DoNothing
+	fardw DoNothing
+	fardw DoNothing
+	assert_table_length 16
 
 if DEF(DEBUG)
 AIDebug:
@@ -346,7 +355,7 @@ AIDebug:
 	hlcoord 1, 13
 	push hl
 	ld c, 4
-	ld a, " "
+	ld a, ' '
 .clear_loop
 	ld b, 18
 .clear_row
@@ -365,7 +374,7 @@ AIDebug:
 .move_loop
 	push de
 	push bc
-	ld [hl], "-"
+	ld [hl], '-'
 	ld a, [de]
 	inc de
 	and a
@@ -409,9 +418,9 @@ AIDebug:
 	ld a, c
 	cp 10
 	jr c, .numeric
-	add "A" - "0" - 10
+	add 'A' - '0' - 10
 .numeric
-	add "0"
+	add '0'
 	ld [hl], a
 
 	call ApplyTilemap

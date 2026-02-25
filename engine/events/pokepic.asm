@@ -1,8 +1,11 @@
 Pokepic::
+	call BackupSprites
+	call ClearSpritesUnderPokePic
 	ld hl, PokepicMenuDataHeader
 	call CopyMenuHeader
 	call MenuBox
 	call UpdateSprites
+	ld de, wBGPals1 palette PAL_BG_TEXT + 2
 	ld a, [wCurForm]
 	cp -1
 	jr z, .partymon
@@ -10,10 +13,9 @@ Pokepic::
 	jr .got_palette
 .partymon
 	farcall LoadPartyMonPalette
-	ld hl, wPartyMon1Form
-	ld a, [wCurPartyMon]
-	call GetPartyLocation
-	farcall GetVariant
+	ld a, MON_FORM
+	call GetPartyParamLocationAndValue
+	ld [wCurForm], a
 .got_palette
 	call UpdateTimePals
 	xor a
@@ -38,6 +40,46 @@ _Displaypic:
 	ld b, 1
 	jmp SafeCopyTilemapAtOnce
 
+ClearSpritesUnderPokePic:
+	ld de, wShadowOAMSprite00
+	ld h, d
+	ld l, e
+	ld c, OAM_COUNT
+.loop
+	; Check if (5 * TILE_WIDTH + 1) ≤ YCoord < (15 * TILE_WIDTH)
+	ld a, [hli]
+	cp 5 * TILE_WIDTH + 1
+	jr c, .next
+	cp 15 * TILE_WIDTH
+	jr nc, .next
+	; Check if (6 * TILE_WIDTH + 1) ≤ XCoord < (16 * TILE_WIDTH)
+	ld a, [hl]
+	cp 6 * TILE_WIDTH + 1
+	jr c, .next
+	cp 16 * TILE_WIDTH
+	jr c, .clear_sprite
+; fallthrough
+.next
+	ld hl, OBJ_SIZE
+	add hl, de
+	ld e, l
+	dec c
+	jr nz, .loop
+	ldh a, [hOAMUpdate]
+	push af
+	ld a, TRUE
+	ldh [hOAMUpdate], a
+	call DelayFrame
+	pop af
+	ldh [hOAMUpdate], a
+	ret
+
+.clear_sprite
+	dec l
+	ld [hl], OAM_YCOORD_HIDDEN
+	inc l
+	jr .next
+
 Trainerpic::
 	ld hl, PokepicMenuDataHeader
 	call CopyMenuHeader
@@ -57,14 +99,14 @@ Paintingpic::
 	farcall LoadPaintingPalette
 	call UpdateTimePals
 	ld de, PaintingFrameGFX
-	ld hl, vTiles0 tile ("┌" - 3)
-	lb bc, BANK(PaintingFrameGFX), 9
+	ld hl, vTiles0 tile ('┌' - 3)
+	lb bc, BANK(PaintingFrameGFX), 11
 	call Get2bpp
 	ld hl, PokepicMenuDataHeader
 	call CopyMenuHeader
 	call MenuBox
 	hlcoord 9, 12
-	ld a, "┌" - 3
+	ld a, '┌' - 3
 	ld [hli], a
 	inc a
 	ld [hli], a
@@ -76,7 +118,7 @@ Paintingpic::
 	ld a, [wTrainerClass]
 	ld de, vTiles1
 	farcall GetPaintingPic
-	jr _Displaypic
+	jmp _Displaypic
 
 ClosePokepic::
 	ld hl, PokepicMenuDataHeader
@@ -86,14 +128,14 @@ ClosePokepic::
 	xor a
 	ldh [hBGMapMode], a
 	call LoadMapPart
+	call RestoreSprites
 	call UpdateSprites
 	ld b, 1
 	call SafeCopyTilemapAtOnce
 	farjp RefreshSprites
 
 PokepicMenuDataHeader:
-	db $40 ; flags
-	db 04, 06 ; start coords
-	db 12, 14 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 6, 4, 14, 12
 	dw NULL
 	db 1 ; default option

@@ -22,19 +22,13 @@ CheckRegisteredItem::
 	ld a, [hl]
 	and a
 	jr z, .next
+	ld [wCurKeyItem], a
 	push hl
 	push bc
-	push af
 	call CheckKeyItem
-	jr nc, .registration_ok ; ???
-
-.registration_ok
-	pop af
 	pop bc
 	pop hl
-
-	; Useful if we only have a single registered item
-	ld [wCurKeyItem], a
+	jr nc, .next
 	inc c
 .next
 	inc hl
@@ -88,7 +82,7 @@ UseRegisteredItem:
 	ret
 
 .Party:
-	call RefreshScreen
+	call ReanchorMap
 	call FadeToMenu
 	predef DoKeyItemEffect
 	call CloseSubmenu
@@ -97,14 +91,14 @@ UseRegisteredItem:
 	ret
 
 .Overworld:
-	call RefreshScreen
+	call ReanchorMap
 	ld a, 1
 	ld [wUsingItemWithSelect], a
 	predef DoKeyItemEffect
 	xor a
 	ld [wUsingItemWithSelect], a
 	ld a, [wItemEffectSucceeded]
-	cp 1
+	dec a ; TRUE?
 	jr nz, ._cantuse
 	scf
 	ld a, HMENURETURN_SCRIPT
@@ -112,7 +106,7 @@ UseRegisteredItem:
 	ret
 
 .CantUse:
-	call RefreshScreen
+	call ReanchorMap
 
 ._cantuse
 	call CantUseItem
@@ -135,13 +129,13 @@ GetRegisteredItem:
 	ld bc, 1 palettes
 	call FarCopyColorWRAM
 
-	hlcoord 0, 0, wAttrMap
-	ld a, PRIORITY | PAL_BG_TEXT
+	hlcoord 0, 0, wAttrmap
+	ld a, OAM_PRIO | PAL_BG_TEXT
 	ld bc, SCREEN_WIDTH * 4
 	rst ByteFill
 
 	hlcoord 0, 0
-	ld a, " "
+	ld a, ' '
 	ld bc, SCREEN_WIDTH * 4
 	rst ByteFill
 
@@ -180,7 +174,7 @@ GetRegisteredItem:
 	ld a, $70
 	ldh [rWY], a
 	ldh [hWY], a
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DelayFrame
 	farcall HDMATransfer_OnlyTopFourRows
 
@@ -195,19 +189,19 @@ GetRegisteredItem:
 	jr .joy_loop
 
 .got_input
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .first
-	and B_BUTTON | SELECT | START
+	and PAD_B | PAD_SELECT | PAD_START
 	jr nz, .cancel
 	ld de, wRegisteredItems
 	ld a, [hl]
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .got_item
 	inc de
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr nz, .got_item
 	inc de
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .got_item
 	inc de
 .got_item
@@ -242,20 +236,10 @@ endr
 	jr .joy_loop
 
 .RegisteredItemText:
-	db    "▲ -"
-	next1 "◀ -"
-	next1 "▶ -"
-	next1 "▼ -@"
+	db "▲ -<LNBRK>"
+	db "◀ -<LNBRK>"
+	db "▶ -<LNBRK>"
+	db "▼ -@"
 
 InvertedTextPalette:
-if !DEF(MONOCHROME)
-	RGB 00, 00, 00
-	RGB 00, 00, 00
-	RGB 31, 31, 31
-	RGB 31, 31, 31
-else
-	RGB_MONOCHROME_BLACK
-	RGB_MONOCHROME_BLACK
-	RGB_MONOCHROME_WHITE
-	RGB_MONOCHROME_WHITE
-endc
+INCLUDE "gfx/overworld/register_item.pal"

@@ -1,21 +1,92 @@
-Special_CelebiShrineEvent:
+GalarianArticunoEvent:
 	call DelayFrame
-	ld a, [wVramState]
+	ld a, [wStateFlags]
 	push af
 	xor a
-	ld [wVramState], a
+	ld [wStateFlags], a
+
+	ld a, PAL_OW_PURPLE
+	farcall CopySpritePalToOBPal7
+
+	call ClearSpriteAnims
+	ld hl, ArticunoGalarianIcon
+	ld de, vTiles0 tile $84
+	lb bc, BANK(ArticunoGalarianIcon), 4 * 2
+	call DecompressRequest2bpp
+
+	ld hl, ArticunoGalarianIcon
+	ld de, vTiles0 tile $8c
+	lb bc, BANK(ArticunoGalarianIcon), 4 * 2
+	call DecompressRequest2bpp
+	jr DoCelebiEvent
+
+GalarianMoltresEvent:
+	call DelayFrame
+	ld a, [wStateFlags]
+	push af
+	xor a
+	ld [wStateFlags], a
+
+	ld a, PAL_OW_RED
+	farcall CopySpritePalToOBPal7
+
+	call ClearSpriteAnims
+	ld hl, MoltresGalarianIcon
+	ld de, vTiles0 tile $84
+	lb bc, BANK(MoltresGalarianIcon), 4 * 2
+	call DecompressRequest2bpp
+
+	ld hl, MoltresGalarianIcon
+	ld de, vTiles0 tile $8c
+	lb bc, BANK(MoltresGalarianIcon), 4 * 2
+	call DecompressRequest2bpp
+	jr DoCelebiEvent
+
+GalarianZapdosEvent:
+	call DelayFrame
+	ld a, [wStateFlags]
+	push af
+	xor a
+	ld [wStateFlags], a
+
+	ld a, PAL_OW_RED
+	farcall CopySpritePalToOBPal7
+
+	call ClearSpriteAnims
+	ld hl, ZapdosGalarianIcon
+	ld de, vTiles0 tile $84
+	lb bc, BANK(ZapdosGalarianIcon), 4 * 2
+	call DecompressRequest2bpp
+
+	ld hl, ZapdosGalarianIcon
+	ld de, vTiles0 tile $8c
+	lb bc, BANK(ZapdosGalarianIcon), 4 * 2
+	call DecompressRequest2bpp
+	jr DoCelebiEvent
+
+Special_CelebiShrineEvent:
+	call DelayFrame
+	ld a, [wStateFlags]
+	push af
+	xor a
+	ld [wStateFlags], a
+
+	ld a, PAL_OW_GREEN
+	farcall CopySpritePalToOBPal7
 
 	call ClearSpriteAnims
 	ld hl, SpecialCelebiGFX
 	ld de, vTiles0 tile $84
 	lb bc, BANK(SpecialCelebiGFX), 4 * 4
 	call DecompressRequest2bpp
+; fallthrough
+DoCelebiEvent:
 	xor a
 	ld [wJumptableIndex], a
 
 	depixel 0, 10, 7, 0
 	ld a, SPRITE_ANIM_INDEX_CELEBI
-	call _InitSpriteAnimStruct
+	call InitSpriteAnimStruct
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $84
@@ -36,9 +107,14 @@ Special_CelebiShrineEvent:
 	call GetCelebiSpriteTile
 	inc d
 	push de
-	ld a, $90
+
+	ldh a, [hUsedOAMIndex]
+	; a = (OAM_COUNT - 4) * OBJ_SIZE - a
+	cpl
+	add (OAM_COUNT - 4) * OBJ_SIZE + 1
+
 	ld [wCurSpriteOAMAddr], a
-	farcall DoNextFrameForAllSprites
+	farcall DoNextFrameForAllSprites_OW
 	call CelebiEvent_CountDown
 	ld c, 2
 	call DelayFrames
@@ -48,9 +124,9 @@ Special_CelebiShrineEvent:
 
 .done
 	pop af
-	ld [wVramState], a
+	ld [wStateFlags], a
 
-	ld hl, wVirtualOAM + 2
+	ld hl, wShadowOAM + 2
 	xor a
 	ld c, $4
 .OAMloop:
@@ -61,7 +137,7 @@ Special_CelebiShrineEvent:
 	inc a
 	dec c
 	jr nz, .OAMloop
-	ld hl, wVirtualOAM + 4 * 4
+	ld hl, wShadowOAM + 4 * 4
 	ld bc, 36 * 4
 	xor a
 	rst ByteFill
@@ -85,7 +161,7 @@ CelebiEvent_CountDown:
 	ret
 
 SpecialCelebiGFX:
-INCBIN "gfx/overworld/celebi.2bpp.lz"
+INCBIN "gfx/overworld/celebi.2bpp.lzp"
 
 UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
@@ -113,7 +189,7 @@ UpdateCelebiPosition:
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call Cosine
+	farcall Cosine
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
@@ -221,17 +297,3 @@ GetCelebiSpriteTile:
 	pop bc
 	pop hl
 	ret
-
-CheckCaughtCelebi:
-	ld a, [wBattleResult]
-	bit 6, a
-	jr z, .false
-	ld a, $1
-	ldh [hScriptVar], a
-	ret
-
-.false
-	xor a
-	ldh [hScriptVar], a
-	ret
-

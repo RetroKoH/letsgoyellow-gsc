@@ -1,7 +1,7 @@
 SendMailToPC:
 	ld a, MON_ITEM
-	call GetPartyParamLocation
-	ld d, [hl]
+	call GetPartyParamLocationAndValue
+	ld d, a
 	call ItemIsMail
 	jr nc, .full
 	call GetMailboxCount
@@ -26,7 +26,7 @@ SendMailToPC:
 	ld bc, MAIL_STRUCT_LENGTH
 	rst ByteFill
 	ld a, MON_ITEM
-	call GetPartyParamLocation
+	call GetPartyParamLocationAndValue
 	ld [hl], 0
 	ld hl, sMailboxCount
 	inc [hl]
@@ -123,7 +123,7 @@ CheckPokeItem::
 	push bc
 	push de
 	farcall SelectMonFromParty
-	ld a, $2
+	ld a, $2 ; refused
 	jr c, .pop_return
 
 	ld a, [wCurPartyMon]
@@ -132,7 +132,7 @@ CheckPokeItem::
 	rst AddNTimes
 	ld d, [hl]
 	call ItemIsMail
-	ld a, $3
+	ld a, $3 ; no mail
 	jr nc, .pop_return
 
 	ld a, BANK(sPartyMail)
@@ -154,26 +154,26 @@ CheckPokeItem::
 	ld c, a
 	ld a, b
 	call GetFarByte
-	cp "@"
+	cp '@'
 	jr z, .done
 	cp c
-	ld a, 0
+	ld a, FALSE ; no-optimize a = 0 (wrong mail)
 	jr nz, .close_sram_return
 	inc hl
 	inc de
 	ld a, [wTempByteValue]
-	dec a
+	dec a ; no-optimize inefficient WRAM increment/decrement
 	ld [wTempByteValue], a
 	jr nz, .loop
 
 .done
 	farcall CheckCurPartyMonFainted
-	ld a, $4
+	ld a, $4 ; last mon
 	jr c, .close_sram_return
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
 	predef RemoveMonFromParty
-	ld a, $1
+	ld a, TRUE ; right mail
 
 .close_sram_return
 	call CloseSRAM
@@ -271,25 +271,6 @@ DeletePartyMonMail:
 	rst ByteFill
 	jmp CloseSRAM
 
-IsAnyMonHoldingMail:
-	ld a, [wPartyCount]
-	and a
-	jr z, .no_mons
-	ld e, a
-	ld hl, wPartyMon1Item
-.loop
-	ld d, [hl]
-	call ItemIsMail
-	ret c
-	ld bc, PARTYMON_STRUCT_LENGTH
-	add hl, bc
-	dec e
-	jr nz, .loop
-
-.no_mons
-	and a
-	ret
-
 _PlayerMailBoxMenu:
 	call InitMail
 	jr z, .nomail
@@ -344,7 +325,7 @@ MailboxPC_GetMailAuthor:
 	push de
 	ld bc, NAME_LENGTH - 1
 	rst CopyBytes
-	ld a, "@"
+	ld a, '@'
 	ld [de], a
 	call CloseSRAM
 	pop de
@@ -383,7 +364,7 @@ MailboxPC:
 	ld [wCurMessageIndex], a
 
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, .exit
 	call .Submenu
 	jr .loop
@@ -475,21 +456,20 @@ MailboxPC:
 	farcall InitPartyMenuWithCancel
 	farcall InitPartyMenuGFX
 	farcall WritePartyMenuTilemap
-	farcall PrintPartyMenuText
+	farcall PlacePartyMenuText
 	call ApplyTilemapInVBlank
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 	call DelayFrame
 	farcall PartyMenuSelect
 	jr c, .exit2
 	push hl
 	ld a, MON_IS_EGG
-	call GetPartyParamLocation
-	bit MON_IS_EGG_F, [hl]
+	call GetPartyParamLocationAndValue
+	bit MON_IS_EGG_F, a
 	pop hl
 	jr nz, .egg
 	ld a, MON_ITEM
-	call GetPartyParamLocation
-	ld a, [hl]
+	call GetPartyParamLocationAndValue
 	and a
 	jr z, .attach_mail
 	ld hl, .HoldingMailText
@@ -525,9 +505,8 @@ MailboxPC:
 	text_end
 
 .TopMenuDataHeader:
-	db %01000000 ; flags
-	db 1, 8 ; start coords
-	db 10, 18 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 8, 1, 18, 10
 	dw .TopMenuData2
 	db 1 ; default option
 
@@ -541,9 +520,8 @@ MailboxPC:
 	dba NULL
 
 .SubMenuDataHeader:
-	db %01000000 ; flags
-	db 0,  0 ; start coords
-	db 9, 13 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 13, 9
 	dw .SubMenuData2
 	db 1 ; default option
 

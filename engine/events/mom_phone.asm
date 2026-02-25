@@ -1,5 +1,5 @@
-NUM_MOM_ITEMS_1 EQUS "((MomItems_1.End - MomItems_1) / 8)"
-NUM_MOM_ITEMS_2 EQUS "((MomItems_2.End - MomItems_2) / 8)"
+DEF NUM_MOM_ITEMS_1 EQUS "((MomItems_1.End - MomItems_1) / 8)"
+DEF NUM_MOM_ITEMS_2 EQUS "((MomItems_2.End - MomItems_2) / 8)"
 
 	const_def 1
 	const MOM_ITEM
@@ -20,7 +20,7 @@ MomTriesToBuySomething::
 	ret nc
 	ld b, BANK(.Script)
 	ld de, .Script
-	farcall LoadScriptBDE
+	farcall LoadMemScript
 	scf
 	ret
 
@@ -37,14 +37,14 @@ MomTriesToBuySomething::
 	ld hl, wWhichMomItem
 	inc [hl]
 .ok
-	ld a, PHONE_TRACE
+	ld a, PHONE_MOM
 	ld [wCurCaller], a
 	ld bc, wCallerContact
 	ld hl, PHONE_CONTACT_TRAINER_CLASS
 	add hl, bc
 	xor a ; TRAINER_NONE
 	ld [hli], a
-	ld [hl], PHONE_TRACE
+	ld [hl], PHONE_MOM
 	ld hl, PHONE_CONTACT_SCRIPT2_BANK
 	add hl, bc
 	ld a, BANK(Mom_GetScriptPointer)

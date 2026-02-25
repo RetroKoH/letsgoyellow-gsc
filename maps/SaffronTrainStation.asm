@@ -1,5 +1,6 @@
 SaffronTrainStation_MapScriptHeader:
 	def_scene_scripts
+	scene_const SCENE_SAFFRONTRAINSTATION_ARRIVE_FROM_GOLDENROD
 
 	def_callbacks
 
@@ -10,15 +11,15 @@ SaffronTrainStation_MapScriptHeader:
 	warp_event 11,  5, GOLDENROD_MAGNET_TRAIN_STATION, 3
 
 	def_coord_events
-	coord_event 11,  6, 0, Script_ArriveFromGoldenrod
+	coord_event 11,  6, SCENE_SAFFRONTRAINSTATION_ARRIVE_FROM_GOLDENROD, Script_ArriveFromGoldenrod
 
 	def_bg_events
 
 	def_object_events
-	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationOfficerScript, -1
-	object_event 10, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationGymGuideScript, -1
-	object_event  6, 11, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, SaffronMagnetTrainStationTeacherText, EVENT_SAFFRON_TRAIN_STATION_POPULATION
-	object_event  6, 10, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, SaffronMagnetTrainStationLassText, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event  9,  9, SPRITE_OFFICER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationOfficerScript, -1
+	object_event 11, 13, SPRITE_GYM_GUY, SPRITEMOVEDATA_WANDER, 1, 1, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronMagnetTrainStationGymGuideScript, -1
+	object_event  6, 11, SPRITE_POKEFAN_F, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, SaffronMagnetTrainStationTeacherText, EVENT_SAFFRON_TRAIN_STATION_POPULATION
+	object_event  6, 10, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, SaffronMagnetTrainStationLassText, EVENT_SAFFRON_TRAIN_STATION_POPULATION
 
 	object_const_def
 	const SAFFRONTRAINSTATION_OFFICER
@@ -31,7 +32,7 @@ SaffronMagnetTrainStationOfficerScript:
 	writetext SaffronMagnetTrainStationOfficerAreYouComingOnBoardText
 	yesorno
 	iffalse_jumpopenedtext SaffronMagnetTrainStationOfficerHopeToSeeYouAgainText
-	checkkeyitem TOWN_MAP
+	checkkeyitem PASS
 	iffalse_jumpopenedtext SaffronMagnetTrainStationOfficerYouDontHaveAPassText
 	writetext SaffronMagnetTrainStationOfficerRightThisWayText
 	waitbutton
@@ -43,19 +44,36 @@ SaffronMagnetTrainStationOfficerScript:
 	warpcheck
 	newloadmap MAPSETUP_TRAIN
 	applyonemovement PLAYER, turn_head_down
-	wait 36
+	wait 2
 	end
 
 Script_ArriveFromGoldenrod:
 	applymovement SAFFRONTRAINSTATION_OFFICER, SaffronMagnetTrainStationOfficerApproachTrainDoorMovement
 	applymovement PLAYER, SaffronMagnetTrainStationPlayerLeaveTrainAndEnterStationMovement
 	applymovement SAFFRONTRAINSTATION_OFFICER, SaffronMagnetTrainStationOfficerReturnToBoardingGateMovement
-	jumptext SaffronMagnetTrainStationOfficerArrivedInSaffronText
+	showtext SaffronMagnetTrainStationOfficerArrivedInSaffronText
+	turnobject PLAYER, DOWN
+	end
 
 SaffronMagnetTrainStationGymGuideScript:
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue_jumptextfaceplayer SaffronMagnetTrainStationGymGuideText_ReturnedMachinePart
-	jumptextfaceplayer SaffronMagnetTrainStationGymGuideText
+	jumpthistextfaceplayer
+
+	text "The Magnet Train"
+	line "is a super modern"
+
+	para "rail liner that"
+	line "uses electricity"
+
+	para "and magnets to"
+	line "attain incredible"
+	cont "speed."
+
+	para "However, if there"
+	line "isn't any elec-"
+	cont "tricity…"
+	done
 
 SaffronMagnetTrainStationOfficerApproachTrainDoorMovement:
 	step_up
@@ -131,21 +149,6 @@ SaffronMagnetTrainStationOfficerArrivedInSaffronText:
 	line "again."
 	done
 
-SaffronMagnetTrainStationGymGuideText:
-	text "The Magnet Train"
-	line "is a super modern"
-
-	para "rail liner that"
-	line "uses electricity"
-
-	para "and magnets to"
-	line "attain incredible"
-	cont "speed."
-
-	para "However, if there"
-	line "isn't any elec-"
-	cont "tricity…"
-	done
 
 SaffronMagnetTrainStationGymGuideText_ReturnedMachinePart:
 	text "Whew…"

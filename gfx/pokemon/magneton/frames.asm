@@ -8,25 +8,25 @@
 	dw .frame8
 .frame1
 	db $00 ; bitmask
-	db $24, $25
+	db $31, $32
 .frame2
 	db $01 ; bitmask
-	db $26, $27
+	db $31, $32, $33, $34, $35, $36
 .frame3
 	db $02 ; bitmask
-	db $28, $29
+	db $37, $38
 .frame4
 	db $03 ; bitmask
-	db $2a
+	db $39, $3a, $3b, $3c
 .frame5
 	db $04 ; bitmask
-	db $2b, $2c
+	db $3d, $3e, $3f
 .frame6
 	db $05 ; bitmask
-	db $2d, $2e
+	db $40, $41
 .frame7
 	db $06 ; bitmask
-	db $2f
+	db $42, $43, $44, $45
 .frame8
 	db $07 ; bitmask
-	db $30, $31, $32, $33, $34, $35
+	db $46, $47, $48, $49, $4a

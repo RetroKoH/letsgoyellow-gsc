@@ -18,21 +18,21 @@ CeladonDeptStore3F_MapScriptHeader:
 	bg_event  5,  5, BGEVENT_JUMPTEXT, CeladonDeptStore3FFightingGameText
 
 	def_object_events
-	object_event  9,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_TM, MART_CELADON_3F_TM, -1
-	object_event  8,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FClerk2Script, -1
-	object_event  7,  5, SPRITE_CAMPER, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonDeptStore3FYoungsterText, -1
-	object_event 13,  4, SPRITE_POKEMANIAC, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonDeptStore3FSuperNerdText, -1
-	object_event  0,  4, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, VideoGameClerkText, -1
-	object_event  1,  3, SPRITE_SNES, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FSnesScript, -1
-	object_event  1,  5, SPRITE_N64, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_ROCK, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FN64Script, -1
-	object_event  4,  3, SPRITE_GAMECUBE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameCubeScript, -1
-	object_event  4,  5, SPRITE_WII, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FWiiScript, -1
+	object_event  9,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, pokemart, MARTTYPE_TM, MART_CELADON_3F_TM, -1
+	object_event  8,  1, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FClerk2Script, -1
+	object_event  7,  5, SPRITE_CAMPER, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonDeptStore3FYoungsterText, -1
+	object_event 13,  4, SPRITE_POKEMANIAC, SPRITEMOVEDATA_WANDER, 1, 1, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, CeladonDeptStore3FSuperNerdText, -1
+	object_event  0,  4, SPRITE_CLERK, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, VideoGameClerkText, -1
+	object_event  1,  3, SPRITE_SNES, SPRITEMOVEDATA_STILL, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FSnesScript, -1
+	object_event  1,  5, SPRITE_N64, SPRITEMOVEDATA_STILL, 0, 0, -1, PAL_NPC_GRAY, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FN64Script, -1
+	object_event  4,  3, SPRITE_GAMECUBE, SPRITEMOVEDATA_STILL, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FGameCubeScript, -1
+	object_event  4,  5, SPRITE_WII, SPRITEMOVEDATA_STILL, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, CeladonDeptStore3FWiiScript, -1
 
 CeladonDeptStore3FClerk2Script:
 	faceplayer
 	opentext
 	checkevent EVENT_LISTENED_TO_COUNTER_INTRO
-	iftrue CeladonDeptStore3FTutorCounterScript
+	iftruefwd CeladonDeptStore3FTutorCounterScript
 	writetext CeladonDeptStore3FClerk2Text
 	waitbutton
 	setevent EVENT_LISTENED_TO_COUNTER_INTRO
@@ -40,26 +40,41 @@ CeladonDeptStore3FTutorCounterScript:
 	writetext Text_CeladonDeptStore3FTutorCounter
 	waitbutton
 	checkitem SILVER_LEAF
-	iffalse .NoSilverLeaf
+	iffalsefwd .NoSilverLeaf
 	writetext Text_CeladonDeptStore3FTutorQuestion
 	yesorno
-	iffalse .TutorRefused
+	iffalsefwd .TutorRefused
 	setval COUNTER
 	writetext ClearText
 	special Special_MoveTutor
-	ifequal $0, .TeachMove
+	ifequalfwd $0, .TeachMove
 .TutorRefused
-	jumpopenedtext Text_CeladonDeptStore3FTutorRefused
+	jumpthisopenedtext
+
+	text "Never mind."
+	done
 
 .NoSilverLeaf
-	jumpopenedtext Text_CeladonDeptStore3FTutorNoSilverLeaf
+	jumpthisopenedtext
+
+	text "You don't have a"
+	line "Silver Leaf…"
+	done
 
 .TeachMove
 	takeitem SILVER_LEAF
-	jumpopenedtext Text_CeladonDeptStore3FTutorTaught
+	jumpthisopenedtext
+
+	text "Now your #mon"
+	line "knows Counter."
+	done
 
 VideoGameClerkNoMoneyScript:
-	jumpopenedtext VideoGameClerkNoMoneyText
+	jumpthisopenedtext
+
+	text "Clerk: You can't"
+	line "afford it!"
+	done
 
 CeladonDeptStore3FSnesScript:
 	checkevent EVENT_DECO_SNES
@@ -69,14 +84,19 @@ CeladonDeptStore3FSnesScript:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse_jumpopenedtext VideoGameClerkNoSaleText
-	checkmoney $0, 20000
-	ifequal $2, VideoGameClerkNoMoneyScript
-	takemoney $0, 20000
+	checkmoney YOUR_MONEY, 20000
+	ifequal HAVE_LESS, VideoGameClerkNoMoneyScript
+	takemoney YOUR_MONEY, 20000
 	setevent EVENT_DECO_SNES
 	writetext BoughtSnesText
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
-	jumpopenedtext SnesSentText
+	jumpthisopenedtext
+
+	text "Super NES"
+	line "was sent home."
+	done
 
 CeladonDeptStore3FN64Script:
 	checkevent EVENT_DECO_N64
@@ -86,14 +106,19 @@ CeladonDeptStore3FN64Script:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse_jumpopenedtext VideoGameClerkNoSaleText
-	checkmoney $0, 25000
-	ifequal $2, VideoGameClerkNoMoneyScript
-	takemoney $0, 25000
+	checkmoney YOUR_MONEY, 25000
+	ifequal HAVE_LESS, VideoGameClerkNoMoneyScript
+	takemoney YOUR_MONEY, 25000
 	setevent EVENT_DECO_N64
 	writetext BoughtN64Text
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
-	jumpopenedtext N64SentText
+	jumpthisopenedtext
+
+	text "Nintendo 64"
+	line "was sent home."
+	done
 
 CeladonDeptStore3FGameCubeScript:
 	checkevent EVENT_DECO_GAMECUBE
@@ -103,14 +128,19 @@ CeladonDeptStore3FGameCubeScript:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse_jumpopenedtext VideoGameClerkNoSaleText
-	checkmoney $0, 30000
-	ifequal $2, VideoGameClerkNoMoneyScript
-	takemoney $0, 30000
+	checkmoney YOUR_MONEY, 30000
+	ifequal HAVE_LESS, VideoGameClerkNoMoneyScript
+	takemoney YOUR_MONEY, 30000
 	setevent EVENT_DECO_GAMECUBE
 	writetext BoughtGameCubeText
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
-	jumpopenedtext GameCubeSentText
+	jumpthisopenedtext
+
+	text "GameCube"
+	line "was sent home."
+	done
 
 CeladonDeptStore3FWiiScript:
 	checkevent EVENT_DECO_WII
@@ -120,14 +150,19 @@ CeladonDeptStore3FWiiScript:
 	special PlaceMoneyTopRight
 	yesorno
 	iffalse_jumpopenedtext VideoGameClerkNoSaleText
-	checkmoney $0, 40000
-	ifequal $2, VideoGameClerkNoMoneyScript
-	takemoney $0, 40000
+	checkmoney YOUR_MONEY, 40000
+	ifequal HAVE_LESS, VideoGameClerkNoMoneyScript
+	takemoney YOUR_MONEY, 40000
 	setevent EVENT_DECO_WII
 	writetext BoughtWiiText
 	playsound SFX_TRANSACTION
+	special PlaceMoneyTopRight
 	waitbutton
-	jumpopenedtext WiiSentText
+	jumpthisopenedtext
+
+	text "Wii"
+	line "was sent home."
+	done
 
 CeladonDeptStore3FClerk2Text:
 	text "There's a neat move"
@@ -146,10 +181,6 @@ Text_CeladonDeptStore3FTutorCounter:
 	line "me a Silver Leaf."
 	done
 
-Text_CeladonDeptStore3FTutorNoSilverLeaf:
-	text "You don't have a"
-	line "Silver Leaf…"
-	done
 
 Text_CeladonDeptStore3FTutorQuestion:
 	text "Should I teach"
@@ -157,14 +188,7 @@ Text_CeladonDeptStore3FTutorQuestion:
 	cont "Counter?"
 	done
 
-Text_CeladonDeptStore3FTutorRefused:
-	text "Never mind."
-	done
 
-Text_CeladonDeptStore3FTutorTaught:
-	text "Now your #mon"
-	line "knows Counter."
-	done
 
 VideoGameClerkText:
 	text "We sell brand-new"
@@ -180,10 +204,6 @@ VideoGameClerkNoSaleText:
 	line "you say so."
 	done
 
-VideoGameClerkNoMoneyText:
-	text "Clerk: You can't"
-	line "afford it!"
-	done
 
 VideoGameClerkSellSnesText:
 	text "Clerk: That SNES"
@@ -222,40 +242,24 @@ BoughtSnesText:
 	line "Super NES."
 	done
 
-SnesSentText:
-	text "Super NES"
-	line "was sent home."
-	done
 
 BoughtN64Text:
 	text "<PLAYER> bought"
 	line "Nintendo 64."
 	done
 
-N64SentText:
-	text "Nintendo 64"
-	line "was sent home."
-	done
 
 BoughtGameCubeText:
 	text "<PLAYER> bought"
 	line "GameCube."
 	done
 
-GameCubeSentText:
-	text "GameCube"
-	line "was sent home."
-	done
 
 BoughtWiiText:
 	text "<PLAYER> bought"
 	line "Wii."
 	done
 
-WiiSentText:
-	text "Wii"
-	line "was sent home."
-	done
 
 CeladonDeptStore3FYoungsterText:
 	text "I can't decide"

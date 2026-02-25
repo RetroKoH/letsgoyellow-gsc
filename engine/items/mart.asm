@@ -8,35 +8,32 @@
 
 OpenMartDialog::
 	ld a, c
-	ld [wMartType], a		; load Mart type from c
-	cp MARTTYPE_STANDARD
-	jr nz, .specialMart		; jump ahead if this is a non-standard Mart
-	call GetMart
-	jr .cont
-
-.specialMart
-	ld hl, SpecialMarts
-	call GetSpecialMart
-
-.cont
+	ld [wMartType], a
+	ld hl, Marts
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ld b, BANK(Marts)
 	call LoadMartPointer
 	ld a, [wMartType]
-	call StackJumpTable	; load .dialogs to the stack, and use wMartType to redirect to the correct code.
+	call StackJumpTable
 
 .dialogs
-	dw MartDialog 		; MARTTYPE_STANDARD (Scaling)
-	dw MtMoonShop		; MARTTYPE_MTMOON (New, unique dialogue)
-	dw BargainShop		; MARTTYPE_BARGAIN (Near docks south of Lavender)
-	dw HerbShop			; MARTTYPE_HERBSHOP (Add mints?)
-	dw Dept2FDialog		; MARTTYPE_CELADON2F (In Celadon. Standard dialog, non-scaling inventory)
-	dw RooftopSale		; Use in Celadon
-	dw SilphMart		; Use in Silph
-	dw AdventurerMart	; Use in/around dungeons
-	dw InformalMart		; Use for fossil seller (Second bargainer)
-	dw BazaarMart		; Berry Bazaar
-	dw TMMart			; TMs
-	dw BlueCardMart		; Unused
-	dw BTMart			; Battle Tower (Maybe unused)
+	dw MartDialog
+	dw HerbShop
+	dw BargainShop
+	dw Pharmacist
+	dw RooftopSale
+	dw SilphMart
+	dw AdventurerMart
+	dw InformalMart
+	dw BazaarMart
+	dw TMMart
+	dw BlueCardMart
+	dw BTMart
+	dw ExpCandyMart
 
 MartDialog:
 	xor a ; MARTTYPE_STANDARD, STANDARDMART_HOWMAYIHELPYOU
@@ -44,19 +41,48 @@ MartDialog:
 	ld [wMartJumptableIndex], a
 	jmp StandardMart
 
-MtMoonShop:
+HerbShop:
 	call FarReadMart
 	call LoadStandardMenuHeader
-	ld hl, Text_MtMoonShop_Intro
+	ld hl, Text_HerbShop_Intro
 	call MartTextbox
 	call BuyMenu
-	ld hl, Text_MtMoonShop_ComeAgain
+	ld hl, Text_HerbShop_ComeAgain
 	jmp MartTextbox
+
+ExpCandyMart:
+	ld b, BANK(ExpCandyShopData)
+	ld de, ExpCandyShopData
+	call LoadMartPointer
+	call ReadMart
+	call LoadStandardMenuHeader
+	ld hl, .Text_ExpCandyMart_Intro
+	call MartTextbox
+	call ExpCandyBuyMenu
+	ld hl, .Text_ExpCandyMart_ComeAgain
+	jmp MartTextbox
+
+.Text_ExpCandyMart_Intro:
+	text "You again? Guess"
+	line "you liked that"
+	cont "candy."
+
+	para "I can hook you up."
+	line "For a price, of"
+	cont "course."
+	done
+
+.Text_ExpCandyMart_ComeAgain
+	text "Don't tell anyone"
+	line "where you got"
+	cont "these, okay?"
+	done
+
+INCLUDE "data/items/exp_candy_shop.asm"
 
 BargainShop:
 	ld b, BANK(BargainShopData)
 	ld de, BargainShopData
-	; Check current map and load correct Bargain Shop Data
 	call LoadMartPointer
 	call ReadMart
 	call LoadStandardMenuHeader
@@ -76,29 +102,20 @@ BargainShop:
 
 INCLUDE "data/items/bargain_shop.asm"
 
-HerbShop:
+Pharmacist:
 	call FarReadMart
 	call LoadStandardMenuHeader
-	ld hl, Text_HerbShop_Intro
+	ld hl, Text_Pharmacist_Intro
 	call MartTextbox
 	call BuyMenu
-	ld hl, Text_HerbShop_ComeAgain
-	jmp MartTextbox
-
-Dept2FDialog:
-	call FarReadMart
-	call LoadStandardMenuHeader
-	ld hl, Text_Mart_HowMayIHelpYou
-	call MartTextbox
-	call BuyMenu
-	ld hl, Text_Mart_ComeAgain
+	ld hl, Text_Pharmacist_ComeAgain
 	jmp MartTextbox
 
 RooftopSale:
 	ld b, BANK(RooftopSaleData1) ; BANK(RooftopSaleData2)
 	ld de, RooftopSaleData1
 	ld hl, wStatusFlags
-	bit 6, [hl] ; hall of fame
+	bit STATUSFLAGS_HALL_OF_FAME_F, [hl]
 	jr z, .ok
 	ld de, RooftopSaleData2
 .ok
@@ -198,23 +215,6 @@ LoadMartPointer:
 	ld [wFacingDirection], a
 	ret
 
-GetMart:
-; de contains the overworld level
-	ld hl, Marts
-	ld a, [wOverworldLevel]
-	ld d, 0
-	ld e, a
-
-GetSpecialMart:
-; de contains the Special Mart index (final byte of mart_clerk_event)
-	add hl, de
-	add hl, de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, BANK(Marts) ; Marts and Special Marts are in the same bank
-	ret
-
 StandardMart:
 .loop
 	ld a, [wMartJumptableIndex]
@@ -246,9 +246,9 @@ StandardMart:
 	call VerticalMenu
 	jr c, .quit
 	ld a, [wMenuCursorY]
-	cp $1
+	dec a ; 1?
 	jr z, .buy
-	cp $2
+	dec a ; 2?
 	jr z, .sell
 .quit
 	ld a, $4 ;  Come again!
@@ -447,12 +447,12 @@ GetMartPrice:
 .CharToNybble:
 	ld a, [de]
 	inc de
-	cp " "
+	cp ' '
 	jr nz, .not_space
-	ld a, "0"
+	ld a, '0'
 
 .not_space
-	sub "0"
+	sub '0'
 	ret
 
 BuyMenu:
@@ -465,6 +465,13 @@ BuyMenu_Finish:
 	call ReturnToMapWithSpeechTextbox
 	and a
 	ret
+
+ExpCandyBuyMenu:
+	call BuyMenu_InitGFX
+.loop
+	call ExpCandyBuyMenuLoop ; menu loop
+	jr nc, .loop
+	jr BuyMenu_Finish
 
 BuyTMMenu:
 	call BuyMenu_InitGFX
@@ -534,7 +541,7 @@ BuyMenu_InitGFX:
 	call ApplyTilemapInVBlank
 	ld a, CGB_BUYMENU_PALS
 	call GetCGBLayout
-	call SetPalettes
+	call SetDefaultBGPAndOBP
 ; Not graphics-related, but common to all BuyMenu_InitGFX callers
 	xor a
 	ld [wMenuScrollPositionBackup], a
@@ -578,9 +585,9 @@ MartAskPurchaseQuantity:
 	inc hl
 	inc hl
 	ld a, [hl]
-	and a
+	and a ; 0?
 	jmp z, StandardMartAskPurchaseQuantity
-	cp 1
+	dec a ; 1?
 	jmp z, BargainShopAskPurchaseQuantity
 	jmp RooftopSaleAskPurchaseQuantity
 
@@ -596,9 +603,9 @@ GetMartDialogGroup:
 
 .MartTextFunctionPointers:
 	dwb .StandardMartPointers, 0
-	dwb .MtMoonShopPointers, 0
-	dwb .BargainShopPointers, 1
 	dwb .HerbShopPointers, 0
+	dwb .BargainShopPointers, 1
+	dwb .PharmacyPointers, 0
 	dwb .StandardMartPointers, 2
 	dwb .SilphMartPointers, 0
 	dwb .AdventurerMartPointers, 0
@@ -607,6 +614,7 @@ GetMartDialogGroup:
 	dwb .TMMartPointers, 0
 	dwb .BlueCardMartPointers, 0
 	dwb .BTMartPointers, 0
+	dwb .ExpCandyMartPointers, 2
 
 .StandardMartPointers:
 	dw Text_Mart_HowMany
@@ -616,12 +624,12 @@ GetMartDialogGroup:
 	dw Text_Mart_HereYouGo
 	dw BuyMenuLoop
 
-.MtMoonShopPointers:
-	dw Text_MtMoonShop_HowMany
-	dw Text_MtMoonShop_CostsThisMuch
-	dw Text_MtMoonShop_InsufficientFunds
-	dw Text_MtMoonShop_BagFull
-	dw Text_MtMoonShop_HereYouGo
+.HerbShopPointers:
+	dw Text_HerbShop_HowMany
+	dw Text_HerbShop_CostsThisMuch
+	dw Text_HerbShop_InsufficientFunds
+	dw Text_HerbShop_BagFull
+	dw Text_HerbShop_HereYouGo
 	dw BuyMenuLoop
 
 .BargainShopPointers:
@@ -632,12 +640,12 @@ GetMartDialogGroup:
 	dw Text_BargainShop_HereYouGo
 	dw Text_BargainShop_SoldOut
 
-.HerbShopPointers:
-	dw Text_HerbShop_HowMany
-	dw Text_HerbShop_CostsThisMuch
-	dw Text_HerbShop_InsufficientFunds
-	dw Text_HerbShop_BagFull
-	dw Text_HerbShop_HereYouGo
+.PharmacyPointers:
+	dw Text_Pharmacy_HowMany
+	dw Text_Pharmacy_CostsThisMuch
+	dw Text_Pharmacy_InsufficientFunds
+	dw Text_Pharmacy_BagFull
+	dw Text_Pharmacy_HereYouGo
 	dw BuyMenuLoop
 
 .SilphMartPointers:
@@ -696,6 +704,14 @@ GetMartDialogGroup:
 	dw Text_BTMart_HereYouGo
 	dw BlueCardBuyMenuLoop
 
+.ExpCandyMartPointers:
+	dw Text_Mart_HowMany
+	dw Text_Mart_CostsThisMuch
+	dw Text_Mart_InsufficientFunds
+	dw Text_Mart_BagFull
+	dw Text_Mart_HereYouGo
+	dw ExpCandyBuyMenuLoop
+
 BuyMenuLoop:
 	farcall PlaceMoneyTopRight
 	call UpdateSprites
@@ -704,7 +720,7 @@ BuyMenuLoop:
 	call DoMartScrollingMenu
 	call SpeechTextbox
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jmp z, MartMenuLoop_SetCarry
 	call MartAskPurchaseQuantity
 	jr c, .cancel
@@ -759,6 +775,55 @@ BuyMenuLoop:
 	text_far MartPremierBallText
 	text_end
 
+ExpCandyBuyMenuLoop:
+	farcall PlaceMoneyTopRight
+	call UpdateSprites
+	ld hl, MenuDataHeader_ExpCandyBuy
+	call CopyMenuHeader
+	call DoMartScrollingMenu
+	call SpeechTextbox
+	ld a, [wMenuJoypad]
+	cp PAD_B
+	jmp z, MartMenuLoop_SetCarry
+	call MartAskPurchaseQuantity
+	jr c, .cancel
+	call ExpCandyConfirmPurchase
+	jr c, .cancel
+	ld de, wMoney
+	ld bc, hMoneyTemp
+	call CompareMoney
+	jmp c, MartMenuLoop_InsufficientFunds
+	call ReceiveExpCandy
+	jmp nc, MartMenuLoop_InsufficientBagSpace
+	call PlayTransactionSound
+	ld de, wMoney
+	ld bc, hMoneyTemp
+	call TakeMoney
+	ld a, MARTTEXT_HERE_YOU_GO
+	call LoadBuyMenuText
+	call JoyWaitAorB
+.cancel
+	call SpeechTextbox
+	and a
+	ret
+
+ReceiveExpCandy:
+	ld hl, wCandyAmounts
+	ld a, [wCurItem]
+	dec a
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [wItemQuantityChangeBuffer]
+	ld c, a
+	ld a, [hl]
+	add c
+	cp 100
+	ret nc
+	ld [hl], a
+	scf
+	ret
+
 BuyTMMenuLoop:
 	farcall PlaceMoneyTopRight
 	call UpdateSprites
@@ -767,7 +832,7 @@ BuyTMMenuLoop:
 	call DoMartScrollingMenu
 	call SpeechTextbox
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jmp z, MartMenuLoop_SetCarry
 	call TMMartAskPurchaseQuantity
 	jr c, .cancel
@@ -798,7 +863,7 @@ BlueCardBuyMenuLoop:
 	call DoMartScrollingMenu
 	call SpeechTextbox
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jmp z, MartMenuLoop_SetCarry
 	call MartConfirmPurchase
 	jr c, .cancel
@@ -828,7 +893,7 @@ BTBuyMenuLoop:
 	call DoMartScrollingMenu
 	call SpeechTextbox
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
+	cp PAD_B
 	jr z, MartMenuLoop_SetCarry
 	call BTMartAskPurchaseQuantity
 	jr c, .cancel
@@ -889,6 +954,15 @@ StandardMartAskPurchaseQuantity:
 MartConfirmPurchase:
 BTMartConfirmPurchase:
 	predef PartyMonItemName
+	ld a, MARTTEXT_COSTS_THIS_MUCH
+	call LoadBuyMenuText
+	jmp YesNoBox
+
+ExpCandyConfirmPurchase:
+	ld a, [wCurItem]
+	ld [wNamedObjectIndex], a
+	call GetExpCandyName
+	call CopyName1
 	ld a, MARTTEXT_COSTS_THIS_MUCH
 	call LoadBuyMenuText
 	jmp YesNoBox
@@ -969,9 +1043,9 @@ RooftopSaleAskPurchaseQuantity:
 	add hl, de
 	add hl, de
 	inc hl
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
 	ld d, [hl]
+	ld e, a
 
 	farcall RooftopSale_SelectQuantityToBuy
 	jmp ExitMenu
@@ -1086,9 +1160,8 @@ Text_AdventurerMart_CostsThisMuch:
 	text_end
 
 MenuDataHeader_Buy:
-	db $40 ; flags
-	db 03, 06 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 6, 3, 19, 11
 	dw .menudata2
 	db 1 ; default option
 
@@ -1097,14 +1170,28 @@ MenuDataHeader_Buy:
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, wCurMart
-	dba PlaceMartItemName
+	dba PlaceMenuItemName
 	dba MartMenu_PrintBCDPrices
 	dba UpdateItemIconAndDescriptionAndBagQuantity
 
+MenuDataHeader_ExpCandyBuy:
+	db MENU_BACKUP_TILES
+	menu_coords 6, 3, 19, 11
+	dw .menudata2
+	db 1 ; default option
+
+.menudata2
+	db $30 ; pointers
+	db 4, 8 ; rows, columns
+	db 1 ; horizontal spacing
+	dbw 0, wCurMart
+	dba PlaceMenuExpCandyName
+	dba MartMenu_PrintBCDPrices
+	dba UpdateExpCandyIconAndDescriptionAndBagQuantity
+
 TMMenuDataHeader_Buy:
-	db $40 ; flags
-	db 03, 06 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 6, 3, 19, 11
 	dw .menudata2
 	db 1 ; default option
 
@@ -1132,9 +1219,8 @@ MartMenu_PrintBCDPrices:
 	jmp PrintBCDNumber
 
 BlueCardMenuDataHeader_Buy:
-	db $40 ; flags
-	db 03, 06 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 6, 3, 19, 11
 	dw .menudata2
 	db 1 ; default option
 
@@ -1143,7 +1229,7 @@ BlueCardMenuDataHeader_Buy:
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, wCurMart
-	dba PlaceMartItemName
+	dba PlaceMenuItemName
 	dba .PrintPointCosts
 	dba UpdateItemIconAndDescriptionAndBagQuantity
 
@@ -1161,9 +1247,8 @@ BlueCardMenuDataHeader_Buy:
 	db " Pts@"
 
 BTMenuDataHeader_Buy:
-	db $40 ; flags
-	db 03, 06 ; start coords
-	db 11, 19 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 6, 3, 19, 11
 	dw .menudata2
 	db 1 ; default option
 
@@ -1172,7 +1257,7 @@ BTMenuDataHeader_Buy:
 	db 4, 8 ; rows, columns
 	db 1 ; horizontal spacing
 	dbw 0, wCurMart
-	dba PlaceMartItemName
+	dba PlaceMenuItemName
 	dba .PrintPointCosts
 	dba UpdateItemIconAndDescriptionAndBagQuantity
 
@@ -1196,39 +1281,6 @@ GetCursorItemPointCost:
 	ld hl, wMartItem1BCD
 	add hl, bc
 	jmp SwapHLDE
-
-Text_MtMoonShop_Intro:
-	; Hello! Welcome to the all-new shop on Mt. Moon Square! Have a look around!
-	text_far _MtMoonShopManIntroText
-	text_end
-
-Text_MtMoonShop_CostsThisMuch:
-	; That'll be ¥@ .
-	text_far _MtMoonShopManFinalPriceText
-	text_end
-
-Text_MtMoonShop_HereYouGo:
-	; Thank you! Anything else?
-	text_far _MtMoonShopManThanksText
-	text_end
-
-Text_MtMoonShop_BagFull:
-	; Oh my, Your PACK is full.
-	text_far _MtMoonShopManPackFullText
-	text_end
-
-Text_MtMoonShop_InsufficientFunds:
-	; It seems you don't have enough money.
-	text_far _MtMoonShopManNoMoneyText
-	text_end
-
-Text_MtMoonShop_ComeAgain:
-	; Thanks! Come back soon!
-	text_far _MtMoonShopManComeAgainText
-	text_end
-
-; =================================================================
-; =================================================================
 
 Text_HerbShop_Intro:
 	; Hello, dear. I sell inexpensive herbal medicine. They're good, but a trifle bitter. Your #MON may not like them. Hehehehe…
@@ -1300,45 +1352,55 @@ Text_BargainShop_ComeAgain:
 	text_far _BargainShopComeAgainText
 	text_end
 
-Text_MtMoonShop_HowMany:
+Text_Pharmacist_Intro:
+	; What's up? Need some medicine?
+	text_far _PharmacyIntroText
+	text_end
+
 Text_HerbShop_HowMany:
+Text_Pharmacy_HowMany:
 Text_SilphMart_HowMany:
 Text_AdventurerMart_HowMany:
 Text_InformalMart_HowMany:
 Text_BazaarMart_HowMany:
 	; How many?
-	text_far _InformalHowManyText
+	text_far _HowManyText
 	text_end
 
+Text_Pharmacy_CostsThisMuch:
 Text_SilphMart_CostsThisMuch:
 Text_InformalMart_CostsThisMuch:
 Text_BazaarMart_CostsThisMuch:
 	; @ (S) will cost ¥@ .
-	text_far _InformalFinalPriceText
+	text_far _PharmacyFinalPriceText
 	text_end
 
+Text_Pharmacy_HereYouGo:
 Text_InformalMart_HereYouGo:
 	; Thanks much!
-	text_far _InformalThanksText
+	text_far _PharmacyThanksText
 	text_end
 
+Text_Pharmacy_BagFull:
 Text_SilphMart_BagFull:
 Text_InformalMart_BagFull:
 Text_BazaarMart_BagFull:
 	; You don't have any more space.
-	text_far _InformalPackFullText
+	text_far _PharmacyPackFullText
 	text_end
 
+Text_Pharmacy_InsufficientFunds:
 Text_SilphMart_InsufficientFunds:
 Text_InformalMart_InsufficientFunds:
 Text_BazaarMart_InsufficientFunds:
 	; Huh? That's not enough money.
-	text_far _InformalNoMoneyText
+	text_far _PharmacyNoMoneyText
 	text_end
 
+Text_Pharmacist_ComeAgain:
 Text_InformalMart_ComeAgain:
 	; All right. See you around.
-	text_far _InformalComeAgainText
+	text_far _PharmacyComeAgainText
 	text_end
 
 Text_SilphMart_Intro:
@@ -1518,9 +1580,8 @@ Text_Mart_HowMayIHelpYou:
 	text_end
 
 MenuDataHeader_BuySell:
-	db $40 ; flags
-	db 00, 00 ; start coords
-	db 08, 07 ; end coords
+	db MENU_BACKUP_TILES
+	menu_coords 0, 0, 7, 8
 	dw .menudata2
 	db 1 ; default option
 

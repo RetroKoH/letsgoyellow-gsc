@@ -38,7 +38,7 @@ RuinsOfAlphHoOhChamberHiddenDoorsCallback:
 	iftruefwd .WallOpen
 	changeblock 4, 0, $24
 .WallOpen:
-	checkevent EVENT_SOLVED_HO_OH_PUZZLE
+	checkevent EVENT_SOLVED_KABUTO_PUZZLE ;EVENT_SOLVED_HO_OH_PUZZLE
 	iffalsefwd .FloorClosed
 	endcallback
 
@@ -69,7 +69,7 @@ MapRuinsofAlphHoOhChamberSignpost2Script:
 
 .PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
-	setevent EVENT_SOLVED_HO_OH_PUZZLE
+	setevent EVENT_SOLVED_KABUTO_PUZZLE ;EVENT_SOLVED_HO_OH_PUZZLE
 	setflag ENGINE_UNLOCKED_UNOWNS_X_TO_QUESTION
 	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 	earthquake 30

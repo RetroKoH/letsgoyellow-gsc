@@ -301,7 +301,7 @@ InitializeNPCNames:
 	ret
 
 .Rival:
-.Backup: db "???@"
+.Backup: db "Blue@"
 .Trendy: db "Prism@"
 
 InitializeWorld:
@@ -372,7 +372,7 @@ Continue:
 	jr FinishContinueFunction
 
 .SpawnAfterE4:
-	ld a, SPAWN_NEW_BARK
+	ld a, SPAWN_PALLET				; KoH: Set RBY Post-Game Starting Point
 	ld [wDefaultSpawnpoint], a
 	call PostCreditsSpawn
 	jr FinishContinueFunction

@@ -96,6 +96,8 @@ DEF BETA EQU __trainer_class__
 	trainerclass LEAF ; 1b
 
 	trainerclass RIVAL0 ; 1c
+	const RIVAL0_1
+	const RIVAL0_2
 
 	trainerclass RIVAL1 ; 1d
 	const RIVAL1_4

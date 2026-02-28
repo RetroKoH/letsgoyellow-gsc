@@ -1515,19 +1515,12 @@ SECTION "Rival0Group", ROMX
 Rival0Group:
 
 	def_trainer_class RIVAL0
-	def_trainer 1, "boy"
-	tr_mon 4, RATTATA
-	tr_mon 5, CHIKORITA @ ORAN_BERRY
+	def_trainer RIVAL0_1, "<RIVAL>"
+	tr_mon 5, PIKACHU @ ORAN_BERRY
 	end_trainer
 
-	def_trainer 2, "boy"
-	tr_mon 4, RATTATA
-	tr_mon 5, CYNDAQUIL @ ORAN_BERRY
-	end_trainer
-
-	def_trainer 3, "boy"
-	tr_mon 4, RATTATA
-	tr_mon 5, TOTODILE @ ORAN_BERRY
+	def_trainer RIVAL0_2, "<RIVAL>"
+	tr_mon 5, EEVEE @ ORAN_BERRY
 	end_trainer
 
 

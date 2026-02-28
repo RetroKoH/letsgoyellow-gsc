@@ -56,6 +56,8 @@ MapScenes::
 	scene_var NEW_BARK_TOWN,                     wNewBarkTownSceneID
 	scene_var OLIVINE_CITY,                      wOlivineCitySceneID
 	scene_var OLIVINE_PORT,                      wOlivinePortSceneID
+	scene_var PALLET_TOWN,                       wPalletTownSceneID				; KoH - Added Pallet Town trigger
+	scene_var OAKS_LAB,                          wOaksLabTrigger				; KoH - Added Oak's Lab trigger
 	scene_var PLAYERS_HOUSE_1F,                  wPlayersHouse1FSceneID
 	scene_var POKECENTER_2F,                     wPokecenter2FSceneID
 	scene_var POKEMON_LEAGUE_GATE,               wPokemonLeagueGateSceneID
@@ -82,9 +84,7 @@ MapScenes::
 	scene_var ROUTE_43_GATE,                     wRoute43GateSceneID
 	scene_var ROUTE_47,                          wRoute47SceneID
 	scene_var ROUTE_48,                          wRoute48SceneID
-	scene_var RUGGED_ROAD_SOUTH,                 wRuggedRoadSouthSceneID
 	scene_var RUINS_OF_ALPH_AERODACTYL_CHAMBER,  wRuinsOfAlphAerodactylChamberSceneID
-	scene_var RUINS_OF_ALPH_HO_OH_CHAMBER,       wRuinsOfAlphHoOhChamberSceneID
 	scene_var RUINS_OF_ALPH_INNER_CHAMBER,       wRuinsOfAlphInnerChamberSceneID
 	scene_var RUINS_OF_ALPH_KABUTO_CHAMBER,      wRuinsOfAlphKabutoChamberSceneID
 	scene_var RUINS_OF_ALPH_OMANYTE_CHAMBER,     wRuinsOfAlphOmanyteChamberSceneID

@@ -1194,7 +1194,6 @@ wAlways0SceneID:: db
 wAzaleaTownSceneID:: db
 wBattleFacilitySceneID:: db
 wRoute39RuggedRoadGateSceneID:: db
-wRuggedRoadSouthSceneID:: db
 wSnowtopMountainOutsideSceneID:: db
 wBattleTowerOutsideSceneID:: db
 wBellchimeTrailSceneID:: db
@@ -1257,7 +1256,8 @@ wRoute43GateSceneID:: db
 wRoute47SceneID:: db
 wRoute48SceneID:: db
 wRuinsOfAlphAerodactylChamberSceneID:: db
-wRuinsOfAlphHoOhChamberSceneID:: db
+wPalletTownSceneID:: db
+wOaksLabTrigger:: ds 1
 wRuinsOfAlphInnerChamberSceneID:: db
 wRuinsOfAlphKabutoChamberSceneID:: db
 wRuinsOfAlphOmanyteChamberSceneID:: db

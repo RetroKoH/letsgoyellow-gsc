@@ -1,13 +1,13 @@
-NAME := polishedcrystal
+NAME := letsgoyellow
 MODIFIERS :=
-VERSION := 3.2.3
+VERSION := 0.0.1
 
 ROM_NAME = $(NAME)$(MODIFIERS)-$(VERSION)
 EXTENSION := gbc
 
-TITLE := PKPCRYSTAL
-MCODE := PKPC
-ROMVERSION := 0x32
+TITLE := LGYELLOW
+MCODE := PLGY
+ROMVERSION := 0x00
 
 FILLER := 0xff
 
@@ -91,18 +91,18 @@ crystal_obj    := $(rom_obj:.o=.o)
 crystal_vc_obj := $(rom_obj:.o=_vc.o)
 
 .SUFFIXES:
-.PHONY: clean tidy crystal faithful pocket debug monochrome freespace tools bsp huffman vc
+.PHONY: clean tidy lgyellow faithful pocket debug monochrome freespace tools bsp huffman vc
 .PRECIOUS: %.2bpp %.1bpp
 .SECONDARY:
-.DEFAULT_GOAL: crystal
+.DEFAULT_GOAL: lgyellow
 
-crystal: $$(ROM_NAME).$$(EXTENSION)
-faithful: crystal
-monochrome: crystal
-noir: crystal
-hgss: crystal
-debug: crystal
-pocket: crystal
+lgyellow: $$(ROM_NAME).$$(EXTENSION)
+faithful: lgyellow
+monochrome: lgyellow
+noir: lgyellow
+hgss: lgyellow
+debug: lgyellow
+pocket: lgyellow
 vc: $$(ROM_NAME).patch
 
 tools:
@@ -120,12 +120,12 @@ tidy:
 	$(RM) $(crystal_obj) $(crystal_vc_obj) $(wildcard $(NAME)-*.gbc) $(wildcard $(NAME)-*.pocket) $(wildcard $(NAME)-*.bsp) \
 		$(wildcard $(NAME)-*.map) $(wildcard $(NAME)-*.sym) $(wildcard $(NAME)-*.patch) rgbdscheck.o
 
-freespace: crystal tools/bankends
+freespace: lgyellow tools/bankends
 	tools/bankends $(ROM_NAME).map > bank_ends.txt
 
 bsp: $(ROM_NAME).bsp
 
-huffman: crystal
+huffman: lgyellow
 
 
 rgbdscheck.o: rgbdscheck.asm

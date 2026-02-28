@@ -112,7 +112,7 @@ AerodactylPuzzleScript:
 	done
 
 HoOhPuzzleScript:
-	checkevent EVENT_SOLVED_HO_OH_PUZZLE
+	checkevent EVENT_SOLVED_KABUTO_PUZZLE ;EVENT_SOLVED_HO_OH_PUZZLE
 	iffalse_jumptext EmptyDisplayText
 	reanchormap
 	paintingpic HO_OH_PUZZLE
@@ -181,8 +181,6 @@ GoldenrodMuseum2FScientistScript:
 	checkevent EVENT_SOLVED_OMANYTE_PUZZLE
 	iffalse_jumptextfaceplayer GoldenrodMuseum2FScientistNoArtifactsText
 	checkevent EVENT_SOLVED_AERODACTYL_PUZZLE
-	iffalse_jumptextfaceplayer GoldenrodMuseum2FScientistNoArtifactsText
-	checkevent EVENT_SOLVED_HO_OH_PUZZLE
 	iffalse_jumptextfaceplayer GoldenrodMuseum2FScientistNoArtifactsText
 	jumpthistextfaceplayer
 

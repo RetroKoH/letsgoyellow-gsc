@@ -1203,23 +1203,15 @@ AdjustLevelForBadges:
 	ld a, 2
 	ret
 
+OrangeGrassWildMons:
 JohtoGrassWildMons:
-INCLUDE "data/wild/johto_grass.asm"
-
-JohtoWaterWildMons:
-INCLUDE "data/wild/johto_water.asm"
-
 KantoGrassWildMons:
 INCLUDE "data/wild/kanto_grass.asm"
 
+OrangeWaterWildMons:
+JohtoWaterWildMons:
 KantoWaterWildMons:
 INCLUDE "data/wild/kanto_water.asm"
-
-OrangeGrassWildMons:
-INCLUDE "data/wild/orange_grass.asm"
-
-OrangeWaterWildMons:
-INCLUDE "data/wild/orange_water.asm"
 
 SwarmGrassWildMons:
 INCLUDE "data/wild/swarm_grass.asm"

@@ -1,7 +1,7 @@
 TrainerPicPointers::
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	table_width 3
-	dba CalPic
+	dba RedPic		; KoH - Red is playable again
 	dba CarriePic
 	dba JackyPic
 	dba EunaPic
@@ -26,7 +26,7 @@ TrainerPicPointers::
 	dba SabrinaPic
 	dba BlainePic
 	dba BluePic
-	dba RedPic
+	dba CalPic		; "Ninten" - KoH Placeholder
 	dba LeafPic
 	dba Rival0Pic
 	dba Rival1Pic

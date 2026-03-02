@@ -20,7 +20,7 @@ PalletTown_MapScriptHeader:
 	bg_event 11,  5, BGEVENT_JUMPTEXT, BluesHouseSignText
 
 	def_object_events
-	object_event  8,  4, SPRITE_OAK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PALLETTOWN_OAK		; KoH - RBY Pallet Town cutscene added
+	object_event  8,  5, SPRITE_OAK, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_HIDE_PALLETTOWN_OAK		; KoH - RBY Pallet Town cutscene added
 	object_event  3,  8, SPRITE_AROMA_LADY, SPRITEMOVEDATA_WANDER, 2, 2, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, PalletTownTeacherText, -1
 	object_event 11, 14, SPRITE_FAT_GUY, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 2, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, PalletTownFatManText, -1
 	fruittree_event 12, 21, FRUITTREE_ROUTE_21, ENIGMA_BERRY, PAL_NPC_BLACK
@@ -115,14 +115,10 @@ PalletTown_ProfOakStopsYouScene2:
 	warpcheck
 	end
 
-PalletTown_OakRunsToYouMovement1:
-	step_up
-	step_up
-	step_up
-	step_end
-
 PalletTown_OakRunsToYouMovement2:
 	step_right
+PalletTown_OakRunsToYouMovement1:
+	step_up
 	step_up
 	step_up
 	step_up

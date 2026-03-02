@@ -3155,86 +3155,91 @@ _InitialOptionsText::
 	cont "Polished Crystal."
 	prompt
 
-SECTION "_ElmText1", ROMX
-_ElmText1::
-	text "Hello! Sorry to"
-	line "keep you waiting!"
+; KoH - Oak RBY Restoration
+SECTION "_OakText1", ROMX
+_OakText1::
+	text "Hello there!"
+	line "Welcome to the"
+	cont "world of #mon!"
 
-if !DEF(DEBUG)
-	para "Welcome to the"
-	line "world of #mon!"
-
-	para "My name is Elm."
-
-	para "People call me the"
-	line "#mon Prof."
-endc
+	para "My name is Oak."
+	line "People call me the"
+	cont "#mon Prof."
 	prompt
 
-SECTION "_ElmText2", ROMX
-_ElmText2::
-	text "This world is in-"
-	line "habited by crea-"
-	cont "tures that we call"
-	cont "#mon.@"
+SECTION "_OakText2", ROMX
+_OakText2::
+	text "This world is"
+	line "inhabited by"
+	cont "creatures called"
+	cont "#mon!@"
 	text_end
 
-SECTION "_ElmText4", ROMX
-_ElmText4::
-	text "People and #mon"
-	line "live together by"
+SECTION "_OakText3", ROMX
+_OakText3::
+	text "For some people,"
+	line "#mon are"
+	cont "pets. Others use"
+	cont "them for fights."
 
-	para "supporting each"
-	line "other."
+	para "Myself..."
 
-	para "Some people play"
-	line "with #mon, some"
-	cont "battle with them."
+	para "I study #mon"
+	line "as a profession."
 	prompt
 
-SECTION "_ElmText5", ROMX
-_ElmText5::
-	text "But we don't know"
-	line "everything about"
-	cont "#mon yet."
-
-	para "There are still"
-	line "many mysteries to"
-	cont "solve."
-
-	para "That's why I study"
-	line "#mon every day."
+SECTION "_OakText4", ROMX
+_OakText4::
+	text "But first, tell"
+	line "me a little bit"
+	cont "about yourself."
 	prompt
 
-SECTION "_ElmText6", ROMX
-_ElmText6::
+SECTION "_OakText5", ROMX
+_OakText5::
 	text "Please tell me"
 	line "your name."
 	prompt
 
-SECTION "_ElmText7", ROMX
-_ElmText7::
+SECTION "_OakText6", ROMX
+_OakText6::
+	text "Right, so your"
+	line "name is <PLAYER>."
+	prompt
+
+SECTION "_OakText7", ROMX
+_OakText7::
+	text "This is my grand-"
+	line "son. He's been"
+	cont "your rival since"
+	cont "you both were"
+	cont "babies."
+
+	para "…Erm, what was his"
+	line "name now?"
+	prompt
+
+SECTION "_OakText8", ROMX
+_OakText8::
+	text "That's right! I"
+	line "remember now! His"
+	cont "name is <RIVAL>!"
+	prompt
+
+SECTION "_OakText9", ROMX
+_OakText9::
 	text "<PLAYER>, are you"
 	line "ready?"
 
-if !DEF(DEBUG)
 	para "Your very own"
-	line "#mon story is"
-	cont "about to unfold."
-
-	para "You'll face fun"
-	line "times and tough"
-	cont "challenges."
+	line "#mon legend is"
+	cont "about to unfold!"
 
 	para "A world of dreams"
 	line "and adventures"
 
 	para "with #mon"
 	line "awaits! Let's go!"
-endc
-
-	para "I'll be seeing you"
-	line "later!"
 	done
 
 SECTION "_WarnVBAText", ROMX
@@ -3246,7 +3251,7 @@ if !DEF(DEBUG)
 	line "emulator has bugs"
 
 	para "that may crash"
-	line "Polished Crystal."
+	line "LG Yellow."
 
 	para "Please use a more"
 	line "accurate emulator,"

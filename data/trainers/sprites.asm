@@ -1,7 +1,7 @@
 BTTrainerClassSprites:
 ; entries correspond to trainer classes
 	table_width 1
-	db SPRITE_CHRIS         ; CAL
+	db SPRITE_RED           ; RED (KoH - Was CAL/CHRIS, now Red is playable again) 
 	db SPRITE_KRIS          ; CARRIE
 	db SPRITE_CRYS          ; JACKY
 	db SPRITE_BETA          ; EUNA
@@ -26,7 +26,7 @@ BTTrainerClassSprites:
 	db SPRITE_SABRINA       ; SABRINA
 	db SPRITE_BLAINE        ; BLAINE
 	db SPRITE_BLUE          ; BLUE
-	db SPRITE_RED           ; RED
+	db SPRITE_CHRIS         ; NINTEN
 	db SPRITE_LEAF          ; LEAF
 	db SPRITE_RIVAL         ; RIVAL0
 	db SPRITE_RIVAL         ; RIVAL1

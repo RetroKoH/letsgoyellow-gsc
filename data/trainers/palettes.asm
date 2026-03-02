@@ -3,10 +3,10 @@ TrainerPalettes:
 	table_width 2 colors
 
 if !DEF(MONOCHROME)
-INCLUDE "gfx/trainers/cal.pal"
-INCLUDE "gfx/trainers/carrie.pal"
-INCLUDE "gfx/trainers/jacky.pal"
-INCLUDE "gfx/trainers/euna.pal"
+INCLUDE "gfx/trainers/red.pal"
+INCLUDE "gfx/trainers/jacky.pal"		; KoH - Repurposed for Green
+INCLUDE "gfx/trainers/euna.pal"			; KoH - This purple palette is a placeholder
+INCLUDE "gfx/trainers/carrie.pal"		; KoH - This will be Elaine's blue palette
 INCLUDE "gfx/trainers/falkner.pal"
 INCLUDE "gfx/trainers/bugsy.pal"
 INCLUDE "gfx/trainers/whitney.pal"
@@ -28,7 +28,7 @@ INCLUDE "gfx/trainers/janine.pal"
 INCLUDE "gfx/trainers/sabrina.pal"
 INCLUDE "gfx/trainers/blaine.pal"
 INCLUDE "gfx/trainers/blue.pal"
-INCLUDE "gfx/trainers/red.pal"
+INCLUDE "gfx/trainers/cal.pal"			; KoH - swapped palettes
 INCLUDE "gfx/trainers/leaf.pal"
 INCLUDE "gfx/trainers/rival1.pal"
 INCLUDE "gfx/trainers/rival1.pal"

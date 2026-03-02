@@ -4,7 +4,7 @@ BossTrainers:
 	db BRUNO
 	db KAREN
 	db CHAMPION
-	db RED
+	db NINTEN
 	db LEAF
 	db GIOVANNI
 	db KARATE_KING

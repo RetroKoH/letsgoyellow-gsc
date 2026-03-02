@@ -36,7 +36,7 @@ ENDM
 DEF NUM_NONTRAINER_PHONECONTACTS EQU const_value - 1
 
 DEF CHRIS EQU __trainer_class__
-	trainerclass CAL ; 1
+	trainerclass RED ; 1
 
 DEF KRIS EQU __trainer_class__
 	trainerclass CARRIE ; 2
@@ -91,7 +91,7 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass BLUE ; 19
 
-	trainerclass RED ; 1a
+	trainerclass NINTEN ; 1a ; KoH - Formerly RED; RED is playable again
 
 	trainerclass LEAF ; 1b
 

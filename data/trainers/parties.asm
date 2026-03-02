@@ -18,11 +18,11 @@ INCLUDE "data/trainers/macros.asm"
 	def_trainer_class TRAINER_NONE
 
 
-SECTION "CalGroup", ROMX
-CalGroup:
+SECTION "RedGroup", ROMX
+RedGroup:
 
-	def_trainer_class CAL
-	def_trainer 1, "Cal"
+	def_trainer_class RED
+	def_trainer 1, "Red"
 	tr_mon 60, TYPHLOSION @ QUICK_CLAW
 		tr_moves SUNNY_DAY, THUNDERPUNCH, FLAMETHROWER, SUBSTITUTE
 	tr_mon 60, MEGANIUM @ SITRUS_BERRY
@@ -1420,11 +1420,11 @@ endc
 	end_trainer
 
 
-SECTION "RedGroup", ROMX
-RedGroup:
+SECTION "NintenGroup", ROMX
+NintenGroup:
 
-	def_trainer_class RED
-	def_trainer 1, "Red"
+	def_trainer_class NINTEN
+	def_trainer 1, "Ninten"
 	tr_mon 86, LAPRAS @ WHITE_HERB, MALE
 		tr_extra WATER_ABSORB, SPE_UP_ATK_DOWN
 		tr_evs 252 SAt, 4 Def, 252 Spe

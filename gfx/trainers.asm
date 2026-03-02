@@ -3,8 +3,8 @@ SECTION "Trainer Pic Pointers", ROMX
 INCLUDE "data/trainers/pic_pointers.asm"
 
 
-SECTION "CalPic", ROMX
-CalPic: INCBIN "gfx/trainers/cal.2bpp.lzp"
+SECTION "RedPic", ROMX
+RedPic: INCBIN "gfx/trainers/red.2bpp.lzp"
 
 SECTION "CarriePic", ROMX
 CarriePic: INCBIN "gfx/trainers/carrie.2bpp.lzp"
@@ -78,8 +78,8 @@ BlainePic: INCBIN "gfx/trainers/blaine.2bpp.lzp"
 SECTION "BluePic", ROMX
 BluePic: INCBIN "gfx/trainers/blue.2bpp.lzp"
 
-SECTION "RedPic", ROMX
-RedPic: INCBIN "gfx/trainers/red.2bpp.lzp"
+SECTION "CalPic", ROMX
+CalPic: INCBIN "gfx/trainers/cal.2bpp.lzp"
 
 SECTION "LeafPic", ROMX
 LeafPic: INCBIN "gfx/trainers/leaf.2bpp.lzp"

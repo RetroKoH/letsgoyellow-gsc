@@ -81,7 +81,7 @@ _NewGame_FinishSetup:
 	call NewGame_ClearTileMapEtc
 	call WarnVBA
 	farcall SetInitialOptions
-	call ProfElmSpeech
+	call ProfOakSpeech
 	call InitializeWorld
 	ld a, 1
 	ld [wPrevLandmark], a
@@ -598,7 +598,7 @@ Continue_DisplayGameTime:
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jmp PrintNum
 
-ProfElmSpeech:
+ProfOakSpeech:
 	farcall InitClock
 	ld c, 31
 	call FadeToBlack
@@ -612,7 +612,7 @@ ProfElmSpeech:
 
 	xor a
 	ld [wCurPartySpecies], a
-	ld a, PROF_ELM
+	ld a, PROF_OAK
 	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
@@ -621,17 +621,17 @@ ProfElmSpeech:
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText1
+	ld hl, OakText1
 	call PrintText
 if !DEF(DEBUG)
 	ld c, 15
 	call FadeToWhite
 	call ClearTileMap
 
-	ld a, LOW(GLACEON)
+	ld a, LOW(PIKACHU)
 	ld [wCurSpecies], a
 	ld [wCurPartySpecies], a
-	ld a, HIGH(GLACEON) << MON_EXTSPECIES_F
+	ld a, HIGH(PIKACHU) << MON_EXTSPECIES_F
 	ld [wCurForm], a
 	ld [wTempMonForm], a
 	call GetBaseData
@@ -649,9 +649,9 @@ if !DEF(DEBUG)
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText2
+	ld hl, OakText2
 	call PrintText
-	ld hl, ElmText4
+	ld hl, OakText3
 	call PrintText
 	ld c, 15
 	call FadeToWhite
@@ -659,7 +659,7 @@ if !DEF(DEBUG)
 
 	xor a
 	ld [wCurPartySpecies], a
-	ld a, PROF_ELM
+	ld a, PROF_OAK
 	ld [wTrainerClass], a
 	call Intro_PrepTrainerPic
 
@@ -668,7 +668,7 @@ if !DEF(DEBUG)
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText5
+	ld hl, OakText4
 	call PrintText
 endc
 
@@ -677,10 +677,11 @@ endc
 	ld c, 10
 	call DelayFrames
 
-	ld hl, ElmText6
+	ld hl, OakText5
 	call PrintText
 
 	call NamePlayer
+;	call NameSecond		- KoH: Will use this for unchosen character(s)
 
 	call ClearTileMap
 	call LoadFrame
@@ -692,39 +693,89 @@ endc
 	call InitIntroGradient
 	call Intro_RotatePalettesLeftFrontpic
 
-	ld hl, ElmText7
+; KoH - Reimplement proper RBY intro screen
+	ld hl, OakText6
+	call PrintText
+	ld c, 15
+	call FadeToWhite
+	call ClearTileMap
+	call DrawIntroRivalPic
+
+	ld a, CGB_INTRO_PALS
+	call GetCGBLayout
+	call InitIntroGradient
+	call Intro_RotatePalettesLeftFrontpic
+	ld hl, OakText7
+	call PrintText
+	
+	call NameRival
+
+	call ClearTileMap
+	call LoadFrame
+	call ApplyTilemapInVBlank
+	call DrawIntroRivalPic
+
+	ld a, CGB_INTRO_PALS
+	call GetCGBLayout
+	call InitIntroGradient
+	call Intro_RotatePalettesLeftFrontpic
+
+	ld hl, OakText8
+	call PrintText
+	ld c, 15
+	call FadeToWhite
+	call ClearTileMap
+	call DrawIntroPlayerPic
+
+	ld a, CGB_INTRO_PALS
+	call GetCGBLayout
+	call InitIntroGradient
+	call Intro_RotatePalettesLeftFrontpic
+	ld hl, OakText9
 	jmp PrintText
 
-ElmText1:
-	text_far _ElmText1
+OakText1:
+	text_far _OakText1
 	text_end
 
-ElmText2:
-	text_far _ElmText2
+OakText2:
+	text_far _OakText2
 	text_asm
-	lp bc, GLACEON
+	lp bc, PIKACHU
 	call PlayMonCry
-	ld hl, ElmText3
+	ld hl, OakTextWait
 	ret
 
-ElmText3:
+OakTextWait:
 	text_far Text_Waitbutton_2
 	text_end
 
-ElmText4:
-	text_far _ElmText4
+OakText3:
+	text_far _OakText3
 	text_end
 
-ElmText5:
-	text_far _ElmText5
+OakText4:
+	text_far _OakText4
 	text_end
 
-ElmText6:
-	text_far _ElmText6
+OakText5:
+	text_far _OakText5
 	text_end
 
-ElmText7:
-	text_far _ElmText7
+OakText6:
+	text_far _OakText6
+	text_end
+
+OakText7:
+	text_far _OakText7
+	text_end
+
+OakText8:
+	text_far _OakText8
+	text_end
+
+OakText9:
+	text_far _OakText9
 	text_end
 
 InitGender:
@@ -901,6 +952,7 @@ SoThisIsYouText:
 	text_far Text_SoThisIsYou
 	text_end
 
+; KoH - Player sprites replaced
 InitGenderGraphics:
 	ld hl, ChrisCardPic
 	ld de, vTiles2 tile $00
@@ -967,6 +1019,31 @@ NamePlayer:
 
 INCLUDE "data/player/default_names.asm"
 
+; KoH - To be added...
+NameSecond:
+;	ld de, wBackupName
+;	ld hl, DefaultFemalePlayerName
+;	ld a, [wPlayerGender]
+;	bit 0, a
+;	jr z, .Male
+;	ld hl, DefaultMalePlayerName
+;.Male:
+;	ld bc, NAME_LENGTH
+;	rst CopyBytes		; Assign unused name to second rival.
+	ret
+
+NameRival:
+	ld b, $2 ; rival
+	ld de, wRivalName
+	farcall NamingScreen
+	; default to "Trace"
+	ld hl, wRivalName
+	ld de, .DefaultRivalName
+	jp InitName
+
+.DefaultRivalName:
+	db "Blue@"
+
 ShrinkPlayer:
 	ld a, 0 << 7 | 32 ; fade out
 	ld [wMusicFade], a
@@ -1030,11 +1107,18 @@ IntroFadePalettes:
 	db %11100100
 IntroFadePalettesEnd:
 
+DrawIntroRivalPic:	; KoH - Reimplement BLUE as Rival
+	xor a
+	ld [wCurPartySpecies], a
+	ld a, BLUE
+	ld [wTrainerClass], a
+	jp Intro_PrepTrainerPic
+
 DrawIntroPlayerPic:
 	xor a
 	ld [wCurPartySpecies], a
 	ld a, [wPlayerGender]
-	assert PLAYER_MALE + 1 == CAL
+	assert PLAYER_MALE + 1 == RED
 	assert PLAYER_FEMALE + 1 == CARRIE
 	assert PLAYER_ENBY + 1 == JACKY
 	assert PLAYER_BETA + 1 == EUNA

@@ -3,7 +3,7 @@ DEF FEMALE_BIT EQU FEMALE >> 7
 
 BTTrainerClassGenders:
 	bit_array
-	dbit MALE_BIT   ; CAL
+	dbit MALE_BIT   ; RED (KoH - Was CAL, now Red is playable again)
 	dbit FEMALE_BIT ; CARRIE
 	dbit MALE_BIT   ; JACKY
 	dbit FEMALE_BIT ; EUNA
@@ -28,7 +28,7 @@ BTTrainerClassGenders:
 	dbit FEMALE_BIT ; SABRINA
 	dbit MALE_BIT   ; BLAINE
 	dbit MALE_BIT   ; BLUE
-	dbit MALE_BIT   ; RED
+	dbit MALE_BIT   ; NINTEN
 	dbit FEMALE_BIT ; LEAF
 	dbit MALE_BIT   ; RIVAL0
 	dbit MALE_BIT   ; RIVAL1

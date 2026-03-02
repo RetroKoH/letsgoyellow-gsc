@@ -9,7 +9,7 @@ BattleMusic_Trainers:
 	db BRUNO,            MUSIC_ELITE_FOUR_BATTLE_SM
 	db KAREN,            MUSIC_ELITE_FOUR_BATTLE_SM
 	db CHAMPION,         MUSIC_CHAMPION_BATTLE
-	db RED,              MUSIC_WCS_BATTLE_BW
+	db NINTEN,           MUSIC_WCS_BATTLE_BW
 	db LEAF,             MUSIC_CHAMPION_BATTLE_B2W2
 	db RIVAL0,           MUSIC_RIVAL_BATTLE
 	db RIVAL1,           MUSIC_RIVAL_BATTLE

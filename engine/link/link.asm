@@ -228,7 +228,7 @@ Gen2ToGen2LinkComms:
 	jr nz, .ready_to_trade
 
 	ld a, [wLinkOtherPlayerGender]
-	assert PLAYER_MALE + 1 == CAL
+	assert PLAYER_MALE + 1 == RED
 	assert PLAYER_FEMALE + 1 == CARRIE
 	assert PLAYER_ENBY + 1 == JACKY
 	assert PLAYER_BETA + 1 == EUNA

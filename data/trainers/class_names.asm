@@ -1,6 +1,6 @@
 TrainerClassNames::
 	list_start
-	li "<PK><MN> Trainer" ; CAL
+	li "<PK><MN> Trainer" ; RED (KoH - Was CAL, now Red is playable again)
 	li "<PK><MN> Trainer" ; CARRIE
 	li "<PK><MN> Trainer" ; JACKY
 	li "<PK><MN> Trainer" ; EUNA
@@ -25,7 +25,7 @@ TrainerClassNames::
 	li "Leader"           ; SABRINA
 	li "Leader"           ; BLAINE
 	li "Leader"           ; BLUE
-	li "<PK><MN> Trainer" ; RED
+	li "<PK><MN> Trainer" ; NINTEN
 	li "<PK><MN> Trainer" ; LEAF
 	li "Rival"            ; RIVAL0
 	li "Rival"            ; RIVAL1

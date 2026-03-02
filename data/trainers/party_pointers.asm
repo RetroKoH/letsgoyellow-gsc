@@ -3,10 +3,10 @@
 TrainerGroups:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	table_width 3
-	dba RedGroup
-	dba CarrieGroup
-	dba JackyGroup
-	dba EunaGroup
+	dba RedGroup		; KoH - Red is playable again
+	dba GreenGroup		; KoH - Green is playable
+	dba ChaseGroup		; KoH - New Playable Character
+	dba ElaineGroup		; KoH - New Playable Character
 	dba FalknerGroup
 	dba BugsyGroup
 	dba WhitneyGroup

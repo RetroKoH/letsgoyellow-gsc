@@ -1114,14 +1114,15 @@ DrawIntroRivalPic:	; KoH - Reimplement BLUE as Rival
 	ld [wTrainerClass], a
 	jp Intro_PrepTrainerPic
 
+; KoH - new array of playable characters
 DrawIntroPlayerPic:
 	xor a
 	ld [wCurPartySpecies], a
 	ld a, [wPlayerGender]
 	assert PLAYER_MALE + 1 == RED
-	assert PLAYER_FEMALE + 1 == CARRIE
-	assert PLAYER_ENBY + 1 == JACKY
-	assert PLAYER_BETA + 1 == EUNA
+	assert PLAYER_FEMALE + 1 == GREEN
+	assert PLAYER_ENBY + 1 == CHASE
+	assert PLAYER_BETA + 1 == ELAINE
 	inc a
 	ld [wTrainerClass], a
 Intro_PrepTrainerPic:

@@ -38,11 +38,11 @@ RedGroup:
 	end_trainer
 
 
-SECTION "CarrieGroup", ROMX
-CarrieGroup:
+SECTION "GreenGroup", ROMX
+GreenGroup:
 
-	def_trainer_class CARRIE
-	def_trainer 1, "Carrie"
+	def_trainer_class GREEN
+	def_trainer 1, "Green"
 	tr_mon 60, MEGANIUM @ SITRUS_BERRY
 		tr_moves GIGA_DRAIN, PROTECT, LEECH_SEED, TOXIC
 	tr_mon 60, TYPHLOSION @ QUICK_CLAW
@@ -58,11 +58,11 @@ CarrieGroup:
 	end_trainer
 
 
-SECTION "JackyGroup", ROMX
-JackyGroup:
+SECTION "ChaseGroup", ROMX
+ChaseGroup:
 
-	def_trainer_class JACKY
-	def_trainer 1, "Jacky"
+	def_trainer_class CHASE
+	def_trainer 1, "Chase"
 	tr_mon 60, FERALIGATR @ LUM_BERRY
 		tr_moves SURF, CRUNCH, ICE_PUNCH, ROCK_SLIDE
 	tr_mon 60, MEGANIUM @ SITRUS_BERRY
@@ -78,11 +78,11 @@ JackyGroup:
 	end_trainer
 
 
-SECTION "EunaGroup", ROMX
-EunaGroup:
+SECTION "ElaineGroup", ROMX
+ElaineGroup:
 
-	def_trainer_class EUNA
-	def_trainer 1, "Euna"
+	def_trainer_class ELAINE
+	def_trainer 1, "Elaine"
 	tr_mon 60, MEGANIUM @ SITRUS_BERRY
 		tr_moves GIGA_DRAIN, PROTECT, LEECH_SEED, TOXIC
 	tr_mon 60, TYPHLOSION @ QUICK_CLAW
@@ -5608,7 +5608,7 @@ SECTION "SwimmerFGroup", ROMX
 SwimmerFGroup:
 
 	def_trainer_class SWIMMERF
-	def_trainer ELAINE, "Elaine"
+	def_trainer ELAINA, "Elaine"
 	tr_mon 21, STARYU
 	end_trainer
 

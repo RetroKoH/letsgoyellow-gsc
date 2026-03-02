@@ -3,10 +3,10 @@ TrainerPalettes:
 	table_width 2 colors
 
 if !DEF(MONOCHROME)
-INCLUDE "gfx/trainers/red.pal"
-INCLUDE "gfx/trainers/jacky.pal"		; KoH - Repurposed for Green
-INCLUDE "gfx/trainers/euna.pal"			; KoH - This purple palette is a placeholder
-INCLUDE "gfx/trainers/carrie.pal"		; KoH - This will be Elaine's blue palette
+INCLUDE "gfx/trainers/red.pal"			; KoH - swapped palettes, as Red is playable again
+INCLUDE "gfx/trainers/green.pal"		; KoH - reimplemented Green as a playable character
+INCLUDE "gfx/trainers/chase.pal"		; KoH - New playable character
+INCLUDE "gfx/trainers/elaine.pal"		; KoH - New playable character
 INCLUDE "gfx/trainers/falkner.pal"
 INCLUDE "gfx/trainers/bugsy.pal"
 INCLUDE "gfx/trainers/whitney.pal"

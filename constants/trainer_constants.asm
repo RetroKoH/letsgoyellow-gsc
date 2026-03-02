@@ -36,16 +36,16 @@ ENDM
 DEF NUM_NONTRAINER_PHONECONTACTS EQU const_value - 1
 
 DEF CHRIS EQU __trainer_class__
-	trainerclass RED ; 1
+	trainerclass RED ; 1 - KoH class rename
 
 DEF KRIS EQU __trainer_class__
-	trainerclass CARRIE ; 2
+	trainerclass GREEN ; 2 - KoH class rename
 
 DEF CRYS EQU __trainer_class__
-	trainerclass JACKY ; 3
+	trainerclass CHASE ; 3 - KoH class rename
 
 DEF BETA EQU __trainer_class__
-	trainerclass EUNA ; 4
+	trainerclass ELAINE ; 4 - KoH class rename
 
 	trainerclass FALKNER ; 5
 
@@ -746,7 +746,7 @@ DEF BETA EQU __trainer_class__
 	const ASHE
 
 	trainerclass SWIMMERF ; 4b
-	const ELAINE
+	const ELAINA	; Was ELAINE
 	const PAULA
 	const KAYLEE
 	const SUSIE

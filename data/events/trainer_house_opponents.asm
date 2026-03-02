@@ -1,10 +1,10 @@
 DailyTrainerHouseOpponents:
 ; entries correspond to OPP_* constants (see constants/script_constants.asm)
 	table_width TRAINER_HOUSE_OPPONENT_SIZE
-	db RED,      1
-	db CARRIE,   1
-	db JACKY,    1
-	db EUNA,     1
+	db RED,      1	; Reimplemented player charater
+	db GREEN,    1	; New player charater
+	db CHASE,    1	; New player charater
+	db ELAINE,   1	; New player charater
 	; based on http://bulbapedia.bulbagarden.net/wiki/The_Legendary_Rotation_Battle!
 	db VETERANM, EN
 	db VETERANF, MADOKA

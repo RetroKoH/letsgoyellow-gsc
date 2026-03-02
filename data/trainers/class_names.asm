@@ -1,9 +1,9 @@
 TrainerClassNames::
 	list_start
 	li "<PK><MN> Trainer" ; RED (KoH - Was CAL, now Red is playable again)
-	li "<PK><MN> Trainer" ; CARRIE
-	li "<PK><MN> Trainer" ; JACKY
-	li "<PK><MN> Trainer" ; EUNA
+	li "<PK><MN> Trainer" ; GREEN (KoH - Was CARRIE, now Green is playable again)
+	li "<PK><MN> Trainer" ; CHASE (KoH - New playable character)
+	li "<PK><MN> Trainer" ; ELAINE (KoH - New playable character)
 	li "Leader"           ; FALKNER
 	li "Leader"           ; BUGSY
 	li "Leader"           ; WHITNEY

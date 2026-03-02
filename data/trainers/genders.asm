@@ -4,9 +4,9 @@ DEF FEMALE_BIT EQU FEMALE >> 7
 BTTrainerClassGenders:
 	bit_array
 	dbit MALE_BIT   ; RED (KoH - Was CAL, now Red is playable again)
-	dbit FEMALE_BIT ; CARRIE
-	dbit MALE_BIT   ; JACKY
-	dbit FEMALE_BIT ; EUNA
+	dbit FEMALE_BIT ; GREEN (KoH - Was CARRIE, now Green is playable again)
+	dbit MALE_BIT   ; CHASE (KoH - New playable character)
+	dbit FEMALE_BIT ; ELAINE (KoH - New playable character)
 	dbit MALE_BIT   ; FALKNER
 	dbit FEMALE_BIT ; BUGSY
 	dbit FEMALE_BIT ; WHITNEY

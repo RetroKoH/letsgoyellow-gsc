@@ -2,9 +2,9 @@ TrainerPicPointers::
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	table_width 3
 	dba RedPic		; KoH - Red is playable again
-	dba CarriePic
-	dba JackyPic
-	dba EunaPic
+	dba GreenPic	; KoH - Green is playable
+	dba ChasePic	; KoH - New Playable Character
+	dba ElainePic	; KoH - New Playable Character
 	dba FalknerPic
 	dba BugsyPic
 	dba WhitneyPic

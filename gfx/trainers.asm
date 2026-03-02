@@ -4,16 +4,16 @@ INCLUDE "data/trainers/pic_pointers.asm"
 
 
 SECTION "RedPic", ROMX
-RedPic: INCBIN "gfx/trainers/red.2bpp.lzp"
+RedPic: INCBIN "gfx/trainers/red.2bpp.lzp"			; KoH - Was Cal, now Red is playable again
 
-SECTION "CarriePic", ROMX
-CarriePic: INCBIN "gfx/trainers/carrie.2bpp.lzp"
+SECTION "GreenPic", ROMX
+GreenPic: INCBIN "gfx/trainers/green.2bpp.lzp"		; KoH - Was Carrie, now Green is playable
 
-SECTION "JackyPic", ROMX
-JackyPic: INCBIN "gfx/trainers/jacky.2bpp.lzp"
+SECTION "ChasePic", ROMX
+ChasePic: INCBIN "gfx/trainers/chase.2bpp.lzp"		; KoH - New playable character
 
-SECTION "EunaPic", ROMX
-EunaPic: INCBIN "gfx/trainers/euna.2bpp.lzp"
+SECTION "ElainePic", ROMX
+ElainePic: INCBIN "gfx/trainers/elaine.2bpp.lzp"	; KoH - New playable character
 
 SECTION "FalknerPic", ROMX
 FalknerPic: INCBIN "gfx/trainers/falkner.2bpp.lzp"
@@ -79,7 +79,7 @@ SECTION "BluePic", ROMX
 BluePic: INCBIN "gfx/trainers/blue.2bpp.lzp"
 
 SECTION "CalPic", ROMX
-CalPic: INCBIN "gfx/trainers/cal.2bpp.lzp"
+CalPic: INCBIN "gfx/trainers/cal.2bpp.lzp"			; KoH - Was Cal, swapped as now Red is playable again
 
 SECTION "LeafPic", ROMX
 LeafPic: INCBIN "gfx/trainers/leaf.2bpp.lzp"

@@ -42,7 +42,7 @@ MonicaCallback:
 	endcallback
 
 GenericTrainerSwimmerfElaine:
-	generictrainer SWIMMERF, ELAINE, EVENT_BEAT_SWIMMERF_ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText
+	generictrainer SWIMMERF, ELAINA, EVENT_BEAT_SWIMMERF_ELAINE, SwimmerfElaineSeenText, SwimmerfElaineBeatenText
 
 	text "I'd say I'm a bet-"
 	line "ter swimmer than"

@@ -227,11 +227,12 @@ Gen2ToGen2LinkComms:
 	cp LINK_COLOSSEUM
 	jr nz, .ready_to_trade
 
+; KoH - new array of playable characters
 	ld a, [wLinkOtherPlayerGender]
 	assert PLAYER_MALE + 1 == RED
-	assert PLAYER_FEMALE + 1 == CARRIE
-	assert PLAYER_ENBY + 1 == JACKY
-	assert PLAYER_BETA + 1 == EUNA
+	assert PLAYER_FEMALE + 1 == GREEN
+	assert PLAYER_ENBY + 1 == CHASE
+	assert PLAYER_BETA + 1 == ELAINE
 	inc a
 	ld [wOtherTrainerClass], a
 	xor a

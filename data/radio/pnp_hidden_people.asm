@@ -26,7 +26,7 @@ PnP_HiddenPeople_BeatKanto:
 	db PROF_OAK
 	db PROF_ELM
 	db RED
-	db CARRIE
+	db GREEN
 	db NINTEN
 	db LEAF
 	db INVER ; Is not located in the same bank as the others

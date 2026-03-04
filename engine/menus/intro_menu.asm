@@ -1178,8 +1178,8 @@ Intro_PlacePlayerSprite:
 
 CrystalIntroSequence:
 	farcall SplashScreen
-	jr c, StartTitleScreen
-	farcall CrystalIntro
+;	jr c, StartTitleScreen
+;	farcall CrystalIntro
 
 StartTitleScreen:
 	ldh a, [rWBK]

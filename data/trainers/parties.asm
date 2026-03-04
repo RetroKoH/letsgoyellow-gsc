@@ -634,11 +634,11 @@ WillGroup:
 	end_trainer
 
 
-SECTION "KogaGroup", ROMX
-KogaGroup:
+SECTION "JanineGroup", ROMX
+JanineGroup:
 
-	def_trainer_class KOGA
-	def_trainer 1, "Koga"
+	def_trainer_class JANINE
+	def_trainer 1, "Janine"
 	tr_mon 50, VENOMOTH @ SILVERPOWDER, MALE
 		tr_extra TINTED_LENS
 		tr_evs 252 SAt, 68 Spe
@@ -665,7 +665,7 @@ KogaGroup:
 		tr_moves DOUBLE_TEAM, POISON_JAB, SUPER_FANG, TOXIC
 	end_trainer
 
-	def_trainer 2, "Koga"
+	def_trainer 2, "Janine"
 	tr_mon 69, TENTACRUEL @ BLACK_SLUDGE, MALE
 		tr_extra LIQUID_OOZE, SPE_UP_SATK_DOWN
 		tr_evs 252 Atk, 4 Def, 252 Spe
@@ -900,38 +900,16 @@ SECTION "BrockGroup", ROMX
 BrockGroup:
 
 	def_trainer_class BROCK
-	def_trainer 1, "Brock"
-	tr_mon 64, GOLEM, MALE
+	def_trainer 1, "Brock"		; 1st Badge
+	tr_mon 12, GEODUDE, MALE
 		tr_extra STURDY
-		tr_evs 252 HP, 196 Atk
-		tr_moves EXPLOSION, FIRE_PUNCH, ROCK_SLIDE, EARTHQUAKE
-	tr_mon 63, RHYDON @ EVIOLITE, MALE
-if DEF(FAITHFUL)
-		tr_extra LIGHTNING_ROD
-else
-		tr_extra SOLID_ROCK
-endc
-		tr_evs 252 HP, 196 SDf
-		tr_moves AVALANCHE, ROCK_SLIDE, EARTHQUAKE, OUTRAGE
-	tr_mon 65, OMASTAR, MALE
-		tr_extra SHELL_ARMOR
-		tr_evs 252 HP, 196 SAt
-		tr_moves ANCIENTPOWER, SURF, ICE_BEAM, SPIKES
-	tr_mon 68, ONIX, MALE
+		tr_moves TACKLE, DEFENSE_CURL, ROLLOUT
+	tr_mon 14, ONIX, MALE
 		tr_extra STURDY
-		tr_evs 196 HP, 252 Atk
-		tr_moves IRON_TAIL, ROCK_SLIDE, EARTHQUAKE, SANDSTORM
-	tr_mon 65, KABUTOPS, MALE
-		tr_extra BATTLE_ARMOR
-		tr_evs 196 Atk, 252 SAt
-		tr_moves SLASH, SURF, ROCK_SLIDE, GIGA_DRAIN
-	tr_mon 65, AERODACTYL, MALE
-		tr_extra ROCK_HEAD
-		tr_evs 252 Atk, 196 Spe
-		tr_moves AERIAL_ACE, ROCK_SLIDE, CRUNCH, DOUBLE_EDGE
+		tr_moves HEADBUTT, SCREECH, ROCK_SLIDE, WRAP
 	end_trainer
 
-	def_trainer 2, "Brock"
+	def_trainer 2, "Brock"		; Post-Game
 	tr_mon 74, ONIX @ CUSTAP_BERRY, MALE
 		tr_extra STURDY, ATK_UP_SATK_DOWN
 		tr_evs 252 Atk, 4 Def, 252 Spe
@@ -963,34 +941,16 @@ SECTION "MistyGroup", ROMX
 MistyGroup:
 
 	def_trainer_class MISTY
-	def_trainer 1, "Misty"
-	tr_mon 61, GOLDUCK, FEMALE
-		tr_extra CLOUD_NINE
-		tr_evs 100 HP, 252 SAt
-		tr_moves WATER_PULSE, ICE_BEAM, CALM_MIND, PSYCHIC_M
-	tr_mon 60, QUAGSIRE, FEMALE
-		tr_extra WATER_ABSORB
-		tr_evs 100 HP, 252 Atk
-		tr_moves WATERFALL, EARTHQUAKE, CURSE, RAIN_DANCE
-	tr_mon 62, LAPRAS, FEMALE
-		tr_extra WATER_ABSORB
-		tr_evs 252 Def, 100 SDf
-		tr_moves SURF, FUTURE_SIGHT, ICE_BEAM, RAIN_DANCE
-	tr_mon 60, KINGLER, FEMALE
-		tr_extra HYPER_CUTTER
-		tr_evs 252 Atk, 100 Spe
-		tr_moves DEFENSE_CURL, STOMP, PROTECT, CRABHAMMER
-	tr_mon 62, LANTURN, FEMALE
-		tr_extra VOLT_ABSORB
-		tr_evs 100 SAt, 252 HP
-		tr_moves WATER_PULSE, THUNDERBOLT, ICE_BEAM, RECOVER
-	tr_mon 64, STARMIE @ SITRUS_BERRY
+	def_trainer 1, "Misty"		; 2nd Badge
+	tr_mon 18, STARYU, FEMALE
 		tr_extra NATURAL_CURE
-		tr_evs 252 SAt, 100 Spe
-		tr_moves SCALD, PSYCHIC_M, RECOVER, ICE_BEAM
+		tr_moves TACKLE, DEFENSE_CURL, RECOVER, WATER_PULSE
+	tr_mon 21, STARMIE, FEMALE
+		tr_extra NATURAL_CURE
+		tr_moves RAPID_SPIN, SWIFT, RECOVER, SCALD
 	end_trainer
 
-	def_trainer 2, "Misty"
+	def_trainer 2, "Misty"		; Post-Game
 	tr_mon 73, GOLDUCK @ DAMP_ROCK, FEMALE
 		tr_extra SWIFT_SWIM, SPE_UP_ATK_DOWN
 		tr_evs 252 SAt, 4 Def, 252 Spe
@@ -1022,38 +982,18 @@ SECTION "LtSurgeGroup", ROMX
 LtSurgeGroup:
 
 	def_trainer_class LT_SURGE
-	def_trainer 1, "Lt.Surge"
-	tr_mon 58, RAICHU, MALE
+	def_trainer 1, "Lt.Surge"		; 3rd Badge
+	tr_mon 25, VOLTORB, MALE
 		tr_extra STATIC
-		tr_evs 36 Spe, 252 Atk
-		tr_moves IRON_TAIL, DOUBLE_EDGE, WILD_CHARGE, DOUBLE_TEAM
-	tr_mon 56, ELECTRODE
-		tr_extra STATIC
-		tr_evs 36 HP, 252 SAt
-		tr_moves EXPLOSION, DOUBLE_TEAM, THUNDERBOLT, THUNDER_WAVE
-	tr_mon 57, MAGNEZONE, MALE
-if DEF(FAITHFUL)
-		tr_extra STURDY
-else
-		tr_extra LEVITATE
-endc
-		tr_evs 36 HP, 252 SAt
-		tr_moves DOUBLE_TEAM, FLASH_CANNON, WILD_CHARGE, ZAP_CANNON
-	tr_mon 56, ELECTRODE, MALE
-		tr_extra STATIC
-		tr_evs 36 HP, 252 Atk
 		tr_moves SCREECH, DOUBLE_TEAM, WILD_CHARGE, EXPLOSION
-	tr_mon 58, JOLTEON, MALE
-		tr_extra VOLT_ABSORB
-		tr_evs 36 SAt, 252 Atk
-		tr_moves WILD_CHARGE, THUNDER_WAVE, DOUBLE_EDGE, THUNDER
-	tr_mon 60, ELECTABUZZ @ EVIOLITE, MALE
+	tr_mon 26, MAGNEMITE, MALE
+		tr_extra LEVITATE
+		tr_moves DOUBLE_TEAM, FLASH_CANNON, WILD_CHARGE, ZAP_CANNON
+	tr_mon 28, RAICHU, MALE
 		tr_extra STATIC
-		tr_evs 252 Atk, 36 Spe
-		tr_moves ICE_PUNCH, THUNDERPUNCH, FIRE_PUNCH, CROSS_CHOP
-	end_trainer
+		tr_moves IRON_TAIL, DOUBLE_EDGE, WILD_CHARGE, DOUBLE_TEAM
 
-	def_trainer 2, "Lt.Surge"
+	def_trainer 2, "Lt.Surge"		; Post-Game
 	tr_mon 74, ELECTIVIRE @ AIR_BALLOON, MALE
 		tr_extra VITAL_SPIRIT, SPE_UP_SATK_DOWN
 		tr_evs 252 Atk, 4 Def, 252 Spe
@@ -1089,41 +1029,19 @@ SECTION "ErikaGroup", ROMX
 ErikaGroup:
 
 	def_trainer_class ERIKA
-	def_trainer 1, "Erika"
-	tr_mon 61, SUNFLORA, FEMALE
+	def_trainer 1, "Erika"		; 4th Badge
+	tr_mon 29, TANGELA, FEMALE
 		tr_extra CHLOROPHYLL
-		tr_evs 192 SAt, 192 Spe
-if DEF(FAITHFUL)
-		tr_moves SUNNY_DAY, HEALINGLIGHT, GIGA_DRAIN, EARTH_POWER
-else
-		tr_moves SUNNY_DAY, HEALINGLIGHT, GIGA_DRAIN, FLAMETHROWER
-endc
-	tr_mon 62, TANGELA @ EVIOLITE, FEMALE
-		tr_extra CHLOROPHYLL
-		tr_evs 132 HP, 252 SDf
 		tr_moves ANCIENTPOWER, HEALINGLIGHT, GIGA_DRAIN, SLEEP_POWDER
-if DEF(FAITHFUL)
-	tr_mon 61, PARASECT, FEMALE
-		tr_extra EFFECT_SPORE
-		tr_evs 252 HP, 132 SDf
-		tr_moves SPORE, X_SCISSOR, GROWTH, GIGA_DRAIN
-else
-	tr_mon 61, POLITOED, FEMALE
-		tr_extra WATER_ABSORB
-		tr_evs 252 SAt, 132 HP
-		tr_moves GIGA_DRAIN, SCALD, ICE_BEAM, FOCUS_BLAST
-endc
-	tr_mon 65, VILEPLUME, FEMALE
+	tr_mon 30, WEEPINBELL, FEMALE
 		tr_extra CHLOROPHYLL
-		tr_evs 252 SAt, 132 Spe
-		tr_moves SUNNY_DAY, HEALINGLIGHT, SLUDGE_BOMB, SOLAR_BEAM
-	tr_mon 65, BELLOSSOM @ SITRUS_BERRY, FEMALE
-		tr_extra CHLOROPHYLL
-		tr_evs 132 SAt, 252 Spe
 		tr_moves SUNNY_DAY, HEALINGLIGHT, MOONBLAST, SOLAR_BEAM
+	tr_mon 32, VILEPLUME, FEMALE
+		tr_extra CHLOROPHYLL
+		tr_moves SUNNY_DAY, HEALINGLIGHT, SLUDGE_BOMB, SOLAR_BEAM
 	end_trainer
 
-	def_trainer 2, "Erika"
+	def_trainer 2, "Erika"		; Post-Game
 	tr_mon 72, SUNFLORA @ HEAT_ROCK, FEMALE
 		tr_extra CHLOROPHYLL, SPE_UP_ATK_DOWN
 		tr_evs 252 SAt, 4 Def, 252 Spe
@@ -1162,38 +1080,26 @@ endc
 	end_trainer
 
 
-SECTION "JanineGroup", ROMX
-JanineGroup:
+SECTION "KogaGroup", ROMX
+KogaGroup:
 
-	def_trainer_class JANINE
-	def_trainer 1, "Janine"
-	tr_mon 64, CROBAT, FEMALE
+	def_trainer_class KOGA
+	def_trainer 1, "Koga"		; 5th Badge
+	tr_mon 39, CROBAT, FEMALE
 		tr_extra INNER_FOCUS
-		tr_evs 252 Atk, 164 Spe
 		tr_moves SCREECH, TOXIC, CONFUSE_RAY, AERIAL_ACE
-	tr_mon 61, ARIADOS, FEMALE
-		tr_extra SWARM
-		tr_evs 252 Atk, 164 SAt
-		tr_moves AGILITY, POISON_JAB, SUCKER_PUNCH, LEECH_LIFE
-	tr_mon 62, QWILFISH, FEMALE
-		tr_extra POISON_POINT
-		tr_evs 252 HP, 164 Atk
-		tr_moves AQUA_TAIL, POISON_JAB, SPIKES, MINIMIZE
-	tr_mon 64, NIDOQUEEN, FEMALE
-		tr_extra POISON_POINT
-		tr_evs 208 SAt, 208 Spe
-		tr_moves EARTH_POWER, HEALINGLIGHT, SLUDGE_BOMB, ICE_BEAM
-	tr_mon 63, WEEZING, FEMALE
+	tr_mon 41, WEEZING, MALE
 		tr_extra LEVITATE
-		tr_evs 252 SAt, 164 HP
 		tr_moves SLUDGE_BOMB, THUNDER, FIRE_BLAST, EXPLOSION
-	tr_mon 66, VENOMOTH @ SITRUS_BERRY, FEMALE
+	tr_mon 41, MUK, MALE
+		tr_extra STENCH
+		tr_moves MINIMIZE, FIRE_PUNCH, GUNK_SHOT, TOXIC
+	tr_mon 43, VENOMOTH, MALE
 		tr_extra TINTED_LENS
-		tr_evs 208 SAt, 208 Spe
 		tr_moves SLUDGE_BOMB, DOUBLE_TEAM, BUG_BUZZ, PSYCHIC_M
 	end_trainer
 
-	def_trainer 2, "Janine"
+	def_trainer 2, "Koga"		; Post-Game
 	tr_mon 73, CROBAT @ CHOICE_BAND, FEMALE
 		tr_extra INNER_FOCUS, SPE_UP_SATK_DOWN
 		tr_evs 252 Atk, 4 Def, 252 Spe
@@ -1225,34 +1131,22 @@ SECTION "SabrinaGroup", ROMX
 SabrinaGroup:
 
 	def_trainer_class SABRINA
-	def_trainer 1, "Sabrina"
-	tr_mon 61, ESPEON, FEMALE
-		tr_extra SYNCHRONIZE
-		tr_evs 252 SAt, 68 Spe
-		tr_moves SHADOW_BALL, FUTURE_SIGHT, SWIFT, PSYCHIC_M
-	tr_mon 59, GIRAFARIG, FEMALE
-		tr_extra EARLY_BIRD
-		tr_evs 68 HP, 252 Spe
-		tr_moves PSYCHIC_M, DARK_PULSE, AGILITY, CALM_MIND
-	tr_mon 60, MR__MIME, FEMALE
+	def_trainer 1, "Sabrina"		; 6th Badge
+	tr_mon 42, MR__MIME, FEMALE
 		tr_extra FILTER
-		tr_evs 252 HP, 68 Spe
 		tr_moves BARRIER, REFLECT, BATON_PASS, PSYCHIC_M
-	tr_mon 59, HYPNO, FEMALE
+	tr_mon 43, SLOWBRO, FEMALE
+		tr_extra OWN_TEMPO
+		tr_moves FIRE_BLAST, ICE_BEAM, HYDRO_PUMP, PSYCHIC_M
+	tr_mon 43, HYPNO, FEMALE
 		tr_extra INSOMNIA
-		tr_evs 252 HP, 68 SAt
 		tr_moves HYPNOSIS, FOCUS_BLAST, NASTY_PLOT, PSYCHIC_M
-	tr_mon 58, WOBBUFFET, FEMALE
-		tr_extra SHADOW_TAG
-		tr_evs 252 HP, 68 Spe
-		tr_moves COUNTER, MIRROR_COAT, SAFEGUARD, DESTINY_BOND
-	tr_mon 62, ALAKAZAM @ SITRUS_BERRY, FEMALE
+	tr_mon 45, ALAKAZAM @ SITRUS_BERRY, FEMALE
 		tr_extra MAGIC_GUARD
-		tr_evs 252 SAt, 68 Spe
 		tr_moves RECOVER, FUTURE_SIGHT, PSYCHIC_M, REFLECT
 	end_trainer
 
-	def_trainer 2, "Sabrina"
+	def_trainer 2, "Sabrina"		; Post-Game
 	tr_mon 74, ESPEON @ LIGHT_CLAY, FEMALE
 		tr_extra MAGIC_BOUNCE, SPE_UP_ATK_DOWN
 		tr_evs 252 HP, 4 Def, 252 Spe
@@ -1285,32 +1179,16 @@ BlaineGroup:
 
 	def_trainer_class BLAINE
 	def_trainer 1, "Blaine"
-	tr_mon 65, NINETALES @ HEAT_ROCK, MALE
-		tr_extra DROUGHT
-		tr_evs 252 Spe, 228 SAt
-		tr_moves FIRE_BLAST, WILL_O_WISP, SOLAR_BEAM, HEX
-	tr_mon 66, MAGCARGO, MALE
-		tr_extra FLAME_BODY
-		tr_evs 228 SAt, 252 Spe
-		tr_moves CURSE, WILL_O_WISP, FLAMETHROWER, ROCK_SLIDE
-	tr_mon 68, MAGMAR @ EVIOLITE, MALE
-		tr_evs 252 Spe, 228 SAt
+	tr_mon 47, MAGMAR @ EVIOLITE, MALE
 		tr_moves SUNNY_DAY, PSYCHIC_M, FLAMETHROWER, FOCUS_BLAST
-	tr_mon 66, ARCANINE, MALE
-		tr_extra INTIMIDATE
-		tr_evs 252 Atk, 228 Spe
-		tr_moves CRUNCH, FLAME_CHARGE, FLARE_BLITZ, TAKE_DOWN
-	tr_mon 65, FLAREON, MALE
-if DEF(FAITHFUL)
-		tr_extra FLASH_FIRE
-else
-		tr_extra DROUGHT
-endc
-		tr_evs 252 Atk, 228 SAt
-		tr_moves WILL_O_WISP, FLARE_BLITZ, QUICK_ATTACK, FIRE_BLAST
-	tr_mon 69, RAPIDASH @ SITRUS_BERRY, MALE
-		tr_evs 252 Atk, 228 Spe
+	tr_mon 48, RAPIDASH @ SITRUS_BERRY, MALE
 		tr_moves EXTREMESPEED, FIRE_SPIN, PLAY_ROUGH, FIRE_BLAST
+	tr_mon 49, NINETALES @ HEAT_ROCK, MALE
+		tr_extra DROUGHT
+		tr_moves FIRE_BLAST, WILL_O_WISP, SOLAR_BEAM, HEX
+	tr_mon 50, ARCANINE, MALE
+		tr_extra INTIMIDATE
+		tr_moves CRUNCH, FLAME_CHARGE, FLARE_BLITZ, TAKE_DOWN
 	end_trainer
 
 

@@ -16,7 +16,7 @@ TrainerGroups:
 	dba PryceGroup
 	dba ClairGroup
 	dba WillGroup
-	dba KogaGroup
+	dba JanineGroup
 	dba BrunoGroup
 	dba KarenGroup
 	dba ChampionGroup
@@ -24,7 +24,7 @@ TrainerGroups:
 	dba MistyGroup
 	dba LtSurgeGroup
 	dba ErikaGroup
-	dba JanineGroup
+	dba KogaGroup		; KoH - Restored Gym Leader Koga
 	dba SabrinaGroup
 	dba BlaineGroup
 	dba BlueGroup

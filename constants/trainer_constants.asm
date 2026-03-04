@@ -65,7 +65,7 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass WILL ; d
 
-	trainerclass KOGA ; e
+	trainerclass JANINE ; e
 
 	trainerclass BRUNO ; f
 
@@ -83,7 +83,7 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass ERIKA ; 15
 
-	trainerclass JANINE ; 16
+	trainerclass KOGA ; 16
 
 	trainerclass SABRINA ; 17
 

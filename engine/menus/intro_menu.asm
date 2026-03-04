@@ -1176,6 +1176,7 @@ Intro_PlacePlayerSprite:
 	db 10 * 8 + 4,  9 * 8, 2
 	db 10 * 8 + 4, 10 * 8, 3
 
+; KoH - Temporarily remove the intro sequence
 CrystalIntroSequence:
 	farcall SplashScreen
 ;	jr c, StartTitleScreen

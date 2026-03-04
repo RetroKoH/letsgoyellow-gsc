@@ -22,12 +22,19 @@ _TitleScreen:
 	ld a, 1
 	ldh [rVBK], a
 
-; Decompress running Suicune and floating Unown gfx
-	ld hl, TitleSuicuneUnownsGFX0
-	ld de, vTiles2
-	call Decompress
-	ld hl, TitleSuicuneUnownsGFX1
+; Decompress Pikachu/Eevee gfx (KoH - New Graphics)
+	ld hl, TitlePikachuGFX
 	ld de, vTiles1
+	call Decompress
+
+; Decompress Let's Go logo (KoH - Replaced the crystal)
+	ld hl, TitleLetsGoGFX
+	ld de, vTiles1+$400
+	call Decompress
+
+; Decompress LGY logo (KoH - Replaced the crystal)
+	ld hl, TitleLGYGFX
+	ld de, vTiles1+$500
 	call Decompress
 
 ; Clear screen palettes
@@ -48,36 +55,55 @@ _TitleScreen:
 
 ; BG Map 0:
 
-; Apply logo gradient:
+; Apply logo gradient: (KoH - Changed logo gradient)
 
-; lines 3-6
-	hlbgcoord 0, 3
-	ld bc, 4 * TILEMAP_WIDTH
+; lines 1-2
+	hlbgcoord 0, 1
+	ld bc, 2 * TILEMAP_WIDTH
 	ld a, 2
-	rst ByteFill
-; line 7-9
-	hlbgcoord 0, 7
-	ld bc, 3 * TILEMAP_WIDTH
+	call ByteFill
+; line 3
+	hlbgcoord 0, 3
+	ld bc, TILEMAP_WIDTH
 	ld a, 3
+	call ByteFill
+; line 4
+	hlbgcoord 0, 4
+	ld bc, TILEMAP_WIDTH
+	ld a, 4
+	call ByteFill
+; line 5
+	hlbgcoord 0, 5
+	ld bc, TILEMAP_WIDTH
+	ld a, 5
+	call ByteFill
+; lines 6-7
+	hlbgcoord 0, 6
+	ld bc, 2 * TILEMAP_WIDTH
+	ld a, 6
+	call ByteFill
+
+; 'Let's Go Yellow - KoH: Replaced the version text
+	hlbgcoord 6, 7
+	ld bc, 8 ; start the gfx
+	ld a, 8
 	rst ByteFill
 
-; 'CRYSTAL VERSION'
-	hlbgcoord 5, 9
-	ld bc, NAME_LENGTH ; length of version text
-	ld a, 1
-	rst ByteFill
+; Pikachu/Eevee gfx palettes - KoH changes to color the silhouettes
+	hlbgcoord 0, 8
+	ld bc, 6 * TILEMAP_WIDTH ; start the gfx
+	ld a, 8
+	call ByteFill
 
-; Suicune and Unown gfx
-	hlbgcoord 1, 11
-	lb bc, 7, 18
-	ld a, 0 | BG_BANK1
-	call DrawTitleBGBox
+	hlbgcoord 0, 14
+	ld bc, TILEMAP_WIDTH ; Give Pikachu red cheeks
+	ld a, 9
+	call ByteFill
 
-; Suicune palette
-	hlbgcoord 6, 12
-	lb bc, 6, 8
-	ld a, 4 | BG_BANK1
-	call DrawTitleBGBox
+	hlbgcoord 0, 15
+	ld bc, 3 * TILEMAP_WIDTH ; the rest of the screen
+	ld a, 8
+	call ByteFill
 
 ; Back to VRAM bank 0
 	xor a
@@ -88,11 +114,6 @@ _TitleScreen:
 	ld de, vTiles1
 	call Decompress
 
-; Decompress background crystal
-	ld hl, TitleCrystalGFX
-	ld de, vTiles0
-	call Decompress
-
 ; Clear screen tiles
 	hlbgcoord 0, 0
 	ld bc, 64 * TILEMAP_WIDTH
@@ -100,26 +121,37 @@ _TitleScreen:
 	rst ByteFill
 
 ; Draw Pokemon logo
-	hlcoord 0, 3
+	hlcoord 0, 1
 	lb bc, 7, SCREEN_WIDTH
 	lb de, $80, SCREEN_WIDTH
 	call DrawTitleGraphic
 
-; Draw copyright text
-	hlbgcoord 4, 0, vBGMap1
-	lb bc, 1, 13
+; Draw Pikachu / Eevee (KoH Addition)
+	hlcoord 5, 12
+	lb bc, 6, 10
+	lb de, $80, 10
+	call DrawTitleGraphic
+
+; Draw YELLOW text (KoH Addition)
+	hlcoord 4, 8
+	lb bc, 4, 13
+	lb de, $D0, 13
+	call DrawTitleGraphic
+
+; Draw Let's Go (KoH Addition)
+	hlcoord 6, 7
+	lb bc, 2, 8
+	lb de, $C0, 8
+	call DrawTitleGraphic
+
+; Draw copyright text (KoH - New Copyright Text)
+	hlbgcoord 3, 0, vBGMap1
+	lb bc, 1, 14
 	lb de, $0c, 0
 	call DrawTitleGraphic
 
-IF DEF(FAITHFUL)
-	hlbgcoord 17, 0, vBGMap1
-	lb bc, 1, 1
-	lb de, $19, 0
-	call DrawTitleGraphic
-endc
-
-; Initialize background crystal
-	call InitializeCrystalSprites
+; Initialize LG Yellow Title (Remove?)
+;	call InitializeBackground
 
 ; Save WRAM bank
 	ldh a, [rWBK]
@@ -195,48 +227,6 @@ endc
 	ld de, SFX_TITLE_SCREEN_ENTRANCE
 	jmp PlaySFX
 
-SuicuneFrameIterator:
-	ld hl, wSuicuneFrame
-	ld a, [hl]
-	ld c, a
-	inc [hl]
-
-; Only do this once every eight frames
-	and (1 << 3) - 1
-	ret nz
-
-	ld a, c
-	and 3 << 3
-	add a
-	swap a
-	ld hl, SuicuneUnownsTilemaps
-	ld bc, 18 * 7
-	rst AddNTimes
-
-	xor a
-	ldh [hBGMapMode], a
-
-	decoord 1, 11
-	ld b, 7
-.bgrows
-	ld c, 18
-.col
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .col
-rept SCREEN_WIDTH - 18
-	inc de
-endr
-	dec b
-	jr nz, .bgrows
-
-	ld a, $1
-	ldh [hBGMapMode], a
-	ldh [hBGMapHalf], a
-	ret
-
 DrawTitleGraphic:
 ; input:
 ;   hl: draw location
@@ -287,10 +277,10 @@ DrawTitleBGBox:
 	jr nz, .row
 	ret
 
-InitializeCrystalSprites:
+InitializeBackground:
 	ld hl, wShadowOAM
 	lb de, -$22, $00 ; initial top-left Y coord, top-left tile ID
-	ld c, 5 ; column height
+	ld c, 12 ; column height
 .loop
 	push bc
 	call .InitRow
@@ -326,7 +316,7 @@ InitializeCrystalSprites:
 	ret
 
 .InitRow:
-	lb bc, $40, 6 ; left X coord, row width
+	lb bc, $40, 4 ; left X coord, row width
 .loop2
 	ld a, d
 	ld [hli], a ; Y coord
@@ -352,7 +342,7 @@ InitializeCrystalSprites:
 	db  $1e, $50, $44, 1 | OAM_PRIO
 	db  $0e, $60, $46, 0 | OAM_PRIO
 
-AnimateTitleCrystal:
+AnimateTitleLGY:
 ; Move the title screen crystal downward until it's fully visible
 
 ; Stop at y=6
@@ -376,22 +366,17 @@ AnimateTitleCrystal:
 
 	ret
 
-SuicuneUnownsTilemaps:
-	table_width 18 * 7
-INCBIN "gfx/title/suicune_unowns.tilemap"
-	assert_table_length 4
+TitlePikachuGFX: ; KoH - New mon silhouettes
+INCBIN "gfx/title/pikaeeveesilhouette.2bpp.lzp"
 
-TitleSuicuneUnownsGFX0:
-INCBIN "gfx/title/suicune_unowns.2bpp.vram0p.lzp"
-
-TitleSuicuneUnownsGFX1:
-INCBIN "gfx/title/suicune_unowns.2bpp.vram1p.lzp"
-
-TitleLogoGFX:
+TitleLogoGFX: ; KoH - Reverted the logo
 INCBIN "gfx/title/logo_bg.2bpp.lzp"
 
-TitleCrystalGFX:
-INCBIN "gfx/title/crystal.2bpp.lzp"
+TitleLetsGoGFX: ; KoH - Replaced the Crystal with the new Let's Go logo
+INCBIN "gfx/title/letsgo.2bpp.lzp"
 
-TitleScreenPalettes:
+TitleLGYGFX: ; KoH - Replaced the Crystal with the new YELLOW logo
+INCBIN "gfx/title/lgyellow.2bpp.lzp"
+
+TitleScreenPalettes: ; KoH - Changed palette
 INCLUDE "gfx/title/title.pal"

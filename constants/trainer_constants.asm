@@ -186,14 +186,37 @@ DEF BETA EQU __trainer_class__
 	const JOE		; 			(Y)
 	const CHRIS		; Route 9
 	const JUSTIN	; Route 12
-	const TODD1		; Unused Gen 2 Phone Trainers
+	const TODD1		; Unused Gen 2 Phone Trainer
 	const TODD2
 	const TODD3
 	const TODD4
 	const TODD5
 
-	trainerclass PICNICKER ; 24
-	const LIZ1
+	trainerclass PICNICKER ; 24 (FINISHED; Formerly Jr Trainer)
+	const DIANA		; Cerulean Gym
+	const GISELLE	; Route 6 (Y)
+	const NANCY
+	const ALICIA	; Route 9
+	const CAITLIN
+	const HEIDI		; Route 10
+	const MARTHA	; Rock Tunnel
+	const SOFIA
+	const LEAH
+	const ARIANA
+	const DANA
+	const CAROL		; Route 10 (After Rock Tunnel)
+	const TINA		; Celadon Gym
+	const ALMA		; Route 13
+	const SUSIE
+	const VALERIE
+	const GWEN
+	const BECKY		; Route 15
+	const CELIA
+	const KINDRA
+	const YAZMIN
+	const IRENE		; Route 20
+	const MISSY
+	const LIZ1		; Unused Gen 2 Phone Trainers
 	const LIZ2
 	const LIZ3
 	const LIZ4
@@ -210,22 +233,8 @@ DEF BETA EQU __trainer_class__
 	const TIFFANY2
 	const TIFFANY3
 	const TIFFANY4
-	const KIM
-	const CINDY
-	const HOPE
-	const SHARON
-	const DEBRA
-	const HEIDI
-	const EDNA
-	const TANYA
-	const LILY
-	const PIPER
-	const GINGER
-	const CHEYENNE
-	const ADRIAN
-	const ZANE
 
-	trainerclass TWINS ; 25
+	trainerclass TWINS ; 25 (To either be scrapped or implemented with FRLG trainers)
 	const AMYANDMIMI1
 	const AMYANDMIMI2
 	const ANNANDANNE1

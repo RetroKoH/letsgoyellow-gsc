@@ -2456,6 +2456,139 @@ CamperGroup:
 SECTION "PicnickerGroup", ROMX
 PicnickerGroup:
 
+; Cerulean Gym (FRLG; Modified lineup)
+	def_trainer DIANA, "Diana"
+	tr_mon 19, GOLDEEN
+	end_trainer
+
+; Route 6 (FRLG + Y)
+	def_trainer GISELLE, "Giselle"
+	tr_mon 20, CUBONE
+	end_trainer
+
+	def_trainer NANCY, "Nancy"
+	tr_mon 16, PIDGEY
+	tr_mon 16, PIKACHU
+	end_trainer
+
+; Route 9 (FRLG)
+	def_trainer ALICIA, "Alicia"		; Team truncated down and leveled-up from FRLG
+	tr_mon 20, ODDISH
+	tr_mon 20, BELLSPROUT
+	end_trainer
+
+	def_trainer CAITLIN, "Caitlin"
+	tr_mon 21, GOLDEEN					; Addition from LGPE Caitlin
+	tr_mon 21, MEOWTH
+	end_trainer
+
+; Route 10 (FRLG)
+	def_trainer HEIDI, "Heidi"
+	tr_mon 20, PIKACHU
+	tr_mon 20, CLEFAIRY
+	end_trainer
+
+; Rock Tunnel (FRLG)
+	def_trainer MARTHA, "Martha"
+	tr_mon 22, ODDISH, FEMALE
+	tr_mon 22, BULBASAUR, MALE
+	end_trainer
+
+	def_trainer SOFIA, "Sofia"
+	tr_mon 21, JIGGLYPUFF, FEMALE
+	tr_mon 21, PIDGEY, FEMALE
+	tr_mon 21, MEOWTH, FEMALE
+	end_trainer
+
+	def_trainer LEAH, "Leah"
+	tr_mon 22, BELLSPROUT, FEMALE
+	tr_mon 22, CLEFAIRY, FEMALE
+	end_trainer
+
+	def_trainer ARIANA, "Ariana"
+	tr_mon 19, PIDGEY, FEMALE
+	tr_mon 19, RATTATA, FEMALE
+	tr_mon 19, RATTATA, FEMALE
+	tr_mon 19, BELLSPROUT, FEMALE
+	end_trainer
+
+	def_trainer DANA, "Dana"
+	tr_mon 20, MEOWTH, FEMALE
+	tr_mon 20, ODDISH, FEMALE
+	tr_mon 20, PIDGEY, FEMALE
+	end_trainer
+
+; Route 10 - After Rock Tunnel (FRLG + Y)
+	def_trainer CAROL, "Carol"
+	tr_mon 21, JIGGLYPUFF					; Added from Yellow's HEIDI, replacing Pidgey
+	tr_mon 21, PIDGEOTTO
+	end_trainer
+
+; Celadon Gym (FRLG/LGPE)
+	def_trainer TINA, "Tina"
+	tr_mon 24, GLOOM, FEMALE				; LGPE Addition, leveled-down
+	tr_mon 24, IVYSAUR, FEMALE
+	end_trainer
+
+; Route 13 (FRLG/LGPE)
+	def_trainer ALMA, "Alma"
+	tr_mon 28, GOLDEEN, FEMALE
+	tr_mon 28, POLIWAG, FEMALE
+	tr_mon 28, HORSEA, FEMALE
+	end_trainer
+
+	def_trainer SUSIE, "Susie"				; Team is an amalgamation of FRLG/LGPE
+	tr_mon 24, PIDGEY, FEMALE
+	tr_mon 24, MEOWTH, FEMALE
+	tr_mon 24, RATTATA, FEMALE
+	tr_mon 24, PIKACHU, FEMALE
+	tr_mon 24, JIGGLYPUFF, FEMALE
+	end_trainer
+
+	def_trainer VALERIE, "Valerie"
+	tr_mon 30, POLIWAG, FEMALE
+	tr_mon 30, POLIWAG, FEMALE
+	end_trainer
+
+	def_trainer GWEN, "Gwen"				; Team is an amalgamation of FRLG/LGPE
+	tr_mon 26, MEOWTH, FEMALE
+	tr_mon 26, PSYDUCK, FEMALE
+	tr_mon 26, RATICATE, FEMALE
+	end_trainer
+
+; Route 15 (FRLG/LGPE)
+	def_trainer BECKY, "Becky"
+	tr_mon 33, RAICHU, FEMALE
+	end_trainer
+
+	def_trainer CELIA, "Celia"
+	tr_mon 33, CLEFAIRY, FEMALE
+	end_trainer
+
+	def_trainer KINDRA, "Kindra"
+	tr_mon 28, ODDISH, FEMALE
+	tr_mon 28, ODDISH, FEMALE
+	tr_mon 28, GLOOM, FEMALE
+	end_trainer
+
+	def_trainer YAZMIN, "Yazmin"
+	tr_mon 32, GOLDEEN, FEMALE				; LGPE party member, devolved
+	tr_mon 32, TANGELA, FEMALE
+	end_trainer
+
+; Route 20 (FRLG/LGPE)
+	def_trainer IRENE, "Irene"
+	tr_mon 30, TENTACOOL, FEMALE
+	tr_mon 30, HORSEA, FEMALE
+	tr_mon 30, SEEL, FEMALE
+	end_trainer
+
+	def_trainer MISSY, "Missy"
+	tr_mon 31, GOLDEEN, FEMALE
+	tr_mon 31, SEAKING, FEMALE
+	end_trainer
+
+; Unused Phone Trainers
 	def_trainer_class PICNICKER
 	def_trainer LIZ1, "Liz"
 	tr_mon 10, NIDORAN_F
@@ -2513,11 +2646,7 @@ PicnickerGroup:
 
 	def_trainer GINA5, "Gina"
 	tr_mon 33, SUNFLORA
-if DEF(FAITHFUL)
 		tr_moves LEECH_SEED, GIGA_DRAIN, SUNNY_DAY, EARTH_POWER
-else
-		tr_moves LEECH_SEED, GIGA_DRAIN, SUNNY_DAY, FLAMETHROWER
-endc
 	tr_mon 34, JUMPLUFF
 		tr_moves ACROBATICS, SLEEP_POWDER, STUN_SPORE, MEGA_DRAIN
 	tr_mon 38, VENUSAUR
@@ -2563,68 +2692,6 @@ endc
 		tr_moves HEALINGLIGHT, TRI_ATTACK, MINIMIZE, METRONOME
 	end_trainer
 
-	def_trainer KIM, "Kim"
-	tr_mon 17, VULPIX
-	end_trainer
-
-	def_trainer CINDY, "Cindy"
-	tr_mon 61, NIDOQUEEN
-	end_trainer
-
-	def_trainer HOPE, "Hope"
-	tr_mon 62, FLAAFFY
-	end_trainer
-
-	def_trainer SHARON, "Sharon"
-	tr_mon 50, FURRET
-	tr_mon 52, RAPIDASH
-	end_trainer
-
-	def_trainer DEBRA, "Debra"
-	tr_mon 50, SEAKING
-	end_trainer
-
-	def_trainer HEIDI, "Heidi"
-	tr_mon 53, JUMPLUFF
-	tr_mon 53, JUMPLUFF
-	end_trainer
-
-	def_trainer EDNA, "Edna"
-	tr_mon 51, NIDORINA
-	tr_mon 55, RAICHU
-	end_trainer
-
-	def_trainer TANYA, "Tanya"
-	tr_mon 61, EXEGGUTOR
-	end_trainer
-
-	def_trainer LILY, "Lily"
-	tr_mon LEVEL_FROM_BADGES + 4, NIDORINA
-	tr_mon LEVEL_FROM_BADGES + 2, BELLSPROUT
-	tr_mon LEVEL_FROM_BADGES + 6, WEEPINBELL
-	end_trainer
-
-	def_trainer PIPER, "Piper"
-	tr_mon 55, HYPNO
-	end_trainer
-
-	def_trainer GINGER, "Ginger"
-	tr_mon 54, MUNCHLAX
-	end_trainer
-
-	def_trainer CHEYENNE, "Cheyenne"
-	tr_mon 62, RAICHU
-	end_trainer
-
-	def_trainer ADRIAN, "Adrian"
-	tr_mon 62, PARASECT
-	end_trainer
-
-	def_trainer ZANE, "Zane"
-	tr_mon 54, JOLTEON
-	tr_mon 53, RAICHU
-	tr_mon 55, ELECTIVIRE
-	end_trainer
 
 SECTION "TwinsGroup", ROMX
 TwinsGroup:

@@ -135,7 +135,7 @@ DEF BETA EQU __trainer_class__
 	const RONNY		; Route 1
 	const BEN		; Route 3
 	const CALVIN
-	const JOSH		; Mt Moon
+	const JOSH		; Mt. Moon
 	const TIMMY		; Route 24
 	const JOEY		; Route 25
 	const DAN
@@ -151,8 +151,22 @@ DEF BETA EQU __trainer_class__
 	const JOEY4
 	const JOEY5
 
-	trainerclass BUG_CATCHER ; 22
-	const WADE1
+	trainerclass BUG_CATCHER ; 22 (FINISHED; RENAMED 'BUG BOY')
+	const RICK		; Viridian Forest
+	const DOUG
+	const BRIAN
+	const SAMMY
+	const COLTON	; Route 3
+	const GREG
+	const JAMES
+	const KENT		; Mt. Moon
+	const ROBBY
+	const CALE		; Route 24
+	const KEIGO		; Route 6
+	const ELIJAH
+	const BRENT		; Route 9
+	const CONNOR
+	const WADE1		; Unused Gen 2 Phone Trainers
 	const WADE2
 	const WADE3
 	const WADE4
@@ -162,13 +176,6 @@ DEF BETA EQU __trainer_class__
 	const ARNIE3
 	const ARNIE4
 	const ARNIE5
-	const DON
-	const BENNY
-	const AL
-	const JOSH
-	const KEN
-	const WAYNE
-	const OSCAR
 
 	trainerclass CAMPER ; 23
 	const TODD1

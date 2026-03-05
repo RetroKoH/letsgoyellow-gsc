@@ -2222,10 +2222,86 @@ YoungsterGroup:
 		tr_moves HYPER_BEAM, QUICK_ATTACK, HYPER_FANG, PURSUIT
 	end_trainer
 
+
 SECTION "BugCatcherGroup", ROMX
 BugCatcherGroup:
 
 	def_trainer_class BUG_CATCHER
+
+; Viridian Forest (LGPE; w/ FRLG lineups)
+	def_trainer RICK, "Rick"
+	tr_mon 6, CATERPIE, MALE
+	end_trainer
+
+	def_trainer DOUG, "Doug"
+	tr_mon 7, WEEDLE, MALE
+	tr_mon 7, KAKUNA, MALE
+	tr_mon 7, WEEDLE, MALE
+	end_trainer
+
+	def_trainer BRIAN, "Brian"
+	tr_mon 7, CATERPIE, MALE		; Changed lineup
+	tr_mon 7, METAPOD, MALE
+	end_trainer
+
+	def_trainer SAMMY, "Sammy"
+	tr_mon 9, WEEDLE, MALE
+	end_trainer
+
+; Route 3 (FRLG)
+	def_trainer COLTON, "Colton"
+	tr_mon 10, CATERPIE, MALE
+	tr_mon 10, WEEDLE, MALE
+	tr_mon 10, CATERPIE, MALE
+	end_trainer
+
+	def_trainer GREG, "Greg"
+	tr_mon 9, WEEDLE, MALE
+	tr_mon 9, KAKUNA, MALE
+	tr_mon 9, CATERPIE, MALE
+	tr_mon 9, METAPOD, MALE
+	end_trainer
+
+	def_trainer JAMES, "James"
+	tr_mon 11, CATERPIE, MALE
+	tr_mon 11, METAPOD, MALE
+	end_trainer
+
+; Mt. Moon (LGPE/Custom)
+	def_trainer KENT, "Kent"
+	tr_mon 12, BUTTERFREE, MALE
+	end_trainer
+
+	def_trainer ROBBY, "Robby"
+	tr_mon 14, PARAS, MALE
+	end_trainer
+
+; Route 24 (LGPE; Increased level)
+	def_trainer CALE, "Cale"
+	tr_mon 15, VENONAT, MALE
+	end_trainer
+
+; Route 6 (FRLG; Modified Lineups)
+	def_trainer KEIGO, "Keigo"
+	tr_mon 20, BEEDRILL, MALE		; Changed lineup
+	end_trainer
+
+	def_trainer ELIJAH, "Elijah"
+	tr_mon 20, BUTTERFREE, MALE
+	end_trainer
+
+; Route 9 (FRLG; Modified lineups)
+	def_trainer BRENT, "Brent"
+	tr_mon 19, BEEDRILL, MALE
+	tr_mon 19, BEEDRILL, MALE
+	end_trainer
+
+	def_trainer CONNOR, "Connor"
+	tr_mon 20, VENONAT, MALE
+	tr_mon 20, BUTTERFREE, MALE		; Changed lineup
+	end_trainer
+
+; Unused Phone Trainers
 	def_trainer WADE1, "Wade"
 	tr_mon 2, CATERPIE
 	tr_mon 2, CATERPIE
@@ -2290,42 +2366,6 @@ BugCatcherGroup:
 	def_trainer ARNIE5, "Arnie"
 	tr_mon 40, VENOMOTH
 		tr_moves GUST, SUPERSONIC, PSYCHIC_M, TOXIC
-	end_trainer
-
-	def_trainer DON, "Don"
-	tr_mon 3, CATERPIE
-	tr_mon 3, CATERPIE
-	end_trainer
-
-	def_trainer BENNY, "Benny"
-	tr_mon 7, WEEDLE
-	tr_mon 10, KAKUNA
-	tr_mon 12, BEEDRILL
-	end_trainer
-
-	def_trainer AL, "Al"
-	tr_mon 13, CATERPIE
-	tr_mon 13, WEEDLE
-	end_trainer
-
-	def_trainer JOSH, "Josh"
-	tr_mon 12, PARAS
-	tr_mon 12, VENONAT
-	end_trainer
-
-	def_trainer KEN, "Ken"
-	tr_mon 46, ARIADOS
-	tr_mon 47, PINSIR
-	end_trainer
-
-	def_trainer WAYNE, "Wayne"
-	tr_mon 9, PARAS
-	tr_mon 10, PINECO
-	end_trainer
-
-	def_trainer OSCAR, "Oscar"
-	tr_mon LEVEL_FROM_BADGES + 4, LEDIAN
-	tr_mon LEVEL_FROM_BADGES + 5, SCYTHER
 	end_trainer
 
 

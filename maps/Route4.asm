@@ -15,7 +15,6 @@ Route4_MapScriptHeader:
 	bg_event 15,  4, BGEVENT_ITEM + ULTRA_BALL, EVENT_ROUTE_4_HIDDEN_ULTRA_BALL
 
 	def_object_events
-	object_event 51,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerYoungsterOliver, -1
 	object_event 38, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerLassJennifer, -1
 	object_event 28,  6, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBird_keeperHank, -1
 	object_event 12, 10, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerPicnickerHope, -1
@@ -26,17 +25,6 @@ Route4_MapScriptHeader:
 	object_event 17,  5, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
 	itemball_event 42,  5, HP_UP, 1, EVENT_ROUTE_4_HP_UP
 	object_event 68,  6, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BEAT_BLUE
-
-GenericTrainerYoungsterOliver:
-	generictrainer YOUNGSTER, OLIVER, EVENT_BEAT_YOUNGSTER_OLIVER, YoungsterOliverSeenText, YoungsterOliverBeatenText
-
-	text "People say that"
-	line "I ask too many"
-	cont "questions, but"
-
-	para "that's what kids"
-	line "do, right?"
-	done
 
 GenericTrainerLassJennifer:
 	generictrainer LASS, JENNIFER, EVENT_BEAT_LASS_JENNIFER, LassJenniferSeenText, LassJenniferBeatenText
@@ -162,17 +150,6 @@ Route4EngineerScript:
 	showtextfaceplayer Route4EngineerText2
 	turnobject LAST_TALKED, UP
 	end
-
-YoungsterOliverSeenText:
-	text "Hi! What's your"
-	line "name? Where are"
-	cont "you going?"
-	done
-
-YoungsterOliverBeatenText:
-	text "I was just"
-	line "asking…"
-	done
 
 LassJenniferSeenText:
 	text "I battle every"

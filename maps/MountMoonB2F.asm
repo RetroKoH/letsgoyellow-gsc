@@ -17,7 +17,6 @@ MountMoonB2F_MapScriptHeader:
 	bg_event 10, 30, BGEVENT_ITEM + PP_UP, EVENT_MOUNT_MOON_B2F_HIDDEN_PP_UP
 
 	def_object_events
-	object_event 24,  9, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterJosh, -1
 	object_event 12, 21, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBird_keeperMick, -1
 	object_event 29, 18, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHexManiacEsther, -1
 	object_event  4, 15, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerCooltrainermConnor, -1
@@ -28,20 +27,6 @@ MountMoonB2F_MapScriptHeader:
 	itemball_event 18, 21, DUSK_STONE, 1, EVENT_MOUNT_MOON_B2F_DUSK_STONE
 	itemball_event 22,  3, SHINY_STONE, 1, EVENT_MOUNT_MOON_B2F_SHINY_STONE
 	itemball_event 26, 11, BIG_MUSHROOM, 1, EVENT_MOUNT_MOON_B2F_BIG_MUSHROOM
-
-GenericTrainerYoungsterJosh:
-	generictrainer YOUNGSTER, YOUNGSTER_JOSH, EVENT_BEAT_YOUNGSTER_JOSH, YoungsterJoshSeenText, YoungsterJoshBeatenText
-
-	text "With that team of"
-	line "#mon, you must"
-
-	para "have explored a"
-	line "lot of places."
-
-	para "Getting lost is"
-	line "your everyday"
-	cont "fare, huh?"
-	done
 
 GenericTrainerBird_keeperMick:
 	generictrainer BIRD_KEEPER, MICK, EVENT_BEAT_BIRD_KEEPER_MICK, Bird_keeperMickSeenText, Bird_keeperMickBeatenText
@@ -81,20 +66,6 @@ GenericTrainerSuperNerdMiguel:
 
 	text "Maybe if I had"
 	line "an Aerodactyl…"
-	done
-
-YoungsterJoshSeenText:
-	text "You came to ex-"
-	line "plore the cave,"
-	cont "right?"
-
-	para "Be careful, you"
-	line "may get lost."
-	done
-
-YoungsterJoshBeatenText:
-	text "You're not lost"
-	line "at all."
 	done
 
 Bird_keeperMickSeenText:

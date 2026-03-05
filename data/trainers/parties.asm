@@ -2115,6 +2115,76 @@ SECTION "YoungsterGroup", ROMX
 YoungsterGroup:
 
 	def_trainer_class YOUNGSTER
+
+; Route 1 (LGPE)
+	def_trainer RONNY, "Ronny"
+	tr_mon 3, RATTATA, MALE
+	end_trainer
+
+; Route 3 (FRLG)
+	def_trainer BEN, "Ben"
+	tr_mon 11, RATTATA, MALE
+	tr_mon 11, EKANS, MALE
+	end_trainer
+
+	def_trainer CALVIN, "Calvin"
+	tr_mon 14, SPEAROW, MALE
+	end_trainer
+
+; Mt. Moon (FRLG)
+	def_trainer JOSH, "Josh"
+	tr_mon 10, RATTATA, MALE
+	tr_mon 10, SANDSHREW, MALE		; LGPE change; increased level
+	tr_mon 10, ZUBAT, MALE
+	end_trainer
+
+; Route 24 (RBY)
+	def_trainer TIMMY, "Timmy"
+	tr_mon 14, RATTATA, MALE
+	tr_mon 14, EKANS, MALE
+	tr_mon 14, ZUBAT, MALE
+	end_trainer
+
+; Route 25 (FRLG)
+	def_trainer JOEY, "Joey"
+	tr_mon 15, RATTATA, MALE
+	tr_mon 15, SPEAROW, MALE
+	end_trainer
+
+	def_trainer DAN, "Dan"
+	tr_mon 17, SLOWPOKE, MALE
+	end_trainer
+
+; SS Anne 1F (LGPE)
+	def_trainer TYLER, "Tyler"
+	tr_mon 21, MANKEY, MALE			; FRLG change; increased level
+	end_trainer
+
+; Route 11 (FRLG)
+	def_trainer EDDIE, "Eddie"
+	tr_mon 21, EKANS, MALE
+	end_trainer
+
+	def_trainer DILLON, "Dillon"
+	tr_mon 19, SANDSHREW, MALE
+	tr_mon 19, ZUBAT, MALE
+	end_trainer
+
+	def_trainer DAVE, "Dave"
+	tr_mon 18, NIDORAN_M, MALE
+	tr_mon 19, NIDORINO, MALE
+	end_trainer
+
+	def_trainer OWEN, "Owen"		; Gen 2 trainer (Yasu is now the sailor from LGPE)
+	tr_mon 20, GROWLITHE, MALE
+	end_trainer
+
+; Route 9 (Yellow)
+	def_trainer AJ, "A.J."
+	tr_mon 24, SANDSHREW, MALE
+	end_trainer
+
+; Unused Phone Trainer
 	def_trainer JOEY1, "Joey"
 	tr_mon 5, RATTATA, MALE
 		tr_extra GUTS, ATK_UP_SATK_DOWN
@@ -2150,79 +2220,6 @@ YoungsterGroup:
 		tr_dvs 15 All
 		tr_evs 160 Atk, 160 Spe
 		tr_moves HYPER_BEAM, QUICK_ATTACK, HYPER_FANG, PURSUIT
-	end_trainer
-
-	def_trainer MIKEY, "Mikey"
-	tr_mon 2, RATTATA
-	tr_mon 4, PIDGEY
-	end_trainer
-
-	def_trainer ALBERT, "Albert"
-	tr_mon 8, RATTATA
-	tr_mon 10, ZUBAT
-	end_trainer
-
-	def_trainer GORDON, "Gordon"
-	tr_mon 11, WOOPER
-	end_trainer
-
-	def_trainer WARREN, "Warren"
-	tr_mon 56, FEAROW
-	tr_mon 60, RATICATE
-	end_trainer
-
-	def_trainer JIMMY, "Jimmy"
-	tr_mon 60, RATICATE
-	tr_mon 60, ARBOK
-	tr_mon 60, PARASECT
-	end_trainer
-
-	def_trainer OWEN, "Owen"
-	tr_mon 53, GROWLITHE
-	tr_mon 54, GROWLITHE
-	end_trainer
-
-	def_trainer JASON, "Jason"
-	tr_mon 55, SANDSLASH
-	tr_mon 55, CROBAT
-	end_trainer
-
-	def_trainer YOUNGSTER_JOSH, "Josh"
-	tr_mon 60, RATICATE
-	tr_mon 62, GOLBAT
-	tr_mon 60, RATICATE
-	end_trainer
-
-	def_trainer REGIS, "Regis"
-	tr_mon 58, GOLBAT
-	tr_mon 58, ELECTRODE
-	end_trainer
-
-	def_trainer ALFIE, "Alfie"
-	tr_mon 54, SANDSLASH
-	tr_mon 55, QUAGSIRE
-	end_trainer
-
-	def_trainer OLIVER, "Oliver"
-	tr_mon 54, GOLBAT
-	tr_mon 54, RATICATE
-	end_trainer
-
-	def_trainer CHAZ, "Chaz"
-	tr_mon 54, SANDSHREW
-	tr_mon 55, RATICATE
-	end_trainer
-
-	def_trainer TYLER, "Tyler"
-	tr_mon LEVEL_FROM_BADGES + 8, WEEPINBELL
-	tr_mon LEVEL_FROM_BADGES + 9, QUAGSIRE
-	tr_mon LEVEL_FROM_BADGES + 8, SANDSLASH
-	end_trainer
-
-	def_trainer ARDEN, "Arden"
-	tr_mon 55, FLAREON
-	tr_mon 53, TAUROS
-	tr_mon 55, RAPIDASH
 	end_trainer
 
 SECTION "BugCatcherGroup", ROMX

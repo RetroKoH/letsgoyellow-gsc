@@ -14,9 +14,6 @@ Route11_MapScriptHeader:
 	bg_event 44,  5, BGEVENT_ITEM + REVIVE, EVENT_ROUTE_11_HIDDEN_REVIVE
 
 	def_object_events
-	object_event 32, 14, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterOwen, -1
-	object_event 30,  4, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterJason, -1
-	object_event 21,  2, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterAlfie, -1
 	object_event 40,  7, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerPsychicHerman, -1
 	object_event 12,  6, SPRITE_PSYCHIC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicFidel, -1
 	object_event 24, 14, SPRITE_PSYCHIC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicUri, -1
@@ -26,67 +23,6 @@ Route11_MapScriptHeader:
 	object_event 10, 16, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerGuitaristfRitsuko, -1
 	fruittree_event 44,  2, FRUITTREE_ROUTE_11, GANLON_BERRY, PAL_NPC_PURPLE
 	tmhmball_event 44, 13, TM_VENOSHOCK, EVENT_ROUTE_11_TM_VENOSHOCK
-
-GenericTrainerYoungsterOwen:
-	generictrainer YOUNGSTER, OWEN, EVENT_BEAT_YOUNGSTER_OWEN, YoungsterOwenSeenText, YoungsterOwenBeatenText
-
-	text "I fought fair and"
-	line "square with honor."
-
-	para "I don't regret"
-	line "this at all."
-	done
-
-YoungsterOwenSeenText:
-	text "There's no cheat-"
-	line "ing in #mon."
-
-	para "Let's keep it fair"
-	line "and square!"
-	done
-
-YoungsterOwenBeatenText:
-	text "Huh? How did this"
-	line "happen?"
-	done
-
-GenericTrainerYoungsterJason:
-	generictrainer YOUNGSTER, JASON, EVENT_BEAT_YOUNGSTER_JASON, YoungsterJasonSeenText, YoungsterJasonBeatenText
-
-	text "I'm going to catch"
-	line "more #mon in"
-	cont "the grass."
-	done
-
-YoungsterJasonSeenText:
-	text "It itches and"
-	line "tickles a bit when"
-
-	para "I wear shorts in"
-	line "the grass."
-	done
-
-YoungsterJasonBeatenText:
-	text "Aiyaaah!"
-	line "I got stomped!"
-	done
-
-GenericTrainerYoungsterAlfie:
-	generictrainer YOUNGSTER, ALFIE, EVENT_BEAT_YOUNGSTER_ALFIE, .SeenText, .BeatenText
-
-	text "Everything's more"
-	line "fun when it's a"
-	cont "competition."
-	done
-
-.SeenText:
-	text "Three, two, one,"
-	line "GO!"
-	done
-
-.BeatenText:
-	text "Game, set, match."
-	done
 
 GenericTrainerPsychicHerman:
 	generictrainer PSYCHIC_T, HERMAN, EVENT_BEAT_PSYCHIC_HERMAN, PsychicHermanSeenText, PsychicHermanBeatenText

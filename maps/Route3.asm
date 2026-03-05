@@ -21,9 +21,6 @@ Route3_MapScriptHeader:
 	bg_event 15, 17, BGEVENT_JUMPTEXT, Route3MeteoriteText
 
 	def_object_events
-	object_event 12,  7, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerYoungsterRegis, -1
-	object_event 17,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterJimmy, -1
-	object_event 25,  3, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterWarren, -1
 	object_event 30, 12, SPRITE_FIREBREATHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerFirebreatherOtis, -1
 	object_event 60, 10, SPRITE_FIREBREATHER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerFirebreatherBurt, -1
 	object_event 44,  8, SPRITE_BLACK_BELT, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBlackbeltManford, -1
@@ -37,63 +34,6 @@ Route3_MapScriptHeader:
 Route3FlyPoint:
 	setflag ENGINE_FLYPOINT_MT_MOON
 	endcallback
-
-GenericTrainerYoungsterRegis:
-	generictrainer YOUNGSTER, REGIS, EVENT_BEAT_YOUNGSTER_REGIS, .SeenText, .BeatenText
-
-	text "Looks like I need"
-	line "more training!"
-	done
-
-.SeenText:
-	text "Youngster? Good-"
-	line "ness, how rude!"
-
-	para "Call me Shorts"
-	line "Boy!"
-	done
-
-.BeatenText:
-	text "That is…"
-	line "Fail Boy…"
-	done
-
-GenericTrainerYoungsterJimmy:
-	generictrainer YOUNGSTER, JIMMY, EVENT_BEAT_YOUNGSTER_JIMMY, .SeenText, .BeatenText
-
-	text "I wear shorts the"
-	line "whole year round."
-
-	para "That's my fashion"
-	line "policy."
-	done
-
-.SeenText:
-	text "I can run like the"
-	line "wind!"
-	done
-
-.BeatenText:
-	text "Blown away!"
-	done
-
-GenericTrainerYoungsterWarren:
-	generictrainer YOUNGSTER, WARREN, EVENT_BEAT_YOUNGSTER_WARREN, .SeenText, .BeatenText
-
-	text "You looked strong."
-
-	para "I was afraid to"
-	line "take you on…"
-	done
-
-.SeenText:
-	text "Hmmm… I don't know"
-	line "what to do…"
-	done
-
-.BeatenText:
-	text "I knew I'd lose…"
-	done
 
 GenericTrainerFirebreatherOtis:
 	generictrainer FIREBREATHER, OTIS, EVENT_BEAT_FIREBREATHER_OTIS, .SeenText, .BeatenText

@@ -131,26 +131,25 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass LYRA2 ; 20
 
-	trainerclass YOUNGSTER ; 21
-	const JOEY1
+	trainerclass YOUNGSTER ; 21 (FINISHED)
+	const RONNY		; Route 1
+	const BEN		; Route 3
+	const CALVIN
+	const JOSH		; Mt Moon
+	const TIMMY		; Route 24
+	const JOEY		; Route 25
+	const DAN
+	const TYLER		; SS Anne 1F
+	const EDDIE		; Route 11
+	const DILLON
+	const DAVE
+	const OWEN
+	const AJ		; Route 9 (Y)
+	const JOEY1		; Unused Gen 2 Phone Trainer
 	const JOEY2
 	const JOEY3
 	const JOEY4
 	const JOEY5
-	const MIKEY
-	const ALBERT
-	const GORDON
-	const WARREN
-	const JIMMY
-	const OWEN
-	const JASON
-	const YOUNGSTER_JOSH
-	const REGIS
-	const ALFIE
-	const OLIVER
-	const CHAZ
-	const TYLER
-	const ARDEN
 
 	trainerclass BUG_CATCHER ; 22
 	const WADE1

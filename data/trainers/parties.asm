@@ -2180,7 +2180,7 @@ YoungsterGroup:
 	end_trainer
 
 ; Route 9 (Yellow)
-	def_trainer AJ, "A.J."
+	def_trainer AJ, "A.J."			; Anime-reference; Replaces Camper Drew
 	tr_mon 24, SANDSHREW, MALE
 	end_trainer
 
@@ -2373,6 +2373,51 @@ SECTION "CamperGroup", ROMX
 CamperGroup:
 
 	def_trainer_class CAMPER
+
+; Pewter Gym (FRLG; Modified lineup)
+	def_trainer LIAM, "Liam"
+	tr_mon 10, GEODUDE			; Changed from Diglett
+	tr_mon 11, SANDSHREW
+	end_trainer
+
+; Route 24 (FRLG)
+	def_trainer ETHAN, "Ethan"
+	tr_mon 18, MANKEY
+	end_trainer
+
+	def_trainer SHANE, "Shane"
+	tr_mon 14, SPEAROW			; Party Member from LGPE
+	tr_mon 14, EKANS
+	end_trainer
+
+; Route 25 (FRLG)
+	def_trainer FLINT, "Flint"
+	tr_mon 14, RATTATA
+	tr_mon 14, EKANS
+	end_trainer
+
+; Route 6 (FRLG + Y)
+	def_trainer RICKY, "Ricky"
+	tr_mon 20, SQUIRTLE
+	end_trainer
+
+	def_trainer JOE, "Joe"		; (Y) Anime-reference, replaced LGPE Jeff.
+	tr_mon 18, WEEPINBELL
+	end_trainer
+
+; Route 9 (FRLG; Only 1; The other is a Youngster from Yellow)
+	def_trainer CHRIS, "Chris"
+	tr_mon 21, GROWLITHE
+	tr_mon 21, CHARMANDER
+	end_trainer
+
+; Route 12 (FRLG)
+	def_trainer JUSTIN, "Justin"
+	tr_mon 29, NIDORAN_M
+	tr_mon 30, NIDORINO			; Level buffed
+	end_trainer
+
+; Unused Phone Trainer
 	def_trainer TODD1, "Todd"
 	tr_mon 14, PSYDUCK
 	end_trainer
@@ -2405,96 +2450,6 @@ CamperGroup:
 		tr_moves ROCK_THROW, DEFENSE_CURL, CALM_MIND, FLAMETHROWER
 	tr_mon 34, GOLDUCK
 		tr_moves DISABLE, PSYCHIC_M, SURF, CALM_MIND
-	end_trainer
-
-	def_trainer ROLAND, "Roland"
-	tr_mon 10, NIDORAN_M
-	end_trainer
-
-	def_trainer IVAN, "Ivan"
-	tr_mon 11, DIGLETT
-	tr_mon 11, ZUBAT
-	tr_mon 15, DIGLETT
-	end_trainer
-
-	def_trainer BARRY, "Barry"
-	tr_mon 60, NIDOKING
-	end_trainer
-
-	def_trainer LLOYD, "Lloyd"
-	tr_mon 56, NIDOKING
-	end_trainer
-
-	def_trainer DEAN, "Dean"
-	tr_mon 54, GOLDUCK
-	tr_mon 52, SANDSLASH
-	end_trainer
-
-	def_trainer SID, "Sid"
-	tr_mon 53, DUGTRIO
-	tr_mon 51, PRIMEAPE
-	tr_mon 51, POLIWRATH
-	end_trainer
-
-	def_trainer TED, "Ted"
-	tr_mon 18, MANKEY
-	end_trainer
-
-	def_trainer JOHN, "John"
-	tr_mon 33, GRAVELER
-	tr_mon 36, GRAVELER
-	tr_mon 40, GOLBAT
-	tr_mon 42, GOLDUCK
-	end_trainer
-
-	def_trainer JERRY, "Jerry"
-	tr_mon 62, RHYDON
-	end_trainer
-
-	def_trainer SPENCER, "Spencer"
-	tr_mon 28, SANDSHREW
-	tr_mon 29, SANDSLASH
-	tr_mon 30, GOLBAT
-	end_trainer
-
-	def_trainer QUENTIN, "Quentin"
-	tr_mon 30, FEAROW
-	tr_mon 30, PRIMEAPE
-	tr_mon 30, TAUROS
-	end_trainer
-
-	def_trainer GRANT, "Grant"
-	tr_mon LEVEL_FROM_BADGES + 1, SUNFLORA
-	tr_mon LEVEL_FROM_BADGES + 1, MARILL
-	end_trainer
-
-	def_trainer CRAIG, "Craig"
-	tr_mon LEVEL_FROM_BADGES + 5, PIDGEOTTO
-	tr_mon LEVEL_FROM_BADGES + 5, MANKEY
-	tr_mon LEVEL_FROM_BADGES + 6, SANDSLASH
-	end_trainer
-
-	def_trainer FELIX, "Felix"
-	tr_mon LEVEL_FROM_BADGES + 8, CHARMELEON
-	end_trainer
-
-	def_trainer TANNER, "Tanner"
-	tr_mon 58, SUDOWOODO
-	end_trainer
-
-	def_trainer CLARK, "Clark"
-	tr_mon 56, "Campfire", QUILAVA
-	end_trainer
-
-	def_trainer PEDRO, "Pedro"
-	tr_mon 62, FURRET
-	end_trainer
-
-	def_trainer AMOS, "Amos"
-	tr_mon LEVEL_FROM_BADGES + 8, DODRIO
-	tr_mon LEVEL_FROM_BADGES + 7, NIDORINO
-	tr_mon LEVEL_FROM_BADGES + 7, NIDORINA
-	tr_mon LEVEL_FROM_BADGES + 9, TAUROS
 	end_trainer
 
 

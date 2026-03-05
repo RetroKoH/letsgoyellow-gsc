@@ -177,30 +177,20 @@ DEF BETA EQU __trainer_class__
 	const ARNIE4
 	const ARNIE5
 
-	trainerclass CAMPER ; 23
-	const TODD1
+	trainerclass CAMPER ; 23 (FINISHED; Formerly Jr Trainer)
+	const LIAM		; Pewter Gym
+	const ETHAN		; Route 24
+	const SHANE
+	const FLINT		; Route 25
+	const RICKY		; Route 6
+	const JOE		; 			(Y)
+	const CHRIS		; Route 9
+	const JUSTIN	; Route 12
+	const TODD1		; Unused Gen 2 Phone Trainers
 	const TODD2
 	const TODD3
 	const TODD4
 	const TODD5
-	const ROLAND
-	const IVAN
-	const BARRY
-	const LLOYD
-	const DEAN
-	const SID
-	const TED
-	const JOHN
-	const JERRY
-	const SPENCER
-	const QUENTIN
-	const GRANT
-	const CRAIG
-	const FELIX
-	const TANNER
-	const CLARK
-	const PEDRO
-	const AMOS
 
 	trainerclass PICNICKER ; 24
 	const LIZ1

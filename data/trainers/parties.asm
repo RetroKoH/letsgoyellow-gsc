@@ -3131,218 +3131,220 @@ HikerGroup:
 SECTION "GruntMGroup", ROMX
 GruntMGroup:
 
-	; unused
 	def_trainer_class GRUNTM
+
+; Mt. Moon (FRLG)
 	def_trainer 1, "Grunt"
+	tr_mon 11, SANDSHREW
+	tr_mon 11, DROWZEE			; LGPE addition, replacing Rattata
+	tr_mon 11, ZUBAT
 	end_trainer
 
-	def_trainer 2, "Grunt"
-	tr_mon 8, RATTATA
-	tr_mon 10, ZUBAT
-	tr_mon 10, GASTLY
+	def_trainer 1, "Grunt"
+	tr_mon 12, ZUBAT
+	tr_mon 12, EKANS
 	end_trainer
 
-
-	def_trainer 3, "Grunt"
-	tr_mon 33, RATICATE, MALE | ALOLAN_FORM
-		tr_extra GLUTTONY
-	tr_mon 33, SNEASEL, MALE
+; Route 24 (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 15, KOFFING			; LGPE addition, replacing Ekans
+	tr_mon 15, ZUBAT
 	end_trainer
 
-	def_trainer 4, "Grunt"
-	tr_mon 32, GRIMER, MALE
-	tr_mon 33, HOUNDOUR, MALE
-	tr_mon 34, MUK, MALE | ALOLAN_FORM
+; Cerulean City (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 17, MACHOP
+	tr_mon 17, DROWZEE
 	end_trainer
 
-	def_trainer 5, "Grunt"
-	tr_mon 31, RATTATA, MALE
-	tr_mon 33, HOUNDOUR, MALE
-	tr_mon 32, RATICATE, MALE
-	tr_mon 32, RATICATE, MALE | ALOLAN_FORM
-	tr_mon 33, MEOWTH, MALE
+; Celadon Game Corner (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 20, RATICATE
+	tr_mon 20, ZUBAT
 	end_trainer
 
-	def_trainer 6, "Grunt"
-	tr_mon 34, GOLBAT
-	tr_mon 34, VENOMOTH
+; Celadon Rocket Hideout: B1F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 21, DROWZEE
+	tr_mon 21, MACHOP
 	end_trainer
 
-	def_trainer 7, "Grunt"
-	tr_mon 33, KOFFING
-	tr_mon 33, GRIMER
-	tr_mon 34, GOLBAT
-	tr_mon 34, RATICATE
+	def_trainer 1, "Grunt"
+	tr_mon 24, RATICATE
 	end_trainer
 
-	def_trainer 8, "Grunt"
-	tr_mon 36, WEEZING
+	def_trainer 1, "Grunt"
+	tr_mon 22, RATICATE
+	tr_mon 22, RATICATE
 	end_trainer
 
-	def_trainer 9, "Grunt"
-	tr_mon 35, RATICATE
-	tr_mon 36, WEEZING
+	def_trainer 1, "Grunt"		; Requires Lift Key
+	tr_mon 22, GRIMER
+	tr_mon 22, KOFFING
 	end_trainer
 
-	def_trainer 10, "Grunt"
-	tr_mon 32, ZUBAT
-	tr_mon 35, GOLBAT
-	tr_mon 33, MUK
+; Celadon Rocket Hideout: B2F (FRLG)
+	def_trainer 1, "Grunt"		; Abridged team
+	tr_mon 21, KOFFING
+	tr_mon 21, GRIMER
+	tr_mon 21, RATICATE
 	end_trainer
 
-	def_trainer 11, "Grunt"
-	tr_mon 34, MUK
-	tr_mon 35, HAUNTER
-	tr_mon 36, RATICATE
+; Celadon Rocket Hideout: B3F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 22, DROWZEE
+	tr_mon 22, RATICATE
 	end_trainer
 
-	def_trainer 12, "Grunt"
-	tr_mon 23, RATICATE, MALE
-	tr_mon 24, PERSIAN, MALE | ALOLAN_FORM
+; Celadon Rocket Hideout: B4F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 22, KOFFING
+	tr_mon 22, GOLBAT			; Evolved this Zubat
 	end_trainer
+; Following 2 grunts are replaced with Jesse/James and Archer, per LGPE
 
-	def_trainer 13, "Grunt"
-	tr_mon 37, RATICATE
+; Pokemon Tower: 7F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 26, GASTLY
+	tr_mon 26, GOLBAT
 	end_trainer
+; The last grunt is replaced with Jesse/James, per LGPE
 
-	def_trainer 14, "Grunt"
-	tr_mon 35, RATICATE
-	tr_mon 35, GOLBAT
-	end_trainer
-
-	def_trainer 15, "Grunt"
-	tr_mon 35, MUK
-	tr_mon 35, WEEZING
-	end_trainer
-
-	def_trainer 16, "Grunt"
-	tr_mon 26, MEOWTH, MALE | ALOLAN_FORM
-	tr_mon 26, GASTLY, MALE
-	tr_mon 27, RATICATE, MALE
-	tr_mon 26, RATTATA, MALE | ALOLAN_FORM
-	end_trainer
-
-	def_trainer 17, "Grunt"
-	tr_mon 32, GOLBAT
-	end_trainer
-
-	def_trainer 18, "Grunt"
-	tr_mon 27, HOUNDOUR
+; Silph: 2F (FRLG)
+	def_trainer 1, "Grunt"
 	tr_mon 28, GOLBAT
 	tr_mon 28, RATICATE
 	end_trainer
 
-	def_trainer 19, "Grunt"
-	tr_mon 28, VENONAT
-	tr_mon 28, VENOMOTH
+	def_trainer 1, "Grunt"
+	tr_mon 28, MAROWAK
+	tr_mon 28, GOLBAT
 	end_trainer
 
-	def_trainer 20, "Grunt"
-	tr_mon 26, ZUBAT
-	tr_mon 27, GRIMER
-	tr_mon 28, MEOWTH
+; Silph: 4F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 29, ARBOK
+	tr_mon 29, GOLBAT
 	end_trainer
 
-	def_trainer 21, "Grunt"
-	tr_mon 26, DROWZEE
-	tr_mon 27, ZUBAT
-	tr_mon 28, HAUNTER
+	def_trainer 1, "Grunt"
+	tr_mon 29, MACHOP
+	tr_mon 29, DROWZEE
 	end_trainer
 
-	def_trainer 22, "Grunt"
-	tr_mon 23, GOLBAT
-	tr_mon 23, HAUNTER
-	tr_mon 23, GOLBAT
+; Silph: 5F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 33, HYPNO
 	end_trainer
 
-	def_trainer 23, "Grunt"
-	tr_mon 23, KOFFING
-	tr_mon 25, HOUNDOUR
-	tr_mon 23, TENTACOOL
+; Silph: 6F (FRLG/LGPE)
+	def_trainer 1, "Grunt"
+	tr_mon 29, RATICATE
+	tr_mon 29, GOLBAT
 	end_trainer
 
-	def_trainer 24, "Grunt"
-	tr_mon 37, HAUNTER
-	tr_mon 36, WEEZING
+; Silph: 7F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 34, MAROWAK
 	end_trainer
 
-	def_trainer 25, "Grunt"
-	tr_mon 36, TENTACRUEL
-	tr_mon 35, MUK
+	def_trainer 1, "Grunt"
+	tr_mon 34, SANDSLASH
 	end_trainer
 
-	def_trainer 26, "Grunt"
-	tr_mon 23, ZUBAT
-	tr_mon 24, RATICATE
-	tr_mon 25, MURKROW
+; Silph: 8F (LGPE)
+	def_trainer 1, "Grunt"
+	tr_mon 31, HAUNTER
+	tr_mon 31, PERSIAN
 	end_trainer
 
-	; unused
-	def_trainer 27, "Grunt"
+; Silph: 9F (LGPE)
+	def_trainer 1, "Grunt"
+	tr_mon 33, KOFFING
 	end_trainer
 
-	def_trainer 28, "Grunt"
-	tr_mon 33, RATICATE
+; Silph: 10F (LGPE)
+	def_trainer 1, "Grunt"
+	tr_mon 31, VOLTORB
+	tr_mon 31, RATICATE
 	end_trainer
 
-	def_trainer 29, "Grunt"
-	tr_mon 10, RATTATA
-	tr_mon 10, MEOWTH
+; Silph: 11F (LGPE)
+	def_trainer 1, "Grunt"
+	tr_mon 31, HYPNO
+	tr_mon 31, GOLBAT
 	end_trainer
-
-	def_trainer 30, "Grunt"
-	tr_mon 25, GOLBAT
-	tr_mon 25, GOLBAT
-	tr_mon 30, ARBOK
-	end_trainer
-
-	def_trainer 31, "Grunt"
-	tr_mon 51, GOLBAT
-	tr_mon 52, WEEZING
-	tr_mon 51, MUK
-	end_trainer
-
+; The last grunt is replaced with Jesse/James, per LGPE
 
 SECTION "GruntFGroup", ROMX
 GruntFGroup:
 
 	def_trainer_class GRUNTF
+
+; Mt. Moon (FRLG)
 	def_trainer 1, "Grunt"
-	tr_mon 10, ZUBAT
-	tr_mon 12, EKANS
+	tr_mon 13, RATTATA
+	tr_mon 13, SANDSHREW
 	end_trainer
 
-	def_trainer 2, "Grunt"
-	tr_mon 35, ARBOK
+	def_trainer 1, "Grunt"
+	tr_mon 13, RATTATA
+	tr_mon 13, ZUBAT
 	end_trainer
 
-	def_trainer 3, "Grunt"
-	tr_mon 36, UMBREON
-	tr_mon 35, GLOOM
+; Celadon Rocket Hideout: B1F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 20, GRIMER
+	tr_mon 20, EKANS				; LGPE addition
+	tr_mon 20, KOFFING
 	end_trainer
 
-	def_trainer 4, "Grunt"
-	tr_mon 33, EKANS
-	tr_mon 34, ODDISH
-	tr_mon 35, ARBOK
-	tr_mon 36, GLOOM
+; Celadon Rocket Hideout: B3F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 22, GOLBAT				; LGPE addition
+	tr_mon 22, RATICATE
 	end_trainer
 
-	def_trainer 5, "Grunt"
-	tr_mon 29, ARBOK
-		tr_moves GLARE, SCREECH, ACID, CRUNCH
-	tr_mon 28, QWILFISH
-		tr_moves DEFENSE_CURL, MINIMIZE, WATER_GUN, ROLLOUT
-	tr_mon 28, GLOOM
-		tr_moves GROWTH, STUN_SPORE, SLEEP_POWDER, MEGA_DRAIN
+; Pokemon Tower: 7F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 26, GASTLY
+	tr_mon 26, DROWZEE
 	end_trainer
 
-	def_trainer 6, "Grunt"
-	tr_mon 22, EKANS
-	tr_mon 23, ARBOK
-	tr_mon 23, GLOOM
+; Silph: 3F (FRLG): Changed to Female
+	def_trainer 1, "Grunt"
+	tr_mon 28, HAUNTER				; LGPE addition, replacing Raticate
+	tr_mon 28, HYPNO
+	tr_mon 28, RATICATE
 	end_trainer
 
+; Silph: 5F (FRLG)
+	def_trainer 1, "Grunt"
+	tr_mon 33, ARBOK
+	end_trainer
+
+; Silph: 6F (FRLG/LGPE)
+	def_trainer 1, "Grunt"
+	tr_mon 29, MEOWTH
+	tr_mon 29, MACHOKE
+	end_trainer
+
+; Silph: 7F (LGPE)
+	def_trainer 1, "Grunt"
+	tr_mon 31, VOLTORB
+	tr_mon 31, ELECTRODE
+	end_trainer
+
+; Silph: 8F (LGPE)
+	def_trainer 1, "Grunt"
+	tr_mon 31, GRIMER
+	tr_mon 31, KOFFING
+	end_trainer
+
+; Silph: 9F (LGPE)
+	def_trainer 1, "Grunt"
+	tr_mon 33, PERSIAN
+	end_trainer
 
 SECTION "PokefanMGroup", ROMX
 PokefanMGroup:

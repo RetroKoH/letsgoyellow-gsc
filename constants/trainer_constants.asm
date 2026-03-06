@@ -288,8 +288,23 @@ DEF BETA EQU __trainer_class__
 	const JOSE2
 	const JOSE3
 
-	trainerclass HIKER ; 28
-	const ANTHONY1
+	trainerclass HIKER ; 28 (FINISHED)
+	const MARCOS			; Mt. Moon
+	const FRANKLIN			; Route 25
+	const WAYNE
+	const NOB
+	const JEREMY			; Route 9
+	const ALAN
+	const BRICE
+	const ALLEN				; Rock Tunnel
+	const ERIC
+	const LENNY
+	const OLIVER
+	const LUCAS
+	const DUDLEY
+	const CLARK
+	const TRENT
+	const ANTHONY1			; Unused Phone Trainers
 	const ANTHONY2
 	const ANTHONY3
 	const ANTHONY4
@@ -297,34 +312,6 @@ DEF BETA EQU __trainer_class__
 	const PARRY1
 	const PARRY2
 	const PARRY3
-	const RUSSELL
-	const PHILLIP
-	const LEONARD
-	const BENJAMIN
-	const ERIK
-	const MICHAEL
-	const TIMOTHY
-	const BAILEY
-	const TIM
-	const NOLAND
-	const SIDNEY
-	const KENNY
-	const JIM
-	const DANIEL
-	const EDWIN
-	const DEVIN
-	const SEAMUS
-	const TONY
-	const MARCOS
-	const GERARD
-	const DENT
-	const BRUCE
-	const DWIGHT
-	const LESTER
-	const GRADY
-	const STEVE
-	const DERRICK
-	const FLOYD
 
 	trainerclass GRUNTM ; 29
 

@@ -265,38 +265,28 @@ DEF BETA EQU __trainer_class__
 	const WILTON2
 	const WILTON3
 
-	trainerclass BIRD_KEEPER ; 27
-	const VANCE1
+	trainerclass BIRD_KEEPER ; 27 (FINISHED)
+	const BRET				; Route 13
+	const ROB
+	const PERRY
+	const CARTER			; Route 14
+	const MITCH
+	const MARLON
+	const BECK
+	const DON
+	const BENNY
+	const CHESTER			; Route 15
+	const EDWIN
+	const JACOB				; Route 18
+	const WILTON
+	const RAMIRO
+	const ROGER				; Route 20
+	const VANCE1			; Unused Phone Trainers
 	const VANCE2
 	const VANCE3
 	const JOSE1
 	const JOSE2
 	const JOSE3
-	const ROD
-	const ABE
-	const THEO
-	const TOBY
-	const DENIS
-	const HANK
-	const ROY
-	const BORIS
-	const BOB
-	const PETER
-	const PERRY
-	const BRET
-	const MICK
-	const POWELL
-	const BIRD_KEEPER_TONY
-	const JULIAN
-	const BIRD_KEEPER_JUSTIN
-	const GAIL
-	const BIRD_KEEPER_JOSH
-	const BERT
-	const ERNIE
-	const KINSLEY
-	const EASTON
-	const BRYAN
-	const TRENT
 
 	trainerclass HIKER ; 28
 	const ANTHONY1

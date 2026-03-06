@@ -2868,6 +2868,98 @@ SECTION "BirdKeeperGroup", ROMX
 BirdKeeperGroup:
 
 	def_trainer_class BIRD_KEEPER
+
+; Route 13 (FRLG/LGPE)
+	def_trainer BRET, "Bret"					; Name taken from Gen 2 Bird Keeper; Was Sebastian
+	tr_mon LEVEL_FROM_BADGES - 1, PIDGEY		; Lv. 29, testing this constant
+	tr_mon LEVEL_FROM_BADGES + 1, PIDGEOTTO
+	end_trainer
+
+	def_trainer ROB, "Rob"						; Name shortened from Robert
+	tr_mon 27, DODUO							; Addition from LGPE Robert
+	tr_mon 27, PIDGEY
+	tr_mon 27, PIDGEOTTO
+	end_trainer
+
+	def_trainer PERRY, "Perry"					; He uses Robert's old FRLG team
+	tr_mon 26, PIDGEY
+	tr_mon 26, PIDGEOTTO
+	tr_mon 26, SPEAROW
+	tr_mon 26, FEAROW
+	end_trainer
+
+; Route 14 (FRLG)
+	def_trainer CARTER, "Carter"
+	tr_mon 29, DODUO							; Removed Pidgey
+	tr_mon 29, PIDGEOTTO
+	end_trainer
+
+	def_trainer MITCH, "Mitch"
+	tr_mon 27, PIDGEY
+	tr_mon 27, PIDGEOTTO
+	tr_mon 27, SPEAROW
+	tr_mon 27, FEAROW
+	end_trainer
+
+	def_trainer MARLON, "Marlon"
+	tr_mon 28, DODUO
+	tr_mon 28, SPEAROW
+	tr_mon 28, FEAROW
+	end_trainer
+
+	def_trainer BECK, "Beck"
+	tr_mon 29, PIDGEOTTO
+	tr_mon 29, FEAROW
+	end_trainer
+
+	def_trainer DON, "Don"						; Name shortened from Donald
+	tr_mon 31, DODUO
+	tr_mon 31, FARFETCH_D
+	end_trainer
+
+	def_trainer BENNY, "Benny"
+	tr_mon 29, SPEAROW
+	tr_mon 29, FEAROW
+	end_trainer
+
+; Route 15 (FRLG)
+	def_trainer CHESTER, "Chester"
+	tr_mon 28, DODUO
+	tr_mon 28, DODUO
+	tr_mon 28, DODRIO
+	end_trainer
+
+	def_trainer EDWIN, "Edwin"
+	tr_mon 28, PIDGEOTTO						; Removed Pidgey
+	tr_mon 28, FARFETCH_D
+	tr_mon 28, DODUO
+	end_trainer
+
+; Route 18 (FRLG/LGPE)
+	def_trainer JACOB, "Jacob"
+	tr_mon 31, FARFETCH_D
+	tr_mon 31, DODRIO
+	end_trainer
+
+	def_trainer WILTON, "Wilton"
+	tr_mon 31, FEAROW
+	tr_mon 31, DODRIO
+	end_trainer
+
+	def_trainer RAMIRO, "Ramiro"
+	tr_mon 31, PIDGEOTTO
+	tr_mon 31, DODRIO
+	end_trainer
+
+; Route 20 (Custom; LGPE influenced)
+	def_trainer ROGER, "Roger"
+	tr_mon 31, FEAROW
+	tr_mon 31, DODRIO
+	tr_mon 31, PIDGEOTTO
+	end_trainer
+
+; Unused Phone Trainers
+	def_trainer_class BIRD_KEEPER
 	def_trainer VANCE1, "Vance"
 	tr_mon 36, PIDGEOTTO
 	tr_mon 36, PIDGEOTTO
@@ -2896,142 +2988,6 @@ BirdKeeperGroup:
 	def_trainer JOSE3, "Jose"
 	tr_mon 55, FARFETCH_D
 		tr_moves SWORDS_DANCE, NIGHT_SLASH, PROTECT, BRAVE_BIRD
-	end_trainer
-
-	def_trainer ROD, "Rod"
-	tr_mon 7, PIDGEY
-	tr_mon 8, HOOTHOOT
-	end_trainer
-
-	def_trainer ABE, "Abe"
-	tr_mon 9, SPEAROW
-	end_trainer
-
-	def_trainer THEO, "Theo"
-	tr_mon 17, PIDGEY
-	tr_mon 16, HOOTHOOT
-	tr_mon 19, PIDGEOTTO
-	tr_mon 17, HOOTHOOT
-	tr_mon 16, PIDGEY
-	end_trainer
-
-	def_trainer TOBY, "Toby"
-	tr_mon 16, DODUO
-	tr_mon 17, DODUO
-	tr_mon 18, DODUO
-	end_trainer
-
-	def_trainer DENIS, "Denis"
-	tr_mon 18, SPEAROW
-	tr_mon 20, FEAROW
-	tr_mon 18, SPEAROW
-	end_trainer
-
-	def_trainer HANK, "Hank"
-	tr_mon 13, PIDGEY
-	tr_mon 56, PIDGEOT
-	end_trainer
-
-	def_trainer ROY, "Roy"
-	tr_mon 55, FEAROW
-	tr_mon 59, PIDGEOT
-	end_trainer
-
-	def_trainer BORIS, "Boris"
-	tr_mon 56, DODUO
-	tr_mon 55, DODUO
-	tr_mon 58, DODRIO
-	end_trainer
-
-	def_trainer BOB, "Bob"
-	tr_mon 59, NOCTOWL
-	end_trainer
-
-	def_trainer PETER, "Peter"
-	tr_mon 7, PIDGEY
-	tr_mon 8, PIDGEY
-	tr_mon 10, SPEAROW
-	end_trainer
-
-	def_trainer PERRY, "Perry"
-	tr_mon 59, FARFETCH_D
-	end_trainer
-
-	def_trainer BRET, "Bret"
-	tr_mon 57, PIDGEOT
-	tr_mon 57, FEAROW
-	end_trainer
-
-	def_trainer MICK, "Mick"
-	tr_mon 62, PIDGEOT
-	tr_mon 60, MURKROW
-	tr_mon 60, NOCTOWL
-	end_trainer
-
-	def_trainer POWELL, "Powell"
-	tr_mon LEVEL_FROM_BADGES + 8, PIDGEOT
-	end_trainer
-
-	def_trainer BIRD_KEEPER_TONY, "Tony"
-	tr_mon LEVEL_FROM_BADGES + 4, PIDGEOTTO
-		tr_moves GUST, QUICK_ATTACK, RAGE, MUD_SLAP
-	tr_mon LEVEL_FROM_BADGES + 4, PIDGEOTTO
-		tr_moves GUST, QUICK_ATTACK, RAGE, DOUBLE_TEAM
-	tr_mon LEVEL_FROM_BADGES + 7, GOLDUCK
-		tr_moves SURF, DISABLE, SCREECH, ZEN_HEADBUTT
-	end_trainer
-
-	def_trainer JULIAN, "Julian"
-	tr_mon LEVEL_FROM_BADGES + 0, HOOTHOOT
-	tr_mon LEVEL_FROM_BADGES + 4, PIDGEOTTO
-	tr_mon LEVEL_FROM_BADGES + 5, MURKROW
-	end_trainer
-
-	def_trainer BIRD_KEEPER_JUSTIN, "Justin"
-	tr_mon 57, XATU
-	tr_mon 50, NOCTOWL
-	end_trainer
-
-	def_trainer GAIL, "Gail"
-	tr_mon 56, PIDGEOT
-	tr_mon 53, PIDGEOTTO
-	end_trainer
-
-	def_trainer BIRD_KEEPER_JOSH, "Josh"
-	tr_mon 55, DODRIO
-	end_trainer
-
-	def_trainer BERT, "Bert"
-	tr_mon 60, SKARMORY
-	tr_mon 57, DODRIO
-	end_trainer
-
-	def_trainer ERNIE, "Ernie"
-	tr_mon 61, PIDGEOT
-	end_trainer
-
-	def_trainer KINSLEY, "Kinsey" ; MISMATCH
-	tr_mon 58, FARFETCH_D
-	tr_mon 58, DODRIO
-	tr_mon 58, PIDGEOTTO
-	end_trainer
-
-	def_trainer EASTON, "Easton"
-	tr_mon 57, DODUO
-	tr_mon 57, DODUO
-	tr_mon 59, DODRIO
-	tr_mon 59, DODRIO
-	end_trainer
-
-	def_trainer BRYAN, "Bryan"
-	tr_mon LEVEL_FROM_BADGES - 1, PIDGEY
-	tr_mon LEVEL_FROM_BADGES + 1, PIDGEOTTO
-	end_trainer
-
-	def_trainer TRENT, "Trent"
-	tr_mon 33, PIDGEY
-	tr_mon 44, PIDGEOTTO
-	tr_mon 55, PIDGEOT
 	end_trainer
 
 

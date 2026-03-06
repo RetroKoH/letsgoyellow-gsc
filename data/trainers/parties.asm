@@ -3140,137 +3140,137 @@ GruntMGroup:
 	tr_mon 11, ZUBAT
 	end_trainer
 
-	def_trainer 1, "Grunt"
+	def_trainer 2, "Grunt"
 	tr_mon 12, ZUBAT
 	tr_mon 12, EKANS
 	end_trainer
 
 ; Route 24 (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 3, "Grunt"
 	tr_mon 15, KOFFING			; LGPE addition, replacing Ekans
 	tr_mon 15, ZUBAT
 	end_trainer
 
 ; Cerulean City (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 4, "Grunt"
 	tr_mon 17, MACHOP
 	tr_mon 17, DROWZEE
 	end_trainer
 
 ; Celadon Game Corner (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 5, "Grunt"
 	tr_mon 20, RATICATE
 	tr_mon 20, ZUBAT
 	end_trainer
 
 ; Celadon Rocket Hideout: B1F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 6, "Grunt"
 	tr_mon 21, DROWZEE
 	tr_mon 21, MACHOP
 	end_trainer
 
-	def_trainer 1, "Grunt"
+	def_trainer 7, "Grunt"
 	tr_mon 24, RATICATE
 	end_trainer
 
-	def_trainer 1, "Grunt"
+	def_trainer 8, "Grunt"
 	tr_mon 22, RATICATE
 	tr_mon 22, RATICATE
 	end_trainer
 
-	def_trainer 1, "Grunt"		; Requires Lift Key
+	def_trainer 9, "Grunt"		; Requires Lift Key
 	tr_mon 22, GRIMER
 	tr_mon 22, KOFFING
 	end_trainer
 
 ; Celadon Rocket Hideout: B2F (FRLG)
-	def_trainer 1, "Grunt"		; Abridged team
+	def_trainer 10, "Grunt"		; Abridged team
 	tr_mon 21, KOFFING
 	tr_mon 21, GRIMER
 	tr_mon 21, RATICATE
 	end_trainer
 
 ; Celadon Rocket Hideout: B3F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 11, "Grunt"
 	tr_mon 22, DROWZEE
 	tr_mon 22, RATICATE
 	end_trainer
 
 ; Celadon Rocket Hideout: B4F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 12, "Grunt"
 	tr_mon 22, KOFFING
 	tr_mon 22, GOLBAT			; Evolved this Zubat
 	end_trainer
 ; Following 2 grunts are replaced with Jesse/James and Archer, per LGPE
 
 ; Pokemon Tower: 7F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 13, "Grunt"
 	tr_mon 26, GASTLY
 	tr_mon 26, GOLBAT
 	end_trainer
 ; The last grunt is replaced with Jesse/James, per LGPE
 
 ; Silph: 2F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 14, "Grunt"
 	tr_mon 28, GOLBAT
 	tr_mon 28, RATICATE
 	end_trainer
 
-	def_trainer 1, "Grunt"
+	def_trainer 15, "Grunt"
 	tr_mon 28, MAROWAK
 	tr_mon 28, GOLBAT
 	end_trainer
 
 ; Silph: 4F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 16, "Grunt"
 	tr_mon 29, ARBOK
 	tr_mon 29, GOLBAT
 	end_trainer
 
-	def_trainer 1, "Grunt"
+	def_trainer 17, "Grunt"
 	tr_mon 29, MACHOP
 	tr_mon 29, DROWZEE
 	end_trainer
 
 ; Silph: 5F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 18, "Grunt"
 	tr_mon 33, HYPNO
 	end_trainer
 
 ; Silph: 6F (FRLG/LGPE)
-	def_trainer 1, "Grunt"
+	def_trainer 19, "Grunt"
 	tr_mon 29, RATICATE
 	tr_mon 29, GOLBAT
 	end_trainer
 
 ; Silph: 7F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 20, "Grunt"
 	tr_mon 34, MAROWAK
 	end_trainer
 
-	def_trainer 1, "Grunt"
+	def_trainer 21, "Grunt"
 	tr_mon 34, SANDSLASH
 	end_trainer
 
 ; Silph: 8F (LGPE)
-	def_trainer 1, "Grunt"
+	def_trainer 22, "Grunt"
 	tr_mon 31, HAUNTER
 	tr_mon 31, PERSIAN
 	end_trainer
 
 ; Silph: 9F (LGPE)
-	def_trainer 1, "Grunt"
+	def_trainer 23, "Grunt"
 	tr_mon 33, KOFFING
 	end_trainer
 
 ; Silph: 10F (LGPE)
-	def_trainer 1, "Grunt"
+	def_trainer 24, "Grunt"
 	tr_mon 31, VOLTORB
 	tr_mon 31, RATICATE
 	end_trainer
 
 ; Silph: 11F (LGPE)
-	def_trainer 1, "Grunt"
+	def_trainer 25, "Grunt"
 	tr_mon 31, HYPNO
 	tr_mon 31, GOLBAT
 	end_trainer
@@ -3287,62 +3287,62 @@ GruntFGroup:
 	tr_mon 13, SANDSHREW
 	end_trainer
 
-	def_trainer 1, "Grunt"
+	def_trainer 2, "Grunt"
 	tr_mon 13, RATTATA
 	tr_mon 13, ZUBAT
 	end_trainer
 
 ; Celadon Rocket Hideout: B1F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 3, "Grunt"
 	tr_mon 20, GRIMER
 	tr_mon 20, EKANS				; LGPE addition
 	tr_mon 20, KOFFING
 	end_trainer
 
 ; Celadon Rocket Hideout: B3F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 4, "Grunt"
 	tr_mon 22, GOLBAT				; LGPE addition
 	tr_mon 22, RATICATE
 	end_trainer
 
 ; Pokemon Tower: 7F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 5, "Grunt"
 	tr_mon 26, GASTLY
 	tr_mon 26, DROWZEE
 	end_trainer
 
 ; Silph: 3F (FRLG): Changed to Female
-	def_trainer 1, "Grunt"
+	def_trainer 6, "Grunt"
 	tr_mon 28, HAUNTER				; LGPE addition, replacing Raticate
 	tr_mon 28, HYPNO
 	tr_mon 28, RATICATE
 	end_trainer
 
 ; Silph: 5F (FRLG)
-	def_trainer 1, "Grunt"
+	def_trainer 7, "Grunt"
 	tr_mon 33, ARBOK
 	end_trainer
 
 ; Silph: 6F (FRLG/LGPE)
-	def_trainer 1, "Grunt"
+	def_trainer 8, "Grunt"
 	tr_mon 29, MEOWTH
 	tr_mon 29, MACHOKE
 	end_trainer
 
 ; Silph: 7F (LGPE)
-	def_trainer 1, "Grunt"
+	def_trainer 9, "Grunt"
 	tr_mon 31, VOLTORB
 	tr_mon 31, ELECTRODE
 	end_trainer
 
 ; Silph: 8F (LGPE)
-	def_trainer 1, "Grunt"
+	def_trainer 10, "Grunt"
 	tr_mon 31, GRIMER
 	tr_mon 31, KOFFING
 	end_trainer
 
 ; Silph: 9F (LGPE)
-	def_trainer 1, "Grunt"
+	def_trainer 11, "Grunt"
 	tr_mon 33, PERSIAN
 	end_trainer
 
@@ -6961,35 +6961,11 @@ SECTION "ProtonGroup", ROMX
 ProtonGroup:
 
 	def_trainer_class PROTON
-	def_trainer PROTON1, "Proton"
-	tr_mon 39, GOLBAT @ KINGS_ROCK, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 252 Spe
-		tr_moves AERIAL_ACE, CONFUSE_RAY, SUPER_FANG, POISON_JAB
-	tr_mon 40, QWILFISH @ BRIGHTPOWDER, MALE
-		tr_extra POISON_POINT
-		tr_evs 252 Spe
-		tr_moves MINIMIZE, BUBBLE_BEAM, PAIN_SPLIT, ROLLOUT
-	tr_mon 40, OCTILLERY @ LUM_BERRY, MALE
-		tr_extra SNIPER
-		tr_evs 252 SAt
-		tr_moves OCTAZOOKA, POWER_WHIP, FLAMETHROWER, ICE_BEAM
-	tr_mon 41, WEEZING @ CHARCOAL, MALE
-		tr_extra LEVITATE
-		tr_evs 252 SAt
-		tr_moves FIRE_BLAST, EXPLOSION, SLUDGE_BOMB, SMOKESCREEN
-	end_trainer
 
-def_trainer PROTON2, "Proton"
-	tr_mon 11, ZUBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 32 Spe
-	tr_mon 12, QWILFISH, MALE
-		tr_extra POISON_POINT
-		tr_evs 32 Spe
-	tr_mon 14, KOFFING, MALE
-		tr_extra LEVITATE
-		tr_evs 32 Spe
+; Mt. Moon (NEW) -- Boss battle; Maybe replace one Grunt?
+	def_trainer 1, "Proton"
+	tr_mon 12, ZUBAT, MALE
+	tr_mon 12, KOFFING, MALE
 	end_trainer
 
 
@@ -6997,46 +6973,11 @@ SECTION "PetrelGroup", ROMX
 PetrelGroup:
 
 	def_trainer_class PETREL
-	def_trainer PETREL1, "Petrel"
-	tr_mon 39, KOFFING @ EVIOLITE, MALE
-		tr_extra LEVITATE
-		tr_evs 252 Atk
-		tr_moves TACKLE, EXPLOSION, VENOSHOCK, SMOKESCREEN
-	tr_mon 39, GOLBAT @ EVIOLITE, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 252 Spe
-		tr_moves LEECH_LIFE, AERIAL_ACE, CONFUSE_RAY, SUPER_FANG
-	tr_mon 40, MUK @ HARD_STONE, MALE | ALOLAN_FORM
-		tr_extra POISON_TOUCH
-		tr_evs 252 Atk
-		tr_moves FIRE_PUNCH, KNOCK_OFF, POISON_JAB, ROCK_SLIDE
-	tr_mon 41, WEEZING @ SILK_SCARF, MALE
-		tr_extra LEVITATE
-		tr_evs 252 HP
-		tr_moves TACKLE, EXPLOSION, VENOSHOCK, SMOKESCREEN
-	tr_mon 39, RATICATE @ BLACKGLASSES, MALE | ALOLAN_FORM
-		tr_extra HUSTLE
-		tr_evs 252 Atk
-		tr_moves QUICK_ATTACK, SCREECH, CRUNCH, SUPER_FANG
-	end_trainer
 
-	def_trainer PETREL2, "Petrel"
-	tr_mon 34, GOLBAT @ EVIOLITE, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 216 Atk
-		tr_moves BITE, AERIAL_ACE, CONFUSE_RAY, SUPER_FANG
-	tr_mon 35, MUK @ BLACKGLASSES, MALE | ALOLAN_FORM
-		tr_extra POISON_TOUCH
-		tr_evs 108 Atk, 108 Spe
-		tr_moves MINIMIZE, CRUNCH, VENOSHOCK, KNOCK_OFF
-	tr_mon 35, RATICATE @ KINGS_ROCK, MALE | ALOLAN_FORM
-		tr_extra HUSTLE
-		tr_evs 108 Atk, 108 Spe
-		tr_moves SWORDS_DANCE, CRUNCH, SUPER_FANG, HYPER_FANG
-	tr_mon 36, WEEZING @ POISON_BARB, MALE
-		tr_extra LEVITATE
-		tr_evs 108 Atk, 108 SAt
-		tr_moves ENDURE, WILL_O_WISP, SLUDGE_BOMB, EXPLOSION
+; Nugget Bridge (NEW) -- Replace the generic grunt
+	def_trainer 1, "Petrel"
+	tr_mon 17, MACHOP
+	tr_mon 17, DROWZEE
 	end_trainer
 
 
@@ -7044,46 +6985,11 @@ SECTION "ArcherGroup", ROMX
 ArcherGroup:
 
 	def_trainer_class ARCHER
-	def_trainer ARCHER1, "Archer"
-	tr_mon 41, HOUNDOUR @ EVIOLITE, MALE
-		tr_extra FLASH_FIRE
-		tr_evs 252 HP
-		tr_moves SUPER_FANG, FIRE_SPIN, FEINT_ATTACK, WILL_O_WISP
-	tr_mon 43, RATICATE @ BLACKGLASSES, MALE | ALOLAN_FORM
-		tr_extra HUSTLE
-		tr_evs 124 Atk, 124 Spe
-		tr_moves CRUNCH, SUPER_FANG, HYPER_FANG, DOUBLE_EDGE
-	tr_mon 41, GENGAR @ SPELL_TAG, MALE
-		tr_extra CURSED_BODY
-		tr_evs 124 SAt, 124 Spe
-		tr_moves HYPNOSIS, CONFUSE_RAY, PAIN_SPLIT, SHADOW_BALL
-	tr_mon 42, WEEZING @ BLACK_SLUDGE, MALE
-		tr_extra LEVITATE
-		tr_evs 252 HP
-		tr_moves SMOKESCREEN, WILL_O_WISP, PAIN_SPLIT, SLUDGE_BOMB
-	tr_mon 44, HOUNDOOM @ KINGS_ROCK, MALE
-		tr_extra FLASH_FIRE
-		tr_evs 124 SAt, 124 Spe
-		tr_moves SMOKESCREEN, SUPER_FANG, FEINT_ATTACK, FLAMETHROWER
-	end_trainer
 
-	def_trainer ARCHER2, "Archer"
-	tr_mon 28, HAUNTER @ SPELL_TAG, MALE
-		tr_extra LEVITATE
-		tr_evs 88 SAt, 88 Spe
-		tr_moves DISABLE, NIGHT_SHADE, CONFUSE_RAY, SHADOW_BALL
-	tr_mon 30, RATICATE @ BLACKGLASSES, MALE | ALOLAN_FORM
-		tr_extra HUSTLE
-		tr_evs 88 Atk, 88 Spe
-		tr_moves PURSUIT, HYPER_FANG, SCARY_FACE, CRUNCH
-	tr_mon 28, WEEZING @ SILK_SCARF, MALE
-		tr_extra LEVITATE
-		tr_evs 88 Atk, 88 Spe
-		tr_moves WILL_O_WISP, EXPLOSION, VENOSHOCK, SMOKESCREEN
-	tr_mon 32, HOUNDOOM @ KINGS_ROCK, MALE
-		tr_extra FLASH_FIRE
-		tr_evs 88 Spe, 88 SAt
-		tr_moves FLAMETHROWER, SMOKESCREEN, FEINT_ATTACK, SUPER_FANG
+; Celadon Rocket Hideout (LGPE) -- Leveled-down slightly
+	def_trainer 1, "Archer"
+	tr_mon 31, WEEZING, MALE
+	tr_mon 31, GOLBAT, MALE
 	end_trainer
 
 
@@ -7091,34 +6997,12 @@ SECTION "ArianaGroup", ROMX
 ArianaGroup:
 
 	def_trainer_class ARIANA
-	def_trainer ARIANA1, "Ariana"
-	tr_mon 40, ARBOK @ POISON_BARB, FEMALE | ARBOK_ARIANA_FORM
-		tr_extra INTIMIDATE
-		tr_evs 252 Atk
-		tr_moves GLARE, SCREECH, ACID, CRUNCH
-	tr_mon 41, VILEPLUME @ MIRACLE_SEED, FEMALE
-		tr_extra CHLOROPHYLL
-		tr_evs 252 HP
-		tr_moves LEECH_SEED, ACID, SLEEP_POWDER, GIGA_DRAIN
-	tr_mon 42, HONCHKROW @ BLACKGLASSES, FEMALE
-		tr_extra INSOMNIA
-		tr_evs 252 Atk
-		tr_moves WING_ATTACK, NIGHT_SHADE, CONFUSE_RAY, FEINT_ATTACK
-	end_trainer
 
-	def_trainer ARIANA2, "Ariana"
-	tr_mon 35, ARBOK @ BLACKGLASSES, FEMALE | ARBOK_ARIANA_FORM
-		tr_extra INTIMIDATE
-		tr_evs 216 Atk
-		tr_moves WRAP, ACID, CRUNCH, GLARE
-	tr_mon 36, GLOOM @ MIRACLE_SEED, FEMALE
-		tr_extra CHLOROPHYLL
-		tr_evs 216 HP
-		tr_moves MEGA_DRAIN, GROWTH, SLEEP_POWDER, ACID
-	tr_mon 37, MURKROW @ KINGS_ROCK, FEMALE
-		tr_extra INSOMNIA
-		tr_evs 216 Atk
-		tr_moves WING_ATTACK, PURSUIT, CONFUSE_RAY, NIGHT_SHADE
+; Safari Zone Entrance (NEW) -- Might add Grunts? Not sure.
+	def_trainer 1, "Ariana"
+	tr_mon 40, MUK, MALE
+	tr_mon 40, ARBOK, MALE
+	tr_mon 40, VILEPLUME, MALE
 	end_trainer
 
 
@@ -7126,49 +7010,35 @@ SECTION "GiovanniGroup", ROMX
 GiovanniGroup:
 
 	def_trainer_class GIOVANNI
-	def_trainer GIOVANNI1, "Giovanni"
-	tr_mon LEVEL_FROM_BADGES + 24, "?????", MEWTWO @ ARMOR_SUIT, MALE | MEWTWO_ARMORED_FORM
-		tr_extra INSOMNIA, SATK_UP_ATK_DOWN
-		tr_moves SHADOW_BALL, PSYSTRIKE, NASTY_PLOT, AURA_SPHERE
-	end_trainer
 
+	def_trainer GIOVANNI1, "Giovanni"
+	tr_mon 23, PERSIAN, MALE
+	tr_mon 24, RHYHORN, MALE
+	tr_mon 25, ONIX, MALE
+	tr_mon 27, KANGASKHAN, FEMALE
+	end_trainer
 
 	def_trainer GIOVANNI2, "Giovanni"
-	tr_mon 64, NIDOKING @ LIFE_ORB, MALE
-		tr_extra SHEER_FORCE, SPE_UP_ATK_DOWN
-		tr_evs 252 Spe, 164 SAt
-		tr_moves SLUDGE_BOMB, EARTH_POWER, ICE_BEAM, FLAMETHROWER
-	tr_mon 62, DUGTRIO @ CHOICE_BAND, MALE
-		tr_extra ARENA_TRAP, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 164 Spe
-		tr_moves EARTHQUAKE, STONE_EDGE, SUCKER_PUNCH, SHADOW_CLAW
-	tr_mon 60, HONCHKROW @ FOCUS_SASH, FEMALE
-		tr_extra MOXIE, ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 164 Spe
-		tr_moves SUCKER_PUNCH, DRILL_PECK, ROOST, THUNDER_WAVE
-if !DEF(FAITHFUL)
-	tr_mon 60, KANGASKHAN @ LUM_BERRY, FEMALE
-		tr_extra PARENTAL_BOND, SPE_UP_SATK_DOWN
-		tr_evs 252 Spe, 164 Atk
-		tr_moves BODY_SLAM, SEISMIC_TOSS, ICE_PUNCH, CRUNCH
-else
-	tr_mon 60, KANGASKHAN @ LEFTOVERS, FEMALE
-		tr_extra EARLY_BIRD, ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 164 Spe
-		tr_moves DOUBLE_EDGE, EARTHQUAKE, CRUNCH, REST
-endc
-	tr_mon 62, RHYDON @ EVIOLITE, MALE
-if !DEF(FAITHFUL)
-		tr_extra SOLID_ROCK, ATK_UP_SATK_DOWN
-else
-		tr_extra LIGHTNING_ROD, ATK_UP_SATK_DOWN
-endc
-		tr_moves ROCK_SLIDE, EARTHQUAKE, AVALANCHE, MEGAHORN
-	tr_mon 64, NIDOQUEEN @ LIFE_ORB, FEMALE
-		tr_extra SHEER_FORCE, SPE_UP_ATK_DOWN
-		tr_evs 252 Spe, 164 SAt
-		tr_moves SLUDGE_BOMB, EARTH_POWER, ICE_BEAM, FOCUS_BLAST
+	tr_mon 35, PERSIAN, MALE
+	tr_mon 36, NIDORINO, MALE
+	tr_mon 36, NIDOQUEEN, FEMALE
+	tr_mon 37, RHYHORN, MALE
+	tr_mon 40, KANGASKHAN, FEMALE
 	end_trainer
+
+	def_trainer GIOVANNI3, "Giovanni"
+	tr_mon 50, PERSIAN, MALE
+	tr_mon 51, DUGTRIO, MALE
+	tr_mon 53, NIDOQUEEN, FEMALE
+	tr_mon 55, NIDOKING, MALE
+	tr_mon 55, RHYDON, MALE
+	end_trainer
+
+; Store this for later
+;	tr_mon LEVEL_FROM_BADGES + 24, "?????", MEWTWO @ ARMOR_SUIT, MALE | MEWTWO_ARMORED_FORM
+;		tr_extra INSOMNIA, SATK_UP_ATK_DOWN
+;		tr_moves SHADOW_BALL, PSYSTRIKE, NASTY_PLOT, AURA_SPHERE
+;	end_trainer
 
 
 SECTION "ProfOakGroup", ROMX
@@ -7366,27 +7236,47 @@ SECTION "JessieJamesGroup", ROMX
 JessieJamesGroup:
 
 	def_trainer_class JESSIE_JAMES
+
+; Viridian Forest (NEW)
 	def_trainer 1, "& James"
-	tr_mon 26, WEEZING, MALE
-		tr_extra LEVITATE
-		tr_evs 176 HP
-		tr_moves WILL_O_WISP, VENOSHOCK, RAGE, HAZE
-	tr_mon 26, ARBOK, FEMALE | ARBOK_KANTO_FORM
-		tr_extra INTIMIDATE
-		tr_evs 88 Atk, 88 SAt
-		tr_moves CRUNCH, GLARE, ACID, SCREECH
-	tr_mon 24, VICTREEBEL @ SITRUS_BERRY, FEMALE
-		tr_extra GLUTTONY
-		tr_evs 88 SAt, 88 Atk
-		tr_moves ACID, RAZOR_LEAF, STUN_SPORE, HEALINGLIGHT
-	tr_mon 24, WOBBUFFET, MALE
-		tr_extra SHADOW_TAG
-		tr_evs 176 HP
-		tr_moves COUNTER, MIRROR_COAT, SAFEGUARD, DESTINY_BOND
-	tr_mon 28, MEOWTH @ EVIOLITE, MALE
-		tr_extra TECHNICIAN
-		tr_evs 176 Spe
-		tr_moves FURY_STRIKES, PURSUIT, BITE, ASTONISH
+	tr_mon 10, MEOWTH, MALE
+	end_trainer
+
+; Mt. Moon (Y)
+	def_trainer 2, "& James"
+	tr_mon 14, EKANS, MALE
+	tr_mon 14, KOFFING, MALE
+	tr_mon 14, MEOWTH, MALE
+	end_trainer
+
+; Rocket Hideout (Y)
+	def_trainer 3, "& James"
+	tr_mon 25, EKANS, MALE
+	tr_mon 25, KOFFING, MALE
+	tr_mon 25, MEOWTH, MALE
+	end_trainer
+
+; Pokemon Tower (Y) - Levels bumped up by one
+	def_trainer 4, "& James"
+	tr_mon 28, EKANS, MALE
+	tr_mon 28, KOFFING, MALE
+	tr_mon 28, MEOWTH, MALE
+	end_trainer
+
+; Silph Co (Y) - Levels bumped up by one
+	def_trainer 4, "& James"
+	tr_mon 32, ARBOK, MALE
+	tr_mon 32, WEEZING, MALE
+	tr_mon 32, MEOWTH, MALE
+	end_trainer
+
+; Add two or three more battles as preludes to the legendary birds
+
+; Route 17 (LGPE) - POSTGAME EXCLUSIVE; Levels bumped up by three
+	def_trainer 4, "& James"
+	tr_mon 55, ARBOK, MALE
+	tr_mon 55, WEEZING, MALE
+	tr_mon 55, MEOWTH, MALE
 	end_trainer
 
 

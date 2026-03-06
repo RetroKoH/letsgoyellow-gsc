@@ -999,6 +999,7 @@ DEF BETA EQU __trainer_class__
 	const LITVYAK
 	const MADOKA
 
+; Each of these will have post-game battles
 	trainerclass PROTON ; 6a
 	const PROTON1
 	const PROTON2
@@ -1018,6 +1019,7 @@ DEF BETA EQU __trainer_class__
 	trainerclass GIOVANNI ; 6e
 	const GIOVANNI1
 	const GIOVANNI2
+	const GIOVANNI3		; Gym Battle
 
 	trainerclass PROF_OAK ; 6f
 

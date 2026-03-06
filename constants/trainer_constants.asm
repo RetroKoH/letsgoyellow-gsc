@@ -234,24 +234,25 @@ DEF BETA EQU __trainer_class__
 	const TIFFANY3
 	const TIFFANY4
 
-	trainerclass TWINS ; 25 (To either be scrapped or implemented with FRLG trainers)
-	const AMYANDMIMI1
-	const AMYANDMIMI2
-	const ANNANDANNE1
-	const ANNANDANNE2
-	const JOANDZOE1
-	const JOANDZOE2
-	const MEGANDPEG1
-	const MEGANDPEG2
-	const LEAANDPIA1
-	const LEAANDPIA2
-	const DAYANDDANI1
-	const DAYANDDANI2
-	const KAYANDTIA1
-	const KAYANDTIA2
+	trainerclass TWINS ; 25 (FINISHED: Implemented with FRLG trainers)
+	const ELIANDANNE1
+	const ELIANDANNE2
+	const KIRIANDJAN1
+	const KIRIANDJAN2
 
-	trainerclass FISHER ; 26
-	const RALPH1
+	trainerclass FISHER ; 26 (FINISHED)
+	const BARNY				; SS Anne B1F
+	const DALE				; SS Anne 2F
+	const NED				; Route 12
+	const CHIP
+	const HANK
+	const ELLIOT
+	const ANDREW
+	const WADE				; Route 21
+	const RONALD
+	const CLAUDE
+	const NOLAN
+	const RALPH1			; Unused Phone Trainers
 	const RALPH2
 	const RALPH3
 	const RALPH4
@@ -263,29 +264,6 @@ DEF BETA EQU __trainer_class__
 	const WILTON1
 	const WILTON2
 	const WILTON3
-	const JUSTIN
-	const ARNOLD
-	const KYLE
-	const HENRY
-	const MARVIN
-	const ANDRE
-	const RAYMOND
-	const EDGAR
-	const JONAH
-	const MARTIN
-	const STEPHEN
-	const BARNEY
-	const SCOTT
-	const PATON
-	const KILEY
-	const FRANCIS
-	const LEROY
-	const KYLER
-	const MURPHY
-	const LIAM
-	const GIDEON
-	const HALL
-	const DALLAS
 
 	trainerclass BIRD_KEEPER ; 27
 	const VANCE1

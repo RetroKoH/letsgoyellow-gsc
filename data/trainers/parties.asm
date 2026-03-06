@@ -2697,82 +2697,27 @@ SECTION "TwinsGroup", ROMX
 TwinsGroup:
 
 	def_trainer_class TWINS
-	def_trainer AMYANDMIMI1, "Amy & Mimi"
-	tr_mon 13, SPINARAK
-	tr_mon 13, LEDYBA
+
+; Route 8 (FRLG)
+	def_trainer ELIANDANNE1, "Eli & Anne"
+	tr_mon 22, CLEFAIRY
+	tr_mon 22, JIGGLYPUFF
 	end_trainer
 
-	def_trainer AMYANDMIMI2, "Amy & Mimi"
-	tr_mon 13, LEDYBA
-	tr_mon 13, SPINARAK
+	def_trainer ELIANDANNE2, "Eli & Anne"
+	tr_mon 22, CLEFAIRY
+	tr_mon 22, JIGGLYPUFF
 	end_trainer
 
-	def_trainer ANNANDANNE1, "Tori & Til"
-	tr_mon 16, MARILL
-		tr_moves DEFENSE_CURL, ROLLOUT, BUBBLE_BEAM, DIZZY_PUNCH
-	tr_mon 16, MAREEP
-		tr_moves GROWL, THUNDER_WAVE, THUNDERSHOCK, MUD_SLAP
+; Route 14 (FRLG)
+	def_trainer KIRIANDJAN1, "Kiri & Jan"
+	tr_mon 29, CHARMANDER
+	tr_mon 29, SQUIRTLE
 	end_trainer
 
-	def_trainer ANNANDANNE2, "Tori & Til"
-	tr_mon 16, MAREEP
-		tr_moves GROWL, THUNDER_WAVE, THUNDERSHOCK, MUD_SLAP
-	tr_mon 16, MARILL
-		tr_moves DEFENSE_CURL, ROLLOUT, BUBBLE_BEAM, DIZZY_PUNCH
-	end_trainer
-
-	def_trainer JOANDZOE1, "Lo & Zoe"
-	tr_mon 59, VICTREEBEL
-	tr_mon 59, VILEPLUME
-	end_trainer
-
-	def_trainer JOANDZOE2, "Lo & Zoe"
-	tr_mon 59, VILEPLUME
-	tr_mon 59, VICTREEBEL
-	end_trainer
-
-	def_trainer MEGANDPEG1, "Meg & Peg"
-	tr_mon 45, TEDDIURSA
-	tr_mon 45, PHANPY
-	end_trainer
-
-	def_trainer MEGANDPEG2, "Meg & Peg"
-	tr_mon 45, PHANPY
-	tr_mon 45, TEDDIURSA
-	end_trainer
-
-	def_trainer LEAANDPIA1, "Lea & Pia"
-	tr_mon 38, DRATINI
-		tr_moves THUNDER_WAVE, DRAGON_PULSE, FLAMETHROWER, HEADBUTT
-	tr_mon 38, DRATINI
-		tr_moves THUNDER_WAVE, DRAGON_PULSE, ICE_BEAM, HEADBUTT
-	end_trainer
-
-	def_trainer LEAANDPIA2, "Lea & Pia"
-	tr_mon 38, DRATINI
-		tr_moves THUNDER_WAVE, DRAGON_PULSE, ICE_BEAM, HEADBUTT
-	tr_mon 38, DRATINI
-		tr_moves THUNDER_WAVE, DRAGON_PULSE, FLAMETHROWER, HEADBUTT
-	end_trainer
-
-	def_trainer DAYANDDANI1, "Day & Dani"
-	tr_mon 51, PIKACHU
-	tr_mon 51, PIKACHU
-	end_trainer
-
-	def_trainer DAYANDDANI2, "Day & Dani"
-	tr_mon 51, PIKACHU
-	tr_mon 51, PIKACHU
-	end_trainer
-
-	def_trainer KAYANDTIA1, "Kay & Tia"
-	tr_mon 56, QUAGSIRE
-	tr_mon 56, CLODSIRE
-	end_trainer
-
-	def_trainer KAYANDTIA2, "Kay & Tia"
-	tr_mon 56, CLODSIRE
-	tr_mon 56, QUAGSIRE
+	def_trainer KIRIANDJAN2, "Day & Dani"
+	tr_mon 29, CHARMANDER
+	tr_mon 29, SQUIRTLE
 	end_trainer
 
 
@@ -2780,6 +2725,72 @@ SECTION "FisherGroup", ROMX
 FisherGroup:
 
 	def_trainer_class FISHER
+
+; SS Anne (FRLG)
+	def_trainer BARNY, "Barney"
+	tr_mon 17, TENTACOOL
+	tr_mon 17, STARYU
+	tr_mon 17, SHELLDER
+	end_trainer
+
+	def_trainer DALE, "Dale"
+	tr_mon 17, TENTACOOL
+	tr_mon 17, GOLDEEN
+	tr_mon 17, TENTACOOL
+	end_trainer
+
+; Route 12 (FRLG)
+	def_trainer NED, "Ned"
+	tr_mon 22, GOLDEEN
+	tr_mon 22, POLIWAG
+	tr_mon 22, GOLDEEN
+	end_trainer
+
+	const CHIP, "Chip"
+	tr_mon 24, TENTACOOL
+	tr_mon 24, GOLDEEN
+	end_trainer
+
+	const HANK, "Hank"
+	tr_mon 27, GOLDEEN
+	end_trainer
+
+	const ELLIOT, "Elliot"
+	tr_mon 21, POLIWAG
+	tr_mon 21, SHELLDER
+	tr_mon 21, GOLDEEN
+	tr_mon 21, HORSEA
+	end_trainer
+
+	const ANDREW, "Andrew"
+	tr_mon 24, MAGIKARP
+	tr_mon 24, GYARADOS				; minor lineup change
+	end_trainer
+
+; Route 21 (FRLG + Custom)
+	def_trainer WADE, "Wade"
+	tr_mon 32, MAGIKARP				; reeduced from 6 magikarp
+	tr_mon 32, MAGIKARP
+	tr_mon 32, GYARADOS
+	end_trainer
+
+	def_trainer RONALD, "Ronald"
+	tr_mon 31, GOLDEEN				; lineup slightly reduced
+	tr_mon 31, SEAKING
+	tr_mon 31, SEAKING
+	end_trainer
+
+	def_trainer CLAUDE, "Claude"
+	tr_mon 32, SHELLDER				; lineup slightly reduced
+	tr_mon 32, CLOYSTER
+	end_trainer
+
+	def_trainer NOLAN, "Nolan"
+	tr_mon 33, GOLDEEN
+	tr_mon 33, SEAKING
+	end_trainer
+
+; Unused Phone Trainers
 	def_trainer RALPH1, "Ralph"
 	tr_mon 11, GOLDEEN
 	end_trainer
@@ -2850,153 +2861,6 @@ FisherGroup:
 		tr_moves WATERFALL, BODY_SLAM, POISON_JAB, AGILITY
 	tr_mon 42, OCTILLERY
 		tr_moves PSYBEAM, AURORA_BEAM, OCTAZOOKA, HYPER_BEAM
-	end_trainer
-
-	def_trainer JUSTIN, "Justin"
-	tr_mon 5, MAGIKARP, MALE | PLAIN_FORM
-		tr_dvs 8 HP, 7 Atk, 7 Def, 8 Spe, 7 SAt, 7 SDf
-	tr_mon 5, MAGIKARP, MALE | MAGIKARP_FOREHEAD1_FORM
-		tr_dvs 8 HP, 8 Atk, 11 Def, 8 Spe, 8 SAt, 11 SDf
-	tr_mon 15, MAGIKARP, MALE | MAGIKARP_CALICO3_FORM
-		tr_dvs 10 HP, 2 Atk, 10 Def, 10 Spe, 2 SAt, 10 SDf
-	tr_mon 5, MAGIKARP, MALE | MAGIKARP_ORCA_FORM
-		tr_dvs 3 HP, 9 Atk, 9 Def, 3 Spe, 9 SAt, 9 SDf
-	end_trainer
-
-	def_trainer ARNOLD, "Arnold"
-	tr_mon 62, CLOYSTER
-	end_trainer
-
-	def_trainer KYLE, "Kyle"
-	tr_mon 57, SEAKING
-	tr_mon 54, QWILFISH
-	tr_mon 57, SEAKING
-	end_trainer
-
-	def_trainer HENRY, "Henry"
-	tr_mon 9, POLIWAG
-	tr_mon 9, POLIWAG
-	end_trainer
-
-
-	def_trainer MARVIN, "Marvin"
-	tr_mon 20, MAGIKARP, MALE | MAGIKARP_CALICO1_FORM
-	tr_mon 25, MAGIKARP, MALE | MAGIKARP_CALICO2_FORM
-	tr_mon 30, GYARADOS, MALE
-	end_trainer
-
-	def_trainer ANDRE, "Andre"
-	tr_mon 32, GYARADOS
-	end_trainer
-
-
-	def_trainer RAYMOND, "Raymond"
-	tr_mon 30, MAGIKARP, MALE | MAGIKARP_CALICO2_FORM
-		tr_moves SPLASH, TACKLE, REVERSAL, DRAGON_RAGE
-	tr_mon 30, MAGIKARP, MALE | MAGIKARP_CALICO3_FORM
-		tr_moves SPLASH, TACKLE, REVERSAL, DRAGON_RAGE
-	tr_mon 30, MAGIKARP, MALE | MAGIKARP_TWO_TONE_FORM
-		tr_moves SPLASH, TACKLE, REVERSAL, DRAGON_RAGE
-	tr_mon 30, MAGIKARP, MALE | MAGIKARP_ORCA_FORM
-		tr_moves SPLASH, TACKLE, REVERSAL, DRAGON_RAGE
-	end_trainer
-
-	def_trainer EDGAR, "Edgar"
-	tr_mon 36, REMORAID
-		tr_moves FLAMETHROWER, PSYBEAM, AURORA_BEAM, BUBBLE_BEAM
-	tr_mon 36, REMORAID
-		tr_moves ICE_BEAM, PSYBEAM, AURORA_BEAM, BUBBLE_BEAM
-	end_trainer
-
-	def_trainer JONAH, "Jonah"
-	tr_mon 44, SHELLDER
-	tr_mon 46, OCTILLERY
-	tr_mon 44, REMORAID
-	tr_mon 46, CLOYSTER
-	end_trainer
-
-	def_trainer MARTIN, "Martin"
-	tr_mon 56, REMORAID
-	tr_mon 58, OCTILLERY
-	end_trainer
-
-	def_trainer STEPHEN, "Stephen"
-	tr_mon 60, MAGIKARP
-	tr_mon 58, QUAGSIRE
-	tr_mon 55, QWILFISH
-	tr_mon 55, TENTACRUEL
-	end_trainer
-
-	def_trainer BARNEY, "Barney"
-	tr_mon 57, GYARADOS
-	tr_mon 56, GYARADOS
-	tr_mon 56, GYARADOS
-	end_trainer
-
-	def_trainer SCOTT, "Scott"
-	tr_mon 40, QWILFISH
-	tr_mon 40, QWILFISH
-	tr_mon 42, SEAKING
-	end_trainer
-
-	def_trainer PATON, "Paton"
-	tr_mon LEVEL_FROM_BADGES + 0, GOLDEEN
-	tr_mon LEVEL_FROM_BADGES + 2, MANTINE
-	end_trainer
-
-	def_trainer KILEY, "Kiley"
-	tr_mon LEVEL_FROM_BADGES + 5, MAGIKARP, MALE | PLAIN_FORM
-	tr_mon LEVEL_FROM_BADGES + 5, MAGIKARP, MALE | MAGIKARP_DAPPLES_FORM
-	tr_mon LEVEL_FROM_BADGES + 5, MAGIKARP, MALE | MAGIKARP_TIGER_FORM
-	tr_mon LEVEL_FROM_BADGES + 5, MANTINE, MALE
-	end_trainer
-
-	def_trainer FRANCIS, "Francis"
-	tr_mon LEVEL_FROM_BADGES + 4, REMORAID
-	tr_mon LEVEL_FROM_BADGES + 5, CHINCHOU
-	tr_mon LEVEL_FROM_BADGES + 4, QWILFISH
-	end_trainer
-
-	def_trainer LEROY, "Virgil" ; MISMATCH
-	tr_mon 51, MAGIKARP, MALE | MAGIKARP_MASK1_FORM
-	tr_mon 52, MAGIKARP, MALE | MAGIKARP_CALICO1_FORM
-	tr_mon 53, MAGIKARP, MALE | MAGIKARP_CALICO2_FORM
-	tr_mon 54, MAGIKARP, MALE | MAGIKARP_CALICO3_FORM
-	tr_mon 55, MAGIKARP, MALE | MAGIKARP_TWO_TONE_FORM
-	tr_mon 56, MAGIKARP, MALE | MAGIKARP_ORCA_FORM
-	end_trainer
-
-	def_trainer KYLER, "Kyler"
-	tr_mon 48, MAGIKARP, MALE | PLAIN_FORM
-	tr_mon 48, MAGIKARP, MALE | MAGIKARP_BUBBLES_FORM
-	tr_mon 48, MAGIKARP, MALE | MAGIKARP_CALICO3_FORM
-	end_trainer
-
-	def_trainer MURPHY, "Murphy"
-	tr_mon 54, CORSOLA
-	tr_mon 56, CORSOLA
-	tr_mon 58, CORSOLA
-	tr_mon 60, CORSOLA
-	end_trainer
-
-	def_trainer LIAM, "Liam"
-	tr_mon 62, SEADRA
-	end_trainer
-
-	def_trainer GIDEON, "Gideon"
-	tr_mon 60, LANTURN
-	tr_mon 56, MANTINE
-	end_trainer
-
-	def_trainer HALL, "Hall"
-	tr_mon 56, "Dopefish", QWILFISH
-		tr_dvs 8 HP, 7 Atk, 13 Def, 8 Spe, 2 SAt, 8 SDf ; green
-	end_trainer
-
-	def_trainer DALLAS, "Dallas"
-	tr_mon 61, QWILFISH
-	tr_mon 63, LANTURN
-	tr_mon 65, GYARADOS
 	end_trainer
 
 

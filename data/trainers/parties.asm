@@ -3486,31 +3486,26 @@ PokemaniacGroup:
 SECTION "CosplayerGroup", ROMX
 CosplayerGroup:
 
+; Unused Trainers
 	def_trainer_class COSPLAYER
+
 	def_trainer CLARA, "Clara"
-	tr_mon 14, VULPIX
 	tr_mon 14, VULPIX
 	end_trainer
 
 	def_trainer CHLOE, "Chloe"
 	tr_mon LEVEL_FROM_BADGES + 5, VULPIX
-	tr_mon LEVEL_FROM_BADGES + 5, PIKACHU
-	tr_mon LEVEL_FROM_BADGES + 5, VULPIX
 	end_trainer
 
 	def_trainer BROOKE, "Brooke"
 	tr_mon 62, NINETALES
-	tr_mon 60, VULPIX
 	end_trainer
 
 	def_trainer KUROKO, "Kuroko"
-	tr_mon 60, VULPIX @ EVIOLITE
-	tr_mon 62, NINETALES @ CHARCOAL
+	tr_mon 62, NINETALES
 	end_trainer
 
 	def_trainer LYRIC, "Lyric"
-	tr_mon 54, LANTURN
-	tr_mon 53, MAGNEZONE
 	tr_mon 55, ELECTRODE
 	end_trainer
 
@@ -3519,107 +3514,58 @@ SECTION "SuperNerdGroup", ROMX
 SuperNerdGroup:
 
 	def_trainer_class SUPER_NERD
-	def_trainer STAN, "Stan"
-	tr_mon 20, GRIMER
-	end_trainer
 
-	def_trainer ERIC, "Eric"
-	tr_mon 13, GRIMER
-	tr_mon 14, PORYGON
-	end_trainer
-
-	def_trainer SAM, "Sam"
-	tr_mon 55, GRIMER
-	tr_mon 56, MUK
-	end_trainer
-
-	def_trainer TOM, "Tyrone" ; MISMATCH
-	tr_mon 55, MAGNEMITE
-	tr_mon 56, MAGNETON
-	tr_mon 55, MAGNEMITE
-	end_trainer
-
-	def_trainer PAT, "Pat"
-	tr_mon 56, PORYGON2
-	end_trainer
-
-	def_trainer SHAWN, "Shawn"
-	tr_mon 44, MAGNEMITE
-	tr_mon 46, MUK
-	tr_mon 45, MAGNETON
-	end_trainer
-
-	def_trainer TERU, "Teru"
-	tr_mon 9, MAGNEMITE
-	tr_mon 13, VOLTORB
-	tr_mon 9, MAGNEMITE
-	tr_mon 11, MAGNEMITE
-	end_trainer
-
-	def_trainer HUGH, "Hugh"
-	tr_mon LEVEL_FROM_BADGES + 9, SEADRA
-		tr_moves SMOKESCREEN, OUTRAGE, SURF, WATERFALL
-	end_trainer
-
-	def_trainer MARKUS, "Markus"
-	tr_mon LEVEL_FROM_BADGES + 9, SLOWBRO
-		tr_moves CONFUSION, HEADBUTT, WATER_PULSE, STRENGTH
-	end_trainer
-
-	def_trainer CARY, "Cary"
-	tr_mon 63, FLAREON
-	end_trainer
-
-	def_trainer WALDO, "Waldo"
-	tr_mon 65, CHARIZARD
-	end_trainer
-
-	def_trainer MERLE, "Merle"
-	tr_mon 63, MAGCARGO
-	end_trainer
-
-	def_trainer LUIS, "Luis"
-	tr_mon 62, MAGMAR
-	tr_mon 63, WEEZING
-	tr_mon 59, MAGMAR
-	end_trainer
-
+; Mt Moon (FRLG)
 	def_trainer JOVAN, "Jovan"
-	tr_mon 62, MAGNETON
-	tr_mon 60, VOLTORB
-	tr_mon 61, ELECTRODE
+	tr_mon 11, MAGNEMITE
+	tr_mon 11, VOLTORB
 	end_trainer
 
 	def_trainer MIGUEL, "Miguel"
-	tr_mon 62, OMASTAR, MALE
-	tr_mon 62, KABUTOPS, MALE
-	tr_mon 64, UMBREON, MALE
-		tr_extra SHINY
+	tr_mon 12, GRIMER
+	tr_mon 12, VOLTORB
+	tr_mon 12, KOFFING
 	end_trainer
 
-	def_trainer RORY, "Rory"
-	tr_mon 26, PORYGON
+; Route 8 (FRLG)
+	def_trainer GLENN, "Glenn"
+	tr_mon 22, GRIMER
+	tr_mon 22, GRIMER
+	tr_mon 22, MUK
 	end_trainer
 
-	def_trainer GREGG, "Gregg"
-	tr_mon 53, PORYGON
-	tr_mon 55, PORYGON2
+	def_trainer LESLIE, "Leslie"
+	tr_mon 24, KOFFING
+	tr_mon 24, MAGNEMITE			; LGPE team member added
 	end_trainer
 
-	def_trainer FOOTE, "Foote"
-	tr_mon 54, SNORLAX
+	def_trainer AIDAN, "Aidan"
+	tr_mon 21, VOLTORB
+	tr_mon 21, MAGNEMITE
+	tr_mon 21, KOFFING
 	end_trainer
 
-	def_trainer DAVE, "Dave"
-	tr_mon 52, LARVITAR
-	tr_mon 53, PUPITAR
-	tr_mon 56, PORYGON_Z
+; Cinnabar Gym (FRLG)
+	def_trainer ERIK, "Erik"
+	tr_mon 36, VULPIX
+	tr_mon 36, VULPIX
+	tr_mon 36, NINETALES
 	end_trainer
 
-	def_trainer KOUTA, "Kouta"
-	tr_mon 54, CROBAT
-	tr_mon 53, POLITOED
-	tr_mon 56, CHARIZARD
+	def_trainer AVERY, "Avery"
+	tr_mon 34, PONYTA
+	tr_mon 34, CHARMELEON			; Evolved
+	tr_mon 34, VULPIX
+	tr_mon 34, GROWLITHE
+	end_trainer
+
+	def_trainer DEREK, "Derek"
+	tr_mon 41, RAPIDASH
+	end_trainer
+
+	def_trainer ZAC, "Zac"
+	tr_mon 37, GROWLITHE
+	tr_mon 37, VULPIX
 	end_trainer
 
 

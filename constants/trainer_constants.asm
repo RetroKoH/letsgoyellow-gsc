@@ -336,7 +336,7 @@ DEF BETA EQU __trainer_class__
 	trainerclass NURSE ; 2f (UNUSED: Might use at Indigo Plateau?)
 	const JOY
 
-	trainerclass POKEMANIAC ; 30
+	trainerclass POKEMANIAC ; 30 (FINISHED)
 	const ASHTON			; Rock Tunnel
 	const WINSTON
 	const STEVE
@@ -350,34 +350,23 @@ DEF BETA EQU __trainer_class__
 	const BRENT3
 	const BRENT4
 
-	trainerclass COSPLAYER ; 31
+	trainerclass COSPLAYER ; 31 (Female Pokemaniac; Might use)
 	const CLARA
 	const CHLOE
 	const BROOKE
 	const KUROKO
 	const LYRIC
 
-	trainerclass SUPER_NERD ; 32
-	const STAN
-	const ERIC
-	const SAM
-	const TOM
-	const PAT
-	const SHAWN
-	const TERU
-	const HUGH
-	const MARKUS
-	const CARY
-	const WALDO
-	const MERLE
-	const LUIS
+	trainerclass SUPER_NERD ; 32 (FINISHED)
 	const JOVAN
 	const MIGUEL
-	const RORY
-	const GREGG
-	const FOOTE
-	const DAVE
-	const KOUTA
+	const GLENN
+	const LESLIE
+	const AIDAN
+	const ERIK
+	const AVERY
+	const DEREK
+	const ZAC
 
 	trainerclass LASS ; 33
 	const DANA1

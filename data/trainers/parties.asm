@@ -4225,6 +4225,49 @@ CowgirlGroup:
 SECTION "SailorGroup", ROMX
 SailorGroup:
 
+; SS Anne (FRLG/LGPE)
+	def_trainer TREVOR, "Trevor"
+	tr_mon 17, MACHOP
+	tr_mon 17, SEEL					; LGPE team member; replacing Tentacool
+	end_trainer
+
+	def_trainer EDMOND, "Edmond"
+	tr_mon 18, MACHOP
+	tr_mon 18, POLIWAG				; LGPE team member; replacing Shellder
+	end_trainer
+
+	def_trainer PHILLIP, "Phillip"
+	tr_mon 20, MACHOP
+	end_trainer
+
+	def_trainer HUEY, "Huey"
+	tr_mon 18, TENTACOOL
+	tr_mon 18, STARYU
+	end_trainer
+
+	def_trainer DYLAN, "Dylan"
+	tr_mon 17, HORSEA
+	; These two members are Huey's LGPE team. I replaced two Horseas with them.
+	tr_mon 17, PSYDUCK
+	tr_mon 17, POLIWAG
+	end_trainer
+
+	def_trainer DUNCAN, "Duncan"
+	tr_mon 17, HORSEA
+	tr_mon 17, SHELLDER
+	tr_mon 17, TENTACOOL
+	end_trainer
+
+	def_trainer LEONARD, "Leonard"
+	tr_mon 21, SLOWPOKE				; LGPE team member; replacing Shellder
+	end_trainer
+
+; Vermilion Gym (FRLG/Y)
+	def_trainer DWAYNE, "Dwayne"
+	tr_mon 21, PIKACHU
+	tr_mon 21, MAGNEMITE		; Yellow team member; replaced Pikachu
+	end_trainer
+
 	def_trainer_class SAILOR
 	def_trainer HUEY1, "Huey"
 	tr_mon 18, POLIWAG
@@ -4246,69 +4289,6 @@ SailorGroup:
 		tr_moves WHIRLPOOL, RAIN_DANCE, BODY_SLAM, PERISH_SONG
 	tr_mon 38, POLIWRATH
 		tr_moves SURF, STRENGTH, ICE_PUNCH, CLOSE_COMBAT
-	end_trainer
-
-	def_trainer EUGENE, "Eugene"
-	tr_mon 17, POLIWHIRL
-	tr_mon 17, RATICATE
-	tr_mon 19, KRABBY
-	end_trainer
-
-	def_trainer TERRELL, "Terrell"
-	tr_mon 20, POLIWHIRL
-	end_trainer
-
-	def_trainer KENT, "Kent"
-	tr_mon 18, KRABBY
-		tr_moves WATER_GUN, LEER, SCRATCH, DEFENSE_CURL
-	tr_mon 20, KRABBY
-		tr_moves BUBBLE_BEAM, LEER, SCRATCH, DEFENSE_CURL
-	end_trainer
-
-	def_trainer ERNEST, "Roberto" ; MISMATCH
-	tr_mon 18, MACHOP
-	tr_mon 18, MACHOP
-	tr_mon 18, POLIWHIRL
-	end_trainer
-
-	def_trainer JEFF, "Jeff"
-	tr_mon 46, RATICATE
-	tr_mon 46, RATICATE
-	end_trainer
-
-	def_trainer GARRETT, "Garrett"
-	tr_mon 48, KINGLER
-	end_trainer
-
-	def_trainer KENNETH, "Kenneth"
-	tr_mon 44, MACHOP
-	tr_mon 45, MACHOKE
-	tr_mon 46, POLIWRATH
-	tr_mon 45, MACHOKE
-	end_trainer
-
-	def_trainer STANLY, "Stanley" ; MISMATCH
-	tr_mon 45, MACHOP
-	tr_mon 48, MACHOKE
-	tr_mon 44, PSYDUCK
-	end_trainer
-
-	def_trainer HARRY, "Harry"
-	tr_mon 20, WOOPER
-	end_trainer
-
-	def_trainer PARKER, "Parker"
-	tr_mon 56, HORSEA
-	tr_mon 57, SEADRA
-	end_trainer
-
-	def_trainer EDDIE, "Eddie"
-	tr_mon 59, AZUMARILL
-	end_trainer
-
-	def_trainer HARVEY, "Harvey"
-	tr_mon LEVEL_FROM_BADGES + 0, MACHOP
-	tr_mon LEVEL_FROM_BADGES + 2, MACHOKE
 	end_trainer
 
 

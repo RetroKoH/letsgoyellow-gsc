@@ -506,23 +506,19 @@ DEF BETA EQU __trainer_class__
 	trainerclass COWGIRL ; 48 (Unused; Will use in Fuchsia)
 	const DANIELA
 
-	trainerclass SAILOR ; 49
+	trainerclass SAILOR ; 49 (FINISHED)
+	const TREVOR			; SS Anne
+	const EDMOND
+	const PHILLIP
+	const HUEY
+	const DYLAN
+	const DUNCAN
+	const LEONARD
+	const DWAYNE			; Vermilion Gym
 	const HUEY1
 	const HUEY2
 	const HUEY3
 	const HUEY4
-	const EUGENE
-	const TERRELL
-	const KENT
-	const ERNEST
-	const JEFF
-	const GARRETT
-	const KENNETH
-	const STANLY
-	const HARRY
-	const PARKER
-	const EDDIE
-	const HARVEY
 
 	trainerclass SWIMMERM ; 4a
 	const HAROLD

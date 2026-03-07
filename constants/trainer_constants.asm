@@ -520,73 +520,31 @@ DEF BETA EQU __trainer_class__
 	const HUEY3
 	const HUEY4
 
-	trainerclass SWIMMERM ; 4a
-	const HAROLD
-	const SIMON
-	const RANDALL
-	const CHARLIE
-	const GEORGE
-	const BERKE
-	const KIRK
-	const MATHEW
-	const HAL
+	trainerclass SWIMMERM ; 4a (FINISHED)
+	const LUIS				; Cerulean Gym
+	const RICHARD			; Route 19
+	const REECE
+	const TONY
+	const DAVID
+	const DOUGLAS
+	const MATTHEW
+	const AXLE
+	const BARRY				; Route 20
+	const DARRIN
+	const DEAN
+	const SPENCER			; Route 21
+	const JACK
+	const ROLAND
 	const JEROME
-	const TUCKER
-	const RICK
-	const CAMERON
-	const SETH
-	const JAMES
-	const WALTER
-	const LEWIS
-	const MICHEL
-	const LUCAS
-	const FRANK
-	const NADAR
-	const CONRAD
-	const ROMEO
-	const MALCOLM
-	const ARMAND
-	const THOMAS
-	const SWIMMERM_LUIS
-	const ELMO
-	const DUANE
-	const ESTEBAN
-	const EZRA
-	const ASHE
 
-	trainerclass SWIMMERF ; 4b
-	const ELAINA	; Was ELAINE
-	const PAULA
-	const KAYLEE
-	const SUSIE
-	const DENISE
-	const KARA
-	const WENDY
-	const MARY
-	const DAWN
-	const NICOLE
-	const LORI
-	const NIKKI
-	const DIANA
-	const BRIANA
-	const VIOLA
-	const KATIE
-	const JILL
-	const LISA
-	const ALISON
-	const STEPHANIE
-	const CAROLINE
-	const NATALIA
-	const BARBARA
-	const SALLY
-	const TARA
-	const MAYU
-	const LEONA
-	const CHELAN
-	const KENDRA
-	const WODA
-	const RACHEL
-	const MARINA
+	trainerclass SWIMMERF ; 4b (FINISHED; Might add one to Misty's gym)
+	const ALICE				; Route 19
+	const ANYA
+	const CONNIE
+	const SHIRLEY			; Route 20
+	const TIFFANY
+	const NORA
+	const MELISSA
 
 	trainerclass BURGLAR ; 4c
 	const DUNCAN

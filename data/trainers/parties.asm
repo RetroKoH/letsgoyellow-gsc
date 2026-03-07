@@ -4247,8 +4247,7 @@ SailorGroup:
 
 	def_trainer DYLAN, "Dylan"
 	tr_mon 17, HORSEA
-	; These two members are Huey's LGPE team. I replaced two Horseas with them.
-	tr_mon 17, PSYDUCK
+	tr_mon 17, PSYDUCK	; These two members are Huey's LGPE team. I replaced two Horseas with them.
 	tr_mon 17, POLIWAG
 	end_trainer
 
@@ -4296,174 +4295,91 @@ SECTION "SwimmerMGroup", ROMX
 SwimmerMGroup:
 
 	def_trainer_class SWIMMERM
-	def_trainer HAROLD, "Harold"
-	tr_mon 60, REMORAID
-	tr_mon 58, SEADRA
+
+; Cerulean Gym (FRLG)
+	def_trainer LUIS, "Luis"
+	tr_mon 16, HORSEA
+	tr_mon 16, SHELLDER
 	end_trainer
 
-	def_trainer SIMON, "Simon"
-	tr_mon 20, TENTACOOL
-	tr_mon 20, TENTACOOL
+; Route 19 (FRLG/LGPE)
+	def_trainer RICHARD, "Richard"
+	tr_mon 30, TENTACOOL
+	tr_mon 30, SHELLDER
 	end_trainer
 
-	def_trainer RANDALL, "Randall"
-	tr_mon 18, SHELLDER
-	tr_mon 20, WARTORTLE
-	tr_mon 18, SHELLDER
+	def_trainer REECE, "Reece"
+	tr_mon 29, GOLDEEN
+	tr_mon 29, HORSEA
+	tr_mon 29, STARYU
 	end_trainer
 
-	def_trainer CHARLIE, "Charlie"
-	tr_mon 21, SHELLDER
-	tr_mon 19, TENTACOOL
-	tr_mon 19, TENTACRUEL
+	def_trainer TONY, "Tony"
+	tr_mon 30, HORSEA
+	tr_mon 30, HORSEA
 	end_trainer
 
-	def_trainer GEORGE, "George"
-	tr_mon 16, TENTACOOL
-	tr_mon 17, TENTACOOL
-	tr_mon 16, TENTACOOL
-	tr_mon 19, STARYU
-	tr_mon 17, TENTACOOL
-	tr_mon 19, REMORAID
+	def_trainer DAVID, "David"
+	tr_mon 29, GOLDEEN
+	tr_mon 29, SHELLDER
+	tr_mon 29, SEAKING
 	end_trainer
 
-	def_trainer BERKE, "Berke"
-	tr_mon 23, QWILFISH
+	def_trainer DOUGLAS, "Douglas"
+	tr_mon 27, HORSEA
+	tr_mon 27, TENTACOOL
+	tr_mon 27, TENTACOOL
+	tr_mon 27, GOLDEEN
 	end_trainer
 
-	def_trainer KIRK, "Kirk"
-	tr_mon 20, GYARADOS
-	tr_mon 20, GYARADOS
+	def_trainer MATTHEW, "Matthew"
+	tr_mon 30, POLIWAG
+	tr_mon 30, POLIWHIRL
 	end_trainer
 
-	def_trainer MATHEW, "Mathew"
-	tr_mon 23, KRABBY
+	def_trainer AXLE, "Axle"
+	tr_mon 27, TENTACOOL
+	tr_mon 27, POLIWHIRL			; LGPE team member; Replacing Tentacool
+	tr_mon 27, STARYU
+	tr_mon 27, HORSEA
+	tr_mon 27, TENTACRUEL
 	end_trainer
 
-	def_trainer HAL, "Hal"
-	tr_mon 24, SEEL
-	tr_mon 25, DEWGONG
-	tr_mon 24, SEEL
+; Route 20 (FRLG/LGPE)
+	def_trainer BARRY, "Barry"
+	tr_mon 31, SHELLDER
+	tr_mon 31, CLOYSTER
+	end_trainer
+
+	def_trainer DARRIN, "Darrin"
+	tr_mon 29, HORSEA
+	tr_mon 29, SEADRA
+	tr_mon 29, GYARADOS				; LGPE team member; Replacing two Horsea
+	end_trainer
+
+	def_trainer DEAN, "Dean"
+	tr_mon 35, STARMIE				; Evolved
+	end_trainer
+
+; Route 21 (FRLG/LGPE)
+	def_trainer SPENCER, "Spencer"
+	tr_mon 33, SEADRA
+	tr_mon 33, TENTACRUEL
+	end_trainer
+
+	def_trainer JACK, "Jack"		; LGPE team
+	tr_mon 33, GOLDUCK
+	tr_mon 33, TENTACRUEL
+	end_trainer
+
+	def_trainer ROLAND, "Roland"	; LGPE team
+	tr_mon 33, STARMIE
+	tr_mon 33, KINGLER
 	end_trainer
 
 	def_trainer JEROME, "Jerome"
-	tr_mon 57, SEADRA
-	tr_mon 58, TENTACOOL
-	tr_mon 59, TENTACRUEL
-	tr_mon 58, SEAKING
-	end_trainer
-
-	def_trainer TUCKER, "Tucker"
-	tr_mon 59, SHELLDER
-	tr_mon 61, CLOYSTER
-	end_trainer
-
-	def_trainer RICK, "Rick"
-	tr_mon 13, STARYU
-	tr_mon 18, STARMIE
-	tr_mon 16, HORSEA
-	end_trainer
-
-	def_trainer CAMERON, "Frankie" ; MISMATCH
-	tr_mon 61, AZUMARILL
-	end_trainer
-
-	def_trainer SETH, "Tyson" ; MISMATCH
-	tr_mon 58, QUAGSIRE
-	tr_mon 58, OCTILLERY
-	tr_mon 62, QUAGSIRE
-	end_trainer
-
-	def_trainer JAMES, "James"
-	tr_mon LEVEL_FROM_BADGES - 4, STARYU
-	tr_mon LEVEL_FROM_BADGES + 2, STARMIE
-	tr_mon LEVEL_FROM_BADGES - 2, HORSEA
-	end_trainer
-
-	def_trainer WALTER, "Walter"
-	tr_mon LEVEL_FROM_BADGES + 0, HORSEA
-	tr_mon LEVEL_FROM_BADGES + 1, HORSEA
-	tr_mon LEVEL_FROM_BADGES + 2, SEADRA
-	end_trainer
-
-	def_trainer LEWIS, "Lewis"
-	tr_mon 18, STARYU
-	tr_mon 21, STARMIE
-	tr_mon 20, HORSEA
-	end_trainer
-
-	def_trainer MICHEL, "Michel"
-	tr_mon LEVEL_FROM_BADGES + 2, STARYU
-	tr_mon LEVEL_FROM_BADGES + 4, STARMIE
-	end_trainer
-
-	def_trainer LUCAS, "Lucas"
-	tr_mon LEVEL_FROM_BADGES + 8, VAPOREON
-	end_trainer
-
-	def_trainer FRANK, "Frank"
-	tr_mon LEVEL_FROM_BADGES + 6, MANTINE
-	end_trainer
-
-	def_trainer NADAR, "Nadar"
-	tr_mon LEVEL_FROM_BADGES + 4, SEADRA
-	tr_mon LEVEL_FROM_BADGES + 5, QUAGSIRE
-	end_trainer
-
-	def_trainer CONRAD, "Conrad"
-	tr_mon LEVEL_FROM_BADGES + 6, AZUMARILL
-	end_trainer
-
-	def_trainer ROMEO, "Romeo"
-	tr_mon 57, AZUMARILL, MALE
-		tr_extra HUGE_POWER, ATK_UP_SATK_DOWN
-		tr_moves AQUA_TAIL, PLAY_ROUGH, ROLLOUT, CLOSE_COMBAT
-	end_trainer
-
-	def_trainer MALCOLM, "Malcolm"
-	tr_mon 54, CLOYSTER
-	tr_mon 55, DEWGONG
-	tr_mon 54, CLOYSTER
-	end_trainer
-
-	def_trainer ARMAND, "Armand"
-	tr_mon 55, KINGLER
-	tr_mon 55, CLOYSTER
-	end_trainer
-
-	def_trainer THOMAS, "Thomas"
-	tr_mon LEVEL_FROM_BADGES + 5, WARTORTLE
-		tr_moves DEFENSE_CURL, BITE, SURF, RAPID_SPIN
-	end_trainer
-
-	def_trainer SWIMMERM_LUIS, "Luis"
-	tr_mon 60, SEADRA
-	tr_mon 56, QUAGSIRE
-	end_trainer
-
-	def_trainer ELMO, "Elmo"
-	tr_mon 60, POLIWHIRL
-	tr_mon 56, TENTACRUEL
-	end_trainer
-
-	def_trainer DUANE, "Duane"
-	tr_mon 60, KINGLER
-	tr_mon 60, KABUTOPS
-	end_trainer
-
-	def_trainer ESTEBAN, "Esteban"
-	tr_mon 58, GOLDUCK
-	tr_mon 58, POLIWRATH
-	end_trainer
-
-	def_trainer EZRA, "Ezra"
-	tr_mon 52, SEADRA
-	tr_mon 56, KINGDRA
-	end_trainer
-
-	def_trainer ASHE, "Ashe"
-	tr_mon 63, POLITOED
-	tr_mon 63, POLIWRATH
+	tr_mon 33, STARMIE
+	tr_mon 33, WARTORTLE			; evolved
 	end_trainer
 
 
@@ -4471,165 +4387,43 @@ SECTION "SwimmerFGroup", ROMX
 SwimmerFGroup:
 
 	def_trainer_class SWIMMERF
-	def_trainer ELAINA, "Elaine"
-	tr_mon 21, STARYU
+
+; Route 19 (FRLG/LGPE)
+	def_trainer ALICE, "Alice"
+	tr_mon 30, GOLDEEN
+	tr_mon 30, SEAKING
 	end_trainer
 
-	def_trainer PAULA, "Paula"
-	tr_mon 19, STARYU
-	tr_mon 19, SHELLDER
+	def_trainer ANYA, "Anya"
+	tr_mon 27, POLIWAG
+	tr_mon 27, GOLDEEN
+	tr_mon 27, SEAKING
+	tr_mon 27, GOLDEEN
+	tr_mon 27, POLIWAG
 	end_trainer
 
-	def_trainer KAYLEE, "Kaylee"
-	tr_mon 18, GOLDEEN
-	tr_mon 20, GOLDEEN
-	tr_mon 20, SEAKING
+	def_trainer CONNIE, "Connie"
+	tr_mon 33, VAPOREON				; LGPE team
 	end_trainer
 
-	def_trainer SUSIE, "Susie"
-	tr_mon 20, PSYDUCK
-	tr_mon 22, GOLDEEN
+; Route 20 (FRLG/LGPE)
+	def_trainer SHIRLEY, "Shirley"	; LGPE team
+	tr_mon 30, WARTORTLE
+	tr_mon 30, STARMIE
 	end_trainer
 
-	def_trainer DENISE, "Denise"
-	tr_mon 22, SEEL
+	def_trainer TIFFANY, "Tiffany"
+	tr_mon 35, SEAKING
 	end_trainer
 
-	def_trainer KARA, "Kara"
-	tr_mon 20, STARYU
-	tr_mon 20, STARMIE
+	def_trainer NORA, "Nora"		; LGPE team
+	tr_mon 35, CLOYSTER
 	end_trainer
 
-	def_trainer WENDY, "Wendy"
-	tr_mon 21, HORSEA
-		tr_moves WATER_GUN, SMOKESCREEN, LEER, BUBBLE_BEAM
-	tr_mon 21, HORSEA
-		tr_moves DRAGON_RAGE, SMOKESCREEN, LEER, BUBBLE_BEAM
-	end_trainer
-
-	def_trainer MARY, "Mary"
-	tr_mon 20, GYARADOS
-	end_trainer
-
-	def_trainer DAWN, "Debbie" ; MISMATCH
-	tr_mon 61, AZUMARILL
-	end_trainer
-
-	def_trainer NICOLE, "Nicole"
-	tr_mon 59, MARILL
-	tr_mon 59, MARILL
-	tr_mon 62, LAPRAS
-	end_trainer
-
-	def_trainer LORI, "Lori"
-	tr_mon 62, STARMIE
-	tr_mon 62, STARMIE
-	tr_mon 62, STARMIE
-	end_trainer
-
-	def_trainer NIKKI, "Nikki"
-	tr_mon 58, SEEL
-	tr_mon 58, SEEL
-	tr_mon 58, SEEL
-	tr_mon 62, DEWGONG
-	end_trainer
-
-	def_trainer DIANA, "Diana"
-	tr_mon 58, GOLDUCK
-	end_trainer
-
-	def_trainer BRIANA, "Briana"
-	tr_mon 56, SEAKING
-	tr_mon 56, LAPRAS
-	end_trainer
-
-	def_trainer VIOLA, "Viola"
-	tr_mon 58, CLOYSTER
-	end_trainer
-
-	def_trainer KATIE, "Lisa" ; MISMATCH
-	tr_mon LEVEL_FROM_BADGES + 3, LANTURN
-	end_trainer
-
-	def_trainer JILL, "Jill"
-	tr_mon LEVEL_FROM_BADGES + 3, DEWGONG
-	end_trainer
-
-	def_trainer LISA, "Katie" ; MISMATCH
-	tr_mon LEVEL_FROM_BADGES + 0, SEEL
-	tr_mon LEVEL_FROM_BADGES + 2, DEWGONG
-	end_trainer
-
-	def_trainer ALISON, "Alison"
-	tr_mon LEVEL_FROM_BADGES + 4, CORSOLA
-	tr_mon LEVEL_FROM_BADGES + 4, SEEL
-	end_trainer
-
-	def_trainer STEPHANIE, "Stephanie"
-	tr_mon LEVEL_FROM_BADGES + 3, STARYU
-	tr_mon LEVEL_FROM_BADGES + 5, SEADRA
-	end_trainer
-
-	def_trainer CAROLINE, "Caroline"
-	tr_mon LEVEL_FROM_BADGES + 3, REMORAID
-	tr_mon LEVEL_FROM_BADGES + 3, REMORAID
-	tr_mon LEVEL_FROM_BADGES + 3, REMORAID
-	end_trainer
-
-	def_trainer NATALIA, "Natalia"
-	tr_mon LEVEL_FROM_BADGES + 4, STARYU
-	tr_mon LEVEL_FROM_BADGES + 4, STARYU
-	end_trainer
-
-	def_trainer BARBARA, "Barbara"
-	tr_mon LEVEL_FROM_BADGES + 5, STARMIE
-	end_trainer
-
-	def_trainer SALLY, "Sally"
-	tr_mon LEVEL_FROM_BADGES + 1, REMORAID
-	tr_mon LEVEL_FROM_BADGES + 3, MANTINE
-	end_trainer
-
-	def_trainer TARA, "Tara"
-	tr_mon LEVEL_FROM_BADGES + 2, CORSOLA
-	tr_mon LEVEL_FROM_BADGES + 2, CORSOLA
-	end_trainer
-
-	def_trainer MAYU, "Mayu"
-	tr_mon 58, CORSOLA
-	tr_mon 59, CORSOLA
-	tr_mon 60, CORSOLA
-	end_trainer
-
-	def_trainer LEONA, "Leona"
-	tr_mon 62, POLITOED
-	end_trainer
-
-	def_trainer CHELAN, "Chelan"
-	tr_mon 61, AZUMARILL
-	end_trainer
-
-	def_trainer KENDRA, "Kendra"
-	tr_mon 62, SLOWKING
-	end_trainer
-
-	def_trainer WODA, "Woda"
-	tr_mon 57, MANTINE
-	tr_mon 57, OCTILLERY
-	end_trainer
-
-	def_trainer RACHEL, "Rachel"
-	tr_mon 53, REMORAID
-	tr_mon 53, REMORAID
-	tr_mon 53, REMORAID
-	tr_mon 55, MANTINE
-	end_trainer
-
-	def_trainer MARINA, "Marina"
-	tr_mon 63, GOLDUCK
-	tr_mon 63, LANTURN
-	tr_mon 63, GYARADOS
-	end_trainer
+	def_trainer MELISSA, "Melissa"
+	tr_mon 29, POLIWHIRL			; evolved
+	tr_mon 29, SEAKING
+	tr_mon 29, JYNX					; LGPE team member addition
 
 
 SECTION "BurglarGroup", ROMX

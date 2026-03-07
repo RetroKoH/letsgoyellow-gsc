@@ -368,32 +368,30 @@ DEF BETA EQU __trainer_class__
 	const DEREK
 	const ZAC
 
-	trainerclass LASS ; 33
-	const DANA1
+	trainerclass LASS ; 33 (FINISHED)
+	const JOANA				; Viridian Forest
+	const JANICE			; Route 3
+	const SALLY
+	const ROBIN
+	const IRIS				; Mt. Moon
+	const MIRIAM
+	const ALI				; Route 24
+	CONST RELI
+	const HALEY				; Route 25
+	const ANN				; SS Anne
+	const DAWN
+	const HALEY				; Route 8
+	const PAIGE
+	const ANDREA
+	const MEGAN
+	const KAY				; Celadon Gym
+	const LISA
+	const CRISSY			; Route 4
+	const DANA1				; Unused Phone Trainer
 	const DANA2
 	const DANA3
 	const DANA4
 	const DANA5
-	const CATHY
-	const AMANDA
-	const KRISE
-	const CONNIE
-	const LINDA
-	const LAURA
-	const SHANNON
-	const MICHELLE
-	const ELLEN
-	const IRIS
-	const MIRIAM
-	const ABIGAIL
-	const LAYLA
-	const ROSE
-	const MEADOW
-	const JENNIFER
-	const GINA
-	const ALICE
-	const DUPLICA
-	const MAVIS
 
 	trainerclass BEAUTY ; 34
 	const VICTORIA

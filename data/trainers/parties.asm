@@ -3573,11 +3573,113 @@ SECTION "LassGroup", ROMX
 LassGroup:
 
 	def_trainer_class LASS
+
+; Viridian Forest (Y; Name from LGPE)
+	def_trainer JOANA, "Joana"	; or Brittany?
+	tr_mon 6, NIDORAN_F
+	tr_mon 6, NIDORAN_M
+	end_trainer
+
+; Route 3 (FRLG)
+	def_trainer JANICE, "Janice"
+	tr_mon 9, PIDGEY
+	tr_mon 9, ODDISH			; LGPE team member; replaces Pidgey
+	end_trainer
+
+	def_trainer SALLY, "Sally"
+	tr_mon 10, RATTATA
+	tr_mon 10, NIDORAN_F
+	end_trainer
+
+	def_trainer ROBIN, "Robin"
+	tr_mon 14, JIGGLYPUFF
+	end_trainer
+
+; Mt. Moon (FRLG)
+	def_trainer IRIS, "Iris"
+	tr_mon 14, CLEFAIRY
+	end_trainer
+
+	def_trainer MIRIAM, "Miriam"
+	tr_mon 11, ODDISH
+	tr_mon 11, BELLSPROUT
+	end_trainer
+
+; Route 24 (FRLG + LGPE)
+	def_trainer ALI, "Ali"
+	tr_mon 12, PIDGEY
+	tr_mon 12, PSYDUCK			; LGPE team member
+	tr_mon 12, BELLSPROUT
+	end_trainer
+
+	def_trainer RELI, "Reli"
+	tr_mon 16, MEOWTH			; LGPE team member
+	tr_mon 16, NIDORAN_F
+	end_trainer
+
+; Route 25 (FRLG)
+	def_trainer HALEY, "Haley"
+	tr_mon 12, ODDISH
+	tr_mon 12, PIDGEY
+	tr_mon 12, JIGGLYPUFF		; Gen 2 Lass party member
+	end_trainer
+
+; SS Anne (FRLG)
+	def_trainer ANN, "Ann"
+	tr_mon 18, PIDGEY
+	tr_mon 18, NIDORAN_F
+	end_trainer
+
+	def_trainer DAWN, "Dawn"
+	tr_mon 18, JIGGLYPUFF		; RBY team member
+	tr_mon 18, PIKACHU
+	end_trainer
+
+; Route 8 (FRLG)
+	def_trainer HALEY, "Haley"
+	tr_mon 22, CLEFAIRY
+	tr_mon 22, CLEFAIRY
+	end_trainer
+
+	def_trainer PAIGE, "Paige"
+	tr_mon 23, NIDORAN_F
+	tr_mon 23, NIDORINA
+	end_trainer
+
+	def_trainer ANDREA, "Andrea"
+	tr_mon 24, MEOWTH
+	tr_mon 24, MEOWTH
+	tr_mon 24, MEOWTH
+	end_trainer
+
+	def_trainer MEGAN, "Megan"
+	tr_mon 24, PIDGEY			; Abridged FRLG team
+	tr_mon 24, MEOWTH
+	tr_mon 24, PIKACHU
+	end_trainer
+
+; Celadon Gym (FRLG)
+	def_trainer KAY, "Kay"
+	tr_mon 23, BELLSPROUT
+	tr_mon 23, WEEPINBELL
+	end_trainer
+
+	def_trainer LISA, "Lisa"
+	tr_mon 23, ODDISH
+	tr_mon 23, GLOOM
+	end_trainer
+
+; Route 4 (FRLG)
+	def_trainer CRISSY, "Crissy"
+	tr_mon 31, PARAS
+	tr_mon 31, PARAS
+	tr_mon 31, PARASECT
+	end_trainer
+
+; Unused Phone Trainers
 	def_trainer DANA1, "Dana"
 	tr_mon 19, FLAAFFY
-		tr_moves TACKLE, GROWL, THUNDERSHOCK, THUNDER_WAVE
 	tr_mon 19, PSYDUCK
-		tr_moves SCRATCH, LEER, DISABLE, CONFUSION
 	end_trainer
 
 	def_trainer DANA2, "Dana"
@@ -3597,13 +3699,8 @@ LassGroup:
 	def_trainer DANA4, "Dana"
 	tr_mon 32, PSYDUCK
 		tr_moves SCRATCH, DISABLE, CONFUSION, SCREECH
-if DEF(FAITHFUL)
-	tr_mon 32, FLAAFFY
-		tr_moves TACKLE, THUNDERPUNCH, THUNDER_WAVE, THUNDERBOLT
-else
 	tr_mon 32, AMPHAROS
 		tr_moves TACKLE, THUNDERPUNCH, THUNDER_WAVE, THUNDERBOLT
-endc
 	end_trainer
 
 	def_trainer DANA5, "Dana"
@@ -3613,214 +3710,16 @@ endc
 		tr_moves DISABLE, SURF, PSYCHIC_M, SCREECH
 	end_trainer
 
-	def_trainer CATHY, "Cathy"
-	tr_mon 18, SNUBBULL
-		tr_moves SCARY_FACE, CHARM, BITE, LICK
-	end_trainer
-
-	def_trainer AMANDA, "Amanda"
-	tr_mon 57, GLOOM
-	tr_mon 60, ARBOK
-	tr_mon 57, GLOOM
-	end_trainer
-
-	def_trainer KRISE, "Krise"
-	tr_mon 14, ODDISH
-	tr_mon 17, CUBONE
-	end_trainer
-
-	def_trainer CONNIE, "Connie"
-	tr_mon 20, AZUMARILL
-	tr_mon 21, MAGNETON
-	end_trainer
-
-	def_trainer LINDA, "Linda"
-	tr_mon 57, BULBASAUR
-	tr_mon 59, IVYSAUR
-	tr_mon 61, VENUSAUR
-	end_trainer
-
-	def_trainer LAURA, "Laura"
-	tr_mon 52, GLOOM @ SITRUS_BERRY
-	tr_mon 54, PIDGEOTTO
-	tr_mon 54, BELLOSSOM
-	end_trainer
-
-	def_trainer SHANNON, "Shannon"
-	tr_mon 53, PARAS
-	tr_mon 53, PARAS
-	tr_mon 55, PARASECT
-	end_trainer
-
-	def_trainer MICHELLE, "Michelle"
-	tr_mon 56, LEAFEON
-	tr_mon 57, TANGELA
-	tr_mon 58, JUMPLUFF
-	end_trainer
-
-	def_trainer ELLEN, "Ellen"
-	tr_mon 52, WIGGLYTUFF
-	tr_mon 54, GRANBULL
-	end_trainer
-
-	def_trainer IRIS, "Iris"
-	tr_mon 59, WEEPINBELL
-	tr_mon 59, TANGELA
-	tr_mon 60, JIGGLYPUFF
-	tr_mon 61, BELLOSSOM
-	end_trainer
-
-	def_trainer MIRIAM, "Miriam"
-	tr_mon 59, CLEFAIRY
-	tr_mon 61, CLEFABLE
-	tr_mon 59, JIGGLYPUFF
-	tr_mon 61, WIGGLYTUFF
-	end_trainer
-
-	def_trainer ABIGAIL, "Abigail"
-	tr_mon LEVEL_FROM_BADGES + 3, SKIPLOOM
-	tr_mon LEVEL_FROM_BADGES + 4, FLAAFFY
-	tr_mon LEVEL_FROM_BADGES + 5, GOLDUCK
-	end_trainer
-
-	def_trainer LAYLA, "Layla"
-	tr_mon LEVEL_FROM_BADGES + 5, CLEFAIRY
-	tr_mon LEVEL_FROM_BADGES + 5, TOGETIC
-	end_trainer
-
-	def_trainer ROSE, "Rose"
-	tr_mon LEVEL_FROM_BADGES + 2, ESPEON, FEMALE
-		tr_extra SHINY
-	tr_mon LEVEL_FROM_BADGES + 2, TOGETIC, FEMALE
-	end_trainer
-
-	def_trainer MEADOW, "Meadow"
-	tr_mon 53, MEOWTH
-	tr_mon 53, MEOWTH
-	tr_mon 55, PERSIAN
-	end_trainer
-
-	def_trainer JENNIFER, "Jennifer"
-	tr_mon 52, CLEFAIRY
-	tr_mon 52, MARILL
-	tr_mon 54, CLEFABLE
-	tr_mon 54, AZUMARILL
-	end_trainer
-
-	def_trainer GINA, "Gina"
-	tr_mon 63, RAICHU @ LEFTOVERS
-		tr_moves THUNDERBOLT, SURF, THUNDER_WAVE, SUBSTITUTE
-	end_trainer
-
-
-	def_trainer ALICE, "Alice"
-	tr_mon 60, "VuiVui", EEVEE @ EVIOLITE, FEMALE
-		tr_extra SPE_UP_DEF_DOWN
-		tr_moves RETURN, SHADOW_BALL, PROTECT, ATTRACT
-	tr_mon 61, "Eon", UMBREON @ LEFTOVERS, MALE
-		tr_extra SDEF_UP_SATK_DOWN
-		tr_moves CHARM, REST, TOXIC, PURSUIT
-	tr_mon 61, "Vee", ESPEON @ SHELL_BELL, MALE
-		tr_extra SATK_UP_ATK_DOWN
-		tr_moves PSYCHIC_M, HEALINGLIGHT, GROWTH, BITE
-	end_trainer
-
-	def_trainer DUPLICA, "Duplica"
-	tr_mon LEVEL_FROM_BADGES + 7, DITTO @ METAL_POWDER
-	tr_mon LEVEL_FROM_BADGES + 8, DITTO @ QUICK_POWDER
-	tr_mon LEVEL_FROM_BADGES + 9, DITTO @ FOCUS_SASH
-	end_trainer
-
-	def_trainer MAVIS, "Mavis"
-	tr_mon 55, TOGEKISS
-	tr_mon 53, JOLTEON
-	tr_mon 52, AMPHAROS
-	end_trainer
-
 
 SECTION "BeautyGroup", ROMX
 BeautyGroup:
 
 	def_trainer_class BEAUTY
+
 	def_trainer VICTORIA, "Victoria"
 	tr_mon 9, SENTRET
 	tr_mon 13, SENTRET
 	tr_mon 17, SENTRET
-	end_trainer
-
-	def_trainer SAMANTHA, "Samantha"
-	tr_mon 16, MEOWTH
-		tr_moves SCRATCH, GROWL, BITE, PAY_DAY
-	tr_mon 16, MEOWTH
-		tr_moves SCRATCH, GROWL, BITE, SLASH
-	end_trainer
-
-	def_trainer CASSIE, "Cassie"
-	tr_mon 47, VILEPLUME
-	tr_mon 49, BUTTERFREE
-	end_trainer
-
-	def_trainer JULIA, "Julia"
-	tr_mon 56, PARAS
-	tr_mon 56, EXEGGCUTE
-	tr_mon 59, PARASECT
-	end_trainer
-
-	def_trainer VALENCIA, "Valencia"
-	tr_mon 18, SUNKERN
-	tr_mon 18, SKIPLOOM
-	tr_mon 18, SUNFLORA
-	end_trainer
-
-	def_trainer OLIVIA, "Olivia"
-	tr_mon 19, CORSOLA
-	end_trainer
-
-	def_trainer CALLIE, "Callie"
-	tr_mon 16, CLEFABLE
-	tr_mon 16, WIGGLYTUFF
-	end_trainer
-
-	def_trainer CASSANDRA, "Cassandra"
-	tr_mon 16, CLEFABLE
-	tr_mon 16, WIGGLYTUFF
-	end_trainer
-
-	def_trainer CHARLOTTE, "Charlotte"
-	tr_mon 20, "Blossom", BELLOSSOM, FEMALE
-		tr_extra SHINY
-	end_trainer
-
-	def_trainer BRIDGET, "Bridget"
-	tr_mon 55, CORSOLA
-	tr_mon 55, SUNFLORA
-	end_trainer
-
-	def_trainer VERONICA, "Veronica"
-	tr_mon 54, WIGGLYTUFF
-	tr_mon 54, MILTANK
-	tr_mon 56, CLEFABLE
-	end_trainer
-
-	def_trainer BEAUTY_NICOLE, "Nicole"
-	tr_mon 60, MARILL @ EVIOLITE, FEMALE
-		tr_extra HUGE_POWER
-	tr_mon 63, AZUMARILL @ LEFTOVERS, FEMALE
-		tr_extra HUGE_POWER
-	tr_mon 60, MARILL @ BLACK_BELT, FEMALE
-		tr_extra HUGE_POWER
-	end_trainer
-
-	def_trainer RACHAEL, "Rachael"
-	tr_mon LEVEL_FROM_BADGES + 9, MACHAMP, MALE
-	tr_mon LEVEL_FROM_BADGES + 7, CLEFABLE, FEMALE
-	end_trainer
-
-	def_trainer IOANA, "Ioana"
-	tr_mon 52, SNUBBULL
-	tr_mon 55, GRANBULL
-	tr_mon 52, JIGGLYPUFF
-	tr_mon 54, SUNFLORA
 	end_trainer
 
 

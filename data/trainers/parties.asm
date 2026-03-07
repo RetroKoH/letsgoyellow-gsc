@@ -4133,38 +4133,30 @@ SECTION "GentlemanGroup", ROMX
 GentlemanGroup:
 
 	def_trainer_class GENTLEMAN
-	def_trainer PRESTON, "Preston"
+
+; SS ANNE
+	def_trainer THOMAS, "Thomas"
 	tr_mon 18, GROWLITHE
-	tr_mon 18, SKARMORY
+	tr_mon 18, GROWLITHE
 	end_trainer
 
-	def_trainer EDWARD, "Edward"
-	tr_mon 49, PERSIAN
+	def_trainer ARTHUR, "Arthur"
+	tr_mon 19, NIDORAN_M
+	tr_mon 19, NIDORAN_F
 	end_trainer
 
-	def_trainer GREGORY, "Gregory"
-	tr_mon 56, PIKACHU
-	tr_mon 53, FLAAFFY
-	tr_mon 53, CHINCHOU
+	def_trainer BROOKS, "Brooks"
+	tr_mon 23, PIKACHU
 	end_trainer
 
-	def_trainer ALFRED, "Alfred"
-	tr_mon 22, NOCTOWL
+	def_trainer LAMAR, "Lamar"
+	tr_mon 17, GROWLITHE
+	tr_mon 17, PONYTA
 	end_trainer
 
-	def_trainer MILTON, "Milton"
-	tr_mon 53, GROWLITHE
-	tr_mon 56, ARCANINE
-	end_trainer
-
-	def_trainer CAMUS, "Camus"
-	tr_mon 55, SKARMORY
-	tr_mon 56, ARCANINE
-	tr_mon 54, PERSIAN
-	end_trainer
-
-	def_trainer GEOFFREY, "Geoffrey"
-	tr_mon 50, MEOWTH
+; Vermilion Gym
+	def_trainer TUCKER, "Tucker"
+	tr_mon 23, PIKACHU
 	end_trainer
 
 
@@ -4172,40 +4164,9 @@ SECTION "RichBoyGroup", ROMX
 RichBoyGroup:
 
 	def_trainer_class RICH_BOY
+
 	def_trainer WINSTON, "Winston"
 	tr_mon 46, PIDGEOT
-	tr_mon 44, FURRET
-	tr_mon 45, AMPHAROS
-	end_trainer
-
-	def_trainer GERALD, "Gerald"
-	tr_mon 42, AZUMARILL @ NUGGET
-	tr_mon 40, BLISSEY @ NUGGET
-	end_trainer
-
-	def_trainer IRVING, "Irving"
-	tr_mon LEVEL_FROM_BADGES + 4, TOGETIC @ KINGS_ROCK , MALE
-		tr_extra SERENE_GRACE
-		tr_dvs 14 All
-		tr_moves HEADBUTT, METRONOME, SWEET_KISS, DISARM_VOICE
-	tr_mon LEVEL_FROM_BADGES + 4, CHANSEY @ KINGS_ROCK, FEMALE
-		tr_extra SERENE_GRACE
-		tr_dvs 14 All
-		tr_moves HEADBUTT, FRESH_SNACK, SWEET_KISS, ZEN_HEADBUTT
-	tr_mon LEVEL_FROM_BADGES + 5, SYLVEON @ KINGS_ROCK, FEMALE
-if DEF(FAITHFUL)
-		tr_extra CUTE_CHARM
-else
-		tr_extra SERENE_GRACE
-endc
-		tr_dvs 14 All
-		tr_moves HEADBUTT, ATTRACT, MUD_SLAP, DISARM_VOICE
-	end_trainer
-
-	def_trainer TOBIN, "Tobin"
-	tr_mon 53, MAGMAR
-	tr_mon 54, GOLEM
-	tr_mon 55, MACHOKE
 	end_trainer
 
 
@@ -4213,9 +4174,9 @@ SECTION "LadyGroup", ROMX
 LadyGroup:
 
 	def_trainer_class LADY
+
 	def_trainer JESSICA, "Jessica"
-	tr_mon 55, BLISSEY @ NUGGET
-	tr_mon 54, FURRET @ NUGGET
+	tr_mon 55, BLISSEY
 	end_trainer
 
 
@@ -4223,47 +4184,20 @@ SECTION "BreederGroup", ROMX
 BreederGroup:
 
 	def_trainer_class BREEDER
-	def_trainer JULIE, "Julie"
+
+	def_trainer ALLISON, "Allison"
 	tr_mon 7, PICHU @ EVIOLITE
-	tr_mon 10, DITTO @ METAL_POWDER
 	tr_mon 8, TOGEPI @ EVIOLITE
 	end_trainer
 
-	def_trainer THERESA, "Theresa"
-	tr_mon 15, MAGBY @ EVIOLITE, FEMALE
-	tr_mon 16, ELEKID @ EVIOLITE, FEMALE
-		tr_extra SHINY
+	def_trainer ALIZE, "Alize"
+	tr_mon 15, MAGBY
+	tr_mon 16, ELEKID
 	end_trainer
 
-	def_trainer JODY, "Jody"
-	tr_mon 27, TYROGUE @ EVIOLITE
-		tr_moves TACKLE, RAGE, FORESIGHT, HI_JUMP_KICK
-	tr_mon 28, MUNCHLAX @ EVIOLITE
-		tr_moves METRONOME, BODY_SLAM, SCREECH, GUNK_SHOT
-	tr_mon 29, DITTO @ METAL_POWDER
-		tr_moves TRANSFORM
-	end_trainer
-
-	def_trainer CARLENE, "Carlene"
-	tr_mon 58, SMEARGLE @ WISE_GLASSES, FEMALE
-		tr_moves SPORE, NASTY_PLOT, HYPER_VOICE, PSYCHIC_M
-	tr_mon 58, SMEARGLE @ MUSCLE_BAND, FEMALE
-		tr_moves SPORE, SWORDS_DANCE, BODY_SLAM, EARTHQUAKE
-	tr_mon 62, DITTO @ METAL_POWDER, FEMALE
-		tr_extra SHINY
-		tr_moves TRANSFORM
-	end_trainer
-
-	def_trainer SOPHIE, "Sophie"
-	tr_mon LEVEL_FROM_BADGES + 2, PICHU @ EVIOLITE
-	tr_mon LEVEL_FROM_BADGES + 3, PIKACHU @ LIGHT_BALL
-	tr_mon LEVEL_FROM_BADGES + 4, RAICHU @ DESTINY_KNOT
-	end_trainer
-
-	def_trainer BRENDA, "Brenda"
-	tr_mon 55, CLEFABLE @ FAIRYFEATHER
-	tr_mon 54, WIGGLYTUFF @ SITRUS_BERRY
-	tr_mon 56, SNORLAX @ LEFTOVERS
+	def_trainer BETHANY, "Bethany"
+	tr_mon 27, TYROGUE
+	tr_mon 28, MUNCHLAX
 	end_trainer
 
 
@@ -4271,28 +4205,8 @@ SECTION "BakerGroup", ROMX
 BakerGroup:
 
 	def_trainer_class BAKER
-	def_trainer CHELSIE, "Chelsie"
-	tr_mon 18, MILTANK
-if DEF(FAITHFUL)
-	tr_mon 18, MAGMAR
-else
-	tr_mon 18, SUNFLORA
-endc
-	end_trainer
-
-	def_trainer SHARYN, "Sharyn"
-	tr_mon 46, MILTANK
-	tr_mon 46, TAUROS
-	end_trainer
-
-	def_trainer MARGARET, "Margaret"
-	tr_mon 55, CHANSEY
-	tr_mon 55, MILTANK
-	end_trainer
 
 	def_trainer OLGA, "Olga"
-	tr_mon 50, TEDDIURSA
-	tr_mon 55, URSARING
 	tr_mon 53, CHANSEY
 	end_trainer
 
@@ -4301,23 +4215,6 @@ SECTION "CowgirlGroup", ROMX
 CowgirlGroup:
 
 	def_trainer_class COWGIRL
-	def_trainer ANNIE, "Annie"
-	tr_mon LEVEL_FROM_BADGES + 5, MILTANK @ LEFTOVERS, FEMALE
-		tr_extra SCRAPPY, ATK_UP_SATK_DOWN
-		tr_dvs 15 All
-		tr_moves DEFENSE_CURL, ROLLOUT, FRESH_SNACK, BODY_SLAM
-	tr_mon LEVEL_FROM_BADGES + 5, TAUROS @ LEFTOVERS, MALE
-		tr_extra ANGER_POINT, ATK_UP_SATK_DOWN
-		tr_dvs 15 All
-		tr_moves ZEN_HEADBUTT, QUICK_ATTACK, PURSUIT, BULK_UP
-	end_trainer
-
-	def_trainer APRIL, "April"
-	tr_mon LEVEL_FROM_BADGES + 6, TAUROS
-	tr_mon LEVEL_FROM_BADGES + 7, TAUROS, PALDEAN_FORM
-	tr_mon LEVEL_FROM_BADGES + 8, TAUROS, TAUROS_PALDEAN_FIRE_FORM
-	tr_mon LEVEL_FROM_BADGES + 9, TAUROS, TAUROS_PALDEAN_WATER_FORM
-	end_trainer
 
 	def_trainer DANIELA, "Daniela"
 	tr_mon LEVEL_FROM_BADGES + 3, TAUROS

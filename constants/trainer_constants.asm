@@ -482,41 +482,28 @@ DEF BETA EQU __trainer_class__
 	const LEAANDJED1		; Route 16
 	const LEAANDJED2
 
-	trainerclass GENTLEMAN ; 43
-	const PRESTON
-	const EDWARD
-	const GREGORY
-	const ALFRED
-	const MILTON
-	const CAMUS
-	const GEOFFREY
+	trainerclass GENTLEMAN ; 43 (FINISHED)
+	const THOMAS			; SS ANNE
+	const ARTHUR
+	const BROOKS
+	const LAMAR
+	const TUCKER			; Vermilion Gym
 
-	trainerclass RICH_BOY ; 44
+	trainerclass RICH_BOY ; 44 (Unused; Might replace one SS ANNE Youngster with this class)
 	const WINSTON
-	const GERALD
-	const IRVING
-	const TOBIN
 
-	trainerclass LADY ; 45
+	trainerclass LADY ; 45 (Unused; Might use somewhere)
 	const JESSICA
 
-	trainerclass BREEDER ; 46
-	const JULIE
-	const THERESA
-	const JODY
-	const CARLENE
-	const SOPHIE
-	const BRENDA
+	trainerclass BREEDER ; 46 (UNUSED; Might use in certain places)
+	const ALLISON
+	const ALIZE
+	const BETHANY
 
-	trainerclass BAKER ; 47
-	const CHELSIE
-	const SHARYN
-	const MARGARET
+	trainerclass BAKER ; 47 (Unused; Will use in Celadon)
 	const OLGA
 
-	trainerclass COWGIRL ; 48
-	const ANNIE
-	const APRIL
+	trainerclass COWGIRL ; 48 (Unused; Will use in Fuchsia)
 	const DANIELA
 
 	trainerclass SAILOR ; 49

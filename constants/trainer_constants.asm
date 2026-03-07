@@ -393,68 +393,39 @@ DEF BETA EQU __trainer_class__
 	const DANA4
 	const DANA5
 
-	trainerclass BEAUTY ; 34
-	const VICTORIA
-	const SAMANTHA
-	const CASSIE
-	const JULIA
-	const VALENCIA
+	trainerclass BEAUTY ; 34 (FINISHED)
+	const BRIDGET			; Celadon Gym
+	const LORI
+	const TAMIA
+	const LOLA				; Route 13
+	const SHELIA
+	const GRACE				; Route 15
 	const OLIVIA
-	const CALLIE
-	const CASSANDRA
-	const CHARLOTTE
-	const BRIDGET
-	const VERONICA
-	const BEAUTY_NICOLE
-	const RACHAEL
-	const IOANA
 
-	trainerclass BUG_MANIAC ; 35
+	trainerclass BUG_MANIAC ; 35 (UNUSED; Might use in Fuchsia?)
 	const LOU
-	const ROB
-	const ED
-	const DOUG
-	const DANE
-	const DION
-	const STACEY
-	const ELLIS
-	const ABNER
-	const KENTA
-	const ROBBY
-	const PIERRE
-	const DYLAN
-	const KAI
 
-	trainerclass RUIN_MANIAC ; 36
+	trainerclass RUIN_MANIAC ; 36 (UNUSED; Might use in Pewter or Cinnabar?)
 	const JONES
-	const LELAND
-	const PETRY
-	const GLYN
-	const SMILTE
 
-	trainerclass FIREBREATHER ; 37
+	trainerclass FIREBREATHER ; 37 (UNUSED; Might use in Cinnabar?)
 	const OTIS
-	const DICK
-	const NED
-	const BURT
-	const BILL
-	const WALT
-	const RAY
-	const LYLE
-	const JAY
-	const OLEG
-	const TALA
 
 	trainerclass JUGGLER ; 38
-	const IRWIN1
+	const DALTON			; Silph Co: 5F
+	const NATE				; Fuchsia Gym
+	const KAYDEN
+	const KIRK
+	const SHAWN
+	const NELSON			; Victory Road
+	const GREGORY
+	const IRWIN1			; Unused Phone Trainer
 ;	const IRWIN2
 ;	const IRWIN3
 ;	const IRWIN4
-	const FRITZ
-	const HORTON
 
-	trainerclass SCHOOLBOY ; 39
-	const JACK1
+	trainerclass SCHOOLBOY ; 39 (UNUSED; Might use in Viridian's School)
+	const JACK1				; Unused Phone Trainers
 	const JACK2
 	const JACK3
 	const JACK4
@@ -469,66 +440,21 @@ DEF BETA EQU __trainer_class__
 	const CHAD3
 	const CHAD4
 	const CHAD5
-	const KIPP
-	const JOHNNY
-	const DANNY
-	const TOMMY
-	const DUDLEY
-	const JOE
-	const BILLY
-	const NATE
-	const RICKY
-	const SHERMAN
-	const SCHOOLBOY_CONNOR
-	const TORIN
-	const TRAVIS
 
-	trainerclass SCHOOLGIRL ; 3a
+	trainerclass SCHOOLGIRL ; 3a (UNUSED; Might use in Viridian's School)
 	const MOLLY
-	const ELIZA
-	const FAITH
-	const SARAH
-	const ISABEL
-	const IMOGEN
 
 	trainerclass PSYCHIC_T ; 3b
-	const NATHAN
-	const FRANKLIN
-	const HERMAN
-	const FIDEL
-	const GREG
-	const NORMAN
-	const MARK
-	const PHIL
-	const RICHARD
-	const GILBERT
-	const JARED
-	const RODNEY
-	const LEON
-	const URI
-	const VIRGIL
+	const CAMERON			; Saffron Gym
+	const TYRON
+	const PRESTON
+	const JOHAN
 
-	trainerclass HEX_MANIAC ; 3c
+	trainerclass HEX_MANIAC ; 3c (UNUSED; Might use in Lavender Town)
 	const TAMARA
-	const ASHLEY
-	const AMY
-	const LUNA
-	const NATALIE
-	const VIVIAN
-	const ESTHER
-	const MATILDA
-	const BETHANY
-	const CORYN
 
-	trainerclass SAGE ; 3d
+	trainerclass SAGE ; 3d (UNUSED)
 	const CHOW
-	const NICO
-	const JIN
-	const TROY
-	const JEFFREY
-	const PING
-	const EDMOND
-	const NEAL
 
 	trainerclass MEDIUM ; 3e
 	const MARTHA

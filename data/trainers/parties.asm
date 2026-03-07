@@ -4031,25 +4031,10 @@ SECTION "MediumGroup", ROMX
 MediumGroup:
 
 	def_trainer_class MEDIUM
+
 	def_trainer MARTHA, "Martha"
 	tr_mon 18, GASTLY
 	tr_mon 20, HAUNTER
-	tr_mon 20, MISDREAVUS
-	end_trainer
-
-	def_trainer GRACE, "Grace"
-	tr_mon 20, HAUNTER
-	tr_mon 20, MISDREAVUS
-	end_trainer
-
-	def_trainer REBECCA, "Rebecca"
-	tr_mon 54, DROWZEE
-	tr_mon 54, HYPNO
-	end_trainer
-
-	def_trainer DORIS, "Doris"
-	tr_mon 53, SLOWPOKE
-	tr_mon 55, SLOWBRO
 	end_trainer
 
 
@@ -4057,24 +4042,25 @@ SECTION "KimonoGirlGroup", ROMX
 KimonoGirlGroup:
 
 	def_trainer_class KIMONO_GIRL
+
 	def_trainer NAOKO, "Naoko"
-	tr_mon 20, FLAREON @ LUM_BERRY
+	tr_mon LEVEL_FROM_BADGES + 10, FLAREON @ LUM_BERRY
 	end_trainer
 
 	def_trainer SAYO, "Sayo"
-	tr_mon 20, ESPEON @ LUM_BERRY
+	tr_mon LEVEL_FROM_BADGES + 10, ESPEON @ LUM_BERRY
 	end_trainer
 
 	def_trainer ZUKI, "Zuki"
-	tr_mon 20, UMBREON @ LUM_BERRY
+	tr_mon LEVEL_FROM_BADGES + 10, UMBREON @ LUM_BERRY
 	end_trainer
 
 	def_trainer KUNI, "Kuni"
-	tr_mon 20, VAPOREON @ LUM_BERRY
+	tr_mon LEVEL_FROM_BADGES + 10, VAPOREON @ LUM_BERRY
 	end_trainer
 
 	def_trainer MIKI, "Miki"
-	tr_mon 20, JOLTEON @ LUM_BERRY
+	tr_mon LEVEL_FROM_BADGES + 10, JOLTEON @ LUM_BERRY
 	end_trainer
 
 	def_trainer MAKO, "Mako"
@@ -4095,27 +4081,8 @@ ElderGroup:
 
 	def_trainer_class ELDER
 	def_trainer LI, "Li"
-	tr_mon 7, HOOTHOOT
 	tr_mon 7, GASTLY
 	tr_mon 10, BELLSPROUT
-	end_trainer
-
-	def_trainer GAKU, "Gaku"
-	tr_mon 37, NOCTOWL
-	tr_mon 38, FLAREON
-	tr_mon 38, WEEPINBELL
-	end_trainer
-
-	def_trainer MASA, "Masa"
-	tr_mon 37, NOCTOWL
-	tr_mon 38, JOLTEON
-	tr_mon 38, WARTORTLE
-	end_trainer
-
-	def_trainer KOJI, "Koji"
-	tr_mon 37, NOCTOWL
-	tr_mon 38, VAPOREON
-	tr_mon 38, NINETALES
 	end_trainer
 
 
@@ -4133,103 +4100,32 @@ SrAndJrGroup:
 	tr_mon 18, TEDDIURSA
 	end_trainer
 
-	def_trainer IVYANDAMY1, "Ivy & Amy"
-	tr_mon 30, FLAAFFY
-	tr_mon 28, GLOOM
-	end_trainer
-
-	def_trainer IVYANDAMY2, "Ivy & Amy"
-	tr_mon 28, GLOOM
-	tr_mon 30, FLAAFFY
-	end_trainer
-
-	def_trainer BEAANDMAY1, "Bea & May"
-	tr_mon LEVEL_FROM_BADGES + 4, IVYSAUR
-	tr_mon LEVEL_FROM_BADGES + 0, BULBASAUR
-	end_trainer
-
-	def_trainer BEAANDMAY2, "Bea & May"
-	tr_mon LEVEL_FROM_BADGES + 0, BULBASAUR
-	tr_mon LEVEL_FROM_BADGES + 4, IVYSAUR
-	end_trainer
-
 
 SECTION "CoupleGroup", ROMX
 CoupleGroup:
 
 	def_trainer_class COUPLE
-	def_trainer GAILANDELI1, "Gail & Eli"
-	tr_mon 13, SANDSHREW, MALE
-	tr_mon 15, MARILL, MALE
-	tr_mon 15, PIKACHU, FEMALE
-	tr_mon 13, POLIWAG, FEMALE
+
+; Route 12
+	def_trainer GIAANDJES1, "Gia & Jes"
+	tr_mon 24, NIDORAN_M
+	tr_mon 24, NIDORAN_F
 	end_trainer
 
-	def_trainer GAILANDELI2, "Gail & Eli"
-	tr_mon 15, PIKACHU, FEMALE
-	tr_mon 13, POLIWAG, FEMALE
-	tr_mon 13, SANDSHREW, MALE
-	tr_mon 15, MARILL, MALE
+	def_trainer GIAANDJES2, "Gia & Jes"
+	tr_mon 24, NIDORAN_M
+	tr_mon 24, NIDORAN_F
 	end_trainer
 
-	def_trainer DUFFANDEDA1, "Duff & Eda"
-	tr_mon LEVEL_FROM_BADGES + 2, CLOYSTER, FEMALE
-	tr_mon LEVEL_FROM_BADGES + 2, ONIX, MALE
+; Route 16
+	def_trainer LEAANDJED1, "Lea & Jed"
+	tr_mon 29, RAPIDASH, MALE
+	tr_mon 29, NINETALES, FEMALE
 	end_trainer
 
-	def_trainer DUFFANDEDA2, "Duff & Eda"
-	tr_mon LEVEL_FROM_BADGES + 2, ONIX, MALE
-	tr_mon LEVEL_FROM_BADGES + 2, CLOYSTER, FEMALE
-	end_trainer
-
-	def_trainer FOXANDRAE1, "Fox & Rae"
-	tr_mon LEVEL_FROM_BADGES + 6, FLAREON, MALE
-	tr_mon LEVEL_FROM_BADGES + 6, GLACEON, FEMALE
-	end_trainer
-
-	def_trainer FOXANDRAE2, "Fox & Rae"
-	tr_mon LEVEL_FROM_BADGES + 6, GLACEON, FEMALE
-	tr_mon LEVEL_FROM_BADGES + 6, FLAREON, MALE
-	end_trainer
-
-	def_trainer MOEANDLULU1, "Moe & Lulu"
-	tr_mon 53, GLOOM, MALE
-	tr_mon 53, WEEPINBELL, FEMALE
-	end_trainer
-
-	def_trainer MOEANDLULU2, "Moe & Lulu"
-	tr_mon 53, WEEPINBELL, FEMALE
-	tr_mon 53, GLOOM, MALE
-	end_trainer
-
-	def_trainer VICANDTARA1, "Vic & Tara"
-	tr_mon 54, MAGMAR, MALE
-	tr_mon 53, SUNKERN, FEMALE
-	end_trainer
-
-	def_trainer VICANDTARA2, "Vic & Tara"
-	tr_mon 53, SUNKERN, FEMALE
-	tr_mon 54, MAGMAR, MALE
-	end_trainer
-
-	def_trainer TIMANDSUE1, "Tim & Sue"
-	tr_mon 53, KADABRA, MALE
-	tr_mon 57, GOLDUCK, FEMALE
-	end_trainer
-
-	def_trainer TIMANDSUE2, "Tim & Sue"
-	tr_mon 57, GOLDUCK, FEMALE
-	tr_mon 53, KADABRA, MALE
-	end_trainer
-
-	def_trainer JOEANDJO1, "Joe & Jo"
-	tr_mon 56, ALAKAZAM, MALE
-	tr_mon 52, BUTTERFREE, FEMALE
-	end_trainer
-
-	def_trainer JOEANDJO2, "Joe & Jo"
-	tr_mon 52, BUTTERFREE, FEMALE
-	tr_mon 56, ALAKAZAM, MALE
+	def_trainer LEAANDJED2, "Lea & Jed"
+	tr_mon 29, RAPIDASH, MALE
+	tr_mon 29, NINETALES, FEMALE
 	end_trainer
 
 

@@ -456,13 +456,10 @@ DEF BETA EQU __trainer_class__
 	trainerclass SAGE ; 3d (UNUSED)
 	const CHOW
 
-	trainerclass MEDIUM ; 3e
+	trainerclass MEDIUM ; 3e (UNUSED)
 	const MARTHA
-	const GRACE
-	const REBECCA
-	const DORIS
 
-	trainerclass KIMONO_GIRL ; 3f
+	trainerclass KIMONO_GIRL ; 3f (UNUSED: Might use)
 	const NAOKO
 	const SAYO
 	const ZUKI
@@ -472,35 +469,18 @@ DEF BETA EQU __trainer_class__
 	const AMI
 	const MINA
 
-	trainerclass ELDER ; 40
+	trainerclass ELDER ; 40 (UNUSED)
 	const LI
-	const GAKU
-	const MASA
-	const KOJI
 
-	trainerclass SR_AND_JR ; 41
+	trainerclass SR_AND_JR ; 41 (UNUSED: Might add one in SS Anne)
 	const JOANDCATH1
 	const JOANDCATH2
-	const IVYANDAMY1
-	const IVYANDAMY2
-	const BEAANDMAY1
-	const BEAANDMAY2
 
-	trainerclass COUPLE ; 42
-	const GAILANDELI1
-	const GAILANDELI2
-	const DUFFANDEDA1
-	const DUFFANDEDA2
-	const FOXANDRAE1
-	const FOXANDRAE2
-	const MOEANDLULU1
-	const MOEANDLULU2
-	const VICANDTARA1
-	const VICANDTARA2
-	const TIMANDSUE1
-	const TIMANDSUE2
-	const JOEANDJO1
-	const JOEANDJO2
+	trainerclass COUPLE ; 42 (Will take place of FRLG's Young Couples)
+	const GIAANDJES1		; Route 12
+	const GIAANDJES2
+	const LEAANDJED1		; Route 16
+	const LEAANDJED2
 
 	trainerclass GENTLEMAN ; 43
 	const PRESTON

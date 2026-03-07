@@ -3786,10 +3786,19 @@ FirebreatherGroup:
 	def_trainer_class FIREBREATHER
 
 ; Unused Trainer
-	def_trainer OTIS, "Otis"
-	tr_mon 59, MAGMAR
-	tr_mon 58, WEEZING
-	tr_mon 61, MAGMAR
+	def_trainer QUINN, "Quinn"
+	tr_mon 36, GROWLITHE
+	tr_mon 36, VULPIX
+	tr_mon 36, NINETALES
+	end_trainer
+
+	def_trainer RAMON, "Ramon"
+	tr_mon 41, MAGMAR			; custom team
+	end_trainer
+
+	def_trainer DUSTY, "Dusty"
+	tr_mon 36, VULPIX
+	tr_mon 36, GROWLITHE
 	end_trainer
 
 
@@ -4245,12 +4254,6 @@ SailorGroup:
 	tr_mon 18, STARYU
 	end_trainer
 
-	def_trainer DYLAN, "Dylan"
-	tr_mon 17, HORSEA
-	tr_mon 17, PSYDUCK	; These two members are Huey's LGPE team. I replaced two Horseas with them.
-	tr_mon 17, POLIWAG
-	end_trainer
-
 	def_trainer DUNCAN, "Duncan"
 	tr_mon 17, HORSEA
 	tr_mon 17, SHELLDER
@@ -4430,32 +4433,20 @@ SECTION "BurglarGroup", ROMX
 BurglarGroup:
 
 	def_trainer_class BURGLAR
-	def_trainer DUNCAN, "Duncan"
-	tr_mon 34, KOFFING
-	tr_mon 35, MAGMAR
-	tr_mon 34, WEEZING
+
+; Cinnabar Mansion (FRLG/LGPE)
+	def_trainer ARNIE, "Arnie"
+	tr_mon 34, PONYTA				; devolved LGPE team member; replacing Charmander
+	tr_mon 34, CHARMELEON
 	end_trainer
 
-	def_trainer ORSON, "Orson"
-	tr_mon 36, GROWLITHE
-	tr_mon 34, WEEZING
+	def_trainer SIMON, "Simon"
+	tr_mon 38, NINETALES
 	end_trainer
 
-	def_trainer COREY, "Corey"
-	tr_mon 44, KOFFING, MALE
-	tr_mon 46, WEEZING, MALE
-	tr_mon 46, MAGMAR, MALE
-	tr_mon 48, PERSIAN @ AMULET_COIN, MALE | ALOLAN_FORM
-	end_trainer
-
-	def_trainer PETE, "Pete"
-	tr_mon 59, CHARMELEON
-	tr_mon 62, MAGMAR
-	end_trainer
-
-	def_trainer LOUIS, "Louis"
-	tr_mon 62, ARCANINE
-	tr_mon 62, RAPIDASH
+	def_trainer LEWIS, "Lewis"
+	tr_mon 34, GROWLITHE
+	tr_mon 34, KOFFING				; LGPE team member; replacing Ponyta
 	end_trainer
 
 
@@ -4474,92 +4465,77 @@ SECTION "ScientistGroup", ROMX
 ScientistGroup:
 
 	def_trainer_class SCIENTIST
-	def_trainer LOWELL, "Lowell"
-	tr_mon 60, ARCANINE
-	end_trainer
 
-	def_trainer DENNETT, "Dennett"
-	tr_mon 60, NINETALES
-	end_trainer
-
-	def_trainer LINDEN, "Linden"
-	tr_mon 60, MAGMAR
-	end_trainer
-
-	def_trainer OSKAR, "Oskar"
-	tr_mon 64, PORYGON2
-	tr_mon 62, NINETALES
-	tr_mon 60, MAGNEZONE
-	end_trainer
-
+; Cinnabar Mansion (FRLG)
 	def_trainer BRAYDON, "Braydon"
-	tr_mon 60, MAGNETON
-	tr_mon 62, MAGNEZONE
-	tr_mon 63, ELECTRODE
+	tr_mon 33, MAGNEMITE
+	tr_mon 33, MAGNETON
+	tr_mon 33, VOLTORB
 	end_trainer
 
-	def_trainer CARL, "Carl"
-	tr_mon LEVEL_FROM_BADGES + 5, PORYGON
-	tr_mon LEVEL_FROM_BADGES + 5, PORYGON
-	tr_mon LEVEL_FROM_BADGES + 6, MAGNETON
+	def_trainer TED, "Ted"			; leveled-up
+	tr_mon 35, WEEZING				; evolved
+	tr_mon 35, ELECTRODE
 	end_trainer
 
-	def_trainer DEXTER, "Dexter"
-	tr_mon 54, MAGNETON
-	tr_mon 55, ALAKAZAM
+	def_trainer IVAN, "Ivan"
+	tr_mon 38, ELECTABUZZ			; LGPE team
 	end_trainer
 
-	def_trainer JOSEPH, "Joseph"
-	tr_mon 54, DITTO
-	tr_mon 55, GOLDUCK
-	tr_mon 53, KADABRA
-	end_trainer
-
-	def_trainer NIGEL, "Nigel"
-	tr_mon 54, ELECTABUZZ
-	tr_mon 55, LANTURN
-	end_trainer
-
-	def_trainer PIOTR, "Piotr"
-	tr_mon 54, GOLDUCK
-	tr_mon 55, ALAKAZAM
-	end_trainer
-
-	def_trainer SANDERS, "Sanders"
-	tr_mon 52, ALAKAZAM
-	tr_mon 54, LAPRAS
-	tr_mon 53, NOCTOWL
-	end_trainer
 
 SECTION "RocketScientistGroup", ROMX
 RocketScientistGroup:
 
 	def_trainer_class ROCKET_SCIENTIST
-	def_trainer ROSS, "Ross"
-	tr_mon 30, KOFFING, MALE
-	tr_mon 30, GRIMER, MALE | ALOLAN_FORM
+
+; Silph Co (FRLG/LGPE/Custom)
+	def_trainer JERRY, "Jerry"
+	tr_mon 29, ELECTABUZZ
+	tr_mon 29, VOLTORB
 	end_trainer
 
-	def_trainer MITCH, "Mitch"
-	tr_mon 25, DITTO
-	tr_mon 25, PORYGON
+	def_trainer CONNOR, "Connor"
+	tr_mon 28, GRIMER
+	tr_mon 28, KOFFING
+	tr_mon 28, PORYGON				; custom; replaces evolved mons
 	end_trainer
 
-	def_trainer JED, "Jed"
-	tr_mon 29, MAGNEMITE
+	def_trainer JOSE, "Jose"
+	tr_mon 29, GRIMER				; LGPE team
+	tr_mon 29, MAGMAR
+	end_trainer
+
+	def_trainer RODNEY, "Rodney"
+	tr_mon 33, ELECTRODE
+	end_trainer
+
+	def_trainer BEAU, "Beau"
+	tr_mon 28, MAGNEMITE
+	tr_mon 28, KOFFING
+	tr_mon 28, GRIMER				; devolved LGPE team member
+	end_trainer
+
+	def_trainer TAYLOR, "Taylor"
+	tr_mon 33, MAGMAR				; LGPE team member; now solo
+	end_trainer
+
+	def_trainer JOSHUA, "Joshua"
+	tr_mon 33, ELECTRODE			; now solo
+	end_trainer
+
+	def_trainer PARKER, "Parker"
+	tr_mon 30, GRIMER
+	tr_mon 30, ELECTRODE
+	end_trainer
+
+	def_trainer ED, "Ed"
+	tr_mon 30, ELECTABUZZ			; LGPE team member
 	tr_mon 30, MAGNETON
-	tr_mon 29, MAGNEMITE
 	end_trainer
 
-	def_trainer MARC, "Garrett" ; MISMATCH
-	tr_mon 35, MAGNETON
-	tr_mon 36, MAGNEMITE
-	tr_mon 35, MAGNETON
-	end_trainer
-
-	def_trainer RICH, "Trenton" ; MISMATCH
-	tr_mon 35, PORYGON_Z
-		tr_moves CONVERSION, RECOVER, TRI_ATTACK, PSYBEAM
+	def_trainer TRAVIS, "Travis"
+	tr_mon 31, KOFFING
+	tr_mon 31, MAGNETON
 	end_trainer
 
 
@@ -4570,39 +4546,6 @@ BoarderGroup:
 	def_trainer RONALD, "Ronald"
 	tr_mon 33, SEEL
 	tr_mon 35, DEWGONG
-	tr_mon 33, SNEASEL
-	end_trainer
-
-	def_trainer BRAD, "Brad"
-	tr_mon 35, SWINUB
-	tr_mon 35, SWINUB
-	end_trainer
-
-	def_trainer DOUGLAS, "Douglas"
-	tr_mon 33, SHELLDER
-	tr_mon 35, CLOYSTER
-	tr_mon 33, SHELLDER
-	end_trainer
-
-	def_trainer SHAUN, "Shaun"
-	tr_mon 65, CLOYSTER
-	tr_mon 60, DEWGONG
-	end_trainer
-
-	def_trainer BRYCE, "Bryce"
-	tr_mon 65, DEWGONG
-	tr_mon 60, LAPRAS
-	end_trainer
-
-	def_trainer STEFAN, "Stefan"
-	tr_mon 36, SWINUB
-	tr_mon 36, PILOSWINE
-	tr_mon 38, SNEASEL
-	end_trainer
-
-	def_trainer MAX, "Max"
-	tr_mon 36, PILOSWINE, MALE
-	tr_mon 37, SANDSLASH, MALE | ALOLAN_FORM
 	end_trainer
 
 
@@ -4614,107 +4557,54 @@ SkierGroup:
 	tr_mon 36, JYNX
 	end_trainer
 
-	def_trainer CLARISSA, "Clarissa"
-	tr_mon 36, PILOSWINE
-	end_trainer
-
-	def_trainer CADY, "Cady"
-	tr_mon 63, MAMOSWINE
-	end_trainer
-
-	def_trainer MARIA, "Maria"
-	tr_mon 39, JYNX
-	end_trainer
-
-	def_trainer BECKY, "Becky"
-	tr_mon 37, LAPRAS, FEMALE
-	tr_mon 38, DEWGONG, FEMALE
-	tr_mon 38, NINETALES, FEMALE | ALOLAN_FORM
-	end_trainer
-
 
 SECTION "BlackbeltGroup", ROMX
 BlackbeltGroup:
 
 	def_trainer_class BLACKBELT_T
-	def_trainer KENJI1, "Kenji"
-	tr_mon 39, MACHOKE
+
+; Fighting Dojo (FRLG)
+	def_trainer HIDEKI, "Hideki"
+	tr_mon 32, MACHOP
+	tr_mon 32, MACHOKE
 	end_trainer
 
-;	; unused
-;	def_trainer KENJI2, "Kenji"
-;	tr_mon 36, ONIX
-;	tr_mon 38, HITMONLEE
-;	tr_mon 36, ONIX
-;	tr_mon 39, MACHOKE
-;	end_trainer
-
-;	def_trainer KENJI3, "Kenji"
-;	tr_mon 33, ONIX
-;		tr_moves WRAP, ROCK_THROW, TOXIC, DIG
-;	tr_mon 38, MACHAMP
-;		tr_moves HEADBUTT, SWAGGER, THUNDERPUNCH, BULLET_PUNCH
-;	tr_mon 33, STEELIX
-;		tr_moves EARTHQUAKE, ROCK_THROW, IRON_TAIL, SANDSTORM
-;	tr_mon 36, HITMONLEE
-;		tr_moves DOUBLE_TEAM, HI_JUMP_KICK, MUD_SLAP, SWIFT
-;	end_trainer
-
-	def_trainer YOSHI, "Yoshi"
-	tr_mon 27, "Bruce", HITMONLEE
-		tr_moves DOUBLE_KICK, BULK_UP, HI_JUMP_KICK, FOCUS_ENERGY
+	def_trainer HITOSHI, "Hitoshi"
+	tr_mon 31, MACHOP
+	tr_mon 31, MANKEY
+	tr_mon 31, PRIMEAPE
 	end_trainer
 
-	def_trainer LAO, "Lao"
-	tr_mon 27, "Jackie", HITMONCHAN
-		tr_moves AERIAL_ACE, THUNDERPUNCH, ICE_PUNCH, FIRE_PUNCH
+	def_trainer MIKE, "Mike"
+	tr_mon 31, MANKEY
+	tr_mon 31, MANKEY
+	tr_mon 31, PRIMEAPE
 	end_trainer
 
-	def_trainer NOB, "Nob"
-	tr_mon 25, MACHOP
-		tr_moves LEER, FOCUS_ENERGY, KARATE_CHOP, SEISMIC_TOSS
-	tr_mon 25, MACHOKE
-		tr_moves LEER, KARATE_CHOP, SEISMIC_TOSS, ROCK_SLIDE
+	def_trainer AARON, "Aaron"
+	tr_mon 36, PRIMEAPE
 	end_trainer
 
-	def_trainer LUNG, "Lung"
-	tr_mon 23, MANKEY
-	tr_mon 23, MANKEY
-	tr_mon 25, PRIMEAPE
+; Viridian Gym (FRLG/LGPE)
+	def_trainer KIYO, "Kiyo"
+	tr_mon 43, MACHOKE
 	end_trainer
 
-	def_trainer WAI, "Wai"
-	tr_mon 46, MACHOKE
-	tr_mon 48, MACHOKE
-	tr_mon 50, MACHOKE
+	def_trainer ATSUSHI, "Atsushi"
+	tr_mon 40, MACHOP
+	tr_mon 40, MACHOKE
 	end_trainer
 
-	def_trainer INIGO, "Inigo"
-	tr_mon 59, PRIMEAPE
-	tr_mon 59, PRIMEAPE
-	tr_mon 60, MACHAMP
+	def_trainer TAKASHI, "Takashi"
+	tr_mon 38, GRAVELER			; LGPE team member, replacing Machoke
+	tr_mon 38, MACHOP
+	tr_mon 38, MACHOKE
 	end_trainer
 
-	def_trainer MANFORD, "Manford"
-	tr_mon 63, POLIWRATH
-	end_trainer
-
-	def_trainer ANDER, "Ander"
-	tr_mon 61, PRIMEAPE
-	tr_mon 57, GRAVELER
-	tr_mon 62, MACHOKE
-	end_trainer
-
-	def_trainer TAKEO, "Takeo"
-	tr_mon 52, HITMONTOP
-	tr_mon 54, HERACROSS
-	tr_mon 56, POLIWRATH
-	end_trainer
-
-	def_trainer RYLAN, "Rylan"
-	tr_mon 54, MAGMORTAR
-	tr_mon 52, ARCANINE
-	tr_mon 53, HOUNDOOM
+; Victory Road (LGPE)
+	def_trainer DAISUKE, "Daisuke"
+	tr_mon 43, HITMONLEE
+	tr_mon 43, POLIWRATH
 	end_trainer
 
 
@@ -4722,56 +4612,11 @@ SECTION "BattleGirlGroup", ROMX
 BattleGirlGroup:
 
 	def_trainer_class BATTLE_GIRL
-	def_trainer SUBARU, "Subaru"
+
+	def_trainer DIANE, "Diane"
 	tr_mon LEVEL_FROM_BADGES + 6, MACHOP
 	tr_mon LEVEL_FROM_BADGES + 7, MACHOKE
 	tr_mon LEVEL_FROM_BADGES + 8, PRIMEAPE
-	end_trainer
-
-	def_trainer DIANE, "Diane"
-	tr_mon LEVEL_FROM_BADGES + 8, HITMONLEE
-	tr_mon LEVEL_FROM_BADGES + 8, URSARING
-	end_trainer
-
-	def_trainer KAGAMI, "Kagami"
-	tr_mon LEVEL_FROM_BADGES + 5, PRIMEAPE
-	tr_mon LEVEL_FROM_BADGES + 5, MACHOKE
-	tr_mon LEVEL_FROM_BADGES + 7, URSARING
-	end_trainer
-
-	def_trainer NOZOMI, "Nozomi"
-	tr_mon 36, MACHOKE
-	tr_mon 36, MACHOKE
-	tr_mon 37, HITMONTOP
-	end_trainer
-
-	def_trainer RONDA, "Ronda"
-	tr_mon 37, HITMONCHAN
-	tr_mon 39, MACHAMP
-	tr_mon 38, URSARING
-	end_trainer
-
-	def_trainer PADMA, "Padma"
-	tr_mon LEVEL_FROM_BADGES + 7, HITMONLEE
-	tr_mon LEVEL_FROM_BADGES + 8, HITMONCHAN
-	tr_mon LEVEL_FROM_BADGES + 9, HITMONTOP
-	end_trainer
-
-	def_trainer EMY, "Emy"
-	tr_mon LEVEL_FROM_BADGES + 8, PRIMEAPE @ PROTECT_PADS, FEMALE
-		tr_extra DEFIANT, ATK_UP_SATK_DOWN
-		tr_dvs 15 All
-		tr_moves CROSS_CHOP, GUNK_SHOT, BULK_UP, NIGHT_SLASH
-	tr_mon LEVEL_FROM_BADGES + 10, URSARING @ PROTECT_PADS, MALE
-		tr_extra UNNERVE, ATK_UP_SATK_DOWN
-		tr_dvs 15 All
-		tr_moves PLAY_ROUGH, SLASH, BELLY_DRUM, NIGHT_SLASH
-	end_trainer
-
-	def_trainer SASHA, "Sasha"
-	tr_mon 52, PRIMEAPE
-	tr_mon 55, TYPHLOSION
-	tr_mon 54, RAPIDASH
 	end_trainer
 
 
@@ -4785,129 +4630,27 @@ DragonTamerGroup:
 	tr_mon 38, DRAGONAIR
 	end_trainer
 
-	def_trainer DARIN, "Darin"
-	tr_mon 38, DRAGONAIR
-		tr_moves BODY_SLAM, SURF, DRAGON_PULSE, AQUA_TAIL
-	tr_mon 38, CHARIZARD
-		tr_moves SLASH, FLY, DRAGON_CLAW, FLAME_CHARGE
-	end_trainer
-
-	def_trainer ADAM, "Adam"
-	tr_mon 37, YANMA
-	tr_mon 38, SEADRA
-	tr_mon 39, DRATINI
-	end_trainer
-
-	def_trainer ERICK, "Erick"
-	tr_mon 39, DRAGONAIR
-		tr_moves THUNDER_WAVE, DRAGON_RAGE, AQUA_TAIL, BODY_SLAM
-	tr_mon 38, SEADRA
-		tr_moves SMOKESCREEN, AQUA_JET, WATER_PULSE, OUTRAGE
-if DEF(FAITHFUL)
-	tr_mon 40, DRAGONAIR
-		tr_moves WRAP, DRAGON_RAGE, AQUA_TAIL, DRAGON_PULSE
-else
-	tr_mon 40, YANMEGA
-		tr_moves DOUBLE_TEAM, DRAGON_RAGE, SLASH, DRAGON_PULSE
-endc
-	end_trainer
-
-	def_trainer KAZU, "Kazu"
-	tr_mon 40, DRAGONAIR
-		tr_moves THUNDER_WAVE, DRAGON_RAGE, AQUA_TAIL, FLAMETHROWER
-	tr_mon 40, DRAGONAIR
-		tr_moves THUNDER_WAVE, DRAGON_RAGE, AQUA_TAIL, THUNDERBOLT
-	tr_mon 40, DRAGONAIR
-		tr_moves THUNDER_WAVE, DRAGON_RAGE, AQUA_TAIL, ICE_BEAM
-	end_trainer
-
-	def_trainer AEGON, "Aegon"
-
-	tr_mon LEVEL_FROM_BADGES + 8, DRAGONITE @ FOCUS_SASH, MALE
-		tr_extra MULTISCALE, ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 12 Spe
-		tr_moves FOCUS_ENERGY, DRAGON_CLAW, EARTHQUAKE, ICE_PUNCH
-	tr_mon LEVEL_FROM_BADGES + 8, KINGDRA @ FOCUS_SASH, MALE
-		tr_extra SNIPER, SATK_UP_ATK_DOWN
-		tr_evs 252 SAt, 12 Spe
-		tr_moves DOUBLE_TEAM, DRAGON_PULSE, SURF, ICE_BEAM
-	tr_mon LEVEL_FROM_BADGES + 8, CHARIZARD @ FOCUS_SASH, MALE
-		tr_extra BLAZE, ATK_UP_SATK_DOWN
-		tr_evs 132 Atk, 132 Spe
-		tr_moves DRAGON_DANCE, DRAGON_CLAW, EARTHQUAKE, FLARE_BLITZ
-	end_trainer
-
 
 SECTION "EngineerGroup", ROMX
 EngineerGroup:
 
 	def_trainer_class ENGINEER
-	def_trainer SMITH, "Smith"
-	tr_mon 58, MAGNETON
-	tr_mon 60, MAGNEZONE
+
+; Route 11
+	def_trainer BRAXTON, "Braxton"
+	tr_mon 21, VOLTORB
 	end_trainer
 
 	def_trainer BERNIE, "Bernie"
-	tr_mon 54, MAGNEMITE
-	tr_mon 56, MAGNETON
-	tr_mon 54, MAGNEMITE
+	tr_mon 18, MAGNEMITE
+	tr_mon 18, MAGNEMITE
+	tr_mon 18, MAGNETON
 	end_trainer
 
-	def_trainer CAMDEN, "Camden"
-	tr_mon 56, MAGNETON
-	tr_mon 56, ELECTRODE
-	end_trainer
-
-	def_trainer LANG, "Lang"
-	tr_mon 55, ELECTRODE
-	tr_mon 55, ELECTRODE
-	end_trainer
-
-	def_trainer HUGO, "Hugo"
-	tr_mon 54, MAGNETON
-	tr_mon 56, STEELIX
-	end_trainer
-
-	def_trainer HOWARD, "Howard"
-	tr_mon 57, MAGNEZONE
-	end_trainer
-
-	def_trainer GRADEN, "Graden"
-	tr_mon LEVEL_FROM_BADGES + 2, GEODUDE, MALE | ALOLAN_FORM
-		tr_extra GALVANIZE
-		tr_moves EXPLOSION
-	tr_mon LEVEL_FROM_BADGES + 2, GEODUDE, MALE | ALOLAN_FORM
-		tr_extra GALVANIZE
-		tr_moves EXPLOSION
-	tr_mon LEVEL_FROM_BADGES + 3, ELEKID, MALE
-		tr_extra STATIC
-		tr_moves THUNDERPUNCH, ROCK_SMASH, BODY_SLAM, BULK_UP
-	end_trainer
-
-	def_trainer GUSTAV, "Gustav"
-	tr_mon LEVEL_FROM_BADGES + 1, VOLTORB, MALE
-		tr_extra AFTERMATH
-	tr_mon LEVEL_FROM_BADGES + 1, VOLTORB, MALE
-		tr_extra AFTERMATH
-	tr_mon LEVEL_FROM_BADGES + 3, MAGNEMITE, MALE
-if DEF(FAITHFUL)
-		tr_extra STURDY
-else
-		tr_extra LEVITATE
-endc
-	end_trainer
-
-	def_trainer NICOLAS, "Nicolas"
-	tr_mon LEVEL_FROM_BADGES + 1, VOLTORB, MALE
-		tr_extra AFTERMATH
-	tr_mon LEVEL_FROM_BADGES + 1, VOLTORB, MALE
-		tr_extra AFTERMATH
-	tr_mon LEVEL_FROM_BADGES + 3, MAGNEMITE, MALE
-if DEF(FAITHFUL)
-		tr_extra STURDY
-else
-		tr_extra LEVITATE
-endc
+; SS ANNE
+	def_trainer DYLAN, "Dylan"
+	tr_mon 18, MAGNEMITE
+	tr_mon 18, MAGNEMITE
 	end_trainer
 
 SECTION "TeacherFGroup", ROMX
@@ -4918,32 +4661,6 @@ TeacherFGroup:
 	tr_mon 60, CLEFAIRY
 	end_trainer
 
-	def_trainer HILLARY, "Hillary"
-	tr_mon 58, AIPOM
-	tr_mon 56, SUNFLORA
-	tr_mon 59, MAROWAK
-	end_trainer
-
-	def_trainer SHIRLEY, "Shirley"
-	tr_mon 47, WIGGLYTUFF
-	end_trainer
-
-	def_trainer KATHRYN, "Kathryn"
-	tr_mon LEVEL_FROM_BADGES + 5, BELLOSSOM
-	tr_mon LEVEL_FROM_BADGES + 3, PIDGEOTTO
-	tr_mon LEVEL_FROM_BADGES + 2, FURRET
-	end_trainer
-
-	def_trainer CLARICE, "Clarice"
-	tr_mon 54, FURRET
-	tr_mon 56, SUNFLORA
-	end_trainer
-
-	def_trainer SERENA, "Serena"
-	tr_mon 55, UMBREON
-	tr_mon 52, VAPOREON
-	tr_mon 54, ESPEON
-	end_trainer
 
 SECTION "TeacherMGroup", ROMX
 TeacherMGroup:
@@ -4951,8 +4668,6 @@ TeacherMGroup:
 	def_trainer_class TEACHER_M
 	def_trainer NOLAN, "Nolan"
 	tr_mon 54, ELECTRODE
-	tr_mon 55, MAGNEZONE
-	tr_mon 56, ELECTIVIRE
 	end_trainer
 
 
@@ -4964,63 +4679,14 @@ GuitaristMGroup:
 	tr_mon 50, ELECTABUZZ
 	end_trainer
 
-	def_trainer VINCENT, "Vincent"
-	tr_mon 53, VOLTORB
-	tr_mon 52, MAGNEMITE
-	tr_mon 55, JOLTEON
-	end_trainer
-
-	def_trainer ROGER, "Roger"
-	tr_mon 56, RAICHU
-	tr_mon 58, ELECTABUZZ
-	end_trainer
-
-	def_trainer EZEKIEL, "Ezekiel"
-	tr_mon 56, MAGNEZONE
-	end_trainer
-
-	def_trainer BIFF, "Biff"
-	tr_mon 52, ONIX
-	tr_mon 54, MAGNETON
-	tr_mon 56, SKARMORY
-	end_trainer
-
-	def_trainer GEDDY, "Geddy"
-	tr_mon 50, BULBASAUR
-	end_trainer
-
 
 SECTION "GuitaristFGroup", ROMX
 GuitaristFGroup:
 
 	def_trainer_class GUITARISTF
-	def_trainer JANET, "Janet"
-	tr_mon 56, PIKACHU, FEMALE | PIKACHU_SURF_FORM
-		tr_moves IRON_TAIL, EXTREMESPEED, SURF, THUNDERBOLT
-	tr_mon 54, ELECTABUZZ, FEMALE
-		tr_moves LIGHT_SCREEN, THUNDERPUNCH, CROSS_CHOP, SCREECH
-	tr_mon 55, RAICHU, FEMALE | ALOLAN_FORM
-		tr_moves EXTREMESPEED, SURF, THUNDERBOLT, AGILITY
-	end_trainer
-
 	def_trainer MORGAN, "Morgan"
 	tr_mon 55, ELECTRODE
 	tr_mon 55, JOLTEON
-	end_trainer
-
-	def_trainer RITSUKO, "Ritsuko"
-	tr_mon 56, JOLTEON
-	tr_mon 58, JOLTEON
-	end_trainer
-
-	def_trainer WANDA, "Wanda"
-	tr_mon 53, MAGNEMITE
-	tr_mon 54, ELECTRODE
-	tr_mon 55, MAGNETON
-	end_trainer
-
-	def_trainer JACLYN, "Jaclyn"
-	tr_mon 56, ELECTIVIRE
 	end_trainer
 
 
@@ -6146,13 +5812,12 @@ SECTION "KarateKingGroup", ROMX
 KarateKingGroup:
 
 	def_trainer_class KARATE_KING
-	def_trainer KIYO, "Kiyo"
+
+	def_trainer KOICHI, "Koichi"
 	tr_mon LEVEL_FROM_BADGES + 11, HITMONLEE @ BLACK_BELT
 		tr_moves BULK_UP, FOCUS_ENERGY, HI_JUMP_KICK, FORESIGHT
 	tr_mon LEVEL_FROM_BADGES + 11, HITMONCHAN @ KINGS_ROCK
 		tr_moves THUNDERPUNCH, ICE_PUNCH, FIRE_PUNCH, MACH_PUNCH
-	tr_mon LEVEL_FROM_BADGES + 11, HITMONTOP @ FOCUS_BAND
-		tr_moves BULK_UP, DOUBLE_KICK, RAPID_SPIN, COUNTER
 	end_trainer
 
 

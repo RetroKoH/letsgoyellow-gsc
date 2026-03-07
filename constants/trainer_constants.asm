@@ -408,8 +408,10 @@ DEF BETA EQU __trainer_class__
 	trainerclass RUIN_MANIAC ; 36 (UNUSED; Might use in Pewter or Cinnabar?)
 	const JONES
 
-	trainerclass FIREBREATHER ; 37 (UNUSED; Might use in Cinnabar?)
-	const OTIS
+	trainerclass FIREBREATHER ; 37 (Reimplemented in Cinnabar Gym, replacing Burglars)
+	const QUINN
+	const RAMON
+	const DUSTY
 
 	trainerclass JUGGLER ; 38
 	const DALTON			; Silph Co: 5F
@@ -511,7 +513,6 @@ DEF BETA EQU __trainer_class__
 	const EDMOND
 	const PHILLIP
 	const HUEY
-	const DYLAN
 	const DUNCAN
 	const LEONARD
 	const DWAYNE			; Vermilion Gym
@@ -546,105 +547,62 @@ DEF BETA EQU __trainer_class__
 	const NORA
 	const MELISSA
 
-	trainerclass BURGLAR ; 4c
-	const DUNCAN
-	const ORSON
-	const COREY
-	const PETE
-	const LOUIS
+	trainerclass BURGLAR ; 4c (FINISHED; The Burglars in Cinnabar Gym are now Firebreathers)
+	const ARNIE				; Cinnabar Mansion
+	const SIMON
+	const LEWIS
 
-	trainerclass PI ; 4d
+	trainerclass PI ; 4d (UNUSED)
 	const LOOKER
 
-	trainerclass SCIENTIST ; 4e
-	const LOWELL
-	const DENNETT
-	const LINDEN
-	const OSKAR
-	const BRAYDON
-	const CARL
-	const DEXTER
-	const JOSEPH
-	const NIGEL
-	const PIOTR
-	const SANDERS
+	trainerclass SCIENTIST ; 4e (FINISHED)
+	const BRAYDON			; Cinnabar Mansion
+	const TED
+	const IVAN
 
-	trainerclass ROCKET_SCIENTIST ; 4f
-	const ROSS
-	const MITCH
-	const JED
-	const MARC
-	const RICH
+	trainerclass ROCKET_SCIENTIST ; 4f (FINISHED)
+	const JERRY				; Silph Co
+	const CONNOR
+	const JOSE
+	const RODNEY
+	const BEAU
+	const TAYLOR
+	const JOSHUA
+	const PARKER
+	const ED
+	const TRAVIS
 
-	trainerclass BOARDER ; 50
+	trainerclass BOARDER ; 50 (UNUSED)
 	const RONALD
-	const BRAD
-	const DOUGLAS
-	const SHAUN
-	const BRYCE
-	const STEFAN
-	const MAX
 
-	trainerclass SKIER ; 51
+	trainerclass SKIER ; 51 (UNUSED)
 	const ROXANNE
-	const CLARISSA
-	const CADY
-	const MARIA
-	const BECKY
 
-	trainerclass BLACKBELT_T ; 52
-	const KENJI1
-;	const KENJI2
-;	const KENJI3
-	const YOSHI
-	const LAO
-	const NOB
-	const LUNG
-	const WAI
-	const INIGO
-	const MANFORD
-	const ANDER
-	const TAKEO
-	const RYLAN
+	trainerclass BLACKBELT_T ; 52 (FINISHED)
+	const HIDEKI			; Fighting Dojo
+	const HITOSHI
+	const MIKE
+	const AARON
+	const KIYO				; Viridian Gym
+	const ATSUSHI
+	const TAKASHI
+	const DAISUKE			; Victory Road
 
-	trainerclass BATTLE_GIRL ; 53
-	const SUBARU
+	trainerclass BATTLE_GIRL ; 53 (UNUSED)
 	const DIANE
-	const KAGAMI
-	const NOZOMI
-	const RONDA
-	const PADMA
-	const EMY
-	const SASHA
 
-	trainerclass DRAGON_TAMER ; 54
+	trainerclass DRAGON_TAMER ; 54 (UNUSED)
 	const PAUL
-	const DARIN
-	const ADAM
-	const ERICK
-	const KAZU
-	const AEGON
 
 	trainerclass ENGINEER ; 55
-	const SMITH
+	const BRAXTON			; Route 11
 	const BERNIE
-	const CAMDEN
-	const LANG
-	const HUGO
-	const HOWARD
-	const GRADEN
-	const GUSTAV
-	const NICOLAS
+	const DYLAN				; SS Anne (replaces a sailor)
 
-	trainerclass TEACHER_F ; 56
+	trainerclass TEACHER_F ; 56 (UNUSED; Might use in Viridian School)
 	const COLETTE
-	const HILLARY
-	const SHIRLEY
-	const KATHRYN
-	const CLARICE
-	const SERENA
 
-	trainerclass TEACHER_M ; 57
+	trainerclass TEACHER_M ; 57 (UNUSED; Might use in Viridian School)
 	const NOLAN
 
 	trainerclass GUITARISTM ; 58
@@ -838,7 +796,7 @@ DEF BETA EQU __trainer_class__
 	const EUSINE
 
 	trainerclass KARATE_KING ; 73
-	const KIYO
+	const KOICHI		; Used for the Saffron Fighting Dojo
 
 	trainerclass TOWERTYCOON ; 74
 

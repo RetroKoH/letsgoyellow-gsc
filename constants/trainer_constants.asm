@@ -317,65 +317,38 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass GRUNTF ; 2a
 
-	trainerclass POKEFANM ; 2b
+	trainerclass POKEFANM ; 2b (UNUSED: Maybe use w/ the Fan Club)
 	const DEREK1
 	const DEREK2
 	const DEREK3
-	const WILLIAM
-	const ROBERT
-	const JOSHUA
-	const CARTER
-	const TREVOR
-	const BRANDON
-	const JEREMY
-	const COLIN
-	const ALEX
-	const REX
-	const ALLAN
 
-	trainerclass POKEFANF ; 2c
+	trainerclass POKEFANF ; 2c (UNUSED: Maybe use w/ the Fan Club)
 	const BEVERLY1
 	const BEVERLY2
 	const BEVERLY3
-	const RUTH
-	const GEORGIA
-	const JAIME
-	const BOONE
-	const ELEANOR
 
-	trainerclass OFFICERM ; 2d
+	trainerclass OFFICERM ; 2d (UNUSED: Will use for night battles in select cities)
 	const KEITH
-	const DIRK
 
-	trainerclass OFFICERF ; 2e
-	const JAMIE
-	const MARA
+	trainerclass OFFICERF ; 2e (UNUSED: Will use for night battles in select cities)
 	const JENNY
 
-	trainerclass NURSE ; 2f
-	const BEATRICE
-	const KEIKO
+	trainerclass NURSE ; 2f (UNUSED: Might use at Indigo Plateau?)
 	const JOY
-	const WINIFRED
 
 	trainerclass POKEMANIAC ; 30
-	const BRENT1
+	const ASHTON			; Rock Tunnel
+	const WINSTON
+	const STEVE
+	const COOPER
+	const MARK				; Route 10
+	const HERMAN
+	const DAWSON			; Victory Road
+	const DAMIAN			; Bonus trainer from LGPE
+	const BRENT1			; Unused Phone Trainer
 	const BRENT2
 	const BRENT3
 	const BRENT4
-	const LARRY
-	const ANDREW
-	const CALVIN
-	const SHANE
-	const BEN
-	const RON
-	const ETHAN
-	const ISSAC
-	const DONALD
-	const ZACH
-	const ENZO
-	const MILLER
-	const AIDAN
 
 	trainerclass COSPLAYER ; 31
 	const CLARA

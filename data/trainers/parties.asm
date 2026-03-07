@@ -3362,62 +3362,6 @@ PokefanMGroup:
 	tr_mon 36, PIKACHU @ SITRUS_BERRY
 	end_trainer
 
-	def_trainer WILLIAM, "William"
-	tr_mon 16, RAICHU @ ORAN_BERRY
-	end_trainer
-
-	def_trainer ROBERT, "Robert"
-	tr_mon 56, QUAGSIRE @ SITRUS_BERRY
-	end_trainer
-
-	def_trainer JOSHUA, "Joshua"
-	tr_mon 54, PIKACHU @ SITRUS_BERRY
-	tr_mon 54, PIKACHU @ SITRUS_BERRY
-	tr_mon 54, PIKACHU @ SITRUS_BERRY
-	tr_mon 54, PIKACHU @ SITRUS_BERRY
-	tr_mon 54, PIKACHU @ SITRUS_BERRY
-	tr_mon 54, PIKACHU @ SITRUS_BERRY
-	end_trainer
-
-	def_trainer CARTER, "Carter"
-	tr_mon 59, BULBASAUR @ SITRUS_BERRY
-	tr_mon 59, CHARMANDER @ SITRUS_BERRY
-	tr_mon 59, SQUIRTLE @ SITRUS_BERRY
-	end_trainer
-
-	def_trainer TREVOR, "Trevor"
-	tr_mon 57, PSYDUCK @ SITRUS_BERRY
-	end_trainer
-
-	def_trainer BRANDON, "Brandon"
-	tr_mon 13, SNUBBULL @ ORAN_BERRY
-	tr_mon 13, MAREEP
-	end_trainer
-
-	def_trainer JEREMY, "Jeremy"
-	tr_mon 44, MEOWTH @ SITRUS_BERRY
-	tr_mon 45, PERSIAN @ SITRUS_BERRY
-	tr_mon 44, MEOWTH @ SITRUS_BERRY
-	end_trainer
-
-	def_trainer COLIN, "Colin"
-	tr_mon 49, DELIBIRD @ SITRUS_BERRY
-	end_trainer
-
-	def_trainer ALEX, "Alex"
-	tr_mon 56, NIDOKING @ KINGS_ROCK
-	tr_mon 56, SLOWKING @ KINGS_ROCK
-	tr_mon 56, SEAKING @ KINGS_ROCK
-	end_trainer
-
-	def_trainer REX, "Rex"
-	tr_mon 53, PHANPY @ SITRUS_BERRY
-	end_trainer
-
-	def_trainer ALLAN, "Allan"
-	tr_mon 53, TEDDIURSA @ SITRUS_BERRY
-	end_trainer
-
 
 SECTION "PokefanFGroup", ROMX
 PokefanFGroup:
@@ -3435,45 +3379,15 @@ PokefanFGroup:
 	tr_mon 30, GRANBULL @ SITRUS_BERRY
 	end_trainer
 
-	def_trainer RUTH, "Ruth"
-	tr_mon 20, PIKACHU @ ORAN_BERRY
-	end_trainer
-
-	def_trainer GEORGIA, "Georgia"
-	tr_mon 44, SENTRET @ ORAN_BERRY
-	tr_mon 44, SENTRET @ ORAN_BERRY
-	tr_mon 44, SENTRET @ ORAN_BERRY
-	tr_mon 46, FURRET @ SITRUS_BERRY
-	tr_mon 44, SENTRET @ ORAN_BERRY
-	end_trainer
-
-	def_trainer JAIME, "Jaime"
-	tr_mon 16, MEOWTH @ ORAN_BERRY
-	end_trainer
-
-	def_trainer BOONE, "Boone"
-	tr_mon 57, PERSIAN @ SITRUS_BERRY
-	tr_mon 55, WIGGLYTUFF @ SITRUS_BERRY
-	end_trainer
-
-	def_trainer ELEANOR, "Eleanor"
-	tr_mon 57, GRANBULL @ SITRUS_BERRY
-	tr_mon 55, CLEFABLE @ SITRUS_BERRY
-	end_trainer
-
 
 SECTION "OfficerMGroup", ROMX
 OfficerMGroup:
 
 	def_trainer_class OFFICERM
+
 	def_trainer KEITH, "Keith"
 	tr_mon 15, GROWLITHE
 	tr_mon 15, GROWLITHE
-	end_trainer
-
-	def_trainer DIRK, "Dirk"
-	tr_mon 15, GROWLITHE
-	tr_mon 15, MACHOP
 	end_trainer
 
 
@@ -3481,15 +3395,6 @@ SECTION "OfficerFGroup", ROMX
 OfficerFGroup:
 
 	def_trainer_class OFFICERF
-	def_trainer JAMIE, "Jamie"
-	tr_mon 54, GROWLITHE
-	tr_mon 58, ARCANINE
-	tr_mon 57, BLASTOISE
-	end_trainer
-
-	def_trainer MARA, "Mara"
-	tr_mon 17, GROWLITHE
-	end_trainer
 
 	def_trainer JENNY, "Jenny"
 	tr_mon 53, SQUIRTLE
@@ -3503,21 +3408,9 @@ SECTION "NurseGroup", ROMX
 NurseGroup:
 
 	def_trainer_class NURSE
-	def_trainer BEATRICE, "Beatrice"
-	tr_mon LEVEL_FROM_BADGES + 5, CHANSEY
-	end_trainer
-
-	def_trainer KEIKO, "Keiko"
-	tr_mon LEVEL_FROM_BADGES + 0, HAPPINY
-	tr_mon LEVEL_FROM_BADGES + 5, CHANSEY
-	end_trainer
 
 	def_trainer JOY, "Joy"
 	tr_mon LEVEL_FROM_BADGES + 6, CHANSEY
-	end_trainer
-
-	def_trainer WINIFRED, "Winifred"
-	tr_mon LEVEL_FROM_BADGES + 6, BLISSEY
 	end_trainer
 
 
@@ -3525,6 +3418,52 @@ SECTION "PokemaniacGroup", ROMX
 PokemaniacGroup:
 
 	def_trainer_class POKEMANIAC
+
+; Rock Tunnel (FRLG/LGPE)
+	def_trainer ASHTON, "Ashton"
+	tr_mon 23, CUBONE
+	tr_mon 23, SLOWPOKE
+	end_trainer
+
+	def_trainer WINSTON, "Winston"
+	tr_mon 25, KANGASKHAN			; LGPE mon at FRLG level
+	end_trainer
+
+	def_trainer STEVE, "Steve"
+	tr_mon 23, CHARMANDER
+	tr_mon 23, CUBONE
+	end_trainer
+
+	def_trainer COOPER, "Cooper"
+	tr_mon 23, IVYSAUR				; LGPE Addition
+	tr_mon 23, SLOWPOKE
+	end_trainer
+
+; Route 10 (FRLG/LGPE)
+	def_trainer MARK, "Mark"
+	tr_mon 29, RHYHORN
+	tr_mon 29, LICKITUNG
+	end_trainer
+
+	def_trainer HERMAN, "Herman"
+	tr_mon 21, CHARMELEON			; LGPE team member, replacing Cubone
+	tr_mon 21, SLOWPOKE
+	end_trainer
+
+; Victory Road (FRLG + LGPE)
+	def_trainer DAWSON, "Dawson"	; LGPE team lineup
+	tr_mon 40, BLASTOISE
+	tr_mon 40, ONIX
+	tr_mon 40, LICKITUNG	
+	end_trainer
+
+	def_trainer DAMIAN, "Damian"	; Dawson's FRLG team lineup, with Herman's LGPE name
+	tr_mon 40, CHARIZARD
+	tr_mon 40, LAPRAS
+	tr_mon 40, LICKITUNG	
+	end_trainer
+
+; Unused Phone Trainers
 	def_trainer BRENT1, "Brent"
 	tr_mon 32, LICKITUNG
 	end_trainer
@@ -3541,67 +3480,6 @@ PokemaniacGroup:
 	def_trainer BRENT4, "Brent"
 	tr_mon 47, CHANSEY
 		tr_moves ROLLOUT, ATTRACT, RETURN, FRESH_SNACK
-	end_trainer
-
-	def_trainer LARRY, "Larry"
-	tr_mon 12, SLOWPOKE
-	end_trainer
-
-	def_trainer ANDREW, "Andrew"
-	tr_mon 24, MAROWAK
-	tr_mon 24, MAROWAK
-	end_trainer
-
-	def_trainer CALVIN, "Calvin"
-	tr_mon 26, KANGASKHAN
-	end_trainer
-
-	def_trainer SHANE, "Shane"
-	tr_mon 20, NIDORINA
-	tr_mon 20, NIDORINO
-	end_trainer
-
-	def_trainer BEN, "Beckett" ; MISMATCH
-	tr_mon 30, SLOWBRO
-	end_trainer
-
-	def_trainer RON, "Ron"
-	tr_mon 30, NIDOKING
-	end_trainer
-
-	def_trainer ETHAN, "Ethan"
-	tr_mon 45, RHYHORN
-	tr_mon 46, RHYDON
-	end_trainer
-
-	def_trainer ISSAC, "Issac"
-	tr_mon 15, LICKITUNG
-		tr_moves LICK, SUPERSONIC, CUT
-	end_trainer
-
-	def_trainer DONALD, "Donald"
-	tr_mon 13, SLOWPOKE
-	tr_mon 13, NIDORAN_M
-	end_trainer
-
-	def_trainer ZACH, "Zach"
-	tr_mon 37, RHYHORN
-	end_trainer
-
-	def_trainer ENZO, "Enzo"
-	tr_mon LEVEL_FROM_BADGES + 8, SHUCKLE
-	end_trainer
-
-	def_trainer MILLER, "Miller"
-	tr_mon LEVEL_FROM_BADGES + 7, NIDOKING
-	tr_mon LEVEL_FROM_BADGES + 7, NIDOQUEEN
-	end_trainer
-
-	def_trainer AIDAN, "Aidan"
-	tr_mon LEVEL_FROM_BADGES + 7, SNORLAX
-		tr_moves HEADBUTT, DEFENSE_CURL, ROLLOUT, EXPLOSION
-	tr_mon LEVEL_FROM_BADGES + 7, PORYGON2
-		tr_moves CONVERSION, RECOVER, PSYBEAM, TRI_ATTACK
 	end_trainer
 
 

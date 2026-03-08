@@ -639,129 +639,55 @@ DEF BETA EQU __trainer_class__
 	const COREY
 	const MARTIN				; Route 21
 
-	trainerclass TAMER ; 5c
-	const BRETT
-	const VINCE
-	const OSWALD
-	const JORDAN
+	trainerclass TAMER ; 5c (FINISHED)
+	const EDGAR					; Fuchsia Gym
+	const PHIL
+	const COLE					; Viridian Gym
+	const JASON
+	const VINCENT				; Victory Road
 
-	trainerclass ARTIST ; 5d
+	trainerclass ARTIST ; 5d (UNUSED)
 	const REINA
-	const ALINA
-	const MARLENE
-	const RIN
 
-	trainerclass AROMA_LADY ; 5e
-	const DAHLIA
-	const BRYONY
-	const HEATHER
+	trainerclass AROMA_LADY ; 5e (UNUSED: Will use one in Celadon Gym)
 	const HOLLY
-	const PEONY
 
-	trainerclass SOLDIER ; 5f
+	trainerclass SOLDIER ; 5f (UNUSED: Might use one in Vermilion City or Gym)
 
-	trainerclass WAITER ; 60
-	const DAVID
+	trainerclass WAITER ; 60 (UNUSED)
 
-	trainerclass WAITRESS ; 61
+	trainerclass WAITRESS ; 61 (UNUSED)
 
-	trainerclass SIGHTSEERM ; 62
+	trainerclass SIGHTSEERM ; 62 (UNUSED: Might use one in SS ANNE)
 	const JASKA
-	const BLAISE
-	const GARETH
-	const CHESTER
-	const HARI
 
-	trainerclass SIGHTSEERF ; 63
-	const ROSIE
+	trainerclass SIGHTSEERF ; 63 (UNUSED)
 	const KAMILA
-	const NOELLE
-	const PILAR
-	const LENIE
 
-	trainerclass SIGHTSEERS ; 64
+	trainerclass SIGHTSEERS ; 64 (UNUSED)
 	const LIANDSU1
 	const LIANDSU2
-	const CYANDVI1
-	const CYANDVI2
 
 	trainerclass COOLTRAINERM ; 65
-	const GAVEN1
+	const GAVEN1			; Unused Phone Trainers
 	const GAVEN2
 	const GAVEN3
-	const NICK
-	const AARON
-	const CODY
-	const MIKE
-	const RYAN
-	const BLAKE
-	const ANDY
-	const SEAN
-	const KEVIN
-	const ALLEN
-	const FRENCH
-	const HENRI
-	const CONNOR
-	const KIERAN
-	const FINCH
-	const PETRIE
-	const COOLTRAINERM_COREY
-	const COOLTRAINERM_RAYMOND
-	const FERGUS
-	const DARIC
 
 	trainerclass COOLTRAINERF ; 66
-	const BETH1
+	const BETH1				; Unused Phone Trainers
 	const BETH2
 	const BETH3
 	const REENA1
 	const REENA2
 	const REENA3
-	const GWEN
-	const LOIS
-	const FRAN
-	const LOLA
-	const KATE
-	const IRENE
-	const KELLY
-	const JOYCE
-	const MEGAN
-	const CAROL
-	const QUINN
-	const EMMA
-	const CYBIL
-	const JENN
-	const SALMA
-	const BONITA
-	const SERA
-	const NEESHA
-	const CHIARA
 
-	trainerclass ACE_DUO ; 67
+	trainerclass ACE_DUO ; 67 (UNUSED)
 	const ELANANDIDA1
 	const ELANANDIDA2
-	const ARAANDBELA1
-	const ARAANDBELA2
-	const THOMANDKAE1
-	const THOMANDKAE2
-	const ZACANDJEN1
-	const ZACANDJEN2
-	const JAKEANDBRI1
-	const JAKEANDBRI2
-	const DANANDCARA1
-	const DANANDCARA2
 
-	trainerclass VETERANM ; 68
-	const MATT
-	const REMY
-	const BARKHORN
-	const EN
+	trainerclass VETERANM ; 68 (UNUSED)
 
-	trainerclass VETERANF ; 69
-	const JOANNE
-	const JONET
-	const LITVYAK
-	const MADOKA
+	trainerclass VETERANF ; 69 (UNUSED)
 
 ; Each of these will have post-game battles
 	trainerclass PROTON ; 6a

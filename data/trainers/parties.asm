@@ -4837,25 +4837,35 @@ SECTION "TamerGroup", ROMX
 TamerGroup:
 
 	def_trainer_class TAMER
-	def_trainer BRETT, "Brett"
-	tr_mon LEVEL_FROM_BADGES + 8, ARBOK
-	tr_mon LEVEL_FROM_BADGES + 8, TAUROS
-	tr_mon LEVEL_FROM_BADGES + 9, URSARING
+
+; Fuchsia Gym (FRLG+LGPE)
+	def_trainer EDGAR, "Edgar"
+	tr_mon 33, ARBOK
+	tr_mon 33, ARBOK
+	tr_mon 33, SANDSLASH
 	end_trainer
 
-	def_trainer VINCE, "Vince"
-	tr_mon 54, KANGASKHAN
-	tr_mon 56, DONPHAN
+	def_trainer PHIL, "Phil"		; LGPE team
+	tr_mon 34, NIDORINA
+	tr_mon 34, NIDORINO
 	end_trainer
 
-	def_trainer OSWALD, "Oswald"
-	tr_mon 60, DONPHAN
-	tr_mon 62, URSARING
-	tr_mon 61, KANGASKHAN
+; Viridian Gym (FRLG/LGPE)
+	def_trainer COLE, "Cole"
+	tr_mon 39, NIDORINO				; LGPE team member, replacing Arbok
+	tr_mon 39, TAUROS
 	end_trainer
 
-	def_trainer JORDAN, "Jordan"
-	tr_mon 50, BULBASAUR
+	def_trainer JASON, "Jason"
+	tr_mon 43, RHYHORN
+	end_trainer
+
+; Victory Road (FRLG/LGPE combined team)
+	def_trainer VINCENT, "Vincent"
+	tr_mon 41, PERSIAN
+	tr_mon 41, PRIMEAPE
+	tr_mon 41, GOLDUCK
+	tr_mon 41, TAUROS
 	end_trainer
 
 
@@ -4863,34 +4873,10 @@ SECTION "ArtistGroup", ROMX
 ArtistGroup:
 
 	def_trainer_class ARTIST
+
 	def_trainer REINA, "Reina"
 	tr_mon 55, MR__MIME
 	tr_mon 55, SUDOWOODO
-	end_trainer
-
-
-	def_trainer ALINA, "Alina"
-	tr_mon 57, SMEARGLE @ MIRACLE_SEED
-		tr_dvs DVS_HP_GRASS ; green
-		tr_moves SPORE, FLAMETHROWER, SOLAR_BEAM, GIGA_DRAIN
-	end_trainer
-
-	def_trainer MARLENE, "Marlene"
-	tr_mon 55, SMEARGLE @ CHARCOAL
-		tr_dvs DVS_HP_FIRE ; red
-		tr_moves FIRE_BLAST, FLAMETHROWER, EARTH_POWER, WILL_O_WISP
-	tr_mon 55, SMEARGLE @ MAGNET
-		tr_dvs DVS_HP_ELECTRIC ; yellow
-		tr_moves THUNDER, THUNDERBOLT, THUNDER_WAVE, RAIN_DANCE
-	tr_mon 55, SMEARGLE @ MYSTIC_WATER
-		tr_dvs DVS_HP_WATER ; blue
-		tr_moves HYDRO_PUMP, SURF, ICE_BEAM, SCALD
-	end_trainer
-
-	def_trainer RIN, "Rin"
-	tr_mon 64, SMEARGLE @ TWISTEDSPOON
-		tr_dvs DVS_HP_PSYCHIC ; pink
-		tr_moves PSYCHIC_M, SPORE, CALM_MIND, RECOVER
 	end_trainer
 
 
@@ -4898,31 +4884,10 @@ SECTION "AromaLadyGroup", ROMX
 AromaLadyGroup:
 
 	def_trainer_class AROMA_LADY
-	def_trainer DAHLIA, "Dahlia"
-	tr_mon 58, VILEPLUME
-	tr_mon 58, BELLOSSOM
-	end_trainer
-
-	def_trainer BRYONY, "Bryony"
-	tr_mon 55, BELLOSSOM
-		tr_moves SOLAR_BEAM, SUNNY_DAY, STUN_SPORE, GROWTH
-	tr_mon 55, BELLOSSOM
-		tr_moves SOLAR_BEAM, SUNNY_DAY, STUN_SPORE, GROWTH
-	end_trainer
-
-	def_trainer HEATHER, "Heather"
-	tr_mon 35, CHIKORITA
-	tr_mon 45, BAYLEEF
-	tr_mon 55, MEGANIUM
-	end_trainer
 
 	def_trainer HOLLY, "Holly"
 	tr_mon 62, SUNFLORA
 	tr_mon 62, SUNFLORA
-	end_trainer
-
-	def_trainer PEONY, "Peony"
-	tr_mon 50, BULBASAUR
 	end_trainer
 
 
@@ -4948,23 +4913,8 @@ SECTION "SightseerMGroup", ROMX
 SightseerMGroup:
 
 	def_trainer_class SIGHTSEERM
+
 	def_trainer JASKA, "Jaska"
-	tr_mon 50, BULBASAUR
-	end_trainer
-
-	def_trainer BLAISE, "Blaise"
-	tr_mon 50, "Bulbasaur", BULBASAUR, MALE
-	end_trainer
-
-	def_trainer GARETH, "Gareth"
-	tr_mon 50, BULBASAUR
-	end_trainer
-
-	def_trainer CHESTER, "Chester"
-	tr_mon 50, BULBASAUR
-	end_trainer
-
-	def_trainer HARI, "Hari"
 	tr_mon 50, BULBASAUR
 	end_trainer
 
@@ -4973,38 +4923,9 @@ SECTION "SightseerFGroup", ROMX
 SightseerFGroup:
 
 	def_trainer_class SIGHTSEERF
-	def_trainer ROSIE, "Rosie"
-	tr_mon 50, BULBASAUR
-	end_trainer
 
 	def_trainer KAMILA, "Kamila"
 	tr_mon 50, BULBASAUR
-	end_trainer
-
-	def_trainer NOELLE, "Noelle"
-	tr_mon 50, BULBASAUR
-	end_trainer
-
-	def_trainer PILAR, "Pilar"
-	tr_mon 60, "Antorcha", MAGBY, FEMALE
-	tr_mon 61, "Huesitos", CUBONE, MALE
-	tr_mon 64, "Luna", ESPEON, FEMALE
-	tr_mon 65, "Linterna", LANTURN, FEMALE
-	end_trainer
-
-	def_trainer LENIE, "Lenie"
-	tr_mon LEVEL_FROM_BADGES + 6, ALAKAZAM @ FLAME_ORB, FEMALE
-		tr_extra SYNCHRONIZE, SATK_UP_ATK_DOWN
-		tr_evs 168 SAt
-		tr_moves LIGHT_SCREEN, REFLECT, PSYCHIC_M, SHADOW_BALL
-	tr_mon LEVEL_FROM_BADGES + 6, MACHAMP @ FLAME_ORB, FEMALE
-		tr_extra GUTS, ATK_UP_SATK_DOWN
-		tr_evs 168 Atk
-		tr_moves FACADE, MACH_PUNCH, BULLET_PUNCH, ICE_PUNCH
-	tr_mon LEVEL_FROM_BADGES + 6, JOLTEON @ FLAME_ORB, FEMALE
-		tr_extra QUICK_FEET, SATK_UP_ATK_DOWN
-		tr_evs 168 SAt
-		tr_moves THUNDERBOLT, QUICK_ATTACK, HP_ICE, SHADOW_BALL
 	end_trainer
 
 
@@ -5012,6 +4933,7 @@ SECTION "SightseersGroup", ROMX
 SightseersGroup:
 
 	def_trainer_class SIGHTSEERS
+
 	def_trainer LIANDSU1, "Li & Su"
 	tr_mon 54, MAGMORTAR, MALE
 	tr_mon 54, ELECTIVIRE, FEMALE
@@ -5022,21 +4944,13 @@ SightseersGroup:
 	tr_mon 54, MAGMORTAR, MALE
 	end_trainer
 
-	def_trainer CYANDVI1, "Cy & Vi"
-	tr_mon 64, MR__MIME, MALE
-	tr_mon 64, JYNX, FEMALE
-	end_trainer
-
-	def_trainer CYANDVI2, "Cy & Vi"
-	tr_mon 64, JYNX, FEMALE
-	tr_mon 64, MR__MIME, MALE
-	end_trainer
-
 
 SECTION "CooltrainerMGroup", ROMX
 CooltrainerMGroup:
 
 	def_trainer_class COOLTRAINERM
+
+; Unused Phone Trainer
 	def_trainer GAVEN1, "Gaven"
 	tr_mon 39, VICTREEBEL
 		tr_moves WRAP, TOXIC, ACID, RAZOR_LEAF
@@ -5064,182 +4978,13 @@ CooltrainerMGroup:
 		tr_moves FLAMETHROWER, QUICK_ATTACK, BITE, FIRE_SPIN
 	end_trainer
 
-	def_trainer NICK, "Nick"
-	tr_mon 26, CHARMANDER
-		tr_moves EMBER, SMOKESCREEN, RAGE, SCARY_FACE
-	tr_mon 26, SQUIRTLE
-		tr_moves DEFENSE_CURL, WATER_GUN, BITE, CURSE
-	tr_mon 26, BULBASAUR
-		tr_moves LEECH_SEED, POISONPOWDER, SLEEP_POWDER, RAZOR_LEAF
-	end_trainer
-
-	def_trainer AARON, "Aaron"
-	tr_mon 28, IVYSAUR
-	tr_mon 28, CHARMELEON
-	tr_mon 28, WARTORTLE
-	end_trainer
-
-	def_trainer CODY, "Cody"
-	tr_mon 36, HORSEA
-	tr_mon 37, SEADRA
-	tr_mon 38, YANMA
-	end_trainer
-
-	def_trainer MIKE, "Mike"
-	tr_mon 38, DRAGONAIR
-	end_trainer
-
-	def_trainer RYAN, "Ryan"
-	tr_mon 35, PIDGEOT
-		tr_moves MUD_SLAP, QUICK_ATTACK, ROAR, AERIAL_ACE
-	tr_mon 37, ELECTABUZZ
-		tr_moves THUNDERPUNCH, LIGHT_SCREEN, SWIFT, SCREECH
-	end_trainer
-
-	def_trainer BLAKE, "Blake"
-	tr_mon 38, MAGNETON
-		tr_moves THUNDERBOLT, SUPERSONIC, SWIFT, SCREECH
-	tr_mon 36, QUAGSIRE
-		tr_moves WATER_GUN, HEADBUTT, AMNESIA, EARTHQUAKE
-	tr_mon 36, EXEGGCUTE
-		tr_moves LEECH_SEED, CONFUSION, SLEEP_POWDER, SOLAR_BEAM
-	end_trainer
-
-	def_trainer ANDY, "Andy"
-	tr_mon 10, BULBASAUR
-	tr_mon 10, CHARMANDER
-	tr_mon 10, SQUIRTLE
-	end_trainer
-
-	def_trainer SEAN, "Sean"
-	tr_mon 47, FLAREON
-	tr_mon 47, TANGELA
-	tr_mon 47, TAUROS
-	end_trainer
-
-	def_trainer KEVIN, "Kevin"
-	tr_mon 54, RHYDON
-	tr_mon 56, CHARIZARD
-	tr_mon 56, BLASTOISE
-	end_trainer
-
-	def_trainer ALLEN, "Allen"
-	tr_mon 36, CHARMELEON
-		tr_moves SMOKESCREEN, METAL_CLAW, DRAGON_RAGE, FLAME_CHARGE
-	tr_mon 35, MAGNETON
-		tr_moves THUNDER_WAVE, THUNDERBOLT, TRI_ATTACK, FLASH_CANNON
-	end_trainer
-
-	def_trainer FRENCH, "French"
-	tr_mon 62, HOUNDOOM
-	tr_mon 63, ALAKAZAM
-	end_trainer
-
-	def_trainer HENRI, "Henri"
-	tr_mon LEVEL_FROM_BADGES + 5, CHARMELEON
-	tr_mon LEVEL_FROM_BADGES + 5, WARTORTLE
-	tr_mon LEVEL_FROM_BADGES + 5, IVYSAUR
-	end_trainer
-
-	def_trainer CONNOR, "Connor"
-	tr_mon 63, SCYTHER
-	tr_mon 62, CROCONAW
-	tr_mon 62, WARTORTLE
-	end_trainer
-
-	def_trainer KIERAN, "Kieran"
-	tr_mon 52, HYPNO
-	tr_mon 53, RHYHORN
-	tr_mon 55, PRIMEAPE
-	end_trainer
-
-	def_trainer FINCH, "Finch"
-	tr_mon LEVEL_FROM_BADGES + 4, GEODUDE @ AIR_BALLOON, MALE
-		tr_extra STURDY, DEF_UP_SPE_DOWN
-		tr_dvs 13 All
-		tr_evs 12 HP
-		tr_moves TACKLE, DEFENSE_CURL, MUD_SLAP, ROLLOUT
-	tr_mon LEVEL_FROM_BADGES + 5, MAREEP @ AIR_BALLOON, MALE
-		tr_extra STATIC, SATK_UP_SDEF_DOWN
-		tr_dvs 13 All
-		tr_evs 12 HP
-		tr_moves TACKLE, THUNDER_WAVE, THUNDERSHOCK, MUD_SLAP
-	end_trainer
-
-	def_trainer PETRIE, "Petrie"
-	tr_mon LEVEL_FROM_BADGES + 3, BELLSPROUT @ MIRACLE_SEED, MALE
-		tr_extra CHLOROPHYLL, ATK_UP_SATK_DOWN
-		tr_dvs 14 All
-		tr_evs 20 Atk
-		tr_moves VINE_WHIP, GROWTH, WRAP, SLEEP_POWDER
-	tr_mon LEVEL_FROM_BADGES + 3, ZUBAT @ MIRACLE_SEED, MALE
-		tr_extra INNER_FOCUS, SATK_UP_SDEF_DOWN
-		tr_dvs 14 All
-		tr_evs 20 HP
-		tr_moves GUST, ABSORB, ASTONISH, BITE
-	tr_mon LEVEL_FROM_BADGES + 6, BULBASAUR @ MIRACLE_SEED, MALE
-		tr_extra CHLOROPHYLL, SPE_UP_DEF_DOWN
-		tr_dvs 14 All
-		tr_evs 20 HP
-		tr_moves LEECH_SEED, VINE_WHIP, SLEEP_POWDER, MUD_SLAP
-	end_trainer
-
-	def_trainer COOLTRAINERM_COREY, "Corey"
-	tr_mon 63, PIDGEOT @ QUICK_CLAW
-		tr_evs 252 Atk, 132 Spe
-	tr_mon 62, RHYDON @ ROCKY_HELMET
-		tr_evs 252 HP, 132 Atk
-	tr_mon 62, SCYTHER @ EVIOLITE
-		tr_evs 252 Spe, 132 Atk
-	tr_mon 62, HITMONLEE @ FOCUS_BAND
-		tr_evs 192 Atk, 192 Spe
-	tr_mon 63, SANDSLASH @ KINGS_ROCK
-		tr_evs 132 HP, 252 Atk ; has Gyro Ball, so no Speed.
-	tr_mon 64, "Bruteroot", VENUSAUR @ LEFTOVERS
-		tr_evs 252 HP, 132 SAt
-	end_trainer
-
-	def_trainer COOLTRAINERM_RAYMOND, "Ray" ; MISMATCH
-	tr_mon 63, DONPHAN @ SOFT_SAND
-		tr_evs 192 Atk, 192 Spe
-	tr_mon 62, VENOMOTH @ BLACK_SLUDGE
-		tr_evs 192 SAt, 192 Spe
-	tr_mon 62, GOLEM @ ROCKY_HELMET
-		tr_evs 192 Atk, 192 Spe
-	tr_mon 62, PINSIR @ KINGS_ROCK
-		tr_evs 192 Atk, 192 Spe
-	tr_mon 63, MACHAMP @ FOCUS_BAND
-		tr_evs 132 HP, 252 Atk
-	tr_mon 64, "Firebrand", CHARIZARD @ LEFTOVERS
-		tr_evs 192 Atk, 192 SAt
-	end_trainer
-
-	def_trainer FERGUS, "Fergus"
-	tr_mon 63, GYARADOS @ BRIGHTPOWDER
-		tr_evs 132 SAt, 252 Spe
-	tr_mon 62, GOLDUCK @ TWISTEDSPOON
-		tr_evs 132 HP, 252 SAt
-	tr_mon 62, VAPOREON @ FOCUS_BAND
-		tr_evs 132 HP, 252 SAt
-	tr_mon 62, TENTACRUEL @ BLACK_SLUDGE
-		tr_evs 192 SAt, 192 Spe
-	tr_mon 63, KINGDRA @ QUICK_CLAW
-		tr_evs 192 SAt, 192 Spe
-	tr_mon 64, "Empress", NIDOQUEEN @ LEFTOVERS
-		tr_evs 192 Atk, 192 Spe
-	end_trainer
-
-	def_trainer DARIC, "Daric"
-	tr_mon 54, PORYGON_Z
-	tr_mon 53, SLOWKING
-	tr_mon 55, GLACEON
-	end_trainer
-
 
 SECTION "CooltrainerFGroup", ROMX
 CooltrainerFGroup:
 
 	def_trainer_class COOLTRAINERF
+
+; Unused Phone Trainers
 	def_trainer BETH1, "Beth"
 	tr_mon 40, RAPIDASH
 		tr_moves STOMP, FIRE_SPIN, PLAY_ROUGH, AGILITY
@@ -5290,141 +5035,12 @@ endc
 		tr_moves BLIZZARD, PSYCHIC_M, WATERFALL, RECOVER
 	end_trainer
 
-	def_trainer GWEN, "Gwen"
-	tr_mon 26, EEVEE
-	tr_mon 22, FLAREON
-	tr_mon 22, VAPOREON
-	tr_mon 22, JOLTEON
-	end_trainer
-
-	def_trainer LOIS, "Lois"
-	tr_mon 29, JUMPLUFF
-	tr_mon 29, NINETALES
-	end_trainer
-
-	def_trainer FRAN, "Fran"
-if DEF(FAITHFUL)
-	tr_mon 39, SEADRA
-else
-	tr_mon 39, CHARIZARD
-endc
-	end_trainer
-
-	def_trainer LOLA, "Lola"
-	tr_mon 36, DRATINI
-	tr_mon 38, DRAGONAIR
-	end_trainer
-
-	def_trainer KATE, "Kate"
-	tr_mon 26, SHELLDER
-	tr_mon 28, CLOYSTER
-	end_trainer
-
-	def_trainer IRENE, "Irene"
-	tr_mon 22, GOLDEEN
-	tr_mon 24, SEAKING
-	end_trainer
-
-	def_trainer KELLY, "Kelly"
-	tr_mon 37, MARILL
-	tr_mon 35, WARTORTLE
-	tr_mon 35, CROCONAW
-	end_trainer
-
-	def_trainer JOYCE, "Joyce"
-	tr_mon 37, PIKACHU
-		tr_moves QUICK_ATTACK, DOUBLE_TEAM, THUNDERBOLT, THUNDER
-	tr_mon 38, BLASTOISE
-		tr_moves BITE, CURSE, SURF, RAIN_DANCE
-	end_trainer
-
-	def_trainer MEGAN, "Megan"
-	tr_mon 35, BULBASAUR
-		tr_moves GROWL, LEECH_SEED, POISONPOWDER, RAZOR_LEAF
-	tr_mon 36, IVYSAUR
-		tr_moves GROWL, LEECH_SEED, POISONPOWDER, RAZOR_LEAF
-	tr_mon 37, VENUSAUR
-		tr_moves BODY_SLAM, SLEEP_POWDER, RAZOR_LEAF, GROWTH
-	end_trainer
-
-	def_trainer CAROL, "Carol"
-	tr_mon 47, ELECTRODE
-	tr_mon 47, STARMIE
-	tr_mon 47, NINETALES
-	end_trainer
-
-	def_trainer QUINN, "Quinn"
-	tr_mon 63, VENUSAUR
-	tr_mon 62, STARMIE
-	end_trainer
-
-	def_trainer EMMA, "Emma"
-	tr_mon 28, POLIWHIRL
-	end_trainer
-
-	def_trainer CYBIL, "Cybil"
-	tr_mon 35, BUTTERFREE
-		tr_moves SUPERSONIC, PSYBEAM, HYPNOSIS, HEALINGLIGHT
-	tr_mon 36, BELLOSSOM
-		tr_moves ACID, SLEEP_POWDER, GIGA_DRAIN, HEALINGLIGHT
-	end_trainer
-
-	def_trainer JENN, "Jenn"
-	tr_mon 24, STARYU
-	tr_mon 26, STARMIE
-	end_trainer
-
-	def_trainer SALMA, "Salma"
-	tr_mon 62, SLOWKING
-	tr_mon 65, KANGASKHAN
-	end_trainer
-
-	def_trainer BONITA, "Bonita"
-	tr_mon 62, GIRAFARIG
-	tr_mon 65, SUDOWOODO
-	end_trainer
-
-	def_trainer SERA, "Sera"
-	tr_mon 63, CHARMELEON @ EVIOLITE
-	tr_mon 61, AMPHAROS @ MAGNET
-	tr_mon 61, XATU @ TWISTEDSPOON
-	end_trainer
-
-	def_trainer NEESHA, "Neesha"
-	tr_mon 62, DEWGONG @ FOCUS_BAND
-		tr_evs 192 HP, 192 SDf
-	tr_mon 62, WIGGLYTUFF @ FAIRYFEATHER
-		tr_evs 192 HP, 192 Def
-	tr_mon 62, RAPIDASH @ QUICK_CLAW
-		tr_evs 252 Atk, 132 SAt
-	tr_mon 63, VILEPLUME @ BLACK_SLUDGE
-		tr_evs 132 SAt, 252 Spe
-	tr_mon 63, NINETALES @ CHARCOAL
-		tr_evs 132 SAt, 252 Spe
-	tr_mon 63, "Shellshock", BLASTOISE @ LEFTOVERS
-		tr_evs 132 HP, 252 Spe
-	end_trainer
-
-	def_trainer CHIARA, "Chiara"
-	tr_mon LEVEL_FROM_BADGES + 4, WEEPINBELL @ BINDING_BAND, FEMALE
-		tr_extra CHLOROPHYLL, SPE_UP_DEF_DOWN
-		tr_evs 104 HP
-		tr_moves WRAP, SLEEP_POWDER, POISONPOWDER, STUN_SPORE
-	tr_mon LEVEL_FROM_BADGES + 4, AZUMARILL @ BINDING_BAND, FEMALE
-		tr_extra SAP_SIPPER, SPE_UP_DEF_DOWN
-		tr_evs 104 HP
-		tr_moves WHIRLPOOL, PERISH_SONG, AQUA_TAIL, PROTECT
-	tr_mon LEVEL_FROM_BADGES + 5, CHARMELEON @ BINDING_BAND, FEMALE
-		tr_extra SOLAR_POWER, SPE_UP_DEF_DOWN
-		tr_evs 104 HP
-		tr_moves FIRE_SPIN, DRAGON_RAGE, SMOKESCREEN, PROTECT
-	end_trainer
-
 
 SECTION "AceDuoGroup", ROMX
 AceDuoGroup:
 
 	def_trainer_class ACE_DUO
+
 	def_trainer ELANANDIDA1, "Elan & Ida"
 	tr_mon 65, PORYGON2, MALE
 	tr_mon 65, AZUMARILL, FEMALE
@@ -5435,211 +5051,17 @@ AceDuoGroup:
 	tr_mon 65, PORYGON2, MALE
 	end_trainer
 
-	def_trainer ARAANDBELA1, "Ara & Bela"
-	tr_mon 64, TAUROS, MALE
-	tr_mon 64, GIRAFARIG, FEMALE
-	end_trainer
-
-	def_trainer ARAANDBELA2, "Ara & Bela"
-	tr_mon 64, GIRAFARIG, FEMALE
-	tr_mon 64, TAUROS, MALE
-	end_trainer
-
-	def_trainer THOMANDKAE1, "Thom & Kae"
-	tr_mon LEVEL_FROM_BADGES + 2, MAGMAR, MALE
-	tr_mon LEVEL_FROM_BADGES + 2, ELECTABUZZ, FEMALE
-	end_trainer
-
-	def_trainer THOMANDKAE2, "Thom & Kae"
-	tr_mon LEVEL_FROM_BADGES + 2, ELECTABUZZ, FEMALE
-	tr_mon LEVEL_FROM_BADGES + 2, MAGMAR, MALE
-	end_trainer
-
-	def_trainer ZACANDJEN1, "Zac & Jen"
-	tr_mon 62, DUGTRIO, MALE
-	tr_mon 62, ELECTIVIRE, FEMALE
-	end_trainer
-
-	def_trainer ZACANDJEN2, "Zac & Jen"
-	tr_mon 62, ELECTIVIRE, FEMALE
-	tr_mon 62, DUGTRIO, MALE
-	end_trainer
-
-	def_trainer JAKEANDBRI1, "Jake & Bri"
-	tr_mon 37, SANDSLASH, MALE
-	tr_mon 39, GOLDUCK, MALE
-	tr_mon 37, PARASECT, FEMALE
-	tr_mon 39, VAPOREON, FEMALE
-	end_trainer
-
-	def_trainer JAKEANDBRI2, "Jake & Bri"
-	tr_mon 37, PARASECT, FEMALE
-	tr_mon 39, VAPOREON, FEMALE
-	tr_mon 37, SANDSLASH, MALE
-	tr_mon 39, GOLDUCK, MALE
-	end_trainer
-
-	def_trainer DANANDCARA1, "Dan & Cara"
-	tr_mon 38, SEADRA, MALE
-		tr_moves SMOKESCREEN, WATER_PULSE, OUTRAGE, WATERFALL
-	tr_mon 38, SEADRA, FEMALE
-		tr_moves SMOKESCREEN, WATER_PULSE, OUTRAGE, WHIRLPOOL
-	end_trainer
-
-	def_trainer DANANDCARA2, "Dan & Cara"
-	tr_mon 38, SEADRA, FEMALE
-		tr_moves SMOKESCREEN, WATER_PULSE, OUTRAGE, WHIRLPOOL
-	tr_mon 38, SEADRA, MALE
-		tr_moves SMOKESCREEN, WATER_PULSE, OUTRAGE, WATERFALL
-	end_trainer
-
 
 SECTION "VeteranMGroup", ROMX
 VeteranMGroup:
 
 	def_trainer_class VETERANM
-	def_trainer MATT, "Matthew" ; MISMATCH
-	tr_mon 41, FERALIGATR @ KINGS_ROCK
-		tr_moves SCARY_FACE, METAL_CLAW, CRUNCH, WATERFALL
-	tr_mon 40, AMPHAROS @ MAGNET
-		tr_moves THUNDER_WAVE, CONFUSE_RAY, DRAGON_PULSE, THUNDERBOLT
-	tr_mon 38, URSARING @ LEFTOVERS
-		tr_moves BELLY_DRUM, PLAY_ROUGH, SLASH, STRENGTH
-	tr_mon 38, NOCTOWL @ QUICK_CLAW
-		tr_moves REFLECT, PSYCHIC_M, SHADOW_BALL, AIR_SLASH
-	tr_mon 39, ARCANINE @ CHARCOAL
-		tr_moves FLAME_CHARGE, FLAMETHROWER, DOUBLE_KICK, TAKE_DOWN
-	tr_mon 37, SANDSLASH @ HARD_STONE
-		tr_moves SLASH, EARTHQUAKE, DEFENSE_CURL, ROLLOUT
-	end_trainer
-
-	def_trainer REMY, "Remy"
-	tr_mon 42, BLASTOISE @ MYSTIC_WATER
-if DEF(FAITHFUL)
-		tr_moves SURF, AQUA_TAIL, ICE_BEAM, BODY_SLAM
-else
-		tr_moves SURF, AQUA_TAIL, ICE_BEAM, FLASH_CANNON
-endc
-	tr_mon 41, NINETALES @ CHARCOAL
-		tr_moves FLAMETHROWER, SHADOW_BALL, CONFUSE_RAY, EXTRASENSORY
-	tr_mon 39, VICTREEBEL @ MIRACLE_SEED
-		tr_moves SLUDGE_BOMB, SEED_BOMB, SLEEP_POWDER, SWORDS_DANCE
-	tr_mon 39, RAICHU @ SILK_SCARF
-		tr_moves SURF, THUNDERBOLT, EXTREMESPEED, NASTY_PLOT
-	tr_mon 40, ALAKAZAM @ TWISTEDSPOON
-		tr_moves TRI_ATTACK, PSYBEAM, RECOVER, REFLECT
-	tr_mon 38, SKARMORY @ SHARP_BEAK
-		tr_moves DRILL_PECK, SWIFT, STEEL_WING, ROCK_SMASH
-	end_trainer
-
-	def_trainer BARKHORN, "Barkhorn"
-
-	tr_mon LEVEL_FROM_BADGES + 5, PUPITAR @ ROCKY_HELMET, MALE
-if DEF(FAITHFUL)
-		tr_extra SHED_SKIN, ATK_UP_SATK_DOWN
-else
-		tr_extra BATTLE_ARMOR, ATK_UP_SATK_DOWN
-endc
-		tr_evs 232 HP
-		tr_moves SANDSTORM, ROCK_SLIDE, PURSUIT, OUTRAGE
-	tr_mon LEVEL_FROM_BADGES + 6, FORRETRESS @ ROCKY_HELMET, MALE
-		tr_extra STURDY, ATK_UP_SATK_DOWN
-		tr_evs 232 HP
-		tr_moves SPIKES, EXPLOSION, SANDSTORM, DIG
-	tr_mon LEVEL_FROM_BADGES + 6, SKARMORY @ ROCKY_HELMET, MALE
-		tr_extra STURDY
-		tr_evs 232 HP
-		tr_moves SPIKES, ROAR, TOXIC, PROTECT
-	tr_mon LEVEL_FROM_BADGES + 7, UMBREON @ ROCKY_HELMET, MALE
-		tr_extra SYNCHRONIZE
-		tr_evs 232 HP
-		tr_moves TOXIC, CONFUSE_RAY, FEINT_ATTACK, PROTECT
-	end_trainer
-
-	def_trainer EN, "En"
-	tr_mon 60, DRAGONITE @ MUSCLE_BAND
-		tr_moves DRAGON_CLAW, DRAGON_DANCE, FLY, EARTHQUAKE
-	tr_mon 60, ARTICUNO @ QUICK_CLAW
-		tr_moves ICE_BEAM, BRAVE_BIRD, ROOST, U_TURN
-	tr_mon 60, ZAPDOS @ WISE_GLASSES
-		tr_moves THUNDERBOLT, AIR_SLASH, ROOST, EXTRASENSORY
-	tr_mon 60, MOLTRES @ FOCUS_BAND
-		tr_moves FLAMETHROWER, BRAVE_BIRD, WILL_O_WISP, ANCIENTPOWER
-	tr_mon 60, ARCANINE @ SHELL_BELL
-		tr_moves FLARE_BLITZ, WILD_CHARGE, CLOSE_COMBAT, EXTREMESPEED
-	tr_mon 60, SNORLAX @ LEFTOVERS
-		tr_moves BODY_SLAM, CRUNCH, REST, CURSE
-	end_trainer
 
 
 SECTION "VeteranFGroup", ROMX
 VeteranFGroup:
 
 	def_trainer_class VETERANF
-	def_trainer JOANNE, "Joanne"
-	tr_mon 41, VENUSAUR @ MIRACLE_SEED
-		tr_moves GROWTH, SLUDGE_BOMB, PETAL_DANCE, SLEEP_POWDER
-	tr_mon 38, PIDGEOT @ QUICK_CLAW
-		tr_moves ROOST, FLY, SWIFT, ROAR
-	tr_mon 39, SCYTHER @ EVIOLITE
-		tr_moves SLASH, AERIAL_ACE, SWORDS_DANCE, PURSUIT
-	tr_mon 38, ELECTABUZZ @ MAGNET
-		tr_moves THUNDERBOLT, BULK_UP, KARATE_CHOP, LIGHT_SCREEN
-	tr_mon 40, POLIWRATH @ KINGS_ROCK
-		tr_moves WATERFALL, SURF, STRENGTH, BODY_SLAM
-	tr_mon 37, FLAREON @ CHARCOAL
-		tr_moves SMOKESCREEN, FLAME_CHARGE, QUICK_ATTACK, IRON_TAIL
-	end_trainer
-
-	def_trainer JONET, "Jonet"
-	tr_mon 41, TYPHLOSION @ CHARCOAL
-		tr_moves FLAME_CHARGE, THUNDERPUNCH, DIG, STRENGTH
-	tr_mon 40, ESPEON @ NEVERMELTICE
-		tr_moves PSYCHIC_M, REFLECT, SHADOW_BALL, QUICK_ATTACK
-	tr_mon 39, TOGEKISS @ LEFTOVERS
-		tr_moves FLY, FRESH_SNACK, AURA_SPHERE, EXTREMESPEED
-	tr_mon 39, OCTILLERY @ QUICK_CLAW
-		tr_moves SURF, ICE_BEAM, PSYBEAM, SEED_BOMB
-	tr_mon 37, HERACROSS @ KINGS_ROCK
-		tr_moves ROCK_SMASH, STRENGTH, AERIAL_ACE, DOUBLE_TEAM
-	tr_mon 38, PUPITAR @ EVIOLITE
-		tr_moves EARTHQUAKE, ROCK_SLIDE, SCARY_FACE, DARK_PULSE
-	end_trainer
-
-	def_trainer LITVYAK, "Litvyak"
-
-	tr_mon LEVEL_FROM_BADGES + 11, ALAKAZAM @ CHOICE_SPECS, FEMALE
-		tr_extra TRACE, SATK_UP_ATK_DOWN
-		tr_evs 252 SAt, 44 Spe
-		tr_moves PSYCHIC_M, SHADOW_BALL, FOCUS_BLAST, HP_FIRE
-	tr_mon LEVEL_FROM_BADGES + 11, PORYGON_Z @ CHOICE_SPECS, FEMALE
-		tr_extra ADAPTABILITY, SATK_UP_ATK_DOWN
-		tr_evs 252 SAt, 44 Spe
-		tr_moves TRI_ATTACK, DARK_PULSE, ICE_BEAM, HP_GROUND
-	tr_mon LEVEL_FROM_BADGES + 11, GENGAR @ CHOICE_SPECS, FEMALE
-if DEF(FAITHFUL)
-		tr_extra CURSED_BODY, SATK_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SATK_UP_ATK_DOWN
-endc
-		tr_evs 252 SAt, 44 Spe
-		tr_moves SHADOW_BALL, THUNDERBOLT, FOCUS_BLAST, HP_ICE
-	end_trainer
-
-	def_trainer MADOKA, "Madoka"
-	tr_mon 60, TYRANITAR @ MUSCLE_BAND
-		tr_moves ROCK_SLIDE, CRUNCH, IRON_HEAD, FIRE_PUNCH
-	tr_mon 60, RAIKOU @ LIGHT_CLAY
-		tr_moves THUNDERBOLT, REFLECT, LIGHT_SCREEN, SHADOW_BALL
-	tr_mon 60, ENTEI @ ASSAULT_VEST
-		tr_moves FLAME_CHARGE, EXTREMESPEED, STONE_EDGE, EARTHQUAKE
-	tr_mon 60, SUICUNE @ SHELL_BELL
-		tr_moves ICE_BEAM, SCALD, CALM_MIND, REST
-	tr_mon 60, SKARMORY @ LEFTOVERS
-		tr_moves BRAVE_BIRD, IRON_HEAD, ROOST, SWORDS_DANCE
-	tr_mon 60, KINGDRA @ WISE_GLASSES
-		tr_moves SURF, DRAGON_PULSE, ICE_BEAM, FLAMETHROWER
-	end_trainer
 
 
 SECTION "ProtonGroup", ROMX

@@ -4636,7 +4636,7 @@ EngineerGroup:
 
 	def_trainer_class ENGINEER
 
-; Route 11
+; Route 11 (FRLG)
 	def_trainer BRAXTON, "Braxton"
 	tr_mon 21, VOLTORB
 	end_trainer
@@ -4647,7 +4647,7 @@ EngineerGroup:
 	tr_mon 18, MAGNETON
 	end_trainer
 
-; SS ANNE
+; SS ANNE (FRLG)
 	def_trainer DYLAN, "Dylan"
 	tr_mon 18, MAGNEMITE
 	tr_mon 18, MAGNEMITE
@@ -4694,73 +4694,87 @@ SECTION "BikerGroup", ROMX
 BikerGroup:
 
 	def_trainer_class BIKER
-	def_trainer DWAYNE, "Dwayne"
-	tr_mon 54, KOFFING
-	tr_mon 55, WEEZING
-	tr_mon 56, KOFFING
-	tr_mon 57, WEEZING
+
+; Route 13 (FRLG)
+	def_trainer JARED, "Jared"
+	tr_mon 28, KOFFING
+	tr_mon 28, KOFFING
+	tr_mon 28, KOFFING
 	end_trainer
 
-	def_trainer HARRIS, "Harris"
-	tr_mon 57, FLAREON
+; Route 14 (FRLG/LGPE)
+	def_trainer GERALD, "Gerald"
+	tr_mon 29, MAGMAR				; LGPE team member; replacing Koffing
+	tr_mon 29, GRIMER
 	end_trainer
 
-	def_trainer ZEKE, "Zeke"
-	tr_mon 55, KOFFING
-	tr_mon 56, WEEZING
+	def_trainer MALIK, "Malik"
+	tr_mon 29, KOFFING
+	tr_mon 29, RHYHORN				; LGPE team member; replacing Grimer
 	end_trainer
 
-	def_trainer CHARLES, "Charles"
-	tr_mon 54, KOFFING
-	tr_mon 54, CHARMELEON
-	tr_mon 57, WEEZING
+	def_trainer ISAAC, "Isaac"
+	tr_mon 29, GRIMER
+	tr_mon 29, KOFFING
 	end_trainer
 
-	def_trainer REILLY, "Reilly"
-	tr_mon 59, WEEZING
+	def_trainer LUKAS, "Lukas"
+	tr_mon 28, RATICATE				; LGPE team member (Harvey); replacing two Koffings
+	tr_mon 28, GRIMER
+	tr_mon 28, KOFFING
 	end_trainer
 
-	def_trainer JOEL, "Joel"
-	tr_mon 57, MAGMAR
-	tr_mon 57, MAGMAR
+; Route 15 (FRLG/LGPE)
+	def_trainer ERNEST, "Ernest"
+	tr_mon 29, PRIMEAPE				; LGPE team addition
+	tr_mon 29, KOFFING
+	tr_mon 29, GRIMER
 	end_trainer
 
-	def_trainer GLENN, "Glenn"
-	tr_mon 55, KOFFING
-	tr_mon 57, MAGMAR
-	tr_mon 59, WEEZING
+	def_trainer ALEX, "Alex"
+	tr_mon 29, ARBOK				; LGPE team addition
+	tr_mon 29, KOFFING
+	tr_mon 29, GRIMER
 	end_trainer
 
-	def_trainer DALE, "Dale"
-	tr_mon 57, MUK
-	tr_mon 57, WEEZING
+; Route 16 (FRLG+LGPE)
+	def_trainer LAO, "Lao"
+	tr_mon 29, ONIX					; LGPE team addition
+	tr_mon 29, GRIMER
 	end_trainer
 
-	def_trainer JACOB, "Jacob"
-	tr_mon 54, MAGMAR
-	tr_mon 54, TENTACRUEL
+	def_trainer HIDEO, "Hideo"		; LGPE team
+	tr_mon 29, ARBOK
+	tr_mon 29, FEAROW
 	end_trainer
 
-	def_trainer AIDEN, "Aiden"
-	tr_mon 55, URSARING
-	tr_mon 55, AZUMARILL
+	def_trainer RUBEN, "Ruben"
+	tr_mon 35, WEEZING				; team truncated down
 	end_trainer
 
-	def_trainer DAN, "Dan"
-	tr_mon 57, MUK
-	tr_mon 55, WEEZING
-	tr_mon 55, WEEZING
+; Route 17 (FRLG+LGPE)
+	def_trainer VIRGIL, "Virgil"
+	tr_mon 35, WEEZING				; team truncated down
 	end_trainer
 
-	def_trainer TEDDY, "Teddy"
-	tr_mon 58, ARBOK
+	def_trainer BILLY, "Billy"
+	tr_mon 30, GRIMER				; devolved from Muk, doubled
+	tr_mon 30, GRIMER
 	end_trainer
 
-	def_trainer TYRONE, "Tyrone"
-	tr_mon 22, TYROGUE
-	tr_mon 32, GRIMER
-	tr_mon 42, MUK
-	tr_mon 52, WEEZING
+	def_trainer NIKOLAS, "Nikolas"
+	tr_mon 29, VOLTORB
+	tr_mon 29, VOLTORB
+	end_trainer
+
+	def_trainer JAXON, "Jaxon"
+	tr_mon 29, KOFFING
+	tr_mon 29, GRIMER
+	end_trainer
+
+	def_trainer WILLIAM, "William"	; LGPE (Corey) team
+	tr_mon 28, PRIMEAPE
+	tr_mon 28, GRAVELER
 	end_trainer
 
 
@@ -4768,20 +4782,54 @@ SECTION "RoughneckGroup", ROMX
 RoughneckGroup:
 
 	def_trainer_class ROUGHNECK
-	def_trainer BRIAN, "Brian"
-	tr_mon 55, TENTACRUEL
-	tr_mon 55, WEEZING
-	tr_mon 55, WEEZING
+
+; Route 16 (FRLG+LGPE)
+	def_trainer KOJI, "Koji"
+	tr_mon 27, RATICATE				; LGPE Raticate + 2 evolved team members
+	tr_mon 27, PRIMEAPE
+	tr_mon 27, MACHOKE
 	end_trainer
 
-	def_trainer THERON, "Theron"
-	tr_mon 55, MUK
-	tr_mon 55, POLIWRATH
+	def_trainer LUKE, "Luke"
+	tr_mon 28, PRIMEAPE				; evolved team
+	tr_mon 28, MACHOKE
 	end_trainer
 
-	def_trainer MARKEY, "Markey"
-	tr_mon 57, ARBOK
-	tr_mon 56, HOUNDOOM
+	def_trainer CAMRON, "Camron"
+	tr_mon 29, RHYHORN				; Koji's LGPE team, minus Raticate
+	tr_mon 29, KOFFING
+	end_trainer
+
+; Route 17 (FRLG)
+	def_trainer ISAIAH, "Isaiah"
+	tr_mon 29, ONIX					; changed team member
+	tr_mon 29, MACHOKE				; devolved
+	end_trainer
+
+	def_trainer RAUL, "Raul"
+	tr_mon 29, ONIX					; changed team member
+	tr_mon 29, PRIMEAPE
+	end_trainer
+
+	def_trainer JAMAL, "Jamal"
+	tr_mon 28, MACHOKE
+	tr_mon 28, PRIMEAPE
+	end_trainer
+
+	def_trainer ZEEK, "Zeek"
+	tr_mon 33, MACHOKE
+	end_trainer
+
+	def_trainer COREY, "Corey"		; change this team?
+	tr_mon 28, MACHOKE
+	tr_mon 28, GRAVELER				; LGPE Corey's team member
+	end_trainer
+
+; Route 21 (RBY/LGPE)
+	def_trainer MARTIN, "Martin"
+	tr_mon 32, RATICATE
+	tr_mon 32, ONIX
+	tr_mon 32, TENTACRUEL			; LGPE team member
 	end_trainer
 
 

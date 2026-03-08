@@ -607,38 +607,37 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass GUITARISTM ; 58
 	const CLYDE
-	const VINCENT
-	const ROGER
-	const EZEKIEL
-	const BIFF
-	const GEDDY
 
 	trainerclass GUITARISTF ; 59
-	const JANET
 	const MORGAN
-	const RITSUKO
-	const WANDA
-	const JACLYN
 
-	trainerclass BIKER ; 5a
-	const DWAYNE
-	const HARRIS
-	const ZEKE
-	const CHARLES
-	const REILLY
-	const JOEL
-	const GLENN
-	const DALE
-	const JACOB
-	const AIDEN
-	const DAN
-	const TEDDY
-	const TYRONE
+	trainerclass BIKER ; 5a (FINISHED)
+	const JARED					; Route 13
+	const GERALD				; Route 14
+	const MALIK
+	const ISAAC
+	const LUKAS
+	const ERNEST				; Route 15
+	const ALEX
+	const LAO					; Route 16
+	const HIDEO
+	const RUBEN
+	const VIRGIL				; Route 17
+	const BILLY
+	const NIKOLAS
+	const JAXON
+	const WILLIAM
 
-	trainerclass ROUGHNECK ; 5b
-	const BRIAN
-	const THERON
-	const MARKEY
+	trainerclass ROUGHNECK ; 5b (FINISHED)
+	const KOJI					; Route 16
+	const LUKE
+	const CAMRON
+	const ISAIAH				; Route 17
+	const RAUL
+	const JAMAL
+	const ZEEK
+	const COREY
+	const MARTIN				; Route 21
 
 	trainerclass TAMER ; 5c
 	const BRETT

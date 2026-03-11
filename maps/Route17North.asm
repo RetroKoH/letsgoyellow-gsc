@@ -33,7 +33,7 @@ OfficerfJamieScript:
 	waitbutton
 	closetext
 	winlosstext OfficerfJamieBeatenText, 0
-	loadtrainer OFFICERF, JAMIE
+	loadtrainer OFFICERF, JENNY
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_OFFICERF_JAMIE

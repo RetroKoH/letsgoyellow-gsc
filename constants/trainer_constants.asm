@@ -184,7 +184,7 @@ DEF BETA EQU __trainer_class__
 	const FLINT		; Route 25
 	const RICKY		; Route 6
 	const JOE		; 			(Y)
-	const CHRIS		; Route 9
+	const CAMPER_CHRIS		; Route 9
 	const JUSTIN	; Route 12
 	const TODD1		; Unused Gen 2 Phone Trainer
 	const TODD2
@@ -376,11 +376,11 @@ DEF BETA EQU __trainer_class__
 	const IRIS				; Mt. Moon
 	const MIRIAM
 	const ALI				; Route 24
-	CONST RELI
+	const RELI
 	const HALEY				; Route 25
 	const ANN				; SS Anne
 	const DAWN
-	const HALEY				; Route 8
+	const JULIA				; Route 8
 	const PAIGE
 	const ANDREA
 	const MEGAN
@@ -453,13 +453,13 @@ DEF BETA EQU __trainer_class__
 	const JOHAN
 
 	trainerclass HEX_MANIAC ; 3c (UNUSED; Might use in Lavender Town)
-	const TAMARA
+	const AMANDA			; Saffron Gym
+	const STACY
+	const TASHA
 
 	trainerclass SAGE ; 3d (UNUSED)
-	const CHOW
 
-	trainerclass MEDIUM ; 3e (UNUSED)
-	const MARTHA
+	trainerclass MEDIUM ; 3e (Repurposed as the CHANNELER in Lavender Tower; w/ SPRITE_GRANNY)
 
 	trainerclass KIMONO_GIRL ; 3f (UNUSED: Might use)
 	const NAOKO
@@ -492,7 +492,7 @@ DEF BETA EQU __trainer_class__
 	const TUCKER			; Vermilion Gym
 
 	trainerclass RICH_BOY ; 44 (Unused; Might replace one SS ANNE Youngster with this class)
-	const WINSTON
+	const BOY_WINSTON
 
 	trainerclass LADY ; 45 (Unused; Might use somewhere)
 	const JESSICA
@@ -547,7 +547,7 @@ DEF BETA EQU __trainer_class__
 	const NORA
 	const MELISSA
 
-	trainerclass BURGLAR ; 4c (FINISHED; The Burglars in Cinnabar Gym are now Firebreathers)
+	trainerclass BURGLAR ; 4c (FINISHED; The Burglars in Cinnabar Gym are now Firebreathers, w/ SPRITE_FIREBREATHER)
 	const ARNIE				; Cinnabar Mansion
 	const SIMON
 	const LEWIS
@@ -562,7 +562,7 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass ROCKET_SCIENTIST ; 4f (FINISHED)
 	const JERRY				; Silph Co
-	const CONNOR
+	const ROCKET_CONNOR
 	const JOSE
 	const RODNEY
 	const BEAU
@@ -573,10 +573,8 @@ DEF BETA EQU __trainer_class__
 	const TRAVIS
 
 	trainerclass BOARDER ; 50 (UNUSED)
-	const RONALD
 
 	trainerclass SKIER ; 51 (UNUSED)
-	const ROXANNE
 
 	trainerclass BLACKBELT_T ; 52 (FINISHED)
 	const HIDEKI			; Fighting Dojo
@@ -587,6 +585,7 @@ DEF BETA EQU __trainer_class__
 	const ATSUSHI
 	const TAKASHI
 	const DAISUKE			; Victory Road
+	const KENJI1
 
 	trainerclass BATTLE_GIRL ; 53 (UNUSED)
 	const DIANE
@@ -603,7 +602,7 @@ DEF BETA EQU __trainer_class__
 	const COLETTE
 
 	trainerclass TEACHER_M ; 57 (UNUSED; Might use in Viridian School)
-	const NOLAN
+	const TEACHER_NOLAN
 
 	trainerclass GUITARISTM ; 58
 	const CLYDE
@@ -669,6 +668,7 @@ DEF BETA EQU __trainer_class__
 	const LIANDSU2
 
 	trainerclass COOLTRAINERM ; 65
+	const KEVIN				; Placeholder
 	const GAVEN1			; Unused Phone Trainers
 	const GAVEN2
 	const GAVEN3
@@ -690,19 +690,19 @@ DEF BETA EQU __trainer_class__
 	trainerclass VETERANF ; 69 (UNUSED)
 
 ; Each of these will have post-game battles
-	trainerclass PROTON ; 6a
+	trainerclass ADMIN_PROTON ; 6a
 	const PROTON1
 	const PROTON2
 
-	trainerclass PETREL ; 6b
+	trainerclass ADMIN_PETREL ; 6b
 	const PETREL1
 	const PETREL2
 
-	trainerclass ARCHER ; 6c
+	trainerclass ADMIN_ARCHER ; 6c
 	const ARCHER1
 	const ARCHER2
 
-	trainerclass ARIANA ; 6d
+	trainerclass ADMIN_ARIANA ; 6d
 	const ARIANA1
 	const ARIANA2
 
@@ -753,7 +753,7 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass DARACH ; 82
 
-	trainerclass CAITLIN ; 83
+	trainerclass UNK_CAITLIN ; 83
 
 	trainerclass CANDELA ; 84
 
@@ -765,9 +765,9 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass MAYLENE ; 88
 
-	trainerclass MARLON ; 89
+	trainerclass UNK_MARLON ; 89
 
-	trainerclass VALERIE ; 8a
+	trainerclass UNK_VALERIE ; 8a
 
 	trainerclass KUKUI ; 8b
 

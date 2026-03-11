@@ -21,35 +21,8 @@ SafariZoneHub_MapScriptHeader:
 	bg_event 20, 22, BGEVENT_JUMPTEXT, SafariZoneHubRestHouseSignText
 
 	def_object_events
-	object_event 26,  6, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBug_maniacKai, -1
 	itemball_event 15, 12, NUGGET, 1, EVENT_SAFARI_ZONE_HUB_NUGGET
 	itemball_event  8, 21, ULTRA_BALL, 1, EVENT_SAFARI_ZONE_HUB_ULTRA_BALL
-
-GenericTrainerBug_maniacKai:
-	generictrainer BUG_MANIAC, KAI, EVENT_BEAT_BUG_MANIAC_KAI, Bug_maniacKaiSeenText, Bug_maniacKaiBeatenText
-
-	text "Venonat is so"
-	line "similar to"
-	cont "Butterfree!"
-
-	para "Their weight,"
-	line "their eyes,"
-	cont "their abilities…"
-
-	para "Evolution is"
-	line "weird sometimes."
-	done
-
-Bug_maniacKaiSeenText:
-	text "My Venonat evolved"
-	line "into a Venomoth?!"
-	done
-
-Bug_maniacKaiBeatenText:
-	text "I thought it would"
-	line "for sure evolve"
-	cont "into Butterfree!"
-	done
 
 SafariZoneHubAreaSignText:
 	text "Safari Zone"

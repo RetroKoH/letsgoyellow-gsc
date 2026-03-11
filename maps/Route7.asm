@@ -15,35 +15,9 @@ Route7_MapScriptHeader:
 
 	def_object_events
 	object_event  1,  0, SPRITE_BIG_SNORLAX, SPRITEMOVEDATA_SNORLAX, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, Route7Snorlax, EVENT_ROUTE_7_SNORLAX
-	object_event 15, 11, SPRITE_BREEDER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBreederCarlene, -1
-	itemball_event 16,  1, MENTAL_HERB, 1, EVENT_ROUTE_7_MENTAL_HERB
 
 	object_const_def
 	const ROUTE7_BIG_SNORLAX
-
-GenericTrainerBreederCarlene:
-	generictrainer BREEDER, CARLENE, EVENT_BEAT_BREEDER_CARLENE, .SeenText, .BeatenText
-
-	text "I make my Smeargle"
-	line "Sketch a move,"
-
-	para "then breed it"
-	line "to pass the move"
-	cont "down!"
-
-	para "Isn't that smart?"
-	done
-
-.SeenText:
-	text "My team is bred"
-	line "to handle any"
-	cont "situation!"
-	done
-
-.BeatenText:
-	text "We couldn't"
-	line "handle you!"
-	done
 
 Route7Snorlax:
 	opentext

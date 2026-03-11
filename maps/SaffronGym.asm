@@ -43,15 +43,17 @@ SaffronGym_MapScriptHeader:
 	def_bg_events
 	bg_event  8, 15, BGEVENT_READ, SaffronGymStatue
 
+; CHANNELER = GRANNY
+
 	def_object_events
 	object_event  9,  8, SPRITE_SABRINA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronGymSabrinaScript, -1
-	object_event  2,  3, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerMediumDoris, -1
-	object_event  9,  3, SPRITE_PSYCHIC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicLeon, -1
-	object_event 17,  3, SPRITE_PSYCHIC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicJared, -1
-	object_event  2,  9, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHexManiacLuna, -1
-	object_event 17,  9, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHexManiacNatalie, -1
-	object_event  2, 15, SPRITE_PSYCHIC, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicFranklin, -1
-	object_event 17, 15, SPRITE_GRANNY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerMediumRebecca, -1
+	object_event  2,  3, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicPreston, -1
+	object_event  9,  3, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHexManiacAmanda, -1
+	object_event 17,  3, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicJohan, -1
+	object_event  2,  9, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHexManiacStacy, -1
+	object_event  2, 15, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicTyron, -1
+	object_event 17,  9, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHexManiacTasha, -1
+	object_event 17, 15, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicCameron, -1
 	object_event  9, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuyScript, -1
 
 SaffronGymSabrinaScript:
@@ -96,64 +98,164 @@ SaffronGymSabrinaScript:
 	cont "beloved Champion!"
 	done
 
-GenericTrainerMediumDoris:
-	generictrainer MEDIUM, DORIS, EVENT_BEAT_MEDIUM_DORIS, MediumDorisSeenText, MediumDorisBeatenText
+; Top left corner
+GenericTrainerPsychicPreston:
+	generictrainer PSYCHIC_T, PRESTON, EVENT_BEAT_MEDIUM_DORIS, .SeenText, .BeatenText
 
-	text "Darn! I forgot"
-	line "that I predicted I"
-	cont "would lose to you."
+	text "That's right! I"
+	line "used telepathy to"
+	cont "read your mind!"
 	done
 
-GenericTrainerPsychicLeon:
-	generictrainer PSYCHIC_T, LEON, EVENT_BEAT_PSYCHIC_LEON, PsychicLeonSeenText, PsychicLeonBeatenText
+.SeenText:
+	text "Saffron #mon"
+	line "Gym is famous for"
+	cont "its psychics!"
 
-	text "Sabrina's power is"
-	line "greater than mine!"
+	para "You want to see"
+	line "Sabrina, right?"
+	cont "I can tell!"
 	done
 
-GenericTrainerPsychicJared:
-	generictrainer PSYCHIC_T, JARED, EVENT_BEAT_PSYCHIC_JARED, PsychicJaredSeenText, PsychicJaredBeatenText
-
-	text "Karate King, the"
-	line "master of the"
-
-	para "Fighting Dojo, was"
-	line "just destroyed by"
-	cont "Sabrina."
+.BeatenText:
+	text "Arrrgh!"
 	done
 
-GenericTrainerHexManiacLuna:
-	generictrainer HEX_MANIAC, LUNA, EVENT_BEAT_HEX_MANIAC_LUNA, HexManiacLunaSeenText, HexManiacLunaBeatenText
+; Top center
+GenericTrainerChannelerAmanda:
+	generictrainer HEX_MANIAC, AMANDA, EVENT_BEAT_PSYCHIC_LEON, .SeenText, .BeatenText
 
-	text "Alakazam is a pow-"
-	line "erful #mon,"
+	text "In a battle of"
+	line "equals, the one"
+	cont "with the stronger"
+	cont "will wins!"
 
-	para "so Hex Maniacs use"
-	line "its name for"
-	cont "powerful spells."
+	para "If you wish to"
+	line "defeat Sabrina,"
+	cont "focus on winning!"
 	done
 
-GenericTrainerHexManiacNatalie:
-	generictrainer HEX_MANIAC, NATALIE, EVENT_BEAT_HEX_MANIAC_NATALIE, HexManiacNatalieSeenText, HexManiacNatalieBeatenText
-
-	text "Maybe I'm not cut"
-	line "out to be a Hex"
-	cont "Maniac…"
+.SeenText:
+	text "Sabrina is younger"
+	line "than I, but I"
+	cont "respect her."
 	done
 
-GenericTrainerPsychicFranklin:
-	generictrainer PSYCHIC_T, FRANKLIN, EVENT_BEAT_PSYCHIC_FRANKLIN, PsychicFranklinSeenText, PsychicFranklinBeatenText
-
-	text "You made your soul"
-	line "stronger, not just"
-	cont "your abilities."
+.BeatenText:
+	text "Not good enough!"
 	done
 
-GenericTrainerMediumRebecca:
-	generictrainer MEDIUM, REBECCA, EVENT_BEAT_MEDIUM_REBECCA, MediumRebeccaSeenText, MediumRebeccaBeatenText
+; Top right corner
+GenericTrainerPsychicJohan:
+	generictrainer PSYCHIC_T, JOHAN, EVENT_BEAT_PSYCHIC_JARED, .SeenText, .BeatenText
 
-	text "What is the source"
-	line "of your power?"
+	text "Psychic #mon"
+	line "fear ghosts, bugs"
+	cont "and darkness!"
+
+	text "Nothing else can"
+	line "stand a chance!"
+	done
+
+.SeenText:
+	text "Does our unseen"
+	line "power scare you?"
+	done
+
+.BeatenText:
+	text "I never"
+	line "foresaw this!"
+	done
+
+; Middle left
+GenericTrainerHexManiacStacy:
+	generictrainer HEX_MANIAC, STACY, EVENT_BEAT_MEDIUM_REBECCA, .SeenText, .BeatenText
+
+	text "I must teach"
+	line "better moves to"
+	cont "my #mon!"
+	done
+
+.SeenText:
+	text "#mon take on"
+	line "the appearance of"
+	cont "their trainers."
+	
+	para "Yours must be"
+	line "tough, then!"
+	done
+
+.BeatenText:
+	text "I knew it!"
+	done
+
+; Middle right
+GenericTrainerPsychicTyron:
+	generictrainer PSYCHIC_T, TYRON, EVENT_BEAT_MEDIUM_REBECCA, .SeenText, .BeatenText
+
+	text "Sabrina just wiped"
+	line "out the Karate"
+	cont "Master next door!"
+	done
+
+.SeenText:
+	text "You know that"
+	line "power alone isn't"
+	cont "enough to win?"
+	done
+
+.BeatenText:
+	text "I don't believe"
+	line "this!"
+	done
+
+; Bottom left corner
+GenericTrainerHexManiacTasha:
+	generictrainer HEX_MANIAC, TASHA, EVENT_BEAT_MEDIUM_REBECCA, .SeenText, .BeatenText
+
+	text "I knew that this"
+	line "was going to take"
+	cont "place."
+	done
+
+.SeenText:
+	text "You and I, our"
+	line "#mon shall"
+	cont "battle!"
+	done
+
+.BeatenText:
+	text "I lost after all!"
+	done
+
+; Bottom right corner
+GenericTrainerPsychicCameron:
+	generictrainer PSYCHIC_T, CAMERON, EVENT_BEAT_MEDIUM_REBECCA, .SeenText, .BeatenText
+
+	text "There used to be"
+	line "2 #mon Gyms in"
+	cont "Saffron."
+
+	para "The Fighting Dojo"
+	line "next door lost"
+	cont "its Gym status"
+	cont "when we went and"
+	cont "creamed them!"
+	done
+
+.SeenText:
+	text "Sabrina is young,"
+	line "but she's also"
+	cont "our highly"
+	cont "skilled leader."
+
+	para "You won't reach"
+	line "her easily!"
+	done
+
+.BeatenText:
+	text "Ow!"
+	line "Down and out!"
 	done
 
 SaffronGymGuyScript:
@@ -228,11 +330,7 @@ SabrinaWinLossText:
 
 	para "OK, you win. You"
 	line "earned yourself"
-if DEF(FAITHFUL)
 	cont "the Marsh Badge."
-else
-	cont "the Soul Badge."
-endc
 	done
 
 SabrinaMarshBadgeText:
@@ -262,80 +360,6 @@ SabrinaFightDoneText:
 	para "kind of psychic"
 	line "power…"
 	done
-
-MediumDorisSeenText:
-	text "Fufufufu…"
-	line "I see it clearly."
-
-	para "I can see into"
-	line "your soul!"
-	done
-
-MediumDorisBeatenText:
-	text "Though I read you,"
-	line "I still lost…"
-	done
-
-PsychicLeonSeenText:
-	text "You cannot resist"
-	line "my psychic power!"
-	done
-
-PsychicLeonBeatenText:
-	text "My prediction was"
-	line "inaccurate…"
-	done
-
-PsychicJaredSeenText:
-	text "The Fighting Dojo"
-	line "next door was once"
-	cont "this city's Gym."
-	done
-
-PsychicJaredBeatenText:
-	text "I was no match…"
-	done
-
-HexManiacLunaSeenText:
-	text "Abra, Kadabra,"
-	line "Alakazam!"
-	done
-
-HexManiacLunaBeatenText:
-	text "My curse failed?"
-	done
-
-HexManiacNatalieSeenText:
-	text "Let us do battle!"
-	line "Mwahaha!"
-	done
-
-HexManiacNatalieBeatenText:
-	text "Mwaha--cough!"
-	done
-
-PsychicFranklinSeenText:
-	text "Psychic power is"
-	line "the power of your"
-	cont "soul."
-	done
-
-PsychicFranklinBeatenText:
-	text "Your soul has more"
-	line "power than mine!"
-	done
-
-MediumRebeccaSeenText:
-	text "The power of all"
-	line "those you defeated"
-	cont "comes to me!"
-	done
-
-MediumRebeccaBeatenText:
-	text "Strong…"
-	line "Far too strong…"
-	done
-
 
 SaffronGymGuyWinText:
 	text "That was another"

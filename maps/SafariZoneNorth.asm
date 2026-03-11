@@ -25,34 +25,9 @@ SafariZoneNorth_MapScriptHeader:
 	bg_event 31, 19, BGEVENT_ITEM + LUCKY_PUNCH, EVENT_SAFARI_ZONE_NORTH_HIDDEN_LUCKY_PUNCH
 
 	def_object_events
-	object_event 18, 23, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBattleGirlPadma, -1
-	object_event 36,  9, SPRITE_BEAUTY, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBeautyRachael, -1
 	object_event 15, 14, SPRITE_ACE_TRAINER_F, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, SafariZoneNorthCooltrainerFScript, -1
 	itemball_event 24, 18, EVIOLITE, 1, EVENT_SAFARI_ZONE_NORTH_EVIOLITE
 	itemball_event 21,  9, PROTEIN, 1, EVENT_SAFARI_ZONE_NORTH_PROTEIN
-
-GenericTrainerBattleGirlPadma:
-	generictrainer BATTLE_GIRL, PADMA, EVENT_BEAT_BATTLE_GIRL_PADMA, BattleGirlPadmaSeenText, BattleGirlPadmaBeatenText
-
-	text "If you throw your"
-	line "emotions into"
-
-	para "training, you'll"
-	line "become strong!"
-	done
-
-GenericTrainerBeautyRachael:
-	generictrainer BEAUTY, RACHAEL, EVENT_BEAT_BEAUTY_RACHAEL, BeautyRachaelSeenText, BeautyRachaelBeatenText
-
-	text "I was a Black Belt"
-	line "just one year ago."
-
-	para "The power of med-"
-	line "ical science is"
-
-	para "amazing, wouldn't"
-	line "you say?"
-	done
 
 SafariZoneNorthCooltrainerFScript:
 	faceplayer
@@ -96,29 +71,6 @@ SafariZoneNorthTutorDoubleEdgeScript:
 
 	para "knows how to use"
 	cont "Double-Edge!"
-	done
-
-BattleGirlPadmaSeenText:
-	text "I spar with my"
-	line "#mon to improve"
-	cont "as a team!"
-	done
-
-BattleGirlPadmaBeatenText:
-	text "We'll have to"
-	line "train harder!"
-	done
-
-BeautyRachaelSeenText:
-	text "My sundress is"
-	line "perfect for a day"
-	cont "in the Safari"
-	cont "Zone!"
-	done
-
-BeautyRachaelBeatenText:
-	text "It's not great"
-	line "for battling…"
 	done
 
 SafariZoneNorthCooltrainerFText:

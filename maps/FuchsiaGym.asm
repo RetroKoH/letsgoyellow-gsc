@@ -15,18 +15,18 @@ FuchsiaGym_MapScriptHeader:
 
 	def_object_events
 	object_event  5,  7, SPRITE_JANINE, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, FuchsiaGymJanineScript, -1
-	object_event  1, 10, SPRITE_FUCHSIA_GYM_1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, LassAmandaScript, -1
-	object_event  5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1
-	object_event  9,  4, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
-	object_event  4,  2, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
+;	object_event  1, 10, SPRITE_FUCHSIA_GYM_1, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, LassAmandaScript, -1
+;	object_event  5, 11, SPRITE_FUCHSIA_GYM_2, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, LassLindaScript, -1
+;	object_event  9,  4, SPRITE_FUCHSIA_GYM_3, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, PicnickerCindyScript, -1
+;	object_event  4,  2, SPRITE_FUCHSIA_GYM_4, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, CamperBarryScript, -1
 	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, FuchsiaGymGuyScript, -1
 
 	object_const_def
 	const FUCHSIAGYM_JANINE
-	const FUCHSIAGYM_FUCHSIA_GYM_1
-	const FUCHSIAGYM_FUCHSIA_GYM_2
-	const FUCHSIAGYM_FUCHSIA_GYM_3
-	const FUCHSIAGYM_FUCHSIA_GYM_4
+;	const FUCHSIAGYM_FUCHSIA_GYM_1
+;	const FUCHSIAGYM_FUCHSIA_GYM_2
+;	const FUCHSIAGYM_FUCHSIA_GYM_3
+;	const FUCHSIAGYM_FUCHSIA_GYM_4
 
 FuchsiaGymJanineScript:
 	checkflag ENGINE_MARSHBADGE
@@ -71,105 +71,105 @@ FuchsiaGymJanineScript:
 	cont "victim."
 	done
 
-LassAmandaScript:
-	checkevent EVENT_BEAT_LASS_AMANDA
-	iftruefwd .AmandaUnmasked
-	applymovement FUCHSIAGYM_FUCHSIA_GYM_1, Movement_NinjaSpin
-	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
-	special RefreshSprites
-.AmandaUnmasked:
-	checkevent EVENT_BEAT_LASS_AMANDA
-	iftrue_jumptextfaceplayer LassAmandaAfterText
-	faceplayer
-	showtext LassAmandaBeforeText
-	winlosstext LassAmandaBeatenText, 0
-	loadtrainer LASS, AMANDA
-	startbattle
-	iftruefwd .AmandaBecomesJanine
-	reloadmapafterbattle
-	setevent EVENT_BEAT_LASS_AMANDA
-	end
+; LassAmandaScript:
+	; checkevent EVENT_BEAT_LASS_AMANDA
+	; iftruefwd .AmandaUnmasked
+	; applymovement FUCHSIAGYM_FUCHSIA_GYM_1, Movement_NinjaSpin
+	; faceplayer
+	; variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_LASS
+	; special RefreshSprites
+; .AmandaUnmasked:
+	; checkevent EVENT_BEAT_LASS_AMANDA
+	; iftrue_jumptextfaceplayer LassAmandaAfterText
+	; faceplayer
+	; showtext LassAmandaBeforeText
+	; winlosstext LassAmandaBeatenText, 0
+	; loadtrainer LASS, AMANDA
+	; startbattle
+	; iftruefwd .AmandaBecomesJanine
+	; reloadmapafterbattle
+	; setevent EVENT_BEAT_LASS_AMANDA
+	; end
 
-.AmandaBecomesJanine:
-	variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_JANINE
-	reloadmapafterbattle
-	end
+; .AmandaBecomesJanine:
+	; variablesprite SPRITE_FUCHSIA_GYM_1, SPRITE_JANINE
+	; reloadmapafterbattle
+	; end
 
-LassLindaScript:
-	checkevent EVENT_BEAT_LASS_LINDA
-	iftruefwd .LindaUnmasked
-	applymovement FUCHSIAGYM_FUCHSIA_GYM_2, Movement_NinjaSpin
-	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
-	special RefreshSprites
-.LindaUnmasked:
-	checkevent EVENT_BEAT_LASS_LINDA
-	iftrue_jumptextfaceplayer LassLindaAfterText
-	faceplayer
-	showtext LassLindaBeforeText
-	winlosstext LassLindaBeatenText, 0
-	loadtrainer LASS, LINDA
-	startbattle
-	iftruefwd .LindaBecomesJanine
-	reloadmapafterbattle
-	setevent EVENT_BEAT_LASS_LINDA
-	end
+; LassLindaScript:
+	; checkevent EVENT_BEAT_LASS_LINDA
+	; iftruefwd .LindaUnmasked
+	; applymovement FUCHSIAGYM_FUCHSIA_GYM_2, Movement_NinjaSpin
+	; faceplayer
+	; variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_LASS
+	; special RefreshSprites
+; .LindaUnmasked:
+	; checkevent EVENT_BEAT_LASS_LINDA
+	; iftrue_jumptextfaceplayer LassLindaAfterText
+	; faceplayer
+	; showtext LassLindaBeforeText
+	; winlosstext LassLindaBeatenText, 0
+	; loadtrainer LASS, LINDA
+	; startbattle
+	; iftruefwd .LindaBecomesJanine
+	; reloadmapafterbattle
+	; setevent EVENT_BEAT_LASS_LINDA
+	; end
 
-.LindaBecomesJanine:
-	variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_JANINE
-	reloadmapafterbattle
-	end
+; .LindaBecomesJanine:
+	; variablesprite SPRITE_FUCHSIA_GYM_2, SPRITE_JANINE
+	; reloadmapafterbattle
+	; end
 
-PicnickerCindyScript:
-	checkevent EVENT_BEAT_PICNICKER_CINDY
-	iftruefwd .CindyUnmasked
-	applymovement FUCHSIAGYM_FUCHSIA_GYM_3, Movement_NinjaSpin
-	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_PICNICKER
-	special RefreshSprites
-.CindyUnmasked:
-	checkevent EVENT_BEAT_PICNICKER_CINDY
-	iftrue_jumptextfaceplayer PicnickerCindyAfterText
-	faceplayer
-	showtext PicnickerCindyBeforeText
-	winlosstext PicnickerCindyBeatenText, 0
-	loadtrainer PICNICKER, CINDY
-	startbattle
-	iftruefwd .CindyBecomesJanine
-	reloadmapafterbattle
-	setevent EVENT_BEAT_PICNICKER_CINDY
-	end
+; PicnickerCindyScript:
+	; checkevent EVENT_BEAT_PICNICKER_CINDY
+	; iftruefwd .CindyUnmasked
+	; applymovement FUCHSIAGYM_FUCHSIA_GYM_3, Movement_NinjaSpin
+	; faceplayer
+	; variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_PICNICKER
+	; special RefreshSprites
+; .CindyUnmasked:
+	; checkevent EVENT_BEAT_PICNICKER_CINDY
+	; iftrue_jumptextfaceplayer PicnickerCindyAfterText
+	; faceplayer
+	; showtext PicnickerCindyBeforeText
+	; winlosstext PicnickerCindyBeatenText, 0
+	; loadtrainer PICNICKER, CINDY
+	; startbattle
+	; iftruefwd .CindyBecomesJanine
+	; reloadmapafterbattle
+	; setevent EVENT_BEAT_PICNICKER_CINDY
+	; end
 
-.CindyBecomesJanine:
-	variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
-	reloadmapafterbattle
-	end
+; .CindyBecomesJanine:
+	; variablesprite SPRITE_FUCHSIA_GYM_3, SPRITE_JANINE
+	; reloadmapafterbattle
+	; end
 
-CamperBarryScript:
-	checkevent EVENT_BEAT_CAMPER_BARRY
-	iftruefwd .BarryUnmasked
-	applymovement FUCHSIAGYM_FUCHSIA_GYM_4, Movement_NinjaSpin
-	faceplayer
-	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_SCHOOLBOY
-	special RefreshSprites
-.BarryUnmasked:
-	checkevent EVENT_BEAT_CAMPER_BARRY
-	iftrue_jumptextfaceplayer CamperBarryAfterText
-	faceplayer
-	showtext CamperBarryBeforeText
-	winlosstext CamperBarryBeatenText, 0
-	loadtrainer CAMPER, BARRY
-	startbattle
-	iftruefwd .BarryBecomesJanine
-	reloadmapafterbattle
-	setevent EVENT_BEAT_CAMPER_BARRY
-	end
+; CamperBarryScript:
+	; checkevent EVENT_BEAT_CAMPER_BARRY
+	; iftruefwd .BarryUnmasked
+	; applymovement FUCHSIAGYM_FUCHSIA_GYM_4, Movement_NinjaSpin
+	; faceplayer
+	; variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_SCHOOLBOY
+	; special RefreshSprites
+; .BarryUnmasked:
+	; checkevent EVENT_BEAT_CAMPER_BARRY
+	; iftrue_jumptextfaceplayer CamperBarryAfterText
+	; faceplayer
+	; showtext CamperBarryBeforeText
+	; winlosstext CamperBarryBeatenText, 0
+	; loadtrainer CAMPER, BARRY
+	; startbattle
+	; iftruefwd .BarryBecomesJanine
+	; reloadmapafterbattle
+	; setevent EVENT_BEAT_CAMPER_BARRY
+	; end
 
-.BarryBecomesJanine:
-	variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
-	reloadmapafterbattle
-	end
+; .BarryBecomesJanine:
+	; variablesprite SPRITE_FUCHSIA_GYM_4, SPRITE_JANINE
+	; reloadmapafterbattle
+	; end
 
 FuchsiaGymGuyScript:
 	checkevent EVENT_BEAT_JANINE

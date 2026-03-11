@@ -13,25 +13,6 @@ Route12North_MapScriptHeader:
 	bg_event 13, 13, BGEVENT_JUMPTEXT, FishingSpotSignText
 
 	def_object_events
-	object_event  6, 11, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerFisherKyle, -1
-
-GenericTrainerFisherKyle:
-	generictrainer FISHER, KYLE, EVENT_BEAT_FISHER_KYLE, FisherKyleSeenText, FisherKyleBeatenText
-
-	text "The tug you feel"
-	line "on the Rod when"
-
-	para "you hook a #-"
-	line "mon…"
-	done
-
-FisherKyleSeenText:
-	text "Do you remember?"
-	done
-
-FisherKyleBeatenText:
-	text "You do remember?"
-	done
 
 FishingSpotSignText:
 	text "Fishing Spot"

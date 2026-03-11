@@ -10,8 +10,6 @@ Route28_MapScriptHeader:
 	def_coord_events
 
 	def_bg_events
-	bg_event 31,  5, BGEVENT_JUMPTEXT, Route28SignText
-	bg_event 25,  3, BGEVENT_ITEM + RARE_CANDY, EVENT_ROUTE_28_HIDDEN_RARE_CANDY
 
 	def_object_events
 

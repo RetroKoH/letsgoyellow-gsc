@@ -111,4 +111,4 @@ TrainerEncounterMusic:
 	db MUSIC_ROCKET_ENCOUNTER ; petrel
 	db MUSIC_ROCKET_ENCOUNTER ; archer
 	db MUSIC_ROCKET_ENCOUNTER ; ariana
-	assert_table_length ARIANA + 1
+	assert_table_length ADMIN_ARIANA + 1

@@ -6,7 +6,7 @@ GetFinalPkmnTextPointer::
 	jr c, .rival_or_lyra
 	; Proton to Giovanni have a phrase for each ID
 	ld a, [wOtherTrainerClass]
-	cp PROTON
+	cp ADMIN_PROTON
 	jr c, .not_rocket
 	cp GIOVANNI + 1
 	jr c, .rocket
@@ -33,8 +33,8 @@ GetFinalPkmnTextPointer::
 	jr .get_text
 
 .rocket:
-	; a = ([wOtherTrainerClass] - PROTON) * 2 + [wOtherTrainerID] - 1
-	sub PROTON
+	; a = ([wOtherTrainerClass] - ADMIN_PROTON) * 2 + [wOtherTrainerID] - 1
+	sub ADMIN_PROTON
 	add a
 	ld b, a
 	ld a, [wOtherTrainerID]

@@ -31,16 +31,16 @@ FinalTextList_TriplePhrases:
 FinalText_TeamRocket:
 	dw Proton1FinalPkmnText
 	dw Proton2FinalPkmnText
-	assert PROTON + 1 == PETREL
+	assert ADMIN_PROTON + 1 == ADMIN_PETREL
 	dw Petrel1FinalPkmnText
 	dw Petrel2FinalPkmnText
-	assert PETREL + 1 == ARCHER
+	assert ADMIN_PETREL + 1 == ADMIN_ARCHER
 	dw Archer1FinalPkmnText
 	dw Archer2FinalPkmnText
-	assert ARCHER + 1 == ARIANA
+	assert ADMIN_ARCHER + 1 == ADMIN_ARIANA
 	dw Ariana1FinalPkmnText
 	dw Ariana2FinalPkmnText
-	assert ARIANA + 1 == GIOVANNI
+	assert ADMIN_ARIANA + 1 == GIOVANNI
 	dw Giovanni1FinalPkmnText
 	dw Giovanni2FinalPkmnText
 

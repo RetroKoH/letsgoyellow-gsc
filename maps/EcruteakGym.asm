@@ -67,8 +67,6 @@ EcruteakGym_MapScriptHeader:
 	object_event  5,  1, SPRITE_MORTY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, EcruteakGymMortyScript, -1
 	object_event  2,  9, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerSageJeffrey, -1
 	object_event  3, 17, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerSagePing, -1
-	object_event  7,  5, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerMediumMartha, -1
-	object_event  7, 13, SPRITE_GRANNY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerMediumGrace, -1
 	object_event  7, 19, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, EcruteakGymGuyScript, -1
 
 	object_const_def
@@ -147,26 +145,6 @@ GenericTrainerSagePing:
 	para "No Normal-type"
 	line "attack can harm"
 	cont "them!"
-	done
-
-GenericTrainerMediumMartha:
-	generictrainer MEDIUM, MARTHA, EVENT_BEAT_MEDIUM_MARTHA, MediumMarthaSeenText, MediumMarthaBeatenText
-
-	text "The one who wants"
-	line "to win most--will!"
-	done
-
-GenericTrainerMediumGrace:
-	generictrainer MEDIUM, GRACE, EVENT_BEAT_MEDIUM_GRACE, MediumGraceSeenText, MediumGraceBeatenText
-
-	text "Fine. I shall tell"
-	line "you the secret of"
-
-	para "the invisible"
-	line "floor."
-
-	para "The path is right"
-	line "before our eyes!"
 	done
 
 EcruteakGymGuyScript:
@@ -313,27 +291,6 @@ SagePingSeenText:
 SagePingBeatenText:
 	text "Ah! Well done!"
 	done
-
-MediumMarthaSeenText:
-	text "I shall win!"
-	done
-
-MediumMarthaBeatenText:
-	text "I, I, I lost!"
-	done
-
-MediumGraceSeenText:
-	text "Stumped by our in-"
-	line "visible floor?"
-
-	para "Defeat me if you"
-	line "want a hint!"
-	done
-
-MediumGraceBeatenText:
-	text "Wha-what?"
-	done
-
 
 EcruteakGymGuyWinText:
 	text "Whew, <PLAYER>."

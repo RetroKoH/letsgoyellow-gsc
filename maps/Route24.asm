@@ -29,11 +29,15 @@ Route24_MapScriptHeader:
 	coord_event 25, 23, SCENE_ROUTE24_BRIDGE_OVERHEAD, Route24BridgeOverheadTrigger
 
 	def_bg_events
-	bg_event 15, 19, BGEVENT_ITEM + MAX_POTION, EVENT_ROUTE_24_HIDDEN_MAX_POTION
 	bg_event 23, 11, BGEVENT_JUMPTEXT, Route24AdvancedTipsSignText
 
 	def_object_events
-	object_event 21, 25, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerGruntM31, EVENT_ROUTE_24_ROCKET
+	object_event 21, 16, SPRITE_PETREL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_TRAINER, 1, TrainerPetrel, EVENT_ROUTE_24_ROCKET
+	object_event 21, 19, SPRITE_CAMPER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerCamperEthan, -1
+	object_event 20, 22, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerLassAli, -1
+	object_event 21, 25, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerYoungsterTimmy, -1
+	object_event 20, 28, SPRITE_LASS, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerLassAli, -1
+	object_event 21, 31, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBugCatcherCale, -1
 	fruittree_event 16,  5, FRUITTREE_ROUTE_24, LANSAT_BERRY, PAL_NPC_PINK
 
 	object_const_def
@@ -94,16 +98,101 @@ Route24_FinishBridge:
 	ld [wRoute24SceneID], a ; setscene a
 	jmp GenericFinishBridge
 
-TrainerGruntM31:
-	trainer GRUNTM, 31, EVENT_BEAT_ROCKET_GRUNTM_31, Route24RocketSeenText, Route24RocketBeatenText, 0, Route24RocketScript
+GenericTrainerCamperEthan:
+	generictrainer CAMPER, ETHAN, EVENT_BEAT_CAMPER_LLOYD, .SeenText, .BeatenText
 
-Route24RocketScript:
+	text "I did my best."
+	line "I have no regrets."
+	done
+
+.SeenText:
+	text "OK! I'm No. 5!"
+	line "I'll stomp you!"
+	done
+
+.BeatenText:
+	text "Whoa! Too much!"
+	done
+
+GenericTrainerLassReli:
+	generictrainer LASS, RELI, EVENT_BEAT_LASS_ELLEN, .SeenText, .BeatenText
+
+	text "I did my best."
+	line "I have no regrets."
+	done
+
+.SeenText:
+	text "I'm No. 4!"
+	line "Getting tired?"
+	done
+
+.BeatenText:
+	text "I lost too…"
+	done
+
+GenericTrainerYoungsterTimmy:
+	generictrainer YOUNGSTER, TIMMY, EVENT_BEAT_SCHOOLBOY_JOE, .SeenText, .BeatenText
+
+	text "I did my best."
+	line "I have no regrets."
+	done
+
+.SeenText:
+	text "Here's No. 3!"
+	line "I won't be easy."
+	done
+
+.BeatenText:
+	text "Ow! Stomped flat!"
+	done
+
+GenericTrainerLassAli:
+	generictrainer LASS, ALI, EVENT_BEAT_LASS_ELLEN, .SeenText, .BeatenText
+
+	text "I did my best."
+	line "I have no regrets."
+	done
+
+.SeenText:
+	text "I'm second!"
+	line "Now it's serious!"
+	done
+
+.BeatenText:
+	text "How could I lose?"
+	done
+
+GenericTrainerBugCatcherCale:
+	generictrainer BUG_CATCHER, CALE, EVENT_BEAT_SCHOOLBOY_DUDLEY, .SeenText, .BeatenText
+
+	text "I did my best."
+	line "I have no regrets."
+	done
+
+.SeenText:
+	text "This is Nugget"
+	line "Bridge! Beat us 5"
+	cont "trainers and win"
+	cont "a fabulous prise!"
+
+	para "Think you've got"
+	line "what it takes?"
+	done
+
+.BeatenText:
+	text "Whoo! Good stuff!"
+	done
+
+TrainerPetrel:
+	trainer ADMIN_PETREL, 1, EVENT_BEAT_ROCKET_GRUNTM_31, .SeenText, .BeatenText, 0, .Script
+
+.Script:
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	opentext
-	writetext Route24RocketAfterBattleText
+	writetext .AfterBattleText
 	promptbutton
 	special Special_FadeOutMusic
-	writetext Route24RocketDisappearsText
+	writetext .DisappearsText
 	waitbutton
 	closetext
 	special Special_FadeBlackQuickly
@@ -117,36 +206,42 @@ Route24RocketScript:
 	playmusic MUSIC_NUGGET_BRIDGE_HGSS
 	end
 
-Route24RocketSeenText:
-	text "Hey, kid! Me am a"
-	line "Team Rocket member"
-	cont "kind of guy!"
+.SeenText:
+	text "Congratulations!"
+	line "You beat our 5"
+	cont "contest trainers!"
 
-	para "Come from another"
-	line "country, a trainer"
-	cont "number one, me!"
+	para "You just earned a"
+	line "fabulous prize!"
 
-	para "Think I did, if"
-	line "stop the energy,"
+; Gives a NUGGET
 
-	para "be big panic for"
-	line "here people!"
+	para "By the way, would"
+	line "you like to join"
+	cont "Team Rocket?"
 
-	para "Secret it is my"
-	line "mission, so tell"
-	cont "you I not!"
+	para "We're a group"
+	line "dedicated to evil"
+	cont "using #mon!"
 
-	para "But! If win you do"
-	line "versus me, a man I"
+	para "Want to join?"
 
-	para "be and mine secret"
-	line "to you I tell."
+	para "Are you sure?"
 
-	para "Hey, kid! Battle"
-	line "begin we do!"
+	para "Come on, join us!"
+
+	para "I'm telling you"
+	line "to join!"
+
+	para "Ok, you need"
+	line "convincing!"
+
+	para "I'll make you an"
+	line "offer you can't"
+	cont "refuse!"
 	done
 
-Route24RocketBeatenText:
+.BeatenText:
 	text "Ayieeeh! No, no,"
 	line "no, believe it I"
 	cont "can't!"
@@ -156,7 +251,7 @@ Route24RocketBeatenText:
 	cont "not to you!"
 	done
 
-Route24RocketAfterBattleText:
+.AfterBattleText:
 	text "OK. Tell you mine"
 	line "secret will I."
 
@@ -185,7 +280,7 @@ Route24RocketAfterBattleText:
 	line "revenge they are."
 	done
 
-Route24RocketDisappearsText:
+.DisappearsText:
 	text "…"
 
 	para "You say what? Team"

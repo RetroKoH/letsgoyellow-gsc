@@ -12,62 +12,10 @@ SeafoamGym_MapScriptHeader:
 
 	def_object_events
 	object_event 10, 20, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SeafoamGymGuyScript, EVENT_SEAFOAM_GYM_GYM_GUY
-	object_event  7, 16, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerScientistLowell, -1
-	object_event 14, 14, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerScientistDennett, -1
-	object_event 19, 12, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerSupernerdCary, -1
-	object_event 12,  7, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerScientistLinden, -1
-	object_event 10,  5, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerSupernerdWaldo, -1
-	object_event  6, 14, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerSupernerdMerle, -1
 	object_event 12, 11, SPRITE_BLAINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, SeafoamGymBlaineScript, -1
 
 	object_const_def
 	const SEAFOAMGYM_GYM_GUY
-
-GenericTrainerScientistLowell:
-	generictrainer SCIENTIST, LOWELL, EVENT_BEAT_SCIENTIST_LOWELL, ScientistLowellSeenText, ScientistLowellBeatenText
-
-	text "We may be in a"
-	line "cave, but we"
-	cont "always do the"
-	cont "laundry."
-	done
-
-GenericTrainerScientistDennett:
-	generictrainer SCIENTIST, DENNETT, EVENT_BEAT_SCIENTIST_DENNETT, ScientistDennettSeenText, ScientistDennettBeatenText
-
-	text "Together with"
-	line "Blaine, we will"
-	cont "rebuild our Gym!"
-	done
-
-GenericTrainerSupernerdCary:
-	generictrainer SUPER_NERD, CARY, EVENT_BEAT_SUPER_NERD_CARY, SupernerdCarySeenText, SupernerdCaryBeatenText
-
-	text "Bitterness leads"
-	line "to improvement."
-	done
-
-GenericTrainerScientistLinden:
-	generictrainer SCIENTIST, LINDEN, EVENT_BEAT_SCIENTIST_LINDEN, ScientistLindenSeenText, ScientistLindenBeatenText
-
-	text "Not all scientists"
-	line "help the bad guys."
-	done
-
-GenericTrainerSupernerdWaldo:
-	generictrainer SUPER_NERD, WALDO, EVENT_BEAT_SUPER_NERD_WALDO, SupernerdWaldoSeenText, SupernerdWaldoBeatenText
-
-	text "Who in the world"
-	line "are you?"
-	done
-
-GenericTrainerSupernerdMerle:
-	generictrainer SUPER_NERD, MERLE, EVENT_BEAT_SUPER_NERD_MERLE, SupernerdMerleSeenText, SupernerdMerleBeatenText
-
-	text "I failed to"
-	line "sense how strong"
-	cont "you are."
-	done
 
 SeafoamGymBlaineScript:
 	faceplayer
@@ -145,76 +93,6 @@ SeafoamGymGuyScript:
 
 	para "without my advice."
 	line "I knew you'd win!"
-	done
-
-ScientistLowellSeenText:
-	text "This lab coat"
-	line "makes me feel"
-	cont "smarter for some"
-	cont "reason."
-	done
-
-ScientistLowellBeatenText:
-	text "A white lab coat"
-	line "is a researcher's"
-	cont "life."
-	done
-
-ScientistDennettSeenText:
-	text "Blaine may have"
-	line "lost his Gym, but"
-	cont "he never gives up!"
-	done
-
-ScientistDennettBeatenText:
-	text "Blaine's persever-"
-	line "ance motivates me!"
-	done
-
-SupernerdCarySeenText:
-	text "Wow, a Gym in a"
-	line "cave like this?"
-
-	para "I'd love to"
-	line "explore it."
-	done
-
-SupernerdCaryBeatenText:
-	text "A bitter"
-	line "defeat…"
-	done
-
-ScientistLindenSeenText:
-	text "We lost the Gym on"
-	line "Cinnabar Island,"
-	cont "but we came here."
-	done
-
-ScientistLindenBeatenText:
-	text "We accept defeat"
-	line "gracefully…"
-	done
-
-SupernerdWaldoSeenText:
-	text "I am collecting"
-	line "battle records."
-
-	para "Can you help me?"
-	done
-
-SupernerdWaldoBeatenText:
-	text "I didn't expect"
-	line "you to be so good!"
-	done
-
-SupernerdMerleSeenText:
-	text "Ooh!"
-	line "You look easily"
-	cont "defeated!"
-	done
-
-SupernerdMerleBeatenText:
-	text "Pardon me!"
 	done
 
 BlaineIntroText:

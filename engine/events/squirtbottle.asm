@@ -6,13 +6,13 @@ _Squirtbottle:
 	ret
 
 .SquirtbottleScript:
-	refreshmap
-	special UpdateTimePals
-	callasm .CheckCanUseSquirtbottle
-	iffalsefwd .NothingHappenedScript
-	farsjump WateredWeirdTreeScript
+;	refreshmap
+;	special UpdateTimePals
+;	callasm .CheckCanUseSquirtbottle
+;	iffalsefwd .NothingHappenedScript
+;	farsjump WateredWeirdTreeScript
 
-.NothingHappenedScript:
+;.NothingHappenedScript:
 	farjumptext _SquirtbottleNothingText
 
 .CheckCanUseSquirtbottle:

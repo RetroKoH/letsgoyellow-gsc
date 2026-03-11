@@ -2406,7 +2406,7 @@ CamperGroup:
 	end_trainer
 
 ; Route 9 (FRLG; Only 1; The other is a Youngster from Yellow)
-	def_trainer CHRIS, "Chris"
+	def_trainer CAMPER_CHRIS, "Chris"
 	tr_mon 21, GROWLITHE
 	tr_mon 21, CHARMANDER
 	end_trainer
@@ -2455,6 +2455,8 @@ CamperGroup:
 
 SECTION "PicnickerGroup", ROMX
 PicnickerGroup:
+
+	def_trainer_class PICNICKER
 
 ; Cerulean Gym (FRLG; Modified lineup)
 	def_trainer DIANA, "Diana"
@@ -2589,7 +2591,6 @@ PicnickerGroup:
 	end_trainer
 
 ; Unused Phone Trainers
-	def_trainer_class PICNICKER
 	def_trainer LIZ1, "Liz"
 	tr_mon 10, NIDORAN_F
 	end_trainer
@@ -2746,23 +2747,23 @@ FisherGroup:
 	tr_mon 22, GOLDEEN
 	end_trainer
 
-	const CHIP, "Chip"
+	def_trainer CHIP, "Chip"
 	tr_mon 24, TENTACOOL
 	tr_mon 24, GOLDEEN
 	end_trainer
 
-	const HANK, "Hank"
+	def_trainer HANK, "Hank"
 	tr_mon 27, GOLDEEN
 	end_trainer
 
-	const ELLIOT, "Elliot"
+	def_trainer ELLIOT, "Elliot"
 	tr_mon 21, POLIWAG
 	tr_mon 21, SHELLDER
 	tr_mon 21, GOLDEEN
 	tr_mon 21, HORSEA
 	end_trainer
 
-	const ANDREW, "Andrew"
+	def_trainer ANDREW, "Andrew"
 	tr_mon 24, MAGIKARP
 	tr_mon 24, GYARADOS				; minor lineup change
 	end_trainer
@@ -2959,7 +2960,6 @@ BirdKeeperGroup:
 	end_trainer
 
 ; Unused Phone Trainers
-	def_trainer_class BIRD_KEEPER
 	def_trainer VANCE1, "Vance"
 	tr_mon 36, PIDGEOTTO
 	tr_mon 36, PIDGEOTTO
@@ -3145,132 +3145,126 @@ GruntMGroup:
 	tr_mon 12, EKANS
 	end_trainer
 
-; Route 24 (FRLG)
-	def_trainer 3, "Grunt"
-	tr_mon 15, KOFFING			; LGPE addition, replacing Ekans
-	tr_mon 15, ZUBAT
-	end_trainer
-
 ; Cerulean City (FRLG)
-	def_trainer 4, "Grunt"
+	def_trainer 3, "Grunt"
 	tr_mon 17, MACHOP
 	tr_mon 17, DROWZEE
 	end_trainer
 
 ; Celadon Game Corner (FRLG)
-	def_trainer 5, "Grunt"
+	def_trainer 4, "Grunt"
 	tr_mon 20, RATICATE
 	tr_mon 20, ZUBAT
 	end_trainer
 
 ; Celadon Rocket Hideout: B1F (FRLG)
-	def_trainer 6, "Grunt"
+	def_trainer 5, "Grunt"
 	tr_mon 21, DROWZEE
 	tr_mon 21, MACHOP
 	end_trainer
 
-	def_trainer 7, "Grunt"
+	def_trainer 6, "Grunt"
 	tr_mon 24, RATICATE
 	end_trainer
 
-	def_trainer 8, "Grunt"
+	def_trainer 7, "Grunt"
 	tr_mon 22, RATICATE
 	tr_mon 22, RATICATE
 	end_trainer
 
-	def_trainer 9, "Grunt"		; Requires Lift Key
+	def_trainer 8, "Grunt"		; Requires Lift Key
 	tr_mon 22, GRIMER
 	tr_mon 22, KOFFING
 	end_trainer
 
 ; Celadon Rocket Hideout: B2F (FRLG)
-	def_trainer 10, "Grunt"		; Abridged team
+	def_trainer 9, "Grunt"		; Abridged team
 	tr_mon 21, KOFFING
 	tr_mon 21, GRIMER
 	tr_mon 21, RATICATE
 	end_trainer
 
 ; Celadon Rocket Hideout: B3F (FRLG)
-	def_trainer 11, "Grunt"
+	def_trainer 10, "Grunt"
 	tr_mon 22, DROWZEE
 	tr_mon 22, RATICATE
 	end_trainer
 
 ; Celadon Rocket Hideout: B4F (FRLG)
-	def_trainer 12, "Grunt"
+	def_trainer 11, "Grunt"
 	tr_mon 22, KOFFING
 	tr_mon 22, GOLBAT			; Evolved this Zubat
 	end_trainer
 ; Following 2 grunts are replaced with Jesse/James and Archer, per LGPE
 
 ; Pokemon Tower: 7F (FRLG)
-	def_trainer 13, "Grunt"
+	def_trainer 12, "Grunt"
 	tr_mon 26, GASTLY
 	tr_mon 26, GOLBAT
 	end_trainer
 ; The last grunt is replaced with Jesse/James, per LGPE
 
 ; Silph: 2F (FRLG)
-	def_trainer 14, "Grunt"
+	def_trainer 13, "Grunt"
 	tr_mon 28, GOLBAT
 	tr_mon 28, RATICATE
 	end_trainer
 
-	def_trainer 15, "Grunt"
+	def_trainer 14, "Grunt"
 	tr_mon 28, MAROWAK
 	tr_mon 28, GOLBAT
 	end_trainer
 
 ; Silph: 4F (FRLG)
-	def_trainer 16, "Grunt"
+	def_trainer 15, "Grunt"
 	tr_mon 29, ARBOK
 	tr_mon 29, GOLBAT
 	end_trainer
 
-	def_trainer 17, "Grunt"
+	def_trainer 16, "Grunt"
 	tr_mon 29, MACHOP
 	tr_mon 29, DROWZEE
 	end_trainer
 
 ; Silph: 5F (FRLG)
-	def_trainer 18, "Grunt"
+	def_trainer 17, "Grunt"
 	tr_mon 33, HYPNO
 	end_trainer
 
 ; Silph: 6F (FRLG/LGPE)
-	def_trainer 19, "Grunt"
+	def_trainer 18, "Grunt"
 	tr_mon 29, RATICATE
 	tr_mon 29, GOLBAT
 	end_trainer
 
 ; Silph: 7F (FRLG)
-	def_trainer 20, "Grunt"
+	def_trainer 19, "Grunt"
 	tr_mon 34, MAROWAK
 	end_trainer
 
-	def_trainer 21, "Grunt"
+	def_trainer 20, "Grunt"
 	tr_mon 34, SANDSLASH
 	end_trainer
 
 ; Silph: 8F (LGPE)
-	def_trainer 22, "Grunt"
+	def_trainer 21, "Grunt"
 	tr_mon 31, HAUNTER
 	tr_mon 31, PERSIAN
 	end_trainer
 
 ; Silph: 9F (LGPE)
-	def_trainer 23, "Grunt"
+	def_trainer 22, "Grunt"
 	tr_mon 33, KOFFING
 	end_trainer
 
 ; Silph: 10F (LGPE)
-	def_trainer 24, "Grunt"
+	def_trainer 23, "Grunt"
 	tr_mon 31, VOLTORB
 	tr_mon 31, RATICATE
 	end_trainer
 
 ; Silph: 11F (LGPE)
-	def_trainer 25, "Grunt"
+	def_trainer 24, "Grunt"
 	tr_mon 31, HYPNO
 	tr_mon 31, GOLBAT
 	end_trainer
@@ -3636,7 +3630,7 @@ LassGroup:
 	end_trainer
 
 ; Route 8 (FRLG)
-	def_trainer HALEY, "Haley"
+	def_trainer JULIA, "Julia"
 	tr_mon 22, CLEFAIRY
 	tr_mon 22, CLEFAIRY
 	end_trainer
@@ -4019,8 +4013,19 @@ HexManiacGroup:
 
 	def_trainer_class HEX_MANIAC
 
-	def_trainer TAMARA, "Tamara"
-	tr_mon 16, GASTLY
+; Saffron Gym
+	def_trainer AMANDA, "Amanda"
+	tr_mon 34, KADABRA
+	tr_mon 34, HAUNTER
+	end_trainer
+
+	def_trainer STACY, "Stacy"
+	tr_mon 38, HAUNTER
+	end_trainer
+
+	def_trainer TASHA, "Tasha"
+	tr_mon 34, GASTLY
+	tr_mon 34, HAUNTER
 	end_trainer
 
 
@@ -4029,22 +4034,11 @@ SageGroup:
 
 	def_trainer_class SAGE
 
-	def_trainer CHOW, "Chow"
-	tr_mon 3, BELLSPROUT
-	tr_mon 3, BELLSPROUT
-	tr_mon 3, BELLSPROUT
-	end_trainer
-
 
 SECTION "MediumGroup", ROMX
 MediumGroup:
 
 	def_trainer_class MEDIUM
-
-	def_trainer MARTHA, "Martha"
-	tr_mon 18, GASTLY
-	tr_mon 20, HAUNTER
-	end_trainer
 
 
 SECTION "KimonoGirlGroup", ROMX
@@ -4174,7 +4168,7 @@ RichBoyGroup:
 
 	def_trainer_class RICH_BOY
 
-	def_trainer WINSTON, "Winston"
+	def_trainer BOY_WINSTON, "Winston"
 	tr_mon 46, PIDGEOT
 	end_trainer
 
@@ -4234,6 +4228,8 @@ CowgirlGroup:
 SECTION "SailorGroup", ROMX
 SailorGroup:
 
+	def_trainer_class SAILOR
+
 ; SS Anne (FRLG/LGPE)
 	def_trainer TREVOR, "Trevor"
 	tr_mon 17, MACHOP
@@ -4270,7 +4266,7 @@ SailorGroup:
 	tr_mon 21, MAGNEMITE		; Yellow team member; replaced Pikachu
 	end_trainer
 
-	def_trainer_class SAILOR
+; Unused Phone Trainers
 	def_trainer HUEY1, "Huey"
 	tr_mon 18, POLIWAG
 	tr_mon 20, POLIWHIRL
@@ -4494,7 +4490,7 @@ RocketScientistGroup:
 	tr_mon 29, VOLTORB
 	end_trainer
 
-	def_trainer CONNOR, "Connor"
+	def_trainer ROCKET_CONNOR, "Connor"
 	tr_mon 28, GRIMER
 	tr_mon 28, KOFFING
 	tr_mon 28, PORYGON				; custom; replaces evolved mons
@@ -4543,19 +4539,12 @@ SECTION "BoarderGroup", ROMX
 BoarderGroup:
 
 	def_trainer_class BOARDER
-	def_trainer RONALD, "Ronald"
-	tr_mon 33, SEEL
-	tr_mon 35, DEWGONG
-	end_trainer
 
 
 SECTION "SkierGroup", ROMX
 SkierGroup:
 
 	def_trainer_class SKIER
-	def_trainer ROXANNE, "Roxanne"
-	tr_mon 36, JYNX
-	end_trainer
 
 
 SECTION "BlackbeltGroup", ROMX
@@ -4605,6 +4594,11 @@ BlackbeltGroup:
 	def_trainer DAISUKE, "Daisuke"
 	tr_mon 43, HITMONLEE
 	tr_mon 43, POLIWRATH
+	end_trainer
+
+; Unused Phone Trainer
+	def_trainer KENJI1, "Kenji"
+	tr_mon 43, MACHOKE
 	end_trainer
 
 
@@ -4666,7 +4660,7 @@ SECTION "TeacherMGroup", ROMX
 TeacherMGroup:
 
 	def_trainer_class TEACHER_M
-	def_trainer NOLAN, "Nolan"
+	def_trainer TEACHER_NOLAN, "Nolan"
 	tr_mon 54, ELECTRODE
 	end_trainer
 
@@ -4950,6 +4944,11 @@ CooltrainerMGroup:
 
 	def_trainer_class COOLTRAINERM
 
+; Placeholder
+	def_trainer KEVIN, "Kevin"
+	tr_mon 20, RATICATE
+	end_trainer
+
 ; Unused Phone Trainer
 	def_trainer GAVEN1, "Gaven"
 	tr_mon 39, VICTREEBEL
@@ -5067,7 +5066,7 @@ VeteranFGroup:
 SECTION "ProtonGroup", ROMX
 ProtonGroup:
 
-	def_trainer_class PROTON
+	def_trainer_class ADMIN_PROTON
 
 ; Mt. Moon (NEW) -- Boss battle; Maybe replace one Grunt?
 	def_trainer 1, "Proton"
@@ -5079,19 +5078,20 @@ ProtonGroup:
 SECTION "PetrelGroup", ROMX
 PetrelGroup:
 
-	def_trainer_class PETREL
+	def_trainer_class ADMIN_PETREL
 
-; Nugget Bridge (NEW) -- Replace the generic grunt
+; Route 24: Nugget Bridge (NEW) -- Replace the generic grunt
 	def_trainer 1, "Petrel"
-	tr_mon 17, MACHOP
-	tr_mon 17, DROWZEE
+	tr_mon 15, EKANS		; from FRLG trainer; Better than a Rattata for Petrel.
+	tr_mon 15, ZUBAT
+	tr_mon 15, KOFFING		; LGPE team member
 	end_trainer
 
 
 SECTION "ArcherGroup", ROMX
 ArcherGroup:
 
-	def_trainer_class ARCHER
+	def_trainer_class ADMIN_ARCHER
 
 ; Celadon Rocket Hideout (LGPE) -- Leveled-down slightly
 	def_trainer 1, "Archer"
@@ -5103,7 +5103,7 @@ ArcherGroup:
 SECTION "ArianaGroup", ROMX
 ArianaGroup:
 
-	def_trainer_class ARIANA
+	def_trainer_class ADMIN_ARIANA
 
 ; Safari Zone Entrance (NEW) -- Might add Grunts? Not sure.
 	def_trainer 1, "Ariana"
@@ -5370,7 +5370,7 @@ JessieJamesGroup:
 	end_trainer
 
 ; Silph Co (Y) - Levels bumped up by one
-	def_trainer 4, "& James"
+	def_trainer 5, "& James"
 	tr_mon 32, ARBOK, MALE
 	tr_mon 32, WEEZING, MALE
 	tr_mon 32, MEOWTH, MALE
@@ -5379,7 +5379,7 @@ JessieJamesGroup:
 ; Add two or three more battles as preludes to the legendary birds
 
 ; Route 17 (LGPE) - POSTGAME EXCLUSIVE; Levels bumped up by three
-	def_trainer 4, "& James"
+	def_trainer 6, "& James"
 	tr_mon 55, ARBOK, MALE
 	tr_mon 55, WEEZING, MALE
 	tr_mon 55, MEOWTH, MALE
@@ -6081,7 +6081,7 @@ endc
 SECTION "CaitlinGroup", ROMX
 CaitlinGroup:
 
-	def_trainer_class CAITLIN
+	def_trainer_class UNK_CAITLIN
 	def_trainer 1, "Caitlin"
 	tr_mon 58, ESPEON
 	tr_mon 56, XATU
@@ -6355,7 +6355,7 @@ endc
 SECTION "MarlonGroup", ROMX
 MarlonGroup:
 
-	def_trainer_class MARLON
+	def_trainer_class UNK_MARLON
 	def_trainer 1, "Marlon"
 	tr_mon 27, QUAGSIRE, MALE
 		tr_extra WATER_ABSORB
@@ -6437,7 +6437,7 @@ MarlonGroup:
 SECTION "ValerieGroup", ROMX
 ValerieGroup:
 
-	def_trainer_class VALERIE
+	def_trainer_class UNK_VALERIE
 	def_trainer 1, "Valerie"
 	tr_mon 37, CLEFABLE, FEMALE
 		tr_extra CUTE_CHARM

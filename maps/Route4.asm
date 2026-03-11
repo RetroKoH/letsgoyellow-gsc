@@ -12,60 +12,14 @@ Route4_MapScriptHeader:
 	def_bg_events
 	bg_event  7,  9, BGEVENT_JUMPTEXT, MtMoonSignText
 	bg_event 17,  9, BGEVENT_JUMPTEXT, CableCarSignText
-	bg_event 15,  4, BGEVENT_ITEM + ULTRA_BALL, EVENT_ROUTE_4_HIDDEN_ULTRA_BALL
 
 	def_object_events
-	object_event 38, 13, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerLassJennifer, -1
-	object_event 28,  6, SPRITE_BIRD_KEEPER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBird_keeperHank, -1
-	object_event 12, 10, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerPicnickerHope, -1
-	object_event 35,  8, SPRITE_PICNICKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerPicnickerSharon, -1
 	object_event 26, 13, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route4SuperNerd1Script, -1
 	object_event 29, 13, SPRITE_POKEMANIAC, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, Route4SuperNerd2Script, -1
 	object_event 19,  7, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, Route4EngineerScript, EVENT_MT_MOON_RIVAL
 	object_event 17,  5, SPRITE_ENGINEER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
 	itemball_event 42,  5, HP_UP, 1, EVENT_ROUTE_4_HP_UP
 	object_event 68,  6, SPRITE_ACE_TRAINER_M, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_BEAT_BLUE
-
-GenericTrainerLassJennifer:
-	generictrainer LASS, JENNIFER, EVENT_BEAT_LASS_JENNIFER, LassJenniferSeenText, LassJenniferBeatenText
-
-	text "#mon are so"
-	line "much fun."
-	cont "Don't you agree?"
-	done
-
-GenericTrainerBird_keeperHank:
-	generictrainer BIRD_KEEPER, HANK, EVENT_BEAT_BIRD_KEEPER_HANK, Bird_keeperHankSeenText, Bird_keeperHankBeatenText
-
-	text "If you have a"
-	line "specific #mon"
-
-	para "that you want to"
-	line "raise, put it out"
-
-	para "first, then switch"
-	line "it right away."
-
-	para "That's how to do"
-	line "it."
-	done
-
-GenericTrainerPicnickerHope:
-	generictrainer PICNICKER, HOPE, EVENT_BEAT_PICNICKER_HOPE, PicnickerHopeSeenText, PicnickerHopeBeatenText
-
-	text "I heard Clefairy"
-	line "appear at Mt.Moon."
-
-	para "But where could"
-	line "they be?"
-	done
-
-GenericTrainerPicnickerSharon:
-	generictrainer PICNICKER, SHARON, EVENT_BEAT_PICNICKER_SHARON, PicnickerSharonSeenText, PicnickerSharonBeatenText
-
-	text "……I'll go train"
-	line "some more…"
-	done
 
 Route4SuperNerd1Script:
 	faceplayer
@@ -151,51 +105,6 @@ Route4EngineerScript:
 	turnobject LAST_TALKED, UP
 	end
 
-LassJenniferSeenText:
-	text "I battle every"
-	line "chance I get,"
-
-	para "just to spend time"
-	line "with my #mon."
-	done
-
-LassJenniferBeatenText:
-	text "Wheeee!"
-	done
-
-Bird_keeperHankSeenText:
-	text "I'm raising my"
-	line "#mon. Want to"
-	cont "battle with me?"
-	done
-
-Bird_keeperHankBeatenText:
-	text "Ack! I lost that"
-	line "one…"
-	done
-
-PicnickerHopeSeenText:
-	text "I have a feeling"
-	line "that I can win."
-
-	para "Let's see if I'm"
-	line "right!"
-	done
-
-PicnickerHopeBeatenText:
-	text "Aww, you are too"
-	line "strong."
-	done
-
-PicnickerSharonSeenText: ; text > text
-	text "Um…"
-	line "I…"
-	done
-
-PicnickerSharonBeatenText: ; text > text
-	text "…"
-	done
-
 Route4SuperNerd1Text:
 	text "#mon with tough"
 	line "heads are best!"
@@ -248,10 +157,6 @@ Text_Route4Tutor2Question:
 	line "your #mon"
 	cont "Aqua Tail?"
 	done
-
-
-
-
 
 Route4EngineerText1:
 	text "Get those bolts"

@@ -3,9 +3,9 @@ RocketTrainerClasses:
 	db GRUNTF
 	db ROCKET_SCIENTIST
 	db JESSIE_JAMES
-	db PROTON
-	db PETREL
-	db ARCHER
-	db ARIANA
+	db ADMIN_PROTON
+	db ADMIN_PETREL
+	db ADMIN_ARCHER
+	db ADMIN_ARIANA
 	db GIOVANNI
 	db -1

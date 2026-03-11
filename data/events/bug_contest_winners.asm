@@ -1,16 +1,16 @@
 BugContestantPointers:
 	table_width 2
-	dw BugContestant_BugCatcherDon ; This reverts back to the player
-	dw BugContestant_BugCatcherDon
-	dw BugContestant_BugCatcherEd
-	dw BugContestant_CooltrainerMNick
-	dw BugContestant_PokefanMWilliam
-	dw BugContestant_BugCatcherBenny
-	dw BugContestant_CamperBarry
-	dw BugContestant_PicnickerCindy
-	dw BugContestant_BugCatcherJosh
-	dw BugContestant_SchoolboyJohnny
-	dw BugContestant_SchoolboyKipp
+	dw BugContestant_BugCatcherDoug ; This reverts back to the player
+	dw BugContestant_BugCatcherDoug
+	dw BugContestant_BugCatcherSammy
+	dw BugContestant_BugCatcherGreg
+	dw BugContestant_BugCatcherCale
+	dw BugContestant_BugCatcherElijah
+	dw BugContestant_CamperLiam
+	dw BugContestant_PicnickerDiana
+	dw BugContestant_CamperEthan
+	dw BugContestant_PicnickerNancy
+	dw BugContestant_PokemaniacAshton
 	assert_table_length NUM_BUG_CONTESTANTS + 1
 
 MACRO contest_winner
@@ -19,62 +19,62 @@ MACRO contest_winner
 	dw \2
 ENDM
 
-BugContestant_BugCatcherDon:
-	db BUG_CATCHER, DON
+BugContestant_BugCatcherDoug:
+	db BUG_CATCHER, DOUG
 	contest_winner KAKUNA,     300
 	contest_winner METAPOD,    285
 	contest_winner CATERPIE,   226
 
-BugContestant_BugCatcherEd:
-	db BUG_CATCHER, ED
+BugContestant_BugCatcherSammy:
+	db BUG_CATCHER, SAMMY
 	contest_winner YANMA,      286
 	contest_winner BUTTERFREE, 251
 	contest_winner CATERPIE,   237
 
-BugContestant_CooltrainerMNick:
-	db COOLTRAINERM, NICK
+BugContestant_BugCatcherGreg:
+	db BUG_CATCHER, GREG
 	contest_winner SCYTHER,    357
 	contest_winner BUTTERFREE, 349
 	contest_winner PINSIR,     368
 
-BugContestant_PokefanMWilliam:
-	db POKEFANM, WILLIAM
+BugContestant_BugCatcherCale:
+	db BUG_CATCHER, CALE
 	contest_winner VENOMOTH,   332
 	contest_winner BUTTERFREE, 324
 	contest_winner VENONAT,    321
 
-BugContestant_BugCatcherBenny:
-	db BUG_CATCHER, BENNY
+BugContestant_BugCatcherElijah:
+	db BUG_CATCHER, ELIJAH
 	contest_winner BUTTERFREE, 318
 	contest_winner WEEDLE,     295
 	contest_winner CATERPIE,   285
 
-BugContestant_CamperBarry:
-	db CAMPER, BARRY
+BugContestant_CamperLiam:
+	db CAMPER, LIAM
 	contest_winner PINSIR,     366
 	contest_winner VENONAT,    329
 	contest_winner KAKUNA,     314
 
-BugContestant_PicnickerCindy:
-	db PICNICKER, CINDY
+BugContestant_PicnickerDiana:
+	db PICNICKER, DIANA
 	contest_winner BUTTERFREE, 341
 	contest_winner METAPOD,    301
 	contest_winner CATERPIE,   264
 
-BugContestant_BugCatcherJosh:
-	db BUG_CATCHER, JOSH
+BugContestant_CamperEthan:
+	db CAMPER, ETHAN
 	contest_winner SCYTHER,    326
 	contest_winner BUTTERFREE, 292
 	contest_winner METAPOD,    282
 
-BugContestant_SchoolboyJohnny:
-	db SCHOOLBOY, JOHNNY
+BugContestant_PicnickerNancy:
+	db PICNICKER, NANCY
 	contest_winner WEEDLE,     270
 	contest_winner PINSIR,     282
 	contest_winner CATERPIE,   251
 
-BugContestant_SchoolboyKipp:
-	db SCHOOLBOY, KIPP
+BugContestant_PokemaniacAshton:
+	db POKEMANIAC, ASHTON
 	contest_winner VENONAT,    267
 	contest_winner PARAS,      254
 	contest_winner KAKUNA,     259

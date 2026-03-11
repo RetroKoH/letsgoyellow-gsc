@@ -13,10 +13,8 @@ Route18West_MapScriptHeader:
 	coord_event 12,  0, SCENE_ROUTE18WEST_BICYCLE_CHECK, Route18WestBikeCheckScript
 
 	def_bg_events
-	bg_event -1,  5, BGEVENT_JUMPTEXT, UragaChannelSignText
 
 	def_object_events
-	object_event  6,  2, SPRITE_BIKER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBikerCharles, -1
 
 Route18WestAlwaysOnBike:
 	setflag ENGINE_ALWAYS_ON_BIKE
@@ -30,23 +28,7 @@ Route18WestBikeCheckScript:
 .done
 	end
 
-GenericTrainerBikerCharles:
-	generictrainer BIKER, CHARLES, EVENT_BEAT_BIKER_CHARLES, BikerCharlesSeenText, BikerCharlesBeatenText
-
-	text "Reckless driving"
-	line "causes accidents!"
-	cont "Take it easy!"
-	done
-
-BikerCharlesSeenText:
-	text "We're fearless"
-	line "highway stars!"
-	done
-
-BikerCharlesBeatenText:
-	text "Arrrgh! Crash and"
-	line "burn!"
-	done
+; Add trainers here
 
 Route18WestBikeWarningText:
 	text "You have to be on"

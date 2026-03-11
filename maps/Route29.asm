@@ -4,7 +4,6 @@ Route29_MapScriptHeader:
 	scene_const SCENE_ROUTE29_CATCH_TUTORIAL
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, Route29Tuscany
 
 	def_warp_events
 	warp_event 27,  1, ROUTE_29_46_GATE, 3
@@ -20,33 +19,14 @@ Route29_MapScriptHeader:
 
 	def_object_events
 	object_event 50, 12, SPRITE_LYRA, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_LYRA_ROUTE_29
-	object_event 29, 12, SPRITE_POKEFAN_F, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, PAL_NPC_PURPLE, OBJECTTYPE_SCRIPT, 0, TuscanyScript, EVENT_ROUTE_29_TUSCANY_OF_TUESDAY
-	object_event 27, 16, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_WALK_UP_DOWN, 1, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route29YoungsterText, -1
-	object_event 15, 11, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 0, 1, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route29TeacherText, -1
 	cuttree_event 30,  9, EVENT_ROUTE_29_CUT_TREE_1
 	cuttree_event 21, 11, EVENT_ROUTE_29_CUT_TREE_2
 	fruittree_event 12,  2, FRUITTREE_ROUTE_29, ORAN_BERRY, PAL_NPC_BLUE
-	object_event 25,  3, SPRITE_FAT_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_COMMAND, jumptextfaceplayer, Route29FisherText, -1
-	object_event 13,  4, SPRITE_COOL_DUDE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, Route29CooltrainerMScript, -1
-	itemball_event 48,  2, POTION, 1, EVENT_ROUTE_29_POTION
 
 	object_const_def
 	const ROUTE29_LYRA
-	const ROUTE29_TUSCANY
 
-Route29Tuscany:
-	checkevent EVENT_TALKED_TO_MOM_AFTER_MYSTERY_EGG_QUEST
-	iffalsefwd .TuscanyDisappears
-	readvar VAR_WEEKDAY
-	ifequalfwd TUESDAY, .TuscanyAppears
-.TuscanyDisappears:
-	disappear ROUTE29_TUSCANY
-	endcallback
-
-.TuscanyAppears
-	appear ROUTE29_TUSCANY
-	endcallback
-
+; KoH - use this to reimplement the catch tutorial in Viridian City
 Route29Tutorial1:
 	turnobject ROUTE29_LYRA, UP
 	showemote EMOTE_SHOCK, ROUTE29_LYRA, 15
@@ -79,6 +59,7 @@ Route29Tutorial2:
 	closetext
 	follow ROUTE29_LYRA, PLAYER
 	applymovement ROUTE29_LYRA, LyraMovementData2b
+
 Route29TutorialScript:
 	stopfollow
 	loadwildmon PIDGEY, 5
@@ -88,6 +69,7 @@ Route29TutorialScript:
 	turnobject ROUTE29_LYRA, UP
 	opentext
 	writetext CatchingTutorialDebriefText
+
 Route29FinishTutorial:
 	promptbutton
 	verbosegiveitem POKE_BALL, 5
@@ -105,58 +87,6 @@ Route29RefusedTutorial:
 	setevent EVENT_NEVER_LEARNED_TO_CATCH_POKEMON
 	writetext CatchingTutorialRefusedText
 	sjump Route29FinishTutorial
-
-Route29CooltrainerMScript:
-	checktime (1 << EVE) | (1 << NITE)
-	iftrue_jumptextfaceplayer Text_WaitingForMorning
-	jumpthistextfaceplayer
-
-	text "I'm waiting for"
-	line "#mon that"
-
-	para "appear only in"
-	line "the evening or"
-	cont "at night."
-	done
-
-TuscanyScript:
-	checkevent EVENT_GOT_SILK_SCARF_FROM_TUSCANY
-	iftrue_jumptextfaceplayer TuscanyTuesdayText
-	faceplayer
-	opentext
-	readvar VAR_WEEKDAY
-	ifnotequal TUESDAY, TuscanyNotTuesdayScript
-	checkevent EVENT_MET_TUSCANY_OF_TUESDAY
-	iftruefwd .MetTuscany
-	writetext MeetTuscanyText
-	promptbutton
-	setevent EVENT_MET_TUSCANY_OF_TUESDAY
-.MetTuscany:
-	writetext TuscanyGivesGiftText
-	promptbutton
-	verbosegiveitem SILK_SCARF
-	iffalse_endtext
-	setevent EVENT_GOT_SILK_SCARF_FROM_TUSCANY
-	jumpthisopenedtext
-
-	text "Tuscany: Wouldn't"
-	line "you agree that it"
-	cont "is most elegant?"
-
-	para "It strengthens"
-	line "Normal-type moves."
-
-	para "I am certain it"
-	line "will be of use."
-	done
-
-TuscanyNotTuesdayScript:
-	jumpthisopenedtext
-
-	text "Tuscany: Today is"
-	line "not Tuesday. That"
-	cont "is unfortunate…"
-	done
 
 LyraMovementData1a:
 	step_up
@@ -229,82 +159,6 @@ CatchingTutorialRefusedText:
 CatchingTutorialGoodbyeText:
 	text "Lyra: See you!"
 	done
-
-Route29YoungsterText:
-	text "Yo. How are your"
-	line "#mon?"
-
-	para "If they're weak"
-	line "and not ready for"
-
-	para "battle, keep out"
-	line "of the grass."
-	done
-
-Route29TeacherText:
-	text "See those ledges?"
-	line "It's scary to jump"
-	cont "off them."
-
-	para "But you can go to"
-	line "New Bark without"
-
-	para "walking through"
-	line "the grass."
-	done
-
-Route29FisherText:
-	text "I wanted to take a"
-	line "break, so I saved"
-
-	para "to record my"
-	line "progress."
-	done
-
-
-Text_WaitingForMorning:
-	text "I'm waiting for"
-	line "#mon that"
-
-	para "appear only in the"
-	line "morning."
-	done
-
-MeetTuscanyText:
-	text "Tuscany: I do be-"
-	line "lieve that this is"
-
-	para "the first time"
-	line "we've met?"
-
-	para "Please allow me to"
-	line "introduce myself."
-
-	para "I am Tuscany of"
-	line "Tuesday."
-	done
-
-TuscanyGivesGiftText:
-	text "By way of intro-"
-	line "duction, please"
-
-	para "accept this gift,"
-	line "a Silk Scarf."
-	done
-
-
-TuscanyTuesdayText:
-	text "Tuscany: Have you"
-	line "met Monica, my"
-	cont "older sister?"
-
-	para "Or my younger"
-	line "brother, Wesley?"
-
-	para "I am the second of"
-	line "seven children."
-	done
-
 
 Route29Sign1Text:
 	text "Route 29"

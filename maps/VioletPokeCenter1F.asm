@@ -16,10 +16,6 @@ VioletPokeCenter1F_MapScriptHeader:
 	def_object_events
 	object_event 10,  2, SPRITE_SCIENTIST, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, VioletPokeCenter1FElmsAideScript, EVENT_ELMS_AIDE_IN_VIOLET_POKEMON_CENTER
 	pc_nurse_event  5, 1
-	object_event  9,  4, SPRITE_GAMEBOY_KID, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_GREEN, OBJECTTYPE_COMMAND, jumptextfaceplayer, VioletPokeCenter1FGameboyKidText, -1
-	object_event  2,  3	, SPRITE_GENTLEMAN, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, VioletPokeCenter1FGentlemanText, -1
-	object_event  0,  5, SPRITE_SAGE, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, VioletPokeCenter1FSageText, -1
-	object_event 11,  5, SPRITE_SCHOOLBOY, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_COMMAND, jumptextfaceplayer, VioletPokeCenter1FYoungsterText, -1
 
 	object_const_def
 	const VIOLETPOKECENTER1F_SCIENTIST
@@ -58,7 +54,6 @@ VioletPokeCenter1FElmsAideScript:
 	setevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
 	clearevent EVENT_ELMS_AIDE_IN_LAB
 	clearevent EVENT_TOGEPI_HATCHED
-	setmapscene ROUTE_32, SCENE_ROUTE32_LYRA_GROTTOES
 	writetext .GoodbyeText
 	waitbutton
 	closetext
@@ -162,50 +157,3 @@ VioletPokeCenter1FElmsAideScript:
 	step_down
 	step_down
 	step_end
-
-VioletPokeCenter1FGameboyKidText:
-	text "A guy named Bill"
-	line "made the #mon"
-	cont "PC storage system."
-	done
-
-VioletPokeCenter1FGentlemanText:
-	text "It was around"
-	line "three years ago."
-
-	para "Team Rocket was up"
-	line "to no good with"
-	cont "#mon."
-
-	para "But justice pre-"
-	line "vailed--a young"
-	cont "kid broke 'em up."
-	done
-
-VioletPokeCenter1FSageText:
-	text "Some Bellsprout"
-	line "are found with"
-	cont "Gold Leaves."
-
-	para "And some Oddish"
-	line "are found with"
-	cont "Silver Leaves."
-
-	para "These are valued"
-	line "by a certain type"
-	cont "of person."
-	done
-
-VioletPokeCenter1FYoungsterText:
-	text "#mon are smart."
-	line "They won't obey a"
-
-	para "trainer they don't"
-	line "respect."
-
-	para "Without the right"
-	line "Gym Badges, they"
-
-	para "will just do as"
-	line "they please."
-	done

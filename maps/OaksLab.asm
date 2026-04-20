@@ -1,10 +1,11 @@
 OaksLab_MapScriptHeader:
 	def_scene_scripts				; KoH - Added RBY scripts
-	scene_script OaksLabTrigger0
-	scene_script OaksLabTrigger1
-	scene_script OaksLabTrigger2
-	scene_script OaksLabTrigger3
-	scene_script OaksLabTrigger4
+	scene_script OaksLabTrigger0	; Before first Oak encounter
+	scene_script OaksLabTrigger1	; Enter Lab with Oak (Cutscene)
+	scene_script OaksLabTrigger2	; Choosing a starter (activates first two coord_events)
+	scene_script OaksLabTrigger3	; Oak gives Pokedex (Cutscene)
+	scene_script OaksLabTrigger4	; After receiving the Dex (activates battle trigger coord_events)
+	scene_script OaksLabTrigger5
 
 	def_callbacks
 
@@ -15,8 +16,8 @@ OaksLab_MapScriptHeader:
 	def_coord_events				; KoH - Added RBY coordinate events
 	coord_event 4, 6, 2, OaksLabTryToLeaveScript	; left side
 	coord_event 5, 6, 2, OaksLabTryToLeaveScript		; right side
-	coord_event 4, 6, 3, LabBattleBlueScript		; left side
-	coord_event 5, 6, 3, LabBattleBlueScript2			; right side
+	coord_event 4, 6, 4, LabBattleBlueScript		; left side
+	coord_event 5, 6, 4, LabBattleBlueScript2			; right side
 
 	def_bg_events
 	bg_event  6,  1, BGEVENT_JUMPSTD, difficultbookshelf
@@ -58,18 +59,22 @@ OaksLab_MapScriptHeader:
 
 OaksLabTrigger1:
 	sdefer OaksLab_AutowalkUpToOak
+	end
+OaksLabTrigger3:
+	sdefer OaksLab_ReceivePokedex		; I'm cutting out the Parcel Quest
 OaksLabTrigger0:
 OaksLabTrigger2:
-OaksLabTrigger3:
 OaksLabTrigger4:
+OaksLabTrigger5:
 	end
 
+; Scene 1
 OaksLab_AutowalkUpToOak:
 	applymovement PLAYER, Movement_WalkUpToProfOak
 	turnobject OAKSLAB_BLUE, UP
 	showtext GrampsImFedUpText
 	pause 8
-	showtext OakLetMeThinkText
+	showtext OakChooseMonText
 	pause 8
 	showtext HeyGrampsWhatAboutMeText
 	pause 8
@@ -77,6 +82,52 @@ OaksLab_AutowalkUpToOak:
 	setscene $2
 	end
 
+; Scene 3
+OaksLab_ReceivePokedex:
+	showtext OaksLabRequestFavor
+	checkevent EVENT_PLAYER_CHOSE_PIKACHU
+	iftruefwd .Pikachu
+; Rival has PIKACHU
+	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromPikachu
+	applymovement PLAYER, Movement_PlayerWalksFromEevee
+	sjumpfwd .continueDexScene
+.Pikachu:
+; Rival has EEVEE
+	readvar VAR_FACING
+	ifequal RIGHT, .PlayerNoWalk
+	applymovement PLAYER, Movement_PlayerWalksFromPikachu
+	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromEevee
+	sjumpfwd .continueDexScene
+.PlayerNoWalk:
+	applymovement PLAYER, Movement_PlayerLooksUp
+	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromEevee
+.continueDexScene:
+	showtext OaksLabIntroducePokedexText
+	closetext
+	applymovement OAKSLAB_OAK, Movement_OakWalksToTable
+	disappear OAKSLAB_POKEDEX_1
+	disappear OAKSLAB_POKEDEX_2
+	pause 15
+	applymovement OAKSLAB_OAK, Movement_OakWalksBack
+	opentext
+	writetext OaksLabReceivedPokedexText
+	playsound SFX_KEY_ITEM
+	waitsfx
+	promptbutton
+	writetext OaksLabDreamText
+	verbosegiveitem MASTER_BALL, 255
+	faceobject OAKSLAB_BLUE, PLAYER
+	writetext OaksLabLeaveItToMeText
+	closetext
+	setflag ENGINE_POKEDEX
+	setevent EVENT_GOT_POKEDEX_FROM_OAK
+;	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
+;	setmapscene VIRIDIAN_CITY, $1
+;	setmapscene ROUTE_22, $1
+	setscene $4
+	end
+
+; During initial Lab Entrance
 Movement_WalkUpToProfOak:
 	step_up
 	step_up
@@ -88,6 +139,7 @@ Movement_WalkUpToProfOak:
 	step_up
 	step_end
 
+; Rival walks to pick the remaining starter
 Movement_BluePicksPikachu:
 	step_down
 	step_down
@@ -106,14 +158,23 @@ Movement_BluePicksEevee:
 	step_up
 	step_end
 
-Movement_BlueWalksFromEevee1:
+; Repurposed this data for the Pokedex scene
+Movement_BlueWalksFromEevee:
 	step_left
-Movement_BlueWalksFromEevee2:
+Movement_PlayerWalksFromEevee:
 	step_left
-Movement_BlueWalksFromPikachu1:
+Movement_BlueWalksFromPikachu:
 	step_left
-Movement_BlueWalksFromPikachu2:
+Movement_PlayerWalksFromPikachu:
 	step_left
+	step_up
+	step_end
+
+; Approaching for battle after getting the Dex
+Movement_BlueWalksToRightSide:
+	step_right
+Movement_BlueWalksToLeftSide:
+	step_down
 	step_down
 	step_end
 
@@ -155,6 +216,7 @@ Movement_BlueRunsOut:
 Movement_OakWalksToTable:
 	step_left
 	step_left
+Movement_PlayerLooksUp:
 	turn_head_up
 	step_end
 
@@ -162,16 +224,6 @@ Movement_OakWalksBack:
 	step_right
 	step_right
 	turn_head_down
-	step_end
-
-Movement_OakWalksToTable2:
-	step_up
-	step_left
-	step_end
-
-Movement_OakWalksBack2:
-	step_right
-	step_down
 	step_end
 
 OaksLabTryToLeaveScript:
@@ -189,16 +241,15 @@ LabBattleBlueScript:
 	showtext OaksLabRivalChallengeText
 	winlosstext OaksLabBlueWinText, OaksLabBlueLossText
 	setlasttalked OAKSLAB_BLUE
+	applymovement OAKSLAB_BLUE, Movement_BlueWalksToLeftSide
+
 	checkevent EVENT_PLAYER_CHOSE_PIKACHU
 	iftruefwd .Pikachu
-	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromPikachu1
 	loadtrainer RIVAL0, RIVAL0_1	; Rival has PIKACHU
 	sjumpfwd .continueBattle
 .Pikachu
-	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromEevee1
 	loadtrainer RIVAL0, RIVAL0_2	; Rival has EEVEE
-	sjumpfwd .continueBattle
-.continueBattle
+.continueBattle:
 	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
@@ -209,7 +260,7 @@ LabBattleBlueScript:
 	disappear OAKSLAB_BLUE
 	special HealParty
 	setevent EVENT_BATTLED_OAKSLAB_RIVAL
-	setscene $4
+	setscene $5
 	playmapmusic
 	end
 
@@ -222,16 +273,15 @@ LabBattleBlueScript2:
 	showtext OaksLabRivalChallengeText
 	winlosstext OaksLabBlueWinText, OaksLabBlueLossText
 	setlasttalked OAKSLAB_BLUE
+	applymovement OAKSLAB_BLUE, Movement_BlueWalksToRightSide
+
 	checkevent EVENT_PLAYER_CHOSE_PIKACHU
 	iftruefwd .Pikachu
-	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromPikachu2
 	loadtrainer RIVAL0, RIVAL0_1	; Rival has PIKACHU
 	sjumpfwd .continueBattle
 .Pikachu
-	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromEevee2
 	loadtrainer RIVAL0, RIVAL0_2	; Rival has EEVEE
-	sjumpfwd .continueBattle
-.continueBattle
+.continueBattle:
 	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
@@ -242,7 +292,7 @@ LabBattleBlueScript2:
 	disappear OAKSLAB_BLUE
 	special HealParty
 	setevent EVENT_BATTLED_OAKSLAB_RIVAL
-	setscene $4
+	setscene $5
 	playmapmusic
 	end
 
@@ -337,8 +387,6 @@ OaksLabOakScript:
 ;	iftruefwd .EnableBattleTower
 	checkevent EVENT_GOT_POKEDEX
 	iftruefwd .RatePokedex
-	checkevent EVENT_GOT_OAKS_PARCEL
-	iftruefwd .DeliverParcel
 	checkevent EVENT_BATTLED_OAKSLAB_RIVAL
 	iftrue_jumpopenedtext OaksLabMakeItFightText
 	checkevent EVENT_GOT_STARTER
@@ -349,63 +397,6 @@ OaksLabOakScript:
 	line "which #mon do"
 	cont "you want?"
 	done
-
-.DeliverParcel
-	writetext OaksLabDeliverParcelText1
-	playsound SFX_KEY_ITEM
-	waitsfx
-	promptbutton
-;	takeitem OAKS_PARCEL
-	writetext OaksLabDeliverParcelText2
-	closetext
-	playmusic MUSIC_RIVAL_ENCOUNTER
-	pause 15
-	showtext OaksLabGrampsText
-	moveobject OAKSLAB_BLUE, 4, 7
-	appear OAKSLAB_BLUE
-	applymovement OAKSLAB_BLUE, Movement_BlueRunsIn
-	special RestartMapMusic
-	opentext
-	writetext OaksLabBlueWhyDidYouCallText
-	pause 8
-	writetext OaksLabIntroducePokedexText
-	closetext
-	readvar VAR_FACING
-	ifequalfwd RIGHT, .OakWalk2
-	applymovement OAKSLAB_OAK, Movement_OakWalksToTable
-	disappear OAKSLAB_POKEDEX_1
-	disappear OAKSLAB_POKEDEX_2
-	pause 15
-	applymovement OAKSLAB_OAK, Movement_OakWalksBack
-	sjumpfwd .continue
-.OakWalk2
-	applymovement OAKSLAB_OAK, Movement_OakWalksToTable2
-	disappear OAKSLAB_POKEDEX_1
-	disappear OAKSLAB_POKEDEX_2
-	pause 15
-	applymovement OAKSLAB_OAK, Movement_OakWalksBack2
-	faceplayer
-.continue
-	opentext
-	writetext OaksLabReceivedPokedexText
-	playsound SFX_KEY_ITEM
-	waitsfx
-	promptbutton
-	writetext OaksLabDreamText
-	verbosegiveitem POKE_BALL, 5
-	faceobject OAKSLAB_BLUE, PLAYER
-	writetext OaksLabLeaveItToMeText
-	closetext
-	playmusic MUSIC_RIVAL_AFTER
-	applymovement OAKSLAB_BLUE, Movement_BlueRunsOut
-	disappear OAKSLAB_BLUE
-	setflag ENGINE_POKEDEX
-	setevent EVENT_GOT_POKEDEX
-	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
-	setmapscene VIRIDIAN_CITY, $1
-	setmapscene ROUTE_22, $1
-	special RestartMapMusic
-	end
 
 .RatePokedex
 	writetext OaksLabDexCheckText
@@ -425,7 +416,7 @@ OaksLabBlueScript:
 	checkevent EVENT_GOT_STARTER
 	iftrue_jumpopenedtext MyPokemonLooksStrongerText
 	jumpthisopenedtext
-;HehIDontNeedToBeGreedyText
+;GoAheadAndChooseText:
 	text "<RIVAL>: Heh, I"
 	line "don't need to be"
 	cont "greedy like you!"
@@ -438,6 +429,10 @@ GrampsIsntAroundText:
 	text "<RIVAL>: Yo"
 	line "<PLAYER>! Gramps"
 	cont "isn't around!"
+
+	para "I ran here 'cos"
+	line "he said he had a"
+	cont "#mon for me."
 	done
 
 MyPokemonLooksStrongerText:
@@ -452,7 +447,7 @@ GrampsImFedUpText:
 	cont "waiting!"
 	done
 
-OakLetMeThinkText:
+OakChooseMonText:
 	text "Oak: <RIVAL>?"
 	line "Let me think…"
 
@@ -462,7 +457,7 @@ OakLetMeThinkText:
 
 	para "Here, <PLAYER>!"
 
-	para "There are 3"
+	para "There are 2"
 	line "#mon here!"
 
 	para "Haha!"
@@ -475,7 +470,7 @@ OakLetMeThinkText:
 	cont "#mon trainer!"
 
 	para "In my old age, I"
-	line "have only 3 left,"
+	line "have only 2 left,"
 	cont "but you can have"
 	cont "one! Choose!"
 	done
@@ -591,7 +586,7 @@ OaksLabRivalToughenUpText:
 	line "Smell you later!"
 	done
 
-OaksLabDeliverParcelText1:
+OaksLabMeetAgain:
 	text "Oak: Oh, <PLAYER>!"
 
 	para "How is my old"
@@ -603,40 +598,19 @@ OaksLabDeliverParcelText1:
 	para "You must be"
 	line "talented as a"
 	cont "#mon trainer!"
-
-	para "What? You have"
-	line "something for me?"
-
-	para "<PLAYER> delivered"
-	line "Oak's Parcel."
+; Transition to the first Dex rating
 	done
 
-OaksLabDeliverParcelText2:
-	text "Ah! These are the"
-	line "custom # Balls"
-	cont "I ordered!"
-	cont "Thanks, <PLAYER>!"
-
-	para "By the way, I must"
-	line "ask you to do"
-	cont "something for me."
+OaksLabRequestFavor:
+	text "Oak: By the way,"
+	line "I have a request"
+	cont "of you two."
+	
+	para "Come on over!"
 	prompt
 
-OaksLabGrampsText:
-	text "<RIVAL>: Gramps!"
-	done
-
-OaksLabBlueWhyDidYouCallText:
-	text "<RIVAL>: What did"
-	line "you call me for?"
-	done
-
 OaksLabIntroducePokedexText:
-	text "Oak: Oh right! I"
-	line "have a request"
-	cont "of you two."
-
-	para "On the desk there"
+	text "On the desk there"
 	line "is my invention,"
 	cont "#dex!"
 
@@ -700,14 +674,14 @@ OaksLabLeaveItToMeText:
 	line "say it, but I"
 	cont "don't need you!"
 
-	para "I know! I'll"
-	line "borrow a Town Map"
-	cont "from my sis!"
+	para "I'll find and catch"
+	line "every #mon"
+	cont "before you do!"
 
-	para "I'll tell her not"
-	line "to lend you one,"
-	cont "<PLAYER>! Hahaha!"
-	done
+	para "I'll even win the"
+	line "#mon League"
+	cont "Championship!"
+	prompt
 
 OaksLabDexCheckText:
 	text "How is your #-"

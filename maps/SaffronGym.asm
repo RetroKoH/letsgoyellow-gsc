@@ -48,11 +48,11 @@ SaffronGym_MapScriptHeader:
 	def_object_events
 	object_event  9,  8, SPRITE_SABRINA, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, SaffronGymSabrinaScript, -1
 	object_event  2,  3, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicPreston, -1
-	object_event  9,  3, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHexManiacAmanda, -1
+	object_event  9,  3, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerMediumAmanda, -1
 	object_event 17,  3, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicJohan, -1
-	object_event  2,  9, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHexManiacStacy, -1
+	object_event  2,  9, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerMediumStacy, -1
 	object_event  2, 15, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicTyron, -1
-	object_event 17,  9, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerHexManiacTasha, -1
+	object_event 17,  9, SPRITE_HEX_MANIAC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerMediumTasha, -1
 	object_event 17, 15, SPRITE_PSYCHIC, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerPsychicCameron, -1
 	object_event  9, 14, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, SaffronGymGuyScript, -1
 
@@ -61,10 +61,10 @@ SaffronGymSabrinaScript:
 	opentext
 	checkflag ENGINE_SOULBADGE
 	iftruefwd .FightDone
-	writetext SabrinaIntroText
+	writetext .IntroText
 	waitbutton
 	closetext
-	winlosstext SabrinaWinLossText, 0
+	winlosstext .WinLossText, 0
 	loadtrainer SABRINA, 1
 	startbattle
 	reloadmapafterbattle
@@ -79,10 +79,11 @@ SaffronGymSabrinaScript:
 	opentext
 	givebadge SOULBADGE, KANTO_REGION
 	callstd kantopostgymevents
+
 .FightDone:
 	checkevent EVENT_GOT_TM29_PSYCHIC
-	iftrue_jumpopenedtext SabrinaFightDoneText
-	writetext SabrinaMarshBadgeText
+	iftrue_jumpopenedtext .FightDoneText
+	writetext .MarshBadgeText
 	promptbutton
 	verbosegivetmhm TM_PSYCHIC
 	setevent EVENT_GOT_TM29_PSYCHIC
@@ -96,6 +97,72 @@ SaffronGymSabrinaScript:
 	para "You will become a"
 	line "celebrated and"
 	cont "beloved Champion!"
+	done
+
+.IntroText:
+	text "Sabrina: I had a"
+	line "vision of your"
+	cont "arrival…"
+
+	para "I've had psychic"
+	line "powers since I"
+	cont "was a child."
+
+	para "I first learned"
+	line "to bend spoons"
+	cont "with my mind."
+
+	para "I dislike fight-"
+	line "ing, but if you"
+	cont "wish, I will show"
+	cont "you my powers!"
+	done
+
+.WinLossText:
+	text "I'm"
+	line "shocked!"
+	cont "But, a loss is a"
+	cont "loss."
+
+	para "I admit I didn't"
+	line "work hard enough"
+	cont "to win!"
+
+	para "You earned the"
+	line "Marsh Badge!"
+	done
+
+.MarshBadgeText:
+	text "Sabrina: The"
+	line "Marsh Badge makes"
+	line "all #mon up to"
+	cont "L.70 obey you!"
+
+	para "Stronger #mon"
+	line "will become wild,"
+	cont "ignoring your"
+	cont "orders in battle!"
+
+	para "Just don't raise"
+	line "your #mon too"
+	cont "much!"
+
+	para "Wait, please take"
+	line "this TM with you!"
+	done
+
+.FightDoneText:
+	text "Sabrina: Your love"
+	line "for your #mon"
+
+	para "overwhelmed my"
+	line "psychic power…"
+
+	para "The power of love,"
+	line "I think, is also a"
+
+	para "kind of psychic"
+	line "power…"
 	done
 
 ; Top left corner
@@ -122,7 +189,7 @@ GenericTrainerPsychicPreston:
 	done
 
 ; Top center
-GenericTrainerChannelerAmanda:
+GenericTrainerMediumAmanda:
 	generictrainer HEX_MANIAC, AMANDA, EVENT_BEAT_PSYCHIC_LEON, .SeenText, .BeatenText
 
 	text "In a battle of"
@@ -153,7 +220,7 @@ GenericTrainerPsychicJohan:
 	line "fear ghosts, bugs"
 	cont "and darkness!"
 
-	text "Nothing else can"
+	para "Nothing else can"
 	line "stand a chance!"
 	done
 
@@ -168,7 +235,7 @@ GenericTrainerPsychicJohan:
 	done
 
 ; Middle left
-GenericTrainerHexManiacStacy:
+GenericTrainerMediumStacy:
 	generictrainer HEX_MANIAC, STACY, EVENT_BEAT_MEDIUM_REBECCA, .SeenText, .BeatenText
 
 	text "I must teach"
@@ -210,7 +277,7 @@ GenericTrainerPsychicTyron:
 	done
 
 ; Bottom left corner
-GenericTrainerHexManiacTasha:
+GenericTrainerMediumTasha:
 	generictrainer HEX_MANIAC, TASHA, EVENT_BEAT_MEDIUM_REBECCA, .SeenText, .BeatenText
 
 	text "I knew that this"
@@ -288,78 +355,6 @@ SaffronGymStatue:
 	jumpstd gymstatue1
 .Beaten:
 	jumpstd gymstatue2
-
-SabrinaIntroText:
-	text "Sabrina: I knew"
-	line "you were coming…"
-
-	para "Three years ago I"
-	line "had a vision of"
-	cont "your arrival."
-
-	para "You're after my"
-	line "Badge."
-
-	para "I don't enjoy bat-"
-	line "tling, but it's my"
-
-	para "duty as a Leader"
-	line "to confer Badges"
-
-	para "on anyone who has"
-	line "proven themselves"
-	cont "worthy."
-
-	para "Since you wish it,"
-	line "I will show you my"
-	cont "psychic powers!"
-	done
-
-SabrinaWinLossText:
-	text "Sabrina: Your"
-	line "power…"
-
-	para "It far exceeds"
-	line "what I foresaw…"
-
-	para "Maybe it isn't"
-	line "possible to fully"
-
-	para "predict what the"
-	line "future holds…"
-
-	para "OK, you win. You"
-	line "earned yourself"
-	cont "the Marsh Badge."
-	done
-
-SabrinaMarshBadgeText:
-	text "Sabrina: I failed"
-	line "to accurately pre-"
-
-	para "dict your power."
-	line "That means your"
-
-	para "power is beyond my"
-	line "psychic ability."
-
-	para "You deserve this"
-	line "TM, too!"
-	done
-
-SabrinaFightDoneText:
-	text "Sabrina: Your love"
-	line "for your #mon"
-
-	para "overwhelmed my"
-	line "psychic power…"
-
-	para "The power of love,"
-	line "I think, is also a"
-
-	para "kind of psychic"
-	line "power…"
-	done
 
 SaffronGymGuyWinText:
 	text "That was another"

@@ -668,12 +668,16 @@ DEF BETA EQU __trainer_class__
 	const LIANDSU2
 
 	trainerclass COOLTRAINERM ; 65
-	const KEVIN				; Placeholder
-	const GAVEN1			; Unused Phone Trainers
+	const KEVIN						; Placeholder
+	const COOLTRAINERM_RAYMOND		; Celadon Uni - Will keep
+	const COOLTRAINERM_COREY		; Celadon Uni - Will keep
+	const FERGUS					; Celadon Uni
+	const GAVEN1					; Unused Phone Trainers
 	const GAVEN2
 	const GAVEN3
 
 	trainerclass COOLTRAINERF ; 66
+	const NEESHA			; Celadon Uni - Will keep
 	const BETH1				; Unused Phone Trainers
 	const BETH2
 	const BETH3

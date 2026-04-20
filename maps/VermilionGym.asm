@@ -35,10 +35,6 @@ VermilionGym_MapScriptHeader:
 	object_event  4,  4, SPRITE_ELECTRIC_FENCE_LEFT, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptext, VermilionGymElectricFenceText, EVENT_VERMILION_GYM_SWITCH_2
 	object_event  5,  4, SPRITE_ELECTRIC_FENCE_RIGHT, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptext, VermilionGymElectricFenceText, EVENT_VERMILION_GYM_SWITCH_2
 	object_event  5,  2, SPRITE_SURGE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, VermilionGymSurgeScript, -1
-	object_event  8,  8, SPRITE_GENTLEMAN, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerGentlemanGregory, -1
-	object_event  4,  7, SPRITE_ROCKER, SPRITEMOVEDATA_STANDING_DOWN, 0, 3, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerGuitaristmVincent, -1
-	object_event  0, 10, SPRITE_JUGGLER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerJugglerHorton, -1
-	object_event  7, 10, SPRITE_BATTLE_GIRL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, PAL_NPC_RED, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerGuitaristfJanet, -1
 	object_event  7, 15, SPRITE_GYM_GUY, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, VermilionGymGuyScript, -1
 
 	object_const_def
@@ -93,47 +89,6 @@ VermilionGymSurgeScript:
 
 	para "it to go like"
 	line "lightning!"
-	done
-
-GenericTrainerGentlemanGregory:
-	generictrainer GENTLEMAN, GREGORY, EVENT_BEAT_GENTLEMAN_GREGORY, GentlemanGregorySeenText, GentlemanGregoryBeatenText
-
-	text "When I was still"
-	line "in the army, Lt."
-
-	para "Surge saved my"
-	line "life."
-	done
-
-GenericTrainerGuitaristmVincent:
-	generictrainer GUITARISTM, VINCENT, EVENT_BEAT_GUITARISTM_VINCENT, GuitaristmVincentSeenText, GuitaristmVincentBeatenText
-
-	text "Lt.Surge is pro-"
-	line "tected by electric"
-
-	para "fences so you"
-	line "won't underestimate"
-	cont "his strength!"
-	done
-
-GenericTrainerJugglerHorton:
-	generictrainer JUGGLER, HORTON, EVENT_BEAT_JUGGLER_HORTON, JugglerHortonSeenText, JugglerHortonBeatenText
-
-	text "Don't get too com-"
-	line "fortable about"
-
-	para "beating me…"
-	line "Lt.Surge is tough."
-	done
-
-GenericTrainerGuitaristfJanet:
-	generictrainer GUITARISTF, JANET, EVENT_BEAT_GUITARISTF_JANET, GuitaristfJanetSeenText, GuitaristfJanetBeatenText
-
-	text "Lt.Surge hid both"
-	line "switches for the"
-
-	para "electric fences"
-	line "in the trash."
 	done
 
 VermilionGymGuyScript:
@@ -266,57 +221,6 @@ LtSurgeFightDoneText:
 	para "My #mon and I"
 	line "are still at it!"
 	done
-
-GentlemanGregorySeenText:
-	text "You're here to"
-	line "defeat Lt.Surge?"
-
-	para "Not if I can help"
-	line "it!"
-	done
-
-GentlemanGregoryBeatenText:
-	text "Sorry I failed"
-	line "you, Lt.Surge,"
-	cont "sir!"
-	done
-
-GuitaristmVincentSeenText:
-	text "Lt.Surge recog-"
-	line "nized my potential"
-
-	para "with Electric"
-	line "#mon."
-
-	para "Think you can beat"
-	line "me?"
-	done
-
-GuitaristmVincentBeatenText:
-	text "Ooh, how shocking!"
-	done
-
-JugglerHortonSeenText:
-	text "I'm going to take"
-	line "you down! Prepare"
-	cont "to be shocked!"
-	done
-
-JugglerHortonBeatenText:
-	text "Gwaaah!"
-	line "I was overpowered…"
-	done
-
-GuitaristfJanetSeenText:
-	text "I'm a lightweight,"
-	line "but I'm good with"
-	cont "electricity!"
-	done
-
-GuitaristfJanetBeatenText:
-	text "Fried!"
-	done
-
 
 VermilionGymGuyWinText:
 	text "Whew! That was an"

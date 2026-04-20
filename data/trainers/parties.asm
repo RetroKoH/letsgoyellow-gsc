@@ -2408,7 +2408,7 @@ CamperGroup:
 ; Route 9 (FRLG; Only 1; The other is a Youngster from Yellow)
 	def_trainer CAMPER_CHRIS, "Chris"
 	tr_mon 21, GROWLITHE
-	tr_mon 21, CHARMANDER
+	tr_mon 21, SANDSHREW
 	end_trainer
 
 ; Route 12 (FRLG)
@@ -3518,7 +3518,7 @@ SuperNerdGroup:
 	def_trainer MIGUEL, "Miguel"
 	tr_mon 12, GRIMER
 	tr_mon 12, VOLTORB
-	tr_mon 12, KOFFING
+	tr_mon 12, MAGNEMITE			; LGPE team member added
 	end_trainer
 
 ; Route 8 (FRLG)
@@ -4949,6 +4949,21 @@ CooltrainerMGroup:
 	tr_mon 20, RATICATE
 	end_trainer
 
+; Celadon University Classroom 4 (To be given a team later)
+	def_trainer COOLTRAINERM_RAYMOND, "Raymond"
+	tr_mon 20, RATICATE
+	end_trainer
+
+; Celadon University Cafeteria (To be given a team later)
+	def_trainer COOLTRAINERM_COREY, "Corey"
+	tr_mon 20, RATICATE
+	end_trainer
+
+; Celadon University Pool (To be given a team later)
+	def_trainer FERGUS, "Fergus"
+	tr_mon 20, RATICATE
+	end_trainer
+
 ; Unused Phone Trainer
 	def_trainer GAVEN1, "Gaven"
 	tr_mon 39, VICTREEBEL
@@ -4982,6 +4997,11 @@ SECTION "CooltrainerFGroup", ROMX
 CooltrainerFGroup:
 
 	def_trainer_class COOLTRAINERF
+
+; Celadon University Lounge (To be given a team later)
+	def_trainer NEESHA, "Neesha"
+	tr_mon 20, RATICATE
+	end_trainer
 
 ; Unused Phone Trainers
 	def_trainer BETH1, "Beth"

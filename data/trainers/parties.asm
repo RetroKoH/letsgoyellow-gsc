@@ -2118,7 +2118,7 @@ YoungsterGroup:
 
 ; Route 1 (LGPE)
 	def_trainer RONNY, "Ronny"
-	tr_mon 3, RATTATA, MALE
+	tr_mon 5, RATTATA, MALE
 	end_trainer
 
 ; Route 3 (FRLG)
@@ -3569,7 +3569,7 @@ LassGroup:
 	def_trainer_class LASS
 
 ; Viridian Forest (Y; Name from LGPE)
-	def_trainer JOANA, "Joana"	; or Brittany?
+	def_trainer JOANA, "Joana"
 	tr_mon 6, NIDORAN_F
 	tr_mon 6, NIDORAN_M
 	end_trainer

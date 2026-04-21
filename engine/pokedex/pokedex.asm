@@ -2209,13 +2209,14 @@ _Pokedex_Mode:
 
 .MenuDescriptions:
 	db   "<PK><MN> are listed in"
-	next "regional order.@"
+	next "original order.@"
 
 	db   "<PK><MN> are listed in"
-	next "national order.@"
+	next "expanded order.@"
 
-	db   "Display Unown"
-	next "information.@"
+; Will this be needed? We'll see.
+	db   "Display Regional"
+	next "variants.@"
 
 	db   "Return to the <PK><MN>"
 	next "list.@"

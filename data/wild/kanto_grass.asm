@@ -286,25 +286,25 @@
 	wildmon 3, PIDGEY
 	wildmon 3, RATTATA
 	wildmon 3, RATTATA
-	wildmon 2, RATTATA
+	wildmon 2, RATTATA, ALOLAN_FORM
 	wildmon 2, PIDGEY
-	wildmon 4, PIDGEY
+	wildmon 4, RATTATA, ALOLAN_FORM
 	wildmon 6, PIDGEY
 	; day
 	wildmon 3, PIDGEY
 	wildmon 3, RATTATA
 	wildmon 3, RATTATA
-	wildmon 2, RATTATA
+	wildmon 2, RATTATA, ALOLAN_FORM
 	wildmon 2, PIDGEY
-	wildmon 4, PIDGEY
+	wildmon 4, RATTATA, ALOLAN_FORM
 	wildmon 6, PIDGEY
 	; nite
 	wildmon 3, PIDGEY
 	wildmon 3, RATTATA
 	wildmon 3, RATTATA
-	wildmon 2, RATTATA
+	wildmon 2, RATTATA, ALOLAN_FORM
 	wildmon 2, PIDGEY
-	wildmon 4, PIDGEY
+	wildmon 4, RATTATA, ALOLAN_FORM
 	wildmon 6, PIDGEY
 	end_grass_wildmons
 

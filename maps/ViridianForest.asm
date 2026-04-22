@@ -24,8 +24,134 @@ ViridianForest_MapScriptHeader:
 	bg_event  3, 14, BGEVENT_ITEM + LEAF_STONE, EVENT_VIRIDIAN_FOREST_HIDDEN_LEAF_STONE
 
 	def_object_events
-	itemball_event 14, 31, DIRE_HIT, 1, EVENT_ROUTE_2_DIRE_HIT
-	itemball_event  3, 33, MAX_POTION, 1, EVENT_ROUTE_2_MAX_POTION
+	object_event 4, 43, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 0, GenericTrainerLassJoana, -1
+	object_event 29, 42, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestBugBoyText, -1
+	object_event 32, 35, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBugCatcherDoug, -1
+	object_event 32, 21, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBugCatcherRick, -1
+	object_event 31,  4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBugCatcherBrian, -1
+	object_event 15, 19, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerLassJocelyn, -1
+	object_event  4, 20, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerBugCatcherSammy, -1
+	itemball_event 27, 13, ANTIDOTE, 1, EVENT_VIRIDIAN_FOREST_ANTIDOTE
+	itemball_event 14, 31, POTION, 1, EVENT_VIRIDIAN_FOREST_POTION
+
+; Change this to an NPC who can battle AND trade
+GenericTrainerLassJoana:
+	generictrainer LASS, JOANA, EVENT_BEAT_LASS_JOANA, .SeenText, .BeatenText
+
+	text "I looked forever,"
+	line "but I never found"
+	cont "a Pikachu here!"
+	done
+
+.SeenText:
+	text "Hi! Do you have a"
+	line "Pikachu?"
+	done
+
+.BeatenText:
+	text "Oh no,"
+	line "really?"
+	done
+
+ViridianForestBugBoyText:
+	text "I ran out of #"
+	line "Balls to catch"
+	cont "#mon with!"
+
+	para "You should carry"
+	line "extras!"
+	done
+
+GenericTrainerBugCatcherDoug:
+	generictrainer BUG_CATCHER, DOUG, EVENT_BEAT_BUG_CATCHER_DOUG, .SeenText, .BeatenText
+
+	text "Ssh! You'll scare"
+	line "the bugs away!"
+	done
+
+.SeenText:
+	text "Hey! You have"
+	line "#mon! Come on!"
+	cont "Let's battle 'em!"
+	done
+
+.BeatenText:
+	text "No!"
+	line "Weedle can't"
+	cont "cut it!"
+	prompt
+
+GenericTrainerBugCatcherRick:
+	generictrainer BUG_CATCHER, RICK, EVENT_BEAT_BUG_CATCHER_RICK, .SeenText, .BeatenText
+
+	text "Darn! I'm going"
+	line "to catch some"
+	cont "stronger ones!"
+	done
+
+.SeenText:
+	text "Yo! You can't jam"
+	line "out if you're a"
+	cont "#mon trainer!"
+	done
+
+.BeatenText:
+	text "Huh?"
+	line "I ran out of"
+	cont "#mon!"
+	prompt
+
+GenericTrainerBugCatcherBrian:
+	generictrainer BUG_CATCHER, BRIAN, EVENT_BEAT_BUG_CATCHER_BRIAN, .SeenText, .BeatenText
+
+	text "Darn! I'm going"
+	line "to catch some"
+	cont "stronger ones!"
+	done
+
+.SeenText:
+	text "Yo! You can't jam"
+	line "out if you're a"
+	cont "#mon trainer!"
+	done
+
+.BeatenText:
+	text "Huh?"
+	line "I ran out of"
+	cont "#mon!"
+	prompt
+
+GenericTrainerLassJocelyn:
+	generictrainer LASS, JOCELYN, EVENT_BEAT_LASS_JOCELYN, .SeenText, .BeatenText
+
+	text "..."
+	line "You win!"
+	done
+
+.SeenText:
+	text "..."
+	line "Let's Battle!"
+	done
+
+.BeatenText:
+	text "Oh..."
+	prompt
+
+GenericTrainerBugCatcherSammy:
+	generictrainer BUG_CATCHER, SAMMY, EVENT_BEAT_BUG_CATCHER_SAMMY, .SeenText, .BeatenText
+
+	text "..."
+	line "You win!"
+	done
+
+.SeenText:
+	text "..."
+	line "Let's Battle!"
+	done
+
+.BeatenText:
+	text "Oh..."
+	prompt
 
 ViridianForestSignText1:
 	text "Leaving"

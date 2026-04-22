@@ -2894,6 +2894,11 @@ LassGroup:
 	tr_mon 6, NIDORAN_M
 	end_trainer
 
+	def_trainer JOCELYN, "Jocelyn"
+	tr_mon 6, NIDORAN_F
+	tr_mon 7, PIDGEY
+	end_trainer
+
 ; Route 3 (FRLG)
 	def_trainer JANICE, "Janice"
 	tr_mon 9, PIDGEY

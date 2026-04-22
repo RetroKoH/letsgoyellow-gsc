@@ -123,8 +123,8 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass RIVAL2 ; 1e
 ; Champion
-	const RIVAL1_1
-	const RIVAL1_2
+	const RIVAL2_1
+	const RIVAL2_2
 
 ; This will be used for the new, second rival
 	trainerclass LYRA1 ; 1f
@@ -376,6 +376,7 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass LASS ; 33 (FINISHED)
 	const JOANA				; Viridian Forest
+	const JOCELYN
 	const JANICE			; Route 3
 	const SALLY
 	const ROBIN

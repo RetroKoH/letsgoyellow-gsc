@@ -1,3 +1,6 @@
+; KoH: added hard-coded level for traded mons. $FF will match the level with yours.
+; Add optional moves
+
 NPCTrades:
 	table_width NPCTRADE_STRUCT_LENGTH
 ; NPC_TRADE_MIKE in Goldenrod City
@@ -7,15 +10,15 @@ NPCTrades:
 	rawchar "Muscle@@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_ATK_UP_SATK_DOWN,  LEVEL_BALL,   SITRUS_BERRY
 	dw 37460
-	rawchar "Mike@@@@", $00
+	rawchar "Mike@@@@", $FF			; variable level
 ; NPC_TRADE_JOANA in Viridian Forest
 	db TRADE_DIALOGSET_JOANA
 	dp PIKACHU, NO_FORM ; wants
 	dp BUTTERFREE, FEMALE    ; gives
 	rawchar "Butters@@@@"
-	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPE_UP_DEF_DOWN,   PREMIER_BALL, PERSIM_BERRY
+	db $EE, $EE, $EE, ABILITY_1 | NAT_SPE_UP_ATK_DOWN,   PREMIER_BALL, PERSIM_BERRY
 	dw 48926
-	rawchar "Joana@@@", $00
+	rawchar "Joana@@@", 10			; fixed level 10
 ; NPC_TRADE_TIM in Olivine City
 	db TRADE_DIALOGSET_HAPPY
 	dp STEELIX, NO_FORM ; wants
@@ -23,7 +26,7 @@ NPCTrades:
 	rawchar "Joey@@@@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_ATK_UP_SPE_DOWN,   HEAVY_BALL,   SILK_SCARF
 	dw 29189
-	rawchar "Tim@@@@@", $00
+	rawchar "Tim@@@@@", $FF			; variable level
 ; NPC_TRADE_EMY in Blackthorn City
 	db TRADE_DIALOGSET_GIRL
 	dp JYNX, NO_FORM    ; wants
@@ -31,7 +34,7 @@ NPCTrades:
 	rawchar "Doris@@@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPE_UP_ATK_DOWN,   LOVE_BALL,    FAIRYFEATHER
 	dw 00283
-	rawchar "Emy@@@@@", $00
+	rawchar "Emy@@@@@", $FF			; variable level
 ; NPC_TRADE_CHRIS in Pewter City
 	db TRADE_DIALOGSET_NEWBIE
 	dp PINSIR, NO_FORM ; wants
@@ -39,7 +42,7 @@ NPCTrades:
 	rawchar "Paul@@@@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPE_UP_SATK_DOWN,  PARK_BALL,    SILVERPOWDER
 	dw 15616
-	rawchar "Chris@@@", $00
+	rawchar "Chris@@@", $FF			; variable level
 ; NPC_TRADE_KIM in Route 14
 	db TRADE_DIALOGSET_GIRL
 	dp WOBBUFFET, NO_FORM ; wants
@@ -47,7 +50,7 @@ NPCTrades:
 	rawchar "Chance@@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SDEF_UP_ATK_DOWN,  HEAL_BALL,    LUCKY_EGG
 	dw 26491
-	rawchar "Kim@@@@@", $00
+	rawchar "Kim@@@@@", $FF			; variable level
 ; NPC_TRADE_JACQUES in Goldenrod Harbor
 	db TRADE_DIALOGSET_HAPPY
 	dp TENTACOOL, NO_FORM ; wants
@@ -55,7 +58,7 @@ NPCTrades:
 	rawchar "Gail@@@@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SDEF_UP_SATK_DOWN, LURE_BALL,    EVIOLITE
 	dw 50082
-	rawchar "Jacques@", $00
+	rawchar "Jacques@", $FF			; variable level
 ; NPC_TRADE_HARI in Ecruteak City
 	db TRADE_DIALOGSET_COLLECTOR
 	dp FARFETCH_D, NO_FORM ; wants
@@ -63,7 +66,7 @@ NPCTrades:
 	rawchar "Clarence@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPE_UP_DEF_DOWN,   FAST_BALL,    GOLD_LEAF
 	dw 43972
-	rawchar "Hari@@@@", $00
+	rawchar "Hari@@@@", $FF			; variable level
 ; NPC_TRADE_JEEVES
 	db TRADE_DIALOGSET_COLLECTOR
 	dp PONYTA, NO_FORM               ; wants
@@ -71,5 +74,5 @@ NPCTrades:
 	rawchar "Batty@@@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_DEF_UP_ATK_DOWN,   DREAM_BALL,   CHARCOAL
 	dw 08922
-	rawchar "Jeeves@@", $00
+	rawchar "Jeeves@@", $FF			; variable level
 	assert_table_length NUM_NPC_TRADES

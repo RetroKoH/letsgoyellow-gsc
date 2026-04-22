@@ -10,13 +10,13 @@ DEF NPCTRADE_BALL        rb
 DEF NPCTRADE_ITEM        rb
 DEF NPCTRADE_OT_ID       rw
 DEF NPCTRADE_OT_NAME     rb PLAYER_NAME_LENGTH
-                         rb_skip
+DEF NPCTRADE_LEVEL       rb ; KoH - New addition for fixed-level trades (optional)
 DEF NPCTRADE_STRUCT_LENGTH EQU _RS
 
 ; NPCTrades indexes (see data/events/npc_trades.asm)
 	const_def
 	const NPC_TRADE_MIKE    ; 0 - Route 2: Mr Mime for Mr Mime-G
-	const NPC_TRADE_JOANA   ; 1 - Viridian Forest: Pikachu for Butterfree
+	const NPC_TRADE_JOANA   ; 1 - Viridian Forest: Pikachu for Lv. 10 Butterfree
 	const NPC_TRADE_TIM     ; 2
 	const NPC_TRADE_EMY     ; 3
 	const NPC_TRADE_CHRIS   ; 4

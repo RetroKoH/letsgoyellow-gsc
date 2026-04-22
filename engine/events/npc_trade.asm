@@ -150,10 +150,20 @@ DoNPCTrade:
 	ld [wPlayerTrademonCaughtData], a
 	ld [wOTTrademonCaughtData], a
 
+; KoH: Set hard-coded level
+	ld e, NPCTRADE_LEVEL
+	call GetTradeAttribute
+	ld a, [hl]
+	cp $FF						; is the traded mon set to your mon's level?
+	jr nz, .gotLevel			; if not, it's a fixed level, skip ahead
+; Copy level of given mon to received mon.
+
 	ld hl, wPartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon
 	ld a, [hl]
+
+.gotLevel:
 	ld [wCurPartyLevel], a
 	ld a, [wOTTrademonSpecies]
 	ld [wCurPartySpecies], a

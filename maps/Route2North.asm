@@ -18,7 +18,6 @@ Route2North_MapScriptHeader:
 
 	def_object_events
 	object_event  6,  6, SPRITE_BUG_MANIAC, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBug_maniacEd, -1
-	itemball_event 19,  4, CARBOS, 1, EVENT_ROUTE_2_CARBOS
 	fruittree_event  7, 13, FRUITTREE_ROUTE_2, LUM_BERRY, PAL_NPC_GREEN
 	cuttree_event  5, 10, EVENT_ROUTE_2_CUT_TREE_1
 	cuttree_event 15, 22, EVENT_ROUTE_2_CUT_TREE_2

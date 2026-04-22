@@ -391,34 +391,39 @@ PrintTradeText:
 
 TradeTexts:
 ; intro
-	dw TradeIntroText1
-	dw TradeIntroText2
-	dw TradeIntroText3
-	dw TradeIntroText4
+	dw TradeIntroText1	; _COLLECTOR
+	dw TradeIntroText2	; _HAPPY
+	dw TradeIntroText3	; _NEWBIE
+	dw TradeIntroText4	; _GIRL
+	dw TradeIntroText5	; _JOANA
 
 ; cancel
-	dw TradeCancelText1
-	dw TradeCancelText2
-	dw TradeCancelText3
-	dw TradeCancelText4
+	dw TradeCancelText1	; _COLLECTOR
+	dw TradeCancelText2	; _HAPPY
+	dw TradeCancelText3	; _NEWBIE
+	dw TradeCancelText4	; _GIRL
+	dw TradeCancelText4	; _JOANA
 
 ; wrong mon
-	dw TradeWrongText1
-	dw TradeWrongText2
-	dw TradeWrongText3
-	dw TradeWrongText4
+	dw TradeWrongText1	; _COLLECTOR
+	dw TradeWrongText2	; _HAPPY
+	dw TradeWrongText3	; _NEWBIE
+	dw TradeWrongText4	; _GIRL
+	dw TradeWrongText4	; _JOANA
 
 ; completed
-	dw TradeCompleteText1
-	dw TradeCompleteText2
-	dw TradeCompleteText3
-	dw TradeCompleteText4
+	dw TradeCompleteText1	; _COLLECTOR
+	dw TradeCompleteText2	; _HAPPY
+	dw TradeCompleteText3	; _NEWBIE
+	dw TradeCompleteText4	; _GIRL
+	dw TradeCompleteText4	; _JOANA
 
 ; after
-	dw TradeAfterText1
-	dw TradeAfterText2
-	dw TradeAfterText3
-	dw TradeAfterText4
+	dw TradeAfterText1	; _COLLECTOR
+	dw TradeAfterText2	; _HAPPY
+	dw TradeAfterText3	; _NEWBIE
+	dw TradeAfterText4	; _GIRL
+	dw TradeAfterText4	; _JOANA
 
 ConnectLinkCableText:
 	; OK, connect the Game Link Cable.
@@ -494,6 +499,16 @@ TradeAfterText2:
 	text_far _NPCTradeAfterText2
 	text_end
 
+TradeCompleteText3:
+	; Uh? What happened?
+	text_far _NPCTradeCompleteText4
+	text_end
+
+TradeAfterText3:
+	; Trading is so odd… I still have a lot to learn about it.
+	text_far _NPCTradeAfterText4
+	text_end
+
 TradeIntroText4:
 	; 's cute, but I don't have it. Do you have @ ? Want to trade it for my @ ?
 	text_far _NPCTradeIntroText3
@@ -519,12 +534,7 @@ TradeAfterText4:
 	text_far _NPCTradeAfterText3
 	text_end
 
-TradeCompleteText3:
-	; Uh? What happened?
-	text_far _NPCTradeCompleteText4
-	text_end
-
-TradeAfterText3:
-	; Trading is so odd… I still have a lot to learn about it.
-	text_far _NPCTradeAfterText4
+TradeIntroText5:
+	;Oh, you're back! Did you find a @ yet?
+	text_far _NPCTradeIntroText5
 	text_end

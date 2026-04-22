@@ -1251,6 +1251,19 @@ _NPCTradeAfterText2::
 	cont "doing great!"
 	done
 
+SECTION "_NPCTradeCompleteText4", ROMX
+_NPCTradeCompleteText4::
+	text "Uh? What happened?"
+	done
+
+SECTION "_NPCTradeAfterText4", ROMX
+_NPCTradeAfterText4::
+	text "Trading is so odd…"
+
+	para "I still have a lot"
+	line "to learn about it."
+	done
+
 SECTION "_NPCTradeIntroText3", ROMX
 _NPCTradeIntroText3::
 	text_ram wMonOrItemNameBuffer
@@ -1308,18 +1321,20 @@ _NPCTradeAfterText3::
 	line "so cute!"
 	done
 
-SECTION "_NPCTradeCompleteText4", ROMX
-_NPCTradeCompleteText4::
-	text "Uh? What happened?"
+SECTION "_NPCTradeIntroText5", ROMX
+_NPCTradeIntroText5::
+	text "Oh, you're back!"
+	line "Did you find a"
+	cont ""
+	text_ram wStringBuffer1
+	text " yet?"
+
+	para "Want to trade it"
+	line "for my "
+	text_ram wStringBuffer2
+	text "?"
 	done
 
-SECTION "_NPCTradeAfterText4", ROMX
-_NPCTradeAfterText4::
-	text "Trading is so odd…"
-
-	para "I still have a lot"
-	line "to learn about it."
-	done
 
 SECTION "_MomLeavingText1", ROMX
 _MomLeavingText1::

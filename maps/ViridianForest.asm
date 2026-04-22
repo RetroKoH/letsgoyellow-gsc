@@ -17,31 +17,56 @@ ViridianForest_MapScriptHeader:
 	bg_event 18, 34, BGEVENT_JUMPTEXT, ViridianForestSignText4
 	bg_event 26, 42, BGEVENT_JUMPTEXT, ViridianForestSignText5
 	bg_event 20, 44, BGEVENT_JUMPTEXT, ViridianForestSignText6
-	bg_event 32, 44, BGEVENT_ITEM + MAX_ETHER, EVENT_VIRIDIAN_FOREST_HIDDEN_MAX_ETHER
-	bg_event 18, 43, BGEVENT_ITEM + FULL_HEAL, EVENT_VIRIDIAN_FOREST_HIDDEN_FULL_HEAL
-	bg_event  4, 43, BGEVENT_ITEM + MULCH, EVENT_VIRIDIAN_FOREST_HIDDEN_MULCH
-	bg_event 30,  9, BGEVENT_ITEM + BIG_MUSHROOM, EVENT_VIRIDIAN_FOREST_HIDDEN_BIG_MUSHROOM
-	bg_event  3, 14, BGEVENT_ITEM + LEAF_STONE, EVENT_VIRIDIAN_FOREST_HIDDEN_LEAF_STONE
+	bg_event 18, 43, BGEVENT_ITEM + ANTIDOTE, EVENT_VIRIDIAN_FOREST_HIDDEN_ANTIDOTE
+	bg_event  3, 20, BGEVENT_ITEM + POTION, EVENT_VIRIDIAN_FOREST_HIDDEN_POTION
 
 	def_object_events
-	object_event 4, 43, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 0, GenericTrainerLassJoana, -1
+	object_event  4, 43, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianForestJoanaScript, -1
 	object_event 29, 42, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestBugBoyText, -1
 	object_event 32, 35, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBugCatcherDoug, -1
 	object_event 32, 21, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBugCatcherRick, -1
 	object_event 31,  4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBugCatcherBrian, -1
 	object_event 15, 19, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerLassJocelyn, -1
 	object_event  4, 20, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerBugCatcherSammy, -1
-	itemball_event 27, 13, ANTIDOTE, 1, EVENT_VIRIDIAN_FOREST_ANTIDOTE
-	itemball_event 14, 31, POTION, 1, EVENT_VIRIDIAN_FOREST_POTION
+	itemball_event 20, 34, ANTIDOTE, 1, EVENT_VIRIDIAN_FOREST_ANTIDOTE
+	itemball_event 3, 33, POKE_BALL, 2, EVENT_VIRIDIAN_FOREST_POKE_BALL
+	itemball_event 27, 12, POTION, 1, EVENT_VIRIDIAN_FOREST_POTION_1
+	itemball_event 14, 31, POTION, 1, EVENT_VIRIDIAN_FOREST_POTION_2
 
-; Change this to an NPC who can battle AND trade
-GenericTrainerLassJoana:
-	generictrainer LASS, JOANA, EVENT_BEAT_LASS_JOANA, .SeenText, .BeatenText
+; NPC who can battle, AND then trade afterwards
+ViridianForestJoanaScript:
+	faceplayer
+	opentext
+	checkevent EVENT_BEAT_LASS_JOANA
+	iftruefwd .CheckTrade
+; If we haven't battled her yet, trigger a battle
+	writetext .SeenText
+	waitbutton
+	closetext
+	winlosstext .BeatenText, 0
+	loadtrainer LASS, JOANA
+	startbattle
+	reloadmapafterbattle
+	opentext
+	setevent EVENT_BEAT_LASS_JOANA
+	jumpthisopenedtext
 
 	text "I looked forever,"
 	line "but I never found"
 	cont "a Pikachu here!"
+	
+	para "If you find one,"
+	line "please come back"
+	cont "and show me!"
 	done
+
+; Ask for a trade (She will give you a L. 10 Butterfree
+.CheckTrade:
+	opentext
+	callasm .GetTrade
+	waitbutton
+	closetext
+	end
 
 .SeenText:
 	text "Hi! Do you have a"
@@ -52,6 +77,12 @@ GenericTrainerLassJoana:
 	text "Oh no,"
 	line "really?"
 	done
+
+.GetTrade:
+	ld a, NPC_TRADE_JOANA
+	ld e, a
+	farcall NPCTrade
+	ret
 
 ViridianForestBugBoyText:
 	text "I ran out of #"

@@ -94,7 +94,7 @@ OaksLab_ReceivePokedex:
 .Pikachu:
 ; Rival has EEVEE
 	readvar VAR_FACING
-	ifequal RIGHT, .PlayerNoWalk
+	ifequalfwd RIGHT, .PlayerNoWalk
 	applymovement PLAYER, Movement_PlayerWalksFromPikachu
 	applymovement OAKSLAB_BLUE, Movement_BlueWalksFromEevee
 	sjumpfwd .continueDexScene

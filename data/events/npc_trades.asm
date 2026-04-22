@@ -8,14 +8,14 @@ NPCTrades:
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_ATK_UP_SATK_DOWN,  LEVEL_BALL,   SITRUS_BERRY
 	dw 37460
 	rawchar "Mike@@@@", $00
-; NPC_TRADE_KYLE in Violet City
-	db TRADE_DIALOGSET_COLLECTOR
-	dp POLIWAG, NO_FORM ; wants
-	dp VOLTORB, MALE    ; gives
-	rawchar "Mimic@@@@@@"
+; NPC_TRADE_JOANA in Viridian Forest
+	db TRADE_DIALOGSET_JOANA
+	dp PIKACHU, NO_FORM ; wants
+	dp BUTTERFREE, FEMALE    ; gives
+	rawchar "Butters@@@@"
 	db $EE, $EE, $EE, HIDDEN_ABILITY | NAT_SPE_UP_DEF_DOWN,   PREMIER_BALL, PERSIM_BERRY
 	dw 48926
-	rawchar "Kyle@@@@", $00
+	rawchar "Joana@@@", $00
 ; NPC_TRADE_TIM in Olivine City
 	db TRADE_DIALOGSET_HAPPY
 	dp STEELIX, NO_FORM ; wants

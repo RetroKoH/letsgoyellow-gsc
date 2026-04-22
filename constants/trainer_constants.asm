@@ -89,32 +89,44 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass BLAINE ; 18
 
-	trainerclass BLUE ; 19
+	trainerclass BLUE ; 19 - I'll use this for the post-game Gym Leader.
 
 	trainerclass NINTEN ; 1a ; KoH - Formerly RED; RED is playable again
 
 	trainerclass LEAF ; 1b
 
+; Rival Blue
 	trainerclass RIVAL0 ; 1c
+; Oak Lab
 	const RIVAL0_1
 	const RIVAL0_2
+; Route 22 (First)
+	const RIVAL0_3
+	const RIVAL0_4
+; Cerulean City
+	const RIVAL0_5
+	const RIVAL0_6
 
 	trainerclass RIVAL1 ; 1d
+; SS ANNE
+	const RIVAL1_1
+	const RIVAL1_2
+; Lavender Tower
+	const RIVAL1_3
 	const RIVAL1_4
+; Silph Co (7F)
 	const RIVAL1_5
 	const RIVAL1_6
+; Route 22 (Second)
 	const RIVAL1_7
 	const RIVAL1_8
-	const RIVAL1_9
-	const RIVAL1_10
-	const RIVAL1_11
-	const RIVAL1_12
-	const RIVAL1_13
-	const RIVAL1_14
-	const RIVAL1_15
 
 	trainerclass RIVAL2 ; 1e
+; Champion
+	const RIVAL1_1
+	const RIVAL1_2
 
+; This will be used for the new, second rival
 	trainerclass LYRA1 ; 1f
 	const LYRA1_1
 	const LYRA1_2
@@ -122,12 +134,6 @@ DEF BETA EQU __trainer_class__
 	const LYRA1_4
 	const LYRA1_5
 	const LYRA1_6
-	const LYRA1_7
-	const LYRA1_8
-	const LYRA1_9
-	const LYRA1_10
-	const LYRA1_11
-	const LYRA1_12
 
 	trainerclass LYRA2 ; 20
 

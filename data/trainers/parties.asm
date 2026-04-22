@@ -25,16 +25,6 @@ RedGroup:
 	def_trainer 1, "Red"
 	tr_mon 60, TYPHLOSION @ QUICK_CLAW
 		tr_moves SUNNY_DAY, THUNDERPUNCH, FLAMETHROWER, SUBSTITUTE
-	tr_mon 60, MEGANIUM @ SITRUS_BERRY
-		tr_moves GIGA_DRAIN, PROTECT, LEECH_SEED, TOXIC
-	tr_mon 60, FERALIGATR @ LUM_BERRY
-		tr_moves SURF, CRUNCH, ICE_PUNCH, ROCK_SLIDE
-	tr_mon 60, STEELIX @ CHESTO_BERRY
-		tr_moves IRON_TAIL, ROCK_SLIDE, EARTHQUAKE, REST
-	tr_mon 60, WEAVILE @ LEFTOVERS
-		tr_moves ICE_PUNCH, SWORDS_DANCE, FEINT_ATTACK, PROTECT
-	tr_mon 60, CLEFABLE @ FAIRYFEATHER
-		tr_moves SING, HEALINGLIGHT, FLAMETHROWER, MOONBLAST
 	end_trainer
 
 
@@ -45,16 +35,6 @@ GreenGroup:
 	def_trainer 1, "Green"
 	tr_mon 60, MEGANIUM @ SITRUS_BERRY
 		tr_moves GIGA_DRAIN, PROTECT, LEECH_SEED, TOXIC
-	tr_mon 60, TYPHLOSION @ QUICK_CLAW
-		tr_moves SUNNY_DAY, THUNDERPUNCH, FLAMETHROWER, SUBSTITUTE
-	tr_mon 60, FERALIGATR @ LUM_BERRY
-		tr_moves SURF, CRUNCH, ICE_PUNCH, ROCK_SLIDE
-	tr_mon 60, SKARMORY @ ROCKY_HELMET
-		tr_moves SPIKES, ROOST, DRILL_PECK, STEEL_WING
-	tr_mon 60, HOUNDOOM @ POISON_BARB
-		tr_moves NASTY_PLOT, FIRE_BLAST, DARK_PULSE, SLUDGE_BOMB
-	tr_mon 60, WIGGLYTUFF @ CHESTO_BERRY
-		tr_moves HYPER_VOICE, DAZZLINGLEAM, REST, FLAMETHROWER
 	end_trainer
 
 
@@ -65,16 +45,6 @@ ChaseGroup:
 	def_trainer 1, "Chase"
 	tr_mon 60, FERALIGATR @ LUM_BERRY
 		tr_moves SURF, CRUNCH, ICE_PUNCH, ROCK_SLIDE
-	tr_mon 60, MEGANIUM @ SITRUS_BERRY
-		tr_moves GIGA_DRAIN, PROTECT, LEECH_SEED, TOXIC
-	tr_mon 60, TYPHLOSION @ QUICK_CLAW
-		tr_moves SUNNY_DAY, THUNDERPUNCH, FLAMETHROWER, SUBSTITUTE
-	tr_mon 60, MAGNETON @ EVIOLITE
-		tr_moves THUNDERBOLT, FLASH_CANNON, THUNDER_WAVE, LIGHT_SCREEN
-	tr_mon 60, OVERQWIL @ LEFTOVERS
-		tr_moves EXPLOSION, POISON_JAB, TOXIC_SPIKES, CRUNCH
-	tr_mon 60, TOGEKISS @ WIDE_LENS
-		tr_moves DAZZLINGLEAM, AIR_SLASH, ANCIENTPOWER, FLAMETHROWER
 	end_trainer
 
 
@@ -85,16 +55,6 @@ ElaineGroup:
 	def_trainer 1, "Elaine"
 	tr_mon 60, MEGANIUM @ SITRUS_BERRY
 		tr_moves GIGA_DRAIN, PROTECT, LEECH_SEED, TOXIC
-	tr_mon 60, TYPHLOSION @ QUICK_CLAW
-		tr_moves SUNNY_DAY, THUNDERPUNCH, FLAMETHROWER, SUBSTITUTE
-	tr_mon 60, FERALIGATR @ LUM_BERRY
-		tr_moves SURF, CRUNCH, ICE_PUNCH, ROCK_SLIDE
-	tr_mon 60, AMPHAROS @ FOCUS_BAND
-		tr_moves THUNDER_WAVE, THUNDERBOLT, POWER_GEM, DRAGON_PULSE
-	tr_mon 60, DONPHAN @ KINGS_ROCK
-		tr_moves EARTHQUAKE, IRON_TAIL, ICE_SHARD, RAPID_SPIN
-	tr_mon 60, SLOWKING @ LEFTOVERS
-		tr_moves PSYCHIC_M, SCALD, FIRE_BLAST, NASTY_PLOT
 	end_trainer
 
 
@@ -1231,70 +1191,14 @@ SECTION "BlueGroup", ROMX
 BlueGroup:
 
 	def_trainer_class BLUE
-	def_trainer 1, "Blue"
-	tr_mon 67, PIDGEOT @ FOCUS_SASH, MALE
-		tr_extra NO_GUARD, SPE_UP_ATK_DOWN
-		tr_evs 4 HP, 252 SAt, 252 Spe
-		tr_moves HURRICANE, FOCUS_BLAST, U_TURN, ROOST
-	tr_mon 69, UMBREON, MALE
-if DEF(FAITHFUL)
-		tr_extra SYNCHRONIZE
-else
-		tr_extra MAGIC_GUARD
-endc
-		tr_evs 252 HP, 4 SDf, 252 Def
-		tr_moves HEALINGLIGHT, TOXIC, FEINT_ATTACK, PROTECT
-	tr_mon 66, EXEGGUTOR @ ROOM_SERVICE, MALE
-		tr_extra HARVEST
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves PSYCHIC_M, SLUDGE_BOMB, TRICK_ROOM, GIGA_DRAIN
-	tr_mon 68, RHYPERIOR @ ASSAULT_VEST, MALE
-		tr_extra SOLID_ROCK, ATK_UP_SATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 Atk
-		tr_moves STONE_EDGE, EARTHQUAKE, MEGAHORN, AVALANCHE
-	tr_mon 68, ARCANINE @ CHARCOAL, MALE
-		tr_extra INTIMIDATE
-		tr_evs 252 Atk, 4 SAt, 252 Spe
-		tr_moves FLAMETHROWER, WILD_CHARGE, EXTREMESPEED, FLAME_CHARGE
-	tr_mon 70, BLASTOISE @ MYSTIC_WATER, MALE
-		tr_extra TORRENT
-		tr_evs 252 HP, 4 Atk, 252 SAt
-if DEF(FAITHFUL)
-		tr_moves SURF, ICE_BEAM, BODY_SLAM, EARTHQUAKE
-else
-		tr_moves SURF, ICE_BEAM, FLASH_CANNON, EARTHQUAKE
-endc
-	end_trainer
-
-	def_trainer 2, "Blue"
-	tr_mon 73, PIDGEOT @ FOCUS_SASH, MALE
-		tr_extra NO_GUARD, SPE_UP_ATK_DOWN
-		tr_evs 4 HP, 252 SAt, 252 Spe
-		tr_moves HURRICANE, FOCUS_BLAST, U_TURN, ROOST
-	tr_mon 74, UMBREON @ LEFTOVERS, MALE
-if DEF(FAITHFUL)
-		tr_extra SYNCHRONIZE, DEF_UP_ATK_DOWN
-else
-		tr_extra MAGIC_GUARD
-endc
-		tr_evs 252 HP, 4 SDf, 252 Def
-		tr_moves DARK_PULSE, TOXIC, HEALINGLIGHT, PROTECT
-	tr_mon 74, EXEGGUTOR @ CUSTAP_BERRY, MALE
-		tr_extra HARVEST, SATK_UP_SPE_DOWN
-		tr_evs 252 HP, 4 Atk, 252 SAt
-		tr_moves PSYCHIC_M, LOW_KICK, ENERGY_BALL, ENDURE
-	tr_mon 74, TYRANITAR @ ASSAULT_VEST, MALE
-		tr_extra SAND_STREAM, ATK_UP_SATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 Atk
-		tr_moves STONE_EDGE, CRUNCH, EARTHQUAKE, AVALANCHE
-	tr_mon 74, ARCANINE @ CHOICE_BAND, MALE
-		tr_extra INTIMIDATE, ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves CLOSE_COMBAT, OUTRAGE, FLARE_BLITZ, EXTREMESPEED
-	tr_mon 75, BLASTOISE @ WHITE_HERB, MALE
-		tr_extra MEGA_LAUNCHER, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 SDf, 252 Spe
-		tr_moves WATER_PULSE, DRAGON_PULSE, FLASH_CANNON, SHELL_SMASH
+; After Rival becomes new Gym Leader (sans Starter)
+	def_trainer 1, "<RIVAL>"
+	tr_mon 70, PIDGEOT
+	tr_mon 70, MACHAMP
+	tr_mon 71, GYARADOS
+	tr_mon 71, ARCANINE
+	tr_mon 72, EXEGGUTOR
+	tr_mon 73, TYRANITAR
 	end_trainer
 
 
@@ -1303,36 +1207,7 @@ NintenGroup:
 
 	def_trainer_class NINTEN
 	def_trainer 1, "Ninten"
-	tr_mon 86, LAPRAS @ WHITE_HERB, MALE
-		tr_extra WATER_ABSORB, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves ICE_BEAM, THUNDERBOLT, SURF, SHELL_SMASH
-	tr_mon 90, PIKACHU @ LIGHT_BALL, MALE | PIKACHU_RED_FORM
-		tr_extra LIGHTNING_ROD, SPE_UP_SDEF_DOWN
-		tr_evs 252 SAt, 4 Atk, 252 Spe
-		tr_moves THUNDERBOLT, SURF, IRON_TAIL, EXTREMESPEED
-	tr_mon 84, ESPEON @ LIFE_ORB, MALE
-		tr_extra MAGIC_BOUNCE, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 SDf, 252 Spe
-		tr_moves PSYCHIC_M, HEALINGLIGHT, DAZZLINGLEAM, SHADOW_BALL
-	tr_mon 85, MACHAMP @ ASSAULT_VEST, MALE
-		tr_extra NO_GUARD, ATK_UP_SATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 Atk
-		tr_moves DYNAMICPUNCH, EARTHQUAKE, STONE_EDGE, POISON_JAB
-	tr_mon 87, SNORLAX @ LEFTOVERS, MALE
-		tr_extra THICK_FAT, DEF_UP_SATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 Def
-		tr_moves BODY_SLAM, CRUNCH, CURSE, REST
-	tr_mon 88, CHARIZARD @ SAFE_GOGGLES, MALE
-if DEF(FAITHFUL)
-		tr_extra BLAZE, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves FLARE_BLITZ, SWORDS_DANCE, EARTHQUAKE, AERIAL_ACE
-else
-		tr_extra TOUGH_CLAWS, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves FLARE_BLITZ, SWORDS_DANCE, EARTHQUAKE, DRAGON_CLAW
-endc
+	tr_mon 5, CHARMANDER
 	end_trainer
 
 
@@ -1340,347 +1215,123 @@ SECTION "LeafGroup", ROMX
 LeafGroup:
 
 	def_trainer_class LEAF
-	def_trainer 1, "Green"
-	tr_mon 96, GENGAR @ BLACK_SLUDGE, FEMALE
-if DEF(FAITHFUL)
-		tr_extra CURSED_BODY, SPE_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SPE_UP_ATK_DOWN
-endc
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves SHADOW_BALL, SLUDGE_BOMB, THUNDERBOLT, WILL_O_WISP
-	tr_mon 97, KANGASKHAN @ ASSAULT_VEST, FEMALE
-if DEF(FAITHFUL)
-		tr_extra SCRAPPY, ATK_UP_SATK_DOWN
-else
-		tr_extra PARENTAL_BOND, ATK_UP_SATK_DOWN
-endc
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves BODY_SLAM, CRUNCH, EARTHQUAKE, ICE_PUNCH
-if DEF(FAITHFUL)
-	tr_mon 98, MOLTRES @ LIFE_ORB
-		tr_extra FLAME_BODY, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves FIRE_BLAST, AIR_SLASH, HP_ICE, ROOST
-else
-	tr_mon 98, MOLTRES @ HEAT_ROCK
-		tr_extra DROUGHT, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves FIRE_BLAST, AIR_SLASH, SOLAR_BEAM, SUNNY_DAY
-endc
-	tr_mon 100, VENUSAUR @ MIRACLE_SEED, FEMALE
-if DEF(FAITHFUL)
-		tr_extra THICK_FAT, SPE_UP_ATK_DOWN
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves GIGA_DRAIN, SLUDGE_BOMB, GROWTH, SLEEP_POWDER
-else
-		tr_extra CHLOROPHYLL, SPE_UP_ATK_DOWN
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves GIGA_DRAIN, SLUDGE_BOMB, GROWTH, HP_FIRE
-endc
-	tr_mon 95, SYLVEON @ CHESTO_BERRY, FEMALE
-		tr_extra PIXILATE, DEF_UP_ATK_DOWN
-		tr_evs 252 HP, 4 SAt, 252 Def
-		tr_moves EARTH_POWER, REST, CALM_MIND, HYPER_VOICE
-	tr_mon 99, MEW @ LEFTOVERS, FEMALE
-		tr_extra SPE_UP_ATK_DOWN
-		tr_evs 252 HP, 4 SAt, 252 Spe
-		tr_moves NASTY_PLOT, PSYCHIC_M, AURA_SPHERE, RECOVER
-end_trainer
+	def_trainer 1, "Leaf"
+	tr_mon 5, BULBASAUR
+	end_trainer
 
 
 SECTION "Rival0Group", ROMX
 Rival0Group:
 
 	def_trainer_class RIVAL0
+
+; Oak Lab
 	def_trainer RIVAL0_1, "<RIVAL>"
-	tr_mon 5, PIKACHU @ ORAN_BERRY
+	tr_mon 5, PIKACHU
 	end_trainer
 
 	def_trainer RIVAL0_2, "<RIVAL>"
-	tr_mon 5, EEVEE @ ORAN_BERRY
+	tr_mon 5, EEVEE
+	end_trainer
+
+; Route 22 (First)
+	def_trainer RIVAL0_3, "<RIVAL>"
+	tr_mon 8, PIDGEY
+	tr_mon 9, PIKACHU @ ORAN_BERRY
+	end_trainer
+
+	def_trainer RIVAL0_4, "<RIVAL>"
+	tr_mon 8, SPEAROW
+	tr_mon 9, EEVEE @ ORAN_BERRY
+	end_trainer
+
+; Cerulean City
+	def_trainer RIVAL0_5, "<RIVAL>"
+	tr_mon 15, RATTATA
+	tr_mon 16, ABRA
+	tr_mon 16, PIDGEOTTO
+	tr_mon 18, PIKACHU @ ORAN_BERRY
+	end_trainer
+
+	def_trainer RIVAL0_6, "<RIVAL>"
+	tr_mon 15, RATTATA
+	tr_mon 16, SANDSHREW
+	tr_mon 16, SPEAROW
+	tr_mon 18, EEVEE @ ORAN_BERRY
 	end_trainer
 
 
 SECTION "Rival1Group", ROMX
 Rival1Group:
 
-	; For EV spreads, keep continuity until pre-E4 (need Surf to lose EVs).
 	def_trainer_class RIVAL1
-	def_trainer RIVAL1_4, "<RIVAL>"
-	tr_mon 14, GASTLY, MALE
-		tr_extra LEVITATE
-		tr_evs 72 Spe
-		tr_moves LICK, DISABLE, MEAN_LOOK, CURSE
-	tr_mon 16, ZUBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 72 Spe
-		tr_moves GUST, BITE, ASTONISH, SUPERSONIC
-	tr_mon 15, GEODUDE, MALE
-		tr_extra STURDY
-		tr_evs 72 HP
-		tr_moves DEFENSE_CURL, ROLLOUT, MAGNITUDE, RAPID_SPIN
-	tr_mon 18, BAYLEEF @ ORAN_BERRY, MALE
-		tr_extra OVERGROW
-		tr_evs 72 Atk
-		tr_moves RAZOR_LEAF, POISONPOWDER, HEALINGLIGHT, REFLECT ; No Light Screen
+
+; SS ANNE
+	def_trainer RIVAL1_1, "<RIVAL>"
+	tr_mon 20, RATICATE
+	tr_mon 21, KADABRA
+	tr_mon 22, PIDGEOTTO
+	tr_mon 23, PIKACHU @ ORAN_BERRY
 	end_trainer
 
+	def_trainer RIVAL1_2, "<RIVAL>"
+	tr_mon 20, RATICATE
+	tr_mon 21, SANDSHREW
+	tr_mon 22, FEAROW
+	tr_mon 23, EEVEE @ ORAN_BERRY
+	end_trainer
+
+; Lavender Tower
+	def_trainer RIVAL1_3, "<RIVAL>"
+	tr_mon 28, PIDGEOTTO
+	tr_mon 26, EXEGGCUTE
+	tr_mon 28, GROWLITHE
+	tr_mon 30, KADABRA
+	tr_mon 32, RAICHU @ ORAN_BERRY
+	end_trainer
+
+	def_trainer RIVAL1_4, "<RIVAL>"
+	tr_mon 28, FEAROW
+	tr_mon 26, SHELLDER
+	tr_mon 28, GROWLITHE
+	tr_mon 30, KADABRA
+	tr_mon 32, JOLTEON @ ORAN_BERRY
+	end_trainer
+
+; Silph Co (7F)
 	def_trainer RIVAL1_5, "<RIVAL>"
-	tr_mon 14, GASTLY, MALE
-		tr_extra LEVITATE
-		tr_evs 72 Spe
-		tr_moves LICK, DISABLE, MEAN_LOOK, CURSE
-	tr_mon 16, ZUBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 72 Spe
-		tr_moves GUST, BITE, ASTONISH, SUPERSONIC
-	tr_mon 15, GEODUDE, MALE
-		tr_extra STURDY
-		tr_evs 72 HP
-		tr_moves DEFENSE_CURL, ROLLOUT, MAGNITUDE, RAPID_SPIN
-	tr_mon 18, QUILAVA @ ORAN_BERRY, MALE
-		tr_extra BLAZE
-		tr_evs 72 SAt
-		tr_moves QUICK_ATTACK, EMBER, SMOKESCREEN, LEER
+	tr_mon 43, PIDGEOT
+	tr_mon 44, GYARADOS
+	tr_mon 44, ARCANINE
+	tr_mon 45, ALAKAZAM
+	tr_mon 46, RAICHU @ ORAN_BERRY
 	end_trainer
 
 	def_trainer RIVAL1_6, "<RIVAL>"
-	tr_mon 14, GASTLY, MALE
-		tr_extra LEVITATE
-		tr_evs 72 Spe
-		tr_moves LICK, DISABLE, MEAN_LOOK, CURSE
-	tr_mon 16, ZUBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 72 Spe
-		tr_moves GUST, BITE, ASTONISH, SUPERSONIC
-	tr_mon 15, GEODUDE, MALE
-		tr_extra STURDY
-		tr_evs 72 HP
-		tr_moves DEFENSE_CURL, ROLLOUT, MAGNITUDE, RAPID_SPIN
-	tr_mon 18, CROCONAW @ ORAN_BERRY, MALE
-		tr_extra TORRENT
-		tr_evs 72 Spe
-		tr_moves WATER_GUN, RAGE, BITE, LEER
+	tr_mon 43, SANDSLASH
+	tr_mon 44, CLOYSTER
+	tr_mon 44, ARCANINE
+	tr_mon 45, ALAKAZAM
+	tr_mon 46, JOLTEON @ ORAN_BERRY
 	end_trainer
 
+; Route 22 (Second)
 	def_trainer RIVAL1_7, "<RIVAL>"
-	tr_mon 20, HAUNTER, MALE
-		tr_extra LEVITATE
-		tr_evs 104 Spe
-		tr_moves LICK, CONFUSE_RAY, MEAN_LOOK, CURSE
-	tr_mon 18, MAGNEMITE
-		tr_extra MAGNET_PULL
-		tr_evs 104 Spe
-		tr_moves TACKLE, THUNDERSHOCK, SUPERSONIC, SONIC_BOOM
-	tr_mon 19, DROWZEE, MALE
-		tr_extra INSOMNIA
-		tr_evs 104 Spe
-		tr_moves HYPNOSIS, CONFUSION, HEADBUTT, LOW_KICK
-	tr_mon 20, ZUBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 104 Spe
-		tr_moves ABSORB, SUPERSONIC, BITE, CONFUSE_RAY
-	tr_mon 22, BAYLEEF @ ORAN_BERRY, MALE
-		tr_extra OVERGROW
-		tr_evs 72 Atk, 32 SAt
-		tr_moves REFLECT, RAZOR_LEAF, POISONPOWDER, DISARM_VOICE
+	tr_mon 54, PIDGEOT
+	tr_mon 52, EXEGGUTOR
+	tr_mon 53, GYARADOS
+	tr_mon 55, ARCANINE
+	tr_mon 55, ALAKAZAM
+	tr_mon 56, RAICHU @ ORAN_BERRY
 	end_trainer
 
 	def_trainer RIVAL1_8, "<RIVAL>"
-	tr_mon 20, HAUNTER, MALE
-		tr_extra LEVITATE
-		tr_evs 104 Spe
-		tr_moves LICK, CONFUSE_RAY, MEAN_LOOK, CURSE
-	tr_mon 18, MAGNEMITE
-		tr_extra MAGNET_PULL
-		tr_evs 104 Spe
-		tr_moves TACKLE, THUNDERSHOCK, SUPERSONIC, SONIC_BOOM
-	tr_mon 19, DROWZEE, MALE
-		tr_extra INSOMNIA
-		tr_evs 104 Spe
-		tr_moves HYPNOSIS, CONFUSION, HEADBUTT, LOW_KICK
-	tr_mon 20, ZUBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 104 Spe
-		tr_moves ABSORB, SUPERSONIC, BITE, CONFUSE_RAY
-	tr_mon 22, QUILAVA @ ORAN_BERRY, MALE
-		tr_extra BLAZE
-		tr_evs 72 SAt, 32 Spe
-		tr_moves LEER, SMOKESCREEN, EMBER, QUICK_ATTACK
-	end_trainer
-
-	def_trainer RIVAL1_9, "<RIVAL>"
-	tr_mon 20, HAUNTER, MALE
-		tr_extra LEVITATE
-		tr_evs 104 Spe
-		tr_moves LICK, CONFUSE_RAY, MEAN_LOOK, CURSE
-	tr_mon 18, MAGNEMITE
-		tr_extra MAGNET_PULL
-		tr_evs 104 Spe
-		tr_moves TACKLE, THUNDERSHOCK, SUPERSONIC, SONIC_BOOM
-	tr_mon 19, DROWZEE, MALE
-		tr_extra INSOMNIA
-		tr_evs 104 Spe
-		tr_moves HYPNOSIS, CONFUSION, HEADBUTT, LOW_KICK
-	tr_mon 20, ZUBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 104 Spe
-		tr_moves ABSORB, SUPERSONIC, BITE, CONFUSE_RAY
-	tr_mon 22, CROCONAW @ ORAN_BERRY, MALE
-		tr_extra TORRENT
-		tr_evs 32 Atk, 72 Spe
-		tr_moves LEER, RAGE, WATER_GUN, BITE
-	end_trainer
-
-	def_trainer RIVAL1_10, "<RIVAL>"
-	tr_mon 40, GOLBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 116 Atk, 116 Spe
-		tr_moves LEECH_LIFE, BITE, CONFUSE_RAY, WING_ATTACK
-	tr_mon 39, MAGNETON
-		tr_extra MAGNET_PULL
-		tr_evs 116 SAt, 116 Spe
-		tr_moves TRI_ATTACK, THUNDERBOLT, FLASH_CANNON, THUNDER_WAVE
-	tr_mon 39, HAUNTER, MALE
-		tr_extra LEVITATE
-		tr_evs 232 Spe
-		tr_moves PAIN_SPLIT, MEAN_LOOK, CONFUSE_RAY, SHADOW_BALL
-	tr_mon 41, SNEASEL, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 232 Atk
-		tr_moves SLASH, ICE_PUNCH, HONE_CLAWS, FEINT_ATTACK
-	tr_mon 43, MEGANIUM @ SITRUS_BERRY, MALE
-		tr_extra OVERGROW
-		tr_evs 72 Atk, 160 SAt ; Still has some Atk EVs for continuity
-		tr_moves REFLECT, LIGHT_SCREEN, PETAL_DANCE, ANCIENTPOWER
-	end_trainer
-
-	def_trainer RIVAL1_11, "<RIVAL>"
-	tr_mon 40, GOLBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 116 Atk, 116 Spe
-		tr_moves LEECH_LIFE, BITE, CONFUSE_RAY, WING_ATTACK
-	tr_mon 39, MAGNETON
-		tr_extra MAGNET_PULL
-		tr_evs 116 SAt, 116 Spe
-		tr_moves TRI_ATTACK, THUNDERBOLT, FLASH_CANNON, THUNDER_WAVE
-	tr_mon 39, HAUNTER, MALE
-		tr_extra LEVITATE
-		tr_evs 232 Spe
-		tr_moves PAIN_SPLIT, MEAN_LOOK, CONFUSE_RAY, SHADOW_BALL
-	tr_mon 41, SNEASEL, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 232 Atk
-		tr_moves SLASH, ICE_PUNCH, HONE_CLAWS, FEINT_ATTACK
-	tr_mon 43, TYPHLOSION @ SITRUS_BERRY, MALE
-		tr_extra BLAZE
-		tr_evs 88 Atk, 72 SAt, 72 Spe
-		tr_moves SMOKESCREEN, FLAME_CHARGE, DIG, SWIFT
-	end_trainer
-
-	def_trainer RIVAL1_12, "<RIVAL>"
-	tr_mon 40, GOLBAT, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 116 Atk, 116 Spe
-		tr_moves LEECH_LIFE, BITE, CONFUSE_RAY, WING_ATTACK
-	tr_mon 39, MAGNETON
-		tr_extra MAGNET_PULL
-		tr_evs 116 SAt, 116 Spe
-		tr_moves TRI_ATTACK, THUNDERBOLT, FLASH_CANNON, THUNDER_WAVE
-	tr_mon 39, HAUNTER, MALE
-		tr_extra LEVITATE
-		tr_evs 232 Spe
-		tr_moves PAIN_SPLIT, MEAN_LOOK, CONFUSE_RAY, SHADOW_BALL
-	tr_mon 41, SNEASEL, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 232 Atk
-		tr_moves SLASH, ICE_PUNCH, HONE_CLAWS, FEINT_ATTACK
-	tr_mon 43, FERALIGATR @ SITRUS_BERRY, MALE
-		tr_extra TORRENT
-		tr_evs 160 Atk, 72 Spe
-		tr_moves SLASH, SURF, CRUNCH, NIGHT_SLASH
-	end_trainer
-
-	def_trainer RIVAL1_13, "<RIVAL>"
-	tr_mon 45, WEAVILE @ KINGS_ROCK, MALE
-		tr_extra PRESSURE
-		tr_evs 144 Atk, 144 Spe
-		tr_moves SWORDS_DANCE, ICE_PUNCH, NIGHT_SLASH, SCREECH
-	tr_mon 47, GOLBAT @ EVIOLITE, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 144 HP, 144 Spe
-		tr_moves POISON_JAB, SUPER_FANG, CONFUSE_RAY, WING_ATTACK
-	tr_mon 46, MAGNETON @ MAGNET
-		tr_extra MAGNET_PULL
-		tr_evs 144 HP, 144 SAt
-		tr_moves THUNDERBOLT, TRI_ATTACK, THUNDER_WAVE, FLASH_CANNON
-	tr_mon 46, GENGAR @ SPELL_TAG, MALE
-		tr_extra CURSED_BODY
-		tr_evs 144 SAt, 144 Spe
-		tr_moves MEAN_LOOK, DARK_PULSE, SHADOW_BALL, CONFUSE_RAY
-	tr_mon 46, ALAKAZAM @ TWISTEDSPOON, MALE
-		tr_extra SYNCHRONIZE
-		tr_evs 144 SAt, 144 Spe
-		tr_moves DISABLE, PSYCHIC_M, RECOVER, SHADOW_BALL
-	tr_mon 49, MEGANIUM @ SITRUS_BERRY, MALE
-		tr_extra OVERGROW
-		tr_evs 144 HP, 144 SAt
-		tr_moves REFLECT, LIGHT_SCREEN, ENERGY_BALL, ANCIENTPOWER
-	end_trainer
-
-def_trainer RIVAL1_14, "<RIVAL>"
-	tr_mon 45, WEAVILE @ KINGS_ROCK, MALE
-		tr_extra PRESSURE
-		tr_evs 144 Atk, 144 Spe
-		tr_moves SWORDS_DANCE, ICE_PUNCH, NIGHT_SLASH, SCREECH
-	tr_mon 47, GOLBAT @ EVIOLITE, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 144 HP, 144 Spe
-		tr_moves POISON_JAB, SUPER_FANG, CONFUSE_RAY, WING_ATTACK
-	tr_mon 46, MAGNETON @ MAGNET
-		tr_extra MAGNET_PULL
-		tr_evs 144 HP, 144 SAt
-		tr_moves THUNDERBOLT, TRI_ATTACK, THUNDER_WAVE, FLASH_CANNON
-	tr_mon 46, GENGAR @ SPELL_TAG, MALE
-		tr_extra CURSED_BODY
-		tr_evs 144 SAt, 144 Spe
-		tr_moves MEAN_LOOK, DARK_PULSE, SHADOW_BALL, CONFUSE_RAY
-	tr_mon 46, ALAKAZAM @ TWISTEDSPOON, MALE
-		tr_extra SYNCHRONIZE
-		tr_evs 144 SAt, 144 Spe
-		tr_moves DISABLE, PSYCHIC_M, RECOVER, SHADOW_BALL
-	tr_mon 49, TYPHLOSION @ SITRUS_BERRY, MALE
-		tr_extra BLAZE
-		tr_evs 144 SAt, 144 Spe
-		tr_moves SMOKESCREEN, REVERSAL, DIG, FLAMETHROWER
-	end_trainer
-
-def_trainer RIVAL1_15, "<RIVAL>"
-	tr_mon 45, WEAVILE @ KINGS_ROCK, MALE
-		tr_extra PRESSURE
-		tr_evs 144 Atk, 144 Spe
-		tr_moves SWORDS_DANCE, ICE_PUNCH, NIGHT_SLASH, SCREECH
-	tr_mon 47, GOLBAT @ EVIOLITE, MALE
-		tr_extra INNER_FOCUS
-		tr_evs 144 HP, 144 Spe
-		tr_moves POISON_JAB, SUPER_FANG, CONFUSE_RAY, WING_ATTACK
-	tr_mon 46, MAGNETON @ MAGNET
-		tr_extra MAGNET_PULL
-		tr_evs 144 HP, 144 SAt
-		tr_moves THUNDERBOLT, TRI_ATTACK, THUNDER_WAVE, FLASH_CANNON
-	tr_mon 46, GENGAR @ SPELL_TAG, MALE
-		tr_extra CURSED_BODY
-		tr_evs 144 SAt, 144 Spe
-		tr_moves MEAN_LOOK, DARK_PULSE, SHADOW_BALL, CONFUSE_RAY
-	tr_mon 46, ALAKAZAM @ TWISTEDSPOON, MALE
-		tr_extra SYNCHRONIZE
-		tr_evs 144 SAt, 144 Spe
-		tr_moves DISABLE, PSYCHIC_M, RECOVER, SHADOW_BALL
-	tr_mon 49, FERALIGATR @ SITRUS_BERRY, MALE
-		tr_extra TORRENT
-		tr_evs 144 Atk, 144 Spe
-		tr_moves CRUNCH, SURF, SLASH, REVERSAL
+	tr_mon 54, SANDSLASH
+	tr_mon 52, EXEGGUTOR
+	tr_mon 53, CLOYSTER
+	tr_mon 55, ARCANINE
+	tr_mon 55, ALAKAZAM
+	tr_mon 56, JOLTEON @ ORAN_BERRY
 	end_trainer
 
 
@@ -1688,202 +1339,24 @@ SECTION "Rival2Group", ROMX
 Rival2Group:
 
 	def_trainer_class RIVAL2
-	def_trainer 1, "<RIVAL>"
-	tr_mon 61, WEAVILE @ KINGS_ROCK, MALE
-		tr_extra PRESSURE, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 204 Spe
-		tr_moves SWORDS_DANCE, ICE_PUNCH, SLASH, CRUNCH
-	tr_mon 62, GOLBAT @ EVIOLITE, MALE
-		tr_extra INNER_FOCUS, SPE_UP_SATK_DOWN
-		tr_evs 252 HP, 204 Atk
-		tr_moves POISON_JAB, SUPER_FANG, CONFUSE_RAY, AERIAL_ACE
-	tr_mon 61, MAGNEZONE @ MAGNET
-if DEF(FAITHFUL)
-		tr_extra STURDY, SATK_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SATK_UP_ATK_DOWN
-endc
-		tr_evs 252 SAt, 204 HP
-		tr_moves TRI_ATTACK, THUNDERBOLT, THUNDER_WAVE, FLASH_CANNON
-	tr_mon 63, GENGAR @ SPELL_TAG, MALE
-		tr_extra CURSED_BODY, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 204 Spe
-		tr_moves MEAN_LOOK, CURSE, SHADOW_BALL, SLUDGE_BOMB
-	tr_mon 63, ALAKAZAM @ TWISTEDSPOON, MALE
-		tr_extra SATK_UP_ATK_DOWN
-		tr_evs 252 SAt, 204 Spe
-		tr_moves DISABLE, RECOVER, SHADOW_BALL, PSYCHIC_M
-	tr_mon 65, MEGANIUM @ MIRACLE_SEED, MALE
-		tr_extra ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 204 Spe
-		tr_moves SEED_BOMB, EARTHQUAKE, BODY_SLAM, LIGHT_SCREEN
+
+; Champion
+	def_trainer RIVAL2_1, "<RIVAL>"
+	tr_mon 62, PIDGEOT
+	tr_mon 62, RHYDON
+	tr_mon 63, GYARADOS
+	tr_mon 63, ARCANINE
+	tr_mon 64, ALAKAZAM
+	tr_mon 65, RAICHU @ ORAN_BERRY
 	end_trainer
 
-	def_trainer 2, "<RIVAL>"
-	tr_mon 61, WEAVILE @ KINGS_ROCK, MALE
-		tr_extra PRESSURE, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 204 Spe
-		tr_moves SWORDS_DANCE, ICE_PUNCH, SLASH, CRUNCH
-	tr_mon 62, GOLBAT @ EVIOLITE, MALE
-		tr_extra INNER_FOCUS, SPE_UP_SATK_DOWN
-		tr_evs 252 HP, 204 Atk
-		tr_moves POISON_JAB, SUPER_FANG, CONFUSE_RAY, AERIAL_ACE
-	tr_mon 61, MAGNEZONE @ MAGNET
-if DEF(FAITHFUL)
-		tr_extra STURDY, SATK_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SATK_UP_ATK_DOWN
-endc
-		tr_evs 252 SAt, 204 HP
-		tr_moves TRI_ATTACK, THUNDERBOLT, THUNDER_WAVE, FLASH_CANNON
-	tr_mon 63, GENGAR @ SPELL_TAG, MALE
-		tr_extra CURSED_BODY, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 204 Spe
-		tr_moves MEAN_LOOK, CURSE, SHADOW_BALL, SLUDGE_BOMB
-	tr_mon 63, ALAKAZAM @ TWISTEDSPOON, MALE
-		tr_extra SATK_UP_ATK_DOWN
-		tr_evs 252 SAt, 204 Spe
-		tr_moves DISABLE, RECOVER, SHADOW_BALL, PSYCHIC_M
-	tr_mon 65, TYPHLOSION @ CHARCOAL, MALE
-		tr_extra SPE_UP_ATK_DOWN
-		tr_evs 204 Atk, 252 SAt
-		tr_moves FLAMETHROWER, EARTH_POWER, THUNDERPUNCH, SMOKESCREEN
-	end_trainer
-
-	def_trainer 3, "<RIVAL>"
-	tr_mon 61, WEAVILE @ KINGS_ROCK, MALE
-		tr_extra PRESSURE, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 204 Spe
-		tr_moves SWORDS_DANCE, ICE_PUNCH, SLASH, CRUNCH
-	tr_mon 62, GOLBAT @ EVIOLITE, MALE
-		tr_extra INNER_FOCUS, SPE_UP_SATK_DOWN
-		tr_evs 252 HP, 204 Atk
-		tr_moves POISON_JAB, SUPER_FANG, CONFUSE_RAY, AERIAL_ACE
-	tr_mon 61, MAGNEZONE @ MAGNET
-if DEF(FAITHFUL)
-		tr_extra STURDY, SATK_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SATK_UP_ATK_DOWN
-endc
-		tr_evs 252 SAt, 204 HP
-		tr_moves TRI_ATTACK, THUNDERBOLT, THUNDER_WAVE, FLASH_CANNON
-	tr_mon 63, GENGAR @ SPELL_TAG, MALE
-		tr_extra CURSED_BODY, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 204 Spe
-		tr_moves MEAN_LOOK, CURSE, SHADOW_BALL, SLUDGE_BOMB
-	tr_mon 63, ALAKAZAM @ TWISTEDSPOON, MALE
-		tr_extra SATK_UP_ATK_DOWN
-		tr_evs 252 SAt, 204 Spe
-		tr_moves DISABLE, RECOVER, SHADOW_BALL, PSYCHIC_M
-	tr_mon 65, FERALIGATR @ MYSTIC_WATER, MALE
-		tr_extra SPE_UP_SATK_DOWN
-		tr_evs 204 Atk, 252 Spe
-		tr_moves WATERFALL, CRUNCH, SLASH, REVERSAL
-	end_trainer
-
-	def_trainer 4, "<RIVAL>"
-	tr_mon 68, WEAVILE @ FOCUS_SASH, MALE
-		tr_extra PICKPOCKET, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves SWORDS_DANCE, ICICLE_CRASH, ICE_SHARD, CRUNCH
-	tr_mon 69, CROBAT @ CHOICE_BAND, MALE
-		tr_extra ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves POISON_JAB, CRUNCH, BRAVE_BIRD, U_TURN
-	tr_mon 68, MAGNEZONE @ ASSAULT_VEST
-if DEF(FAITHFUL)
-		tr_extra STURDY, SATK_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SATK_UP_ATK_DOWN
-endc
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves VOLT_SWITCH, THUNDERBOLT, FLASH_CANNON, TRI_ATTACK
-	tr_mon 70, GENGAR @ EXPERT_BELT, MALE
-if DEF(FAITHFUL)
-		tr_extra CURSED_BODY, SPE_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SPE_UP_ATK_DOWN
-endc
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves SHADOW_BALL, SLUDGE_BOMB, THUNDERBOLT, FOCUS_BLAST
-	tr_mon 70, ALAKAZAM @ LIFE_ORB, MALE
-		tr_extra MAGIC_GUARD, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves PSYCHIC_M, TRI_ATTACK, FOCUS_BLAST, RECOVER
-	tr_mon 72, MEGANIUM @ LEFTOVERS, MALE, MALE
-		tr_extra LEAF_GUARD, ATK_UP_SATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 Spe
-		tr_moves SEED_BOMB, PLAY_ROUGH, EARTHQUAKE, SWORDS_DANCE
-	end_trainer
-
-	def_trainer 5, "<RIVAL>"
-	tr_mon 68, WEAVILE @ FOCUS_SASH, MALE
-		tr_extra PICKPOCKET, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves SWORDS_DANCE, ICICLE_CRASH, ICE_SHARD, CRUNCH
-	tr_mon 69, CROBAT @ CHOICE_BAND, MALE
-		tr_extra ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves POISON_JAB, CRUNCH, BRAVE_BIRD, U_TURN
-	tr_mon 68, MAGNEZONE @ ASSAULT_VEST
-if DEF(FAITHFUL)
-		tr_extra STURDY, SATK_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SATK_UP_ATK_DOWN
-endc
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves VOLT_SWITCH, THUNDERBOLT, FLASH_CANNON, TRI_ATTACK
-	tr_mon 70, GENGAR @ EXPERT_BELT, MALE
-if DEF(FAITHFUL)
-		tr_extra CURSED_BODY, SPE_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SPE_UP_ATK_DOWN
-endc
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves SHADOW_BALL, SLUDGE_BOMB, THUNDERBOLT, FOCUS_BLAST
-	tr_mon 70, ALAKAZAM @ LIFE_ORB, MALE
-		tr_extra MAGIC_GUARD, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves PSYCHIC_M, TRI_ATTACK, FOCUS_BLAST, RECOVER
-	tr_mon 72, TYPHLOSION @ LEFTOVERS
-		tr_extra FLASH_FIRE, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 SDf, 252 Spe
-		tr_moves FIRE_BLAST, SOLAR_BEAM, EARTH_POWER, SUNNY_DAY
-	end_trainer
-
-def_trainer 6, "<RIVAL>"
-	tr_mon 68, WEAVILE @ FOCUS_SASH, MALE
-		tr_extra PICKPOCKET, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves SWORDS_DANCE, ICICLE_CRASH, ICE_SHARD, CRUNCH
-	tr_mon 69, CROBAT @ CHOICE_BAND, MALE
-		tr_extra ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves POISON_JAB, CRUNCH, BRAVE_BIRD, U_TURN
-	tr_mon 68, MAGNEZONE @ ASSAULT_VEST
-if DEF(FAITHFUL)
-		tr_extra STURDY, SATK_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SATK_UP_ATK_DOWN
-endc
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves VOLT_SWITCH, THUNDERBOLT, FLASH_CANNON, TRI_ATTACK
-	tr_mon 70, GENGAR @ EXPERT_BELT, MALE
-if DEF(FAITHFUL)
-		tr_extra CURSED_BODY, SPE_UP_ATK_DOWN
-else
-		tr_extra LEVITATE, SPE_UP_ATK_DOWN
-endc
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves SHADOW_BALL, SLUDGE_BOMB, THUNDERBOLT, FOCUS_BLAST
-	tr_mon 70, ALAKAZAM @ LIFE_ORB, MALE
-		tr_extra MAGIC_GUARD, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves PSYCHIC_M, TRI_ATTACK, FOCUS_BLAST, RECOVER
-	tr_mon 72, FERALIGATR @ LEFTOVERS, MALE
-		tr_extra SHEER_FORCE, SPE_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves WATERFALL, CRUNCH, ICE_PUNCH, DRAGON_DANCE
+	def_trainer RIVAL2_2, "<RIVAL>"
+	tr_mon 62, SANDSLASH
+	tr_mon 62, EXEGGUTOR
+	tr_mon 63, CLOYSTER
+	tr_mon 63, ARCANINE
+	tr_mon 64, ALAKAZAM
+	tr_mon 65, JOLTEON @ ORAN_BERRY
 	end_trainer
 
 
@@ -1891,137 +1364,54 @@ SECTION "Lyra1Group", ROMX
 Lyra1Group:
 
 	def_trainer_class LYRA1
-	def_trainer LYRA1_1, "Lyra"
-	tr_mon 5, "Chicory", CHIKORITA
+; Route 2
+	def_trainer LYRA1_1, "<RIVAL>"
+	tr_mon 8, RATTATA
+	tr_mon 9, CLEFAIRY @ ORAN_BERRY
 	end_trainer
 
-	def_trainer LYRA1_2, "Lyra"
-	tr_mon 5, "Cinder", CYNDAQUIL
+; Route 25 (Cerulean Cape)
+	def_trainer LYRA1_2, "<RIVAL>"
+	tr_mon 15, RATTATA
+	tr_mon 16, MEOWTH
+	tr_mon 16, BELLSPROUT
+	tr_mon 18, CLEFAIRY @ ORAN_BERRY
 	end_trainer
 
-	def_trainer LYRA1_3, "Lyra"
-	tr_mon 5, "Toto", TOTODILE
+; Vermilion City
+	def_trainer LYRA1_3, "<RIVAL>"
+	tr_mon 20, MEOWTH
+	tr_mon 20, VULPIX
+	tr_mon 21, BELLSPROUT
+	tr_mon 23, CLEFAIRY @ ORAN_BERRY
 	end_trainer
 
-	def_trainer LYRA1_4, "Lyra"
-	tr_mon 16, PIDGEY
-		tr_evs 36 HP, 36 Spe
-		tr_moves TACKLE, GUST, MUD_SLAP, QUICK_ATTACK ; default for level
-	tr_mon 17, MARILL
-		tr_evs 72 Atk
-		tr_moves DEFENSE_CURL, ROLLOUT, BUBBLE_BEAM, DIZZY_PUNCH ; default for level
-	tr_mon 15, MAREEP
-		tr_evs 36 HP, 36 SAt
-		tr_moves THUNDER_WAVE, THUNDERSHOCK, MUD_SLAP, SPARK ; default for level
-	tr_mon 18, "Chicory", BAYLEEF @ ORAN_BERRY
-		tr_evs 72 HP
-		tr_moves RAZOR_LEAF, POISONPOWDER, HEALINGLIGHT, REFLECT ; No Light Screen
+; Lavender Town
+	def_trainer LYRA1_4, "<RIVAL>"
+	tr_mon 23, GASTLY
+	tr_mon 26, VULPIX
+	tr_mon 26, WEEPINBELL
+	tr_mon 28, PERSIAN
+	tr_mon 32, CLEFABLE @ ORAN_BERRY
 	end_trainer
 
-	def_trainer LYRA1_5, "Lyra"
-	tr_mon 16, PIDGEY
-		tr_evs 36 HP, 36 Spe
-	tr_mon 17, SUNKERN
-		tr_evs 36 SAt, 36 Spe
-	tr_mon 15, MAREEP
-		tr_evs 36 HP, 36 SAt
-	tr_mon 18, "Cinder", QUILAVA @ ORAN_BERRY
-		tr_evs 72 Spe
+; Fuchsia City
+	def_trainer LYRA1_5, "<RIVAL>"
+	tr_mon 34, HAUNTER
+	tr_mon 35, NINETALES
+	tr_mon 35, KANGASKHAN
+	tr_mon 37, VICTREEBEL
+	tr_mon 39, CLEFABLE @ ORAN_BERRY
 	end_trainer
 
-	def_trainer LYRA1_6, "Lyra"
-	tr_mon 16, PIDGEY
-		tr_evs 36 HP, 36 Spe
-	tr_mon 17, GROWLITHE
-		tr_evs 36 HP, 36 Atk
-	tr_mon 15, MAREEP
-		tr_evs 36 HP, 36 SAt
-	tr_mon 18, "Toto", CROCONAW @ ORAN_BERRY
-		tr_evs 72 Atk
-	end_trainer
-
-	def_trainer LYRA1_7, "Lyra"
-	tr_mon 33, PIDGEOTTO
-		tr_evs 100 HP, 100 Spe
-	tr_mon 34, GROWLITHE
-		tr_evs 100 HP, 100 Atk
-	tr_mon 34, AZUMARILL
-		tr_evs 200 Atk
-	tr_mon 32, FLAAFFY
-		tr_evs 100 HP, 100 SAt
-	tr_mon 37, "Chicory", BAYLEEF @ ORAN_BERRY
-		tr_evs 200 HP
-	end_trainer
-
-	def_trainer LYRA1_8, "Lyra"
-	tr_mon 33, PIDGEOTTO
-		tr_evs 100 HP, 100 Spe
-	tr_mon 34, SUNFLORA
-		tr_evs 100 SAt, 100 Spe
-	tr_mon 34, AZUMARILL
-		tr_evs 200 Atk
-	tr_mon 32, FLAAFFY
-		tr_evs 100 HP, 100 SAt
-	tr_mon 37, "Cinder", QUILAVA @ ORAN_BERRY
-		tr_evs 200 Spe
-	end_trainer
-
-	def_trainer LYRA1_9, "Lyra"
-	tr_mon 33, PIDGEOTTO
-		tr_evs 100 HP, 100 Spe
-	tr_mon 34, SUNFLORA
-		tr_evs 100 SAt, 100 Spe
-	tr_mon 34, GROWLITHE
-		tr_evs 100 HP, 100 Atk
-	tr_mon 32, FLAAFFY
-		tr_evs 100 HP, 100 SAt
-	tr_mon 37, "Toto", CROCONAW @ ORAN_BERRY
-		tr_evs 200 Atk
-	end_trainer
-
-	def_trainer LYRA1_10, "Lyra"
-	tr_mon 44, PIDGEOT
-		tr_evs 132 HP, 132 Spe
-	tr_mon 43, GIRAFARIG
-		tr_evs 132 Atk, 132 Spe
-	tr_mon 45, ARCANINE
-		tr_evs 132 HP, 132 Atk
-	tr_mon 45, AZUMARILL
-		tr_evs 252 Atk, 12 Spe
-	tr_mon 46, AMPHAROS
-		tr_evs 132 HP, 132 SAt
-	tr_mon 47, "Chicory", MEGANIUM @ SITRUS_BERRY
-		tr_evs 252 HP, 12 SAt
-	end_trainer
-
-	def_trainer LYRA1_11, "Lyra"
-	tr_mon 44, PIDGEOT
-		tr_evs 132 HP, 132 Spe
-	tr_mon 43, GIRAFARIG
-		tr_evs 132 Atk, 132 Spe
-	tr_mon 45, SUNFLORA
-		tr_evs 132 SAt, 132 Spe
-	tr_mon 45, AZUMARILL
-		tr_evs 252 Atk, 12 Spe
-	tr_mon 46, AMPHAROS
-		tr_evs 132 HP, 132 SAt
-	tr_mon 47, "Cinder", TYPHLOSION @ SITRUS_BERRY
-		tr_evs 12 Atk, 252 Spe
-	end_trainer
-
-	def_trainer LYRA1_12, "Lyra"
-	tr_mon 44, PIDGEOT
-		tr_evs 132 HP, 132 Spe
-	tr_mon 43, GIRAFARIG
-		tr_evs 132 Atk, 132 Spe
-	tr_mon 45, SUNFLORA
-		tr_evs 132 SAt, 132 Spe
-	tr_mon 45, ARCANINE
-		tr_evs 132 HP, 132 Atk
-	tr_mon 46, AMPHAROS
-		tr_evs 132 HP, 132 SAt
-	tr_mon 47, "Toto", FERALIGATR @ SITRUS_BERRY
-		tr_evs 252 Atk, 12 Spe
+; Route 23
+	def_trainer LYRA1_6, "<RIVAL>"
+	tr_mon 53, NINETALES
+	tr_mon 53, GENGAR
+	tr_mon 54, KANGASKHAN
+	tr_mon 55, LAPRAS
+	tr_mon 56, VICTREEBEL
+	tr_mon 57, CLEFABLE @ ORAN_BERRY
 	end_trainer
 
 
@@ -2029,85 +1419,15 @@ SECTION "Lyra2Group", ROMX
 Lyra2Group:
 
 	def_trainer_class LYRA2
-	def_trainer 1, "Lyra"
-	tr_mon 69, PIDGEOT @ SHARP_BEAK, FEMALE
-		tr_extra NO_GUARD, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves HURRICANE, FOCUS_BLAST, U_TURN, ROOST
-	tr_mon 70, ARCANINE @ EXPERT_BELT, FEMALE
-		tr_extra INTIMIDATE, ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves FLARE_BLITZ, EXTREMESPEED, CRUNCH, WILD_CHARGE
-	tr_mon 70, AZUMARILL @ WHITE_HERB, FEMALE
-		tr_extra HUGE_POWER, ATK_UP_SATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 Atk
-		tr_moves AQUA_TAIL, AQUA_JET, PLAY_ROUGH, CLOSE_COMBAT
-	tr_mon 71, AMPHAROS @ ASSAULT_VEST, FEMALE
-		tr_extra MOLD_BREAKER, SATK_UP_ATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 SAt
-		tr_moves VOLT_SWITCH, THUNDERBOLT, DRAGON_PULSE, VOLT_SWITCH
-	tr_mon 68, FARIGIRAF @ SITRUS_BERRY, FEMALE
-		tr_extra CUD_CHEW, SATK_UP_ATK_DOWN
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves PSYCHIC_M, DARK_PULSE, THUNDER_WAVE, SUBSTITUTE
-	tr_mon 72, "Chicory", MEGANIUM @ LEFTOVERS, FEMALE
-		tr_extra LEAF_GUARD, SATK_UP_ATK_DOWN
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves GIGA_DRAIN, MOONBLAST, EARTH_POWER, HEALINGLIGHT
-	end_trainer
 
-	def_trainer 2, "Lyra"
-	tr_mon 69, PIDGEOT @ SHARP_BEAK, FEMALE
-		tr_extra NO_GUARD, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves HURRICANE, FOCUS_BLAST, U_TURN, ROOST
-	tr_mon 70, SUNFLORA @ LEFTOVERS, FEMALE
-		tr_extra EARLY_BIRD
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves GIGA_DRAIN, EARTH_POWER, LEECH_SEED, REST
-	tr_mon 70, AZUMARILL @ WHITE_HERB, FEMALE
-		tr_extra HUGE_POWER, ATK_UP_SATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 Atk
-		tr_moves AQUA_TAIL, AQUA_JET, PLAY_ROUGH, CLOSE_COMBAT
-	tr_mon 71, AMPHAROS @ ASSAULT_VEST, FEMALE
-		tr_extra MOLD_BREAKER, SATK_UP_ATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 SAt
-		tr_moves VOLT_SWITCH, THUNDERBOLT, DRAGON_PULSE, VOLT_SWITCH
-	tr_mon 68, FARIGIRAF @ SITRUS_BERRY, FEMALE
-		tr_extra CUD_CHEW, SATK_UP_ATK_DOWN
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves PSYCHIC_M, DARK_PULSE, THUNDER_WAVE, SUBSTITUTE
-	tr_mon 72, "Cinder", TYPHLOSION @ HEAT_ROCK, FEMALE
-		tr_extra FLASH_FIRE, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 SDf, 252 SAt
-		tr_moves FLAMETHROWER, SOLAR_BEAM, EARTH_POWER, SUNNY_DAY
-	end_trainer
-
-	def_trainer 3, "Lyra"
-	tr_mon 69, PIDGEOT @ SHARP_BEAK, FEMALE
-		tr_extra NO_GUARD, SPE_UP_ATK_DOWN
-		tr_evs 252 SAt, 4 Def, 252 Spe
-		tr_moves HURRICANE, FOCUS_BLAST, U_TURN, ROOST
-	tr_mon 70, SUNFLORA @ LEFTOVERS, FEMALE
-		tr_extra EARLY_BIRD
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves GIGA_DRAIN, EARTH_POWER, LEECH_SEED, REST
-	tr_mon 70, ARCANINE @ EXPERT_BELT, FEMALE
-		tr_extra INTIMIDATE, ATK_UP_SATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves FLARE_BLITZ, EXTREMESPEED, CRUNCH, WILD_CHARGE
-	tr_mon 71, AMPHAROS @ ASSAULT_VEST, FEMALE
-		tr_extra MOLD_BREAKER, SATK_UP_ATK_DOWN
-		tr_evs 252 HP, 4 SDf, 252 SAt
-		tr_moves VOLT_SWITCH, THUNDERBOLT, DRAGON_PULSE, VOLT_SWITCH
-	tr_mon 68, FARIGIRAF @ SITRUS_BERRY, FEMALE
-		tr_extra CUD_CHEW, SATK_UP_ATK_DOWN
-		tr_evs 252 HP, 4 Def, 252 SAt
-		tr_moves PSYCHIC_M, DARK_PULSE, THUNDER_WAVE, SUBSTITUTE
-	tr_mon 72, "Toto", FERALIGATR @ LIFE_ORB, FEMALE
-		tr_extra SHEER_FORCE, SPE_UP_ATK_DOWN
-		tr_evs 252 Atk, 4 Def, 252 Spe
-		tr_moves WATERFALL, CRUNCH, ICE_PUNCH, SWORDS_DANCE
+; Cerulean Cave
+	def_trainer 1, "<RIVAL>"
+	tr_mon 66, NINETALES
+	tr_mon 68, GENGAR
+	tr_mon 68, KANGASKHAN
+	tr_mon 69, LAPRAS
+	tr_mon 69, VICTREEBEL
+	tr_mon 70, CLEFABLE @ ORAN_BERRY
 	end_trainer
 
 

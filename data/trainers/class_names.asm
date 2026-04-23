@@ -33,7 +33,7 @@ TrainerClassNames::
 	li "<PK><MN> Trainer" ; LYRA1
 	li "<PK><MN> Trainer" ; LYRA2
 	li "Youngster"        ; YOUNGSTER
-	li "Bug Catcher"      ; BUG_CATCHER
+	li "Bug Boy"          ; BUG_CATCHER - Stadium Name
 	li "Camper"           ; CAMPER
 	li "Picnicker"        ; PICNICKER
 	li "Twins"            ; TWINS

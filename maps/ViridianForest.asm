@@ -26,14 +26,15 @@ ViridianForest_MapScriptHeader:
 	def_object_events
 	object_event 18, 44, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJessieText, EVENT_MET_JESSIE_JAMES
 	object_event 19, 44, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJamesText, EVENT_MET_JESSIE_JAMES
-	object_event 12, 4, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJamesText, EVENT_HIDE_VIRIDIAN_FOREST_JESSIE
-	object_event 19, 4, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJessieText, EVENT_HIDE_VIRIDIAN_FOREST_JAMES
+	object_event 12,  4, SPRITE_JAMES, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJamesText, EVENT_HIDE_VIRIDIAN_FOREST_JESSIE
+	object_event 19,  4, SPRITE_JESSIE, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestJessieText, EVENT_HIDE_VIRIDIAN_FOREST_JAMES
 	object_event  4, 43, SPRITE_LASS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_SCRIPT, 0, ViridianForestJoanaScript, -1
 	object_event 29, 42, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_COMMAND, jumptextfaceplayer, ViridianForestBugBoyText, -1
-	object_event 32, 35, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBugCatcherDoug, -1
-	object_event 32, 21, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBugCatcherRick, -1
-	object_event 31,  4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBugCatcherBrian, -1
-	object_event 15, 19, SPRITE_LASS, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerLassJocelyn, -1
+	object_event 32, 35, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 4, GenericTrainerBugCatcherRick, -1
+	object_event 32, 21, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 5, GenericTrainerBugCatcherDoug, -1
+	object_event  8, 40, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerBugCatcherBrian, -1
+	object_event 31,  4, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 3, GenericTrainerBugCatcherAnthony, -1
+	object_event 16, 18, SPRITE_LASS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 2, GenericTrainerLassBrittany, -1
 	object_event  4, 20, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, 0, OBJECTTYPE_GENERICTRAINER, 1, GenericTrainerBugCatcherSammy, -1
 	itemball_event 20, 34, ANTIDOTE, 1, EVENT_VIRIDIAN_FOREST_ANTIDOTE
 	itemball_event 3, 33, POKE_BALL, 2, EVENT_VIRIDIAN_FOREST_POKE_BALL
@@ -322,8 +323,8 @@ ViridianForestBugBoyText:
 	line "extras!"
 	done
 
-GenericTrainerBugCatcherDoug:
-	generictrainer BUG_CATCHER, DOUG, EVENT_BEAT_BUG_CATCHER_DOUG, .SeenText, .BeatenText
+GenericTrainerBugCatcherRick:
+	generictrainer BUG_CATCHER, RICK, EVENT_BEAT_BUG_CATCHER_RICK, .SeenText, .BeatenText
 
 	text "Ssh! You'll scare"
 	line "the bugs away!"
@@ -341,8 +342,8 @@ GenericTrainerBugCatcherDoug:
 	cont "cut it!"
 	prompt
 
-GenericTrainerBugCatcherRick:
-	generictrainer BUG_CATCHER, RICK, EVENT_BEAT_BUG_CATCHER_RICK, .SeenText, .BeatenText
+GenericTrainerBugCatcherDoug:
+	generictrainer BUG_CATCHER, DOUG, EVENT_BEAT_BUG_CATCHER_DOUG, .SeenText, .BeatenText
 
 	text "Darn! I'm going"
 	line "to catch some"
@@ -361,56 +362,86 @@ GenericTrainerBugCatcherRick:
 	cont "#mon!"
 	prompt
 
+; LGPE trainer; FRLG Charlie's dialogue
 GenericTrainerBugCatcherBrian:
 	generictrainer BUG_CATCHER, BRIAN, EVENT_BEAT_BUG_CATCHER_BRIAN, .SeenText, .BeatenText
 
-	text "Darn! I'm going"
-	line "to catch some"
-	cont "stronger ones!"
+	text "Bugs evolve very"
+	line "quickly. They're"
+	cont "a lot of fun!"
 	done
 
 .SeenText:
-	text "Yo! You can't jam"
-	line "out if you're a"
-	cont "#mon trainer!"
+	text "Did you know that"
+	line "#mon evolve?"
 	done
 
 .BeatenText:
-	text "Huh?"
-	line "I ran out of"
-	cont "#mon!"
+	text "Oh!"
+	line "I lost!"
 	prompt
 
-GenericTrainerLassJocelyn:
-	generictrainer LASS, JOCELYN, EVENT_BEAT_LASS_JOCELYN, .SeenText, .BeatenText
+GenericTrainerBugCatcherAnthony:
+	generictrainer BUG_CATCHER, ANTHONY, EVENT_BEAT_BUG_CATCHER_ANTHONY, .SeenText, .BeatenText
 
-	text "..."
-	line "You win!"
+	text "I lost some of my"
+	line "allowance…"
 	done
 
 .SeenText:
-	text "..."
-	line "Let's Battle!"
+	text "I might be little,"
+	line "but don't go easy"
+	cont "on me!"
 	done
 
 .BeatenText:
-	text "Oh..."
+	text "Oh, boo…"
+	line "nothing went"
+	cont "right."
+	prompt
+
+GenericTrainerLassBrittany:
+	generictrainer LASS, BRITTANY, EVENT_BEAT_LASS_BRITTANY, .SeenText, .BeatenText
+
+	text "Could you stop"
+	line "and listen for"
+	cont "a second?"
+	done
+
+.SeenText:
+	text "Hey, do you know"
+	line "if Bulbasaur can"
+	cont "be found here?"
+	done
+
+.BeatenText:
+	text "I heard from two"
+	line "weirdos that"
+	cont "Bulbasaur is here"
+	cont "somewhere…"
 	prompt
 
 GenericTrainerBugCatcherSammy:
 	generictrainer BUG_CATCHER, SAMMY, EVENT_BEAT_BUG_CATCHER_SAMMY, .SeenText, .BeatenText
 
-	text "..."
-	line "You win!"
+	text "Sometimes, you"
+	line "can find stuff on"
+	cont "the ground!"
+
+	para "I'm looking for"
+	line "the stuff I"
+	cont "dropped!"
 	done
 
 .SeenText:
-	text "..."
-	line "Let's Battle!"
+	text "Hey, wait up!"
+	line "What's the hurry?"
 	done
 
 .BeatenText:
-	text "Oh..."
+	text "I give up!"
+	line "You're good"
+	cont "at this!"
 	prompt
 
 ViridianForestSignText1:

@@ -1554,18 +1554,22 @@ BugCatcherGroup:
 	end_trainer
 
 	def_trainer DOUG, "Doug"
-	tr_mon 7, WEEDLE, MALE
+	tr_mon 6, WEEDLE, MALE
 	tr_mon 7, KAKUNA, MALE
-	tr_mon 7, WEEDLE, MALE
+	tr_mon 6, WEEDLE, MALE
 	end_trainer
 
 	def_trainer BRIAN, "Brian"
+	tr_mon 6, WEEDLE, MALE
+	end_trainer
+
+	def_trainer ANTHONY, "Anthony"
 	tr_mon 7, CATERPIE, MALE		; Changed lineup
-	tr_mon 7, METAPOD, MALE
+	tr_mon 8, METAPOD, MALE
 	end_trainer
 
 	def_trainer SAMMY, "Sammy"
-	tr_mon 9, WEEDLE, MALE
+	tr_mon 10, BEEDRILL, MALE
 	end_trainer
 
 ; Route 3 (FRLG)
@@ -2894,7 +2898,7 @@ LassGroup:
 	tr_mon 6, NIDORAN_M
 	end_trainer
 
-	def_trainer JOCELYN, "Jocelyn"
+	def_trainer BRITTANY, "Brittany"
 	tr_mon 6, NIDORAN_F
 	tr_mon 7, PIDGEY
 	end_trainer

@@ -161,6 +161,7 @@ DEF BETA EQU __trainer_class__
 	const RICK		; Viridian Forest
 	const DOUG
 	const BRIAN
+	const ANTHONY
 	const SAMMY
 	const COLTON	; Route 3
 	const GREG
@@ -376,7 +377,7 @@ DEF BETA EQU __trainer_class__
 
 	trainerclass LASS ; 33 (FINISHED)
 	const JOANA				; Viridian Forest
-	const JOCELYN
+	const BRITTANY
 	const JANICE			; Route 3
 	const SALLY
 	const ROBIN

@@ -1272,7 +1272,7 @@ wTeamRocketBaseB2FSceneID:: db
 wTeamRocketBaseB3FSceneID:: db
 wTinTower1FSceneID:: db
 wTradeCenterSceneID:: db
-wGoldenrodUndergroundSwitchRoomSceneID:: db
+wViridianForestSceneID:: db		; KoH - Added for Jessie/James intro
 wVermilionCitySceneID:: db
 wVermilionPortSceneID:: db
 wVictoryRoad2FSceneID:: db

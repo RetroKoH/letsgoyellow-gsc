@@ -4691,6 +4691,7 @@ JessieJamesGroup:
 ; Viridian Forest (NEW)
 	def_trainer 1, "& James"
 	tr_mon 10, MEOWTH, MALE
+	tr_mon 10, BULBASAUR, MALE
 	end_trainer
 
 ; Mt. Moon (Y)

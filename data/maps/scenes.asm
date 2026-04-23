@@ -103,7 +103,7 @@ MapScenes::
 	scene_var TIN_TOWER_1F,                      wTinTower1FSceneID
 	scene_var TRADE_CENTER,                      wTradeCenterSceneID
 	scene_var TRAINER_HOUSE_B1F,                 wAlways0SceneID
-	scene_var GOLDENROD_UNDERGROUND_SWITCH_ROOM, wGoldenrodUndergroundSwitchRoomSceneID
+	scene_var VIRIDIAN_FOREST,                   wViridianForestSceneID	 		; KoH - Added for Jessie/James intro
 	scene_var VERMILION_CITY,                    wVermilionCitySceneID
 	scene_var VERMILION_PORT,                    wVermilionPortSceneID
 	scene_var VICTORY_ROAD_2F,                   wVictoryRoad2FSceneID

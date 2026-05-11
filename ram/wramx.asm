@@ -1267,7 +1267,7 @@ wSeagallopFerryNavelGateSceneID:: db
 wSeagallopFerryShamoutiGateSceneID:: db
 wSeagallopFerryVermilionGateSceneID:: db
 wShamoutiHotelRestaurantSceneID:: db
-wSproutTower3FSceneID:: db
+wViridianForestSouthGateSceneID:: db	; KoH - Added for first friendly Rival scene
 wTeamRocketBaseB2FSceneID:: db
 wTeamRocketBaseB3FSceneID:: db
 wTinTower1FSceneID:: db

@@ -30,12 +30,40 @@ SpawnPlayer:
 	call GetMapObject
 	ld hl, MAPOBJECT_PALETTE
 	add hl, bc
+
+.get_color:
 	ld a, [wPlayerGender]
-	assert PLAYER_MALE + 1 == PAL_NPC_RED
-	assert PLAYER_FEMALE + 1 == PAL_NPC_BLUE
-	assert PLAYER_ENBY + 1 == PAL_NPC_GREEN
-	assert PLAYER_BETA + 1 == PAL_NPC_PURPLE
-	inc a
+
+;.red:
+	and a
+	jr nz, .green
+	ld a, PAL_NPC_RED
+	jmp .got_pal
+
+
+.green:
+	dec a
+	jr nz, .chase
+	ld a, PAL_NPC_GREEN
+	jmp .got_pal
+
+.chase:
+	dec a
+	jr nz, .elaine
+	ld a, PAL_NPC_ORANGE
+	jmp .got_pal
+
+.elaine
+	ld a, PAL_NPC_TEAL
+
+; load PAL_NPC to a here
+;	assert PLAYER_MALE + 1 == PAL_NPC_RED
+;	assert PLAYER_FEMALE + 1 == PAL_NPC_BLUE
+;	assert PLAYER_ENBY + 1 == PAL_NPC_GREEN
+;	assert PLAYER_BETA + 1 == PAL_NPC_PURPLE
+
+.got_pal:
+;	inc a
 	ld [hl], a
 	ld hl, MAPOBJECT_TYPE
 	add hl, bc

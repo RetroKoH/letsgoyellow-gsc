@@ -7,16 +7,16 @@ ENDM
 SpriteHeaders:
 ; entries correspond to SPRITE_* constants
 	table_width SPRITEDATA_LENGTH
-	overworld_sprite ChrisSpriteGFX, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite ChrisSpriteGFX, WALKING_SPRITE, PAL_OW_RED			; Player: Red
 	overworld_sprite ChrisBikeSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite ChrisSurfSpriteGFX, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite KrisSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
-	overworld_sprite KrisBikeSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
-	overworld_sprite KrisSurfSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite KrisSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN		; Player: Green
+	overworld_sprite KrisBikeSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
+	overworld_sprite KrisSurfSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
 	overworld_sprite MomSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite DadSpriteGFX, STANDING_SPRITE, PAL_OW_BROWN
 	overworld_sprite LyraSpriteGFX, WALKING_SPRITE, PAL_OW_RED
-	overworld_sprite RivalSpriteGFX, WALKING_SPRITE, PAL_OW_RED
+	overworld_sprite BlueSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE			; Duplicate of Blue (Formerly Silver)
 	overworld_sprite FalknerSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BugsySpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
 	overworld_sprite WhitneySpriteGFX, WALKING_SPRITE, PAL_OW_RED
@@ -37,7 +37,7 @@ SpriteHeaders:
 	overworld_sprite JanineSpriteGFX, WALKING_SPRITE, PAL_OW_PURPLE
 	overworld_sprite SabrinaSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite BlaineSpriteGFX, WALKING_SPRITE, PAL_OW_BROWN
-	overworld_sprite BlueSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite BlueSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE			; ACTUAL BLUE SPRITE
 	overworld_sprite RedSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite LeafSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
 	overworld_sprite YellowSpriteGFX, WALKING_SPRITE, PAL_OW_ORANGE
@@ -205,9 +205,9 @@ SpriteHeaders:
 	overworld_sprite KatySpriteGFX, WALKING_SPRITE, PAL_OW_BROWN
 	overworld_sprite AlolanExeggutorSpriteGFX, BIG_GYARADOS_SPRITE, PAL_OW_BROWN
 	overworld_sprite SoldierSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
-	overworld_sprite CrysSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
-	overworld_sprite CrysBikeSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
-	overworld_sprite CrysSurfSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
+	overworld_sprite CrysSpriteGFX, WALKING_SPRITE, PAL_OW_ORANGE		; Player: Chase
+	overworld_sprite CrysBikeSpriteGFX, WALKING_SPRITE, PAL_OW_ORANGE
+	overworld_sprite CrysSurfSpriteGFX, WALKING_SPRITE, PAL_OW_ORANGE
 	overworld_sprite ThortonSpriteGFX, WALKING_SPRITE, PAL_OW_GREEN
 	overworld_sprite ChrisRunSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite KrisRunSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
@@ -216,7 +216,7 @@ SpriteHeaders:
 	overworld_sprite BigHoOhSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite BigLugiaSpriteGFX, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BetaSpriteGFX, WALKING_SPRITE, PAL_OW_PURPLE
-	overworld_sprite BetaBikeSpriteGFX, WALKING_SPRITE, PAL_OW_PURPLE
-	overworld_sprite BetaSurfSpriteGFX, WALKING_SPRITE, PAL_OW_PURPLE
-	overworld_sprite BetaRunSpriteGFX, WALKING_SPRITE, PAL_OW_PURPLE
+	overworld_sprite BetaBikeSpriteGFX, WALKING_SPRITE, PAL_OW_AZURE	; Player: Elaine
+	overworld_sprite BetaSurfSpriteGFX, WALKING_SPRITE, PAL_OW_AZURE
+	overworld_sprite BetaRunSpriteGFX, WALKING_SPRITE, PAL_OW_AZURE
 	assert_table_length NUM_OVERWORLD_SPRITES

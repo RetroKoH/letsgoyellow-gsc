@@ -122,8 +122,7 @@ OaksLab_ReceivePokedex:
 	setflag ENGINE_POKEDEX
 	setevent EVENT_GOT_POKEDEX_FROM_OAK
 ;	clearevent EVENT_HIDE_VIRIDIAN_CITY_OLD_MAN
-;	setmapscene VIRIDIAN_CITY, $1
-;	setmapscene ROUTE_22, $1
+	clearevent EVENT_HIDE_ROUTE_22_BLUE
 	setscene $4
 	end
 

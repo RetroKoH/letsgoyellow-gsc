@@ -67,7 +67,7 @@ MapScenes::
 	scene_var ROUTE_16_17_GATE,                  wAlways0SceneID
 	scene_var ROUTE_18_GATE,                     wAlways0SceneID
 	scene_var ROUTE_18_WEST,                     wAlways0SceneID
-	scene_var ROUTE_22_PAST,                     wAlways0SceneID
+	scene_var ROUTE_22,                          wRoute22SceneID
 	scene_var ROUTE_23_NORTH,                    wRoute23SceneID
 	scene_var ROUTE_23_SOUTH,                    wRoute23SceneID
 	scene_var ROUTE_24,                          wRoute24SceneID
@@ -77,7 +77,7 @@ MapScenes::
 	scene_var ROUTE_34,                          wRoute34SceneID
 	scene_var ROUTE_34_ILEX_FOREST_GATE,         wAlways0SceneID
 	scene_var ROUTE_35_NATIONAL_PARK_GATE,       wRoute35NationalParkGateSceneID
-	scene_var ROUTE_36,                          wRoute36SceneID
+	scene_var ROUTE_36,                          wAlways0SceneID
 	scene_var ROUTE_36_NATIONAL_PARK_GATE,       wRoute36NationalParkGateSceneID
 	scene_var ROUTE_39_RUGGED_ROAD_GATE,         wRoute39RuggedRoadGateSceneID
 	scene_var ROUTE_42,                          wRoute42SceneID

@@ -1242,6 +1242,7 @@ wPokemonLeagueGateSceneID:: db
 wPowerPlantSceneID:: db
 wRadioTower5FSceneID:: db
 wRoute10NorthSceneID:: db
+wRoute22SceneID:: db	; KoH - Added for the first Blue Rival Battle
 wRoute23SceneID:: db
 wRoute24SceneID:: db
 wRoute27SceneID:: db
@@ -1250,7 +1251,6 @@ wRoute32SceneID:: db
 wRoute34SceneID:: db
 wRoute35NationalParkGateSceneID:: db
 wRoute36NationalParkGateSceneID:: db
-wRoute36SceneID:: db
 wRoute42SceneID:: db
 wRoute43GateSceneID:: db
 wRoute47SceneID:: db

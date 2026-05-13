@@ -116,17 +116,18 @@ NamingScreen:
 .PlayerSpriteAnims:
 	table_width 1
 	db SPRITE_ANIM_INDEX_RED_WALK    ; PLAYER_MALE
-	db SPRITE_ANIM_INDEX_BLUE_WALK   ; PLAYER_FEMALE
-	db SPRITE_ANIM_INDEX_GREEN_WALK  ; PLAYER_ENBY
-	db SPRITE_ANIM_INDEX_PURPLE_WALK ; PLAYER_BETA
+	db SPRITE_ANIM_INDEX_GREEN_WALK  ; PLAYER_FEMALE
+	db SPRITE_ANIM_INDEX_RED_WALK    ; PLAYER_ENBY
+	db SPRITE_ANIM_INDEX_BLUE_WALK   ; PLAYER_BETA
 	assert_table_length NUM_PLAYER_GENDERS
 
 .PlayerNameString:
 	db "Your name?@"
 
+; KoH - Uses Blue's sprite again
 .Rival:
-	ld hl, RivalSpriteGFX
-	lb bc, BANK(RivalSpriteGFX), SPRITE_ANIM_INDEX_RED_WALK
+	ld hl, BlueSpriteGFX
+	lb bc, BANK(BlueSpriteGFX), SPRITE_ANIM_INDEX_BLUE_WALK
 	call .LoadSprite
 	hlcoord 5, 2
 	ld de, .RivalNameString

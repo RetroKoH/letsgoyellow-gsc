@@ -216,7 +216,7 @@ SpriteHeaders:
 	overworld_sprite BigHoOhSpriteGFX, WALKING_SPRITE, PAL_OW_RED
 	overworld_sprite BigLugiaSpriteGFX, STANDING_SPRITE, PAL_OW_BLUE
 	overworld_sprite BetaSpriteGFX, WALKING_SPRITE, PAL_OW_PURPLE
-	overworld_sprite BetaBikeSpriteGFX, WALKING_SPRITE, PAL_OW_AZURE	; Player: Elaine
-	overworld_sprite BetaSurfSpriteGFX, WALKING_SPRITE, PAL_OW_AZURE
-	overworld_sprite BetaRunSpriteGFX, WALKING_SPRITE, PAL_OW_AZURE
+	overworld_sprite BetaBikeSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE	; Player: Elaine
+	overworld_sprite BetaSurfSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
+	overworld_sprite BetaRunSpriteGFX, WALKING_SPRITE, PAL_OW_BLUE
 	assert_table_length NUM_OVERWORLD_SPRITES

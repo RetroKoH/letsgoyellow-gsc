@@ -54,7 +54,7 @@ SpawnPlayer:
 	jmp .got_pal
 
 .elaine
-	ld a, PAL_NPC_TEAL
+	ld a, PAL_NPC_BLUE
 
 ; load PAL_NPC to a here
 ;	assert PLAYER_MALE + 1 == PAL_NPC_RED

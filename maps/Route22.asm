@@ -7,8 +7,8 @@ Route22_MapScriptHeader:
 	warp_event  3,  5, POKEMON_LEAGUE_GATE, 1
 
 	def_coord_events
-	coord_event 18, 4, 0, Route22_BlueBeckonsYouScene ; Scene 0 (Blue Battle)
-	coord_event 18, 5, 0, Route22_BlueBeckonsYouScene ; Scene 0 (Blue Battle)
+	coord_event 18, 4, 0, Route22_BlueBeckonsYouScene1 ; Scene 0 (Blue Battle) top side
+	coord_event 18, 5, 0, Route22_BlueBeckonsYouScene2 ; Scene 0 (Blue Battle) bottom side
 	; Scene 1 (Idle Scene, w/ Snorlax)
 	; Scene 2 (Shadow Snorlax boss battle)
 	; Scene 3 (Idle Scene, After Snorlax)
@@ -26,38 +26,53 @@ Route22_MapScriptHeader:
 	const ROUTE22_BLUE
 	const ROUTE22_SNORLAX
 
-Route22_BlueBeckonsYouScene:
+; Top-side cutscene trigger
+Route22_BlueBeckonsYouScene1:
 	showemote EMOTE_SHOCK, ROUTE22_BLUE, 15
-	turnobject ROUTE22_BLUE, DOWN
+	turnobject ROUTE22_BLUE, RIGHT
 	opentext
 	writetext Route22Blue_GreetsPlayer
 	waitbutton
 	closetext
 	turnobject ROUTE22_BLUE, LEFT
-	applymovement PLAYER, Movement_PlayerGoesToSee
+	applymovement PLAYER, Movement_PlayerGoesToSee1
+	sjumpfwd Route22_BlueContinuesConversation
+
+; Bottom-side cutscene trigger
+Route22_BlueBeckonsYouScene2:
+	showemote EMOTE_SHOCK, ROUTE22_BLUE, 15
+	turnobject ROUTE22_BLUE, RIGHT
+	opentext
+	writetext Route22Blue_GreetsPlayer
+	waitbutton
+	closetext
+	turnobject ROUTE22_BLUE, LEFT
+	applymovement PLAYER, Movement_PlayerGoesToSee2
+; fallthrough
+
+Route22_BlueContinuesConversation:
 	opentext
 	writetext Route22Blue_LookSnorlax
 	promptbutton
-	turnobject ROUTE22_BLUE, UP
-	turnobject PLAYER, DOWN
+	turnobject ROUTE22_BLUE, DOWN
+	turnobject PLAYER, UP
 	writetext Route22Blue_LookPlayer
 	yesorno
-	iffalse .NotScared
+	iffalsefwd .NotScared
 	writetext Route22Blue_Agree
 	waitbutton
 	closetext
-	applymovement TRACE, Movement_BackingAway
-	turnobject ROUTE22_BLUE, LEFT
 	applymovement PLAYER, Movement_BackingAway
-	turnobject PLAYER, DOWN
-	turnobject ROUTE22_BLUE, UP
+	applymovement ROUTE22_BLUE, Movement_BackingAway
+	turnobject ROUTE22_BLUE, DOWN
+	turnobject PLAYER, UP
 	opentext
 	writetext Route22Blue_ThatWasClose
 	promptbutton
 	writetext Route22_BlueChallengePlayer1
 	waitbutton
 	closetext
-	sjump .startBattle
+	sjumpfwd .startBattle
 
 .NotScared:
 	writetext Route22Blue_Doubt
@@ -66,15 +81,15 @@ Route22_BlueBeckonsYouScene:
 	applymovement ROUTE22_BLUE, Movement_BackingAway
 	turnobject ROUTE22_BLUE, LEFT
 	applymovement PLAYER, Movement_BackingAway
-	turnobject PLAYER, DOWN
-	turnobject ROUTE22_BLUE, UP
+	turnobject ROUTE22_BLUE, DOWN
+	turnobject PLAYER, UP
 	opentext
 	writetext Route22Blue_ThatWasClose
 	promptbutton
 	writetext Route22_BlueChallengePlayer2
 	waitbutton
 	closetext
-	sjump .startBattle
+	sjumpfwd .startBattle
 
 .startBattle:
 	winlosstext Route22BlueWinText, Route22BlueLossText
@@ -82,7 +97,7 @@ Route22_BlueBeckonsYouScene:
 	checkevent EVENT_PLAYER_CHOSE_PIKACHU
 	iftruefwd .Pikachu
 	loadtrainer RIVAL0, RIVAL0_3	; Rival has PIKACHU
-	sjump .continueBattle
+	sjumpfwd .continueBattle
 .Pikachu
 	loadtrainer RIVAL0, RIVAL0_4	; Rival has EEVEE
 .continueBattle
@@ -90,12 +105,12 @@ Route22_BlueBeckonsYouScene:
 	startbattle
 	dontrestartmapmusic
 	reloadmap
-	iffalse .AfterYouWin
-	sjump .AfterYouLose
+	iffalsefwd .AfterYouWin
+	sjumpfwd .AfterYouLose
 
 .AfterYouWin:
 	showtext Route22Text_PlayerWon
-	sjump .FinishBlue
+	sjumpfwd .FinishBlue
 
 .AfterYouLose:
 	showtext Route22Text_BlueWon
@@ -113,10 +128,10 @@ Route22_BlueBeckonsYouScene:
 	playmapmusic
 	end
 
-Movement_PlayerGoesToSee:
-	step_up
-	step_up
-	step_up
+Movement_PlayerGoesToSee1:
+	step_down
+Movement_PlayerGoesToSee2:
+	step_left
 	step_left
 	step_end
 
@@ -126,8 +141,9 @@ Movement_BackingAway:
 	step_end
 
 Movement_BlueExitsRoute22:
-	step_left
-	step_down
+	step_right
+	step_right
+	step_right
 	step_down
 	step_down
 	step_down
@@ -139,37 +155,37 @@ Route22Blue_GreetsPlayer:
 	text "<RIVAL>: Hey,"
 	line "<PLAYER>!"
 
-	para "Come take a look"
-	line "at this!"
+	para "You're going to"
+	line "Indigo Plateau?"
+
+	para "You may want to"
+	line "come see this!"
 	done
 
 Route22Blue_LookSnorlax:
 	text "<RIVAL>: Look at"
 	line "this big #mon!"
 	
-	para "This #dex said"
+	para "The #dex said"
 	line "it's a Snorlax!"
 	cont "Apparently it just"
 	cont "eats and sleeps!"
 	
 	para "But this one looks"
 	line "different. Look at"
-	cont "its demeanor and"
-	cont "aura."
+	cont "its dark aura."
 	done
 
 Route22Blue_LookPlayer:
-	text "<RIVAL>: <PLAYER>?"
-	line "What do you think?"
-	cont "Doesn't it give"
-	cont "you the creeps?"
+	text "Doesn't it give"
+	line "you the creeps?"
 	done
 
 Route22Blue_Agree:
-	text "Yea, same here!"
-	line "Let's back up and"
-	cont "give it a bit of"
-	cont "space."
+	text "Tch, you scared?"
+	line "Fine, let's back"
+	cont "back up and give"
+	cont "it some space."
 	done
 
 Route22Blue_Doubt:
@@ -185,7 +201,7 @@ Route22Blue_Doubt:
 	done
 
 Route22Blue_ThatWasClose:
-	text "<RIVAL>: That sure"
+	text "<RIVAL>: That"
 	line "was close!"
 	
 	para "I heard about some"
@@ -199,10 +215,9 @@ Route22_BlueChallengePlayer1:
 	line "leave it alone for"
 	cont "now though."
 	
-	para "Say, why don't we"
-	line "have a little 1v1"
-	cont "before heading"
-	cont "off to see Blue?"
+	para "By the way, did"
+	line "your #mon"
+	cont "get any stronger?"
 	done
 
 Route22_BlueChallengePlayer2:
@@ -211,16 +226,15 @@ Route22_BlueChallengePlayer2:
 	cont "wasn't that scary."
 	
 	para "Why don't we see"
-	line "how tough you are"
-	cont "in a quick battle"
-	cont "before we go?"
+	line "just how tough"
+	cont "you really are?"
 	done
 
 Route22Text_PlayerWon:
-	text "<RIVAL>: Wow!"
-	line "I bet you could"
-	cont "take on that odd"
-	cont "Snorlax!"
+	text "<RIVAL>: That"
+	line "was a fun battle."
+	cont "You should train"
+	cont "more though."
 	done
 
 Route22Text_BlueWon:
@@ -231,22 +245,28 @@ Route22Text_BlueWon:
 	done
 
 Route22Text_BlueSaysBye:
-	text "Anyway, We should"
-	line "get going already."
-	cont "Blue is waiting in"
-	cont "Pewter City!"
+	text "I heard #mon"
+	line "League has many"
+	cont "tough trainers!"
 
-	para "See ya, <PLAYER>!"
+	para "I have to figure"
+	line "out how to get"
+	cont "past them!"
+
+	para "You should quit"
+	line "dawdling and get"
+	cont "a move on!"
 	done
 
 Route22BlueWinText:
-	text "<RIVAL>: What?!"
-	line "Did I lose?"
+	text "<RIVAL>: Awww!"
+	line "You just lucked"
+	cont "out!"
 	done
 
 Route22BlueLossText:
-	text "<RIVAL>: Yes!"
-	line "I did it!"
+	text "<RIVAL>: Yeah!"
+	line "I won!"
 	done
 
 Route22Snorlax:

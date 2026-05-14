@@ -101,30 +101,17 @@ Route22_BlueContinuesConversation:
 .Pikachu
 	loadtrainer RIVAL0, RIVAL0_4	; Rival has EEVEE
 .continueBattle
-	loadvar VAR_BATTLETYPE, BATTLETYPE_CANLOSE
 	startbattle
 	dontrestartmapmusic
-	reloadmap
-	iffalsefwd .AfterYouWin
-	sjumpfwd .AfterYouLose
+	reloadmapafterbattle
 
-.AfterYouWin:
-	showtext Route22Text_PlayerWon
-	sjumpfwd .FinishBlue
-
-.AfterYouLose:
-	showtext Route22Text_BlueWon
-.FinishBlue
+	special DeleteSavedMusic
 	playmusic MUSIC_RIVAL_AFTER
-	showemote EMOTE_HAPPY, ROUTE22_BLUE, 20
-	opentext
-	writetext Route22Text_BlueSaysBye
-	waitbutton
-	closetext
+	showtext Route22Text_AfterBattle
 	applymovement ROUTE22_BLUE, Movement_BlueExitsRoute22
 	disappear ROUTE22_BLUE
-	special HealParty
 	setscene $2
+	waitsfx
 	playmapmusic
 	end
 
@@ -230,22 +217,13 @@ Route22_BlueChallengePlayer2:
 	cont "you really are?"
 	done
 
-Route22Text_PlayerWon:
+Route22Text_AfterBattle:
 	text "<RIVAL>: That"
-	line "was a fun battle."
+	line "was fun."
 	cont "You should train"
 	cont "more though."
-	done
 
-Route22Text_BlueWon:
-	text "<RIVAL>: That"
-	line "was a fun battle."
-	cont "You should train"
-	cont "more though."
-	done
-
-Route22Text_BlueSaysBye:
-	text "I heard #mon"
+	para "I heard #mon"
 	line "League has many"
 	cont "tough trainers!"
 

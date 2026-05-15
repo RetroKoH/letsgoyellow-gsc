@@ -11,7 +11,7 @@ PlayersHouse2F_MapScriptHeader:
 	def_coord_events
 
 	def_bg_events
-	bg_event  2,  1, BGEVENT_UP, PlayersHousePC
+	bg_event  2,  1, BGEVENT_UP, OldPlayersHousePCText
 	bg_event  3,  1, BGEVENT_READ, PlayersHouseRadio
 	bg_event  5,  1, BGEVENT_READ, PokemonJournalProfElmScript
 	bg_event  6,  0, BGEVENT_IFSET, PlayersHousePoster
@@ -371,13 +371,10 @@ PokemonJournalProfElmScript:
 	cont "research."
 	done
 
-PlayersHousePC:
-	opentext
-	special Special_PlayersHousePC
-	iffalse_endtext
-.Warp:
-	warp NONE, 0, 0
-	end
+OldPlayersHousePCText:
+	text "It seems like it"
+	line "doesn't work."
+	done
 
 PlayerRadioText1:
 	text "Prof.Oak's #mon"

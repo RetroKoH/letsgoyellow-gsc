@@ -196,9 +196,9 @@ CutFunction:
 	dw .FailCut
 
 .CheckAble:
-	ld de, ENGINE_HIVEBADGE
-	call CheckBadge
-	jr c, .nohivebadge
+;	ld de, ENGINE_HIVEBADGE
+;	call CheckBadge
+;	jr c, .nohivebadge
 	call CheckMapForSomethingToCut
 	jr c, .nothingtocut
 	ld a, $1
@@ -481,9 +481,9 @@ SurfFunction:
 	dw .AlreadySurfing
 
 .TrySurf:
-	ld de, ENGINE_FOGBADGE
-	call CheckBadge
-	jr c, .nofogbadge
+;	ld de, ENGINE_FOGBADGE
+;	call CheckBadge
+;	jr c, .nofogbadge
 	ld hl, wOWState
 	bit OWSTATE_BIKING_FORCED, [hl]
 	jr nz, .cannotsurf
@@ -635,9 +635,9 @@ TrySurfOW::
 	call CheckDirection
 	jr c, .quit
 
-	ld de, ENGINE_FOGBADGE
-	call CheckEngineFlag
-	jr c, .quit
+;	ld de, ENGINE_FOGBADGE
+;	call CheckEngineFlag
+;	jr c, .quit
 
 	lb de, SURF, HM_SURF
 	call CheckPartyMove
@@ -726,9 +726,9 @@ FlyFunction:
 
 .TryFly:
 ; Fly
-	ld de, ENGINE_STORMBADGE
-	call CheckBadge
-	jr c, .nostormbadge
+;	ld de, ENGINE_STORMBADGE
+;	call CheckBadge
+;	jr c, .nostormbadge
 	call CheckFlyAllowedOnMap
 	jr nz, .indoors
 
@@ -836,10 +836,10 @@ WaterfallFunction:
 
 .TryWaterfall:
 ; Waterfall
-	ld de, ENGINE_RISINGBADGE
-	call CheckBadge
-	ld a, $80
-	ret c
+;	ld de, ENGINE_RISINGBADGE
+;	call CheckBadge
+;	ld a, $80
+;	ret c
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld hl, Script_WaterfallFromMenu
@@ -907,9 +907,9 @@ TryWaterfallOW::
 	lb de, WATERFALL, HM_WATERFALL
 	call CheckPartyMove
 	jr c, .failed
-	ld de, ENGINE_RISINGBADGE
-	call CheckEngineFlag
-	jr c, .failed
+;	ld de, ENGINE_RISINGBADGE
+;	call CheckEngineFlag
+;	jr c, .failed
 	call CheckMapCanWaterfall
 	jr c, .failed
 	ld a, BANK(Script_AskWaterfall)
@@ -1142,13 +1142,13 @@ StrengthFunction:
 
 .TryStrength:
 ; Strength
-	ld de, ENGINE_PLAINBADGE
-	call CheckBadge
-	jr nc, .UseStrength
+;	ld de, ENGINE_PLAINBADGE
+;	call CheckBadge
+;	jr nc, .UseStrength
 
-.Failed:
-	ld a, $80
-	ret
+;.Failed:
+;	ld a, $80
+;	ret
 
 .UseStrength:
 	ld hl, Script_StrengthFromMenu
@@ -1207,9 +1207,9 @@ TryStrengthOW:
 	call CheckPartyMove
 	jr c, .nope
 
-	ld de, ENGINE_PLAINBADGE
-	call CheckEngineFlag
-	jr c, .nope
+;	ld de, ENGINE_PLAINBADGE
+;	call CheckEngineFlag
+;	jr c, .nope
 
 	ld hl, wOWState
 	bit OWSTATE_STRENGTH, [hl]
@@ -1246,9 +1246,9 @@ Jumptable_cdae:
 	dw .FailWhirlpool
 
 .TryWhirlpool:
-	ld de, ENGINE_GLACIERBADGE
-	call CheckBadge
-	jr c, .noglacierbadge
+;	ld de, ENGINE_GLACIERBADGE
+;	call CheckBadge
+;	jr c, .noglacierbadge
 	call TryWhirlpoolMenu
 	jr c, .failed
 	ld a, $1
@@ -1356,9 +1356,9 @@ TryWhirlpoolOW::
 	lb de, WHIRLPOOL, HM_WHIRLPOOL
 	call CheckPartyMove
 	jr c, .failed
-	ld de, ENGINE_GLACIERBADGE
-	call CheckEngineFlag
-	jr c, .failed
+;	ld de, ENGINE_GLACIERBADGE
+;	call CheckEngineFlag
+;	jr c, .failed
 	call TryWhirlpoolMenu
 	jr c, .failed
 	ld a, BANK(Script_AskWhirlpoolOW)
@@ -1941,9 +1941,9 @@ HasCutAvailable::
 	call CheckPartyMove
 	jr c, .no
 
-	ld de, ENGINE_HIVEBADGE
-	call CheckEngineFlag
-	jr c, .no
+;	ld de, ENGINE_HIVEBADGE
+;	call CheckEngineFlag
+;	jr c, .no
 
 .yes
 	xor a

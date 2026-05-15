@@ -219,15 +219,7 @@ InitPokegearTilemap:
 	ld a, [wPokegearCard]
 	cp POKEGEARCARD_MAP
 	jr nz, .not_town_map
-	ld a, [wJumptableIndex]
-	cp 3 ; Johto
-	call z, TownMapJohtoFlips
-	ld a, [wJumptableIndex]
-	cp 5 ; Kanto
-	call z, TownMapKantoFlips
-	ld a, [wJumptableIndex]
-	cp 7 ; Orange
-	call z, TownMapOrangeFlips
+	call TownMapKantoFlips
 .not_town_map
 	ld a, [wPokegearMapRegion]
 	and a
@@ -762,12 +754,9 @@ TownMap_GetJohtoLandmarkLimits:
 	lb de, SILVER_CAVE, NEW_BARK_TOWN
 	ret
 
+; KoH - Stripped down. Simply get limit
 TownMap_GetKantoLandmarkLimits:
-	lb de, ROUTE_28, ROUTE_27
-	ld a, [wStatusFlags]
-	bit STATUSFLAGS_HALL_OF_FAME_F, a
-	ret z
-	ld e, PALLET_TOWN
+	lb de, ROUTE_28, PALLET_TOWN
 	ret
 
 TownMap_GetOrangeLandmarkLimits:
@@ -1342,21 +1331,17 @@ _TownMap:
 	ld a, [wTownMapCursorLandmark]
 	call TownMap_UpdateLandmarkName
 	call TownMapPals
-
-	ld a, [wTownMapPlayerIconLandmark]
-	cp SHAMOUTI_LANDMARK
-	jmp nc, TownMapOrangeFlips
-	cp KANTO_LANDMARK
-	jmp nc, TownMapKantoFlips
-	jmp TownMapJohtoFlips
+	jmp TownMapKantoFlips
 
 TownMap_InitFlyPossible:
 	lb de, FLY, HM_FLY
 	farcall CheckPartyMove
 	jr c, .no_fly
-	ld de, ENGINE_STORMBADGE
-	farcall CheckBadge
-	jr c, .no_fly
+; KoH - Change this to checking for Field Tech unlock
+;	ld de, ENGINE_STORMBADGE
+;	farcall CheckBadge
+;	jr c, .no_fly
+; KoH - Change to finding the field technique
 	farcall CheckFlyAllowedOnMap
 	jr nz, .no_fly
 	ld a, TRUE
@@ -1479,14 +1464,10 @@ LoadStation_PokemonChannel:
 .kanto_or_orange:
 	jmp LoadStation_PlacesAndPeople
 
+; KoH - Only fill Kanto's map
 PokegearMap:
 	call LoadTownMapGFX
-	ld a, [wPokegearMapPlayerIconLandmark]
-	cp SHAMOUTI_LANDMARK
-	jmp nc, FillOrangeMap
-	cp KANTO_LANDMARK
-	jmp nc, FillKantoMap
-	jmp FillJohtoMap
+	jmp FillKantoMap
 
 _FlyMap:
 	call ClearBGPalettes
@@ -1704,73 +1685,17 @@ INCLUDE "data/maps/flypoints.asm"
 
 FlyMap:
 	call GetCurrentLandmark
-	cp SHAMOUTI_LANDMARK
-	jr nc, .OrangeFlyMap
-	cp KANTO_LANDMARK
-	jr nc, .KantoFlyMap
-; Note that .NoKanto should be modified in tandem with this branch
+; KoH - No longer run Johto Maps. Only Kanto
+;.KantoFlyMap:
 	push af
-; Start from New Bark Town
-	ld a, FLY_NEW_BARK
-	ld [wTownMapPlayerIconLandmark], a
-; Flypoints begin at New Bark Town...
-	ld [wStartFlypoint], a
-; ..and end at Silver Cave
-	ld a, FLY_MT_SILVER
-	ld [wEndFlypoint], a
-; Fill out the map
-	call FillJohtoMap
-	call TownMapBubble
-	call TownMapPals
-	call TownMapJohtoFlips
-	call .MapHud
-	pop af
-	jmp TownMapPlayerIcon
 
-.OrangeFlyMap:
-	push af
-; Start from Shamouti Island
-	ld a, FLY_SHAMOUTI
-	ld [wTownMapPlayerIconLandmark], a
-; Flypoints begin at Shamouti Island...
-	ld [wStartFlypoint], a
-; ..and end at Navel Rock
-	ld a, FLY_NAVEL
-	ld [wEndFlypoint], a
-; Fill out the map
-	call FillOrangeMap
-	call TownMapBubble
-	call TownMapPals
-	call TownMapOrangeFlips
-	call .MapHud
-	pop af
-	jmp TownMapPlayerIcon
-
-.KantoFlyMap:
-; The event that there are no flypoints enabled in a map is not
-; accounted for. As a result, if you attempt to select a flypoint
-; when there are none enabled, the game will crash. Additionally,
-; the flypoint selection has a default starting point that
-; can be flown to even if none are enabled
-; To prevent both of these things from happening when the player
-; enters Kanto, fly access is restricted until Indigo Plateau is
-; visited and its flypoint enabled
-	push af
-	ld c, SPAWN_INDIGO
-	call HasVisitedSpawn
-	and a
-	jr z, .NoKanto
-; Kanto's map is only loaded if we've visited Indigo Plateau
-
-; Flypoints begin at Pallet Town...
-	ld a, FLY_PALLET
-	ld [wStartFlypoint], a
-; ...and end at Indigo Plateau
+; Flypoints begin at Pallet Town and end at Indigo Plateau
 	ld a, FLY_INDIGO
 	ld [wEndFlypoint], a
-; Because Indigo Plateau is the first flypoint the player
 
-; visits, it's made the default flypoint
+	ld a, FLY_PALLET
+	ld [wStartFlypoint], a
+; Pallet Town is made the default flypoint
 	ld [wTownMapPlayerIconLandmark], a
 ; Fill out the map
 	call FillKantoMap
@@ -1781,22 +1706,6 @@ FlyMap:
 	pop af
 	jmp TownMapPlayerIcon
 
-.NoKanto:
-; If Indigo Plateau hasn't been visited, we use Johto's map instead
-
-; Start from New Bark Town
-	ld a, FLY_NEW_BARK
-	ld [wTownMapPlayerIconLandmark], a
-; Flypoints begin at New Bark Town...
-	ld [wStartFlypoint], a
-; ..and end at Silver Cave
-	ld a, FLY_MT_SILVER
-	ld [wEndFlypoint], a
-	call FillJohtoMap
-	pop af
-	call TownMapBubble
-	call TownMapPals
-	call TownMapJohtoFlips
 .MapHud:
 	hlbgcoord 0, 0 ; BG Map 0
 	call TownMapBGUpdate
@@ -1827,38 +1736,6 @@ TownMapBGUpdate:
 ; Turn off BG Map update
 	xor a
 	ldh [hBGMapMode], a
-	ret
-
-FillJohtoMap:
-	ld de, JohtoMap
-	jr FillTownMap
-
-FillOrangeMap:
-	ld de, OrangeMap
-	call FillTownMap
-	eventflagcheck EVENT_VISITED_FARAWAY_ISLAND
-	ret nz
-	ld a, $a
-	hlcoord 1, 12
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hl], a
-	hlcoord 5, 13
-	ld [hl], a
-	hlcoord 2, 14
-	ld [hli], a
-	ld [hli], a
-	inc hl
-	ld [hl], a
-	hlcoord 2, 15
-	ld [hli], a
-	ld [hli], a
-	inc hl
-	ld [hl], a
-	hlcoord 5, 16
-	ld [hl], a
 	ret
 
 FillKantoMap:
@@ -1942,16 +1819,8 @@ ENDM
 	townmappals 2, 2, 2, 6, 6, 6, 1, 1, 4, 4, 4, 7, 2, 4, 1, 1
 	townmappals 2, 2, 2, 2, 4, 4, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
-TownMapJohtoFlips:
-	decoord 0, 0, JohtoMap
-	jr TownMapFlips
-
 TownMapKantoFlips:
 	decoord 0, 0, KantoMap
-	jr TownMapFlips
-
-TownMapOrangeFlips:
-	decoord 0, 0, OrangeMap
 TownMapFlips:
 	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_AREA

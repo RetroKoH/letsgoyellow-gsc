@@ -188,20 +188,16 @@ GetMapEncounterRate:
 	ret
 
 ApplyMusicEffectOnEncounterRate::
-; Pokemon March and Ruins of Alph signal double encounter rate.
-; Pokemon Lullaby halves encounter rate.
 	ld a, [wMapMusic]
 	cp MUSIC_POKEMON_MARCH
 	jr z, .double
-	cp MUSIC_RUINS_OF_ALPH_RADIO
-	jr z, .double
 	cp MUSIC_POKEMON_LULLABY
 	ret nz
-	srl b
+	srl b			; Pokemon Lullaby halves encounter rate.
 	ret
 
 .double
-	sla b
+	sla b			; Pokemon March doubles encounter rate.
 	ret
 
 ApplyCleanseTagEffectOnEncounterRate::
